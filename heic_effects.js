@@ -685,6 +685,112 @@
     }
   };
 
+  // Brittlebark Buckler: Lose all your armor after your enemy's first strike.
+  hooks['items/brittlebark_buckler'] = {
+    battleStart({ self }) {
+      self._brittlebarkBucklerTriggered = false;
+    },
+    onDamaged({ self, other, log, armorLost, hpLost }) {
+      // This should only trigger on damage from the 'other' entity's strike phase
+      if (other && other.isStriking && (armorLost > 0 || hpLost > 0) && !self._brittlebarkBucklerTriggered) {
+        const lostArmor = self.armor;
+        if (lostArmor > 0) {
+          self.armor = 0;
+          log(`${self.name} loses all ${lostArmor} armor (Brittlebark Buckler).`);
+        }
+        self._brittlebarkBucklerTriggered = true;
+      }
+    }
+  };
+
+  // Broken Winebottle: When Wounded: next turn keep striking enemy until they’re wounded
+  hooks['items/broken_winebottle'] = {
+    onWounded({ self, log }) {
+      self._winebottleEnraged = true;
+      log(`${self.name} becomes enraged (Broken Winebottle).`);
+    },
+    turnStart({ self, log }) {
+      if (self._winebottleEnraged) {
+        // Grant a large number of strikes to simulate "keep striking"
+        self.addExtraStrikes(10); 
+        log(`${self.name} enters a rage, gaining 10 extra strikes (Broken Winebottle).`);
+        self._winebottleEnraged = false; // Effect is consumed
+      }
+    }
+  };
+
+  // Cactus Cap: If the enemy has no armor, thorns deal double damage
+  hooks['items/cactus_cap'] = {
+    // NOTE: This effect modifies global damage calculation and cannot be
+    // implemented with a simple item hook. It requires changes to the core
+    // simulation engine (heic_sim.js) where thorns damage is applied.
+    // A placeholder is added to acknowledge the item.
+  };
+
+  // Caustic Tome: Battle Start: Give the enemy acid equal to your speed.
+  hooks['items/caustic_tome'] = {
+    battleStart({ self, other, log }) {
+      if (self.speed > 0) {
+        other.addStatus('acid', self.speed);
+        log(`${other.name} gains ${self.speed} acid (Caustic Tome).`);
+      }
+    }
+  };
+
+  // Chainlink Medallion: Your On Hit effects trigger twice
+  hooks['items/chainlink_medallion'] = {
+    afterStrike({ self, other, log, withActor, withSource }) {
+      if (self._chainlinkReplaying) return;
+      self._chainlinkReplaying = true;
+      try {
+        // Replay weapon onHit
+        if (self.weapon) {
+          const wh = hooks[self.weapon];
+          if (wh && typeof wh.onHit === 'function') withActor(self, () => withSource(self.weapon, () => wh.onHit({ self, other, log })));
+        }
+        // Replay items' onHit (excluding Medallion itself)
+        for (const s of (self.items || [])) {
+          if (s === 'items/chainlink_medallion') continue;
+          const h = hooks[s];
+          if (h && typeof h.onHit === 'function') withActor(self, () => withSource(s, () => h.onHit({ self, other, log })));
+        }
+        log(`${self.name}'s on-hit effects trigger twice (Chainlink Medallion).`);
+      } finally {
+        self._chainlinkReplaying = false;
+      }
+    }
+  };
+
+  // Chainmail Armor: Wounded: Regain your base armor
+  hooks['items/chainmail_armor'] = {
+    onWounded({ self, log }) {
+      if (self.baseArmor > 0) {
+        self.addArmor(self.baseArmor);
+        log(`${self.name} regains ${self.baseArmor} base armor (Chainmail Armor).`);
+      }
+    }
+  };
+
+  // Chainmail Cloak: Turn Start: If you have armor, restore 2 health
+  hooks['items/chainmail_cloak'] = {
+    turnStart({ self, log }) {
+      if (self.armor > 0) {
+        const healed = self.heal(2);
+        if (healed > 0) log(`${self.name} restores ${healed} health (Chainmail Cloak).`);
+      }
+    }
+  };
+
+  // Cherry Blade: Battle Start (if Exposed): Deal 4 damage
+  hooks['weapons/cherry_blade'] = {
+    battleStart({ self, other, log }) {
+      if (self.s && self.s.exposed > 0) {
+        self.damageOther(4);
+        log(`${other.name} takes 4 damage (Cherry Blade).`);
+      }
+    }
+  };
+
   // Blacksmith Bond: exposed can trigger one additional time
   hooks['items/blacksmith_bond'] = {
     battleStart({ self }){
@@ -822,13 +928,34 @@
   };
 
   // Ham Bat: Battle Start — gain 2 extra strikes
-  // (Already added above; kept for H grouping reference)
+  hooks['items/ham_bat'] = {
+    battleStart({ self, log }) { self.addExtraStrikes(2); log(`${self.name} gains 2 extra strikes (Ham Bat).`); }
+  };
 
   // Honeydew Melon: Battle Start — transfer all statuses to enemy
-  // (Already added above; kept for H grouping reference)
+  hooks['items/honeydew_melon'] = {
+    battleStart({ self, other, log }) {
+      const ks = Object.keys(self.s || {});
+      let moved = 0;
+      for (const k of ks) {
+        const n = self.s[k] || 0;
+        if (n > 0) {
+          other.addStatus(k, n);
+          self.s[k] = 0;
+          moved += n;
+        }
+      }
+      log(`${self.name} transfers all statuses to ${other.name} (Honeydew Melon).`);
+    }
+  };
 
   // Helmet of Envy: Battle Start — double enemy attack
-  // (Already added above; kept for H grouping reference)
+  hooks['items/helmet_of_envy'] = {
+    battleStart({ other, log }) {
+      other.addAtk(other.atk); // double by adding current atk
+      log(`${other.name}'s attack is doubled (Helmet of Envy).`);
+    }
+  };
 
   // -----------------
   // I items
@@ -915,11 +1042,11 @@
     }
   };
 
-  // Gold Ring: Battle Start gain +1 Gold
+  // Gold Ring: Battle Start — gain +1 gold (respects gold cap and greed)
   hooks['items/gold_ring'] = {
     battleStart({ self, log }) {
       const g = self.addGold(1);
-      if (g > 0) log(`${self.name} gains ${g} gold (Gold Ring).`);
+      if (g > 0) log(`${self.name} gains 1 gold (Gold Ring).`);
     }
   };
 
@@ -928,7 +1055,7 @@
     battleStart({ self, log }) { log(`[TODO] ${self.name}'s Grand Crescendo requires instrument/symphony system.`); }
   };
 
-  // Helmet of Envy: Battle Start double enemy attack
+  // Helmet of Envy: Battle Start — double enemy attack
   hooks['items/helmet_of_envy'] = {
     battleStart({ other, log }) {
       other.addAtk(other.atk); // double by adding current atk
@@ -1399,792 +1526,124 @@
     }
   };
 
-    // Blastcap Armor: on exposed take 5 damage
-    hooks['items/blastcap_armor'] = {
-      onExposed({ self, log }){
-        if(self.hp>0){
-          self.hp = Math.max(0, self.hp - 5);
-          log(`${self.name} takes 5 damage (Blastcap Armor).`);
-        }
-      }
-    };
-
-  // Bloodstone Ring: gain max health and heal at battle start
-  hooks['items/bloodstone_ring'] = {
-    battleStart({ self, log }){
-      self.hpMax += 5;
-      log(`${self.name} gains 5 max health (Bloodstone Ring).`);
-      const healed = self.heal(5);
-      if(healed>0) log(`${self.name} restores ${healed} health (Bloodstone Ring).`);
-    }
+    // Deviled Egg: Hatches after you defeat the next boss (Into Sanguine Imp)
+  hooks['items/deviled_egg'] = {
+    // NOTE: This is a meta-game effect that cannot be implemented in the simulation.
   };
 
-  // Gold Ring: Battle Start — gain +1 gold (respects gold cap and greed)
-  hooks['items/gold_ring'] = {
-    battleStart({ self, log }) {
-      const g = self.addGold(1);
-      if (g > 0) log(`${self.name} gains 1 gold (Gold Ring).`);
-    }
-  };
-
-  // Royal Scepter: see expanded behavior below (ATK equals GOLD, engine-enforced)
-  hooks['weapons/royal_scepter'] = hooks['weapons/royal_scepter'] || {};
-
-  // Honeycomb: lose 3 hp at battle start and gain 3 regen
-  hooks['items/honeycomb'] = {
-    battleStart({ self, log }){
-      if(self.hp > 0){
-        self.hp = Math.max(0, self.hp - 3);
-        log(`${self.name} consumes Honeycomb and loses 3 HP.`);
-      }
-      self.addStatus('regen', 3);
-      log(`${self.name} gains 3 regen (Honeycomb).`);
-    }
-  };
-
-  // Lightning Rod: on hit, apply 1 stun to the enemy
-  hooks['weapons/lightning_rod'] = {
-    onHit({ other, log }){
-      other.addStatus('stun', 1);
-      log(`${other.name} is stunned (Lightning Rod).`);
-    }
-  };
-
-  // Stormcloud Spear: Every 5 strikes — stun enemy for 2 turns
-  hooks['weapons/stormcloud_spear'] = {
-    battleStart({ self }) { self._spearStrikes = 0; },
-    afterStrike({ self, other, log }) {
-      self._spearStrikes = (self._spearStrikes || 0) + 1;
-      if (self._spearStrikes % 5 === 0) { other.addStatus('stun', 2); log(`${other.name} is stunned for 2 turns (Stormcloud Spear).`); }
-    }
-  };
-    // Trail Mix: Battle Start: Deal 1 damage and gain 1 Thorns (repeat twice)
-    hooks['items/trail_mix'] = {
-      battleStart({ self, other, log }) {
-        for (let i = 0; i < 2; i++) {
-          other.hp = Math.max(0, other.hp - 1);
-          self.addStatus('thorns', 1);
-          log(`${self.name} deals 1 damage and gains 1 thorns (Trail Mix).`);
-        }
-      }
-    };
-
-  // Battle Axe: While the enemy has armor, double your attack
-  hooks['weapons/battle_axe'] = {
-    turnStart({ self, other }) {
-      if (other.armor > 0) {
-        self.tempAtk = (self.tempAtk || 0) + self.atk;
-      }
-    }
-  };
-
-  // Bearclaw Blade: Attack is always equal to missing health
-  hooks['weapons/bearclaw_blade'] = {
+  // Double Explosion: The second time you deal non-weapon damage each turn, deal 3 damage
+  hooks['items/double_explosion'] = {
     turnStart({ self }) {
-      self.atk = Math.max(0, self.hpMax - self.hp);
-    }
-  };
-
-  // Bejeweled Blade: Gain 2 attack for each equipped Jewelry item
-  hooks['weapons/bejeweled_blade'] = {
-    battleStart({ self, log }) {
-      const cnt = countByTag(self, 'Jewelry');
-      if (cnt > 0) { self.addAtk(2 * cnt); log(`${self.name} gains ${2 * cnt} attack (Bejeweled Blade).`); }
-    }
-  };
-
-  // Ore Heart: +3 Armor per Stone-tagged item
-  hooks['items/ore_heart'] = {
-    battleStart({ self, log }) {
-      const cnt = countByTag(self, 'Stone');
-      if (cnt > 0) { self.addArmor(3 * cnt); log(`${self.name} gains ${3 * cnt} armor (Ore Heart).`); }
-    }
-  };
-
-  // Blackbriar Blade: Whenever you would gain thorns, gain 1 attack instead
-  hooks['weapons/blackbriar_blade'] = {
-    onGainStatus({ self, key, log }) {
-      if (key === 'thorns') {
-        self.addAtk(1);
-        log(`${self.name} gains 1 attack instead of thorns (Blackbriar Blade).`);
-      }
-    }
-  };
-
-  // Ancient Warhammer, Arcane Wand, Banish Hammer, Basilisk Fang, Blackbriar Bow and more — added below
-
-  // Bloodlord's Axe: Battle Start, enemy loses 5 health and you restore 5 health
-  hooks['weapons/bloodlord_s_axe'] = {
-    battleStart({ self, other, log }) {
-      other.hp = Math.max(0, other.hp - 5);
-      const healed = self.heal(5);
-      log(`${other.name} loses 5 health and ${self.name} restores ${healed} health (Bloodlord's Axe).`);
-    }
-  };
-
-  // Bloodmoon Dagger: Wounded, gain 5 attack and take 2 damage
-  hooks['weapons/bloodmoon_dagger'] = {
-    onWounded({ self, log }) {
-      self.addAtk(5);
-      self.hp = Math.max(0, self.hp - 2);
-      log(`${self.name} gains 5 attack and takes 2 damage (Bloodmoon Dagger).`);
-    }
-  };
-
-  // Bloodmoon Sickle: On Hit, take 1 damage
-  hooks['weapons/bloodmoon_sickle'] = {
-    onHit({ self, log }) {
-      self.hp = Math.max(0, self.hp - 1);
-      log(`${self.name} takes 1 damage (Bloodmoon Sickle).`);
-    }
-  };
-
-  // Boom Stick: On Hit, deal 1 damage
-  hooks['weapons/boom_stick'] = {
-    onHit({ other, log }) {
-      other.hp = Math.max(0, other.hp - 1);
-      log(`${other.name} takes 1 damage (Boom Stick).`);
-    }
-  };
-
-  // Brittlebark Bow: After 3 strikes, lose 2 attack
-  hooks['weapons/brittlebark_bow'] = {
-    turnEnd({ self, log }) {
-      self._strikeCount = (self._strikeCount || 0) + 1;
-      if (self._strikeCount === 3) {
-        self.atk = Math.max(0, self.atk - 2);
-        log(`${self.name} loses 2 attack after 3 strikes (Brittlebark Bow).`);
-        self._strikeCount = 0;
-      }
-    }
-  };
-
-  // Brittlebark Club: Exposed & Wounded, lose 2 attack
-  hooks['weapons/brittlebark_club'] = {
-    onExposed({ self, log }) {
-      self.atk = Math.max(0, self.atk - 2);
-      log(`${self.name} loses 2 attack (Brittlebark Club, Exposed).`);
+      self._nonWeaponDamageCount = 0;
     },
-    onWounded({ self, log }) {
-      self.atk = Math.max(0, self.atk - 2);
-      log(`${self.name} loses 2 attack (Brittlebark Club, Wounded).`);
-    }
-  };
-
-  // Bubblegloop Staff: Can't strike. Turn Start: Spend 1 speed to give enemy 2 acid and 2 poison
-  hooks['weapons/bubblegloop_staff'] = {
-    turnStart({ self, other, log }) {
-      if (self.speed > 0) {
-        self.speed -= 1;
-        other.addStatus('acid', 2);
-        other.addStatus('poison', 2);
-        log(`${other.name} gains 2 acid and 2 poison (Bubblegloop Staff).`);
+    onBombDamage({ self, other, log }) {
+      self._nonWeaponDamageCount = (self._nonWeaponDamageCount || 0) + 1;
+      if (self._nonWeaponDamageCount === 2) {
+        self.damageOther(3);
+        log(`${other.name} takes 3 damage (Double Explosion).`);
       }
     }
+    // NOTE: This needs to be expanded to cover other non-weapon damage sources.
   };
 
-  // Chainmail Sword: Exposed, gain armor equal to base armor
-  hooks['weapons/chainmail_sword'] = {
-    onExposed({ self, log }) {
-      if (self._chainmailBaseArmor !== undefined) {
-        self.armor += self._chainmailBaseArmor;
-        log(`${self.name} gains ${self._chainmailBaseArmor} armor (Chainmail Sword).`);
-      }
+  // Double-plated Armor: Exposed: Gain 3 armor — at Gold: 6, at Diamond: 12
+  hooks['items/double_plated_armor'] = {
+    onExposed({ self, log, tier }) {
+      const gain = valByTier(3, 6, 12, tier);
+      self.addArmor(gain);
+      log(`${self.name} gains ${gain} armor (Double-plated Armor).`);
     }
   };
 
-  // Cherry Blade: Battle Start (if Exposed), deal 4 damage
-  hooks['weapons/cherry_blade'] = {
-    battleStart({ self, other, log }) {
-      if (self.status && self.status.exposed > 0) {
-        other.hp = Math.max(0, other.hp - 4);
-        log(`${other.name} takes 4 damage (Cherry Blade).`);
-      }
-    }
-  };
-
-  // Cleaver of Wrath: Max health is always 1
-  hooks['weapons/cleaver_of_wrath'] = {
-    battleStart({ self }) {
-      self.hpMax = 1;
-      self.hp = Math.min(self.hp, 1);
-    }
-  };
-
-  // Dashmaster's Dagger: Battle Start, gain additional strikes equal to speed
-  hooks['weapons/dashmaster_s_dagger'] = {
-    battleStart({ self, log }) {
-      self.extraStrikes = (self.extraStrikes || 0) + self.speed;
-      log(`${self.name} gains ${self.speed} additional strikes (Dashmaster's Dagger).`);
-    }
-  };
-
-  // Fungal Rapier: Battle Start, gain 1 poison
-  hooks['weapons/fungal_rapier'] = {
-    battleStart({ self, log }) {
-      self.addStatus('poison', 1);
-      log(`${self.name} gains 1 poison (Fungal Rapier).`);
-    }
-  };
-
-  // Forge Hammer: On Hit, give the enemy 2 armor
-  hooks['weapons/forge_hammer'] = {
-    onHit({ other, log }) {
-      other.addArmor(2);
-      log(`${other.name} gains 2 armor (Forge Hammer).`);
-    }
-  };
-
-  // Frostbite Dagger: First turn, give the enemy freeze equal to your attack on hit
-  hooks['weapons/frostbite_dagger'] = {
-    onHit({ self, other, log }) {
-      if (self.flags.firstTurn) {
-        other.addStatus('freeze', self.atk);
-        log(`${other.name} gains ${self.atk} freeze (Frostbite Dagger).`);
-      }
-    }
-  };
-
-  // Frozen Iceblade: Battle Start, gain 3 freeze
-  hooks['weapons/frozen_iceblade'] = {
-    battleStart({ self, log }) {
-      self.addStatus('freeze', 3);
-      log(`${self.name} gains 3 freeze (Frozen Iceblade).`);
-    }
-  };
-
-  // Gale Staff: On Hit, lose 1 speed
-  hooks['weapons/gale_staff'] = {
-    onHit({ self, log }) {
-      if (self.speed > 0) {
-        self.speed -= 1;
-        log(`${self.name} loses 1 speed (Gale Staff).`);
-      }
-    }
-  };
-
-  // Granite Axe: On Hit, lose 2 health and gain 4 armor
-  hooks['weapons/granite_axe'] = {
-    onHit({ self, log }) {
-      self.hp = Math.max(0, self.hp - 2);
-      self.addArmor(4);
-      log(`${self.name} loses 2 health and gains 4 armor (Granite Axe).`);
-    }
-  };
-
-  // Granite Hammer: On Hit, convert 1 armor to 2 attack
-  hooks['weapons/granite_hammer'] = {
-    onHit({ self, log }) {
-      if (self.armor > 0) {
-        self.armor -= 1;
-        self.addAtk(2);
-        log(`${self.name} converts 1 armor to 2 attack (Granite Hammer).`);
-      }
-    }
-  };
-
-  // Granite Lance: Your base armor is doubled
-  hooks['weapons/granite_lance'] = {
-    battleStart({ self, log }) {
-      self.armor *= 2;
-      // Ensure downstream items that reference baseArmor (e.g., Granite Crown) see the doubled value
-      if (typeof self.baseArmor === 'number') self.baseArmor = self.armor;
-      log(`${self.name}'s base armor is doubled (Granite Lance).`);
-    }
-  };
-
-  // Grilling Skewer: Battle Start, gain 1 additional strike
-  hooks['weapons/grilling_skewer'] = {
-    battleStart({ self, log }) {
-      self.extraStrikes = (self.extraStrikes || 0) + 1;
-      log(`${self.name} gains 1 additional strike (Grilling Skewer).`);
-    }
-  };
-
-  // Heart Drinker: On Hit, restore 1 health
-  hooks['weapons/heart_drinker'] = {
-    onHit({ self, log }) {
-      const healed = self.heal(1);
-      log(`${self.name} restores ${healed} health (Heart Drinker).`);
-    }
-  };
-
-  // Icicle Spear: Exposed, give the enemy 2 freeze for each equipped water item
-  hooks['weapons/icicle_spear'] = {
-    onExposed({ self, other, log }) {
-      let waterCount = (self.items || []).filter(s => /water/i.test(s)).length;
-      if (waterCount > 0) {
-        other.addStatus('freeze', 2 * waterCount);
-        log(`${other.name} gains ${2 * waterCount} freeze (Icicle Spear).`);
-      }
-    }
-  };
-
-  // Ironstone Bow: On Hit, lose 1 speed. If speed is 0 or less, only strike every other turn
-  hooks['weapons/ironstone_bow'] = {
-    onHit({ self, log }) {
-      self.speed = (self.speed || 0) - 1;
-      log(`${self.name} loses 1 speed (Ironstone Bow).`);
-    }
-  };
-
-  // Ironstone Spear: While you have armor, temporarily gain 2 attack
-  hooks['weapons/ironstone_spear'] = {
+  // Double-plated Vest: Every third time you take damage each turn, gain 2 armor
+  hooks['items/double_plated_vest'] = {
     turnStart({ self }) {
-      if (self.armor > 0) {
-        self.addTempAtk(2);
-      }
-    }
-  };
-
-  // Leather Whip: Battle Start, gain 5 max health
-  hooks['weapons/leather_whip'] = {
-    battleStart({ self, log }) {
-      self.hpMax += 5;
-      log(`${self.name} gains 5 max health (Leather Whip).`);
-    }
-  };
-
-  // Lifeblood Spear: Whenever you restore 3 or more health, gain 1 attack
-  hooks['weapons/lifeblood_spear'] = {
-    onHeal({ self, log, amount }) {
-      if (amount >= 3) {
-        self.addAtk(1);
-        log(`${self.name} gains 1 attack (Lifeblood Spear).`);
-      }
-    }
-  };
-
-  // Liferoot Hammer: On Hit, if health is full, spend regeneration to gain 3x that amount of armor
-  hooks['weapons/liferoot_hammer'] = {
-    onHit({ self, log }) {
-      if (self.hp === self.hpMax && self.s.regen > 0) {
-        let regen = self.s.regen;
-        self.s.regen = 0;
-        self.addArmor(3 * regen);
-        log(`${self.name} spends ${regen} regeneration to gain ${3 * regen} armor (Liferoot Hammer).`);
-      }
-    }
-  };
-
-  // Liferoot Staff: Wounded, gain 3 regeneration
-  hooks['weapons/liferoot_staff'] = {
-    onWounded({ self, log }) {
-      self.addStatus('regen', 3);
-      log(`${self.name} gains 3 regeneration (Liferoot Staff).`);
-    }
-  };
-
-  // Lifesteal Scythe: On Hit, if enemy has no armor, restore health equal to your attack
-  hooks['weapons/lifesteal_scythe'] = {
-    onHit({ self, other, log }) {
-      if (other.armor <= 0) {
-        const healed = self.heal(self.atk);
-        log(`${self.name} restores ${healed} health (Lifesteal Scythe).`);
-      }
-    }
-  };
-
-  // Lightning Rod: Turn Start, if you're stunned, gain 3 attack
-  hooks['weapons/lightning_rod'] = {
-    turnStart({ self, log }) {
-      if (self.s.stun > 0) {
-        self.addAtk(3);
-        log(`${self.name} gains 3 attack (Lightning Rod).`);
-      }
-    }
-  };
-
-  // Lightning Whip: Turn Start, if enemy is stunned, gain 1 additional strike
-  hooks['weapons/lightning_whip'] = {
-    turnStart({ self, other }) {
-      if (other.s.stun > 0) {
-        self.addExtraStrikes(1);
-      }
-    }
-  };
-
-  // Marble Sword: Exposed, gain 3 attack
-  hooks['weapons/marble_sword'] = {
-    onExposed({ self, log }) {
-      self.addAtk(3);
-      log(`${self.name} gains 3 attack (Marble Sword).`);
-    }
-  };
-
-  // Melting Iceblade: On Hit, lose 1 attack
-  hooks['weapons/melting_iceblade'] = {
-    onHit({ self, log }) {
-      self.atk = Math.max(0, self.atk - 1);
-      log(`${self.name} loses 1 attack (Melting Iceblade).`);
-    }
-  };
-
-  // Mountain Cleaver: Attack always equals base armor
-  hooks['weapons/mountain_cleaver'] = {
-    turnStart({ self }) {
-      self.atk = self.armor;
-    }
-  };
-
-  // Pacifist Staff: On Hit, gain 1 armor and restore 1 health
-  hooks['weapons/pacifist_staff'] = {
-    onHit({ self, log }) {
-      self.addArmor(1);
-      const healed = self.heal(1);
-      log(`${self.name} gains 1 armor and restores ${healed} health (Pacifist Staff).`);
-    }
-  };
-
-  // Razorthorn Spear: On Hit, gain 2 thorns
-  hooks['weapons/razorthorn_spear'] = {
-    onHit({ self, log }) {
-      self.addStatus('thorns', 2);
-      log(`${self.name} gains 2 thorns (Razorthorn Spear).`);
-    }
-  };
-
-  // Ring Blades: Battle Start, steal 1 attack from the enemy
-  hooks['weapons/ring_blades'] = {
-    battleStart({ self, other, log }) {
-      if (other.atk > 0) {
-        other.atk -= 1;
-        self.atk += 1;
-        log(`${self.name} steals 1 attack from ${other.name} (Ring Blades).`);
-      }
-    }
-  };
-
-  // Rusty Sword: First Turn, give acid equal to your attack on hit
-  hooks['weapons/rusty_sword'] = {
-    onHit({ self, other, log }) {
-      if (self.flags.firstTurn) {
-        other.addStatus('acid', self.atk);
-        log(`${other.name} gains ${self.atk} acid (Rusty Sword).`);
-      }
-    }
-  };
-
-  // Serpent Dagger: Every 3 strikes — enemy gains 4 poison
-  hooks['weapons/serpent_dagger'] = {
-    battleStart({ self }) { self._strikeCount = 0; },
-    afterStrike({ self, other, log }) {
-      self._strikeCount = (self._strikeCount || 0) + 1;
-      if (self._strikeCount % 3 === 0) { other.addStatus('poison', 4); log(`${other.name} gains 4 poison (Serpent Dagger).`); }
-    }
-  };
-
-  // Silverscale Dagger: Battle Start, give the enemy 1 riptide
-  hooks['weapons/silverscale_dagger'] = {
-    battleStart({ other, log }) {
-      other.addStatus('riptide', 1);
-      log(`${other.name} gains 1 riptide (Silverscale Dagger).`);
-    }
-  };
-
-  // Silverscale Trident: On Hit, give the enemy 1 riptide
-  hooks['weapons/silverscale_trident'] = {
-    onHit({ other, log }) {
-      other.addStatus('riptide', 1);
-      log(`${other.name} gains 1 riptide (Silverscale Trident).`);
-    }
-  };
-
-  // Slime Sword: Battle Start, give yourself and the enemy 3 acid
-  hooks['weapons/slime_sword'] = {
-    battleStart({ self, other, log }) {
-      self.addStatus('acid', 3);
-      other.addStatus('acid', 3);
-      log(`${self.name} and ${other.name} gain 3 acid (Slime Sword).`);
-    }
-  };
-
-  // Stoneslab Sword: On Hit, gain 2 armor
-  hooks['weapons/stoneslab_sword'] = {
-    onHit({ self, log }) {
-      self.addArmor(2);
-      log(`${self.name} gains 2 armor (Stoneslab Sword).`);
-    }
-  };
-
-  // Swiftstrike Rapier: Battle Start, if you have more speed than the enemy, gain 3 additional strikes
-  hooks['weapons/swiftstrike_rapier'] = {
-    battleStart({ self, other, log }) {
-      if (self.speed > other.speed) {
-        self.extraStrikes = (self.extraStrikes || 0) + 3;
-        log(`${self.name} gains 3 additional strikes (Swiftstrike Rapier).`);
-      }
-    }
-  };
-
-  // Sword of Pride: Battle Start, if the enemy has more attack, armor or speed, take 3 damage
-  hooks['weapons/sword_of_pride'] = {
-    battleStart({ self, other, log }) {
-      if (other.atk > self.atk || other.armor > self.armor || other.speed > self.speed) {
-        self.hp = Math.max(0, self.hp - 3);
-        log(`${self.name} takes 3 damage (Sword of Pride).`);
-      }
-    }
-  };
-
-  // Tempest Blade: Attack always equals speed
-  hooks['weapons/tempest_blade'] = {
-    turnStart({ self }) {
-      self.atk = self.speed;
-    }
-  };
-
-  // Thunderbound Sabre: Battle Start, stun yourself for 2 turns
-  hooks['weapons/thunderbound_sabre'] = {
-    battleStart({ self, log }) {
-      self.addStatus('stun', 2);
-      log(`${self.name} is stunned for 2 turns (Thunderbound Sabre).`);
-    }
-  };
-
-  // Wave Breaker: Can't strike. Battle Start, give the enemy 2 riptide for each negative base attack
-  hooks['weapons/wave_breaker'] = {
-    battleStart({ self, other, log }) {
-      if (self.atk < 0) {
-        other.addStatus('riptide', 2 * Math.abs(self.atk));
-        log(`${other.name} gains ${2 * Math.abs(self.atk)} riptide (Wave Breaker).`);
-      }
-    }
-  };
-
-  // Woodcutter's Axe: Wounded, gain 6 attack until the end of the turn
-
-  hooks['weapons/woodcutter_s_axe'] = {
-    onWounded({ self, log }) {
-      self.addTempAtk(6);
-      log(`${self.name} gains 6 temporary attack (Woodcutter's Axe).`);
-    }
-  };
-
-  // -----------------
-  // Additional Weapons (overrides/expanded)
-  // -----------------
-
-  // Hidden Dagger: gets stronger for every new hidden dagger you find (requires meta/progression)
-  hooks['weapons/hidden_dagger'] = {
-    battleStart({ self, log }) { log(`[TODO] ${self.name}'s Hidden Dagger scaling requires progression context.`); }
-  };
-
-  // Ancient Warhammer: On Hit — remove all enemy armor
-  hooks['weapons/ancient_warhammer'] = {
-    onHit({ other, log }) {
-      if (other.armor > 0) {
-        const lost = other.armor;
-        other.armor = 0;
-        log(`${other.name} loses all ${lost} armor (Ancient Warhammer).`);
-      }
-    }
-  };
-
-  // Arcane Wand: Can't strike; Turn Start — deal 2 + tomes to enemy
-  hooks['weapons/arcane_wand'] = {
-    battleStart({ self }) { self.cannotStrike = true; },
-    turnStart({ self, other, log }) {
-      const tomeCount = (self.items || []).filter(s => /tome/i.test(s)).length;
-      const dmg = 2 + tomeCount;
-      if (dmg > 0) {
-        other.hp = Math.max(0, other.hp - dmg);
-        log(`${other.name} takes ${dmg} arcane damage (Arcane Wand).`);
-      }
-    }
-  };
-
-  // Banish Hammer: Battle Start — remove all tomes from enemy before they trigger
-  hooks['weapons/banish_hammer'] = {
-    battleStart({ other, log }) {
-      if (!other.items) return;
-      const before = other.items.length;
-      other.items = other.items.filter(s => !/tome/i.test(s));
-      const removed = before - other.items.length;
-      if (removed > 0) log(`${other.name} loses ${removed} tome(s) (Banish Hammer).`);
-    }
-  };
-
-  // Basilisk Fang: On Hit — move up to 2 poison from you to the enemy
-  hooks['weapons/basilisk_fang'] = {
-    onHit({ self, other, log }) {
-      const move = Math.min(2, self.s.poison || 0);
-      if (move > 0) {
-        self.s.poison -= move;
-        other.addStatus('poison', move);
-        log(`${self.name} transfers ${move} poison (Basilisk Fang).`);
-      }
-    }
-  };
-
-  // Blackbriar Bow: Can't strike; Turn Start — gain thorns equal to attack
-  hooks['weapons/blackbriar_bow'] = {
-    battleStart({ self }) { self.cannotStrike = true; },
-    turnStart({ self, log }) {
-      self.addStatus('thorns', self.atk);
-      log(`${self.name} gains ${self.atk} thorns (Blackbriar Bow).`);
-    }
-  };
-
-  // Brittlebark Bow: every 3 strikes — lose 2 attack
-  hooks['weapons/brittlebark_bow'] = {
-    battleStart({ self }) { self._bbStrikes = 0; },
-    afterStrike({ self, log }) {
-      self._bbStrikes = (self._bbStrikes || 0) + 1;
-      if (self._bbStrikes % 3 === 0) { self.atk = Math.max(0, self.atk - 2); log(`${self.name} loses 2 attack (Brittlebark Bow).`); }
-    }
-  };
-
-  // Brittlebark Club: Require both Exposed & Wounded once — lose 2 attack
-  hooks['weapons/brittlebark_club'] = {
-    onExposed({ self, log }) { if (self.woundedDone && !self._bbcDone) { self._bbcDone = true; self.atk = Math.max(0, self.atk - 2); log(`${self.name} loses 2 attack (Brittlebark Club).`);} },
-    onWounded({ self, log }) { if (self._exposedCount > 0 && !self._bbcDone) { self._bbcDone = true; self.atk = Math.max(0, self.atk - 2); log(`${self.name} loses 2 attack (Brittlebark Club).`);} }
-  };
-
-  // Bubblegloop Staff: Can't strike; Turn Start — spend 1 speed → give enemy 2 acid and 2 poison
-  hooks['weapons/bubblegloop_staff'] = {
-    battleStart({ self }) { self.cannotStrike = true; },
-    turnStart({ self, other, log }) {
-      if (self.speed > 0) {
-        self.speed -= 1;
-        other.addStatus('acid', 2);
-        other.addStatus('poison', 2);
-        log(`${self.name} spends 1 speed to inflict 2 acid and 2 poison (Bubblegloop Staff).`);
-      }
-    }
-  };
-
-  // Chainmail Sword: Exposed — gain armor equal to base armor
-  hooks['weapons/chainmail_sword'] = {
-    onExposed({ self, log }) { const add = self.baseArmor || 0; if (add > 0) { self.addArmor(add); log(`${self.name} gains ${add} armor (Chainmail Sword).`);} }
-  };
-
-  // Cherry Blade: Battle Start — -1 speed; After each strike — heal 1
-  hooks['weapons/cherry_blade'] = {
-    battleStart({ self, log }) { if (self.speed > 0) { self.speed -= 1; log(`${self.name} loses 1 speed (Cherry Blade).`);} },
-    afterStrike({ self }) { self.heal(1); }
-  };
-
-  // Cleaver of Wrath: Max HP always 1
-  hooks['weapons/cleaver_of_wrath'] = { battleStart({ self, log }) { self.hpMax = 1; self.hp = Math.min(self.hp, 1); log(`${self.name}'s max health becomes 1 (Cleaver of Wrath).`);} };
-
-  // Dashmaster's Dagger: Battle Start — gain additional strikes equal to speed
-  hooks['weapons/dashmaster_s_dagger'] = { battleStart({ self, log }) { if (self.speed > 0) { self.addExtraStrikes(self.speed); log(`${self.name} gains ${self.speed} additional strikes (Dashmaster's Dagger).`);} } };
-
-  // Evergrowth Spear: Every other turn — gain 1 attack and heal 1
-  hooks['weapons/evergrowth_spear'] = { turnEnd({ self, log }) { if ((self.turnCount || 0) % 2 === 0) { self.addAtk(1); const h = self.heal(1); log(`${self.name} grows: +1 attack, restores ${h} health (Evergrowth Spear).`);} } };
-
-  // Ironstone Bow: speed <= 0 — only strike every other turn; On Hit — lose 1 speed
-  hooks['weapons/ironstone_bow'] = {
-    onHit({ self, log }) { self.speed = (self.speed || 0) - 1; log(`${self.name} loses 1 speed (Ironstone Bow).`); },
-    turnStart({ self }) { if (self.speed <= 0) { self._ironAlt = !self._ironAlt; if (self._ironAlt) self.skipTurn = true; } }
-  };
-
-  // Riverflow Rapier: first time you gain a new status — gain 1 additional strike
-  hooks['weapons/riverflow_rapier'] = { onGainStatus({ self, isNew }) { if (isNew && !self._riverRapierUsed) { self._riverRapierUsed = true; self.addExtraStrikes(1); } } };
-
-  // Royal Crownblade: On Hit — gain 1 gold
-  hooks['weapons/royal_crownblade'] = { onHit({ self, log }) { const g = self.addGold(1); if (g > 0) log(`${self.name} gains 1 gold (Royal Crownblade).`); } };
-
-  // Royal Scepter: ATK equals GOLD (handled in engine); override any previous behavior
-  hooks['weapons/royal_scepter'] = {};
-
-  // Scepter of Greed: cannot gain gold (enforced by addGold)
-  hooks['weapons/scepter_of_greed'] = {};
-
-  // Swiftstrike Bow: double additional strikes at Turn Start
-  hooks['weapons/swiftstrike_bow'] = {
-    turnStart({ self }) { if (self.extraStrikes > 0 && !self._swiftDoubled) { self.extraStrikes += self.extraStrikes; self._swiftDoubled = true; } },
-    turnEnd({ self }) { self._swiftDoubled = false; }
-  };
-
-  // Twin Blade: Strike twice
-  hooks['weapons/twin_blade'] = { battleStart({ self }) { self.strikeFactor = 2; } };
-
-  // Wave Breaker: Can't strike; Battle Start — give enemy 2 riptide per negative base attack
-  hooks['weapons/wave_breaker'] = {
-    battleStart({ self, other, log }) {
-      self.cannotStrike = true;
-      if (self.atk < 0) { const amt = 2 * Math.abs(self.atk); other.addStatus('riptide', amt); log(`${other.name} gains ${amt} riptide (Wave Breaker).`); }
-    }
-  };
-
-  // ----- Edges (Upgrades applied to weapons) -----
-  // Agile Edge: Battle Start — gain 1 additional strike
-  hooks['upgrades/agile_edge'] = {
-    battleStart({ self, log }) {
-      self.extraStrikes = (self.extraStrikes || 0) + 1;
-      log(`${self.name} gains 1 additional strike (Agile Edge).`);
-    }
-  };
-
-  // Bleeding Edge: On Hit — restore 1 health
-  hooks['upgrades/bleeding_edge'] = {
-    onHit({ self, log }) {
-      const healed = self.heal(1);
-      if (healed > 0) log(`${self.name} restores ${healed} health (Bleeding Edge).`);
-    }
-  };
-
-  // Blunt Edge: On Hit — gain 1 armor
-  hooks['upgrades/blunt_edge'] = {
-    onHit({ self, log }) {
-      self.addArmor(1);
-      log(`${self.name} gains 1 armor (Blunt Edge).`);
-    }
-  };
-
-  // Cutting Edge: On Hit - deal 1 damage
-  hooks['upgrades/cutting_edge'] = {
-    onHit({ self, log }) { const res = self.damageOther(1); log(`${self.name} cuts for 1 (Cutting Edge).`); }
-  };
-
-  // Featherweight Edge: On Hit - convert 1 speed to 1 attack
-  hooks['upgrades/featherweight_edge'] = {
-    onHit({ self, log }) { if ((self.speed|0) > 0) { self.speed -= 1; self.addAtk(1); log(`${self.name} converts 1 speed to 1 attack (Featherweight Edge).`); } }
-  };
-
-  // Freezing Edge: Battle Start - give the enemy 3 freeze
-  hooks['upgrades/freezing_edge'] = { battleStart({ other, log }) { other.addStatus('freeze', 3); log(`${other.name} gains 3 freeze (Freezing Edge).`); } };
-
-  // Gilded Edge: On Hit - if gold < 10, gain 1 gold
-  hooks['upgrades/gilded_edge'] = { onHit({ self, log }) { if ((self.gold||0) < 10) { const g = self.addGold(1); if (g>0) log(`${self.name} gains ${g} gold (Gilded Edge).`); } } };
-
-  // Jagged Edge: On Hit - gain 2 thorns and take 1 damage
-  hooks['upgrades/jagged_edge'] = { onHit({ self, log }) { self.addStatus('thorns', 2); self.hp = Math.max(0, self.hp - 1); log(`${self.name} gains 2 thorns and takes 1 damage (Jagged Edge).`); } };
-
-  // Oaken Edge: Battle Start - gain 3 regeneration
-  hooks['upgrades/oaken_edge'] = { battleStart({ self, log }) { self.addStatus('regen', 3); log(`${self.name} gains 3 regen (Oaken Edge).`); } };
-
-  // Oozing Edge: On Hit - if enemy has no poison, give 2 poison
-  hooks['upgrades/oozing_edge'] = { onHit({ other, log }) { if ((other.statuses.poison||0) === 0) { other.addStatus('poison', 2); log(`${other.name} gains 2 poison (Oozing Edge).`); } } };
-
-  // Petrified Edge: Double your attack; On Hit - gain 1 stun
-  hooks['upgrades/petrified_edge'] = { battleStart({ self, log }) { self.atk = (self.atk|0) * 2; log(`${self.name}'s attack is doubled (Petrified Edge).`); }, onHit({ self, log }) { self.addStatus('stun', 1); log(`${self.name} gains 1 stun (Petrified Edge).`); } };
-
-  // Plated Edge: On Hit - convert 1 speed to 3 armor
-  hooks['upgrades/plated_edge'] = { onHit({ self, log }) { if ((self.speed|0) > 0) { self.speed -= 1; self.addArmor(3); log(`${self.name} converts 1 speed to 3 armor (Plated Edge).`); } } };
-
-  // Razor Edge: Battle Start - gain 1 attack
-  hooks['upgrades/razor_edge'] = { battleStart({ self, log }) { self.addAtk(1); log(`${self.name} gains 1 attack (Razor Edge).`); } };
-
-  // Stormcloud Edge: Battle Start - stun the enemy 1
-  hooks['upgrades/stormcloud_edge'] = { battleStart({ other, log }) { other.addStatus('stun', 1); log(`${other.name} is stunned (Stormcloud Edge).`); } };
-
-  // Whirlpool Edge: Every 3 strikes, give the enemy 1 riptide
-  hooks['upgrades/whirlpool_edge'] = { afterStrike({ self, other, log }) { self._whirlStrikes = (self._whirlStrikes||0) + 1; if (self._whirlStrikes % 3 === 0) { other.addStatus('riptide', 1); log(`${other.name} gains 1 riptide (Whirlpool Edge).`); } } };
-  // Cleansing Edge: On Hit — remove 1 debuff from yourself
-  hooks['upgrades/cleansing_edge'] = {
-    onHit({ self, log }) {
-      const debuffs = ['poison','acid','freeze','stun','riptide'];
-      for (const k of debuffs) {
-        if ((self.s[k] || 0) > 0) {
-          self.s[k] -= 1;
-          log(`${self.name} removes 1 ${k} (Cleansing Edge).`);
-          break;
+      self._damageTakenCount = 0;
+    },
+    onDamaged({ self, log, armorLost, hpLost }) {
+      if (armorLost > 0 || hpLost > 0) {
+        self._damageTakenCount = (self._damageTakenCount || 0) + 1;
+        if (self._damageTakenCount % 3 === 0) {
+          self.addArmor(2);
+          log(`${self.name} gains 2 armor (Double-plated Vest).`);
         }
       }
     }
   };
 
+  // Druid's Cloak: Whenever you lose health, gain that much armor. You cannot restore health
+  hooks['items/druid_s_cloak'] = {
+    onDamaged({ self, log, hpLost }) {
+      if (hpLost > 0) {
+        self.addArmor(hpLost);
+        log(`${self.name} gains ${hpLost} armor (Druid's Cloak).`);
+      }
+    },
+    onHeal({ self, log, amount }) {
+        if (amount > 0) {
+            log(`${self.name} cannot restore health (Druid's Cloak).`);
+            return 0; // Prevent healing
+        }
+    }
+  };
+
+  // Echo Rune: Wounded: Re-trigger a random battle start item
+  hooks['items/echo_rune'] = {
+    onWounded({ self, other, log }) {
+      const battleStartItems = (self.items || []).filter(s => {
+        const h = hooks[s];
+        return h && typeof h.battleStart === 'function';
+      });
+      if (battleStartItems.length > 0) {
+        const itemToEcho = battleStartItems[Math.floor(Math.random() * battleStartItems.length)];
+        const h = hooks[itemToEcho];
+        h.battleStart({ self, other, log });
+        log(`${self.name}'s Echo Rune re-triggers ${itemToEcho}.`);
+      }
+    }
+  };
+
+  // Elderwood Necklace: +1 attack, +1 armor, +1 speed
+  // NOTE: This is a stat-only item, no hook needed.
+
+  // Emerald Crown: Stats only
+  // NOTE: This is a stat-only item, no hook needed.
+
+  // Emerald Gemstone: Battle Start: if your max Health < enemy's, set to enemy's
+  hooks['items/emerald_gemstone'] = {
+    battleStart({ self, other, log }) {
+      if (self.hpMax < other.hpMax) {
+        const diff = other.hpMax - self.hpMax;
+        self.hpMax = other.hpMax;
+        self.hp += diff; // Also increase current HP
+        log(`${self.name}'s max health is set to ${self.hpMax} (Emerald Gemstone).`);
+      }
+    }
+  };
+
+  // Emerald Ring: Battle Start: Restore 3 Health (Gold 6, Diamond 12)
+  hooks['items/emerald_ring'] = {
+    battleStart({ self, log, tier }) {
+      const healed = self.heal(valByTier(3, 6, 12, tier));
+      if (healed > 0) log(`${self.name} restores ${healed} health (Emerald Ring).`);
+    }
+  };
+
+  // Explosive Roast: Battle Start: Deal 1 damage 3 times
+  hooks['items/explosive_roast'] = {
+    battleStart({ self, other, log }) {
+      for (let i = 0; i < 3; i++) {
+        self.damageOther(1);
+      }
+      log(`${other.name} takes 3 damage (Explosive Roast).`);
+    }
+  };
+
+  // Explosive Surprise: Exposed: Deal 6 damage
+  hooks['items/explosive_surprise'] = {
+    onExposed({ self, other, log }) {
+      self.damageOther(6);
+      log(`${other.name} takes 6 damage (Explosive Surprise).`);
+    }
+  };
 })();
