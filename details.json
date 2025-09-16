@@ -166,6 +166,9 @@
   "items/bitter_melon": {
     "bucket": "items",
     "effect": "Turn Start: Convert 1 stack of another status into 1 Poison",
+    "effects": [
+      { "trigger": "turnStart", "action": "convert_random_status_to_poison", "value": 1 }
+    ],
     "name": "Bitter Melon",
     "slug": "bitter_melon",
     "stats": {
@@ -343,6 +346,9 @@
   "items/boiled_ham": {
     "bucket": "items",
     "effect": "Battle Start (if Exposed or Wounded): Decrease all your status effects by 1",
+    "effects": [
+      { "trigger": "battleStart", "if": { "type": "is_exposed_or_wounded" }, "action": "decrease_all_statuses", "value": 1 }
+    ],
     "name": "Boiled Ham",
     "slug": "boiled_ham",
     "stats": {
@@ -397,6 +403,10 @@
   "items/bramble_belt": {
     "bucket": "items",
     "effect": "Battle Start: Gain 1 thorns and give the enemy 1 additional strike",
+    "effects": [
+      { "trigger": "battleStart", "action": "add_status", "key": "thorns", "value": 1 },
+      { "trigger": "battleStart", "action": "add_extra_strikes_to_enemy", "value": 1 }
+    ],
     "name": "Bramble Belt",
     "slug": "bramble_belt",
     "stats": {

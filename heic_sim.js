@@ -15,6 +15,37 @@
       const statValue = self[stat] || 0;
       if (statValue > 0) other.addStatus(key, statValue);
     },
+    add_extra_strikes_to_enemy: ({ other, value }) => {
+      other.extraStrikes = (other.extraStrikes || 0) + value;
+    },
+    convert_armor_to_thorns: ({ self, log, value }) => {
+      const converted = Math.min(self.armor, value);
+      if (converted > 0) {
+        self.armor -= converted;
+        self.addStatus('thorns', converted * 2); // Convert 1 armor to 2 thorns
+        log(`${self.name} converts ${converted} armor to ${converted * 2} thorns`);
+      }
+    },
+    convert_random_status_to_poison: ({ self, log, value }) => {
+      const convertible = Object.keys(self.statuses || {}).filter(k => k !== 'poison' && (self.statuses[k] || 0) > 0);
+      if (convertible.length > 0) {
+        const keyToConvert = convertible[Math.floor(Math.random() * convertible.length)];
+        const convertAmount = Math.min(value || 1, self.statuses[keyToConvert]);
+        self.statuses[keyToConvert] = (self.statuses[keyToConvert] || 0) - convertAmount;
+        self.addStatus('poison', convertAmount);
+        log(`${self.name} converts ${convertAmount} ${keyToConvert} into ${convertAmount} poison`);
+      }
+    },
+    decrease_all_statuses: ({ self, log, value }) => {
+      const amount = value || 1;
+      for (const k of Object.keys(self.statuses || {})) {
+        if (self.statuses[k] && self.statuses[k] > 0) {
+          const decrease = Math.min(amount, self.statuses[k]);
+          self.statuses[k] -= decrease;
+          if (decrease > 0) log(`${self.name} decreases ${k} by ${decrease}`);
+        }
+      }
+    },
     add_speed: ({ self, value }) => { self.speed = (self.speed || 0) + value; },
     add_extra_strikes: ({ self, value }) => self.addExtraStrikes(value),
     deal_damage: ({ self, other, value }) => self.damageOther(value, other),
@@ -41,6 +72,10 @@
         return self.flags.firstTurn;
       case 'has_status':
         return (self.statuses[condition.key] || 0) > 0;
+      case 'is_status':
+        return key === condition.key; // Used with onGainStatus trigger
+      case 'is_exposed_or_wounded':
+        return (self.statuses.exposed || 0) > 0 || (self.statuses.wounded || 0) > 0;
       case 'enemy_has_no_armor':
         return other.armor === 0;
       // Add more condition types here as needed
