@@ -663,6 +663,28 @@
       }
     };
 
+  // Brittlebark Armor: Whenever you take damage, take 1 additional damage.
+  hooks['items/brittlebark_armor'] = {
+    onDamaged({ self, log, armorLost, hpLost }) {
+      // Check if any damage was taken and prevent infinite loops.
+      if ((armorLost > 0 || hpLost > 0) && !self._brittlebarkProcessing) {
+        self._brittlebarkProcessing = true;
+        try {
+          log(`${self.name} takes 1 additional damage (Brittlebark Armor).`);
+          // Manually apply 1 damage, respecting armor, without re-triggering onDamaged.
+          const toArmor = Math.min(self.armor, 1);
+          self.armor -= toArmor;
+          const toHp = 1 - toArmor;
+          if (toHp > 0) {
+            self.hp = Math.max(0, self.hp - toHp);
+          }
+        } finally {
+          self._brittlebarkProcessing = false;
+        }
+      }
+    }
+  };
+
   // Blacksmith Bond: exposed can trigger one additional time
   hooks['items/blacksmith_bond'] = {
     battleStart({ self }){
