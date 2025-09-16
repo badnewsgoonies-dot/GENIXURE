@@ -305,6 +305,19 @@
     }
   };
 
+  // Bitter Melon: Turn Start: Convert 1 stack of another status into 1 Poison
+  hooks['items/bitter_melon'] = {
+    turnStart({ self, log }) {
+      const convertible = Object.keys(self.s || {}).filter(k => k !== 'poison' && (self.s[k] || 0) > 0);
+      if (convertible.length > 0) {
+        const keyToConvert = convertible[Math.floor(Math.random() * convertible.length)];
+        self.s[keyToConvert] = (self.s[keyToConvert] || 0) - 1;
+        self.addStatus('poison', 1);
+        log(`${self.name} converts 1 ${keyToConvert} into 1 poison (Bitter Melon).`);
+      }
+    }
+  };
+
   // Swiftstrike Belt: turn start, self-damage and grant extra strikes
   hooks['items/swiftstrike_belt'] = {
     turnStart({ self, log }){
