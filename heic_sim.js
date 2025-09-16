@@ -7,6 +7,14 @@
     add_armor: ({ self, value }) => self.addArmor(value),
     add_attack: ({ self, value }) => self.addAtk(value),
     add_temp_attack: ({ self, value }) => self.addTempAtk(value),
+    add_temp_attack_from_status: ({ self, key }) => {
+      const statusValue = self.statuses[key] || 0;
+      if (statusValue > 0) self.addTempAtk(statusValue);
+    },
+    add_status_to_enemy_from_stat: ({ self, other, key, stat }) => {
+      const statValue = self[stat] || 0;
+      if (statValue > 0) other.addStatus(key, statValue);
+    },
     add_speed: ({ self, value }) => { self.speed = (self.speed || 0) + value; },
     add_extra_strikes: ({ self, value }) => self.addExtraStrikes(value),
     deal_damage: ({ self, other, value }) => self.damageOther(value, other),
