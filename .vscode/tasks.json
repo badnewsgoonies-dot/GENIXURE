@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build data",
+      "type": "shell",
+      "command": "python3 scripts/build_data.py",
+      "problemMatcher": []
+    },
+    {
+      "label": "Serve (Python)",
+      "type": "shell",
+      "command": "python3 -m http.server 5500",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": ".*"
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Serving HTTP on",
+          "endsPattern": "Serving HTTP on"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Build data + open app",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:5500/index.html",
+      "preLaunchTask": "Build data"
+    }
+  ]
+}
