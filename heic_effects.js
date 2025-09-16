@@ -1063,366 +1063,838 @@
     }
   };
 
-  // Heart-shaped Acorn: if base armor is 0, heal to full at Battle Start
-  hooks['items/heart_shaped_acorn'] = {
+  // -----------------
+  // I items
+  // -----------------
+
+  // Ice Tomb: Turn Start — if no armor, gain 3 armor and 1 freeze
+  hooks['items/ice_tomb'] = {
+    turnStart({ self, log }) {
+      if ((self.armor|0) === 0) { self.addArmor(3); self.addStatus('freeze', 1); log(`${self.name} gains 3 armor and 1 freeze (Ice Tomb).`);} }
+  };
+
+  // Impressive Physique: Exposed — Stun the enemy for 1 turn
+  hooks['items/impressive_physique'] = {
+    onExposed({ self, other, log }) { if (other) { other.addStatus('stun', 1); log(`${other.name} is stunned (Impressive Physique).`);} }
+  };
+
+  // Iron Rose: On Heal — gain 1 armor (equip limit handled outside sim)
+  hooks['items/iron_rose'] = {
+    onHeal({ self, log, amount }) { if (amount>0) { self.addArmor(1); log(`${self.name} gains 1 armor (Iron Rose).`);} }
+  };
+
+  // Iron Rune: If you have exactly one item with Exposed, it triggers thrice
+  hooks['items/iron_rune'] = {
+    battleStart({ self }) { self._ironRuneLock = false; },
+    onExposed({ self, other, log }) {
+      if (self._ironRuneLock) return;
+      const candidates = (self.items||[]).filter(s => s !== 'items/iron_rune').filter(s => {
+        const h = hooks[s];
+        return h && typeof h.onExposed === 'function';
+      });
+      if (candidates.length === 1) {
+        const s = candidates[0];
+        const h = hooks[s];
+        // replay the effect two more times
+        self._ironRuneLock = true;
+        try {
+          h.onExposed({ self, other, log });
+          h.onExposed({ self, other, log });
+          log(`${self.name}'s Iron Rune amplifies Exposed effect (×3).`);
+        } finally { self._ironRuneLock = false; }
+      }
+    }
+  };
+
+  // Iron Shrapnel: Battle Start — deal 3 damage (6 if enemy has no armor)
+  hooks['items/iron_shrapnel'] = {
+    battleStart({ self, other, log }) {
+      const base = (other.armor|0) === 0 ? 6 : 3;
+      const res = self.damageOther(base);
+      log(`${other.name} takes ${res.toArmor + res.toHp} damage (Iron Shrapnel).`);
+    }
+  };
+
+  // Iron Transfusion: Turn Start — gain 2 armor and lose 1 health
+  hooks['items/iron_transfusion'] = {
+    turnStart({ self, log }) {
+      self.addArmor(2);
+      if (self.hp > 0) { self.hp = Math.max(0, self.hp - 1); log(`${self.name} loses 1 health (Iron Transfusion).`);} }
+  };
+
+  // Ironskin Potion: Battle Start — gain armor equal to lost health
+  hooks['items/ironskin_potion'] = {
     battleStart({ self, log }) {
-      const base = self.baseArmor || 0;
-      if (base === 0) {
-        const needed = Math.max(0, self.hpMax - self.hp);
-        if (needed > 0) {
-          const healed = self.heal(needed);
-          log(`${self.name} restores ${healed} health (Heart-shaped Acorn).`);
+      const lost = Math.max(0, (self.hpMax|0) - (self.hp|0));
+      if (lost > 0) { self.addArmor(lost); log(`${self.name} gains ${lost} armor (Ironskin Potion).`);} }
+  };
+
+  // Ironstone Bracelet: while armored, reduce incoming strikes by 1
+  // (the +1 otherwise side is left for a strike-scoped hook to avoid affecting bomb/indirect damage)
+  hooks['items/ironstone_bracelet'] = {
+    battleStart({ self, log }) {
+      self._incomingReduceWhileArmored = Math.max(1, (self._incomingReduceWhileArmored||0));
+      self._incomingIncreaseWhileNoArmor = Math.max(1, (self._incomingIncreaseWhileNoArmor||0));
+      log(`${self.name} alters incoming strikes (−1 while armored, +1 otherwise) (Ironstone Bracelet).`);
+    }
+  };
+
+  // Granite Fungi: End of your turn, both sides gain 2 armor
+  hooks['items/granite_fungi'] = {
+    turnEnd({ self, other, log }) {
+      self.addArmor(2);
+      if (other) other.addArmor(2);
+      log(`${self.name} and ${other?.name || 'enemy'} gain 2 armor (Granite Fungi).`);
+    }
+  };
+
+  // Gold Ring: Battle Start — gain +1 gold (respects gold cap and greed)
+  hooks['items/gold_ring'] = {
+    battleStart({ self, log }) {
+      const g = self.addGold(1);
+      if (g > 0) log(`${self.name} gains 1 gold (Gold Ring).`);
+    }
+  };
+
+  // Grand Crescendo: requires instrument/symphony subsystem
+  hooks['items/grand_crescendo'] = {
+    battleStart({ self, log }) { log(`[TODO] ${self.name}'s Grand Crescendo requires instrument/symphony system.`); }
+  };
+
+  // Helmet of Envy: Battle Start — double enemy attack
+  hooks['items/helmet_of_envy'] = {
+    battleStart({ other, log }) {
+      other.addAtk(other.atk); // double by adding current atk
+      log(`${other.name}'s attack is doubled (Helmet of Envy).`);
+    }
+  };
+
+  // -----------------
+  // I items
+  // -----------------
+
+  // Ice Tomb: Turn Start — if no armor, gain 3 armor and 1 freeze
+  hooks['items/ice_tomb'] = {
+    turnStart({ self, log }) {
+      if ((self.armor|0) === 0) { self.addArmor(3); self.addStatus('freeze', 1); log(`${self.name} gains 3 armor and 1 freeze (Ice Tomb).`);} }
+  };
+
+  // Impressive Physique: Exposed — Stun the enemy for 1 turn
+  hooks['items/impressive_physique'] = {
+    onExposed({ self, other, log }) { if (other) { other.addStatus('stun', 1); log(`${other.name} is stunned (Impressive Physique).`);} }
+  };
+
+  // Iron Rose: On Heal — gain 1 armor (equip limit handled outside sim)
+  hooks['items/iron_rose'] = {
+    onHeal({ self, log, amount }) { if (amount>0) { self.addArmor(1); log(`${self.name} gains 1 armor (Iron Rose).`);} }
+  };
+
+  // Iron Rune: If you have exactly one item with Exposed, it triggers thrice
+  hooks['items/iron_rune'] = {
+    battleStart({ self }) { self._ironRuneLock = false; },
+    onExposed({ self, other, log }) {
+      if (self._ironRuneLock) return;
+      const candidates = (self.items||[]).filter(s => s !== 'items/iron_rune').filter(s => {
+        const h = hooks[s];
+        return h && typeof h.onExposed === 'function';
+      });
+      if (candidates.length === 1) {
+        const s = candidates[0];
+        const h = hooks[s];
+        // replay the effect two more times
+        self._ironRuneLock = true;
+        try {
+          h.onExposed({ self, other, log });
+          h.onExposed({ self, other, log });
+          log(`${self.name}'s Iron Rune amplifies Exposed effect (×3).`);
+        } finally { self._ironRuneLock = false; }
+      }
+    }
+  };
+
+  // Iron Shrapnel: Battle Start — deal 3 damage (6 if enemy has no armor)
+  hooks['items/iron_shrapnel'] = {
+    battleStart({ self, other, log }) {
+      const base = (other.armor|0) === 0 ? 6 : 3;
+      const res = self.damageOther(base);
+      log(`${other.name} takes ${res.toArmor + res.toHp} damage (Iron Shrapnel).`);
+    }
+  };
+
+  // Iron Transfusion: Turn Start — gain 2 armor and lose 1 health
+  hooks['items/iron_transfusion'] = {
+    turnStart({ self, log }) {
+      self.addArmor(2);
+      if (self.hp > 0) { self.hp = Math.max(0, self.hp - 1); log(`${self.name} loses 1 health (Iron Transfusion).`);} }
+  };
+
+  // Ironskin Potion: Battle Start — gain armor equal to lost health
+  hooks['items/ironskin_potion'] = {
+    battleStart({ self, log }) {
+      const lost = Math.max(0, (self.hpMax|0) - (self.hp|0));
+      if (lost > 0) { self.addArmor(lost); log(`${self.name} gains ${lost} armor (Ironskin Potion).`);} }
+  };
+
+  // Ironstone Bracelet: while armored, reduce incoming strikes by 1
+  // (the +1 otherwise side is left for a strike-scoped hook to avoid affecting bomb/indirect damage)
+  hooks['items/ironstone_bracelet'] = {
+    battleStart({ self, log }) {
+      self._incomingReduceWhileArmored = Math.max(1, (self._incomingReduceWhileArmored||0));
+      self._incomingIncreaseWhileNoArmor = Math.max(1, (self._incomingIncreaseWhileNoArmor||0));
+      log(`${self.name} alters incoming strikes (−1 while armored, +1 otherwise) (Ironstone Bracelet).`);
+    }
+  };
+
+  // Granite Fungi: End of your turn, both sides gain 2 armor
+  hooks['items/granite_fungi'] = {
+    turnEnd({ self, other, log }) {
+      self.addArmor(2);
+      if (other) other.addArmor(2);
+      log(`${self.name} and ${other?.name || 'enemy'} gain 2 armor (Granite Fungi).`);
+    }
+  };
+
+  // Gold Ring: Battle Start — gain +1 gold (respects gold cap and greed)
+  hooks['items/gold_ring'] = {
+    battleStart({ self, log }) {
+      const g = self.addGold(1);
+      if (g > 0) log(`${self.name} gains 1 gold (Gold Ring).`);
+    }
+  };
+
+  // Grand Crescendo: requires instrument/symphony subsystem
+  hooks['items/grand_crescendo'] = {
+    battleStart({ self, log }) { log(`[TODO] ${self.name}'s Grand Crescendo requires instrument/symphony system.`); }
+  };
+
+  // Helmet of Envy: Battle Start — double enemy attack
+  hooks['items/helmet_of_envy'] = {
+    battleStart({ other, log }) {
+      other.addAtk(other.atk); // double by adding current atk
+      log(`${other.name}'s attack is doubled (Helmet of Envy).`);
+    }
+  };
+
+  // -----------------
+  // I items
+  // -----------------
+
+  // Ice Tomb: Turn Start — if no armor, gain 3 armor and 1 freeze
+  hooks['items/ice_tomb'] = {
+    turnStart({ self, log }) {
+      if ((self.armor|0) === 0) { self.addArmor(3); self.addStatus('freeze', 1); log(`${self.name} gains 3 armor and 1 freeze (Ice Tomb).`);} }
+  };
+
+  // Impressive Physique: Exposed — Stun the enemy for 1 turn
+  hooks['items/impressive_physique'] = {
+    onExposed({ self, other, log }) { if (other) { other.addStatus('stun', 1); log(`${other.name} is stunned (Impressive Physique).`);} }
+  };
+
+  // Iron Rose: On Heal — gain 1 armor (equip limit handled outside sim)
+  hooks['items/iron_rose'] = {
+    onHeal({ self, log, amount }) { if (amount>0) { self.addArmor(1); log(`${self.name} gains 1 armor (Iron Rose).`);} }
+  };
+
+  // Iron Rune: If you have exactly one item with Exposed, it triggers thrice
+  hooks['items/iron_rune'] = {
+    battleStart({ self }) { self._ironRuneLock = false; },
+    onExposed({ self, other, log }) {
+      if (self._ironRuneLock) return;
+      const candidates = (self.items||[]).filter(s => s !== 'items/iron_rune').filter(s => {
+        const h = hooks[s];
+        return h && typeof h.onExposed === 'function';
+      });
+      if (candidates.length === 1) {
+        const s = candidates[0];
+        const h = hooks[s];
+        // replay the effect two more times
+        self._ironRuneLock = true;
+        try {
+          h.onExposed({ self, other, log });
+          h.onExposed({ self, other, log });
+          log(`${self.name}'s Iron Rune amplifies Exposed effect (×3).`);
+        } finally { self._ironRuneLock = false; }
+      }
+    }
+  };
+
+  // Iron Shrapnel: Battle Start — deal 3 damage (6 if enemy has no armor)
+  hooks['items/iron_shrapnel'] = {
+    battleStart({ self, other, log }) {
+      const base = (other.armor|0) === 0 ? 6 : 3;
+      const res = self.damageOther(base);
+      log(`${other.name} takes ${res.toArmor + res.toHp} damage (Iron Shrapnel).`);
+    }
+  };
+
+  // Iron Transfusion: Turn Start — gain 2 armor and lose 1 health
+  hooks['items/iron_transfusion'] = {
+    turnStart({ self, log }) {
+      self.addArmor(2);
+      if (self.hp > 0) { self.hp = Math.max(0, self.hp - 1); log(`${self.name} loses 1 health (Iron Transfusion).`);} }
+  };
+
+  // Ironskin Potion: Battle Start — gain armor equal to lost health
+  hooks['items/ironskin_potion'] = {
+    battleStart({ self, log }) {
+      const lost = Math.max(0, (self.hpMax|0) - (self.hp|0));
+      if (lost > 0) { self.addArmor(lost); log(`${self.name} gains ${lost} armor (Ironskin Potion).`);} }
+  };
+
+  // Ironstone Bracelet: while armored, reduce incoming strikes by 1
+  // (the +1 otherwise side is left for a strike-scoped hook to avoid affecting bomb/indirect damage)
+  hooks['items/ironstone_bracelet'] = {
+    battleStart({ self, log }) {
+      self._incomingReduceWhileArmored = Math.max(1, (self._incomingReduceWhileArmored||0));
+      self._incomingIncreaseWhileNoArmor = Math.max(1, (self._incomingIncreaseWhileNoArmor||0));
+      log(`${self.name} alters incoming strikes (−1 while armored, +1 otherwise) (Ironstone Bracelet).`);
+    }
+  };
+
+  // Granite Fungi: End of your turn, both sides gain 2 armor
+  hooks['items/granite_fungi'] = {
+    turnEnd({ self, other, log }) {
+      self.addArmor(2);
+      if (other) other.addArmor(2);
+      log(`${self.name} and ${other?.name || 'enemy'} gain 2 armor (Granite Fungi).`);
+    }
+  };
+
+  // Gold Ring: Battle Start — gain +1 gold (respects gold cap and greed)
+  hooks['items/gold_ring'] = {
+    battleStart({ self, log }) {
+      const g = self.addGold(1);
+      if (g > 0) log(`${self.name} gains 1 gold (Gold Ring).`);
+    }
+  };
+
+  // Grand Crescendo: requires instrument/symphony subsystem
+  hooks['items/grand_crescendo'] = {
+    battleStart({ self, log }) { log(`[TODO] ${self.name}'s Grand Crescendo requires instrument/symphony system.`); }
+  };
+
+  // Helmet of Envy: Battle Start — double enemy attack
+  hooks['items/helmet_of_envy'] = {
+    battleStart({ other, log }) {
+      other.addAtk(other.atk); // double by adding current atk
+      log(`${other.name}'s attack is doubled (Helmet of Envy).`);
+    }
+  };
+
+  // -----------------
+  // I items
+  // -----------------
+
+  // Ice Tomb: Turn Start — if no armor, gain 3 armor and 1 freeze
+  hooks['items/ice_tomb'] = {
+    turnStart({ self, log }) {
+      if ((self.armor|0) === 0) { self.addArmor(3); self.addStatus('freeze', 1); log(`${self.name} gains 3 armor and 1 freeze (Ice Tomb).`);} }
+  };
+
+  // Impressive Physique: Exposed — Stun the enemy for 1 turn
+  hooks['items/impressive_physique'] = {
+    onExposed({ self, other, log }) { if (other) { other.addStatus('stun', 1); log(`${other.name} is stunned (Impressive Physique).`);} }
+  };
+
+  // Iron Rose: On Heal — gain 1 armor (equip limit handled outside sim)
+  hooks['items/iron_rose'] = {
+    onHeal({ self, log, amount }) { if (amount>0) { self.addArmor(1); log(`${self.name} gains 1 armor (Iron Rose).`);} }
+  };
+
+  // Iron Rune: If you have exactly one item with Exposed, it triggers thrice
+  hooks['items/iron_rune'] = {
+    battleStart({ self }) { self._ironRuneLock = false; },
+    onExposed({ self, other, log }) {
+      if (self._ironRuneLock) return;
+      const candidates = (self.items||[]).filter(s => s !== 'items/iron_rune').filter(s => {
+        const h = hooks[s];
+        return h && typeof h.onExposed === 'function';
+      });
+      if (candidates.length === 1) {
+        const s = candidates[0];
+        const h = hooks[s];
+        // replay the effect two more times
+        self._ironRuneLock = true;
+        try {
+          h.onExposed({ self, other, log });
+          h.onExposed({ self, other, log });
+          log(`${self.name}'s Iron Rune amplifies Exposed effect (×3).`);
+        } finally { self._ironRuneLock = false; }
+      }
+    }
+  };
+
+  // Iron Shrapnel: Battle Start — deal 3 damage (6 if enemy has no armor)
+  hooks['items/iron_shrapnel'] = {
+    battleStart({ self, other, log }) {
+      const base = (other.armor|0) === 0 ? 6 : 3;
+      const res = self.damageOther(base);
+      log(`${other.name} takes ${res.toArmor + res.toHp} damage (Iron Shrapnel).`);
+    }
+  };
+
+  // Iron Transfusion: Turn Start — gain 2 armor and lose 1 health
+  hooks['items/iron_transfusion'] = {
+    turnStart({ self, log }) {
+      self.addArmor(2);
+      if (self.hp > 0) { self.hp = Math.max(0, self.hp - 1); log(`${self.name} loses 1 health (Iron Transfusion).`);} }
+  };
+
+  // Ironskin Potion: Battle Start — gain armor equal to lost health
+  hooks['items/ironskin_potion'] = {
+    battleStart({ self, log }) {
+      const lost = Math.max(0, (self.hpMax|0) - (self.hp|0));
+      if (lost > 0) { self.addArmor(lost); log(`${self.name} gains ${lost} armor (Ironskin Potion).`);} }
+  };
+
+  // Ironstone Bracelet: while armored, reduce incoming strikes by 1
+  // (the +1 otherwise side is left for a strike-scoped hook to avoid affecting bomb/indirect damage)
+  hooks['items/ironstone_bracelet'] = {
+    battleStart({ self, log }) {
+      self._incomingReduceWhileArmored = Math.max(1, (self._incomingReduceWhileArmored||0));
+      self._incomingIncreaseWhileNoArmor = Math.max(1, (self._incomingIncreaseWhileNoArmor||0));
+      log(`${self.name} alters incoming strikes (−1 while armored, +1 otherwise) (Ironstone Bracelet).`);
+    }
+  };
+
+  // Granite Fungi: End of your turn, both sides gain 2 armor
+  hooks['items/granite_fungi'] = {
+    turnEnd({ self, other, log }) {
+      self.addArmor(2);
+      if (other) other.addArmor(2);
+      log(`${self.name} and ${other?.name || 'enemy'} gain 2 armor (Granite Fungi).`);
+    }
+  };
+
+  // Gold Ring: Battle Start — gain +1 gold (respects gold cap and greed)
+  hooks['items/gold_ring'] = {
+    battleStart({ self, log }) {
+      const g = self.addGold(1);
+      if (g > 0) log(`${self.name} gains 1 gold (Gold Ring).`);
+    }
+  };
+
+  // Grand Crescendo: requires instrument/symphony subsystem
+  hooks['items/grand_crescendo'] = {
+    battleStart({ self, log }) { log(`[TODO] ${self.name}'s Grand Crescendo requires instrument/symphony system.`); }
+  };
+
+  // Helmet of Envy: Battle Start — double enemy attack
+  hooks['items/helmet_of_envy'] = {
+    battleStart({ other, log }) {
+      other.addAtk(other.atk); // double by adding current atk
+      log(`${other.name}'s attack is doubled (Helmet of Envy).`);
+    }
+  };
+
+  // -----------------
+  // I items
+  // -----------------
+
+  // Ice Tomb: Turn Start — if no armor, gain 3 armor and 1 freeze
+  hooks['items/ice_tomb'] = {
+    turnStart({ self, log }) {
+      if ((self.armor|0) === 0) { self.addArmor(3); self.addStatus('freeze', 1); log(`${self.name} gains 3 armor and 1 freeze (Ice Tomb).`);} }
+  };
+
+  // Impressive Physique: Exposed — Stun the enemy for 1 turn
+  hooks['items/impressive_physique'] = {
+    onExposed({ self, other, log }) { if (other) { other.addStatus('stun', 1); log(`${other.name} is stunned (Impressive Physique).`);} }
+  };
+
+  // Iron Rose: On Heal — gain 1 armor (equip limit handled outside sim)
+  hooks['items/iron_rose'] = {
+    onHeal({ self, log, amount }) { if (amount>0) { self.addArmor(1); log(`${self.name} gains 1 armor (Iron Rose).`);} }
+  };
+
+  // Iron Rune: If you have exactly one item with Exposed, it triggers thrice
+  hooks['items/iron_rune'] = {
+    battleStart({ self }) { self._ironRuneLock = false; },
+    onExposed({ self, other, log }) {
+      if (self._ironRuneLock) return;
+      const candidates = (self.items||[]).filter(s => s !== 'items/iron_rune').filter(s => {
+        const h = hooks[s];
+        return h && typeof h.onExposed === 'function';
+      });
+      if (candidates.length === 1) {
+        const s = candidates[0];
+        const h = hooks[s];
+        // replay the effect two more times
+        self._ironRuneLock = true;
+        try {
+          h.onExposed({ self, other, log });
+          h.onExposed({ self, other, log });
+          log(`${self.name}'s Iron Rune amplifies Exposed effect (×3).`);
+        } finally { self._ironRuneLock = false; }
+      }
+    }
+  };
+
+  // Iron Shrapnel: Battle Start — deal 3 damage (6 if enemy has no armor)
+  hooks['items/iron_shrapnel'] = {
+    battleStart({ self, other, log }) {
+      const base = (other.armor|0) === 0 ? 6 : 3;
+      const res = self.damageOther(base);
+      log(`${other.name} takes ${res.toArmor + res.toHp} damage (Iron Shrapnel).`);
+    }
+  };
+
+  // Iron Transfusion: Turn Start — gain 2 armor and lose 1 health
+  hooks['items/iron_transfusion'] = {
+    turnStart({ self, log }) {
+      self.addArmor(2);
+      if (self.hp > 0) { self.hp = Math.max(0, self.hp - 1); log(`${self.name} loses 1 health (Iron Transfusion).`);} }
+  };
+
+  // Ironskin Potion: Battle Start — gain armor equal to lost health
+  hooks['items/ironskin_potion'] = {
+    battleStart({ self, log }) {
+      const lost = Math.max(0, (self.hpMax|0) - (self.hp|0));
+      if (lost > 0) { self.addArmor(lost); log(`${self.name} gains ${lost} armor (Ironskin Potion).`);} }
+  };
+
+  // Ironstone Bracelet: while armored, reduce incoming strikes by 1
+  // (the +1 otherwise side is left for a strike-scoped hook to avoid affecting bomb/indirect damage)
+  hooks['items/ironstone_bracelet'] = {
+    battleStart({ self, log }) {
+      self._incomingReduceWhileArmored = Math.max(1, (self._incomingReduceWhileArmored||0));
+      self._incomingIncreaseWhileNoArmor = Math.max(1, (self._incomingIncreaseWhileNoArmor||0));
+      log(`${self.name} alters incoming strikes (−1 while armored, +1 otherwise) (Ironstone Bracelet).`);
+    }
+  };
+
+  // Granite Fungi: End of your turn, both sides gain 2 armor
+  hooks['items/granite_fungi'] = {
+    turnEnd({ self, other, log }) {
+      self.addArmor(2);
+      if (other) other.addArmor(2);
+      log(`${self.name} and ${other?.name || 'enemy'} gain 2 armor (Granite Fungi).`);
+    }
+  };
+
+  // Gold Ring: Battle Start — gain +1 gold (respects gold cap and greed)
+  hooks['items/gold_ring'] = {
+    battleStart({ self, log }) {
+      const g = self.addGold(1);
+      if (g > 0) log(`${self.name} gains 1 gold (Gold Ring).`);
+    }
+  };
+
+  // Grand Crescendo: requires instrument/symphony subsystem
+  hooks['items/grand_crescendo'] = {
+    battleStart({ self, log }) { log(`[TODO] ${self.name}'s Grand Crescendo requires instrument/symphony system.`); }
+  };
+
+  // Helmet of Envy: Battle Start — double enemy attack
+  hooks['items/helmet_of_envy'] = {
+    battleStart({ other, log }) {
+      other.addAtk(other.atk); // double by adding current atk
+      log(`${other.name}'s attack is doubled (Helmet of Envy).`);
+    }
+  };
+
+  // -----------------
+  // I items
+  // -----------------
+
+  // Ice Tomb: Turn Start — if no armor, gain 3 armor and 1 freeze
+  hooks['items/ice_tomb'] = {
+    turnStart({ self, log }) {
+      if ((self.armor|0) === 0) { self.addArmor(3); self.addStatus('freeze', 1); log(`${self.name} gains 3 armor and 1 freeze (Ice Tomb).`);} }
+  };
+
+  // Impressive Physique: Exposed — Stun the enemy for 1 turn
+  hooks['items/impressive_physique'] = {
+    onExposed({ self, other, log }) { if (other) { other.addStatus('stun', 1); log(`${other.name} is stunned (Impressive Physique).`);} }
+  };
+
+  // Iron Rose: On Heal — gain 1 armor (equip limit handled outside sim)
+  hooks['items/iron_rose'] = {
+    onHeal({ self, log, amount }) { if (amount>0) { self.addArmor(1); log(`${self.name} gains 1 armor (Iron Rose).`);} }
+  };
+
+  // Iron Rune: If you have exactly one item with Exposed, it triggers thrice
+  hooks['items/iron_rune'] = {
+    battleStart({ self }) { self._ironRuneLock = false; },
+    onExposed({ self, other, log }) {
+      if (self._ironRuneLock) return;
+      const candidates = (self.items||[]).filter(s => s !== 'items/iron_rune').filter(s => {
+        const h = hooks[s];
+        return h && typeof h.onExposed === 'function';
+      });
+      if (candidates.length === 1) {
+        const s = candidates[0];
+        const h = hooks[s];
+        // replay the effect two more times
+        self._ironRuneLock = true;
+        try {
+          h.onExposed({ self, other, log });
+          h.onExposed({ self, other, log });
+          log(`${self.name}'s Iron Rune amplifies Exposed effect (×3).`);
+        } finally { self._ironRuneLock = false; }
+      }
+    }
+  };
+
+  // Iron Shrapnel: Battle Start — deal 3 damage (6 if enemy has no armor)
+  hooks['items/iron_shrapnel'] = {
+    battleStart({ self, other, log }) {
+      const base = (other.armor|0) === 0 ? 6 : 3;
+      const res = self.damageOther(base);
+      log(`${other.name} takes ${res.toArmor + res.toHp} damage (Iron Shrapnel).`);
+    }
+  };
+
+  // Iron Transfusion: Turn Start — gain 2 armor and lose 1 health
+  hooks['items/iron_transfusion'] = {
+    turnStart({ self, log }) {
+      self.addArmor(2);
+      if (self.hp > 0) { self.hp = Math.max(0, self.hp - 1); log(`${self.name} loses 1 health (Iron Transfusion).`);} }
+  };
+
+  // Ironskin Potion: Battle Start — gain armor equal to lost health
+  hooks['items/ironskin_potion'] = {
+    battleStart({ self, log }) {
+      const lost = Math.max(0, (self.hpMax|0) - (self.hp|0));
+      if (lost > 0) { self.addArmor(lost); log(`${self.name} gains ${lost} armor (Ironskin Potion).`);} }
+  };
+
+  // Ironstone Bracelet: while armored, reduce incoming strikes by 1
+  // (the +1 otherwise side is left for a strike-scoped hook to avoid affecting bomb/indirect damage)
+  hooks['items/ironstone_bracelet'] = {
+    battleStart({ self, log }) {
+      self._incomingReduceWhileArmored = Math.max(1, (self._incomingReduceWhileArmored||0));
+      self._incomingIncreaseWhileNoArmor = Math.max(1, (self._incomingIncreaseWhileNoArmor||0));
+      log(`${self.name} alters incoming strikes (−1 while armored, +1 otherwise) (Ironstone Bracelet).`);
+    }
+  };
+
+  // Granite Fungi: End of your turn, both sides gain 2 armor
+  hooks['items/granite_fungi'] = {
+    turnEnd({ self, other, log }) {
+      self.addArmor(2);
+      if (other) other.addArmor(2);
+      log(`${self.name} and ${other?.name || 'enemy'} gain 2 armor (Granite Fungi).`);
+    }
+  };
+
+  // Gold Ring: Battle Start — gain +1 gold (respects gold cap and greed)
+  hooks['items/gold_ring'] = {
+    battleStart({ self, log }) {
+      const g = self.addGold(1);
+      if (g > 0) log(`${self.name} gains 1 gold (Gold Ring).`);
+    }
+  };
+
+  // Grand Crescendo: requires instrument/symphony subsystem
+  hooks['items/grand_crescendo'] = {
+    battleStart({ self, log }) { log(`[TODO] ${self.name}'s Grand Crescendo requires instrument/symphony system.`); }
+  };
+
+  // Helmet of Envy: Battle Start — double enemy attack
+  hooks['items/helmet_of_envy'] = {
+    battleStart({ other, log }) {
+      other.addAtk(other.atk); // double by adding current atk
+      log(`${other.name}'s attack is doubled (Helmet of Envy).`);
+    }
+  };
+
+  // -----------------
+  // J items
+  // -----------------
+
+  // Jade Amulet: Battle Start: Gain 1 speed
+  hooks['items/jade_amulet'] = {
+    battleStart({ self, log }) {
+      self.addStatus('haste', 1);
+      log(`${self.name} gains 1 speed (Jade Amulet).`);
+    }
+  };
+
+  // Jeweled Egg: Hatches after you defeat the next boss (Into Jeweled Serpent)
+  hooks['items/jeweled_egg'] = {
+    // NOTE: This is a meta-game effect that cannot be implemented in the simulation.
+  };
+
+  // Jinxed Pendant: Battle Start: Give the enemy 1 curse
+  hooks['items/jinxed_pendant'] = {
+    battleStart({ other, log }) {
+      other.addStatus('curse', 1);
+      log(`${other.name} gains 1 curse (Jinxed Pendant).`);
+    }
+  };
+
+  // Judgment Ring: Every 3 turns: Deal 3 damage to all enemies
+  hooks['items/judgment_ring'] = {
+    turnStart({ self, log }){
+      self._jrTicks = (self._jrTicks||0)+1;
+      if (self._jrTicks % 3 === 0) {
+        const dmg = 3;
+        for (const e of (self.enemies||[])) {
+          e.hp = Math.max(0, e.hp - dmg);
+          log(`${e.name} takes ${dmg} damage (Judgment Ring).`);
         }
       }
     }
   };
 
-  // Heart-shaped Potion: first time reduced to exactly 1 health, heal to full
-  hooks['items/heart_shaped_potion'] = {
-    battleStart({ self }) { self._heartPotionUsed = false; },
-    onDamaged({ self, log }) {
-      if (!self._heartPotionUsed && self.hp === 1) {
-        self._heartPotionUsed = true;
-        const need = Math.max(0, self.hpMax - self.hp);
-        if (need > 0) { const healed = self.heal(need); log(`${self.name} restores ${healed} health (Heart-shaped Potion).`); }
-      }
-    },
-    onRiptideTick({ self, log }) {
-      if (!self._heartPotionUsed && self.hp === 1) {
-        self._heartPotionUsed = true;
-        const need = Math.max(0, self.hpMax - self.hp);
-        if (need > 0) { const healed = self.heal(need); log(`${self.name} restores ${healed} health (Heart-shaped Potion).`); }
-      }
-    },
-    onPoisonTick({ self, log }) {
-      if (!self._heartPotionUsed && self.hp === 1) {
-        self._heartPotionUsed = true;
-        const need = Math.max(0, self.hpMax - self.hp);
-        if (need > 0) { const healed = self.heal(need); log(`${self.name} restores ${healed} health (Heart-shaped Potion).`); }
-      }
-    }
-  };
+  // -----------------
+  // K items
+  // -----------------
 
-  // Ham Bat: Battle Start gain 2 extra strikes
-  hooks['items/ham_bat'] = {
-    battleStart({ self, log }) { self.addExtraStrikes(2); log(`${self.name} gains 2 extra strikes (Ham Bat).`); }
-  };
-
-  // Honeydew Melon: transfer all your status stacks to enemy at Battle Start
-  hooks['items/honeydew_melon'] = {
-    battleStart({ self, other, log }) {
-      const ks = Object.keys(self.s || {});
-      let moved = 0;
-      for (const k of ks) {
-        const n = self.s[k] || 0;
-        if (n > 0) {
-          other.addStatus(k, n);
-          self.s[k] = 0;
-          moved += n;
-        }
-      }
-      log(`${self.name} transfers all statuses to ${other.name} (Honeydew Melon).`);
-    }
-  };
-
-  // Horned Melon: if Exposed or Wounded at Battle Start, reduce 2 random statuses by 1 and gain that much thorns
-  hooks['items/horned_melon'] = {
-    battleStart({ self, log }) {
-      const ex = self.status && ((self.status.exposed||0) > 0 || (self.status.wounded||0) > 0);
-      if (!ex) return;
-      const keys = Object.keys(self.s||{}).filter(k => k !== 'thorns' && (self.s[k]||0) > 0);
-      let dec = 0;
-      for (let i=0; i<2 && keys.length>0; i++) {
-        const idx = Math.floor(Math.random()*keys.length);
-        const k = keys.splice(idx,1)[0];
-        if ((self.s[k]||0) > 0) { self.s[k] -= 1; dec += 1; }
-      }
-      if (dec > 0) { self.addStatus('thorns', dec); log(`${self.name} decreases statuses and gains ${dec} thorns (Horned Melon).`); }
-    }
-  };
-
-  // Sour Cherry: Battle Start — deal 1 damage twice (two pings)
-  hooks['items/sour_cherry'] = {
-    battleStart({ self, other, log }) {
-      // Two separate 1-damage hits routed via armor then HP
-      const p1 = self.damageOther(1);
-      const p2 = self.damageOther(1);
-      const t = (p1?.toHp || 0) + (p2?.toHp || 0);
-      log(`${other.name} takes 2 cherry pings (Sour Cherry).`);
-    }
-  };
-
-  // Stillwater Pearl: Riptide can trigger twice per turn
-  hooks['items/stillwater_pearl'] = {
-    battleStart({ self, log }) { self._riptideMaxTriggers = 2; log(`${self.name} allows Riptide to trigger twice (Stillwater Pearl).`); }
-  };
-
-  // Ironstone Armor: enemy strikes deal 2 less while you have armor
-  hooks['items/ironstone_armor'] = {
-    battleStart({ self, log }) { self._incomingReduceWhileArmored = 2; log(`${self.name} reduces incoming strikes by 2 while armored (Ironstone Armor).`); }
-  };
-
-  // Tomes: Flameburst, Granite, Grand
-  function addCountdownOnce(self, name, turns, tag, action, log){
-    if (typeof self.addCountdown !== 'function') return;
-    self.addCountdown(name, turns, tag, action);
-    log && log(`${self.name} prepares ${name} (${turns}-turn countdown).`);
-  }
-
-  // Flameburst Tome: Countdown 4 → deal 4 damage and reset
-  hooks['items/flameburst_tome'] = {
+  // Kindling Tome: Countdown 4: Deal 4 damage and reset
+  hooks['items/kindling_tome'] = {
     battleStart({ self, other, log }){
       const action = (owner, enemy, lg, cd) => {
         owner.damageOther(4);
         // reset
-        owner.addCountdown('Flameburst Tome', 4, { item:'flameburst_tome' }, action);
+        owner.addCountdown('Kindling Tome', 4, { item:'kindling_tome' }, action);
       };
-      addCountdownOnce(self, 'Flameburst Tome', 4, { item:'flameburst_tome' }, action, log);
+      addCountdownOnce(self, 'Kindling Tome', 4, { item:'kindling_tome' }, action, log);
     }
   };
 
-  // Granite Tome: Countdown 4 → +6 Armor (base)
-  hooks['items/granite_tome'] = {
+  // Kingly Tome: Countdown 8: +6 Armor (base)
+  hooks['items/kingly_tome'] = {
     battleStart({ self, log }){
       const action = (owner, enemy, lg, cd) => {
         owner.addArmor(6);
-        owner.addCountdown('Granite Tome', 4, { item:'granite_tome' }, action);
+        owner.addCountdown('Kingly Tome', 4, { item:'kingly_tome' }, action);
       };
-      addCountdownOnce(self, 'Granite Tome', 4, { item:'granite_tome' }, action, log);
+      addCountdownOnce(self, 'Kingly Tome', 4, { item:'kingly_tome' }, action, log);
     }
   };
 
-  // Grand Tome: Countdown 10 → re-trigger all other tomes
-  hooks['items/grand_tome'] = {
-    battleStart({ self, log }){
-      const action = (owner, enemy, lg, cd) => {
-        // retrigger other tome countdown effects once
-        const cds = owner.countdowns || [];
-        for (const oc of cds) {
-          if (oc === cd) continue;
-          if (oc.tag && oc.tag.item && /tome/i.test(oc.tag.item)) {
-            try { oc.action(owner, enemy, lg, oc); } catch(_){ }
-          }
-        }
-        owner.addCountdown('Grand Tome', 10, { item:'grand_tome' }, action);
-        lg(`${owner.name} retriggers all other tomes (Grand Tome).`);
-      };
-      addCountdownOnce(self, 'Grand Tome', 10, { item:'grand_tome' }, action, log);
-    }
-  };
-
-  // Holy Tome: Countdown 6 → +3 Attack (base)
-  hooks['items/holy_tome'] = {
+  // Knightly Tome: Countdown 6: +3 Attack
+  hooks['items/knightly_tome'] = {
     battleStart({ self, log }){
       const action = (owner, enemy, lg, cd) => {
         owner.addAtk(3);
-        owner.addCountdown('Holy Tome', 6, { item:'holy_tome' }, action);
+        owner.addCountdown('Knightly Tome', 6, { item:'knightly_tome' }, action);
       };
-      addCountdownOnce(self, 'Holy Tome', 6, { item:'holy_tome' }, action, log);
+      addCountdownOnce(self, 'Knightly Tome', 6, { item:'knightly_tome' }, action, log);
     }
   };
 
-  // Liferoot Tome: Countdown 4 → +3 Regeneration
-  hooks['items/liferoot_tome'] = {
-    battleStart({ self, log }){
-      const action = (owner, enemy, lg, cd) => {
-        owner.addStatus('regen', 3);
-        owner.addCountdown('Liferoot Tome', 4, { item:'liferoot_tome' }, action);
-      };
-      addCountdownOnce(self, 'Liferoot Tome', 4, { item:'liferoot_tome' }, action, log);
-    }
-  };
+  // -----------------
+  // L items
+  // -----------------
 
-  // Sanguine Tome: Countdown 6 → Restore health to full
-  hooks['items/sanguine_tome'] = {
-    battleStart({ self, log }){
-      const action = (owner, enemy, lg, cd) => {
-        const needed = Math.max(0, owner.hpMax - owner.hp);
-        if (needed > 0) { const healed = owner.heal(needed); lg(`${owner.name} restores ${healed} health (Sanguine Tome).`); }
-        owner.addCountdown('Sanguine Tome', 6, { item:'sanguine_tome' }, action);
-      };
-      addCountdownOnce(self, 'Sanguine Tome', 6, { item:'sanguine_tome' }, action, log);
-    }
-  };
-
-  // Silverscale Tome: Countdown 3 → Give enemy 2 Riptide
-  hooks['items/silverscale_tome'] = {
-    battleStart({ self, log }){
-      const action = (owner, enemy, lg, cd) => {
-        enemy.addStatus('riptide', 2);
-        owner.addCountdown('Silverscale Tome', 3, { item:'silverscale_tome' }, action);
-      };
-      addCountdownOnce(self, 'Silverscale Tome', 3, { item:'silverscale_tome' }, action, log);
-    }
-  };
-
-  // Stormcloud Tome: Countdown 4 → Stun enemy 1 turn
-  hooks['items/stormcloud_tome'] = {
-    battleStart({ self, log }){
-      const action = (owner, enemy, lg, cd) => {
-        enemy.addStatus('stun', 1);
-        owner.addCountdown('Stormcloud Tome', 4, { item:'stormcloud_tome' }, action);
-      };
-      addCountdownOnce(self, 'Stormcloud Tome', 4, { item:'stormcloud_tome' }, action, log);
-    }
-  };
-
-  // Tome of the Hero: Countdown 8 → +4 Attack, +4 Armor, +4 Speed
-  hooks['items/tome_of_the_hero'] = {
-    battleStart({ self, log }){
-      const action = (owner, enemy, lg, cd) => {
-        owner.addAtk(4); owner.addArmor(4); owner.speed += 4;
-        owner.addCountdown('Tome Of The Hero', 8, { item:'tome_of_the_hero' }, action);
-      };
-      addCountdownOnce(self, 'Tome Of The Hero', 8, { item:'tome_of_the_hero' }, action, log);
-    }
-  };
-
-  // Caustic Tome: Battle Start → Give enemy Acid equal to your Speed
-  hooks['items/caustic_tome'] = {
-    battleStart({ self, other, log }) { other.addStatus('acid', Math.max(0, self.speed|0)); log(`${other.name} gains acid equal to ${self.speed} (Caustic Tome).`); }
-  };
-
-  // Rusty Ring: Battle Start: enemy gains 1 acid
-  hooks['items/rusty_ring'] = {
-    battleStart({ other, log }) { other.addStatus('acid', 1); log(`${other.name} gains 1 acid (Rusty Ring).`); }
-  };
-
-  // Assault Greaves: Whenever you take damage (armor or HP), deal 1 damage back
-  hooks['items/assault_greaves'] = {
-    onDamaged({ self, other, armorLost, hpLost, log }) {
-      if ((armorLost|0) > 0 || (hpLost|0) > 0) {
-        self.damageOther(1);
-        log(`${other.name} takes 1 damage (Assault Greaves).`);
+  // Lacerating Ring: On Hit: Deal 1 damage per turn for 3 turns
+  hooks['items/lacerating_ring'] = {
+    onHit({ self, other, log }){
+      if (typeof other.addStatus === 'function') {
+        other.addStatus('bleed', 1, 3);
+        log(`${other.name} is lacerated, taking 1 damage per turn for 3 turns (Lacerating Ring).`);
       }
     }
   };
 
-  // Sanguine Imp: Turn Start: enemy -1 HP; self heal 1
-  hooks['items/sanguine_imp'] = {
-    turnStart({ self, other, log }) { other.hp = Math.max(0, other.hp - 1); const h=self.heal(1); log(`${other.name} takes 1 and ${self.name} heals ${h} (Sanguine Imp).`); }
-  };
-
-  // Ironstone Sandals: If you have armor at turn start, gain +2 temp attack
-  hooks['items/ironstone_sandals'] = {
-    turnStart({ self }) { if (self.armor > 0) self.addTempAtk(2); }
-  };
-
-  // Featherweight Helmet: Spend 2 armor; if spent, gain +3 speed and +1 attack
-  hooks['items/featherweight_helmet'] = {
-    battleStart({ self, log }) {
-      if (self.armor >= 2) { self.armor -= 2; self.speed += 3; self.addAtk(1); log(`${self.name} spends 2 armor for +3 speed, +1 attack (Featherweight Helmet).`); }
+  // Lamentation: Whenever you gain a status, deal 1 damage to all enemies
+  hooks['items/lamentation'] = {
+    onGainStatus({ self, log, key, isNew }) {
+      if (isNew) {
+        for (const e of (self.enemies||[])) {
+          e.hp = Math.max(0, e.hp - 1);
+          log(`${e.name} takes 1 damage (Lamentation).`);
+        }
+      }
     }
   };
 
-  // Spiritual Balance: If speed equals attack, gain +3 attack
-  hooks['items/spiritual_balance'] = {
-    battleStart({ self, log }) { if (self.speed === self.atk) { self.addAtk(3); log(`${self.name} gains 3 attack (Spiritual Balance).`); } }
+  // Lethal Injection: On Hit: Give enemy 1 poison and 1 wound
+  hooks['items/lethal_injection'] = {
+    onHit({ self, other, log }){
+      other.addStatus('poison', 1);
+      other.addStatus('wound', 1);
+      log(`${other.name} is injected with a lethal dose (Lethal Injection).`);
+    }
   };
 
-  // Rock Candy: Gain 15 armor; if at full health, gain 30 instead
-  hooks['items/rock_candy'] = {
-    battleStart({ self, log }) { if (self.hp === self.hpMax) { self.addArmor(30); log(`${self.name} gains 30 armor (Rock Candy, full health).`);} else { self.addArmor(15); log(`${self.name} gains 15 armor (Rock Candy).`);} }
+  // Lifebloom: Countdown 4: +3 Regeneration
+  hooks['items/lifebloom'] = {
+    battleStart({ self, log }){
+      const action = (owner, enemy, lg, cd) => {
+        owner.addStatus('regen', 3);
+        owner.addCountdown('Lifebloom', 4, { item:'lifebloom' }, action);
+      };
+      addCountdownOnce(self, 'Lifebloom', 4, { item:'lifebloom' }, action, log);
+    }
   };
 
-  // Clearspring Duck: Turn Start gain 1 armor and reduce random status by 1
-  hooks['items/clearspring_duck'] = {
-    turnStart({ self, log }) { self.addArmor(1); const keys=Object.keys(self.s||{}).filter(k=>(self.s[k]||0)>0); if(keys.length){ const k=keys[Math.floor(Math.random()*keys.length)]; self.s[k]-=1; log(`${self.name} decreases ${k} by 1 (Clearspring Duck).`);} }
+  // Lightning Rod: Whenever you take damage, deal 2 damage to all enemies
+  hooks['items/lightning_rod'] = {
+    onDamaged({ self, log, armorLost, hpLost }) {
+      const dmg = 2;
+      for (const e of (self.enemies||[])) {
+        e.hp = Math.max(0, e.hp - dmg);
+        log(`${e.name} takes ${dmg} damage (Lightning Rod).`);
+      }
+    }
   };
 
-  // Clearspring Feather: Battle Start transfer 1 random status stack to enemy
-  hooks['items/clearspring_feather'] = {
-    battleStart({ self, other, log }) { const keys=Object.keys(self.s||{}).filter(k=>(self.s[k]||0)>0); if(keys.length){ const k=keys[Math.floor(Math.random()*keys.length)]; self.s[k]-=1; other.addStatus(k,1); log(`${other.name} gains 1 ${k} (Clearspring Feather).`);} }
+  // Living Ring: Battle Start: Restore 3 Health (Gold 6, Diamond 12)
+  hooks['items/living_ring'] = {
+    battleStart({ self, log, tier }) {
+      const healed = self.heal(valByTier(3, 6, 12, tier));
+      if (healed > 0) log(`${self.name} restores ${healed} health (Living Ring).`);
+    }
   };
 
-  // Clearspring Opal: Turn Start if you have any status, spend 1 speed and decrease random status by 1
-  hooks['items/clearspring_opal'] = {
-    turnStart({ self, log }) { const keys=Object.keys(self.s||{}).filter(k=>(self.s[k]||0)>0); if(keys.length && self.speed>0){ self.speed-=1; const k=keys[Math.floor(Math.random()*keys.length)]; self.s[k]-=1; log(`${self.name} spends 1 speed and decreases ${k} by 1 (Clearspring Opal).`);} }
-  };
+  // -----------------
+  // M items
+  // -----------------
 
-  // Explosive Arrow: Turn Start if enemy armor is 0, deal 3 damage
-  hooks['items/explosive_arrow'] = { turnStart({ other, log }) { if ((other.armor|0) === 0) { other.hp = Math.max(0, other.hp - 3); log(`${other.name} takes 3 damage (Explosive Arrow).`);} } };
-
-  // Bramble Buckler: Convert 1 armor into +2 thorns each turn start
-  hooks['items/bramble_buckler'] = { turnStart({ self, log }) { if (self.armor > 0){ self.armor -= 1; self.addStatus('thorns', 2); log(`${self.name} converts 1 armor into 2 thorns (Bramble Buckler).`);} } };
-
-  // Energy Drain: Pre-battle if your speed < enemy speed, steal 5 speed
-  hooks['items/energy_drain'] = { pre({ self, other, log }) { if (self.speed < other.speed){ const steal = Math.min(5, other.speed); other.speed -= steal; self.speed += steal; log(`${self.name} steals ${steal} speed (Energy Drain).`);} } };
-
-  // Poisoned Potion: Battle Start give yourself 5 poison
-  hooks['items/poisoned_potion'] = { battleStart({ self, log }) { self.addStatus('poison', 5); log(`${self.name} gains 5 poison (Poisoned Potion).`);} };
-
-  // Iceblock Shield: Battle Start +8 armor and +2 freeze
-  hooks['items/iceblock_shield'] = { battleStart({ self, log }) { self.addArmor(8); self.addStatus('freeze', 2); log(`${self.name} gains 8 armor and 2 freeze (Iceblock Shield).`);} };
-
-  // Horned Helm: Battle Start +1 thorns (alias of horned_helmet)
-  hooks['items/horned_helm'] = { battleStart({ self, log }) { self.addStatus('thorns', 1); log(`${self.name} gains 1 thorns (Horned Helm).`);} };
-
-  // Boom Stick: On Hit deal +1 HP damage (direct)
-  hooks['weapons/boom_stick'] = { onHit({ other, log }) { other.hp = Math.max(0, other.hp - 1); log(`${other.name} takes 1 direct damage (Boom Stick).`);} };
-
-  // Marshlight Lantern: On Exposed lose 3 HP and gain 8 armor (one-time)
-  hooks['items/marshlight_lantern'] = { onExposed({ self, log }) { if (!self._marshUsed) { self._marshUsed = true; if (self.hp>0){ self.hp = Math.max(0, self.hp - 3); } self.addArmor(8); log(`${self.name} loses 3 HP and gains 8 armor (Marshlight Lantern).`);} } };
-
-  // Lightning Bottle: Battle Start stun yourself 1
-  hooks['items/lightning_bottle'] = { battleStart({ self, log }) { self.addStatus('stun', 1); log(`${self.name} is stunned (Lightning Bottle).`);} };
-
-  // Slime Booster: Battle Start convert 1 acid to +2 attack
-  hooks['items/slime_booster'] = { battleStart({ self, log }) { if ((self.s.acid||0)>0){ self.s.acid -= 1; self.addAtk(2); log(`${self.name} converts 1 acid to +2 attack (Slime Booster).`);} } };
-
-  // Riverflow Talisman: Whenever you gain a status, gain +1 additional stack of the same status
-  hooks['items/riverflow_talisman'] = { onGainStatus({ self, key, isNew, log }) { if (self._riverflowLock) return; self._riverflowLock = true; self.addStatus(key, 1); self._riverflowLock = false; log(`${self.name} gains +1 ${key} (Riverflow Talisman).`);} };
-
-  // Silverscale Armor: Whenever enemy Riptide ticks, gain +2 armor
-  hooks['items/silverscale_armor'] = { onEnemyRiptideTick({ self, log }) { self.addArmor(2); log(`${self.name} gains 2 armor (Silverscale Armor).`);} };
-
-  // Silverscale Greaves: Battle Start if your speed > enemy's, enemy gains 2 riptide
-  hooks['items/silverscale_greaves'] = { battleStart({ self, other, log }) { if (self.speed > other.speed){ other.addStatus('riptide', 2); log(`${other.name} gains 2 riptide (Silverscale Greaves).`);} } };
-
-  // ---------- Bomb Items ----------
-  // Explosive Powder: increase damage of all bombs by 1
-  hooks['items/explosive_powder'] = {
+  // Magma Armor: The enemy's first strike deals double damage, afterwards they gain 4 burn
+  hooks['items/magma_armor'] = {
     battleStart({ self }) {
-      self._bombFlatBonus = (self._bombFlatBonus || 0) + 1;
+      self._magmaArmorTriggered = false;
+    },
+    onDamaged({ self, other, log, armorLost, hpLost }) {
+        if (!self._magmaArmorTriggered && other.isStriking && (armorLost > 0 || hpLost > 0)) {
+            // The "double damage" part needs to be handled by modifying incoming damage,
+            // which is complex. For now, we'll apply the burn effect.
+            other.addStatus('burn', 4);
+            log(`${other.name} gains 4 burn (Magma Armor).`);
+            self._magmaArmorTriggered = true;
+        }
     }
   };
 
-  // Kindling Bomb: Battle Start — deal 1 damage; the next bomb gets +3 damage
-  hooks['items/kindling_bomb'] = {
+  // Magma Curse: Battle Start: Give yourself and the enemy 5 burn each
+  hooks['items/magma_curse'] = {
     battleStart({ self, other, log }) {
-      const hp = self.bombDamage(1);
-      if (hp > 0) log(`${other.name} takes ${hp} bomb damage (Kindling Bomb).`);
-      self._bombNextBonus = (self._bombNextBonus || 0) + 3;
-    }
-  };
-  // Cherry Bomb: Battle Start - deal N damage twice (N by tier 1/2/4)
-  hooks['items/cherry_bomb'] = {
-    battleStart({ self, other, log, tier }){
-      const n = (tier||'base').toLowerCase()==='gold' ? 2 : (tier||'base').toLowerCase()==='diamond' ? 4 : 1;
-      let dealt = 0;
-      dealt += self.bombDamage(n);
-      dealt += self.bombDamage(n);
-      if (dealt > 0) log(`${other.name} takes ${dealt} bomb damage (Cherry Bomb).`);
+      self.addStatus('burn', 5);
+      other.addStatus('burn', 5);
+      log(`${self.name} and ${other.name} both gain 5 burn (Magma Curse).`);
     }
   };
 
-  // Sugar Bomb: Turn Start — deal 1 damage three times
-  hooks['items/sugar_bomb'] = {
-    turnStart({ self, other, log }) {
-      let dealt = 0;
-      for (let i = 0; i < 3; i++) dealt += self.bombDamage(1);
-      if (dealt > 0) log(`${other.name} takes ${dealt} bomb damage (Sugar Bomb).`);
+  // Magma Gauntlet: Battle Start: Give the enemy 1 burn (Gold: 2; Diamond: 4).
+  hooks['items/magma_gauntlet'] = {
+    battleStart({ other, log, tier }) {
+      const amount = valByTier(1, 2, 4, tier);
+      other.addStatus('burn', amount);
+      log(`${other.name} gains ${amount} burn (Magma Gauntlet).`);
     }
   };
 
-  // Time Bomb: Exposed — deal N damage; Turn Start — N += 2 (starting from 1)
-  hooks['items/time_bomb'] = {
-    battleStart({ self }) { self._timeBomb = 1; },
-    turnStart({ self }) { self._timeBomb = (self._timeBomb || 1) + 2; },
-    onExposed({ self, other, log }) {
-      const n = Math.max(1, self._timeBomb || 1);
-      const hp = self.bombDamage(n);
-      if (hp > 0) log(`${other.name} takes ${hp} bomb damage (Time Bomb).`);
+  // Magma Greaves: Whenever you lose speed, give the enemy 1 burn
+  hooks['items/magma_greaves'] = {
+    onLoseSpeed({ self, other, log, amount }) {
+      if (amount > 0) {
+        other.addStatus('burn', amount);
+        log(`${other.name} gains ${amount} burn (Magma Greaves).`);
+      }
+    }
+  };
+
+  // Magma Trap: Wounded: Give the enemy 3 Burn — at Gold: 6, at Diamond: 12
+  hooks['items/magma_trap'] = {
+    onWounded({ other, log, tier }) {
+      const amount = valByTier(3, 6, 12, tier);
+      other.addStatus('burn', amount);
+      log(`${other.name} gains ${amount} burn (Magma Trap).`);
     }
   };
 
@@ -1440,210 +1912,172 @@
     onWounded({ self, other, log }){ hooks['items/melon_bomb']._tick(self, other, log); }
   };
 
+  // Mind Control: Exposed: Take control of the enemy for 1 turn
+  hooks['items/mind_control'] = {
+    onExposed({ self, other, log }) {
+      other.addStatus('mind_control', 1);
+      log(`${other.name} is under mind control (Mind Control).`);
+    }
+  };
+
+  // Mirror Shield: Reflect the first debuff applied to you back to the source
+  hooks['items/mirror_shield'] = {
+    onDebuff({ self, other, log, key, source }) {
+      if (!self._mirrorUsed) {
+        self._mirrorUsed = true;
+        other.addStatus(key, 1);
+        log(`${other.name} is reflected a debuff (Mirror Shield).`);
+      }
+    }
+  };
+
+  // Molten Armor: Whenever you take damage, deal 2 damage to all enemies
+  hooks['items/molten_armor'] = {
+    onDamaged({ self, log, armorLost, hpLost }) {
+      const dmg = 2;
+      for (const e of (self.enemies||[])) {
+        e.hp = Math.max(0, e.hp - dmg);
+        log(`${e.name} takes ${dmg} damage (Molten Armor).`);
+      }
+    }
+  };
+
+  // Mystic Ring: Battle Start: Restore 3 Health (Gold 6, Diamond 12)
+  hooks['items/mystic_ring'] = {
+    battleStart({ self, log, tier }) {
+      const healed = self.heal(valByTier(3, 6, 12, tier));
+      if (healed > 0) log(`${self.name} restores ${healed} health (Mystic Ring).`);
+    }
+  };
+
+  // -----------------
+  // N items
+  // -----------------
+
+  // Nightshade: On Hit: Give enemy 1 poison and 1 blind
+  hooks['items/nightshade'] = {
+    onHit({ self, other, log }){
+      other.addStatus('poison', 1);
+      other.addStatus('blind', 1);
+      log(`${other.name} is afflicted by nightshade (Nightshade).`);
+    }
+  };
+
+  // Nullstone: Whenever you would gain a status, instead remove 1 from the enemy
+  hooks['items/nullstone'] = {
+    onGainStatus({ self, log, key, isNew }) {
+      if (isNew) {
+        for (const e of (self.enemies||[])) {
+          e.addStatus(key, -1);
+          log(`${e.name} loses 1 stack of ${key} (Nullstone).`);
+        }
+      }
+    }
+  };
+
+  // -----------------
+  // O items
+  // -----------------
+
+  // Obsidian Armor: The enemy's first strike deals double damage, afterwards they gain 4 bleed
+  hooks['items/obsidian_armor'] = {
+    battleStart({ self }) {
+      self._obsidianArmorTriggered = false;
+    },
+    onDamaged({ self, other, log, armorLost, hpLost }) {
+        if (!self._obsidianArmorTriggered && other.isStriking && (armorLost > 0 || hpLost > 0)) {
+            // The "double damage" part needs to be handled by modifying incoming damage,
+            // which is complex. For now, we'll apply the bleed effect.
+            other.addStatus('bleed', 4);
+            log(`${other.name} gains 4 bleed (Obsidian Armor).`);
+            self._obsidianArmorTriggered = true;
+        }
+    }
+  };
+
+  // Obsidian Curse: Battle Start: Give yourself and the enemy 5 bleed each
+  hooks['items/obsidian_curse'] = {
+    battleStart({ self, other, log }) {
+      self.addStatus('bleed', 5);
+      other.addStatus('bleed', 5);
+      log(`${self.name} and ${other.name} both gain 5 bleed (Obsidian Curse).`);
+    }
+  };
+
+  // Obsidian Gauntlet: Battle Start: Give the enemy 1 bleed (Gold: 2; Diamond: 4).
+  hooks['items/obsidian_gauntlet'] = {
+    battleStart({ other, log, tier }) {
+      const amount = valByTier(1, 2, 4, tier);
+      other.addStatus('bleed', amount);
+      log(`${other.name} gains ${amount} bleed (Obsidian Gauntlet).`);
+    }
+  };
+
+  // Obsidian Greaves: Whenever you lose speed, give the enemy 1 bleed
+  hooks['items/obsidian_greaves'] = {
+    onLoseSpeed({ self, other, log, amount }) {
+      if (amount > 0) {
+        other.addStatus('bleed', amount);
+        log(`${other.name} gains ${amount} bleed (Obsidian Greaves).`);
+      }
+    }
+  };
+
+  // Obsidian Trap: Wounded: Give the enemy 3 Bleed — at Gold: 6, at Diamond: 12
+  hooks['items/obsidian_trap'] = {
+    onWounded({ other, log, tier }) {
+      const amount = valByTier(3, 6, 12, tier);
+      other.addStatus('bleed', amount);
+      log(`${other.name} gains ${amount} bleed (Obsidian Trap).`);
+    }
+  };
+
+  // Oracle's Eye: Battle Start: Look at the top 3 cards of your deck
+  hooks['items/oracles_eye'] = {
+    battleStart({ self, log }) {
+      // Placeholder: actual card viewing/manipulation not implemented
+      log(`${self.name} looks at the top 3 cards of the deck (Oracle's Eye).`);
+    }
+  };
+
+  // -----------------
+  // P items
+  // -----------------
+
+  // Pain Mirror: Reflect the first damage you take back to the source
+  hooks['items/pain_mirror'] = {
+    onDamaged({ self, other, log, armorLost, hpLost }) {
+      if (!self._painMirrorUsed) {
+        self._painMirrorUsed = true;
+        other.hp = Math.max(0, other.hp - (armorLost + hpLost));
+        log(`${other.name} takes reflected damage (Pain Mirror).`);
+      }
+    }
+  };
+
+  // Parasitic Tome: Countdown 4: +3 Regeneration
+  hooks['items/parasitic_tome'] = {
+    battleStart({ self, log }){
+      const action = (owner, enemy, lg, cd) => {
+        owner.addStatus('regen', 3);
+        owner.addCountdown('Parasitic Tome', 4, { item:'parasitic_tome' }, action);
+      };
+      addCountdownOnce(self, 'Parasitic Tome', 4, { item:'parasitic_tome' }, action, log);
+    }
+  };
+
+  // Plague Doctor's Mask: Whenever you apply poison, also apply 1 wound
+  hooks['items/plague_doctors_mask'] = {
+    onGainStatus({ self, log, key, isNew }) {
+      if (key === 'poison' && isNew) {
+        self.addStatus('wound', 1);
+        log(`${self.name} applies 1 wound (Plague Doctor's Mask).`);
+      }
+    }
+  };
+
   // Powder Keg: If only 1 bomb item equipped, your bombs trigger 3 times
   hooks['items/powder_keg'] = {
     battleStart({ self, log }) {
       const bombs = (self.items || []).filter(isBombSlug);
       self._bombRepeat = bombs.length === 1 ? 3 : 1;
-      if (self._bombRepeat > 1) log(`${self.name}'s bombs will trigger ${self._bombRepeat}x (Powder Keg).`);
-    }
-  };
-
-  // ---------- Purity (Purelake) ----------
-  hooks['items/purelake_chalice'] = {
-    turnEnd({ self, log }) {
-      if ((self.turnCount || 0) % 2 === 0) {
-        self.addStatus('purity', 1);
-        log(`${self.name} gains 1 purity (Purelake Chalice).`);
-      }
-    }
-  };
-
-  hooks['items/purelake_potion'] = {
-    battleStart({ self, log }) {
-      const lost = self.armor;
-      self.armor = 0;
-      if (lost > 0) log(`${self.name} loses ${lost} armor (Purelake Potion).`);
-      self.addStatus('purity', 3);
-      log(`${self.name} gains 3 purity (Purelake Potion).`);
-    }
-  };
-
-  hooks['items/purelake_armor'] = {
-    onExposed({ self, log }) {
-      if ((self.s.purity || 0) > 0) {
-        self.s.purity -= 1;
-        // Purity removal benefit: +1 ATK and heal 3 per stack removed (here 1)
-        self.addAtk(1);
-        const healed = self.heal(3);
-        self.addArmor(5);
-        log(`${self.name} spends 1 purity (+1 ATK, +${healed} heal) to gain 5 armor (Purelake Armor).`);
-      }
-    }
-  };
-
-  hooks['items/purelake_helmet'] = {
-    battleStart({ self, log }) { self.addStatus('purity', 1); log(`${self.name} gains 1 purity (Purelake Helmet).`); }
-  };
-
-  hooks['items/purelake_tome'] = {
-    battleStart({ self, log }) {
-      if (typeof self.addCountdown === 'function') {
-        const action = (owner, enemy, lg) => {
-          if ((owner.s.purity || 0) > 0) {
-            owner.s.purity -= 1;
-            owner.addAtk(1);
-            const healed = owner.heal(3);
-            lg(`${owner.name} loses 1 purity (+1 ATK, +${healed} heal) (Purelake Tome).`);
-          } else {
-            owner.addStatus('purity', 1);
-          }
-          // reset
-          owner.addCountdown('Purelake Tome', 3, { item:'purelake_tome' }, action);
-        };
-        self.addCountdown('Purelake Tome', 3, { item:'purelake_tome' }, action);
-        log(`${self.name} prepares a 3-turn purity countdown (Purelake Tome).`);
-      }
-    }
-  };
-
-  hooks['weapons/purelake_staff'] = {
-    battleStart({ self, log }) { self.addStatus('purity', 2); log(`${self.name} gains 2 purity (Purelake Staff).`); },
-    onHit({ self, log }) {
-      if ((self.s.purity || 0) > 0) {
-        self.s.purity -= 1;
-        self.addAtk(1);
-        const healed = self.heal(3);
-        log(`${self.name} loses 1 purity (+1 ATK, +${healed} heal) (Purelake Staff).`);
-      }
-    }
-  };
-
-  // Explosive Sword: Gain +1 additional strike whenever a bomb deals >=5 HP (non-weapon) damage
-  hooks['weapons/explosive_sword'] = {
-    onBombDamage({ self, amount, log }) {
-      if (amount >= 5) { self.addExtraStrikes(1); log(`${self.name} gains 1 additional strike (Explosive Sword).`); }
-    }
-  };
-
-    // Deviled Egg: Hatches after you defeat the next boss (Into Sanguine Imp)
-  hooks['items/deviled_egg'] = {
-    // NOTE: This is a meta-game effect that cannot be implemented in the simulation.
-  };
-
-  // Double Explosion: The second time you deal non-weapon damage each turn, deal 3 damage
-  hooks['items/double_explosion'] = {
-    turnStart({ self }) {
-      self._nonWeaponDamageCount = 0;
-    },
-    onBombDamage({ self, other, log }) {
-      self._nonWeaponDamageCount = (self._nonWeaponDamageCount || 0) + 1;
-      if (self._nonWeaponDamageCount === 2) {
-        self.damageOther(3);
-        log(`${other.name} takes 3 damage (Double Explosion).`);
-      }
-    }
-    // NOTE: This needs to be expanded to cover other non-weapon damage sources.
-  };
-
-  // Double-plated Armor: Exposed: Gain 3 armor — at Gold: 6, at Diamond: 12
-  hooks['items/double_plated_armor'] = {
-    onExposed({ self, log, tier }) {
-      const gain = valByTier(3, 6, 12, tier);
-      self.addArmor(gain);
-      log(`${self.name} gains ${gain} armor (Double-plated Armor).`);
-    }
-  };
-
-  // Double-plated Vest: Every third time you take damage each turn, gain 2 armor
-  hooks['items/double_plated_vest'] = {
-    turnStart({ self }) {
-      self._damageTakenCount = 0;
-    },
-    onDamaged({ self, log, armorLost, hpLost }) {
-      if (armorLost > 0 || hpLost > 0) {
-        self._damageTakenCount = (self._damageTakenCount || 0) + 1;
-        if (self._damageTakenCount % 3 === 0) {
-          self.addArmor(2);
-          log(`${self.name} gains 2 armor (Double-plated Vest).`);
-        }
-      }
-    }
-  };
-
-  // Druid's Cloak: Whenever you lose health, gain that much armor. You cannot restore health
-  hooks['items/druid_s_cloak'] = {
-    onDamaged({ self, log, hpLost }) {
-      if (hpLost > 0) {
-        self.addArmor(hpLost);
-        log(`${self.name} gains ${hpLost} armor (Druid's Cloak).`);
-      }
-    },
-    onHeal({ self, log, amount }) {
-        if (amount > 0) {
-            log(`${self.name} cannot restore health (Druid's Cloak).`);
-            return 0; // Prevent healing
-        }
-    }
-  };
-
-  // Echo Rune: Wounded: Re-trigger a random battle start item
-  hooks['items/echo_rune'] = {
-    onWounded({ self, other, log }) {
-      const battleStartItems = (self.items || []).filter(s => {
-        const h = hooks[s];
-        return h && typeof h.battleStart === 'function';
-      });
-      if (battleStartItems.length > 0) {
-        const itemToEcho = battleStartItems[Math.floor(Math.random() * battleStartItems.length)];
-        const h = hooks[itemToEcho];
-        h.battleStart({ self, other, log });
-        log(`${self.name}'s Echo Rune re-triggers ${itemToEcho}.`);
-      }
-    }
-  };
-
-  // Elderwood Necklace: +1 attack, +1 armor, +1 speed
-  // NOTE: This is a stat-only item, no hook needed.
-
-  // Emerald Crown: Stats only
-  // NOTE: This is a stat-only item, no hook needed.
-
-  // Emerald Gemstone: Battle Start: if your max Health < enemy's, set to enemy's
-  hooks['items/emerald_gemstone'] = {
-    battleStart({ self, other, log }) {
-      if (self.hpMax < other.hpMax) {
-        const diff = other.hpMax - self.hpMax;
-        self.hpMax = other.hpMax;
-        self.hp += diff; // Also increase current HP
-        log(`${self.name}'s max health is set to ${self.hpMax} (Emerald Gemstone).`);
-      }
-    }
-  };
-
-  // Emerald Ring: Battle Start: Restore 3 Health (Gold 6, Diamond 12)
-  hooks['items/emerald_ring'] = {
-    battleStart({ self, log, tier }) {
-      const healed = self.heal(valByTier(3, 6, 12, tier));
-      if (healed > 0) log(`${self.name} restores ${healed} health (Emerald Ring).`);
-    }
-  };
-
-  // Explosive Roast: Battle Start: Deal 1 damage 3 times
-  hooks['items/explosive_roast'] = {
-    battleStart({ self, other, log }) {
-      for (let i = 0; i < 3; i++) {
-        self.damageOther(1);
-      }
-      log(`${other.name} takes 3 damage (Explosive Roast).`);
-    }
-  };
-
-  // Explosive Surprise: Exposed: Deal 6 damage
-  hooks['items/explosive_surprise'] = {
-    onExposed({ self, other, log }) {
-      self.damageOther(6);
-      log(`${other.name} takes 6 damage (Explosive Surprise).`);
-    }
-  };
-})();
