@@ -43,7 +43,10 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      { "trigger": "battleStart", "action": "decrease_all_countdowns", "value": 1 }
+    ]
   },
   "items/arcane_cloak": {
     "bucket": "items",
@@ -69,7 +72,10 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      { "trigger": "battleStart", "action": "halve_all_countdowns" }
+    ]
   },
   "items/arcane_lens": {
     "bucket": "items",
@@ -581,7 +587,10 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      { "trigger": "battleStart", "action": "give_enemy_acid_equal_to_speed" }
+    ]
   },
   "items/chainlink_medallion": {
     "bucket": "items",
@@ -695,6 +704,10 @@
     },
     "tags": [
       "Food"
+    ],
+    "effects": [
+      { "trigger": "battleStart", "action": "deal_damage_and_heal", "value": 3 },
+      { "trigger": "onWounded", "action": "deal_damage_and_heal", "value": 3 }
     ]
   },
   "items/chest_of_lust": {
@@ -739,6 +752,22 @@
     },
     "tags": [
       "Jewelry"
+    ],
+    "effects": [
+      {
+        "event": "turnStart",
+        "conditions": [
+          {
+            "type": "is_even_turn"
+          }
+        ],
+        "actions": [
+          {
+            "type": "gain_speed",
+            "by_tier": [1, 2, 4]
+          }
+        ]
+      }
     ]
   },
   "items/citrine_gemstone": {
@@ -754,6 +783,16 @@
     },
     "tags": [
       "Jewelry"
+    ],
+    "effects": [
+      {
+        "event": "battleStart",
+        "actions": [
+          {
+            "type": "invert_speed"
+          }
+        ]
+      }
     ]
   },
   "items/citrine_ring": {
@@ -799,7 +838,17 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      {
+        "event": "onExposed",
+        "actions": [
+          {
+            "type": "remove_all_status_and_gain_armor"
+          }
+        ]
+      }
+    ]
   },
   "items/clearspring_duck": {
     "bucket": "items",
@@ -831,13 +880,13 @@
     },
     "effects": [
       {
-        "trigger": "start_battle",
-        "action": "transfer_random_status_to_enemy",
-        "value": {
-          "default": 1,
-          "gold": 2,
-          "diamond": 4
-        }
+        "event": "battleStart",
+        "actions": [
+          {
+            "type": "transfer_random_status_to_enemy",
+            "by_tier": [1, 2, 4]
+          }
+        ]
       }
     ],
     "tags": []
@@ -855,12 +904,16 @@
     },
     "effects": [
       {
-        "trigger": "turn_start",
+        "event": "turnStart",
         "conditions": [
           {"type": "has_status_effects"},
-          {"type": "has_speed"}
+          {"type": "min_speed", "value": 1}
         ],
-        "action": "spend_speed_decrease_random_status"
+        "actions": [
+          {
+            "type": "spend_speed_decrease_random_status"
+          }
+        ]
       }
     ],
     "tags": []
@@ -897,39 +950,9 @@
       "speed": 0
     },
     "effects": [
-      {
-        "trigger": "start_battle",
-        "action": "decrease_random_status",
-        "value": {
-          "default": 1,
-          "gold": 2,
-          "diamond": 4
-        }
-      },
-      {
-        "trigger": "onGainStatus",
-        "conditions": [
-          {"type": "is_status", "key": "exposed"}
-        ],
-        "action": "decrease_random_status",
-        "value": {
-          "default": 1,
-          "gold": 2,
-          "diamond": 4
-        }
-      },
-      {
-        "trigger": "onGainStatus",
-        "conditions": [
-          {"type": "is_status", "key": "wounded"}
-        ],
-        "action": "decrease_random_status",
-        "value": {
-          "default": 1,
-          "gold": 2,
-          "diamond": 4
-        }
-      }
+      { "trigger": "battleStart", "action": "decrease_random_status", "value": 1, "value_gold": 2, "value_diamond": 4 },
+      { "trigger": "onExposed", "action": "decrease_random_status", "value": 1, "value_gold": 2, "value_diamond": 4 },
+      { "trigger": "onWounded", "action": "decrease_random_status", "value": 1, "value_gold": 2, "value_diamond": 4 }
     ],
     "tags": []
   },
@@ -1917,6 +1940,14 @@
     },
     "tags": [
       "Food"
+    ],
+    "effects": [
+      { 
+        "trigger": "battleStart", 
+        "if": { "type": "is_exposed_or_wounded" },
+        "action": "decrease_random_statuses_and_gain_thorns",
+        "value": 2 
+      }
     ]
   },
   "items/ice_spikes": {
@@ -5143,7 +5174,10 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      { "trigger": "battleStart", "action": "steal_attack", "value": 1 }
+    ]
   },
   "weapons/riverflow_rapier": {
     "bucket": "weapons",

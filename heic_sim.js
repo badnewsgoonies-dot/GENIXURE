@@ -214,10 +214,133 @@
       runEffects('onGainSpeed', self, other, log, { amount: value, delta: value });
     },
     add_extra_strikes: ({ self, value }) => self.addExtraStrikes(value),
-    deal_damage: ({ self, other, value }) => self.damageOther(value, other),
+    deal_damage: ({ self, other, value, target }) => {
+      const dmg = value || 1;
+      if (target === 'self') {
+        // Apply damage to self, respecting armor
+        const toArmor = Math.min(self.armor, dmg);
+        self.armor -= toArmor;
+        const toHp = dmg - toArmor;
+        if (toHp > 0) {
+          self.hp = Math.max(0, self.hp - toHp);
+        }
+      } else {
+        self.damageOther(dmg, other);
+      }
+    },
     heal: ({ self, value }) => self.heal(value),
     set_flag: ({ self, key, value }) => {
       self.flags[key] = value;
+    },
+    steal_attack: ({ self, other, log, value }) => {
+      const steal = Math.min(value || 1, other.atk || 0);
+      if (steal > 0) {
+        other.atk -= steal;
+        self.addAtk(steal);
+        if (log) log(`${self.name} steals ${steal} attack from ${other.name}`);
+      }
+    },
+    deal_self_damage: ({ self, log, value }) => {
+      if (self.hp > 0) {
+        const damage = Math.min(value || 1, self.hp);
+        self.hp -= damage;
+        if (log) log(`${self.name} takes ${damage} damage`);
+      }
+    },
+    decrease_random_statuses_and_gain_thorns: ({ self, log, value }) => {
+      const amount = value || 2;
+      const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
+      let totalDecreased = 0;
+      
+      for (let i = 0; i < amount && keys.length > 0; i++) {
+        const idx = Math.floor(Math.random() * keys.length);
+        const key = keys[idx];
+        const decrease = Math.min(1, self.statuses[key]);
+        self.statuses[key] -= decrease;
+        totalDecreased += decrease;
+        if (decrease > 0 && log) log(`${self.name} decreases ${key} by ${decrease}`);
+        keys.splice(idx, 1);
+      }
+      
+      if (totalDecreased > 0) {
+        self.addStatus('thorns', totalDecreased);
+        if (log) log(`${self.name} gains ${totalDecreased} thorns`);
+      }
+    },
+    deal_damage_and_heal: ({ self, other, log, value }) => {
+      const damage = value || 3;
+      const healAmount = value || 3;
+      self.damageOther(damage, other);
+      const healed = self.heal(healAmount);
+      if (log) log(`${self.name} deals ${damage} damage and restores ${healed} health`);
+    },
+    decrease_all_countdowns: ({ self, log, value }) => {
+      const amount = value || 1;
+      if (typeof self.decAllCountdowns === 'function') {
+        self.decAllCountdowns(amount);
+        if (log) log(`${self.name} decreases all countdowns by ${amount}`);
+      }
+    },
+    halve_all_countdowns: ({ self, log }) => {
+      if (typeof self.halveCountdowns === 'function') {
+        self.halveCountdowns();
+        if (log) log(`${self.name} halves all countdowns`);
+      }
+    },
+    convert_acid_to_attack: ({ self, log, value }) => {
+      if ((self.statuses.acid || 0) > 0) {
+        self.statuses.acid -= 1;
+        const attackGain = value || 2;
+        self.addAtk(attackGain);
+        if (log) log(`${self.name} converts 1 acid into ${attackGain} attack`);
+      }
+    },
+    give_enemy_acid_equal_to_speed: ({ self, other, log }) => {
+      if (self.speed > 0) {
+        other.addStatus('acid', self.speed);
+        if (log) log(`${other.name} gains ${self.speed} acid`);
+      }
+    },
+    invert_speed: ({ self, log }) => {
+      self.speed = (self.speed || 0) * -1;
+      if (log) log(`${self.name} inverts its speed.`);
+    },
+    remove_all_status_and_gain_armor: ({ self, log }) => {
+      let removedCount = 0;
+      if (self.statuses) {
+        for (const key in self.statuses) {
+          if (self.statuses[key] > 0) {
+            removedCount += self.statuses[key];
+            self.statuses[key] = 0;
+          }
+        }
+      }
+      if (removedCount > 0) {
+        self.armor += removedCount;
+        if (log) log(`${self.name} removes all status effects and gains ${removedCount} armor.`);
+      }
+    },
+    transfer_random_status_to_enemy: ({ self, other, value, log, tier }) => {
+      if (!self.statuses) return;
+      const keys = Object.keys(self.statuses).filter(k => (self.statuses[k] || 0) > 0);
+      if (keys.length > 0) {
+        const key = keys[Math.floor(Math.random() * keys.length)];
+        const amount = typeof value === 'object' ? getValueByTier(value, tier) : value;
+        const transfer = Math.min(self.statuses[key], amount);
+        self.statuses[key] -= transfer;
+        other.addStatus(key, transfer);
+        if (log) log(`${self.name} transfers ${transfer} ${key} to ${other.name}.`);
+      }
+    },
+    spend_speed_decrease_random_status: ({ self, log }) => {
+      if (!self.statuses || self.speed <= 0) return;
+      const keys = Object.keys(self.statuses).filter(k => (self.statuses[k] || 0) > 0);
+      if (keys.length > 0) {
+        self.speed -= 1;
+        const key = keys[Math.floor(Math.random() * keys.length)];
+        self.statuses[key] = Math.max(0, (self.statuses[key] || 0) - 1);
+        if (log) log(`${self.name} spends 1 speed to decrease ${key} by 1.`);
+      }
     },
     add_status: ({ self, key, value }) => self.addStatus(key, value),
       add_status_tiered: ({ self, log, key, baseTier, goldTier, diamondTier, tier }) => {
@@ -325,6 +448,8 @@
         return self.flags.firstTurn;
       case 'flag':
         return self.flags[condition.flag] === condition.value;
+      case 'has_flag':
+        return self.flags[condition.key] === true;
       case 'has_status':
         return (self.statuses[condition.key] || 0) > 0;
       case 'is_status':
