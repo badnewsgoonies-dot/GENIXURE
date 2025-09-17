@@ -61,15 +61,44 @@
       self.extraStrikes = (self.extraStrikes || 0) + strikes;
       log(`${self.name} gains ${strikes} extra strike${strikes > 1 ? 's' : ''} this turn`);
     },
-    spend_speed_gain_temp_attack: ({ self, log, value }) => {
-      const maxSpend = value.maxSpend || value.speedCost || 2;
-      const attackGain = value.attackGain || value.attack || 4;
-      const spent = Math.min(maxSpend, self.speed || 0);
-      if (spent > 0) {
-        self.speed -= spent;
-        self.tempAttack = (self.tempAttack || 0) + attackGain;
-        log(`${self.name} spends ${spent} speed to gain ${attackGain} temporary attack`);
+    cleanse_status_effects: ({ self, log, value }) => {
+      const amount = value || 1;
+      const statusesToCleanse = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
+      let cleansed = 0;
+      for (const status of statusesToCleanse) {
+        if (cleansed >= amount) break;
+        const reduction = Math.min(self.statuses[status], amount - cleansed);
+        self.statuses[status] -= reduction;
+        cleansed += reduction;
+        if (reduction > 0) log(`${self.name} cleanses ${reduction} ${status}`);
       }
+    },
+    double_status: ({ self, other, log, value }) => {
+      const status = value.status || value;
+      const target = value.target === 'enemy' ? other : self;
+      const current = target.statuses[status] || 0;
+      if (current > 0) {
+        target.addStatus(status, current);
+        log(`${target.name}'s ${status} is doubled`);
+      }
+    },
+    apply_status_based_on_armor: ({ self, other, log, value }) => {
+      const threshold = value.threshold || 0;
+      const status = value.status;
+      const amount = value.amount || 1;
+      if (other.armor <= threshold) {
+        other.addStatus(status, amount);
+        log(`${other.name} gains ${amount} ${status} (armor <= ${threshold})`);
+      }
+    },
+    gain_temp_stats: ({ self, log, value }) => {
+      ['attack', 'health', 'armor', 'speed'].forEach(stat => {
+        if (value[stat]) {
+          const tempKey = `temp${stat.charAt(0).toUpperCase() + stat.slice(1)}`;
+          self[tempKey] = (self[tempKey] || 0) + value[stat];
+          log(`${self.name} gains ${value[stat]} temporary ${stat}`);
+        }
+      });
     },
     add_speed: ({ self, other, log, value }) => { 
       const oldSpeed = self.speed || 0;
@@ -112,6 +141,25 @@
         return (self.flags.turnCount || 0) % 2 === 0;
       case 'is_odd_turn':
         return (self.flags.turnCount || 0) % 2 === 1;
+      case 'has_poison':
+        return (self.statuses.poison || 0) > 0;
+      case 'has_thorns':
+        return (self.statuses.thorns || 0) > 0;
+      case 'has_freeze':
+        return (self.statuses.freeze || 0) > 0;
+      case 'has_stun':
+        return (self.statuses.stun || 0) > 0;
+      case 'has_temp_health':
+        return (self.tempHealth || 0) > 0;
+      case 'has_any_status':
+        const statusesToCheck = effect.value?.statuses || ['poison', 'acid', 'freeze', 'stun'];
+        return statusesToCheck.some(status => (self.statuses?.[status] || 0) > 0);
+      case 'enemy_has_poison':
+        return (other.statuses.poison || 0) > 0;
+      case 'enemy_has_freeze':
+        return (other.statuses.freeze || 0) > 0;
+      case 'enemy_has_stun':
+        return (other.statuses.stun || 0) > 0;
       case 'has_status_effects':
         const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
         return keys.length > 0;
@@ -313,6 +361,12 @@ let CURRENT_SOURCE_SLUG = null;
       if (toHp > 0) src._summary.hpDamageDealt += toHp;
     }
     runEffects('onDamaged', dst, src, log, { armorLost: toArmor, hpLost: toHp });
+    
+    // Check for death and trigger onKill effects
+    if (dst.hp <= 0 && toHp > 0) {
+      runEffects('onKill', src, dst, log);
+    }
+    
     const exposedNow = dst.armor === 0 && (toArmor+toHp>0) && dst._exposedCount < dst._exposedLimit;
     if(exposedNow) dst._exposedCount++;
     const woundedNow = !dst.woundedDone && dst.hp <= Math.floor(dst.hpMax/2);
@@ -384,6 +438,13 @@ let CURRENT_SOURCE_SLUG = null;
         runEffects('onPoisonTick', a, other, log, { amount: a.statuses.poison });
       }
       a.statuses.poison--;
+    }
+    if (a.statuses.riptide > 0) {
+      // Riptide deals damage directly (bypasses armor like poison)
+      a.hp -= a.statuses.riptide;
+      if (a.hp < 0) a.hp = 0;
+      log(`${a.name} suffers ${a.statuses.riptide} riptide damage`);
+      a.statuses.riptide--;
     }
   }
 
