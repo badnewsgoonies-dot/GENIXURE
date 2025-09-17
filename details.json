@@ -1857,6 +1857,13 @@
   "items/featherweight_helmet": {
     "bucket": "items",
     "effect": "Battle start: Spend 2 armor to gain 3 speed and 1 attack",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "spend_armor_for_speed_and_attack",
+        "value": {"armorCost": 2, "speedGain": 3, "attackGain": 1}
+      }
+    ],
     "name": "Featherweight Helmet",
     "slug": "featherweight_helmet",
     "stats": {
@@ -1997,6 +2004,13 @@
   "items/frostbite_curse": {
     "bucket": "items",
     "effect": "Battle Start: Give yourself and the enemy 5 freeze each",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "give_self_and_enemy_status",
+        "value": {"status": "freeze", "amount": 5}
+      }
+    ],
     "name": "Frostbite Curse",
     "slug": "frostbite_curse",
     "stats": {
@@ -2033,6 +2047,13 @@
   "items/frostbite_greaves": {
     "bucket": "items",
     "effect": "Whenever you lose speed, give the enemy 1 freeze",
+    "effects": [
+      {
+        "trigger": "on_lose_speed",
+        "action": "add_status_to_enemy",
+        "value": {"status": "freeze", "amount": 1}
+      }
+    ],
     "name": "Frostbite Greaves",
     "slug": "frostbite_greaves",
     "stats": {
@@ -2464,6 +2485,14 @@
   "items/iceblock_shield": {
     "bucket": "items",
     "effect": "Battle Start: Gain 2 freeze.",
+    "effects": [
+      {
+        "action": "add_status",
+        "key": "freeze",
+        "trigger": "battleStart",
+        "value": 2
+      }
+    ],
     "name": "Iceblock Shield",
     "slug": "iceblock_shield",
     "stats": {
@@ -3311,6 +3340,13 @@
   "items/prime_form": {
     "bucket": "items",
     "effect": "Double attack while your health is full",
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": "self_full_health",
+        "action": "set_double_attack_on_full_health"
+      }
+    ],
     "name": "Prime Form",
     "slug": "prime_form",
     "stats": {
@@ -3675,6 +3711,14 @@
   "items/saltcrusted_crown": {
     "bucket": "items",
     "effect": "Battle Start: Gain 1 riptide",
+    "effects": [
+      {
+        "action": "add_status",
+        "key": "riptide",
+        "trigger": "battleStart",
+        "value": 1
+      }
+    ],
     "name": "Saltcrusted Crown",
     "slug": "saltcrusted_crown",
     "stats": {
@@ -4108,6 +4152,14 @@
   "items/spiral_shell": {
     "bucket": "items",
     "effect": "Turn Start: If you're stunned, give the enemy 1 riptide",
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "condition": "self_stunned",
+        "action": "add_status_to_enemy",
+        "value": {"status": "riptide", "amount": 1}
+      }
+    ],
     "name": "Spiral Shell",
     "slug": "spiral_shell",
     "stats": {
@@ -4240,6 +4292,13 @@
   "items/studded_gauntlet": {
     "bucket": "items",
     "effect": "On Hit: Deal 1 damage",
+    "effects": [
+      {
+        "action": "deal_damage",
+        "trigger": "onHit",
+        "value": 1
+      }
+    ],
     "name": "Studded Gauntlet",
     "slug": "studded_gauntlet",
     "stats": {
@@ -4348,6 +4407,20 @@
   "items/thorn_ring": {
     "bucket": "items",
     "effect": "Battle Start: Take 5 damage and gain 10 thorns",
+    "effects": [
+      {
+        "action": "deal_damage",
+        "target": "self",
+        "trigger": "battleStart",
+        "value": 5
+      },
+      {
+        "action": "add_status",
+        "key": "thorns",
+        "trigger": "battleStart",
+        "value": 10
+      }
+    ],
     "name": "Thorn Ring",
     "slug": "thorn_ring",
     "stats": {
@@ -5639,6 +5712,14 @@
   "weapons/lightning_rod": {
     "bucket": "weapons",
     "effect": "Turn Start: If you're stunned, gain 3 attack",
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "condition": "self_stunned",
+        "action": "gain_attack",
+        "value": 3
+      }
+    ],
     "name": "Lightning Rod",
     "slug": "lightning_rod",
     "stats": {
@@ -5652,6 +5733,14 @@
   "weapons/lightning_whip": {
     "bucket": "weapons",
     "effect": "Turn Start: If the enemy is stunned, gain 1 additional strike",
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "condition": "enemy_stunned",
+        "action": "gain_strikes",
+        "value": 1
+      }
+    ],
     "name": "Lightning Whip",
     "slug": "lightning_whip",
     "stats": {

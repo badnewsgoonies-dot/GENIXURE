@@ -464,6 +464,78 @@
                       log(`${self.name} deals ${dmg} damage and gains ${thornGain} thorns`);
                     }
                   },
+    // NEW ACTIONS for pending migrations
+    multiply_enemy_attack: ({ other, log, value }) => {
+      const factor = value || 2;
+      other.atk = (other.atk || 0) * factor;
+      log(`${other.name}'s attack multiplied by ${factor}`);
+    },
+    add_armor_to_enemy: ({ other, value, log }) => {
+      other.addArmor(value);
+      log(`${other.name} gains ${value} armor`);
+    },
+    stun_enemy_for_turns: ({ other, log, value }) => {
+      other.addStatus('stun', value || 1);
+      log(`${other.name} is stunned for ${value || 1} turn${value > 1 ? 's' : ''}`);
+    },
+    stun_self_for_turns: ({ self, log, value }) => {
+      self.addStatus('stun', value || 1);
+      log(`${self.name} is stunned for ${value || 1} turn${value > 1 ? 's' : ''}`);
+    },
+    deal_damage_multiple_times: ({ self, other, log, value }) => {
+      const damage = value?.damage || 1;
+      const times = value?.times || 3;
+      for (let i = 0; i < times; i++) {
+        other.hp = Math.max(0, (other.hp || 0) - damage);
+        log(`${self.name} deals ${damage} damage (${i+1}/${times})`);
+      }
+    },
+    set_double_attack_on_full_health: ({ self, log }) => {
+      // Sets a flag for conditional double attack
+      self.flags.doubleAttackOnFullHealth = true;
+      log(`${self.name} gains double attack when at full health`);
+    },
+    heal_to_full_if_no_base_armor: ({ self, log }) => {
+      if ((self.baseArmor || 0) === 0) {
+        const healed = self.heal(self.hpMax - self.hp);
+        if (healed > 0) log(`${self.name} restores health to full (${healed} healed)`);
+      }
+    },
+    spend_speed_to_deal_damage: ({ self, other, log, value }) => {
+      const speedCost = value?.speedCost || 1;
+      const damage = value?.damage || 2;
+      if (self.speed >= speedCost) {
+        self.speed -= speedCost;
+        other.hp = Math.max(0, (other.hp || 0) - damage);
+        log(`${self.name} spends ${speedCost} speed to deal ${damage} damage`);
+      }
+    },
+    gain_attack: ({ self, log, value }) => {
+      self.atk += value || 1;
+      log(`${self.name} gains ${value || 1} attack`);
+    },
+    gain_strikes: ({ self, log, value }) => {
+      self.flags.additionalStrikes = (self.flags.additionalStrikes || 0) + (value || 1);
+      log(`${self.name} gains ${value || 1} additional strike${value > 1 ? 's' : ''}`);
+    },
+    spend_armor_for_speed_and_attack: ({ self, log, value }) => {
+      const armorCost = value?.armorCost || 2;
+      const speedGain = value?.speedGain || 3;
+      const attackGain = value?.attackGain || 1;
+      if (self.armor >= armorCost) {
+        self.armor -= armorCost;
+        self.speed += speedGain;
+        self.atk += attackGain;
+        log(`${self.name} spends ${armorCost} armor to gain ${speedGain} speed and ${attackGain} attack`);
+      }
+    },
+    give_self_and_enemy_status: ({ self, other, log, value }) => {
+      const status = value?.status || 'freeze';
+      const amount = value?.amount || 1;
+      self.addStatus(status, amount);
+      other.addStatus(status, amount);
+      log(`${self.name} gives ${amount} ${status} to self and enemy`);
+    },
   };
 
   function checkCondition(condition, { self, other, log, key, isNew }) {
@@ -540,6 +612,12 @@
         return (self.armor || 0) >= (condition.value || 1);
       case 'enemy_has_no_armor':
         return other.armor === 0;
+      case 'self_stunned':
+        return (self.statuses.stun || 0) > 0;
+      case 'enemy_stunned':
+        return (other.statuses.stun || 0) > 0;
+      case 'self_full_health':
+        return self.hp === self.hpMax;
       // Add more condition types here as needed
       default:
         log(`Unknown condition type: ${condition.type}`);
