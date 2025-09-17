@@ -122,6 +122,13 @@
   "items/arcane_shield": {
     "bucket": "items",
     "effect": "Whenever a countdown effect triggers, gain 3 armor",
+    "effects": [
+      {
+        "trigger": "on_countdown_trigger",
+        "action": "gain_armor",
+        "value": 3
+      }
+    ],
     "name": "Arcane Shield",
     "slug": "arcane_shield",
     "stats": {
@@ -285,6 +292,16 @@
   "items/blackbriar_bow": {
     "bucket": "weapons",
     "effect": "Can't strike. Turn Start: Gain thorns equal to your attack.",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "disable_striking"
+      },
+      {
+        "trigger": "turn_start", 
+        "action": "gain_thorns_equal_to_attack"
+      }
+    ],
     "name": "Blackbriar Bow",
     "slug": "blackbriar_bow",
     "stats": {
@@ -298,6 +315,13 @@
   "items/blackbriar_gauntlet": {
     "bucket": "items",
     "effect": "Gain 2 thorns for each armor removed by the enemy's first strike",
+    "effects": [
+      {
+        "trigger": "on_armor_lost_from_enemy_first_strike",
+        "action": "gain_thorns_per_armor_lost",
+        "value": 2
+      }
+    ],
     "name": "Blackbriar Gauntlet",
     "slug": "blackbriar_gauntlet",
     "stats": {
@@ -311,6 +335,13 @@
   "items/blackbriar_rose": {
     "bucket": "items",
     "effect": "Whenever you restore health, gain 2 thorns. You can only equip 1 rose",
+    "effects": [
+      {
+        "trigger": "on_heal",
+        "action": "gain_thorns",
+        "value": 2
+      }
+    ],
     "name": "Blackbriar Rose",
     "slug": "blackbriar_rose",
     "stats": {
@@ -866,6 +897,18 @@
   "items/cherry_blade": {
     "bucket": "weapons",
     "effect": "Battle Start: Reduce your speed by 1. After each strike: Restore 1 health.",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "lose_speed",
+        "value": 1
+      },
+      {
+        "trigger": "after_strike",
+        "action": "heal_self",
+        "value": 1
+      }
+    ],
     "name": "Cherry Blade",
     "slug": "cherry_blade",
     "stats": {
@@ -879,6 +922,13 @@
   "items/cherry_bomb": {
     "bucket": "items",
     "effect": "Battle Start: Deal 1 / 2 / 4 damage 2 times",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "deal_damage_multiple_times",
+        "value": {"damage": 1, "times": 2, "gold_damage": 2, "diamond_damage": 4}
+      }
+    ],
     "name": "Cherry Bomb",
     "slug": "cherry_bomb",
     "stats": {
@@ -2407,6 +2457,15 @@
   "items/horned_helmet": {
     "bucket": "items",
     "effect": "Battle Start: Gain 1 thorns (Gold: 2; Diamond: 4).",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "gain_thorns",
+        "value": 1,
+        "value_gold": 2,
+        "value_diamond": 4
+      }
+    ],
     "name": "Horned Helmet",
     "slug": "horned_helmet",
     "stats": {
@@ -2558,6 +2617,18 @@
   "items/iron_transfusion": {
     "bucket": "items",
     "effect": "Turn Start: Gain 2 armor and lose 1 health",
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "action": "gain_armor",
+        "value": 2
+      },
+      {
+        "trigger": "turn_start",
+        "action": "lose_hp",
+        "value": 1
+      }
+    ],
     "name": "Iron Transfusion",
     "slug": "iron_transfusion",
     "stats": {
@@ -3732,6 +3803,18 @@
   "items/sanguine_imp": {
     "bucket": "items",
     "effect": "Turn Start: Deal 1 damage and restore 1 health",
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "action": "deal_damage",
+        "value": 1
+      },
+      {
+        "trigger": "turn_start",
+        "action": "heal_self",
+        "value": 1
+      }
+    ],
     "name": "Sanguine Imp",
     "slug": "sanguine_imp",
     "stats": {
@@ -4830,6 +4913,13 @@
   "upgrades/bleeding_edge": {
     "bucket": "upgrades",
     "effect": "On Hit: Restore 1 health.",
+    "effects": [
+      {
+        "trigger": "onHit",
+        "action": "heal_self",
+        "value": 1
+      }
+    ],
     "name": "Bleeding Edge",
     "slug": "bleeding_edge",
     "stats": {

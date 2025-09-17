@@ -536,6 +536,45 @@
       other.addStatus(status, amount);
       log(`${self.name} gives ${amount} ${status} to self and enemy`);
     },
+    disable_striking: ({ self, log }) => {
+      self.flags.cannotStrike = true;
+      log(`${self.name} cannot strike`);
+    },
+    gain_thorns_equal_to_attack: ({ self, log }) => {
+      const thornsGain = self.atk || 0;
+      if (thornsGain > 0) {
+        self.addStatus('thorns', thornsGain);
+        log(`${self.name} gains ${thornsGain} thorns`);
+      }
+    },
+    gain_thorns_per_armor_lost: ({ self, log, value, armorLost }) => {
+      const multiplier = value || 1;
+      const thornsGain = (armorLost || 0) * multiplier;
+      if (thornsGain > 0) {
+        self.addStatus('thorns', thornsGain);
+        log(`${self.name} gains ${thornsGain} thorns (${multiplier} per armor lost)`);
+      }
+    },
+    gain_thorns: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.addStatus('thorns', amount);
+      log(`${self.name} gains ${amount} thorns`);
+    },
+    gain_armor: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.addArmor(amount);
+      log(`${self.name} gains ${amount} armor`);
+    },
+    lose_speed: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.speed = Math.max(0, self.speed - amount);
+      log(`${self.name} loses ${amount} speed`);
+    },
+    heal_self: ({ self, log, value }) => {
+      const amount = value || 1;
+      const healed = self.heal(amount);
+      if (healed > 0) log(`${self.name} restores ${healed} health`);
+    },
   };
 
   function checkCondition(condition, { self, other, log, key, isNew }) {
