@@ -242,9 +242,13 @@
     "effect": "Turn Start: Convert 1 stack of another status into 1 Poison",
     "effects": [
       {
-        "action": "convert_random_status_to_poison",
-        "trigger": "turnStart",
-        "value": 1
+        "event": "turnStart",
+        "actions": [
+          {
+            "type": "convert_random_status_to_poison",
+            "value": 1
+          }
+        ]
       }
     ],
     "name": "Bitter Melon",
@@ -480,12 +484,18 @@
     "effect": "Battle Start (if Exposed or Wounded): Decrease all your status effects by 1",
     "effects": [
       {
-        "action": "decrease_all_statuses",
-        "if": {
-          "type": "is_exposed_or_wounded"
-        },
-        "trigger": "battleStart",
-        "value": 1
+        "event": "battleStart",
+        "conditions": [
+          {
+            "type": "is_exposed_or_wounded"
+          }
+        ],
+        "actions": [
+          {
+            "type": "decrease_all_statuses",
+            "value": 1
+          }
+        ]
       }
     ],
     "name": "Boiled Ham",
@@ -2846,21 +2856,22 @@
   },
   "items/limestone_fruit": {
     "bucket": "items",
-    "effect": "Battle Start: Gain 8 Armor; if health not full, gain 2 Acid",
+    "effect": "Turn Start: if health not full, gain 2 Acid",
     "effects": [
       {
-        "action": "add_armor",
-        "trigger": "battleStart",
-        "value": 8
-      },
-      {
-        "action": "add_status",
-        "if": {
-          "type": "is_not_full_health"
-        },
-        "key": "acid",
-        "trigger": "battleStart",
-        "value": 2
+        "event": "turnStart",
+        "conditions": [
+          {
+            "type": "is_not_full_health"
+          }
+        ],
+        "actions": [
+          {
+            "type": "add_status",
+            "key": "acid",
+            "value": 2
+          }
+        ]
       }
     ],
     "name": "Limestone Fruit",
@@ -4264,19 +4275,20 @@
   },
   "items/swiftstrike_belt": {
     "bucket": "items",
-    "effect": "Battle Start: Take 3 damage and gain 1 additional strike (Gold: +2 strikes; Diamond: +4).",
+    "effect": "Turn Start: Take 3 damage and gain 1 additional strike",
     "effects": [
       {
-        "action": "deal_self_damage",
-        "trigger": "battleStart",
-        "value": 3
-      },
-      {
-        "action": "add_extra_strikes",
-        "trigger": "battleStart",
-        "value": 1,
-        "value_diamond": 4,
-        "value_gold": 2
+        "event": "turnStart",
+        "actions": [
+          {
+            "type": "lose_hp",
+            "value": 3
+          },
+          {
+            "type": "add_extra_strikes",
+            "value": 1
+          }
+        ]
       }
     ],
     "name": "Swiftstrike Belt",
