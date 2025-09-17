@@ -15,18 +15,7 @@
         "cwd": "${workspaceFolder}"
       },
       "isBackground": true,
-      "problemMatcher": {
-        "pattern": [
-          {
-            "regexp": ".*"
-          }
-        ],
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": "Serving HTTP on",
-          "endsPattern": "Serving HTTP on"
-        }
-      }
+      "problemMatcher": []
     }
   ]
 }
