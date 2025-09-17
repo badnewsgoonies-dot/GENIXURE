@@ -82,7 +82,13 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "postCountdownTrigger",
+        "action": "amplify_tome_countdown"
+      }
+    ]
   },
   "items/arcane_shield": {
     "bucket": "items",
@@ -1853,6 +1859,21 @@
     },
     "tags": [
       "Tome"
+    ],
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "action": "register_countdown",
+        "value": {
+          "name": "Holy Tome",
+          "turns": 6,
+          "tag": "Tome",
+          "action": "add_attack",
+          "base": 3,
+          "gold": 6,
+          "diamond": 12
+        }
+      }
     ]
   },
   "items/honeydew_melon": {
@@ -3932,7 +3953,24 @@
     "bucket": "items",
     "effect": "The first time the enemy gains poison, give them 3 additional poison",
     "effects": [
-      { "trigger": "battleStart", "action": "set_flag", "key": "viper_extract_ready", "value": true }
+      { "trigger": "battleStart", "action": "set_flag", "key": "viper_extract_ready", "value": true },
+      { 
+        "trigger": "onGainStatus", 
+        "action": "add_status_to_enemy", 
+        "condition": {
+          "type": "all_of",
+          "conditions": [
+            { "type": "flag", "flag": "viper_extract_ready", "value": true },
+            { "type": "status_key", "value": "poison" },
+            { "type": "status_is_new" }
+          ]
+        },
+        "key": "poison",
+        "value": 3,
+        "then": [
+          { "action": "set_flag", "key": "viper_extract_ready", "value": false }
+        ]
+      }
     ],
     "name": "Viper Extract",
     "slug": "viper_extract",

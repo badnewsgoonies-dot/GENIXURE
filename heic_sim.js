@@ -1,12 +1,56 @@
 ;(function(global){
+  // Data loaded from the HTML page
+  const ITEM_TAGS = {};
 
   // --- Data-Driven Effect Engine ---
   const EFFECT_ACTIONS = {
     // GENERIC ACTIONS
+    // COUNTDOWN EFFECTS
+    amplify_tome_countdown: ({ self, other, log, countdown }) => {
+      try {
+        const items = self.items || [];
+        const tomeCount = items.filter(s => {
+          const tags = (s.tags || []).concat(ITEM_TAGS[s] || []);
+          return tags.includes('Tome');
+        }).length;
+
+        if (tomeCount === 1 && countdown && typeof countdown.action === 'function') {
+          // Already fired once from the normal system; fire two more times
+          countdown.action(self, other, log, countdown);
+          countdown.action(self, other, log, countdown);
+          log(`${self.name}'s Arcane Lens amplifies the tome.`);
+          return true;
+        }
+      } catch(e) { 
+        console.error('Error in amplify_tome_countdown', e);
+      }
+      return false;
+    },
     add_gold: ({ self, value }) => self.addGold(value),
     add_armor: ({ self, value }) => self.addArmor(value),
     add_attack: ({ self, value }) => self.addAtk(value),
     add_temp_attack: ({ self, value }) => self.addTempAtk(value),
+    register_countdown: ({ self, log, value }) => {
+      // Register a countdown for data-driven effects
+      const name = value?.name || 'Effect';
+      const turns = value?.turns || 6;
+      const tag = value?.tag || 'Effect';
+      const tier = value?.tier || 1;
+      const action = value?.action || 'add_attack';
+      
+      // Create a function that will be called when countdown completes
+      const countdownAction = (owner, enemy, logger) => {
+        if (action === 'add_attack') {
+          const amount = tier === 3 ? 12 : tier === 2 ? 6 : 3;
+          owner.addAtk(amount);
+          if (logger) logger(`${owner.name} gains ${amount} attack (${name} complete)`);
+        }
+        // Add more countdown actions as needed
+      };
+      
+      self.addCountdown(name, turns, tag, countdownAction);
+      if (log) log(`${self.name} starts a countdown effect (${turns} turns)`);
+    },
     add_temp_attack_from_status: ({ self, key }) => {
       const statusValue = self.statuses[key] || 0;
       if (statusValue > 0) self.addTempAtk(statusValue);
@@ -100,6 +144,27 @@
         }
       });
     },
+    register_countdown: ({ self, log, value }) => {
+      // Register a countdown for data-driven effects
+      const name = value?.name || 'Effect';
+      const turns = value?.turns || 6;
+      const tag = value?.tag || 'Effect';
+      const tier = value?.tier || 1;
+      const action = value?.action || 'add_attack';
+      
+      // Create a function that will be called when countdown completes
+      const countdownAction = (owner, enemy, logger) => {
+        if (action === 'add_attack') {
+          const amount = tier === 3 ? (value?.diamond || 12) : tier === 2 ? (value?.gold || 6) : (value?.base || 3);
+          owner.addAtk(amount);
+          if (logger) logger(`${owner.name} gains ${amount} attack (${name || 'Countdown'} complete)`);
+        }
+        // Add more countdown actions as needed
+      };
+      
+      self.addCountdown(name, turns, tag, countdownAction);
+      if (log) log(`${self.name} starts a countdown effect (${turns} turns)`);
+    },
     set_one_time_flag: ({ self, value, key }) => {
       self.flags[key || value] = true;
     },
@@ -151,6 +216,9 @@
     add_extra_strikes: ({ self, value }) => self.addExtraStrikes(value),
     deal_damage: ({ self, other, value }) => self.damageOther(value, other),
     heal: ({ self, value }) => self.heal(value),
+    set_flag: ({ self, key, value }) => {
+      self.flags[key] = value;
+    },
     add_status: ({ self, key, value }) => self.addStatus(key, value),
       add_status_tiered: ({ self, log, key, baseTier, goldTier, diamondTier, tier }) => {
         const amount = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
@@ -241,7 +309,7 @@
                   },
   };
 
-  function checkCondition(condition, { self, other, log }) {
+  function checkCondition(condition, { self, other, log, key, isNew }) {
     if (!condition) return true; // No condition means always run
 
     switch (condition.type) {
@@ -255,10 +323,16 @@
         return self.hp < self.hpMax;
       case 'is_first_turn':
         return self.flags.firstTurn;
+      case 'flag':
+        return self.flags[condition.flag] === condition.value;
       case 'has_status':
         return (self.statuses[condition.key] || 0) > 0;
       case 'is_status':
         return key === condition.key; // Used with onGainStatus trigger
+      case 'status_key':
+        return key === condition.value; // Used with onGainStatus trigger
+      case 'status_is_new':
+        return isNew === true; // Used with onGainStatus trigger
       case 'is_exposed_or_wounded':
         return (self.statuses.exposed || 0) > 0 || (self.statuses.wounded || 0) > 0;
       case 'is_even_turn':
@@ -352,6 +426,21 @@
                 for (let i = 0; i < repeatCount; i++) {
                   actionFn({ ...effectCtx, value, key: effect.key });
                 }
+                
+                // Handle then actions if present
+                if (Array.isArray(effect.then)) {
+                  for (const thenEffect of effect.then) {
+                    const thenActionFn = EFFECT_ACTIONS[thenEffect.action];
+                    if (typeof thenActionFn === 'function') {
+                      let thenValue = thenEffect.value;
+                      thenActionFn({ 
+                        ...effectCtx, 
+                        value: thenValue, 
+                        key: thenEffect.key 
+                      });
+                    }
+                  }
+                }
               });
             } else {
               log(`Unknown action: ${effect.action}`);
@@ -380,6 +469,15 @@
         poison:0, acid:0, riptide:0, freeze:0, stun:0,
         thorns:0, regen:0, purity:0
       }, raw.statuses || {});
+
+      // Populate item tags for use in effect conditions
+      if (typeof DETAILS !== 'undefined') {
+        this.items.forEach(item => {
+          if (DETAILS[item] && DETAILS[item].tags) {
+            ITEM_TAGS[item] = DETAILS[item].tags;
+          }
+        });
+      }
 
       this.flags = { firstTurn: true };
 
@@ -416,6 +514,45 @@
       this.skipTurn = false;
       this.struckThisTurn = false;
       this.healedThisTurn = 0;
+    }
+    
+    // Countdown system
+    addCountdown(name, turns, tag, action) {
+      if (!this.countdowns) this.countdowns = [];
+      this.countdowns.push({
+        name,
+        turnsLeft: turns,
+        tag,
+        action,
+        triggered: false
+      });
+    }
+    
+    processCountdowns(other, log) {
+      if (!this.countdowns || !Array.isArray(this.countdowns)) return;
+      
+      // Decrement all countdowns
+      this.countdowns.forEach(cd => {
+        cd.turnsLeft = Math.max(0, cd.turnsLeft - 1);
+      });
+      
+      // Trigger any countdowns that reached 0
+      const triggeredCountdowns = this.countdowns.filter(cd => cd.turnsLeft === 0 && !cd.triggered);
+      triggeredCountdowns.forEach(cd => {
+        cd.triggered = true;
+        if (typeof cd.action === 'function') {
+          try {
+            cd.action(this, other, log);
+            // Run postCountdownTrigger effects to allow items like Arcane Lens to interact
+            runEffects('postCountdownTrigger', this, other, log, { countdown: cd });
+          } catch (err) {
+            if (log) log(`Error in countdown: ${err.message}`);
+          }
+        }
+      });
+      
+      // Remove triggered countdowns
+      this.countdowns = this.countdowns.filter(cd => !cd.triggered);
     }
   }
 
@@ -559,6 +696,12 @@ let CURRENT_SOURCE_SLUG = null;
 
   function turnStartTicks(a, other, log){
     a.resetTurn();
+    
+    // Process any active countdowns
+    if (typeof a.processCountdowns === 'function') {
+      a.processCountdowns(other, log);
+    }
+    
     if (a.statuses.acid > 0) {
       const lost = Math.min(a.armor, a.statuses.acid);
       a.armor -= lost;
