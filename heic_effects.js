@@ -220,30 +220,9 @@
   // Cherry Blade: Battle Start (if Exposed): Deal 4 damage
 
   // Blacksmith Bond: exposed can trigger one additional time
-  hooks['items/blacksmith_bond'] = {
-    battleStart({ self }){
-      self._exposedLimit = (self._exposedLimit || 1) + 1;
-    }
-  };
 
   // Countdown-related items
-  hooks['items/arcane_bell'] = {
-    battleStart({ self, log }) {
-      if (typeof self.decAllCountdowns === 'function') {
-        self.decAllCountdowns(1);
-        log(`${self.name} decreases all countdowns by 1 (Arcane Bell).`);
-      }
-    }
-  };
 
-  hooks['items/arcane_gauntlet'] = {
-    battleStart({ self, log }) {
-      if (typeof self.halveCountdowns === 'function') {
-        self.halveCountdowns();
-        log(`${self.name} halves all countdowns (Arcane Gauntlet).`);
-      }
-    }
-  };
 
 
   // Arcane Lens does not grant armor itself (Arcane Shield handles +3 armor).
@@ -254,7 +233,6 @@
 
   // Arcane Shield: gain 3 armor on any countdown trigger
   // Arcane Lens: when exactly one Tome is equipped, multiply the FIRST Tome trigger (x3) without duplicating resets
-  hooks['items/arcane_lens'] = hooks['items/arcane_lens'] || {};
   if (!hooks['items/arcane_lens'].postCountdownTrigger) {
     hooks['items/arcane_lens'].postCountdownTrigger = ({ self, other, log, countdown }) => {
       try {
@@ -283,150 +261,29 @@
   // Granite Thorns: preserve thorns for the first 3 strikes received
 
   // Granite Crown: increase Max HP by base Armor and heal up to that amount
-  hooks['items/granite_crown'] = {
-    battleStart({ self, log }) {
-      const add = Math.max(0, self.baseArmor || 0);
-      if (add > 0) {
-        self.hpMax += add;
-        const healed = self.heal(add);
-        log(`${self.name} fortifies: Max HP +${add}, heals ${healed} (Granite Crown).`);
-      }
-    }
-  };
 
   // Granite Cherry: if at full HP at Battle Start, do (+2 Armor, 2 damage) ×3
-  hooks['items/granite_cherry'] = {
-    battleStart({ self, other, log }) {
-      if (self.hp === self.hpMax) {
-        for (let i = 0; i < 3; i++) {
-          self.addArmor(2);
-          self.damageOther(2);
-        }
-        log(`${self.name} erupts: +6 armor, 6 damage total (Granite Cherry).`);
-      }
-    }
-  };
 
   // Cherry Cocktail: At Battle Start and when Wounded: Deal 3 damage and restore 3 health
-  hooks['items/cherry_cocktail'] = {
-    _effect(self, other, log) {
-      self.damageOther(3);
-      const healed = self.heal(3);
-      log(`${self.name} deals 3 damage and restores ${healed} health (Cherry Cocktail).`);
-    }
-  };
-  hooks['items/cherry_cocktail'].battleStart = ({ self, other, log }) => {
-    hooks['items/cherry_cocktail']._effect(self, other, log);
-  };
-  hooks['items/cherry_cocktail'].onWounded = ({ self, other, log }) => {
-    hooks['items/cherry_cocktail']._effect(self, other, log);
-  };
 
   // Citrine Crown: Battle Start: Gain 1 gold.
-  hooks['items/citrine_crown'] = {
-    battleStart({ self, log }) {
-      self.gold = (self.gold || 0) + 1;
-      log(`${self.name} gains 1 gold (Citrine Crown).`);
-    }
-  };
 
   // Citrine Earring: Every other turn: +1 Speed (Gold +2, Diamond +4)
-  hooks['items/citrine_earring'] = {
-    turnStart({ self, log, tier }) {
-      if ((self.turnCount | 0) % 2 === 0) {
-        const gain = valByTier(1, 2, 4, tier);
-        self.speed += gain;
-        log(`${self.name} gains ${gain} speed (Citrine Earring).`);
-      }
-    }
-  };
 
   // Citrine Gemstone: Base Speed inverted
-  hooks['items/citrine_gemstone'] = {
-    battleStart({ self, log }) {
-      self.speed = (self.speed || 0) * -1;
-      log(`${self.name} inverts its speed (Citrine Gemstone).`);
-    }
-  };
 
   // Citrine Ring: Battle Start: Gain 1 gold.
-  hooks['items/citrine_ring'] = {
-    battleStart({ self, log }) {
-      self.gold = (self.gold || 0) + 1;
-      log(`${self.name} gains 1 gold (Citrine Ring).`);
-    }
-  };
 
   // Clearspring Cloak: Exposed: Remove all your status effects and gain 1 armor equal to stacks removed
-  hooks['items/clearspring_cloak'] = {
-    onExposed({ self, log }) {
-      let removedCount = 0;
-      for (const key in self.s) {
-        if (self.s[key] > 0) {
-          removedCount += self.s[key];
-          self.s[key] = 0;
-        }
-      }
-      if (removedCount > 0) {
-        self.addArmor(removedCount);
-        log(`${self.name} removes all status effects and gains ${removedCount} armor (Clearspring Cloak).`);
-      }
-    }
-  };
 
   // Clearspring Rose: Whenever you restore health, decrease a random status effect by 1.
-  hooks['items/clearspring_rose'] = {
-    onHeal({ self, log, amount }) {
-      if (amount > 0) {
-        const convertible = Object.keys(self.s || {}).filter(k => (self.s[k] || 0) > 0);
-        if (convertible.length > 0) {
-          const keyToConvert = convertible[Math.floor(Math.random() * convertible.length)];
-          self.s[keyToConvert] = (self.s[keyToConvert] || 0) - 1;
-          log(`${self.name} decreases ${keyToConvert} by 1 (Clearspring Rose).`);
-        }
-      }
-    }
-  };
 
   // Cold Resistance: Freeze doubles your attack instead of halving it
-  hooks['items/cold_resistance'] = {
-    // NOTE: This requires a modification to the core engine's handling of 'freeze'.
-    // A flag can be set here for the engine to check.
-    battleStart({ self }) {
-      self._coldResistance = true;
-    }
-  };
 
   // Combustible Lemon: Turn Start: Spend 1 Speed to deal 2 damage
-  hooks['items/combustible_lemon'] = {
-    turnStart({ self, log }) {
-      if (self.speed >= 1) {
-        self.speed -= 1;
-        self.damageOther(2);
-        log(`${self.name} spends 1 speed to deal 2 damage (Combustible Lemon).`);
-      }
-    }
-  };
 
   // Crimson Cloak: Whenever you take damage, restore 1 health
-  hooks['items/crimson_cloak'] = {
-    onDamaged({ self, log, armorLost, hpLost }) {
-      if (armorLost > 0 || hpLost > 0) {
-        const healed = self.heal(1);
-        if (healed > 0) log(`${self.name} restores ${healed} health (Crimson Cloak).`);
-      }
-    }
-  };
 
   // Crimson Fang: Battle Start: If your health is full, lose 5 health and gain 2 additional strikes
-  hooks['items/crimson_fang'] = {
-    battleStart({ self, log }) {
-      if (self.hp === self.hpMax) {
-        self.hp = Math.max(0, self.hp - 5);
-        self.addExtraStrikes(2);
-        log(`${self.name} loses 5 health and gains 2 extra strikes (Crimson Fang).`);
-      }
-    }
-  };
 
 })();
