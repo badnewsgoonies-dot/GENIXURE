@@ -148,37 +148,20 @@
 
   // Arcane Lens: If exactly 1 tome equipped, its countdown triggers 3 times total
   // Items already migrated to data-driven system - legacy hooks removed:
-  // arcane_lens, ring_blades, bee_stinger, viper_extract, boiled_ham  // Viper Extract: first time the enemy gains poison, give +3 poison
-  hooks['items/viper_extract'] = {
-    battleStart({ self }){
-      self._viperTriggered = false;
-    },
-    onGainStatus({ self, other, log, key, isNew }){
-      if(key === 'poison' && isNew && !self._viperTriggered){
-        other.addStatus('poison', 3);
-        self._viperTriggered = true;
-        log(`${other.name} gains +3 poison (Viper Extract).`);
-      }
-    }
-  };
-
-  // Boiled Ham: if battle start and the holder is exposed or wounded, reduce
-  // all statuses by 1 and log each decrease
-  hooks['items/boiled_ham'] = {
-    battleStart({ self, log }){
-      // Determine if exposed or wounded on start
-      const exposed = self.status && self.status.exposed > 0;
-      const wounded = self.status && self.status.wounded > 0;
-      if(exposed || wounded){
-        for(const k of Object.keys(self.s || {})){
-          if(self.s[k] && self.s[k] > 0){
-            self.s[k] -= 1;
-            log(`${self.name} decreases ${k} by 1 (Boiled Ham).`);
-          }
-        }
-      }
-    }
-  };
+  // arcane_lens, ring_blades, bee_stinger, viper_extract, boiled_ham 
+  // MIGRATED ITEMS - legacy hooks removed:
+  // viper_extract: MIGRATED - uses flag system for first poison tracking
+  // boiled_ham: MIGRATED - uses is_exposed_or_wounded condition and decrease_all_statuses action
+  // brittlebark_buckler: MIGRATED - uses lose_all_armor action with is_first_strike condition
+  // broken_winebottle: MIGRATED - uses enraged flag system
+  // cactus_cap: MIGRATED - uses doubleThornsOnNoArmor flag
+  // caustic_tome: MIGRATED - uses give_enemy_acid_equal_to_speed action
+  // chainmail_armor: MIGRATED - uses regain_base_armor action on onWounded
+  // chainmail_cloak: MIGRATED - uses heal action with min_armor condition
+  // weapons/cherry_blade: MIGRATED - uses exposed damage, speed reduction, and healing
+  // items/arcane_shield: MIGRATED - uses add_armor_on_countdown action
+  // items/granite_thorns: MIGRATED - uses preserve thorns flag
+  // items/arcane_cloak: MIGRATED - uses reset_countdown_on_trigger action
 
   // Items migrated to data-driven system:
   // bitter_melon, swiftstrike_belt, limestone_fruit, horned_melon, 
@@ -199,57 +182,12 @@
       // Items already migrated to data-driven system - legacy hooks removed:
     // brittlebark_armor, brittlebark_buckler, broken_winebottle, cactus_cap
 
-  // Brittlebark Buckler: Lose all your armor after your enemy's first strike.
-  hooks['items/brittlebark_buckler'] = {
-    battleStart({ self }) {
-      self._brittlebarkBucklerTriggered = false;
-    },
-    onDamaged({ self, other, log, armorLost, hpLost }) {
-      // This should only trigger on damage from the 'other' entity's strike phase
-      if (other && other.isStriking && (armorLost > 0 || hpLost > 0) && !self._brittlebarkBucklerTriggered) {
-        const lostArmor = self.armor;
-        if (lostArmor > 0) {
-          self.armor = 0;
-          log(`${self.name} loses all ${lostArmor} armor (Brittlebark Buckler).`);
-        }
-        self._brittlebarkBucklerTriggered = true;
-      }
-    }
-  };
+  // MIGRATED ITEMS - legacy hooks removed:
 
-  // Broken Winebottle: When Wounded: next turn keep striking enemy until they’re wounded
-  hooks['items/broken_winebottle'] = {
-    onWounded({ self, log }) {
-      self._winebottleEnraged = true;
-      log(`${self.name} becomes enraged (Broken Winebottle).`);
-    },
-    turnStart({ self, log }) {
-      if (self._winebottleEnraged) {
-        // Grant a large number of strikes to simulate "keep striking"
-        self.addExtraStrikes(10); 
-        log(`${self.name} enters a rage, gaining 10 extra strikes (Broken Winebottle).`);
-        self._winebottleEnraged = false; // Effect is consumed
-      }
-    }
-  };
 
   // Cactus Cap: If the enemy has no armor, thorns deal double damage
-  hooks['items/cactus_cap'] = {
-    // NOTE: This effect modifies global damage calculation and cannot be
-    // implemented with a simple item hook. It requires changes to the core
-    // simulation engine (heic_sim.js) where thorns damage is applied.
-    // A placeholder is added to acknowledge the item.
-  };
 
   // Caustic Tome: Battle Start: Give the enemy acid equal to your speed.
-  hooks['items/caustic_tome'] = {
-    battleStart({ self, other, log }) {
-      if (self.speed > 0) {
-        other.addStatus('acid', self.speed);
-        log(`${other.name} gains ${self.speed} acid (Caustic Tome).`);
-      }
-    }
-  };
 
   // Chainlink Medallion: Your On Hit effects trigger twice
   hooks['items/chainlink_medallion'] = {
@@ -276,34 +214,10 @@
   };
 
   // Chainmail Armor: Wounded: Regain your base armor
-  hooks['items/chainmail_armor'] = {
-    onWounded({ self, log }) {
-      if (self.baseArmor > 0) {
-        self.addArmor(self.baseArmor);
-        log(`${self.name} regains ${self.baseArmor} base armor (Chainmail Armor).`);
-      }
-    }
-  };
 
   // Chainmail Cloak: Turn Start: If you have armor, restore 2 health
-  hooks['items/chainmail_cloak'] = {
-    turnStart({ self, log }) {
-      if (self.armor > 0) {
-        const healed = self.heal(2);
-        if (healed > 0) log(`${self.name} restores ${healed} health (Chainmail Cloak).`);
-      }
-    }
-  };
 
   // Cherry Blade: Battle Start (if Exposed): Deal 4 damage
-  hooks['weapons/cherry_blade'] = {
-    battleStart({ self, other, log }) {
-      if (self.s && self.s.exposed > 0) {
-        self.damageOther(4);
-        log(`${other.name} takes 4 damage (Cherry Blade).`);
-      }
-    }
-  };
 
   // Blacksmith Bond: exposed can trigger one additional time
   hooks['items/blacksmith_bond'] = {
@@ -331,16 +245,6 @@
     }
   };
 
-  hooks['items/arcane_cloak'] = {
-    postCountdownTrigger({ self, countdown, log }) {
-      // Re-add the countdown at its original length (post-trigger)
-      if (countdown && typeof self.addCountdown === 'function') {
-        const t = countdown.origTurns || countdown.turnsLeft || 1;
-        self.addCountdown(countdown.name, t, countdown.tag, countdown.action);
-        log(`${self.name} resets countdown '${countdown.name}' (Arcane Cloak).`);
-      }
-    }
-  };
 
   // Arcane Lens does not grant armor itself (Arcane Shield handles +3 armor).
   // Lens duplicates countdown effects via postCountdownTrigger below.
@@ -349,9 +253,6 @@
   }
 
   // Arcane Shield: gain 3 armor on any countdown trigger
-  hooks['items/arcane_shield'] = {
-    onCountdownTrigger({ self, log }) { self.addArmor(3); log(`${self.name} gains 3 armor (Arcane Shield).`); }
-  };
   // Arcane Lens: when exactly one Tome is equipped, multiply the FIRST Tome trigger (x3) without duplicating resets
   hooks['items/arcane_lens'] = hooks['items/arcane_lens'] || {};
   if (!hooks['items/arcane_lens'].postCountdownTrigger) {
@@ -380,12 +281,6 @@
   }
 
   // Granite Thorns: preserve thorns for the first 3 strikes received
-  hooks['items/granite_thorns'] = {
-    battleStart({ self, log }) {
-      self._preserveThorns = 3;
-      log(`${self.name} will preserve thorns for 3 strikes (Granite Thorns).`);
-    }
-  };
 
   // Granite Crown: increase Max HP by base Armor and heal up to that amount
   hooks['items/granite_crown'] = {

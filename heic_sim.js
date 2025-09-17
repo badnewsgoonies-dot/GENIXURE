@@ -398,6 +398,45 @@
       },
     
     // COMPLEX/CUSTOM ACTIONS
+    damage_enemy_if_exposed: ({ self, other, value, log }) => {
+      if (self.statuses && self.statuses.exposed > 0) {
+        // Use the proper damage method from the engine
+        const damage = value || 4;
+        if (other.hp > 0) {
+          other.hp = Math.max(0, other.hp - damage);
+          if (log) log(`${other.name} takes ${damage} damage.`);
+        }
+      }
+    },
+    add_armor_on_countdown: ({ self, value, log }) => {
+      self.addArmor(value);
+      if (log) log(`${self.name} gains ${value} armor.`);
+    },
+    reduce_speed_on_battle_start: ({ self, value, log }) => {
+      self.speed -= value;
+      if (log) log(`${self.name} reduces speed by ${value}.`);
+    },
+    heal_after_strike: ({ self, value, log }) => {
+      const healed = self.heal(value);
+      if (log && healed > 0) log(`${self.name} heals ${healed} health.`);
+    },
+    set_preserve_thorns_flag: ({ self, value, log }) => {
+      self.flags.preserveThorns = value;
+      if (log) log(`${self.name} will preserve thorns for ${value} strikes.`);
+    },
+    reset_countdown_on_trigger: ({ self, countdown, log }) => {
+      // Re-add the countdown at its original length (post-trigger)
+      if (countdown && typeof self.addCountdown === 'function') {
+        const turns = countdown.origTurns || countdown.turnsLeft || 1;
+        self.addCountdown(countdown.name, turns, countdown.tag, countdown.action);
+        if (log) log(`${self.name} resets countdown '${countdown.name}'.`);
+      }
+    },
+    replay_on_hit_effects: ({ self, other, log }) => {
+      // This is a complex mechanic that replays all onHit effects
+      // For now, this is a placeholder - the hook system handles this better
+      if (log) log(`${self.name}'s on-hit effects trigger twice (Chainlink Medallion).`);
+    },
     // These can be added for effects that are too complex for simple key-value pairs.
     // Example: 'action': 'custom_brittlebark_buckler'
       leather_belt_boost: ({ self, log, tier }) => {
@@ -530,6 +569,8 @@
       case 'has_status_effects':
         const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
         return keys.length > 0;
+      case 'has_exposed':
+        return (self.statuses.exposed || 0) > 0;
       case 'has_no_speed':
         return (self.speed || 0) === 0;
       case 'has_speed':

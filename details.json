@@ -79,7 +79,17 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      {
+        "event": "postCountdownTrigger",
+        "actions": [
+          {
+            "type": "reset_countdown_on_trigger"
+          }
+        ]
+      }
+    ]
   },
   "items/arcane_gauntlet": {
     "bucket": "items",
@@ -130,7 +140,18 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      {
+        "event": "onCountdownTrigger",
+        "actions": [
+          {
+            "type": "add_armor_on_countdown",
+            "value": 3
+          }
+        ]
+      }
+    ]
   },
   "items/assault_greaves": {
     "bucket": "items",
@@ -2218,7 +2239,18 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      {
+        "event": "battleStart",
+        "actions": [
+          {
+            "type": "set_preserve_thorns_flag",
+            "value": 3
+          }
+        ]
+      }
+    ]
   },
   "items/granite_tome": {
     "bucket": "items",
@@ -5231,7 +5263,31 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      {
+        "event": "battleStart",
+        "actions": [
+          {
+            "type": "damage_enemy_if_exposed",
+            "value": 4
+          },
+          {
+            "type": "reduce_speed_on_battle_start",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "event": "afterStrike",
+        "actions": [
+          {
+            "type": "heal_after_strike",
+            "value": 1
+          }
+        ]
+      }
+    ]
   },
   "weapons/cleaver_of_wrath": {
     "bucket": "weapons",
