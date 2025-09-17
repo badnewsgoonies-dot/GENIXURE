@@ -1416,19 +1416,29 @@
     "effect": "Battle Start: Gain 3 Poison; Turn Start: if you have Poison, gain 1 extra strike",
     "effects": [
       {
-        "action": "add_status",
-        "key": "poison",
-        "trigger": "battleStart",
-        "value": 3
+        "event": "battleStart",
+        "actions": [
+          {
+            "type": "add_status",
+            "key": "poison",
+            "value": 3
+          }
+        ]
       },
       {
-        "action": "add_extra_strikes",
-        "if": {
-          "key": "poison",
-          "type": "has_status"
-        },
-        "trigger": "turnStart",
-        "value": 1
+        "event": "turnStart",
+        "conditions": [
+          {
+            "type": "has_status",
+            "key": "poison"
+          }
+        ],
+        "actions": [
+          {
+            "type": "add_extra_strikes",
+            "value": 1
+          }
+        ]
       }
     ],
     "name": "Deathcap Bow",
@@ -1603,14 +1613,18 @@
     "effect": "Every other turn: Restore 1 Health (Gold 2, Diamond 4)",
     "effects": [
       {
-        "action": "heal_if_condition",
-        "if": {
-          "type": "is_even_turn"
-        },
-        "trigger": "turnStart",
-        "value": 1,
-        "value_diamond": 4,
-        "value_gold": 2
+        "event": "turnStart",
+        "conditions": [
+          {
+            "type": "is_even_turn"
+          }
+        ],
+        "actions": [
+          {
+            "type": "heal",
+            "by_tier": [1, 2, 4]
+          }
+        ]
       }
     ],
     "name": "Emerald Earring",

@@ -360,6 +360,22 @@
       self.health = Math.max(0, self.health - value);
       if (log) log(`${self.name} loses ${value} health.`);
     },
+    give_status_deal_damage_per_stack: ({ self, other, log, value }) => {
+      const status = value.status;
+      const amount = value.amount || 1;
+      const damagePerStack = value.damagePerStack || 1;
+      
+      other.addStatus(status, amount);
+      const totalStacks = other.statuses[status] || 0;
+      const damage = totalStacks * damagePerStack;
+      
+      if (damage > 0) {
+        self.damageOther(damage);
+        log(`${other.name} gains ${amount} ${status} and takes ${damage} damage (${damagePerStack} per stack).`);
+      } else {
+        log(`${other.name} gains ${amount} ${status}.`);
+      }
+    },
     add_status: ({ self, key, value }) => self.addStatus(key, value),
       add_status_tiered: ({ self, log, key, baseTier, goldTier, diamondTier, tier }) => {
         const amount = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
