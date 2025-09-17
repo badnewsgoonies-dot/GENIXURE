@@ -931,6 +931,19 @@
       "health": 0,
       "speed": 3
     },
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "conditions": [
+          {"type": "has_speed"}
+        ],
+        "action": "spend_speed_deal_damage",
+        "value": {
+          "speedCost": 1,
+          "damage": 2
+        }
+      }
+    ],
     "tags": [
       "Food"
     ]
@@ -961,6 +974,13 @@
       "health": 0,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "start_battle",
+        "action": "convert_enemy_health_to_armor",
+        "value": 0.5
+      }
+    ],
     "tags": []
   },
   "items/cracked_bouldershield": {
@@ -1172,6 +1192,20 @@
       "health": 0,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "conditions": [
+          {"type": "is_even_turn"}
+        ],
+        "action": "heal",
+        "value": {
+          "default": 1,
+          "gold": 2,
+          "diamond": 4
+        }
+      }
+    ],
     "tags": [
       "Jewelry"
     ]
@@ -1249,6 +1283,17 @@
       "health": 0,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "start_battle",
+        "action": "give_status_deal_damage_per_stack",
+        "value": {
+          "status": "riptide",
+          "amount": 1,
+          "damagePerStack": 2
+        }
+      }
+    ],
     "tags": [
       "Food"
     ]

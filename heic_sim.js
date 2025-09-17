@@ -56,15 +56,20 @@
         if (decrease > 0) log(`${self.name} decreases ${key} by ${decrease}`);
       }
     },
-    spend_speed_decrease_random_status: ({ self, log }) => {
-      if ((self.speed || 0) > 0) {
-        const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
-        if (keys.length > 0) {
-          self.speed -= 1;
-          const key = keys[Math.floor(Math.random() * keys.length)];
-          self.statuses[key] -= 1;
-          log(`${self.name} spends 1 speed to decrease ${key} by 1`);
-        }
+    give_status_deal_damage_per_stack: ({ self, other, log, value }) => {
+      const status = value.status;
+      const amount = value.amount || 1;
+      const damagePerStack = value.damagePerStack || 1;
+      
+      // Give the status
+      other.addStatus(status, amount);
+      
+      // Deal damage per stack
+      const stacks = other.statuses[status] || 0;
+      const damage = stacks * damagePerStack;
+      if (damage > 0) {
+        other.takeDamage(damage);
+        log(`${self.name} gives ${amount} ${status} and deals ${damage} damage (${damagePerStack} per ${status})`);
       }
     },
     add_speed: ({ self, value }) => { self.speed = (self.speed || 0) + value; },
@@ -97,6 +102,10 @@
         return key === condition.key; // Used with onGainStatus trigger
       case 'is_exposed_or_wounded':
         return (self.statuses.exposed || 0) > 0 || (self.statuses.wounded || 0) > 0;
+      case 'is_even_turn':
+        return (self.flags.turnCount || 0) % 2 === 0;
+      case 'is_odd_turn':
+        return (self.flags.turnCount || 0) % 2 === 1;
       case 'has_status_effects':
         const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
         return keys.length > 0;
@@ -405,6 +414,7 @@ let CURRENT_SOURCE_SLUG = null;
     while(round < maxTurns && L.hp>0 && R.hp>0){
       round++;
       actor.turnCount = (actor.turnCount || 0) + 1;
+      actor.flags.turnCount = actor.turnCount;
       logArr.push(`-- Turn ${round} -- ${actor.name}`);
       
       turnStartTicks(actor, target, m=>logArr.push(m));
