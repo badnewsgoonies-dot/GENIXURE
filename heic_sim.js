@@ -122,6 +122,26 @@
       const healed = self.heal(value);
       if (healed > 0) log(`${self.name} restores ${healed} health`);
     },
+      heal_loop: ({ self, log, value, count }) => {
+        const healAmount = value || 1;
+        const healCount = count || 5;
+        for (let i = 0; i < healCount; i++) {
+          const healed = self.heal(healAmount);
+          if (healed > 0) log(`${self.name} restores ${healed} health (tick ${i+1}/${healCount})`);
+        }
+      },
+    set_enraged_flag: ({ self, log }) => {
+      self.flags.winebottleEnraged = true;
+      log(`${self.name} becomes enraged`);
+    },
+    enraged_extra_strikes: ({ self, log, value }) => {
+      if (self.flags.winebottleEnraged) {
+        const strikes = value || 10;
+        self.addExtraStrikes(strikes);
+        self.flags.winebottleEnraged = false; // Consumed
+        log(`${self.name} enters a rage, gaining ${strikes} extra strikes`);
+      }
+    },
     add_speed: ({ self, other, log, value }) => { 
       const oldSpeed = self.speed || 0;
       self.speed = oldSpeed + value; 
@@ -132,11 +152,93 @@
     deal_damage: ({ self, other, value }) => self.damageOther(value, other),
     heal: ({ self, value }) => self.heal(value),
     add_status: ({ self, key, value }) => self.addStatus(key, value),
+      add_status_tiered: ({ self, log, key, baseTier, goldTier, diamondTier, tier }) => {
+        const amount = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
+        self.addStatus(key, amount);
+        log(`${self.name} gains ${amount} ${key}`);
+      },
     add_status_to_enemy: ({ other, key, value }) => other.addStatus(key, value),
+      add_status_to_enemy_tiered: ({ other, log, key, baseTier, goldTier, diamondTier, tier }) => {
+        const amount = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
+        other.addStatus(key, amount);
+        log(`${other.name} gains ${amount} ${key}`);
+      },
+      reduce_enemy_attack: ({ self, other, log, value }) => {
+        const reduction = value || 1;
+        const before = other.atk || 0;
+        if (before > 0) {
+          other.atk = Math.max(0, before - reduction);
+          log(`${other.name} loses ${reduction} attack`);
+        }
+      },
     
     // COMPLEX/CUSTOM ACTIONS
     // These can be added for effects that are too complex for simple key-value pairs.
     // Example: 'action': 'custom_brittlebark_buckler'
+      leather_belt_boost: ({ self, log, tier }) => {
+        const base = self.baseArmor || 0;
+        if (base === 0) {
+          const old = self.hpMax || 0;
+          const factor = tier === 3 ? 8 : tier === 2 ? 4 : 2; // Diamond: x8, Gold: x4, Base: x2
+          const newMax = Math.max(old, old * factor);
+          const extra = newMax - old;
+          self.hpMax = newMax;
+          // Do not auto-heal; keep current hp where it is
+          if (extra > 0) log(`${self.name}'s max health increases by ${extra} (Leather Belt${tier ? ` tier ${tier}` : ''})`);
+        }
+      },
+        spend_speed_gain_temp_attack: ({ self, log, value }) => {
+          const maxSpend = value?.maxSpend || 2;
+          const attackGain = value?.attackGain || 4;
+          const spent = Math.min(maxSpend, self.speed || 0);
+          if (spent > 0) {
+            self.speed = (self.speed || 0) - spent;
+            log(`${self.name} spends ${spent} speed`);
+            self.addTempAtk(attackGain);
+          }
+        },
+          muscle_potion_strike_counter: ({ self, log, baseTier, goldTier, diamondTier, tier }) => {
+            self._mpStrikes = (self._mpStrikes || 0) + 1;
+            if (self._mpStrikes % 3 === 0) {
+              const inc = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
+              self.addAtk(inc);
+              log(`${self.name} gains ${inc} attack (every 3rd strike)`);
+            }
+          },
+            plated_shield_double: ({ self, log, amount }) => {
+              if (!self._platedUsed && amount > 0) {
+                self.armor = (self.armor || 0) + amount;
+                self._platedUsed = true;
+                log(`${self.name} doubles armor gain (+${amount})`);
+              }
+            },
+              armor_equal_to_health: ({ self, log }) => {
+                if ((self.baseArmor || 0) === 0) {
+                  const gain = self.hp || 0;
+                  if (gain > 0) {
+                    self.addArmor(gain);
+                    log(`${self.name} gains ${gain} armor (equal to current health)`);
+                  }
+                }
+              },
+                convert_acid_to_attack: ({ self, log, value }) => {
+                  const attackGain = value || 2;
+                  if ((self.statuses?.acid || 0) > 0) {
+                    self.statuses.acid = (self.statuses.acid || 0) - 1;
+                    self.addTempAtk(attackGain);
+                    log(`${self.name} converts 1 acid into ${attackGain} attack`);
+                  }
+                },
+                  damage_and_thorns_loop: ({ self, other, log, count, damage, thorns }) => {
+                    const loops = count || 2;
+                    const dmg = damage || 1;
+                    const thornGain = thorns || 1;
+                    for (let i = 0; i < loops; i++) {
+                      other.hp = Math.max(0, (other.hp || 0) - dmg);
+                      self.addStatus('thorns', thornGain);
+                      log(`${self.name} deals ${dmg} damage and gains ${thornGain} thorns`);
+                    }
+                  },
   };
 
   function checkCondition(condition, { self, other, log }) {
@@ -188,6 +290,10 @@
         return (other.statuses.freeze || 0) === 0;
       case 'enemy_has_no_stun':
         return (other.statuses.stun || 0) === 0;
+      case 'has_flag':
+        return !!self.flags[condition.key];
+      case 'enemy_has_flag':
+        return !!other.flags[condition.key];
       case 'has_status_effects':
         const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
         return keys.length > 0;
