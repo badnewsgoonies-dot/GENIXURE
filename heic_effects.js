@@ -147,48 +147,8 @@
   // hooks['items/swiftstrike_belt'] = { ... } // REMOVED - MIGRATED
 
   // Arcane Lens: If exactly 1 tome equipped, its countdown triggers 3 times total
-  hooks['items/arcane_lens'] = {
-    postCountdownTrigger({ self, other, log, countdown }){
-      try {
-        const items = self.items || [];
-        const tomeCount = items.filter(s => (getTagsFor(s)||[]).includes('Tome')).length;
-        if (tomeCount === 1 && countdown && typeof countdown.action === 'function') {
-          // Already fired once; fire two more times
-          countdown.action(self, other, log, countdown);
-          countdown.action(self, other, log, countdown);
-          log(`${self.name}'s Arcane Lens amplifies the tome.`);
-        }
-      } catch(_){ }
-    }
-  };
-
-  // Ring Blades (weapon): Battle Start: Steal 1 attack from the enemy
-  hooks['weapons/ring_blades'] = {
-    battleStart({ self, other, log }){
-      const steal = Math.min(1, other.atk|0);
-      if (steal > 0) {
-        other.atk -= steal;
-        self.addAtk(steal);
-        log(`${self.name} steals ${steal} attack (Ring Blades).`);
-      }
-    }
-  };
-  // the official game where known. Only a handful of items are
-  // implemented; unlisted slugs will have no special behaviour.
-
-  // Bee Stinger (food weapon): first turn on hit, give enemy poison, acid and stun
-  hooks['items/bee_stinger'] = {
-    onHit({ self, other, log }){
-      if(self.flags.firstTurn){
-        other.addStatus('poison', 4);
-        other.addStatus('acid', 3);
-        other.addStatus('stun', 2);
-        log(`${other.name} gains 4 poison, 3 acid and 2 stun (Bee Stinger).`);
-      }
-    }
-  };
-
-  // Viper Extract: first time the enemy gains poison, give +3 poison
+  // Items already migrated to data-driven system - legacy hooks removed:
+  // arcane_lens, ring_blades, bee_stinger, viper_extract, boiled_ham  // Viper Extract: first time the enemy gains poison, give +3 poison
   hooks['items/viper_extract'] = {
     battleStart({ self }){
       self._viperTriggered = false;
@@ -236,27 +196,8 @@
     // horned_helmet, ice_spikes, explosive_fish, deathcap_bow, blackbriar_armor,
     // blackbriar_gauntlet, blackbriar_rose
 
-  // Brittlebark Armor: Whenever you take damage, take 1 additional damage.
-  hooks['items/brittlebark_armor'] = {
-    onDamaged({ self, log, armorLost, hpLost }) {
-      // Check if any damage was taken and prevent infinite loops.
-      if ((armorLost > 0 || hpLost > 0) && !self._brittlebarkProcessing) {
-        self._brittlebarkProcessing = true;
-        try {
-          log(`${self.name} takes 1 additional damage (Brittlebark Armor).`);
-          // Manually apply 1 damage, respecting armor, without re-triggering onDamaged.
-          const toArmor = Math.min(self.armor, 1);
-          self.armor -= toArmor;
-          const toHp = 1 - toArmor;
-          if (toHp > 0) {
-            self.hp = Math.max(0, self.hp - toHp);
-          }
-        } finally {
-          self._brittlebarkProcessing = false;
-        }
-      }
-    }
-  };
+      // Items already migrated to data-driven system - legacy hooks removed:
+    // brittlebark_armor, brittlebark_buckler, broken_winebottle, cactus_cap
 
   // Brittlebark Buckler: Lose all your armor after your enemy's first strike.
   hooks['items/brittlebark_buckler'] = {
