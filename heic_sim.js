@@ -342,6 +342,24 @@
         if (log) log(`${self.name} spends 1 speed to decrease ${key} by 1.`);
       }
     },
+    regain_base_armor: ({ self, log }) => {
+      if (self.baseArmor > 0) {
+        self.armor += self.baseArmor;
+        if (log) log(`${self.name} regains ${self.baseArmor} base armor.`);
+      }
+    },
+    convert_enemy_health_to_armor: ({ self, other, value, log }) => {
+      const converted = Math.floor(other.health * value);
+      if (converted > 0) {
+        other.health -= converted;
+        self.armor += converted;
+        if (log) log(`${self.name} converts ${converted} enemy health into armor.`);
+      }
+    },
+    lose_hp: ({ self, value, log }) => {
+      self.health = Math.max(0, self.health - value);
+      if (log) log(`${self.name} loses ${value} health.`);
+    },
     add_status: ({ self, key, value }) => self.addStatus(key, value),
       add_status_tiered: ({ self, log, key, baseTier, goldTier, diamondTier, tier }) => {
         const amount = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;

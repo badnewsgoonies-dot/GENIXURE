@@ -609,7 +609,14 @@
     "bucket": "items",
     "effect": "Wounded: Regain your base armor",
     "effects": [
-        { "trigger": "onWounded", "action": "regain_base_armor" }
+      {
+        "event": "onWounded",
+        "actions": [
+          {
+            "type": "regain_base_armor"
+          }
+        ]
+      }
     ],
     "name": "Chainmail Armor",
     "slug": "chainmail_armor",
@@ -625,7 +632,18 @@
     "bucket": "items",
     "effect": "Turn Start: If you have armor, restore 2 health",
     "effects": [
-        { "trigger": "turnStart", "if": { "type": "has_armor" }, "action": "heal", "value": 2 }
+      {
+        "event": "turnStart",
+        "conditions": [
+          {"type": "min_armor", "value": 1}
+        ],
+        "actions": [
+          {
+            "type": "heal",
+            "value": 2
+          }
+        ]
+      }
     ],
     "name": "Chainmail Cloak",
     "slug": "chainmail_cloak",
@@ -1028,9 +1046,13 @@
     },
     "effects": [
       {
-        "trigger": "start_battle",
-        "action": "convert_enemy_health_to_armor",
-        "value": 0.5
+        "event": "battleStart",
+        "actions": [
+          {
+            "type": "convert_enemy_health_to_armor",
+            "value": 0.5
+          }
+        ]
       }
     ],
     "tags": []
@@ -1039,7 +1061,15 @@
     "bucket": "items",
     "effect": "Exposed: Gain 7 armor",
     "effects": [
-        { "trigger": "onExposed", "action": "add_armor", "value": 7 }
+      {
+        "event": "onExposed",
+        "actions": [
+          {
+            "type": "gain_armor",
+            "value": 7
+          }
+        ]
+      }
     ],
     "name": "Cracked Bouldershield",
     "slug": "cracked_bouldershield",
@@ -1055,7 +1085,18 @@
     "bucket": "items",
     "effect": "First Turn: Temporarily gain 2 attack — at Gold: 4, at Diamond: 8",
     "effects": [
-        { "trigger": "turnStart", "if": { "type": "is_first_turn" }, "action": "add_temp_attack", "value": 2, "value_gold": 4, "value_diamond": 8 }
+      {
+        "event": "turnStart",
+        "conditions": [
+          {"type": "is_first_turn"}
+        ],
+        "actions": [
+          {
+            "type": "gain_temp_attack",
+            "by_tier": [2, 4, 8]
+          }
+        ]
+      }
     ],
     "name": "Cracked Whetstone",
     "slug": "cracked_whetstone",
@@ -1071,7 +1112,15 @@
     "bucket": "items",
     "effect": "Whenever you take damage, restore 1 health",
     "effects": [
-        { "trigger": "onDamaged", "action": "heal", "value": 1 }
+      {
+        "event": "onDamaged",
+        "actions": [
+          {
+            "type": "heal",
+            "value": 1
+          }
+        ]
+      }
     ],
     "name": "Crimson Cloak",
     "slug": "crimson_cloak",
@@ -1087,8 +1136,22 @@
     "bucket": "items",
     "effect": "Battle Start: If your health is full, lose 5 health and gain 2 additional strikes",
     "effects": [
-        { "trigger": "battleStart", "if": { "type": "is_full_health" }, "action": "lose_hp", "value": 5 },
-        { "trigger": "battleStart", "if": { "type": "is_full_health" }, "action": "add_extra_strikes", "value": 2 }
+      {
+        "event": "battleStart",
+        "conditions": [
+          {"type": "is_full_health"}
+        ],
+        "actions": [
+          {
+            "type": "lose_hp",
+            "value": 5
+          },
+          {
+            "type": "add_extra_strikes",
+            "value": 2
+          }
+        ]
+      }
     ],
     "name": "Crimson Fang",
     "slug": "crimson_fang",
