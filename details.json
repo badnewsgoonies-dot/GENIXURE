@@ -1866,6 +1866,9 @@
   "items/ice_spikes": {
     "bucket": "items",
     "effect": "Turn Start: If you have freeze, gain 5 thorns",
+    "effects": [
+      { "trigger": "turnStart", "if": { "type": "has_freeze" }, "action": "add_status", "key": "thorns", "value": 5 }
+    ],
     "name": "Ice Spikes",
     "slug": "ice_spikes",
     "stats": {
@@ -2648,6 +2651,9 @@
   "items/poisonous_mushroom": {
     "bucket": "items",
     "effect": "Turn Start: Gain 1 poison",
+    "effects": [
+      { "trigger": "turnStart", "action": "add_status", "key": "poison", "value": 1 }
+    ],
     "name": "Poisonous Mushroom",
     "slug": "poisonous_mushroom",
     "stats": {
@@ -3870,6 +3876,9 @@
   "items/viper_extract": {
     "bucket": "items",
     "effect": "The first time the enemy gains poison, give them 3 additional poison",
+    "effects": [
+      { "trigger": "battleStart", "action": "set_flag", "key": "viper_extract_ready", "value": true }
+    ],
     "name": "Viper Extract",
     "slug": "viper_extract",
     "stats": {
@@ -4169,6 +4178,9 @@
   "upgrades/oozing_edge": {
     "bucket": "upgrades",
     "effect": "On Hit: If the enemy doesn't have any poison, give them 2 poison",
+    "effects": [
+      { "trigger": "onHit", "if": { "type": "enemy_has_no_poison" }, "action": "add_status_to_enemy", "key": "poison", "value": 2 }
+    ],
     "name": "Oozing Edge",
     "slug": "oozing_edge",
     "stats": {

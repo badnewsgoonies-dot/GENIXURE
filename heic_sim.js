@@ -100,6 +100,24 @@
         }
       });
     },
+    set_one_time_flag: ({ self, value, key }) => {
+      self.flags[key || value] = true;
+    },
+    add_status_on_enemy_gain_status: ({ self, other, log, value, key }) => {
+      // This is a complex trigger that needs special handling in the onGainStatus event
+      if (!self.flags[`${key}_triggered`]) {
+        other.addStatus(value.status, value.amount);
+        self.flags[`${key}_triggered`] = true;
+        log(`${other.name} gains ${value.amount} additional ${value.status} (${self.name})`);
+      }
+    },
+    reduce_damage_if_condition: ({ self, log, value }) => {
+      // Sets a flag for damage reduction; checked during strike processing
+      if (value.reduction) {
+        self.flags.damageReduction = (self.flags.damageReduction || 0) + value.reduction;
+        log(`${self.name} reduces incoming damage by ${value.reduction}`);
+      }
+    },
     add_speed: ({ self, other, log, value }) => { 
       const oldSpeed = self.speed || 0;
       self.speed = oldSpeed + value; 
@@ -160,6 +178,12 @@
         return (other.statuses.freeze || 0) > 0;
       case 'enemy_has_stun':
         return (other.statuses.stun || 0) > 0;
+      case 'enemy_has_no_poison':
+        return (other.statuses.poison || 0) === 0;
+      case 'enemy_has_no_freeze':
+        return (other.statuses.freeze || 0) === 0;
+      case 'enemy_has_no_stun':
+        return (other.statuses.stun || 0) === 0;
       case 'has_status_effects':
         const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
         return keys.length > 0;
