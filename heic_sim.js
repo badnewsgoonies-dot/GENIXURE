@@ -56,11 +56,19 @@
         if (decrease > 0) log(`${self.name} decreases ${key} by ${decrease}`);
       }
     },
-    add_armor_equal_to_speed_gained: ({ self, log, extra }) => {
-      const speedGained = extra?.amount || 0;
-      if (speedGained > 0) {
-        self.armor = (self.armor || 0) + speedGained;
-        log(`${self.name} gains ${speedGained} armor from speed gain`);
+    add_extra_strikes: ({ self, log, value }) => {
+      const strikes = value || 1;
+      self.extraStrikes = (self.extraStrikes || 0) + strikes;
+      log(`${self.name} gains ${strikes} extra strike${strikes > 1 ? 's' : ''} this turn`);
+    },
+    spend_speed_gain_temp_attack: ({ self, log, value }) => {
+      const maxSpend = value.maxSpend || value.speedCost || 2;
+      const attackGain = value.attackGain || value.attack || 4;
+      const spent = Math.min(maxSpend, self.speed || 0);
+      if (spent > 0) {
+        self.speed -= spent;
+        self.tempAttack = (self.tempAttack || 0) + attackGain;
+        log(`${self.name} spends ${spent} speed to gain ${attackGain} temporary attack`);
       }
     },
     add_speed: ({ self, other, log, value }) => { 
@@ -90,6 +98,8 @@
         return self.armor === 0;
       case 'is_full_health':
         return self.hp === self.hpMax;
+      case 'is_not_full_health':
+        return self.hp < self.hpMax;
       case 'is_first_turn':
         return self.flags.firstTurn;
       case 'has_status':
@@ -155,7 +165,11 @@
                 if (tier === 'gold' && effect.value_gold !== undefined) value = effect.value_gold;
                 if (tier === 'diamond' && effect.value_diamond !== undefined) value = effect.value_diamond;
 
-                actionFn({ ...effectCtx, value, key: effect.key });
+                // Handle repeat functionality
+                const repeatCount = effect.repeat || 1;
+                for (let i = 0; i < repeatCount; i++) {
+                  actionFn({ ...effectCtx, value, key: effect.key });
+                }
               });
             } else {
               log(`Unknown action: ${effect.action}`);

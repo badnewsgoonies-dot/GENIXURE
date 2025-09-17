@@ -3407,6 +3407,19 @@
       "health": 0,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "conditions": [
+          {"type": "is_first_turn"}
+        ],
+        "action": "spend_speed_gain_temp_attack",
+        "value": {
+          "maxSpend": 2,
+          "attackGain": 4
+        }
+      }
+    ],
     "tags": []
   },
   "items/sour_lemon": {
@@ -3599,8 +3612,8 @@
     "bucket": "items",
     "effect": "Battle Start: Take 3 damage and gain 1 additional strike (Gold: +2 strikes; Diamond: +4).",
     "effects": [
-        { "trigger": "battleStart", "action": "add_extra_strikes", "value": 1 },
-        { "trigger": "battleStart", "action": "deal_damage", "value": 3 }
+        { "trigger": "battleStart", "action": "deal_self_damage", "value": 3 },
+        { "trigger": "battleStart", "action": "add_extra_strikes", "value": 1, "value_gold": 2, "value_diamond": 4 }
     ],
     "name": "Swiftstrike Belt",
     "slug": "swiftstrike_belt",
