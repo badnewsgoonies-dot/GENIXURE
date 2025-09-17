@@ -34,9 +34,7 @@
     "effect": "Battle Start: Give the enemy acid equal to your speed",
     "effects": [
       {
-        "action": "add_status_to_enemy_from_stat",
-        "key": "acid",
-        "stat": "speed",
+        "action": "give_enemy_acid_equal_to_speed",
         "trigger": "battleStart"
       }
     ],
@@ -242,13 +240,13 @@
     "effect": "Turn Start: Convert 1 stack of another status into 1 Poison",
     "effects": [
       {
-        "event": "turnStart",
         "actions": [
           {
             "type": "convert_random_status_to_poison",
             "value": 1
           }
-        ]
+        ],
+        "event": "turnStart"
       }
     ],
     "name": "Bitter Melon",
@@ -484,18 +482,18 @@
     "effect": "Battle Start (if Exposed or Wounded): Decrease all your status effects by 1",
     "effects": [
       {
-        "event": "battleStart",
-        "conditions": [
-          {
-            "type": "is_exposed_or_wounded"
-          }
-        ],
         "actions": [
           {
             "type": "decrease_all_statuses",
             "value": 1
           }
-        ]
+        ],
+        "conditions": [
+          {
+            "type": "is_exposed_or_wounded"
+          }
+        ],
+        "event": "battleStart"
       }
     ],
     "name": "Boiled Ham",
@@ -1426,29 +1424,29 @@
     "effect": "Battle Start: Gain 3 Poison; Turn Start: if you have Poison, gain 1 extra strike",
     "effects": [
       {
-        "event": "battleStart",
         "actions": [
           {
-            "type": "add_status",
             "key": "poison",
+            "type": "add_status",
             "value": 3
           }
-        ]
+        ],
+        "event": "battleStart"
       },
       {
-        "event": "turnStart",
-        "conditions": [
-          {
-            "type": "has_status",
-            "key": "poison"
-          }
-        ],
         "actions": [
           {
             "type": "add_extra_strikes",
             "value": 1
           }
-        ]
+        ],
+        "conditions": [
+          {
+            "key": "poison",
+            "type": "has_status"
+          }
+        ],
+        "event": "turnStart"
       }
     ],
     "name": "Deathcap Bow",
@@ -1623,18 +1621,22 @@
     "effect": "Every other turn: Restore 1 Health (Gold 2, Diamond 4)",
     "effects": [
       {
-        "event": "turnStart",
+        "actions": [
+          {
+            "by_tier": [
+              1,
+              2,
+              4
+            ],
+            "type": "heal"
+          }
+        ],
         "conditions": [
           {
             "type": "is_even_turn"
           }
         ],
-        "actions": [
-          {
-            "type": "heal",
-            "by_tier": [1, 2, 4]
-          }
-        ]
+        "event": "turnStart"
       }
     ],
     "name": "Emerald Earring",
@@ -2396,15 +2398,18 @@
   },
   "items/horned_melon": {
     "bucket": "items",
-    "effect": "Battle Start (if Exposed or Wounded): Decrease 2 random statuses by 1 and gain that much Thorns",
+    "effect": "Battle Start: Decrease 2 random statuses by 1 each, then gain 5 thorns",
     "effects": [
       {
         "action": "decrease_random_statuses_and_gain_thorns",
-        "if": {
-          "type": "is_exposed_or_wounded"
-        },
         "trigger": "battleStart",
         "value": 2
+      },
+      {
+        "action": "add_status",
+        "key": "thorns",
+        "trigger": "battleStart",
+        "value": 5
       }
     ],
     "name": "Horned Melon",
@@ -2859,19 +2864,19 @@
     "effect": "Turn Start: if health not full, gain 2 Acid",
     "effects": [
       {
-        "event": "turnStart",
+        "actions": [
+          {
+            "key": "acid",
+            "type": "add_status",
+            "value": 2
+          }
+        ],
         "conditions": [
           {
             "type": "is_not_full_health"
           }
         ],
-        "actions": [
-          {
-            "type": "add_status",
-            "key": "acid",
-            "value": 2
-          }
-        ]
+        "event": "turnStart"
       }
     ],
     "name": "Limestone Fruit",
@@ -4060,7 +4065,7 @@
             "type": "is_first_turn"
           }
         ],
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "value": {
           "attackGain": 4,
           "maxSpend": 2
@@ -4278,7 +4283,6 @@
     "effect": "Turn Start: Take 3 damage and gain 1 additional strike",
     "effects": [
       {
-        "event": "turnStart",
         "actions": [
           {
             "type": "lose_hp",
@@ -4288,7 +4292,8 @@
             "type": "add_extra_strikes",
             "value": 1
           }
-        ]
+        ],
+        "event": "turnStart"
       }
     ],
     "name": "Swiftstrike Belt",
@@ -4564,23 +4569,20 @@
       },
       {
         "action": "add_status_to_enemy",
-        "condition": {
-          "conditions": [
-            {
-              "flag": "viper_extract_ready",
-              "type": "flag",
-              "value": true
-            },
-            {
-              "type": "status_key",
-              "value": "poison"
-            },
-            {
-              "type": "status_is_new"
-            }
-          ],
-          "type": "all_of"
-        },
+        "conditions": [
+          {
+            "flag": "viper_extract_ready",
+            "type": "flag",
+            "value": true
+          },
+          {
+            "type": "status_key",
+            "value": "poison"
+          },
+          {
+            "type": "status_is_new"
+          }
+        ],
         "key": "poison",
         "then": [
           {

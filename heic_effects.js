@@ -46,16 +46,9 @@
   }
 
   // Example hook implementations. Adjust numerical values to match
-  // Blood Sausage: Heal 5 total at Battle Start, 1 HP at a time (rapid-tick)
-  hooks['items/blood_sausage'] = {
-    battleStart({ self, log }) {
-      let ticks = 5;
-      for (let i = 0; i < ticks; i++) {
-        const healed = self.heal(1);
-        if (healed > 0) log(`${self.name} restores 1 health (Blood Sausage tick ${i+1}/5).`);
-      }
-    }
-  };
+  // NOTE: Many hooks have been migrated to the new data-driven system in details.json
+  // Blood Sausage: MIGRATED - now uses data-driven effects
+  // hooks['items/blood_sausage'] = { ... } // REMOVED - MIGRATED
 
   // Global hooks for cross-entity logic
   hooks._global = hooks._global || {};
@@ -96,44 +89,17 @@
     withSource('items/blood_chain', () => log(`${other.name}'s Blood Chain triggers all Wounded effects.`));
   };
 
-  // Earrings of Respite: heal 2 HP every other turn (even-numbered turns)
-  hooks['items/earrings_of_respite'] = {
-    turnEnd({ self, log }) {
-      if (self.turnCount % 2 === 0) {
-        const healed = self.heal(2);
-        if (healed > 0) log(`${self.name} restores ${healed} health (Earrings of Respite, even turn).`);
-      }
-    }
-  };
+  // Earrings of Respite: MIGRATED - now uses data-driven effects
+  // hooks['items/earrings_of_respite'] = { ... } // REMOVED - MIGRATED
 
-  // Emerald Earring: Every other turn (even turns) restore 1/2/4 health by tier
-  hooks['items/emerald_earring'] = {
-    turnStart({ self, log, tier }) {
-      if ((self.turnCount|0) % 2 === 0) {
-        const healed = self.heal(valByTier(1,2,4,tier));
-        if (healed > 0) log(`${self.name} restores ${healed} health (Emerald Earring).`);
-      }
-    }
-  };
+  // Emerald Earring: MIGRATED - now uses data-driven effects  
+  // hooks['items/emerald_earring'] = { ... } // REMOVED - MIGRATED
 
-  // Poisonous Mushroom: Turn Start — gain 1 Poison
-  hooks['items/poisonous_mushroom'] = {
-    turnStart({ self, log }) {
-      self.addStatus('poison', 1);
-      log(`${self.name} gains 1 poison (Poisonous Mushroom).`);
-    }
-  };
+  // Poisonous Mushroom: MIGRATED - now uses data-driven effects
+  // hooks['items/poisonous_mushroom'] = { ... } // REMOVED - MIGRATED
 
-  // Friendship Bracelet: Battle Start: The enemy loses 1 attack
-  hooks['items/friendship_bracelet'] = {
-    battleStart({ other, log }){
-      const before = other.atk|0;
-      if (before > 0) {
-        other.atk = Math.max(0, before - 1);
-        log(`${other.name} loses 1 attack (Friendship Bracelet).`);
-      }
-    }
-  };
+  // Friendship Bracelet: MIGRATED - now uses data-driven effects
+  // hooks['items/friendship_bracelet'] = { ... } // REMOVED - MIGRATED
 
   // Leather Belt: If you have 0 base armor, double your max health (baseline)
   hooks['items/leather_belt'] = {
