@@ -518,6 +518,10 @@
         return (self.speed || 0) === 0;
       case 'has_speed':
         return (self.speed || 0) > 0;
+      case 'min_speed':
+        return (self.speed || 0) >= (condition.value || 1);
+      case 'min_armor':
+        return (self.armor || 0) >= (condition.value || 1);
       case 'enemy_has_no_armor':
         return other.armor === 0;
       // Add more condition types here as needed
@@ -545,7 +549,7 @@
       const slug = (typeof itemOrSlug === 'string') ? itemOrSlug : (itemOrSlug.slug || itemOrSlug.key);
       if (!slug) continue;
 
-      const details = (global.HEIC_DETAILS || {})[slug];
+      const details = (window.HEIC_DETAILS || {})[slug];
       if (!details || !Array.isArray(details.effects)) continue;
 
       const tier = (typeof itemOrSlug === 'object' && itemOrSlug.tier) ? itemOrSlug.tier : 'base';
@@ -554,6 +558,7 @@
       const effectCtx = { self, other, log, tier, sourceItem, ...extra };
 
       for (const effect of details.effects) {
+        // Handle old trigger format
         if (effect && effect.trigger === event) {
           if (checkCondition(effect.if, effectCtx)) {
             const actionFn = EFFECT_ACTIONS[effect.action];
@@ -588,6 +593,37 @@
             } else {
               log(`Unknown action: ${effect.action}`);
             }
+          }
+        }
+
+        // Handle new event/actions format
+        if (effect && effect.event === event) {
+          // Check conditions first
+          let conditionsMet = true;
+          if (Array.isArray(effect.conditions)) {
+            conditionsMet = effect.conditions.every(condition => checkCondition(condition, effectCtx));
+          }
+
+          if (conditionsMet && Array.isArray(effect.actions)) {
+            withSource(slug, () => {
+              for (const action of effect.actions) {
+                const actionFn = EFFECT_ACTIONS[action.type];
+                if (typeof actionFn === 'function') {
+                  // Handle tiered values
+                  let value = action.value;
+                  if (Array.isArray(action.by_tier) && action.by_tier.length >= 3) {
+                    const tierValues = action.by_tier;
+                    if (tier === 'base') value = tierValues[0];
+                    else if (tier === 'gold') value = tierValues[1];
+                    else if (tier === 'diamond') value = tierValues[2];
+                  }
+
+                  actionFn({ ...effectCtx, ...action, value });
+                } else {
+                  log(`Unknown action type: ${action.type}`);
+                }
+              }
+            });
           }
         }
       }

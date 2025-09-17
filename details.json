@@ -3,8 +3,21 @@
     "bucket": "items",
     "effect": "Battle Start: Gain 1 acid. While you have acid, temporarily gain attack equal to acid",
     "effects": [
-      { "trigger": "battleStart", "action": "add_status", "key": "acid", "value": 1 },
-      { "trigger": "turnStart", "action": "add_temp_attack_from_status", "key": "acid", "if": { "type": "has_status", "key": "acid" } }
+      {
+        "action": "add_status",
+        "key": "acid",
+        "trigger": "battleStart",
+        "value": 1
+      },
+      {
+        "action": "add_temp_attack_from_status",
+        "if": {
+          "key": "acid",
+          "type": "has_status"
+        },
+        "key": "acid",
+        "trigger": "turnStart"
+      }
     ],
     "name": "Acid Mutation",
     "slug": "acid_mutation",
@@ -20,7 +33,12 @@
     "bucket": "items",
     "effect": "Battle Start: Give the enemy acid equal to your speed",
     "effects": [
-      { "trigger": "battleStart", "action": "add_status_to_enemy_from_stat", "key": "acid", "stat": "speed" }
+      {
+        "action": "add_status_to_enemy_from_stat",
+        "key": "acid",
+        "stat": "speed",
+        "trigger": "battleStart"
+      }
     ],
     "name": "Acidic Witherleaf",
     "slug": "acidic_witherleaf",
@@ -35,6 +53,13 @@
   "items/arcane_bell": {
     "bucket": "items",
     "effect": "Battle Start: Decrease all countdowns by 1. Symphony.",
+    "effects": [
+      {
+        "action": "decrease_all_countdowns",
+        "trigger": "battleStart",
+        "value": 1
+      }
+    ],
     "name": "Arcane Bell",
     "slug": "arcane_bell",
     "stats": {
@@ -43,10 +68,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": [],
-    "effects": [
-      { "trigger": "battleStart", "action": "decrease_all_countdowns", "value": 1 }
-    ]
+    "tags": []
   },
   "items/arcane_cloak": {
     "bucket": "items",
@@ -64,6 +86,12 @@
   "items/arcane_gauntlet": {
     "bucket": "items",
     "effect": "Battle Start: Halve all countdowns",
+    "effects": [
+      {
+        "action": "halve_all_countdowns",
+        "trigger": "battleStart"
+      }
+    ],
     "name": "Arcane Gauntlet",
     "slug": "arcane_gauntlet",
     "stats": {
@@ -72,14 +100,17 @@
       "health": 0,
       "speed": 0
     },
-    "tags": [],
-    "effects": [
-      { "trigger": "battleStart", "action": "halve_all_countdowns" }
-    ]
+    "tags": []
   },
   "items/arcane_lens": {
     "bucket": "items",
     "effect": "If you have exactly 1 tome equipped, it triggers thrice",
+    "effects": [
+      {
+        "action": "amplify_tome_countdown",
+        "trigger": "postCountdownTrigger"
+      }
+    ],
     "name": "Arcane Lens",
     "slug": "arcane_lens",
     "stats": {
@@ -88,13 +119,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": [],
-    "effects": [
-      {
-        "trigger": "postCountdownTrigger",
-        "action": "amplify_tome_countdown"
-      }
-    ]
+    "tags": []
   },
   "items/arcane_shield": {
     "bucket": "items",
@@ -113,7 +138,11 @@
     "bucket": "items",
     "effect": "Whenever you take damage, deal 1 damage",
     "effects": [
-      { "trigger": "onDamaged", "action": "deal_damage", "value": 1 }
+      {
+        "action": "deal_damage",
+        "trigger": "onDamaged",
+        "value": 1
+      }
     ],
     "name": "Assault Greaves",
     "slug": "assault_greaves",
@@ -129,8 +158,17 @@
     "bucket": "items",
     "effect": "Battle Start: Gain 5 armor and 5 poison",
     "effects": [
-      { "trigger": "battleStart", "action": "add_armor", "value": 5 },
-      { "trigger": "battleStart", "action": "add_status", "key": "poison", "value": 5 }
+      {
+        "action": "add_armor",
+        "trigger": "battleStart",
+        "value": 5
+      },
+      {
+        "action": "add_status",
+        "key": "poison",
+        "trigger": "battleStart",
+        "value": 5
+      }
     ],
     "name": "Basilisk Scale",
     "slug": "basilisk_scale",
@@ -146,9 +184,33 @@
     "bucket": "items",
     "effect": "On first turn (on hit): give enemy 4 Poison, 3 Acid, 2 Stun",
     "effects": [
-        { "trigger": "onHit", "if": { "type": "is_first_turn" }, "action": "add_status_to_enemy", "key": "poison", "value": 4 },
-        { "trigger": "onHit", "if": { "type": "is_first_turn" }, "action": "add_status_to_enemy", "key": "acid", "value": 3 },
-        { "trigger": "onHit", "if": { "type": "is_first_turn" }, "action": "add_status_to_enemy", "key": "stun", "value": 2 }
+      {
+        "action": "add_status_to_enemy",
+        "if": {
+          "type": "is_first_turn"
+        },
+        "key": "poison",
+        "trigger": "onHit",
+        "value": 4
+      },
+      {
+        "action": "add_status_to_enemy",
+        "if": {
+          "type": "is_first_turn"
+        },
+        "key": "acid",
+        "trigger": "onHit",
+        "value": 3
+      },
+      {
+        "action": "add_status_to_enemy",
+        "if": {
+          "type": "is_first_turn"
+        },
+        "key": "stun",
+        "trigger": "onHit",
+        "value": 2
+      }
     ],
     "name": "Bee Stinger",
     "slug": "bee_stinger",
@@ -179,7 +241,11 @@
     "bucket": "items",
     "effect": "Turn Start: Convert 1 stack of another status into 1 Poison",
     "effects": [
-      { "trigger": "turnStart", "action": "convert_random_status_to_poison", "value": 1 }
+      {
+        "action": "convert_random_status_to_poison",
+        "trigger": "turnStart",
+        "value": 1
+      }
     ],
     "name": "Bitter Melon",
     "slug": "bitter_melon",
@@ -197,7 +263,12 @@
     "bucket": "items",
     "effect": "Whenever you take damage, gain 2 thorns",
     "effects": [
-        { "trigger": "onDamaged", "action": "add_status", "key": "thorns", "value": 2 }
+      {
+        "action": "add_status",
+        "key": "thorns",
+        "trigger": "onDamaged",
+        "value": 2
+      }
     ],
     "name": "Blackbriar Armor",
     "slug": "blackbriar_armor",
@@ -216,7 +287,7 @@
     "slug": "blackbriar_bow",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 4,
       "health": 0,
       "speed": 0
     },
@@ -252,43 +323,33 @@
     "bucket": "items",
     "effect": "Exposed can trigger 1 additional time",
     "effects": [
-        { "trigger": "preBattle", "action": "set_flag", "key": "exposedLimit", "value": 2 }
+      {
+        "action": "set_flag",
+        "key": "exposedLimit",
+        "trigger": "preBattle",
+        "value": 2
+      }
     ],
-      "name": "Blacksmith Bond",
-      "slug": "blacksmith_bond",
-      "stats": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "tags": []
-    },
-    "items/broken_winebottle": {
-      "bucket": "items",
-      "effect": "When Wounded: next turn keep striking enemy until they're wounded",
-      "effects": [
-        { "trigger": "onWounded", "action": "set_enraged_flag" },
-        { "trigger": "turnStart", "if": { "type": "has_flag", "key": "winebottleEnraged" }, "action": "enraged_extra_strikes", "value": 10 }
-      ],
-      "name": "Broken Winebottle",
-      "rarity": "Common",
-      "slug": "broken_winebottle",
+    "name": "Blacksmith Bond",
+    "slug": "blacksmith_bond",
     "stats": {
       "armor": 0,
-        "attack": 2,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
-      "tags": [
-        "Food"
-      ]
+    "tags": []
   },
   "items/blastcap_armor": {
     "bucket": "items",
     "effect": "Exposed: Take 5 damage",
     "effects": [
-        { "trigger": "onExposed", "action": "deal_damage", "value": 5, "target": "self" }
+      {
+        "action": "deal_damage",
+        "target": "self",
+        "trigger": "onExposed",
+        "value": 5
+      }
     ],
     "name": "Blastcap Armor",
     "slug": "blastcap_armor",
@@ -326,24 +387,29 @@
     },
     "tags": []
   },
-    "items/blood_sausage": {
-      "bucket": "items",
-      "effect": "Battlestart: Heal 1 health 5 times",
-      "effects": [
-        { "trigger": "battleStart", "action": "heal_loop", "value": 1, "count": 5 }
-      ],
-      "name": "Blood Sausage",
-      "slug": "blood_sausage",
-      "stats": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "tags": [
-        "Food"
-      ]
+  "items/blood_sausage": {
+    "bucket": "items",
+    "effect": "Battlestart: Heal 1 health 5 times",
+    "effects": [
+      {
+        "action": "heal_loop",
+        "count": 5,
+        "trigger": "battleStart",
+        "value": 1
+      }
+    ],
+    "name": "Blood Sausage",
+    "slug": "blood_sausage",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
     },
+    "tags": [
+      "Food"
+    ]
+  },
   "items/bloodmoon_armor": {
     "bucket": "items",
     "effect": "Whenever you would take damage from your own items, the enemy takes that damage instead",
@@ -361,8 +427,16 @@
     "bucket": "items",
     "effect": "Battle Start: Gain 5 max health and restore 5 health",
     "effects": [
-        { "trigger": "battleStart", "action": "add_max_hp", "value": 5 },
-        { "trigger": "battleStart", "action": "heal", "value": 5 }
+      {
+        "action": "add_max_hp",
+        "trigger": "battleStart",
+        "value": 5
+      },
+      {
+        "action": "heal",
+        "trigger": "battleStart",
+        "value": 5
+      }
     ],
     "name": "Bloodstone Ring",
     "slug": "bloodstone_ring",
@@ -378,8 +452,16 @@
     "bucket": "items",
     "effect": "When Wounded: Restore 10 health and gain 5 Armor",
     "effects": [
-        { "trigger": "onWounded", "action": "heal", "value": 10 },
-        { "trigger": "onWounded", "action": "add_armor", "value": 5 }
+      {
+        "action": "heal",
+        "trigger": "onWounded",
+        "value": 10
+      },
+      {
+        "action": "add_armor",
+        "trigger": "onWounded",
+        "value": 5
+      }
     ],
     "name": "Bloody Steak",
     "slug": "bloody_steak",
@@ -397,7 +479,14 @@
     "bucket": "items",
     "effect": "Battle Start (if Exposed or Wounded): Decrease all your status effects by 1",
     "effects": [
-      { "trigger": "battleStart", "if": { "type": "is_exposed_or_wounded" }, "action": "decrease_all_statuses", "value": 1 }
+      {
+        "action": "decrease_all_statuses",
+        "if": {
+          "type": "is_exposed_or_wounded"
+        },
+        "trigger": "battleStart",
+        "value": 1
+      }
     ],
     "name": "Boiled Ham",
     "slug": "boiled_ham",
@@ -454,8 +543,17 @@
     "bucket": "items",
     "effect": "Battle Start: Gain 1 thorns and give the enemy 1 additional strike",
     "effects": [
-      { "trigger": "battleStart", "action": "add_status", "key": "thorns", "value": 1 },
-      { "trigger": "battleStart", "action": "add_extra_strikes_to_enemy", "value": 1 }
+      {
+        "action": "add_status",
+        "key": "thorns",
+        "trigger": "battleStart",
+        "value": 1
+      },
+      {
+        "action": "add_extra_strikes_to_enemy",
+        "trigger": "battleStart",
+        "value": 1
+      }
     ],
     "name": "Bramble Belt",
     "slug": "bramble_belt",
@@ -471,7 +569,14 @@
     "bucket": "items",
     "effect": "Turn Start: Convert 1 armor to 2 thorns",
     "effects": [
-        { "trigger": "turnStart", "if": { "type": "has_armor" }, "action": "convert_armor_to_thorns", "value": 1 }
+      {
+        "action": "convert_armor_to_thorns",
+        "if": {
+          "type": "has_armor"
+        },
+        "trigger": "turnStart",
+        "value": 1
+      }
     ],
     "name": "Bramble Buckler",
     "slug": "bramble_buckler",
@@ -487,7 +592,15 @@
     "bucket": "items",
     "effect": "Whenever you gain thorns, gain 1 armor",
     "effects": [
-        { "trigger": "onGainStatus", "if": { "type": "is_status", "key": "thorns" }, "action": "add_armor", "value": 1 }
+      {
+        "action": "add_armor",
+        "if": {
+          "key": "thorns",
+          "type": "is_status"
+        },
+        "trigger": "onGainStatus",
+        "value": 1
+      }
     ],
     "name": "Bramble Talisman",
     "slug": "bramble_talisman",
@@ -516,7 +629,15 @@
     "bucket": "items",
     "effect": "On Hit: If you have thorns, gain 1 armor.",
     "effects": [
-        { "trigger": "onHit", "if": { "type": "has_status", "key": "thorns" }, "action": "add_armor", "value": 1 }
+      {
+        "action": "add_armor",
+        "if": {
+          "key": "thorns",
+          "type": "has_status"
+        },
+        "trigger": "onHit",
+        "value": 1
+      }
     ],
     "name": "Briar Greaves",
     "slug": "briar_greaves",
@@ -532,7 +653,12 @@
     "bucket": "items",
     "effect": "Whenever you take damage, take 1 additional damage",
     "effects": [
-        { "trigger": "onDamaged", "action": "deal_damage", "value": 1, "target": "self" }
+      {
+        "action": "deal_damage",
+        "target": "self",
+        "trigger": "onDamaged",
+        "value": 1
+      }
     ],
     "name": "Brittlebark Armor",
     "slug": "brittlebark_armor",
@@ -548,7 +674,13 @@
     "bucket": "items",
     "effect": "Lose all your armor after your enemy's first strike",
     "effects": [
-        { "trigger": "afterEnemyStrike", "if": { "type": "is_first_strike" }, "action": "lose_all_armor" }
+      {
+        "action": "lose_all_armor",
+        "if": {
+          "type": "is_first_strike"
+        },
+        "trigger": "afterEnemyStrike"
+      }
     ],
     "name": "Brittlebark Buckler",
     "slug": "brittlebark_buckler",
@@ -560,11 +692,47 @@
     },
     "tags": []
   },
+  "items/broken_winebottle": {
+    "bucket": "items",
+    "effect": "When Wounded: next turn keep striking enemy until they're wounded",
+    "effects": [
+      {
+        "action": "set_enraged_flag",
+        "trigger": "onWounded"
+      },
+      {
+        "action": "enraged_extra_strikes",
+        "if": {
+          "key": "winebottleEnraged",
+          "type": "has_flag"
+        },
+        "trigger": "turnStart",
+        "value": 10
+      }
+    ],
+    "name": "Broken Winebottle",
+    "rarity": "Common",
+    "slug": "broken_winebottle",
+    "stats": {
+      "armor": 0,
+      "attack": 2,
+      "health": 0,
+      "speed": 0
+    },
+    "tags": [
+      "Food"
+    ]
+  },
   "items/cactus_cap": {
     "bucket": "items",
     "effect": "If the enemy has no armor, thorns deal double damage",
     "effects": [
-        { "trigger": "preBattle", "action": "set_flag", "key": "doubleThornsOnNoArmor", "value": true }
+      {
+        "action": "set_flag",
+        "key": "doubleThornsOnNoArmor",
+        "trigger": "preBattle",
+        "value": true
+      }
     ],
     "name": "Cactus Cap",
     "slug": "cactus_cap",
@@ -579,6 +747,12 @@
   "items/caustic_tome": {
     "bucket": "items",
     "effect": "Battle Start: Give the enemy acid equal to your speed.",
+    "effects": [
+      {
+        "action": "give_enemy_acid_equal_to_speed",
+        "trigger": "battleStart"
+      }
+    ],
     "name": "Caustic Tome",
     "slug": "caustic_tome",
     "stats": {
@@ -587,10 +761,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": [],
-    "effects": [
-      { "trigger": "battleStart", "action": "give_enemy_acid_equal_to_speed" }
-    ]
+    "tags": []
   },
   "items/chainlink_medallion": {
     "bucket": "items",
@@ -610,12 +781,12 @@
     "effect": "Wounded: Regain your base armor",
     "effects": [
       {
-        "event": "onWounded",
         "actions": [
           {
             "type": "regain_base_armor"
           }
-        ]
+        ],
+        "event": "onWounded"
       }
     ],
     "name": "Chainmail Armor",
@@ -633,16 +804,19 @@
     "effect": "Turn Start: If you have armor, restore 2 health",
     "effects": [
       {
-        "event": "turnStart",
-        "conditions": [
-          {"type": "min_armor", "value": 1}
-        ],
         "actions": [
           {
             "type": "heal",
             "value": 2
           }
-        ]
+        ],
+        "conditions": [
+          {
+            "type": "min_armor",
+            "value": 1
+          }
+        ],
+        "event": "turnStart"
       }
     ],
     "name": "Chainmail Cloak",
@@ -688,7 +862,7 @@
     "slug": "cherry_blade",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 3,
       "health": 0,
       "speed": 0
     },
@@ -712,6 +886,18 @@
   "items/cherry_cocktail": {
     "bucket": "items",
     "effect": "At Battle Start and when Wounded: Deal 3 damage and restore 3 health",
+    "effects": [
+      {
+        "action": "deal_damage_and_heal",
+        "trigger": "battleStart",
+        "value": 3
+      },
+      {
+        "action": "deal_damage_and_heal",
+        "trigger": "onWounded",
+        "value": 3
+      }
+    ],
     "name": "Cherry Cocktail",
     "slug": "cherry_cocktail",
     "stats": {
@@ -722,10 +908,6 @@
     },
     "tags": [
       "Food"
-    ],
-    "effects": [
-      { "trigger": "battleStart", "action": "deal_damage_and_heal", "value": 3 },
-      { "trigger": "onWounded", "action": "deal_damage_and_heal", "value": 3 }
     ]
   },
   "items/chest_of_lust": {
@@ -745,7 +927,11 @@
     "bucket": "items",
     "effect": "Battle Start: Gain 1 gold.",
     "effects": [
-      { "trigger": "battleStart", "action": "add_gold", "value": 1 }
+      {
+        "action": "add_gold",
+        "trigger": "battleStart",
+        "value": 1
+      }
     ],
     "name": "Citrine Crown",
     "slug": "citrine_crown",
@@ -760,6 +946,26 @@
   "items/citrine_earring": {
     "bucket": "items",
     "effect": "Every other turn: +1 Speed (Gold +2, Diamond +4)",
+    "effects": [
+      {
+        "actions": [
+          {
+            "by_tier": [
+              1,
+              2,
+              4
+            ],
+            "type": "gain_speed"
+          }
+        ],
+        "conditions": [
+          {
+            "type": "is_even_turn"
+          }
+        ],
+        "event": "turnStart"
+      }
+    ],
     "name": "Citrine Earring",
     "slug": "citrine_earring",
     "stats": {
@@ -770,27 +976,21 @@
     },
     "tags": [
       "Jewelry"
-    ],
-    "effects": [
-      {
-        "event": "turnStart",
-        "conditions": [
-          {
-            "type": "is_even_turn"
-          }
-        ],
-        "actions": [
-          {
-            "type": "gain_speed",
-            "by_tier": [1, 2, 4]
-          }
-        ]
-      }
     ]
   },
   "items/citrine_gemstone": {
     "bucket": "items",
     "effect": "Base Speed inverted",
+    "effects": [
+      {
+        "actions": [
+          {
+            "type": "invert_speed"
+          }
+        ],
+        "event": "battleStart"
+      }
+    ],
     "name": "Citrine Gemstone",
     "slug": "citrine_gemstone",
     "stats": {
@@ -801,23 +1001,17 @@
     },
     "tags": [
       "Jewelry"
-    ],
-    "effects": [
-      {
-        "event": "battleStart",
-        "actions": [
-          {
-            "type": "invert_speed"
-          }
-        ]
-      }
     ]
   },
   "items/citrine_ring": {
     "bucket": "items",
     "effect": "Battle Start: Gain 1 gold.",
     "effects": [
-      { "trigger": "battleStart", "action": "add_gold", "value": 1 }
+      {
+        "action": "add_gold",
+        "trigger": "battleStart",
+        "value": 1
+      }
     ],
     "name": "Citrine Ring",
     "slug": "citrine_ring",
@@ -833,7 +1027,11 @@
     "bucket": "items",
     "effect": "Battle Start: Gain 2 gold.",
     "effects": [
-      { "trigger": "battleStart", "action": "add_gold", "value": 2 }
+      {
+        "action": "add_gold",
+        "trigger": "battleStart",
+        "value": 2
+      }
     ],
     "name": "Citrine Ring Gold",
     "slug": "citrine_ring_gold",
@@ -848,6 +1046,16 @@
   "items/clearspring_cloak": {
     "bucket": "items",
     "effect": "Exposed: Remove all your status effects and gain 1 armor equal to stacks removed",
+    "effects": [
+      {
+        "actions": [
+          {
+            "type": "remove_all_status_and_gain_armor"
+          }
+        ],
+        "event": "onExposed"
+      }
+    ],
     "name": "Clearspring Cloak",
     "slug": "clearspring_cloak",
     "stats": {
@@ -856,24 +1064,22 @@
       "health": 0,
       "speed": 0
     },
-    "tags": [],
-    "effects": [
-      {
-        "event": "onExposed",
-        "actions": [
-          {
-            "type": "remove_all_status_and_gain_armor"
-          }
-        ]
-      }
-    ]
+    "tags": []
   },
   "items/clearspring_duck": {
     "bucket": "items",
     "effect": "Turn Start: Gain 1 armor and decrease a random status effect by 1",
     "effects": [
-      { "trigger": "turnStart", "action": "add_armor", "value": 1 },
-      { "trigger": "turnStart", "action": "decrease_random_status", "value": 1 }
+      {
+        "action": "add_armor",
+        "trigger": "turnStart",
+        "value": 1
+      },
+      {
+        "action": "decrease_random_status",
+        "trigger": "turnStart",
+        "value": 1
+      }
     ],
     "name": "Clearspring Duck",
     "slug": "clearspring_duck",
@@ -888,6 +1094,21 @@
   "items/clearspring_feather": {
     "bucket": "items",
     "effect": "Battle Start: Decrease a random status effect by 1 and give it to the enemy (Gold: 2; Diamond: 4).",
+    "effects": [
+      {
+        "actions": [
+          {
+            "by_tier": [
+              1,
+              2,
+              4
+            ],
+            "type": "transfer_random_status_to_enemy"
+          }
+        ],
+        "event": "battleStart"
+      }
+    ],
     "name": "Clearspring Feather",
     "slug": "clearspring_feather",
     "stats": {
@@ -896,22 +1117,30 @@
       "health": 0,
       "speed": 0
     },
-    "effects": [
-      {
-        "event": "battleStart",
-        "actions": [
-          {
-            "type": "transfer_random_status_to_enemy",
-            "by_tier": [1, 2, 4]
-          }
-        ]
-      }
-    ],
     "tags": []
   },
   "items/clearspring_opal": {
     "bucket": "items",
     "effect": "Turn Start: If you have any status effects, spend 1 speed to decrease a random status effect by 1",
+    "effects": [
+      {
+        "actions": [
+          {
+            "type": "spend_speed_decrease_random_status"
+          }
+        ],
+        "conditions": [
+          {
+            "type": "has_status_effects"
+          },
+          {
+            "type": "min_speed",
+            "value": 1
+          }
+        ],
+        "event": "turnStart"
+      }
+    ],
     "name": "Clearspring Opal",
     "slug": "clearspring_opal",
     "stats": {
@@ -920,25 +1149,18 @@
       "health": 0,
       "speed": 2
     },
-    "effects": [
-      {
-        "event": "turnStart",
-        "conditions": [
-          {"type": "has_status_effects"},
-          {"type": "min_speed", "value": 1}
-        ],
-        "actions": [
-          {
-            "type": "spend_speed_decrease_random_status"
-          }
-        ]
-      }
-    ],
     "tags": []
   },
   "items/clearspring_rose": {
     "bucket": "items",
     "effect": "Whenever you restore health, decrease a random status effect by 1. You can only equip 1 rose",
+    "effects": [
+      {
+        "action": "decrease_random_status",
+        "trigger": "onHeal",
+        "value": 1
+      }
+    ],
     "name": "Clearspring Rose",
     "slug": "clearspring_rose",
     "stats": {
@@ -947,18 +1169,34 @@
       "health": 0,
       "speed": 0
     },
-    "effects": [
-      {
-        "trigger": "onHeal",
-        "action": "decrease_random_status",
-        "value": 1
-      }
-    ],
     "tags": []
   },
   "items/clearspring_watermelon": {
     "bucket": "items",
     "effect": "Battle Start, Exposed & Wounded: Decrease a random status effect by 1 — at Gold: decrease 2, at Diamond: decrease 4",
+    "effects": [
+      {
+        "action": "decrease_random_status",
+        "trigger": "battleStart",
+        "value": 1,
+        "value_diamond": 4,
+        "value_gold": 2
+      },
+      {
+        "action": "decrease_random_status",
+        "trigger": "onExposed",
+        "value": 1,
+        "value_diamond": 4,
+        "value_gold": 2
+      },
+      {
+        "action": "decrease_random_status",
+        "trigger": "onWounded",
+        "value": 1,
+        "value_diamond": 4,
+        "value_gold": 2
+      }
+    ],
     "name": "Clearspring Watermelon",
     "slug": "clearspring_watermelon",
     "stats": {
@@ -967,18 +1205,18 @@
       "health": 0,
       "speed": 0
     },
-    "effects": [
-      { "trigger": "battleStart", "action": "decrease_random_status", "value": 1, "value_gold": 2, "value_diamond": 4 },
-      { "trigger": "onExposed", "action": "decrease_random_status", "value": 1, "value_gold": 2, "value_diamond": 4 },
-      { "trigger": "onWounded", "action": "decrease_random_status", "value": 1, "value_gold": 2, "value_diamond": 4 }
-    ],
     "tags": []
   },
   "items/cold_resistance": {
     "bucket": "items",
     "effect": "Freeze doubles your attack instead of halving it",
     "effects": [
-        { "trigger": "preBattle", "action": "set_flag", "key": "coldResistance", "value": true }
+      {
+        "action": "set_flag",
+        "key": "coldResistance",
+        "trigger": "preBattle",
+        "value": true
+      }
     ],
     "name": "Cold Resistance",
     "slug": "cold_resistance",
@@ -993,6 +1231,21 @@
   "items/combustible_lemon": {
     "bucket": "items",
     "effect": "Turn Start: Spend 1 Speed to deal 2 damage",
+    "effects": [
+      {
+        "action": "spend_speed_deal_damage",
+        "conditions": [
+          {
+            "type": "has_speed"
+          }
+        ],
+        "trigger": "turn_start",
+        "value": {
+          "damage": 2,
+          "speedCost": 1
+        }
+      }
+    ],
     "name": "Combustible Lemon",
     "slug": "combustible_lemon",
     "stats": {
@@ -1001,19 +1254,6 @@
       "health": 0,
       "speed": 3
     },
-    "effects": [
-      {
-        "trigger": "turn_start",
-        "conditions": [
-          {"type": "has_speed"}
-        ],
-        "action": "spend_speed_deal_damage",
-        "value": {
-          "speedCost": 1,
-          "damage": 2
-        }
-      }
-    ],
     "tags": [
       "Food"
     ]
@@ -1036,6 +1276,17 @@
   "items/corroded_bone": {
     "bucket": "items",
     "effect": "Battle Start: Convert 50% of the enemy's health into armor",
+    "effects": [
+      {
+        "actions": [
+          {
+            "type": "convert_enemy_health_to_armor",
+            "value": 0.5
+          }
+        ],
+        "event": "battleStart"
+      }
+    ],
     "name": "Corroded Bone",
     "slug": "corroded_bone",
     "stats": {
@@ -1044,17 +1295,6 @@
       "health": 0,
       "speed": 0
     },
-    "effects": [
-      {
-        "event": "battleStart",
-        "actions": [
-          {
-            "type": "convert_enemy_health_to_armor",
-            "value": 0.5
-          }
-        ]
-      }
-    ],
     "tags": []
   },
   "items/cracked_bouldershield": {
@@ -1062,13 +1302,13 @@
     "effect": "Exposed: Gain 7 armor",
     "effects": [
       {
-        "event": "onExposed",
         "actions": [
           {
             "type": "gain_armor",
             "value": 7
           }
-        ]
+        ],
+        "event": "onExposed"
       }
     ],
     "name": "Cracked Bouldershield",
@@ -1086,16 +1326,22 @@
     "effect": "First Turn: Temporarily gain 2 attack — at Gold: 4, at Diamond: 8",
     "effects": [
       {
-        "event": "turnStart",
-        "conditions": [
-          {"type": "is_first_turn"}
-        ],
         "actions": [
           {
-            "type": "gain_temp_attack",
-            "by_tier": [2, 4, 8]
+            "by_tier": [
+              2,
+              4,
+              8
+            ],
+            "type": "gain_temp_attack"
           }
-        ]
+        ],
+        "conditions": [
+          {
+            "type": "is_first_turn"
+          }
+        ],
+        "event": "turnStart"
       }
     ],
     "name": "Cracked Whetstone",
@@ -1113,13 +1359,13 @@
     "effect": "Whenever you take damage, restore 1 health",
     "effects": [
       {
-        "event": "onDamaged",
         "actions": [
           {
             "type": "heal",
             "value": 1
           }
-        ]
+        ],
+        "event": "onDamaged"
       }
     ],
     "name": "Crimson Cloak",
@@ -1137,10 +1383,6 @@
     "effect": "Battle Start: If your health is full, lose 5 health and gain 2 additional strikes",
     "effects": [
       {
-        "event": "battleStart",
-        "conditions": [
-          {"type": "is_full_health"}
-        ],
         "actions": [
           {
             "type": "lose_hp",
@@ -1150,7 +1392,13 @@
             "type": "add_extra_strikes",
             "value": 2
           }
-        ]
+        ],
+        "conditions": [
+          {
+            "type": "is_full_health"
+          }
+        ],
+        "event": "battleStart"
       }
     ],
     "name": "Crimson Fang",
@@ -1167,8 +1415,21 @@
     "bucket": "weapons",
     "effect": "Battle Start: Gain 3 Poison; Turn Start: if you have Poison, gain 1 extra strike",
     "effects": [
-        { "trigger": "battleStart", "action": "add_status", "key": "poison", "value": 3 },
-        { "trigger": "turnStart", "if": { "type": "has_status", "key": "poison" }, "action": "add_extra_strikes", "value": 1 }
+      {
+        "action": "add_status",
+        "key": "poison",
+        "trigger": "battleStart",
+        "value": 3
+      },
+      {
+        "action": "add_extra_strikes",
+        "if": {
+          "key": "poison",
+          "type": "has_status"
+        },
+        "trigger": "turnStart",
+        "value": 1
+      }
     ],
     "name": "Deathcap Bow",
     "slug": "deathcap_bow",
@@ -1212,7 +1473,13 @@
     "bucket": "items",
     "effect": "Exposed: Gain 3 armor — at Gold: 6, at Diamond: 12",
     "effects": [
-        { "trigger": "onExposed", "action": "add_armor", "value": 3, "value_gold": 6, "value_diamond": 12 }
+      {
+        "action": "add_armor",
+        "trigger": "onExposed",
+        "value": 3,
+        "value_diamond": 12,
+        "value_gold": 6
+      }
     ],
     "name": "Double-plated Armor",
     "slug": "double_plated_armor",
@@ -1250,22 +1517,29 @@
     },
     "tags": []
   },
-    "items/earrings_of_respite": {
-      "bucket": "items",
-      "effect": "Turn End: Every other turn (even turns), restore 2 health",
-      "effects": [
-        { "trigger": "turnEnd", "if": { "type": "is_even_turn" }, "action": "heal", "value": 2 }
-      ],
-      "name": "Earrings of Respite",
-      "slug": "earrings_of_respite",
-      "stats": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "tags": []
+  "items/earrings_of_respite": {
+    "bucket": "items",
+    "effect": "Turn End: Every other turn (even turns), restore 2 health",
+    "effects": [
+      {
+        "action": "heal",
+        "if": {
+          "type": "is_even_turn"
+        },
+        "trigger": "turnEnd",
+        "value": 2
+      }
+    ],
+    "name": "Earrings of Respite",
+    "slug": "earrings_of_respite",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
     },
+    "tags": []
+  },
   "items/echo_rune": {
     "bucket": "items",
     "effect": "Wounded: Re-trigger a random battle start item",
@@ -1283,9 +1557,21 @@
     "bucket": "items",
     "effect": "+1 attack, +1 armor, +1 speed",
     "effects": [
-        { "trigger": "preBattle", "action": "add_attack", "value": 1 },
-        { "trigger": "preBattle", "action": "add_armor", "value": 1 },
-        { "trigger": "preBattle", "action": "add_speed", "value": 1 }
+      {
+        "action": "add_attack",
+        "trigger": "preBattle",
+        "value": 1
+      },
+      {
+        "action": "add_armor",
+        "trigger": "preBattle",
+        "value": 1
+      },
+      {
+        "action": "add_speed",
+        "trigger": "preBattle",
+        "value": 1
+      }
     ],
     "name": "Elderwood Necklace",
     "slug": "elderwood_necklace",
@@ -1315,6 +1601,18 @@
   "items/emerald_earring": {
     "bucket": "items",
     "effect": "Every other turn: Restore 1 Health (Gold 2, Diamond 4)",
+    "effects": [
+      {
+        "action": "heal_if_condition",
+        "if": {
+          "type": "is_even_turn"
+        },
+        "trigger": "turnStart",
+        "value": 1,
+        "value_diamond": 4,
+        "value_gold": 2
+      }
+    ],
     "name": "Emerald Earring",
     "slug": "emerald_earring",
     "stats": {
@@ -1323,16 +1621,6 @@
       "health": 0,
       "speed": 0
     },
-    "effects": [
-      {
-        "trigger": "turnStart",
-        "if": { "type": "is_even_turn" },
-        "action": "heal_if_condition",
-        "value": 1,
-        "value_gold": 2,
-        "value_diamond": 4
-      }
-    ],
     "tags": [
       "Jewelry"
     ]
@@ -1356,7 +1644,13 @@
     "bucket": "items",
     "effect": "Battle Start: Restore 3 Health (Gold 6, Diamond 12)",
     "effects": [
-        { "trigger": "battleStart", "action": "heal", "value": 3, "value_gold": 6, "value_diamond": 12 }
+      {
+        "action": "heal",
+        "trigger": "battleStart",
+        "value": 3,
+        "value_diamond": 12,
+        "value_gold": 6
+      }
     ],
     "name": "Emerald Ring",
     "slug": "emerald_ring",
@@ -1387,7 +1681,14 @@
     "bucket": "items",
     "effect": "Turn Start: If the enemy doesn't have any armor, deal 3 damage",
     "effects": [
-        { "trigger": "turnStart", "if": { "type": "enemy_has_no_armor" }, "action": "deal_damage", "value": 3 }
+      {
+        "action": "deal_damage",
+        "if": {
+          "type": "enemy_has_no_armor"
+        },
+        "trigger": "turnStart",
+        "value": 3
+      }
     ],
     "name": "Explosive Arrow",
     "slug": "explosive_arrow",
@@ -1402,6 +1703,17 @@
   "items/explosive_fish": {
     "bucket": "items",
     "effect": "Battle Start: Give enemy 1 Riptide and deal 2 damage per Riptide",
+    "effects": [
+      {
+        "action": "give_status_deal_damage_per_stack",
+        "trigger": "start_battle",
+        "value": {
+          "amount": 1,
+          "damagePerStack": 2,
+          "status": "riptide"
+        }
+      }
+    ],
     "name": "Explosive Fish",
     "slug": "explosive_fish",
     "stats": {
@@ -1410,17 +1722,6 @@
       "health": 0,
       "speed": 0
     },
-    "effects": [
-      {
-        "trigger": "start_battle",
-        "action": "give_status_deal_damage_per_stack",
-        "value": {
-          "status": "riptide",
-          "amount": 1,
-          "damagePerStack": 2
-        }
-      }
-    ],
     "tags": [
       "Food"
     ]
@@ -1441,6 +1742,16 @@
   "items/explosive_roast": {
     "bucket": "items",
     "effect": "Battle Start: Deal 1 damage 3 times",
+    "effects": [
+      {
+        "action": "deal_damage_multiple_times",
+        "trigger": "start_battle",
+        "value": {
+          "damage": 1,
+          "times": 3
+        }
+      }
+    ],
     "name": "Explosive Roast",
     "slug": "explosive_roast",
     "stats": {
@@ -1449,16 +1760,6 @@
       "health": 5,
       "speed": 0
     },
-    "effects": [
-      {
-        "trigger": "start_battle",
-        "action": "deal_damage_multiple_times",
-        "value": {
-          "damage": 1,
-          "times": 3
-        }
-      }
-    ],
     "tags": [
       "Food"
     ]
@@ -1467,7 +1768,11 @@
     "bucket": "items",
     "effect": "Exposed: Deal 6 damage",
     "effects": [
-        { "trigger": "onExposed", "action": "deal_damage", "value": 6 }
+      {
+        "action": "deal_damage",
+        "trigger": "onExposed",
+        "value": 6
+      }
     ],
     "name": "Explosive Surprise",
     "slug": "explosive_surprise",
@@ -1482,6 +1787,12 @@
   "items/featherweight_armor": {
     "bucket": "items",
     "effect": "Whenever you gain speed, also gain an equal amount of armor",
+    "effects": [
+      {
+        "action": "add_armor_equal_to_speed_gained",
+        "trigger": "onGainSpeed"
+      }
+    ],
     "name": "Featherweight Armor",
     "slug": "featherweight_armor",
     "stats": {
@@ -1490,17 +1801,23 @@
       "health": 0,
       "speed": 0
     },
-    "effects": [
-      {
-        "trigger": "onGainSpeed",
-        "action": "add_armor_equal_to_speed_gained"
-      }
-    ],
     "tags": []
   },
   "items/featherweight_greaves": {
     "bucket": "items",
     "effect": "Turn Start: If you have 0 speed, gain 1 speed",
+    "effects": [
+      {
+        "action": "add_speed",
+        "conditions": [
+          {
+            "type": "has_no_speed"
+          }
+        ],
+        "trigger": "turn_start",
+        "value": 1
+      }
+    ],
     "name": "Featherweight Greaves",
     "slug": "featherweight_greaves",
     "stats": {
@@ -1509,16 +1826,6 @@
       "health": 0,
       "speed": 0
     },
-    "effects": [
-      {
-        "trigger": "turn_start",
-        "conditions": [
-          {"type": "has_no_speed"}
-        ],
-        "action": "add_speed",
-        "value": 1
-      }
-    ],
     "tags": []
   },
   "items/featherweight_helmet": {
@@ -1550,6 +1857,16 @@
   "items/firecracker_belt": {
     "bucket": "items",
     "effect": "Exposed: Deal 1 damage 4 times",
+    "effects": [
+      {
+        "action": "deal_damage_multiple_times",
+        "trigger": "onExposed",
+        "value": {
+          "damage": 1,
+          "times": 4
+        }
+      }
+    ],
     "name": "Firecracker Belt",
     "slug": "firecracker_belt",
     "stats": {
@@ -1558,16 +1875,6 @@
       "health": 0,
       "speed": 0
     },
-    "effects": [
-      {
-        "trigger": "onExposed",
-        "action": "deal_damage_multiple_times",
-        "value": {
-          "damage": 1,
-          "times": 4
-        }
-      }
-    ],
     "tags": []
   },
   "items/flameburst_tome": {
@@ -1589,7 +1896,11 @@
     "bucket": "items",
     "effect": "Battle Start: Give the enemy 5 armor",
     "effects": [
-        { "trigger": "battleStart", "action": "add_armor_to_enemy", "value": 5 }
+      {
+        "action": "add_armor_to_enemy",
+        "trigger": "battleStart",
+        "value": 5
+      }
     ],
     "name": "Forge Gauntlet",
     "slug": "forge_gauntlet",
@@ -1605,7 +1916,14 @@
     "bucket": "items",
     "effect": "Turn Start: If you have armor, gain 1 additional armor",
     "effects": [
-        { "trigger": "turnStart", "if": { "type": "has_armor" }, "action": "add_armor", "value": 1 }
+      {
+        "action": "add_armor",
+        "if": {
+          "type": "has_armor"
+        },
+        "trigger": "turnStart",
+        "value": 1
+      }
     ],
     "name": "Fortified Gauntlet",
     "slug": "fortified_gauntlet",
@@ -1621,7 +1939,11 @@
     "bucket": "items",
     "effect": "Battle Start: The enemy loses 1 attack",
     "effects": [
-     { "trigger": "battleStart", "action": "reduce_enemy_attack", "value": 1 }
+      {
+        "action": "reduce_enemy_attack",
+        "trigger": "battleStart",
+        "value": 1
+      }
     ],
     "name": "Friendship Bracelet",
     "slug": "friendship_bracelet",
@@ -1663,7 +1985,14 @@
     "bucket": "items",
     "effect": "Battle Start: Give the enemy 1 freeze (Gold: 2; Diamond: 4).",
     "effects": [
-        { "trigger": "battleStart", "action": "add_status_to_enemy", "key": "freeze", "value": 1, "value_gold": 2, "value_diamond": 4 }
+      {
+        "action": "add_status_to_enemy",
+        "key": "freeze",
+        "trigger": "battleStart",
+        "value": 1,
+        "value_diamond": 4,
+        "value_gold": 2
+      }
     ],
     "name": "Frostbite Gauntlet",
     "slug": "frostbite_gauntlet",
@@ -1692,7 +2021,14 @@
     "bucket": "items",
     "effect": "Wounded: Give the enemy 3 Freeze — at Gold: 6, at Diamond: 12",
     "effects": [
-        { "trigger": "onWounded", "action": "add_status_to_enemy", "key": "freeze", "value": 3, "value_gold": 6, "value_diamond": 12 }
+      {
+        "action": "add_status_to_enemy",
+        "key": "freeze",
+        "trigger": "onWounded",
+        "value": 3,
+        "value_diamond": 12,
+        "value_gold": 6
+      }
     ],
     "name": "Frostbite Trap",
     "slug": "frostbite_trap",
@@ -1708,7 +2044,11 @@
     "bucket": "items",
     "effect": "Battle Start: Gain +1 Gold",
     "effects": [
-      { "trigger": "battleStart", "action": "add_gold", "value": 1 }
+      {
+        "action": "add_gold",
+        "trigger": "battleStart",
+        "value": 1
+      }
     ],
     "name": "Gold Ring",
     "slug": "gold_ring",
@@ -1754,8 +2094,23 @@
     "bucket": "items",
     "effect": "If at full health at Battle Start: +2 Armor and deal 2 damage (repeat 3)",
     "effects": [
-        { "trigger": "battleStart", "if": { "type": "is_full_health" }, "action": "add_armor", "value": 2 },
-        { "trigger": "battleStart", "if": { "type": "is_full_health" }, "action": "deal_damage", "value": 2, "repeat": 3 }
+      {
+        "action": "add_armor",
+        "if": {
+          "type": "is_full_health"
+        },
+        "trigger": "battleStart",
+        "value": 2
+      },
+      {
+        "action": "deal_damage",
+        "if": {
+          "type": "is_full_health"
+        },
+        "repeat": 3,
+        "trigger": "battleStart",
+        "value": 2
+      }
     ],
     "name": "Granite Cherry",
     "slug": "granite_cherry",
@@ -1773,7 +2128,10 @@
     "bucket": "items",
     "effect": "Battle Start: Gain max health equal to your base armor",
     "effects": [
-        { "trigger": "battleStart", "action": "add_max_hp_from_base_armor" }
+      {
+        "action": "add_max_hp_from_base_armor",
+        "trigger": "battleStart"
+      }
     ],
     "name": "Granite Crown",
     "slug": "granite_crown",
@@ -1802,8 +2160,16 @@
     "bucket": "items",
     "effect": "Turn End: Gain 2 armor and give the enemy 2 armor",
     "effects": [
-        { "trigger": "turnEnd", "action": "add_armor", "value": 2 },
-        { "trigger": "turnEnd", "action": "add_armor_to_enemy", "value": 2 }
+      {
+        "action": "add_armor",
+        "trigger": "turnEnd",
+        "value": 2
+      },
+      {
+        "action": "add_armor_to_enemy",
+        "trigger": "turnEnd",
+        "value": 2
+      }
     ],
     "name": "Granite Fungi",
     "slug": "granite_fungi",
@@ -1847,7 +2213,11 @@
     "bucket": "weapons",
     "effect": "Battle Start: Gain 2 extra Strikes",
     "effects": [
-        { "trigger": "battleStart", "action": "add_extra_strikes", "value": 2 }
+      {
+        "action": "add_extra_strikes",
+        "trigger": "battleStart",
+        "value": 2
+      }
     ],
     "name": "Ham Bat",
     "slug": "ham_bat",
@@ -1865,7 +2235,13 @@
     "bucket": "items",
     "effect": "Battle Start: If you have 0 base armor, restore health to full",
     "effects": [
-        { "trigger": "battleStart", "if": { "type": "has_no_base_armor" }, "action": "heal_to_full" }
+      {
+        "action": "heal_to_full",
+        "if": {
+          "type": "has_no_base_armor"
+        },
+        "trigger": "battleStart"
+      }
     ],
     "name": "Heart-shaped Acorn",
     "slug": "heart_shaped_acorn",
@@ -1894,7 +2270,11 @@
     "bucket": "items",
     "effect": "Battle Start: Double the enemy's attack",
     "effects": [
-        { "trigger": "battleStart", "action": "multiply_enemy_attack", "value": 2 }
+      {
+        "action": "multiply_enemy_attack",
+        "trigger": "battleStart",
+        "value": 2
+      }
     ],
     "name": "Helmet of Envy",
     "slug": "helmet_of_envy",
@@ -1935,6 +2315,21 @@
   "items/holy_tome": {
     "bucket": "items",
     "effect": "Countdown 6: +3 Attack (Gold 6, Diamond 12)",
+    "effects": [
+      {
+        "action": "register_countdown",
+        "trigger": "battleStart",
+        "value": {
+          "action": "add_attack",
+          "base": 3,
+          "diamond": 12,
+          "gold": 6,
+          "name": "Holy Tome",
+          "tag": "Tome",
+          "turns": 6
+        }
+      }
+    ],
     "name": "Holy Tome",
     "slug": "holy_tome",
     "stats": {
@@ -1945,21 +2340,6 @@
     },
     "tags": [
       "Tome"
-    ],
-    "effects": [
-      {
-        "trigger": "battleStart",
-        "action": "register_countdown",
-        "value": {
-          "name": "Holy Tome",
-          "turns": 6,
-          "tag": "Tome",
-          "action": "add_attack",
-          "base": 3,
-          "gold": 6,
-          "diamond": 12
-        }
-      }
     ]
   },
   "items/honeydew_melon": {
@@ -1993,6 +2373,16 @@
   "items/horned_melon": {
     "bucket": "items",
     "effect": "Battle Start (if Exposed or Wounded): Decrease 2 random statuses by 1 and gain that much Thorns",
+    "effects": [
+      {
+        "action": "decrease_random_statuses_and_gain_thorns",
+        "if": {
+          "type": "is_exposed_or_wounded"
+        },
+        "trigger": "battleStart",
+        "value": 2
+      }
+    ],
     "name": "Horned Melon",
     "slug": "horned_melon",
     "stats": {
@@ -2003,21 +2393,21 @@
     },
     "tags": [
       "Food"
-    ],
-    "effects": [
-      { 
-        "trigger": "battleStart", 
-        "if": { "type": "is_exposed_or_wounded" },
-        "action": "decrease_random_statuses_and_gain_thorns",
-        "value": 2 
-      }
     ]
   },
   "items/ice_spikes": {
     "bucket": "items",
     "effect": "Turn Start: If you have freeze, gain 5 thorns",
     "effects": [
-      { "trigger": "turnStart", "if": { "type": "has_freeze" }, "action": "add_status", "key": "thorns", "value": 5 }
+      {
+        "action": "add_status",
+        "if": {
+          "type": "has_freeze"
+        },
+        "key": "thorns",
+        "trigger": "turnStart",
+        "value": 5
+      }
     ],
     "name": "Ice Spikes",
     "slug": "ice_spikes",
@@ -2201,9 +2591,12 @@
   "items/leather_belt": {
     "bucket": "items",
     "effect": "If you have 0 base armor, double this item's max health — at Gold: x4, at Diamond: x8",
-      "effects": [
-        { "trigger": "battleStart", "action": "leather_belt_boost" }
-      ],
+    "effects": [
+      {
+        "action": "leather_belt_boost",
+        "trigger": "battleStart"
+      }
+    ],
     "name": "Leather Belt",
     "slug": "leather_belt",
     "stats": {
@@ -2350,7 +2743,14 @@
     "bucket": "items",
     "effect": "Battle start: Gain 1 regeneration — at Gold: 2, at Diamond: 4",
     "effects": [
-        { "trigger": "battleStart", "action": "add_status", "key": "regen", "value": 1, "value_gold": 2, "value_diamond": 4 }
+      {
+        "action": "add_status",
+        "key": "regen",
+        "trigger": "battleStart",
+        "value": 1,
+        "value_diamond": 4,
+        "value_gold": 2
+      }
     ],
     "name": "Liferoot Gauntlet",
     "slug": "liferoot_gauntlet",
@@ -2394,7 +2794,12 @@
     "bucket": "items",
     "effect": "Battle Start: Stun yourself for 1 turn",
     "effects": [
-        { "trigger": "battleStart", "action": "add_status", "key": "stun", "value": 1 }
+      {
+        "action": "add_status",
+        "key": "stun",
+        "trigger": "battleStart",
+        "value": 1
+      }
     ],
     "name": "Lightning Bottle",
     "slug": "lightning_bottle",
@@ -2410,7 +2815,10 @@
     "bucket": "items",
     "effect": "Battle Start: Restore health equal to speed",
     "effects": [
-        { "trigger": "battleStart", "action": "heal_from_speed" }
+      {
+        "action": "heal_from_speed",
+        "trigger": "battleStart"
+      }
     ],
     "name": "Lightspeed Potion",
     "slug": "lightspeed_potion",
@@ -2426,8 +2834,20 @@
     "bucket": "items",
     "effect": "Battle Start: Gain 8 Armor; if health not full, gain 2 Acid",
     "effects": [
-        { "trigger": "battleStart", "action": "add_armor", "value": 8 },
-        { "trigger": "battleStart", "if": { "type": "is_not_full_health" }, "action": "add_status", "key": "acid", "value": 2 }
+      {
+        "action": "add_armor",
+        "trigger": "battleStart",
+        "value": 8
+      },
+      {
+        "action": "add_status",
+        "if": {
+          "type": "is_not_full_health"
+        },
+        "key": "acid",
+        "trigger": "battleStart",
+        "value": 2
+      }
     ],
     "name": "Limestone Fruit",
     "slug": "limestone_fruit",
@@ -2458,7 +2878,10 @@
     "bucket": "items",
     "effect": "Battle Start: Gain armor equal to your opponent’s armor",
     "effects": [
-        { "trigger": "battleStart", "action": "add_armor_from_enemy_armor" }
+      {
+        "action": "add_armor_from_enemy_armor",
+        "trigger": "battleStart"
+      }
     ],
     "name": "Marble Mirror",
     "slug": "marble_mirror",
@@ -2474,7 +2897,12 @@
     "bucket": "items",
     "effect": "Battle Start: Gain 3 Poison",
     "effects": [
-      { "trigger": "battleStart", "action": "add_status", "key": "poison", "value": 3 }
+      {
+        "action": "add_status",
+        "key": "poison",
+        "trigger": "battleStart",
+        "value": 3
+      }
     ],
     "name": "Marble Mushroom",
     "slug": "marble_mushroom",
@@ -2646,9 +3074,15 @@
   "items/muscle_potion": {
     "bucket": "items",
     "effect": "Every 3 strikes: Gain 1 attack — at Gold: 2, at Diamond: 4",
-      "effects": [
-        { "trigger": "afterStrike", "action": "muscle_potion_strike_counter", "baseTier": 1, "goldTier": 2, "diamondTier": 4 }
-      ],
+    "effects": [
+      {
+        "action": "muscle_potion_strike_counter",
+        "baseTier": 1,
+        "diamondTier": 4,
+        "goldTier": 2,
+        "trigger": "afterStrike"
+      }
+    ],
     "name": "Muscle Potion",
     "slug": "muscle_potion",
     "stats": {
@@ -2794,9 +3228,12 @@
   "items/plated_shield": {
     "bucket": "items",
     "effect": "The first time you gain armor, double it",
-      "effects": [
-        { "trigger": "onGainArmor", "action": "plated_shield_double" }
-      ],
+    "effects": [
+      {
+        "action": "plated_shield_double",
+        "trigger": "onGainArmor"
+      }
+    ],
     "name": "Plated Shield",
     "slug": "plated_shield",
     "stats": {
@@ -2811,7 +3248,12 @@
     "bucket": "items",
     "effect": "Turn Start: Gain 1 poison",
     "effects": [
-      { "trigger": "turnStart", "action": "add_status", "key": "poison", "value": 1 }
+      {
+        "action": "add_status",
+        "key": "poison",
+        "trigger": "turnStart",
+        "value": 1
+      }
     ],
     "name": "Poisonous Mushroom",
     "slug": "poisonous_mushroom",
@@ -3167,9 +3609,16 @@
   "items/rusty_ring": {
     "bucket": "items",
     "effect": "Battle Start: Give the enemy 1 acid — at Gold: 2, at Diamond: 4",
-      "effects": [
-        { "trigger": "battleStart", "action": "add_status_to_enemy_tiered", "key": "acid", "baseTier": 1, "goldTier": 2, "diamondTier": 4 }
-      ],
+    "effects": [
+      {
+        "action": "add_status_to_enemy_tiered",
+        "baseTier": 1,
+        "diamondTier": 4,
+        "goldTier": 2,
+        "key": "acid",
+        "trigger": "battleStart"
+      }
+    ],
     "name": "Rusty Ring",
     "slug": "rusty_ring",
     "stats": {
@@ -3512,7 +3961,12 @@
     "bucket": "items",
     "effect": "Battle Start: Gain 1 acid",
     "effects": [
-      { "trigger": "battleStart", "action": "add_status", "key": "acid", "value": 1 }
+      {
+        "action": "add_status",
+        "key": "acid",
+        "trigger": "battleStart",
+        "value": 1
+      }
     ],
     "name": "Slime Armor",
     "slug": "slime_armor",
@@ -3527,9 +3981,13 @@
   "items/slime_booster": {
     "bucket": "items",
     "effect": "Battle Start: Convert 1 acid into 2 attack",
-      "effects": [
-        { "trigger": "battleStart", "action": "convert_acid_to_attack", "value": 2 }
-      ],
+    "effects": [
+      {
+        "action": "convert_acid_to_attack",
+        "trigger": "battleStart",
+        "value": 2
+      }
+    ],
     "name": "Slime Booster",
     "slug": "slime_booster",
     "stats": {
@@ -3569,6 +4027,21 @@
   "items/soap_stone": {
     "bucket": "items",
     "effect": "First turn: Spend 2 speed to temporarily gain 4 attack",
+    "effects": [
+      {
+        "action": "spend_speed_gain_temp_attack",
+        "conditions": [
+          {
+            "type": "is_first_turn"
+          }
+        ],
+        "trigger": "turn_start",
+        "value": {
+          "attackGain": 4,
+          "maxSpend": 2
+        }
+      }
+    ],
     "name": "Soap Stone",
     "slug": "soap_stone",
     "stats": {
@@ -3577,27 +4050,21 @@
       "health": 0,
       "speed": 0
     },
-    "effects": [
-      {
-        "trigger": "turn_start",
-        "conditions": [
-          {"type": "is_first_turn"}
-        ],
-        "action": "spend_speed_gain_temp_attack",
-        "value": {
-          "maxSpend": 2,
-          "attackGain": 4
-        }
-      }
-    ],
     "tags": []
   },
   "items/sour_lemon": {
     "bucket": "items",
     "effect": "Battle Start: Gain 1 acid — at Gold: 2, at Diamond: 4",
-      "effects": [
-        { "trigger": "battleStart", "action": "add_status_tiered", "key": "acid", "baseTier": 1, "goldTier": 2, "diamondTier": 4 }
-      ],
+    "effects": [
+      {
+        "action": "add_status_tiered",
+        "baseTier": 1,
+        "diamondTier": 4,
+        "goldTier": 2,
+        "key": "acid",
+        "trigger": "battleStart"
+      }
+    ],
     "name": "Sour Lemon",
     "slug": "sour_lemon",
     "stats": {
@@ -3785,8 +4252,18 @@
     "bucket": "items",
     "effect": "Battle Start: Take 3 damage and gain 1 additional strike (Gold: +2 strikes; Diamond: +4).",
     "effects": [
-        { "trigger": "battleStart", "action": "deal_self_damage", "value": 3 },
-        { "trigger": "battleStart", "action": "add_extra_strikes", "value": 1, "value_gold": 2, "value_diamond": 4 }
+      {
+        "action": "deal_self_damage",
+        "trigger": "battleStart",
+        "value": 3
+      },
+      {
+        "action": "add_extra_strikes",
+        "trigger": "battleStart",
+        "value": 1,
+        "value_diamond": 4,
+        "value_gold": 2
+      }
     ],
     "name": "Swiftstrike Belt",
     "slug": "swiftstrike_belt",
@@ -3935,9 +4412,15 @@
   "items/trail_mix": {
     "bucket": "items",
     "effect": "Battle Start: Deal 1 damage and gain 1 Thorns (repeat twice)",
-      "effects": [
-        { "trigger": "battleStart", "action": "damage_and_thorns_loop", "count": 2, "damage": 1, "thorns": 1 }
-      ],
+    "effects": [
+      {
+        "action": "damage_and_thorns_loop",
+        "count": 2,
+        "damage": 1,
+        "thorns": 1,
+        "trigger": "battleStart"
+      }
+    ],
     "name": "Trail Mix",
     "slug": "trail_mix",
     "stats": {
@@ -4047,23 +4530,41 @@
     "bucket": "items",
     "effect": "The first time the enemy gains poison, give them 3 additional poison",
     "effects": [
-      { "trigger": "battleStart", "action": "set_flag", "key": "viper_extract_ready", "value": true },
-      { 
-        "trigger": "onGainStatus", 
-        "action": "add_status_to_enemy", 
+      {
+        "action": "set_flag",
+        "key": "viper_extract_ready",
+        "trigger": "battleStart",
+        "value": true
+      },
+      {
+        "action": "add_status_to_enemy",
         "condition": {
-          "type": "all_of",
           "conditions": [
-            { "type": "flag", "flag": "viper_extract_ready", "value": true },
-            { "type": "status_key", "value": "poison" },
-            { "type": "status_is_new" }
-          ]
+            {
+              "flag": "viper_extract_ready",
+              "type": "flag",
+              "value": true
+            },
+            {
+              "type": "status_key",
+              "value": "poison"
+            },
+            {
+              "type": "status_is_new"
+            }
+          ],
+          "type": "all_of"
         },
         "key": "poison",
-        "value": 3,
         "then": [
-          { "action": "set_flag", "key": "viper_extract_ready", "value": false }
-        ]
+          {
+            "action": "set_flag",
+            "key": "viper_extract_ready",
+            "value": false
+          }
+        ],
+        "trigger": "onGainStatus",
+        "value": 3
       }
     ],
     "name": "Viper Extract",
@@ -4079,9 +4580,12 @@
   "items/weaver_armor": {
     "bucket": "items",
     "effect": "Battle Start: If you have 0 base armor, gain armor equal to current health",
-      "effects": [
-        { "trigger": "battleStart", "action": "armor_equal_to_health" }
-      ],
+    "effects": [
+      {
+        "action": "armor_equal_to_health",
+        "trigger": "battleStart"
+      }
+    ],
     "name": "Weaver Armor",
     "slug": "weaver_armor",
     "stats": {
@@ -4369,7 +4873,15 @@
     "bucket": "upgrades",
     "effect": "On Hit: If the enemy doesn't have any poison, give them 2 poison",
     "effects": [
-      { "trigger": "onHit", "if": { "type": "enemy_has_no_poison" }, "action": "add_status_to_enemy", "key": "poison", "value": 2 }
+      {
+        "action": "add_status_to_enemy",
+        "if": {
+          "type": "enemy_has_no_poison"
+        },
+        "key": "poison",
+        "trigger": "onHit",
+        "value": 2
+      }
     ],
     "name": "Oozing Edge",
     "slug": "oozing_edge",
@@ -5229,6 +5741,13 @@
   "weapons/ring_blades": {
     "bucket": "weapons",
     "effect": "Battle Start: Steal 1 attack from the enemy",
+    "effects": [
+      {
+        "action": "steal_attack",
+        "trigger": "battleStart",
+        "value": 1
+      }
+    ],
     "name": "Ring Blades",
     "slug": "ring_blades",
     "stats": {
@@ -5237,10 +5756,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": [],
-    "effects": [
-      { "trigger": "battleStart", "action": "steal_attack", "value": 1 }
-    ]
+    "tags": []
   },
   "weapons/riverflow_rapier": {
     "bucket": "weapons",
