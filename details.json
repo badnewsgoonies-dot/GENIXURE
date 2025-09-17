@@ -775,6 +775,10 @@
   "items/clearspring_duck": {
     "bucket": "items",
     "effect": "Turn Start: Gain 1 armor and decrease a random status effect by 1",
+    "effects": [
+      { "trigger": "turnStart", "action": "add_armor", "value": 1 },
+      { "trigger": "turnStart", "action": "decrease_random_status", "value": 1 }
+    ],
     "name": "Clearspring Duck",
     "slug": "clearspring_duck",
     "stats": {
@@ -796,6 +800,17 @@
       "health": 0,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "start_battle",
+        "action": "transfer_random_status_to_enemy",
+        "value": {
+          "default": 1,
+          "gold": 2,
+          "diamond": 4
+        }
+      }
+    ],
     "tags": []
   },
   "items/clearspring_opal": {
@@ -809,6 +824,16 @@
       "health": 0,
       "speed": 2
     },
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "conditions": [
+          {"type": "has_status_effects"},
+          {"type": "has_speed"}
+        ],
+        "action": "spend_speed_decrease_random_status"
+      }
+    ],
     "tags": []
   },
   "items/clearspring_rose": {
@@ -822,6 +847,13 @@
       "health": 0,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "onHeal",
+        "action": "decrease_random_status",
+        "value": 1
+      }
+    ],
     "tags": []
   },
   "items/clearspring_watermelon": {
@@ -835,6 +867,41 @@
       "health": 0,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "start_battle",
+        "action": "decrease_random_status",
+        "value": {
+          "default": 1,
+          "gold": 2,
+          "diamond": 4
+        }
+      },
+      {
+        "trigger": "onGainStatus",
+        "conditions": [
+          {"type": "is_status", "key": "exposed"}
+        ],
+        "action": "decrease_random_status",
+        "value": {
+          "default": 1,
+          "gold": 2,
+          "diamond": 4
+        }
+      },
+      {
+        "trigger": "onGainStatus",
+        "conditions": [
+          {"type": "is_status", "key": "wounded"}
+        ],
+        "action": "decrease_random_status",
+        "value": {
+          "default": 1,
+          "gold": 2,
+          "diamond": 4
+        }
+      }
+    ],
     "tags": []
   },
   "items/cold_resistance": {

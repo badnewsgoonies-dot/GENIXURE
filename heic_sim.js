@@ -46,6 +46,27 @@
         }
       }
     },
+    decrease_random_status: ({ self, log, value }) => {
+      const amount = value || 1;
+      const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
+      if (keys.length > 0) {
+        const key = keys[Math.floor(Math.random() * keys.length)];
+        const decrease = Math.min(amount, self.statuses[key]);
+        self.statuses[key] -= decrease;
+        if (decrease > 0) log(`${self.name} decreases ${key} by ${decrease}`);
+      }
+    },
+    spend_speed_decrease_random_status: ({ self, log }) => {
+      if ((self.speed || 0) > 0) {
+        const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
+        if (keys.length > 0) {
+          self.speed -= 1;
+          const key = keys[Math.floor(Math.random() * keys.length)];
+          self.statuses[key] -= 1;
+          log(`${self.name} spends 1 speed to decrease ${key} by 1`);
+        }
+      }
+    },
     add_speed: ({ self, value }) => { self.speed = (self.speed || 0) + value; },
     add_extra_strikes: ({ self, value }) => self.addExtraStrikes(value),
     deal_damage: ({ self, other, value }) => self.damageOther(value, other),
@@ -76,6 +97,11 @@
         return key === condition.key; // Used with onGainStatus trigger
       case 'is_exposed_or_wounded':
         return (self.statuses.exposed || 0) > 0 || (self.statuses.wounded || 0) > 0;
+      case 'has_status_effects':
+        const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
+        return keys.length > 0;
+      case 'has_speed':
+        return (self.speed || 0) > 0;
       case 'enemy_has_no_armor':
         return other.armor === 0;
       // Add more condition types here as needed
