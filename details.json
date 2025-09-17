@@ -1322,6 +1322,16 @@
       "health": 5,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "start_battle",
+        "action": "deal_damage_multiple_times",
+        "value": {
+          "damage": 1,
+          "times": 3
+        }
+      }
+    ],
     "tags": [
       "Food"
     ]
@@ -1353,6 +1363,12 @@
       "health": 0,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "onGainSpeed",
+        "action": "add_armor_equal_to_speed_gained"
+      }
+    ],
     "tags": []
   },
   "items/featherweight_greaves": {
@@ -1366,6 +1382,16 @@
       "health": 0,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "conditions": [
+          {"type": "has_no_speed"}
+        ],
+        "action": "add_speed",
+        "value": 1
+      }
+    ],
     "tags": []
   },
   "items/featherweight_helmet": {
@@ -1405,6 +1431,16 @@
       "health": 0,
       "speed": 0
     },
+    "effects": [
+      {
+        "trigger": "onExposed",
+        "action": "deal_damage_multiple_times",
+        "value": {
+          "damage": 1,
+          "times": 4
+        }
+      }
+    ],
     "tags": []
   },
   "items/flameburst_tome": {

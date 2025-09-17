@@ -56,23 +56,19 @@
         if (decrease > 0) log(`${self.name} decreases ${key} by ${decrease}`);
       }
     },
-    give_status_deal_damage_per_stack: ({ self, other, log, value }) => {
-      const status = value.status;
-      const amount = value.amount || 1;
-      const damagePerStack = value.damagePerStack || 1;
-      
-      // Give the status
-      other.addStatus(status, amount);
-      
-      // Deal damage per stack
-      const stacks = other.statuses[status] || 0;
-      const damage = stacks * damagePerStack;
-      if (damage > 0) {
-        other.takeDamage(damage);
-        log(`${self.name} gives ${amount} ${status} and deals ${damage} damage (${damagePerStack} per ${status})`);
+    add_armor_equal_to_speed_gained: ({ self, log, extra }) => {
+      const speedGained = extra?.amount || 0;
+      if (speedGained > 0) {
+        self.armor = (self.armor || 0) + speedGained;
+        log(`${self.name} gains ${speedGained} armor from speed gain`);
       }
     },
-    add_speed: ({ self, value }) => { self.speed = (self.speed || 0) + value; },
+    add_speed: ({ self, other, log, value }) => { 
+      const oldSpeed = self.speed || 0;
+      self.speed = oldSpeed + value; 
+      // Trigger onGainSpeed event for items that react to speed changes
+      runEffects('onGainSpeed', self, other, log, { amount: value, delta: value });
+    },
     add_extra_strikes: ({ self, value }) => self.addExtraStrikes(value),
     deal_damage: ({ self, other, value }) => self.damageOther(value, other),
     heal: ({ self, value }) => self.heal(value),
@@ -109,6 +105,8 @@
       case 'has_status_effects':
         const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
         return keys.length > 0;
+      case 'has_no_speed':
+        return (self.speed || 0) === 0;
       case 'has_speed':
         return (self.speed || 0) > 0;
       case 'enemy_has_no_armor':
