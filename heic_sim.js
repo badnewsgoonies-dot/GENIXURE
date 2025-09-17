@@ -118,6 +118,10 @@
         log(`${self.name} reduces incoming damage by ${value.reduction}`);
       }
     },
+    heal_if_condition: ({ self, log, value }) => {
+      const healed = self.heal(value);
+      if (healed > 0) log(`${self.name} restores ${healed} health`);
+    },
     add_speed: ({ self, other, log, value }) => { 
       const oldSpeed = self.speed || 0;
       self.speed = oldSpeed + value; 
