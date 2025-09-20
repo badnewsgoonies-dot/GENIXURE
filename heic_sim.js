@@ -96,8 +96,18 @@
       if (statusValue > 0) self.addTempAtk(statusValue);
     },
     add_status_to_enemy_from_stat: ({ self, other, key, stat }) => {
-      const statValue = self[stat] || 0;
-      if (statValue > 0) other.addStatus(key, statValue);
+      // Map stat names to fighter property names
+      const statMap = {
+        'attack': 'atk',
+        'health': 'hp',
+        'armor': 'armor',
+        'speed': 'speed'
+      };
+      const fighterStat = statMap[stat] || stat;
+      const statValue = self[fighterStat] || 0;
+      if (statValue > 0) {
+        other.addStatus(key, statValue);
+      }
     },
     add_extra_strikes_to_enemy: ({ other, value }) => {
       other.extraStrikes = (other.extraStrikes || 0) + value;
@@ -481,7 +491,7 @@
       const damage = totalStacks * damagePerStack;
       
       if (damage > 0) {
-        self.damageOther(damage);
+        self.damageOther(damage, other);
         log(`${other.name} gains ${amount} ${status} and takes ${damage} damage (${damagePerStack} per stack).`);
       } else {
         log(`${other.name} gains ${amount} ${status}.`);
@@ -495,7 +505,9 @@
       },
     add_status_to_enemy: ({ other, key, value }) => other.addStatus(key, value),
       add_status_to_enemy_tiered: ({ other, log, key, baseTier, goldTier, diamondTier, tier }) => {
-        const amount = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
+        // Convert tier string to number: 'base'=1, 'gold'=2, 'diamond'=3
+        const tierNum = tier === 'diamond' ? 3 : tier === 'gold' ? 2 : 1;
+        const amount = tierNum === 3 ? diamondTier : tierNum === 2 ? goldTier : baseTier;
         other.addStatus(key, amount);
         log(`💀 ${other.name} gains ${amount} ${key}`);
       },
@@ -1254,8 +1266,8 @@
           'battleStart': 'battleStart',
           'turnStart': 'turnStart',
           'onHit': 'hit',
-          'onWounded': 'wounded',
-          'onExposed': 'exposed',
+          'onWounded': 'onWounded',
+          'onExposed': 'onExposed',
           'onDamaged': 'damaged',
           'onKill': 'kill',
           'afterStrike': 'afterStrike',
@@ -1289,7 +1301,16 @@
                 // Handle repeat functionality
                 const repeatCount = effect.repeat || 1;
                 for (let i = 0; i < repeatCount; i++) {
-                  actionFn({ ...effectCtx, value, key: effect.key, stat: effect.stat, status: effect.status });
+                  actionFn({ 
+                    ...effectCtx, 
+                    value, 
+                    key: effect.key, 
+                    stat: effect.stat, 
+                    status: effect.status,
+                    baseTier: effect.baseTier,
+                    goldTier: effect.goldTier, 
+                    diamondTier: effect.diamondTier
+                  });
                 }
                 
                 // Handle then actions if present
