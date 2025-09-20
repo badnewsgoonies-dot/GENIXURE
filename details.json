@@ -203,8 +203,8 @@
     },
     "tags": []
   },
-  "items/bee_stinger": {
-    "bucket": "items",
+  "weapons/bee_stinger": {
+    "bucket": "weapons",
     "effect": "On first turn (on hit): give enemy 4 Poison, 3 Acid, 2 Stun",
     "effects": [
       {
