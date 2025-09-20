@@ -424,6 +424,65 @@
       self.attack = Math.max(0, self.attack * 2);
       if (log) log(`${self.name}'s attack is doubled`);
     },
+    add_max_health: ({ self, value, log }) => {
+      const amount = value || 1;
+      self.hpMax += amount;
+      self.hp += amount; // Also restore the health gained
+      if (log) log(`${self.name} gains ${amount} max health`);
+    },
+    convert_health_to_armor: ({ self, percentage, log }) => {
+      const healthToConvert = Math.floor(self.hp * percentage);
+      if (healthToConvert > 0) {
+        self.hp -= healthToConvert;
+        self.armor += healthToConvert;
+        if (log) log(`${self.name} converts ${healthToConvert} health to armor`);
+      }
+    },
+    deal_damage_to_enemy: ({ self, other, value, log }) => {
+      const damage = value || 1;
+      other.hp -= damage;
+      if (log) log(`${other.name} takes ${damage} damage`);
+    },
+    restore_health: ({ self, value, log }) => {
+      const amount = value || 1;
+      const actualRestore = Math.min(amount, self.hpMax - self.hp);
+      self.hp += actualRestore;
+      if (log) log(`${self.name} restores ${actualRestore} health`);
+    },
+    set_armor: ({ self, value, log }) => {
+      self.armor = value || 0;
+      if (log) log(`${self.name}'s armor is set to ${self.armor}`);
+    },
+    conditional_damage_to_enemy: ({ self, other, baseDamage, doubleIfNoArmor, log }) => {
+      let damage = baseDamage || 1;
+      if (doubleIfNoArmor && other.armor === 0) {
+        damage *= 2;
+      }
+      other.hp -= damage;
+      if (log) log(`${other.name} takes ${damage} damage${doubleIfNoArmor && other.armor === 0 ? ' (doubled for no armor)' : ''}`);
+    },
+    add_strikes: ({ self, value, log }) => {
+      const strikes = value || 1;
+      self.additionalStrikes = (self.additionalStrikes || 0) + strikes;
+      if (log) log(`${self.name} gains ${strikes} additional strikes`);
+    },
+    add_strikes_equal_to_speed: ({ self, log }) => {
+      const strikes = self.speed;
+      self.additionalStrikes = (self.additionalStrikes || 0) + strikes;
+      if (log) log(`${self.name} gains ${strikes} additional strikes (equal to speed)`);
+    },
+    transfer_all_statuses_to_enemy: ({ self, other, log }) => {
+      const statuses = Object.keys(self.statuses || {});
+      let transferred = 0;
+      statuses.forEach(status => {
+        if (self.statuses[status] > 0) {
+          other.statuses[status] = (other.statuses[status] || 0) + self.statuses[status];
+          self.statuses[status] = 0;
+          transferred++;
+        }
+      });
+      if (log) log(`${self.name} transfers all status effects to ${other.name}`);
+    },
     remove_gold: ({ self, value }) => {
       const currentGold = self.gold || 0;
       if (currentGold > 0) {
@@ -788,6 +847,17 @@
         return (self.speed || 0) === 0;
       case 'has_speed':
         return (self.speed || 0) > 0;
+      case 'enemy_has_higher_stats':
+        if (condition.any) {
+          return other.attack > self.attack || other.armor > self.armor || other.speed > self.speed;
+        }
+        return other.attack > self.attack && other.armor > self.armor && other.speed > self.speed;
+      case 'speed_equals_attack':
+        return self.speed === self.attack;
+      case 'player_speed_higher_than_enemy':
+        return self.speed > other.speed;
+      case 'player_speed_higher_than_armor':
+        return self.speed > self.armor;
       case 'min_speed':
         return (self.speed || 0) >= (condition.value || 1);
       case 'min_armor':

@@ -2489,6 +2489,14 @@
   "items/honeydew_melon": {
     "bucket": "items",
     "effect": "Battle Start: Give all your status effects to the enemy",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "transfer_all_statuses_to_enemy" }
+        ]
+      }
+    ],
     "name": "Honeydew Melon",
     "slug": "honeydew_melon",
     "stats": {
@@ -2678,6 +2686,14 @@
   "items/iron_shrapnel": {
     "bucket": "items",
     "effect": "Battle start: Deal 3 damage to the enemy, if they don't have armor, double the damage dealt",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "conditional_damage_to_enemy", "baseDamage": 3, "doubleIfNoArmor": true }
+        ]
+      }
+    ],
     "name": "Iron Shrapnel",
     "slug": "iron_shrapnel",
     "stats": {
@@ -2929,6 +2945,14 @@
   "items/lifeblood_armor": {
     "bucket": "items",
     "effect": "Battle Start: Convert 50% of your current health to that amount of armor",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "convert_health_to_armor", "percentage": 0.5 }
+        ]
+      }
+    ],
     "name": "Lifeblood Armor",
     "slug": "lifeblood_armor",
     "stats": {
@@ -3696,6 +3720,15 @@
   "items/purelake_potion": {
     "bucket": "items",
     "effect": "Battle start: Remove all your armor and gain 3 purity",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "set_armor", "value": 0 },
+          { "type": "add_status", "key": "purity", "value": 3 }
+        ]
+      }
+    ],
     "name": "Purelake Potion",
     "slug": "purelake_potion",
     "stats": {
@@ -3750,6 +3783,17 @@
   "items/redwood_cloak": {
     "bucket": "items",
     "effect": "Battle Start: If your health is not full, restore 2 health — at Gold: 4, at Diamond: 8",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "is_not_full_health" }
+        ],
+        "actions": [
+          { "type": "restore_health", "value": 2 }
+        ]
+      }
+    ],
     "name": "Redwood Cloak",
     "slug": "redwood_cloak",
     "stats": {
@@ -4399,6 +4443,17 @@
   "items/silverscale_greaves": {
     "bucket": "items",
     "effect": "Battle Start: If you have more speed than the enemy, give them 2 riptide",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "player_speed_higher_than_enemy" }
+        ],
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "riptide", "value": 2 }
+        ]
+      }
+    ],
     "name": "Silverscale Greaves",
     "slug": "silverscale_greaves",
     "stats": {
@@ -4594,6 +4649,17 @@
   "items/spiritual_balance": {
     "bucket": "items",
     "effect": "Battle Start: If your speed is equal to your attack, gain 3 attack",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "speed_equals_attack" }
+        ],
+        "actions": [
+          { "type": "add_attack", "value": 3 }
+        ]
+      }
+    ],
     "name": "Spiritual Balance",
     "slug": "spiritual_balance",
     "stats": {
@@ -4646,6 +4712,17 @@
   "items/stormcloud_armor": {
     "bucket": "items",
     "effect": "Battle Start: If you have more speed than armor, stun the enemy for 2 turns",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "player_speed_higher_than_armor" }
+        ],
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "stun", "value": 2 }
+        ]
+      }
+    ],
     "name": "Stormcloud Armor",
     "slug": "stormcloud_armor",
     "stats": {
@@ -4659,6 +4736,15 @@
   "items/stormcloud_curse": {
     "bucket": "items",
     "effect": "Battle Start: Stun the enemy and yourself for 2 turns",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "stun", "value": 2 },
+          { "type": "add_status", "key": "stun", "value": 2 }
+        ]
+      }
+    ],
     "name": "Stormcloud Curse",
     "slug": "stormcloud_curse",
     "stats": {
@@ -4811,6 +4897,17 @@
   "items/swiftstrike_cloak": {
     "bucket": "items",
     "effect": "Battle Start: If you have more speed than the enemy, gain 1 additional strike",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "player_speed_higher_than_enemy" }
+        ],
+        "actions": [
+          { "type": "add_strikes", "value": 1 }
+        ]
+      }
+    ],
     "name": "Swiftstrike Cloak",
     "slug": "swiftstrike_cloak",
     "stats": {
@@ -5155,6 +5252,17 @@
   "items/weaver_shield": {
     "bucket": "items",
     "effect": "Battle Start: If you have 0 base armor, gain 4 armor — at Gold: 8, at Diamond: 16",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "no_armor" }
+        ],
+        "actions": [
+          { "type": "add_armor", "value": 4 }
+        ]
+      }
+    ],
     "name": "Weaver Shield",
     "slug": "weaver_shield",
     "stats": {
@@ -5429,6 +5537,14 @@
   "upgrades/freezing_edge": {
     "bucket": "upgrades",
     "effect": "Battle Start: Give the enemy 3 freeze",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "freeze", "value": 3 }
+        ]
+      }
+    ],
     "name": "Freezing Edge",
     "slug": "freezing_edge",
     "stats": {
@@ -5768,6 +5884,15 @@
   "weapons/bloodlord_s_axe": {
     "bucket": "weapons",
     "effect": "Battle Start: The enemy loses 5 health and you restore 5 health",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "deal_damage_to_enemy", "value": 5 },
+          { "type": "restore_health", "value": 5 }
+        ]
+      }
+    ],
     "name": "Bloodlord's Axe",
     "slug": "bloodlord_s_axe",
     "stats": {
@@ -5901,6 +6026,20 @@
   "weapons/cherry_blade": {
     "bucket": "weapons",
     "effect": "Battle Start: Reduce your speed by 1. After each strike: Restore 1 health.",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_speed", "value": -1 }
+        ]
+      },
+      {
+        "trigger": "after_strike",
+        "actions": [
+          { "type": "restore_health", "value": 1 }
+        ]
+      }
+    ],
     "name": "Cherry Blade",
     "slug": "cherry_blade",
     "stats": {
@@ -5927,6 +6066,14 @@
   "weapons/dashmaster_s_dagger": {
     "bucket": "weapons",
     "effect": "Battle Start: Gain additional strikes equal to speed",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_strikes_equal_to_speed" }
+        ]
+      }
+    ],
     "name": "Dashmaster's Dagger",
     "slug": "dashmaster_s_dagger",
     "stats": {
@@ -6026,6 +6173,14 @@
   "weapons/frozen_iceblade": {
     "bucket": "weapons",
     "effect": "Battle Start: Gain 3 freeze.",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status", "key": "freeze", "value": 3 }
+        ]
+      }
+    ],
     "name": "Frozen Iceblade",
     "slug": "frozen_iceblade",
     "stats": {
@@ -6039,6 +6194,14 @@
   "weapons/fungal_rapier": {
     "bucket": "weapons",
     "effect": "Battle Start: Gain 1 poison.",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status", "key": "poison", "value": 1 }
+        ]
+      }
+    ],
     "name": "Fungal Rapier",
     "slug": "fungal_rapier",
     "stats": {
@@ -6117,6 +6280,14 @@
   "weapons/grilling_skewer": {
     "bucket": "weapons",
     "effect": "Battle Start: Gain 1 additional strike",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status", "key": "extra_strike", "value": 1 }
+        ]
+      }
+    ],
     "name": "Grilling Skewer",
     "slug": "grilling_skewer",
     "stats": {
@@ -6260,6 +6431,14 @@
   "weapons/leather_whip": {
     "bucket": "weapons",
     "effect": "Battle Start: Gain 5 max health",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_max_health", "value": 5 }
+        ]
+      }
+    ],
     "name": "Leather Whip",
     "slug": "leather_whip",
     "stats": {
@@ -6432,6 +6611,20 @@
   "weapons/purelake_staff": {
     "bucket": "weapons",
     "effect": "Battle Start: Gain 2 purity. On Hit: Remove 1 purity",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status", "key": "purity", "value": 2 }
+        ]
+      },
+      {
+        "trigger": "on_hit",
+        "actions": [
+          { "type": "remove_status", "key": "purity", "value": 1 }
+        ]
+      }
+    ],
     "name": "Purelake Staff",
     "slug": "purelake_staff",
     "stats": {
@@ -6590,6 +6783,14 @@
   "weapons/silverscale_dagger": {
     "bucket": "weapons",
     "effect": "Battle Start: Give the enemy 1 riptide",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "riptide", "value": 1 }
+        ]
+      }
+    ],
     "name": "Silverscale Dagger",
     "slug": "silverscale_dagger",
     "stats": {
@@ -6616,6 +6817,15 @@
   "weapons/slime_sword": {
     "bucket": "weapons",
     "effect": "Battle Start: Give yourself and the enemy 3 acid",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status", "key": "acid", "value": 3 },
+          { "type": "add_status_to_enemy", "key": "acid", "value": 3 }
+        ]
+      }
+    ],
     "name": "Slime Sword",
     "slug": "slime_sword",
     "stats": {
@@ -6694,6 +6904,17 @@
   "weapons/swiftstrike_rapier": {
     "bucket": "weapons",
     "effect": "Battle Start: If you have more speed than the enemy, gain 3 additional strikes",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "player_speed_higher_than_enemy" }
+        ],
+        "actions": [
+          { "type": "add_strikes", "value": 3 }
+        ]
+      }
+    ],
     "name": "Swiftstrike Rapier",
     "slug": "swiftstrike_rapier",
     "stats": {
@@ -6707,6 +6928,17 @@
   "weapons/sword_of_pride": {
     "bucket": "weapons",
     "effect": "Battle Start: If the enemy has more attack, armor or speed than you, take 3 damage",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "enemy_has_higher_stats", "any": true }
+        ],
+        "actions": [
+          { "type": "take_damage", "value": 3 }
+        ]
+      }
+    ],
     "name": "Sword of Pride",
     "slug": "sword_of_pride",
     "stats": {
@@ -6746,6 +6978,14 @@
   "weapons/thunderbound_sabre": {
     "bucket": "weapons",
     "effect": "Battle start: Stun yourself for 2 turns",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status", "key": "stun", "value": 2 }
+        ]
+      }
+    ],
     "name": "Thunderbound Sabre",
     "slug": "thunderbound_sabre",
     "stats": {
