@@ -1116,6 +1116,50 @@
       "Jewelry"
     ]
   },
+  "items/citrine_ring": {
+    "bucket": "items",
+    "effect": "Battle Start: Gain 1 gold.",
+    "effects": [
+      {
+        "action": "add_gold",
+        "trigger": "battleStart",
+        "value": 1
+      }
+    ],
+    "name": "Citrine Ring",
+    "slug": "citrine_ring",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "tags": [
+      "Ring"
+    ]
+  },
+  "items/citrine_ring_gold": {
+    "bucket": "items",
+    "effect": "Battle Start: Gain 2 gold.",
+    "effects": [
+      {
+        "action": "add_gold",
+        "trigger": "battleStart",
+        "value": 2
+      }
+    ],
+    "name": "Citrine Ring Gold",
+    "slug": "citrine_ring_gold",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "tags": [
+      "Ring"
+    ]
+  },
   "items/clearspring_cloak": {
     "bucket": "items",
     "effect": "Exposed: Remove all your status effects and gain 1 armor equal to stacks removed",
@@ -1192,6 +1236,64 @@
       "speed": 0
     },
     "tags": []
+  },
+  "items/clearspring_opal": {
+    "bucket": "items",
+    "effect": "Turn Start: If you have any status effects, spend 1 speed to decrease a random status effect by 1",
+    "effects": [
+      {
+        "actions": [
+          {
+            "type": "spend_speed_decrease_random_status"
+          }
+        ],
+        "conditions": [
+          {
+            "type": "has_status_effects"
+          },
+          {
+            "type": "min_speed",
+            "value": 1
+          }
+        ],
+        "trigger": "turnStart"
+      }
+    ],
+    "name": "Clearspring Opal",
+    "slug": "clearspring_opal",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 2
+    },
+    "tags": []
+  },
+  "items/clearspring_rose": {
+    "bucket": "items",
+    "effect": "Whenever you restore health, decrease a random status effect by 1. You can only equip 1 rose",
+    "effects": [
+      {
+        "trigger": "onHeal",
+        "actions": [
+          {
+            "type": "remove_random_status",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "name": "Clearspring Rose",
+    "slug": "clearspring_rose",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "tags": [
+      "Rose"
+    ]
   },
   "items/clearspring_watermelon": {
     "bucket": "items",
@@ -4284,8 +4386,8 @@
     "name": "Ruby Earring",
     "slug": "ruby_earring",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 3,
       "health": 0,
       "speed": 0
     },
@@ -4326,8 +4428,8 @@
     "name": "Ruby Ring",
     "slug": "ruby_ring",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 4,
       "health": 0,
       "speed": 0
     },
@@ -4365,8 +4467,8 @@
     "name": "Rusty Ring",
     "slug": "rusty_ring",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 3,
       "health": 0,
       "speed": 0
     },
@@ -4508,10 +4610,10 @@
     "name": "Sapphire Earring",
     "slug": "sapphire_earring",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
-      "speed": 0
+      "speed": 3
     },
     "tags": [
       "Jewelry"
@@ -4545,10 +4647,10 @@
     "name": "Sapphire Ring",
     "slug": "sapphire_ring",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
-      "speed": 0
+      "speed": 4
     },
     "tags": [
       "Jewelry",
@@ -5344,8 +5446,8 @@
     "name": "Thorn Ring",
     "slug": "thorn_ring",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 4,
       "health": 0,
       "speed": 0
     },
@@ -5723,10 +5825,10 @@
     "name": "Wet Egg",
     "slug": "wet_egg",
     "stats": {
-      "attack": 0,
       "armor": 0,
-      "health": 0,
-      "speed": 0
+      "attack": 4,
+      "health": -2,
+      "speed": 3
     },
     "tags": []
   },
@@ -7946,64 +8048,6 @@
           }
         ]
       }
-    ]
-  },
-  "items/clearspring_opal": {
-    "bucket": "items",
-    "effect": "Turn Start: If you have any status effects, spend 1 speed to decrease a random status effect by 1",
-    "effects": [
-      {
-        "actions": [
-          {
-            "type": "spend_speed_decrease_random_status"
-          }
-        ],
-        "conditions": [
-          {
-            "type": "has_status_effects"
-          },
-          {
-            "type": "min_speed",
-            "value": 1
-          }
-        ],
-        "trigger": "turnStart"
-      }
-    ],
-    "name": "Clearspring Opal",
-    "slug": "clearspring_opal",
-    "stats": {
-      "armor": 0,
-      "attack": 0,
-      "health": 0,
-      "speed": 2
-    },
-    "tags": []
-  },
-  "items/clearspring_rose": {
-    "bucket": "items",
-    "effect": "Whenever you restore health, decrease a random status effect by 1. You can only equip 1 rose",
-    "effects": [
-      {
-        "trigger": "onHeal",
-        "actions": [
-          {
-            "type": "remove_random_status",
-            "value": 1
-          }
-        ]
-      }
-    ],
-    "name": "Clearspring Rose",
-    "slug": "clearspring_rose",
-    "stats": {
-      "armor": 0,
-      "attack": 0,
-      "health": 0,
-      "speed": 0
-    },
-    "tags": [
-      "Rose"
     ]
   }
 }
