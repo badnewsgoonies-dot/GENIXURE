@@ -555,6 +555,11 @@
       self.atk = Math.max(0, self.atk * 2);
       if (log) log(`${self.name}'s attack is doubled`);
     },
+    multiply_attack: ({ self, log, value }) => {
+      const multiplier = value || 2;
+      self.atk = Math.max(0, self.atk * multiplier);
+      if (log) log(`${self.name}'s attack is multiplied by ${multiplier}`);
+    },
     add_max_health: ({ self, value, log }) => {
       const amount = value || 1;
       self.hpMax += amount;
@@ -882,6 +887,12 @@
         if (gained > 0) log(`${self.name} gains ${gained} health`);
       }
     },
+    add_max_hp: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.hp += amount;
+      self.hpMax += amount;
+      log(`${self.name} gains ${amount} max health`);
+    },
     remove_enemy_armor: ({ self, other, log }) => {
       const removed = other.armor;
       if (removed > 0) {
@@ -1090,6 +1101,15 @@
       self.speed = oldSpeed + amount;
       runEffects('onGainSpeed', self, null, log, { amount: amount, delta: amount });
       log(`⚡ ${self.name} gains ${amount} speed`);
+    },
+    spend_speed_deal_damage: ({ self, other, log, value }) => {
+      const speedCost = value?.speedCost || 1;
+      const damage = value?.damage || 1;
+      if (self.speed >= speedCost) {
+        self.speed -= speedCost;
+        other.hp = Math.max(0, (other.hp || 0) - damage);
+        log(`${self.name} spends ${speedCost} speed to deal ${damage} damage`);
+      }
     },
     gain_temp_attack: ({ self, log, value }) => {
       const amount = value || 1;
@@ -1389,10 +1409,10 @@
       this.name = raw.name || 'Fighter';
       this.hp = stats.hp ?? 10;
       this.hpMax = this.hp;
-      this.atk = stats.atk ?? 0;
+      this.atk = stats.atk ?? 0;  // Base attack of 0 (correct game stats)
       this.armor = stats.armor ?? 0;
       this.baseArmor = this.armor;
-      this.speed = stats.speed ?? 0;
+      this.speed = stats.speed ?? 0;  // Base speed of 0 (correct game stats)
       this.weapon = raw.weaponSlug || raw.weapon || null;
       this.weaponEdge = raw.weaponEdge || null; // Support for weapon edge upgrade
       this.items = raw.itemSlugs || raw.items || [];
@@ -1503,7 +1523,7 @@
   }
 
   function attachHelpers(self, other, log){
-    if (self.helpersAttached) return;
+    if (!self || self.helpersAttached) return;
     self.helpersAttached = true;
 
     self.addAtk = n => { self.atk += n; };
