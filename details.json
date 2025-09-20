@@ -1704,6 +1704,14 @@
   "items/emerald_gemstone": {
     "bucket": "items",
     "effect": "Battle Start: if your max Health < enemy's, set to enemy's",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "condition": "self_max_health_less_than_enemy",
+        "action": "set_max_health_to_enemy",
+        "value": 1
+      }
+    ],
     "name": "Emerald Gemstone",
     "slug": "emerald_gemstone",
     "stats": {
@@ -2642,6 +2650,12 @@
   "items/ironskin_potion": {
     "bucket": "items",
     "effect": "Battle Start: Gain armor equal to lost health",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "gain_armor_equal_to_lost_health"
+      }
+    ],
     "name": "Ironskin Potion",
     "slug": "ironskin_potion",
     "stats": {
@@ -3278,6 +3292,13 @@
   "items/ore_heart": {
     "bucket": "items",
     "effect": "Battle Start: Gain 3 armor for each equipped stone item",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "gain_armor_per_tagged_item",
+        "value": {"tag": "Stone", "armor_per_item": 3}
+      }
+    ],
     "name": "Ore Heart",
     "slug": "ore_heart",
     "stats": {
@@ -3291,6 +3312,20 @@
   "items/petrified_chestnut": {
     "bucket": "items",
     "effect": "Battle Start (if full health): +6 Thorns and +6 Armor",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "condition": "self_full_health",
+        "action": "gain_thorns",
+        "value": 6
+      },
+      {
+        "trigger": "battle_start",
+        "condition": "self_full_health", 
+        "action": "gain_armor",
+        "value": 6
+      }
+    ],
     "name": "Petrified Chestnut",
     "slug": "petrified_chestnut",
     "stats": {
@@ -3470,6 +3505,13 @@
   "items/purelake_helmet": {
     "bucket": "items",
     "effect": "Battle Start: Gain 1 Purity — at Gold: 2, at Diamond: 4",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "add_status",
+        "value": {"status": "purity", "amount": 1, "gold": 2, "diamond": 4}
+      }
+    ],
     "name": "Purelake Helmet",
     "slug": "purelake_helmet",
     "stats": {
@@ -3718,6 +3760,18 @@
   "items/ruby_ring": {
     "bucket": "items",
     "effect": "Battle Start: +2 Attack and take 3 damage (scales up at higher tier)",
+    "effects": [
+      {
+        "action": "gain_attack",
+        "amount": 2,
+        "condition": "battle_start"
+      },
+      {
+        "action": "take_damage",
+        "amount": 3,
+        "condition": "battle_start"
+      }
+    ],
     "name": "Ruby Ring",
     "slug": "ruby_ring",
     "stats": {
@@ -3914,6 +3968,13 @@
   "items/sapphire_ring": {
     "bucket": "items",
     "effect": "Battle Start: Steal 2 Armor (Gold 4, Diamond 8)",
+    "effects": [
+      {
+        "action": "steal_armor",
+        "amount": 2,
+        "condition": "battle_start"
+      }
+    ],
     "name": "Sapphire Ring",
     "slug": "sapphire_ring",
     "stats": {
@@ -4395,6 +4456,14 @@
   "items/sugar_bomb": {
     "bucket": "items",
     "effect": "Turn Start: Deal 1 damage 3 times",
+    "effects": [
+      {
+        "action": "deal_damage",
+        "amount": 1,
+        "condition": "turn_start",
+        "repeat": 3
+      }
+    ],
     "name": "Sugar Bomb",
     "slug": "sugar_bomb",
     "stats": {
@@ -4571,6 +4640,18 @@
   "items/toxic_cherry": {
     "bucket": "items",
     "effect": "Turn Start: Gain 1 Poison and deal 1 damage",
+    "effects": [
+      {
+        "action": "gain_poison",
+        "amount": 1,
+        "condition": "turn_start"
+      },
+      {
+        "action": "deal_damage",
+        "amount": 1,
+        "condition": "turn_start"
+      }
+    ],
     "name": "Toxic Cherry",
     "slug": "toxic_cherry",
     "stats": {

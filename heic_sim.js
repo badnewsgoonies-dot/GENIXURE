@@ -575,6 +575,50 @@
       const healed = self.heal(amount);
       if (healed > 0) log(`${self.name} restores ${healed} health`);
     },
+    set_max_health_to_enemy: ({ self, other, log }) => {
+      if (self.hpMax < other.hpMax) {
+        self.hpMax = other.hpMax;
+        log(`${self.name} sets max health to ${other.hpMax}`);
+      }
+    },
+    gain_armor_equal_to_lost_health: ({ self, log }) => {
+      const lostHealth = self.hpMax - self.hp;
+      if (lostHealth > 0) {
+        self.addArmor(lostHealth);
+        log(`${self.name} gains ${lostHealth} armor (equal to lost health)`);
+      }
+    },
+    gain_armor_per_tagged_item: ({ self, log, value }) => {
+      const tag = value?.tag || 'Stone';
+      const armorPerItem = value?.armor_per_item || 3;
+      // This will need to be implemented by the simulation engine
+      // as it needs access to the item tagging system
+      const stoneItems = self.countItemsByTag(tag);
+      const armorGain = stoneItems * armorPerItem;
+      if (armorGain > 0) {
+        self.addArmor(armorGain);
+        log(`${self.name} gains ${armorGain} armor (${armorPerItem} per ${tag} item)`);
+      }
+    },
+    take_damage: ({ self, log, value }) => {
+      const amount = value || 1;
+      const damaged = self.damage(amount);
+      if (damaged > 0) log(`${self.name} takes ${damaged} damage`);
+    },
+    steal_armor: ({ self, other, log, value }) => {
+      const amount = value || 1;
+      const stolen = Math.min(amount, other.armor);
+      if (stolen > 0) {
+        other.armor = Math.max(0, other.armor - stolen);
+        self.addArmor(stolen);
+        log(`${self.name} steals ${stolen} armor from ${other.name}`);
+      }
+    },
+    gain_poison: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.addStatus('poison', amount);
+      log(`${self.name} gains ${amount} poison`);
+    },
   };
 
   function checkCondition(condition, { self, other, log, key, isNew }) {
@@ -657,6 +701,8 @@
         return (other.statuses.stun || 0) > 0;
       case 'self_full_health':
         return self.hp === self.hpMax;
+      case 'self_max_health_less_than_enemy':
+        return self.hpMax < other.hpMax;
       // Add more condition types here as needed
       default:
         log(`Unknown condition type: ${condition.type}`);

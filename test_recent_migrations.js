@@ -27,7 +27,15 @@ function testRecentMigrations() {
     'upgrades/bleeding_edge',
     'items/horned_helmet',
     'items/iron_transfusion',
-    'items/sanguine_imp'
+    'items/sanguine_imp',
+    'items/emerald_gemstone',
+    'items/ironskin_potion',
+    'items/ore_heart',
+    'items/purelake_helmet',
+    'items/ruby_ring',
+    'items/sapphire_ring',
+    'items/sugar_bomb',
+    'items/toxic_cherry'
   ];
   
   for (const itemKey of testCases) {
@@ -65,6 +73,13 @@ function testRecentMigrations() {
     }
   }
 }
+
+// Count remaining unmigrated items
+const unmigrated = Object.keys(detailsData)
+  .filter(key => key.startsWith('items/'))
+  .filter(key => detailsData[key].effect && !detailsData[key].effects);
+
+console.log(`📊 Remaining unmigrated items: ${unmigrated.length}\n`);
 
 // Run the test
 testRecentMigrations();
