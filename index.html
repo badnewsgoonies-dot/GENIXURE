@@ -231,6 +231,65 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
 #detailBox h2 { margin-top:0; }
 #detailClose { background:#333; color:#f33; border:1px solid #f33; border-radius:6px; padding:2px 6px; float:right; cursor:pointer; }
 #detailStats { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+
+/* Analysis item styling */
+.analysisItem {
+  border: 2px solid #f33;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background: #111;
+  color: #fff;
+}
+.analysisItem.weapon { border-color: #ff6; }
+.analysisItem.edge { border-color: #0ff; }
+.analysisItemHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.analysisItemHeader img {
+  width: 48px;
+  height: 48px;
+  image-rendering: pixelated;
+}
+.analysisItemName {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+.analysisItemEffect {
+  font-size: 14px;
+  color: #faa;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.analysisItemStats {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.analysisItemTags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.analysisTag {
+  background: #333;
+  border: 1px solid #666;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: #ccc;
+}
+.emptySlot {
+  color: #666;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
 </style>
 </head>
 <body>
@@ -267,6 +326,7 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   <div style="grid-column: 2; display: flex; flex-direction: column; height: 100%; min-height:0;">
     <div class="tabs" style="display:flex; gap:2px; margin-bottom:8px;">
       <button id="tabCompendium" class="tabBtn" style="background:#111;color:#f33;border:2px solid #f33;border-radius:8px 8px 0 0;padding:8px 24px;cursor:pointer;font-size:16px;">Compendium</button>
+      <button id="tabAnalysis" class="tabBtn" style="background:#111;color:#fa0;border:2px solid #fa0;border-radius:8px 8px 0 0;padding:8px 24px;cursor:pointer;font-size:16px;">Analysis</button>
       <button id="tabSimulation" class="tabBtn" style="background:#111;color:#0f3;border:2px solid #0f3;border-radius:8px 8px 0 0;padding:8px 24px;cursor:pointer;font-size:16px;">Simulation</button>
     </div>
     <section class="center" id="compendiumTab" style="flex:1; display:flex; flex-direction:column; min-height:0;">
@@ -285,6 +345,57 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
         <span id="count" style="margin-left:auto;">Shown: 0</span>
       </div>
       <div id="grid" class="grid" style="flex:1;"></div>
+    </section>
+    <section class="center" id="analysisTab" style="flex:1; display:none; flex-direction:column; min-height:0;">
+      <div style="padding:20px; flex:1; overflow:auto;">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; max-width:1200px; margin:0 auto;">
+          <!-- Player 1 Column -->
+          <div>
+            <h2 style="color:#f33; font-size:32px; margin:0 0 24px 0; text-align:center;">Player 1</h2>
+            
+            <!-- Weapon Section -->
+            <div style="margin-bottom:32px;">
+              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Weapon</h3>
+              <div id="analysisP1Weapon" style="color:#faa;"></div>
+            </div>
+            
+            <!-- Edge Section -->
+            <div style="margin-bottom:32px;">
+              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Edge</h3>
+              <div id="analysisP1Edge" style="color:#faa;"></div>
+            </div>
+            
+            <!-- Items Section -->
+            <div>
+              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Items</h3>
+              <div id="analysisP1Items" style="color:#faa;"></div>
+            </div>
+          </div>
+          
+          <!-- Player 2 Column -->
+          <div>
+            <h2 style="color:#f33; font-size:32px; margin:0 0 24px 0; text-align:center;">Player 2</h2>
+            
+            <!-- Weapon Section -->
+            <div style="margin-bottom:32px;">
+              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Weapon</h3>
+              <div id="analysisP2Weapon" style="color:#faa;"></div>
+            </div>
+            
+            <!-- Edge Section -->
+            <div style="margin-bottom:32px;">
+              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Edge</h3>
+              <div id="analysisP2Edge" style="color:#faa;"></div>
+            </div>
+            
+            <!-- Items Section -->
+            <div>
+              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Items</h3>
+              <div id="analysisP2Items" style="color:#faa;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <section class="center" id="simulationTab" style="flex:1; display:none; flex-direction:column; align-items:center; justify-content:center; min-height:0;">
       <div id="simPanel" style="width:640px;max-width:100%;margin:24px auto;background:#000;border:2px solid #0f3;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:18px;box-shadow:0 0 32px #000;">
@@ -486,6 +597,11 @@ function updateTotals(sideKey) {
       }
     }
   } catch(_) {}
+  
+  // Update analysis if currently visible
+  if (typeof analysisTab !== 'undefined' && analysisTab && analysisTab.style.display !== 'none') {
+    renderAnalysis();
+  }
 }
 
 // Initialise the item slot grids for both player and opponent.  This creates SLOT_COUNT
@@ -1472,41 +1588,123 @@ function saveCache(list) {
 // Tab switching logic
 const compendiumTab = document.getElementById('compendiumTab');
 const simulationTab = document.getElementById('simulationTab');
+const analysisTab = document.getElementById('analysisTab');
 // importTab removed; set to null
 const importTab = null;
 const tabCompendium = document.getElementById('tabCompendium');
+const tabAnalysis = document.getElementById('tabAnalysis');
 const tabSimulation = document.getElementById('tabSimulation');
-if (tabCompendium && tabSimulation && compendiumTab && simulationTab) {
-  tabCompendium.addEventListener('click', () => {
-    compendiumTab.style.display = '';
-    simulationTab.style.display = 'none';
-    // importTab removed
-    tabCompendium.style.background = '#111';
-    tabCompendium.style.color = '#f33';
-    tabSimulation.style.background = '#111';
-    tabSimulation.style.color = '#0f3';
-    // tabImport removed
-  });
-  tabSimulation.addEventListener('click', () => {
-    compendiumTab.style.display = 'none';
-    simulationTab.style.display = '';
-    // importTab removed
-    tabCompendium.style.background = '#111';
-    tabCompendium.style.color = '#f33';
-    tabSimulation.style.background = '#111';
-    tabSimulation.style.color = '#0f3';
-    // tabImport removed
-  });
+
+// Tab switching functionality
+function showTab(tabName) {
+  // Hide all tabs
+  compendiumTab.style.display = 'none';
+  analysisTab.style.display = 'none';
+  simulationTab.style.display = 'none';
+  
+  // Reset all tab button styles
+  tabCompendium.style.background = '#111';
+  if (tabAnalysis) tabAnalysis.style.background = '#111';
+  tabSimulation.style.background = '#111';
+  
+  // Show selected tab and highlight button
+  if (tabName === 'compendium') {
+    compendiumTab.style.display = 'flex';
+    tabCompendium.style.background = '#300';
+  } else if (tabName === 'analysis') {
+    analysisTab.style.display = 'flex';
+    tabAnalysis.style.background = '#320';
+    renderAnalysis(); // Update analysis content
+  } else if (tabName === 'simulation') {
+    simulationTab.style.display = 'flex';  
+    tabSimulation.style.background = '#030';
+  }
+}
+
+if (tabCompendium && tabAnalysis && tabSimulation) {
+  tabCompendium.addEventListener('click', () => showTab('compendium'));
+  tabAnalysis.addEventListener('click', () => showTab('analysis'));
+  tabSimulation.addEventListener('click', () => showTab('simulation'));
+  
+  // Show compendium tab by default
+  showTab('compendium');
 }
 if (showSimBtn && simulationTab && compendiumTab) {
-  showSimBtn.addEventListener('click', () => {
-    compendiumTab.style.display = 'none';
-    simulationTab.style.display = '';
-    tabCompendium.style.background = '#111';
-    tabCompendium.style.color = '#f33';
-    tabSimulation.style.background = '#111';
-    tabSimulation.style.color = '#0f3';
-  });
+  showSimBtn.addEventListener('click', () => showTab('simulation'));
+}
+
+// Render analysis content
+function renderAnalysis() {
+  renderPlayerAnalysis('P', 1);
+  renderPlayerAnalysis('O', 2);
+}
+
+function renderPlayerAnalysis(sideKey, playerNum) {
+  const side = sides[sideKey];
+  const weaponEl = document.getElementById(`analysisP${playerNum}Weapon`);
+  const edgeEl = document.getElementById(`analysisP${playerNum}Edge`);
+  const itemsEl = document.getElementById(`analysisP${playerNum}Items`);
+  
+  // Render weapon
+  if (side.weapon) {
+    weaponEl.innerHTML = renderAnalysisItem(side.weapon, 'weapon');
+  } else {
+    weaponEl.innerHTML = '<div class="emptySlot">No weapon equipped</div>';
+  }
+  
+  // Render edge
+  if (side.edge) {
+    const edgeData = RAW_DATA[side.edge];
+    if (edgeData) {
+      edgeEl.innerHTML = renderAnalysisItem(edgeData, 'edge');
+    } else {
+      edgeEl.innerHTML = '<div class="emptySlot">No edge selected</div>';
+    }
+  } else {
+    edgeEl.innerHTML = '<div class="emptySlot">No edge selected</div>';
+  }
+  
+  // Render items
+  const equippedItems = side.items.filter(item => item !== null);
+  if (equippedItems.length > 0) {
+    itemsEl.innerHTML = equippedItems.map(item => renderAnalysisItem(item, 'item')).join('');
+  } else {
+    itemsEl.innerHTML = '<div class="emptySlot">No items equipped</div>';
+  }
+}
+
+function renderAnalysisItem(item, type) {
+  if (!item) return '';
+  
+  const iconPath = `${item.bucket}/${item.slug}/icon.png`;
+  const stats = item.stats || {};
+  const tags = item.tags || [];
+  
+  // Build stats display
+  const statsHtml = ['attack', 'health', 'armor', 'speed']
+    .map(stat => {
+      const value = stats[stat] || 0;
+      if (value === 0) return '';
+      const icon = `assets/${stat === 'health' ? 'health' : stat}.png`;
+      return `<div class="pill"><img src="${icon}" alt="${stat}"><span>${value}</span></div>`;
+    })
+    .filter(s => s)
+    .join('');
+    
+  // Build tags display  
+  const tagsHtml = tags.map(tag => `<span class="analysisTag">${tag}</span>`).join('');
+  
+  return `
+    <div class="analysisItem ${type}">
+      <div class="analysisItemHeader">
+        <img src="${iconPath}" alt="${item.name}">
+        <div class="analysisItemName">${item.name}</div>
+      </div>
+      <div class="analysisItemEffect">${item.effect || 'No effect description'}</div>
+      <div class="analysisItemStats">${statsHtml}</div>
+      ${tagsHtml ? `<div class="analysisItemTags">${tagsHtml}</div>` : ''}
+    </div>
+  `;
 }
 
 // Initial render happens after details.json loads via loadData()
