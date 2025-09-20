@@ -1437,7 +1437,6 @@
   }
   // --- End of Effect Engine ---
 
-
   class Fighter {
     constructor(raw={}){
       const stats = raw.stats || raw;
