@@ -1632,9 +1632,16 @@ let CURRENT_SOURCE_SLUG = null;
     }
     
     if (a.statuses.acid > 0) {
+      const armorWas = a.armor;
       const lost = Math.min(a.armor, a.statuses.acid);
       a.armor -= lost;
       if (lost > 0) log(`${a.name} loses ${lost} armor due to Acid`);
+      
+      // Check if Acid caused Exposed trigger (armor went from >0 to 0)
+      if (armorWas > 0 && a.armor === 0 && a._exposedCount < (a._exposedLimit||1)) {
+        a._exposedCount++;
+        runEffects('onExposed', a, other, log);
+      }
     }
     if (a.statuses.poison > 0) {
       if (a.armor === 0) {
@@ -1642,15 +1649,14 @@ let CURRENT_SOURCE_SLUG = null;
         if (a.hp < 0) a.hp = 0;
         log(`${a.name} suffers ${a.statuses.poison} poison damage`);
         runEffects('onPoisonTick', a, other, log, { amount: a.statuses.poison });
+        
+        // Check if Poison caused Wounded trigger (HP crossed 50% threshold)
+        if (!a.woundedDone && a.hp <= Math.floor(a.hpMax/2)) {
+          a.woundedDone = true;
+          runEffects('onWounded', a, other, log);
+        }
       }
       a.statuses.poison--;
-    }
-    if (a.statuses.riptide > 0) {
-      // Riptide deals damage directly (bypasses armor like poison)
-      a.hp -= a.statuses.riptide;
-      if (a.hp < 0) a.hp = 0;
-      log(`${a.name} suffers ${a.statuses.riptide} riptide damage`);
-      a.statuses.riptide--;
     }
   }
 
@@ -1669,6 +1675,22 @@ let CURRENT_SOURCE_SLUG = null;
       }
     }
     if (a.statuses.freeze > 0) a.statuses.freeze--;
+    
+    // Process Riptide at turn end (per wiki rules)
+    if (a.statuses.riptide > 0) {
+      // Riptide deals damage directly (bypasses armor like poison)
+      a.hp -= a.statuses.riptide;
+      if (a.hp < 0) a.hp = 0;
+      log(`${a.name} suffers ${a.statuses.riptide} riptide damage`);
+      
+      // Check if Riptide caused Wounded trigger (HP crossed 50% threshold)
+      if (!a.woundedDone && a.hp <= Math.floor(a.hpMax/2)) {
+        a.woundedDone = true;
+        runEffects('onWounded', a, other, log);
+      }
+      
+      a.statuses.riptide--;
+    }
   }
 
   function pickOrder(l, r){
