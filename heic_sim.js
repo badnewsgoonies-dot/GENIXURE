@@ -2033,19 +2033,40 @@ let CURRENT_SOURCE_SLUG = null;
     const baseResult = { result, rounds: round, log: logArr };
     
     if (includeSummary) {
-      const summarize = (x) => ({
-        name: x.name,
-        hpRemaining: x.hp,
-        armorRemaining: x.armor,
-        strikesAttempted: x._summary.strikesAttempted,
-        strikesLanded: x._summary.strikesLanded,
-        hpDamageDealt: x._summary.hpDamageDealt,
-        armorDestroyedDealt: x._summary.armorDestroyedDealt,
-        bombHpDealt: x._summary.bombHpDealt || 0,
-        statusesGained: x._summary.statusesGained,
-        statusesInflicted: x._summary.statusesInflicted || {},
-        gold: x.gold || 0
-      });
+      const summarize = (x) => {
+        // Get active sets information
+        const activeSets = [];
+        if (x.setEffectSlugs && x.setEffectSlugs.length > 0) {
+          for (const setSlug of x.setEffectSlugs) {
+            // Find the set definition from SETS array
+            for (const setDef of SETS) {
+              if (setDef.effectSlug === setSlug) {
+                activeSets.push({
+                  name: setDef.name,
+                  desc: setDef.desc,
+                  key: setDef.key
+                });
+                break;
+              }
+            }
+          }
+        }
+        
+        return {
+          name: x.name,
+          hpRemaining: x.hp,
+          armorRemaining: x.armor,
+          strikesAttempted: x._summary.strikesAttempted,
+          strikesLanded: x._summary.strikesLanded,
+          hpDamageDealt: x._summary.hpDamageDealt,
+          armorDestroyedDealt: x._summary.armorDestroyedDealt,
+          bombHpDealt: x._summary.bombHpDealt || 0,
+          statusesGained: x._summary.statusesGained,
+          statusesInflicted: x._summary.statusesInflicted || {},
+          gold: x.gold || 0,
+          sets: activeSets
+        };
+      };
       baseResult.summary = { left: summarize(L), right: summarize(R) };
     }
     

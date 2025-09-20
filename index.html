@@ -549,8 +549,8 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
         </div>
         
         <!-- Log Content -->
-        <div id="simLog" style="min-height:300px; max-height:500px; overflow:auto; padding:24px; font-size:16px; font-family:'Courier New', monospace; color:#0f3; line-height:1.6; background-image:repeating-linear-gradient(0deg, transparent, transparent 1.6em, rgba(0,255,51,0.05) 1.6em, rgba(0,255,51,0.05) 3.2em);">
-          <div style="text-align:center; color:#666; font-style:italic; font-size:18px; padding:60px 20px;">
+        <div id="simLog" style="min-height:300px; max-height:500px; overflow:auto; padding:24px; font-size:18px; font-family:'Courier New', monospace; color:#0f3; line-height:1.6; background-image:repeating-linear-gradient(0deg, transparent, transparent 1.6em, rgba(0,255,51,0.05) 1.6em, rgba(0,255,51,0.05) 3.2em);">
+          <div style="text-align:center; color:#666; font-style:italic; font-size:20px; padding:60px 20px;">
             ⚔️ Ready to witness epic battles!<br><br>
             Configure your loadouts and hit <strong style="color:#0f3;">"START BATTLE"</strong> to begin the simulation.
           </div>
@@ -560,14 +560,14 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
       <!-- Battle Results Summary (Hidden by default) -->
       <div id="battleSummary" style="width:100%; max-width:900px; margin-top:24px; background:linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); border:3px solid #f93; border-radius:20px; padding:24px; display:none; box-shadow:0 0 40px rgba(255,153,51,0.2);">
         <h3 style="color:#f93; font-size:24px; font-weight:700; text-align:center; margin:0 0 20px 0; text-shadow:0 0 10px rgba(255,153,51,0.5);">🏆 BATTLE SUMMARY</h3>
-        <div id="summaryContent" style="display:grid; grid-template-columns:1fr 1fr; gap:24px; color:#fff; font-size:16px;">
-          <div id="playerSummary" style="background:rgba(0,255,51,0.1); border:2px solid #0f3; border-radius:12px; padding:16px;">
-            <h4 style="color:#0f3; margin:0 0 12px 0; font-size:18px;">🛡️ Player Stats</h4>
-            <div id="playerSummaryContent"></div>
+        <div id="summaryContent" style="display:grid; grid-template-columns:1fr 1fr; gap:24px; color:#fff; font-size:18px;">
+          <div id="playerSummary" style="background:rgba(0,255,51,0.1); border:2px solid #0f3; border-radius:12px; padding:20px;">
+            <h4 style="color:#0f3; margin:0 0 16px 0; font-size:20px;">🛡️ Player Stats</h4>
+            <div id="playerSummaryContent" style="font-size:16px;"></div>
           </div>
-          <div id="opponentSummary" style="background:rgba(255,51,51,0.1); border:2px solid #f33; border-radius:12px; padding:16px;">
-            <h4 style="color:#f33; margin:0 0 12px 0; font-size:18px;">⚔️ Opponent Stats</h4>
-            <div id="opponentSummaryContent"></div>
+          <div id="opponentSummary" style="background:rgba(255,51,51,0.1); border:2px solid #f33; border-radius:12px; padding:20px;">
+            <h4 style="color:#f33; margin:0 0 16px 0; font-size:20px;">⚔️ Opponent Stats</h4>
+            <div id="opponentSummaryContent" style="font-size:16px;"></div>
           </div>
         </div>
       </div>
@@ -1541,12 +1541,25 @@ function displayBattleResult(result, rounds, summary) {
     battleSummary.style.display = 'block';
     
     const formatSummary = (s) => {
+      let setsHtml = '';
+      if (s.sets && s.sets.length > 0) {
+        setsHtml = `
+          <div style="margin-top:16px; padding-top:12px; border-top:2px solid rgba(255,255,255,0.2);">
+            <div style="font-weight:700; font-size:18px; margin-bottom:10px; color:#f93;">🏆 Active Sets</div>
+            <div style="font-size:16px; line-height:1.5;">
+              ${s.sets.map(set => `<div style="margin-bottom:8px; padding:8px; background:rgba(255,153,51,0.1); border-radius:6px; border-left:4px solid #f93;"><strong>${set.name}:</strong> ${set.desc}</div>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+      
       return `
         <div style="margin-bottom:8px;"><strong>HP Remaining:</strong> ${s.hpRemaining}</div>
         <div style="margin-bottom:8px;"><strong>Damage Dealt:</strong> ${s.hpDamageDealt}</div>
         <div style="margin-bottom:8px;"><strong>Armor Destroyed:</strong> ${s.armorDestroyedDealt}</div>
         <div style="margin-bottom:8px;"><strong>Strikes:</strong> ${s.strikesLanded}/${s.strikesAttempted}</div>
         <div style="margin-bottom:8px;"><strong>Bomb Damage:</strong> ${s.bombHpDealt || 0}</div>
+        ${setsHtml}
       `;
     };
     
