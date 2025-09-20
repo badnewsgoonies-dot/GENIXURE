@@ -556,6 +556,21 @@
   "items/bomb_bag": {
     "bucket": "items",
     "effect": "Battle Start, Exposed & Wounded: Spend 3 speed to retrigger a random bomb",
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "condition": "exposed_and_wounded",
+        "actions": [
+          {
+            "type": "spend_speed",
+            "value": 3
+          },
+          {
+            "type": "retrigger_random_bomb"
+          }
+        ]
+      }
+    ],
     "name": "Bomb Bag",
     "slug": "bomb_bag",
     "stats": {
@@ -944,8 +959,9 @@
     "effects": [
       {
         "trigger": "battle_start",
-        "action": "deal_damage_multiple_times",
-        "value": {"damage": 1, "times": 2, "gold_damage": 2, "diamond_damage": 4}
+        "actions": [
+          { "type": "deal_damage_multiple_times", "value": { "damage": 1, "times": 2, "gold_damage": 2, "diamond_damage": 4 } }
+        ]
       }
     ],
     "name": "Cherry Bomb",
@@ -1840,6 +1856,13 @@
   "items/explosive_powder": {
     "bucket": "items",
     "effect": "The damage of all bomb items increases by 1",
+    "effects": [
+      {
+        "trigger": "passive",
+        "action": "increase_bomb_damage",
+        "value": 1
+      }
+    ],
     "name": "Explosive Powder",
     "slug": "explosive_powder",
     "stats": {
@@ -3286,6 +3309,20 @@
   "items/melon_bomb": {
     "bucket": "items",
     "effect": "Battle Start (if Exposed or Wounded): Decrease a random status by 1; when a status is decreased, deal 1 damage",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "has_status", "status": "exposed" },
+          { "type": "has_status", "status": "wounded" }
+        ],
+        "condition_logic": "any",
+        "actions": [
+          { "type": "decrease_random_status", "value": 1 },
+          { "type": "deal_damage_when_status_decreased", "value": 1 }
+        ]
+      }
+    ],
     "name": "Melon Bomb",
     "slug": "melon_bomb",
     "stats": {
@@ -3689,6 +3726,14 @@
   "items/powder_keg": {
     "bucket": "items",
     "effect": "Battle Start: If you only have 1 bomb item equipped, it triggers 3 times",
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "condition": "has_single_bomb_item",
+        "action": "trigger_bomb_multiple_times",
+        "value": 3
+      }
+    ],
     "name": "Powder Keg",
     "slug": "powder_keg",
     "stats": {
@@ -4926,10 +4971,10 @@
     "effect": "Turn Start: Deal 1 damage 3 times",
     "effects": [
       {
-        "action": "deal_damage",
-        "amount": 1,
-        "condition": "turn_start",
-        "repeat": 3
+        "trigger": "turn_start",
+        "actions": [
+          { "type": "deal_damage_multiple_times", "value": { "damage": 1, "times": 3 } }
+        ]
       }
     ],
     "name": "Sugar Bomb",
@@ -5078,6 +5123,20 @@
   "items/time_bomb": {
     "bucket": "items",
     "effect": "Exposed: Deal 1 damage. Turn start: This item gains 2 damage",
+    "effects": [
+      {
+        "trigger": "exposed",
+        "actions": [
+          { "type": "deal_damage_to_enemy", "value": 1 }
+        ]
+      },
+      {
+        "trigger": "turn_start",
+        "actions": [
+          { "type": "gain_stat", "stat": "attack", "value": 2 }
+        ]
+      }
+    ],
     "name": "Time Bomb",
     "slug": "time_bomb",
     "stats": {
