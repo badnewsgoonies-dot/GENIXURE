@@ -645,9 +645,14 @@
         log(`${self.name} spends ${speedCost} speed to deal ${damage} damage`);
       }
     },
-    gain_attack: ({ self, log, value }) => {
-      self.atk += value || 1;
-      log(`${self.name} gains ${value || 1} attack`);
+    whirlpool_edge_strikes: ({ self, other, log, value }) => {
+      // Track strikes for whirlpool edge (every 3 strikes = riptide)
+      self.whirlpoolStrikes = (self.whirlpoolStrikes || 0) + 1;
+      if (self.whirlpoolStrikes >= 3) {
+        self.whirlpoolStrikes = 0;
+        other.addStatus('riptide', 1);
+        log(`${self.name}'s whirlpool edge gives ${other.name} 1 riptide (3 strikes)`);
+      }
     },
     gain_strikes: ({ self, log, value }) => {
       self.flags.additionalStrikes = (self.flags.additionalStrikes || 0) + (value || 1);
@@ -930,7 +935,7 @@
     
     const log = (m) => baseLog(CURRENT_SOURCE_SLUG ? `::icon:${CURRENT_SOURCE_SLUG}:: ${m}` : m);
 
-    const allItems = [self.weapon, ...self.items].filter(Boolean);
+    const allItems = [self.weapon, self.weaponEdge, ...self.items].filter(Boolean);
 
     for (const itemOrSlug of allItems) {
       const slug = (typeof itemOrSlug === 'string') ? itemOrSlug : (itemOrSlug.slug || itemOrSlug.key);
@@ -1038,6 +1043,7 @@
       this.baseArmor = this.armor;
       this.speed = stats.speed ?? 0;
       this.weapon = raw.weaponSlug || raw.weapon || null;
+      this.weaponEdge = raw.weaponEdge || null; // Support for weapon edge upgrade
       this.items = raw.itemSlugs || raw.items || [];
       this.statuses = Object.assign({
         poison:0, acid:0, riptide:0, freeze:0, stun:0,
@@ -1156,6 +1162,13 @@
     };
 
     self.addStatus = (k, n) => {
+      // Check for cleansing edge - ignore first status effect
+      if (n > 0 && self.flags.cleansingEdge) {
+        self.flags.cleansingEdge = false;
+        log(`${self.name}'s Cleansing Edge ignores ${n} ${k}`);
+        return;
+      }
+      
       const prev = self.statuses[k] || 0;
       const next = Math.max(0, prev + n);
       self.statuses[k] = next;
@@ -1375,6 +1388,6 @@ let CURRENT_SOURCE_SLUG = null;
     return { result, rounds: round, log: logArr, summary: { left: summarize(L), right: summarize(R) } };
   }
 
-  if(typeof module !== "undefined" && module.exports) module.exports = { simulate };
+  if(typeof module !== "undefined" && module.exports) module.exports = { simulate, Fighter };
   global.HeICSim = { simulate };
 })(typeof window !== 'undefined' ? window : globalThis);

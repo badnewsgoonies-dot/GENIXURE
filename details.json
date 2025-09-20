@@ -5368,8 +5368,8 @@
     "effect": "Battle Start: Gain 1 additional strike.",
     "effects": [
       {
-        "trigger": "battle_start",
-        "action": "gain_strikes",
+        "trigger": "battleStart",
+        "action": "add_extra_strikes",
         "value": 1
       }
     ],
@@ -5388,8 +5388,8 @@
     "effect": "Battle Start: Gain 1 additional strike.",
     "effects": [
       {
-        "trigger": "battle_start",
-        "action": "gain_strikes",
+        "trigger": "battleStart",
+        "action": "add_extra_strikes",
         "value": 1
       }
     ],
@@ -5557,6 +5557,14 @@
   "upgrades/cleansing_edge": {
     "bucket": "upgrades",
     "effect": "Ignore the first status effect you're afflicted with",
+    "effects": [
+      {
+        "trigger": "preBattle",
+        "action": "set_flag",
+        "key": "cleansingEdge",
+        "value": true
+      }
+    ],
     "name": "Cleansing Edge",
     "slug": "cleansing_edge",
     "stats": {
@@ -5816,6 +5824,13 @@
   "upgrades/whirlpool_edge": {
     "bucket": "upgrades",
     "effect": "Every 3 strikes, give the enemy 1 riptide",
+    "effects": [
+      {
+        "trigger": "afterStrike",
+        "action": "whirlpool_edge_strikes",
+        "value": 1
+      }
+    ],
     "name": "Whirlpool Edge",
     "slug": "whirlpool_edge",
     "stats": {
