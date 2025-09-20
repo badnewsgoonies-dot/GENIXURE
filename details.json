@@ -502,7 +502,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Ring"
+    ]
   },
   "items/bloody_steak": {
     "bucket": "items",
@@ -1132,7 +1134,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Ring"
+    ]
   },
   "items/citrine_ring_gold": {
     "bucket": "items",
@@ -1152,7 +1156,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Ring"
+    ]
   },
   "items/clearspring_cloak": {
     "bucket": "items",
@@ -1809,7 +1815,8 @@
       "speed": 0
     },
     "tags": [
-      "Jewelry"
+      "Jewelry",
+      "Ring"
     ]
   },
   "items/energy_drain": {
@@ -2262,7 +2269,8 @@
       "speed": 0
     },
     "tags": [
-      "Jewelry"
+      "Jewelry",
+      "Ring"
     ]
   },
   "items/grand_crescendo": {
@@ -4426,7 +4434,8 @@
       "speed": 0
     },
     "tags": [
-      "Jewelry"
+      "Jewelry",
+      "Ring"
     ]
   },
   "items/rusted_plate": {
@@ -4463,7 +4472,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Ring"
+    ]
   },
   "items/saffron_feather": {
     "bucket": "items",
@@ -4642,7 +4653,8 @@
       "speed": 4
     },
     "tags": [
-      "Jewelry"
+      "Jewelry",
+      "Ring"
     ]
   },
   "items/serpent_lyre": {
@@ -5439,7 +5451,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Ring"
+    ]
   },
   "items/thunder_cloud": {
     "bucket": "items",
@@ -7700,7 +7714,12 @@
     "bucket": "sets",
     "name": "Highborn",
     "slug": "highborn",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7717,7 +7736,12 @@
     "bucket": "sets",
     "name": "Iron Chain",
     "slug": "iron_chain",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7735,7 +7759,12 @@
     "bucket": "sets",
     "name": "Ironstone Arrowhead",
     "slug": "ironstone_arrowhead",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7753,7 +7782,12 @@
     "bucket": "sets",
     "name": "Sanguine Gemstone",
     "slug": "sanguine_gemstone",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7770,7 +7804,12 @@
     "bucket": "sets",
     "name": "Glasses of the Hero",
     "slug": "glasses_of_the_hero",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7788,7 +7827,12 @@
     "bucket": "sets",
     "name": "Weaver Medallion",
     "slug": "weaver_medallion",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7806,7 +7850,12 @@
     "bucket": "sets",
     "name": "Basilisk's Gaze",
     "slug": "basilisk_gaze",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7825,7 +7874,12 @@
     "bucket": "sets",
     "name": "Bloodmoon Strike",
     "slug": "bloodmoon_strike",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7842,7 +7896,12 @@
     "bucket": "sets",
     "name": "Bloodstone Pendant",
     "slug": "bloodstone_pendant",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7860,7 +7919,12 @@
     "bucket": "sets",
     "name": "Briar Greaves",
     "slug": "briar_greaves",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7879,7 +7943,12 @@
     "bucket": "sets",
     "name": "Brittlebark Blessing",
     "slug": "brittlebark_blessing",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7902,7 +7971,12 @@
     "bucket": "sets",
     "name": "Ironbark Shield",
     "slug": "ironbark_shield",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7921,7 +7995,12 @@
     "bucket": "sets",
     "name": "Ironstone Ore",
     "slug": "ironstone_ore",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7940,7 +8019,12 @@
     "bucket": "sets",
     "name": "Liquid Metal",
     "slug": "liquid_metal",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {
@@ -7959,7 +8043,12 @@
     "bucket": "sets",
     "name": "Saffron Talon",
     "slug": "saffron_talon",
-    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
     "tags": [],
     "effects": [
       {

@@ -1338,10 +1338,18 @@
 
     // Process items in battle order: weapon first, then weaponEdge, then items 1→12
     // Ensures Battle Start effects activate in correct slot order per battle logic
-    const allItems = [self.weapon, self.weaponEdge, ...self.items].filter(Boolean);
+    let allItems = [];
     
-    // Add set effects to processing
-    if (self.setEffectSlugs && self.setEffectSlugs.length > 0) {
+    // For battleStart specifically, process set effects FIRST so they can modify behavior (e.g., Highborn ring doubling)
+    if (event === 'battleStart' && self.setEffectSlugs && self.setEffectSlugs.length > 0) {
+      allItems.push(...self.setEffectSlugs);
+    }
+    
+    // Then process normal items in slot order
+    allItems.push(...[self.weapon, self.weaponEdge, ...self.items].filter(Boolean));
+    
+    // Add set effects for non-battleStart events (maintain original behavior)
+    if (event !== 'battleStart' && self.setEffectSlugs && self.setEffectSlugs.length > 0) {
       allItems.push(...self.setEffectSlugs);
     }
 
@@ -1364,6 +1372,11 @@
       const sourceItem = (typeof itemOrSlug === 'object') ? itemOrSlug : { slug };
       
       const effectCtx = { self, other, log, tier, sourceItem, ...extra };
+
+      // Check if this is a Ring item and Highborn is active
+      const isRingItem = (details.tags && details.tags.includes('Ring')) || 
+                        getTagsFor(slug).includes('Ring');
+      const shouldDouble = self._setHighborn && isRingItem;
 
       for (const effect of details.effects) {
         // Map simulator event names to our trigger names
@@ -1403,8 +1416,10 @@
                 if (tier === 'gold' && effect.value_gold !== undefined) value = effect.value_gold;
                 if (tier === 'diamond' && effect.value_diamond !== undefined) value = effect.value_diamond;
 
-                // Handle repeat functionality
-                const repeatCount = effect.repeat || 1;
+                // Handle repeat functionality (including Highborn ring doubling)
+                let repeatCount = effect.repeat || 1;
+                if (shouldDouble) repeatCount *= 2;
+                
                 for (let i = 0; i < repeatCount; i++) {
                   actionFn({ 
                     ...effectCtx, 
@@ -1457,21 +1472,26 @@
 
           if (conditionsMet && Array.isArray(effect.actions)) {
             withSource(slug, () => {
-              for (const action of effect.actions) {
-                const actionFn = EFFECT_ACTIONS[action.type];
-                if (typeof actionFn === 'function') {
-                  // Handle tiered values
-                  let value = action.value;
-                  if (Array.isArray(action.by_tier) && action.by_tier.length >= 3) {
-                    const tierValues = action.by_tier;
-                    if (tier === 'base') value = tierValues[0];
-                    else if (tier === 'gold') value = tierValues[1];
-                    else if (tier === 'diamond') value = tierValues[2];
-                  }
+              // Determine how many times to run the actions (Highborn ring doubling)
+              const executionCount = shouldDouble ? 2 : 1;
+              
+              for (let exec = 0; exec < executionCount; exec++) {
+                for (const action of effect.actions) {
+                  const actionFn = EFFECT_ACTIONS[action.type];
+                  if (typeof actionFn === 'function') {
+                    // Handle tiered values
+                    let value = action.value;
+                    if (Array.isArray(action.by_tier) && action.by_tier.length >= 3) {
+                      const tierValues = action.by_tier;
+                      if (tier === 'base') value = tierValues[0];
+                      else if (tier === 'gold') value = tierValues[1];
+                      else if (tier === 'diamond') value = tierValues[2];
+                    }
 
-                  actionFn({ ...effectCtx, ...action, value });
-                } else {
-                  log(`Unknown action type: ${action.type}`);
+                    actionFn({ ...effectCtx, ...action, value });
+                  } else {
+                    log(`Unknown action type: ${action.type}`);
+                  }
                 }
               }
             });
