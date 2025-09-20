@@ -1060,6 +1060,37 @@
       other.hp = Math.max(0, (other.hp || 0) - damage);
       log(`${self.name} deals ${damage} damage to ${other.name}`);
     },
+    
+    // MISSING ACTIONS - Added to fix verification errors
+    gain_attack: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.addAtk(amount);
+      log(`⚔️ ${self.name} gains ${amount} attack`);
+    },
+    gain_speed: ({ self, log, value }) => {
+      const amount = value || 1;
+      const oldSpeed = self.speed || 0;
+      self.speed = oldSpeed + amount;
+      runEffects('onGainSpeed', self, null, log, { amount: amount, delta: amount });
+      log(`⚡ ${self.name} gains ${amount} speed`);
+    },
+    gain_temp_attack: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.addTempAtk(amount);
+      log(`⚔️ ${self.name} gains ${amount} temporary attack`);
+    },
+    increment_counter: ({ self, log, value }) => {
+      const counterName = value?.name || 'counter';
+      const amount = value?.amount || 1;
+      if (!self.counters) self.counters = {};
+      self.counters[counterName] = (self.counters[counterName] || 0) + amount;
+      log(`🔢 ${self.name} increments ${counterName} by ${amount} (now ${self.counters[counterName]})`);
+    },
+    stun_enemy: ({ self, other, log, value }) => {
+      const amount = value || 1;
+      other.addStatus('stun', amount);
+      log(`💫 ${self.name} stuns ${other.name} for ${amount} turn(s)`);
+    },
   };
 
   function checkCondition(condition, { self, other, log, key, isNew }) {
@@ -1258,7 +1289,7 @@
                 // Handle repeat functionality
                 const repeatCount = effect.repeat || 1;
                 for (let i = 0; i < repeatCount; i++) {
-                  actionFn({ ...effectCtx, value, key: effect.key });
+                  actionFn({ ...effectCtx, value, key: effect.key, stat: effect.stat, status: effect.status });
                 }
                 
                 // Handle then actions if present
@@ -1270,7 +1301,9 @@
                       thenActionFn({ 
                         ...effectCtx, 
                         value: thenValue, 
-                        key: thenEffect.key 
+                        key: thenEffect.key,
+                        stat: thenEffect.stat,
+                        status: thenEffect.status
                       });
                     }
                   }

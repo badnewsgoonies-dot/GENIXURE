@@ -7,10 +7,17 @@ const details = JSON.parse(fs.readFileSync('./details.json', 'utf8'));
 // Simulate loading the EFFECT_ACTIONS by reading the updated simulator file
 const simCode = fs.readFileSync('./heic_sim.js', 'utf8');
 
-// Extract EFFECT_ACTIONS from the code (simple regex to find action names)
-const actionMatches = simCode.match(/(\w+):\s*\(\{\s*self,\s*log/g) || [];
+// Extract EFFECT_ACTIONS from the code (improved regex to find action names)
+const actionMatches = simCode.match(/(\w+):\s*\(\{\s*[^}]*\}\)\s*=>/g) || [];
 const supportedActions = new Set();
 actionMatches.forEach(match => {
+  const actionName = match.split(':')[0].trim();
+  supportedActions.add(actionName);
+});
+
+// Also try alternative patterns for action definitions
+const altActionMatches = simCode.match(/(\w+):\s*\(\s*\{\s*self/g) || [];
+altActionMatches.forEach(match => {
   const actionName = match.split(':')[0].trim();
   supportedActions.add(actionName);
 });
@@ -22,7 +29,7 @@ const testItems = [
   'items/acid_mutation',        // Uses add_status
   'items/arcane_bell',         // Uses gain_armor  
   'items/basilisk_scale',      // Uses gain_attack_equal_to_speed
-  'items/bee_stinger',         // Uses add_status_to_enemy
+  'weapons/bee_stinger',       // Uses add_status_to_enemy (FIXED: was items/bee_stinger)
   'items/bitter_melon',        // Uses heal_to_full
   'items/blood_chain',         // Uses convert_health_to_armor
   'items/cherry_bomb',         // Uses deal_damage_multiple_times
