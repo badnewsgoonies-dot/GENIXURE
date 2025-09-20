@@ -1644,17 +1644,24 @@ let CURRENT_SOURCE_SLUG = null;
 
   function simulate(Lraw, Rraw, opts={}){
     const maxTurns = opts.maxTurns || opts.max_turns || 100;
+    const includeSummary = opts.includeSummary !== false; // Default to true, can be disabled with opts.includeSummary = false
 
     const logArr = [];
     const L = new Fighter(Lraw);
     const R = new Fighter(Rraw);
 
-    runEffects('preBattle', L, R, m=>logArr.push(m));
-    runEffects('preBattle', R, L, m=>logArr.push(m));
+    // Create enhanced logging function that includes HP information
+    const logWithHP = (message) => {
+      const hpInfo = ` [PlayerHP: ${L.hp} | OpponentHP: ${R.hp}]`;
+      logArr.push(message + hpInfo);
+    };
+
+    runEffects('preBattle', L, R, logWithHP);
+    runEffects('preBattle', R, L, logWithHP);
     
     // Battle Start Phase: Items activate in slot order (weapon first, then items 1→12)
-    runEffects('battleStart', L, R, m=>logArr.push(m));
-    runEffects('battleStart', R, L, m=>logArr.push(m));
+    runEffects('battleStart', L, R, logWithHP);
+    runEffects('battleStart', R, L, logWithHP);
 
     let [actor, target] = pickOrder(L, R);
     let round = 0;
@@ -1662,40 +1669,47 @@ let CURRENT_SOURCE_SLUG = null;
       round++;
       actor.turnCount = (actor.turnCount || 0) + 1;
       actor.flags.turnCount = actor.turnCount;
-      logArr.push(`-- Turn ${round} -- ${actor.name}`);
+      logWithHP(`-- Turn ${round} -- ${actor.name}`);
       
-      turnStartTicks(actor, target, m=>logArr.push(m));
-      runEffects('turnStart', actor, target, m=>logArr.push(m));
+      turnStartTicks(actor, target, logWithHP);
+      runEffects('turnStart', actor, target, logWithHP);
       
       let strikes = 1 + (actor.extraStrikes || 0);
       if (actor.cannotStrike || actor.skipTurn) strikes = 0;
       strikes = Math.max(0, Math.floor(strikes * (actor.strikeFactor || 1)));
 
       while(strikes-- > 0 && actor.hp>0 && target.hp>0){
-        strike(actor, target, m=>logArr.push(m));
+        strike(actor, target, logWithHP);
       }
       
-      turnEndTicks(actor, target, m=>logArr.push(m));
-      runEffects('turnEnd', actor, target, m=>logArr.push(m));
+      turnEndTicks(actor, target, logWithHP);
+      runEffects('turnEnd', actor, target, logWithHP);
 
       actor.flags.firstTurn = false;
       [actor, target] = [target, actor];
     }
     const result = L.hp<=0 && R.hp<=0 ? 'Draw' : L.hp<=0 ? 'Victory' : R.hp<=0 ? 'Defeat' : 'Draw';
-    const summarize = (x) => ({
-      name: x.name,
-      hpRemaining: x.hp,
-      armorRemaining: x.armor,
-      strikesAttempted: x._summary.strikesAttempted,
-      strikesLanded: x._summary.strikesLanded,
-      hpDamageDealt: x._summary.hpDamageDealt,
-      armorDestroyedDealt: x._summary.armorDestroyedDealt,
-      bombHpDealt: x._summary.bombHpDealt || 0,
-      statusesGained: x._summary.statusesGained,
-      statusesInflicted: x._summary.statusesInflicted || {},
-      gold: x.gold || 0
-    });
-    return { result, rounds: round, log: logArr, summary: { left: summarize(L), right: summarize(R) } };
+    
+    const baseResult = { result, rounds: round, log: logArr };
+    
+    if (includeSummary) {
+      const summarize = (x) => ({
+        name: x.name,
+        hpRemaining: x.hp,
+        armorRemaining: x.armor,
+        strikesAttempted: x._summary.strikesAttempted,
+        strikesLanded: x._summary.strikesLanded,
+        hpDamageDealt: x._summary.hpDamageDealt,
+        armorDestroyedDealt: x._summary.armorDestroyedDealt,
+        bombHpDealt: x._summary.bombHpDealt || 0,
+        statusesGained: x._summary.statusesGained,
+        statusesInflicted: x._summary.statusesInflicted || {},
+        gold: x.gold || 0
+      });
+      baseResult.summary = { left: summarize(L), right: summarize(R) };
+    }
+    
+    return baseResult;
   }
 
   // Load data when running in Node.js
