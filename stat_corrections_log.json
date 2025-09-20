@@ -1,0 +1,1498 @@
+[
+  {
+    "item": "weapons/bearclaw_blade",
+    "name": "Bearclaw Blade",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 5,
+      "speed": 0
+    },
+    "reason": "Attack: (equals missing health), Health: 5"
+  },
+  {
+    "item": "weapons/bejeweled_blade",
+    "name": "Bejeweled Blade",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 1,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 1"
+  },
+  {
+    "item": "weapons/blackbriar_blade",
+    "name": "Blackbriar Blade",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/brittlebark_club",
+    "name": "Brittlebark Club",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 7,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 7"
+  },
+  {
+    "item": "weapons/brittlebark_bow",
+    "name": "Brittlebark Bow",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 4,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 4"
+  },
+  {
+    "item": "weapons/explosive_sword",
+    "name": "Explosive Sword",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 3,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 3"
+  },
+  {
+    "item": "weapons/featherweight_blade",
+    "name": "Featherweight Blade",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 2
+    },
+    "reason": "Attack: 2, Speed: 2"
+  },
+  {
+    "item": "weapons/frostbite_dagger",
+    "name": "Frostbite Dagger",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/gemstone_scepter",
+    "name": "Gemstone Scepter",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/granite_hammer",
+    "name": "Granite Hammer",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/granite_lance",
+    "name": "Granite Lance",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 1,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2, Armor: 1"
+  },
+  {
+    "item": "weapons/grindstone_club",
+    "name": "Grindstone Club",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 1,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 1"
+  },
+  {
+    "item": "weapons/heart_drinker",
+    "name": "Heart Drinker",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 1,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 1"
+  },
+  {
+    "item": "weapons/hidden_dagger",
+    "name": "Hidden Dagger",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/icicle_spear",
+    "name": "Icicle Spear",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 3,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 3"
+  },
+  {
+    "item": "weapons/ironstone_bow",
+    "name": "Ironstone Bow",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 6,
+      "armor": 0,
+      "health": 0,
+      "speed": 1
+    },
+    "reason": "Attack: 6, Speed: 1"
+  },
+  {
+    "item": "weapons/ironstone_greatsword",
+    "name": "Ironstone Greatsword",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 4,
+      "armor": 0,
+      "health": 0,
+      "speed": -2
+    },
+    "reason": "Attack: 4, Speed: -2"
+  },
+  {
+    "item": "weapons/lifeblood_spear",
+    "name": "Lifeblood Spear",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 1,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 1"
+  },
+  {
+    "item": "weapons/lifesteal_scythe",
+    "name": "Lifesteal Scythe",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 1,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 1"
+  },
+  {
+    "item": "weapons/royal_crownblade",
+    "name": "Royal Crownblade",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 4,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 4"
+  },
+  {
+    "item": "weapons/royal_scepter",
+    "name": "Royal Scepter",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 0"
+  },
+  {
+    "item": "weapons/stoneslab_sword",
+    "name": "Stoneslab Sword",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/swiftstrike_bow",
+    "name": "Swiftstrike Bow",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/swiftstrike_rapier",
+    "name": "Swiftstrike Rapier",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/sword_of_the_hero",
+    "name": "Sword of the Hero",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 3,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 3"
+  },
+  {
+    "item": "weapons/twin_blade",
+    "name": "Twin Blade",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 1,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 1"
+  },
+  {
+    "item": "items/blastcap_armor",
+    "name": "Blastcap Armor",
+    "before": {
+      "armor": 3,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 8,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Armor: 8"
+  },
+  {
+    "item": "items/bramble_buckler",
+    "name": "Bramble Buckler",
+    "before": {
+      "armor": 2,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 2,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Armor: 2"
+  },
+  {
+    "item": "items/brittlebark_buckler",
+    "name": "Brittlebark Buckler",
+    "before": {
+      "armor": 4,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 10,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Armor: 10"
+  },
+  {
+    "item": "items/double_plated_armor",
+    "name": "Double-plated Armor",
+    "before": {
+      "armor": 2,
+      "attack": 0,
+      "health": 0,
+      "speed": -2
+    },
+    "after": {
+      "attack": 0,
+      "armor": 2,
+      "health": 0,
+      "speed": -2
+    },
+    "reason": "Armor: 2, Speed: -2"
+  },
+  {
+    "item": "items/frostbite_armor",
+    "name": "Frostbite Armor",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 2,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Armor: 2"
+  },
+  {
+    "item": "items/horned_helmet",
+    "name": "Horned Helmet",
+    "before": {
+      "armor": 2,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 2,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Armor: 2"
+  },
+  {
+    "item": "items/iceblock_shield",
+    "name": "Iceblock Shield",
+    "before": {
+      "armor": 3,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 8,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Armor: 8"
+  },
+  {
+    "item": "items/ironstone_bracelet",
+    "name": "Ironstone Bracelet",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 2,
+      "health": 0,
+      "speed": -1
+    },
+    "reason": "Armor: 2, Speed: -1"
+  },
+  {
+    "item": "items/leather_vest",
+    "name": "Leather Vest",
+    "before": {
+      "armor": 2,
+      "attack": 0,
+      "health": 0,
+      "speed": 1
+    },
+    "after": {
+      "attack": 0,
+      "armor": 2,
+      "health": 0,
+      "speed": 1
+    },
+    "reason": "Armor: 2, Speed: 1"
+  },
+  {
+    "item": "items/redwood_helmet",
+    "name": "Redwood Helmet",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 1,
+      "health": 1,
+      "speed": 0
+    },
+    "reason": "Health: 1, Armor: 1"
+  },
+  {
+    "item": "items/royal_helmet",
+    "name": "Royal Helmet",
+    "before": {
+      "armor": 1,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 1,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Armor: 1"
+  },
+  {
+    "item": "items/shield_of_the_hero",
+    "name": "Shield of the Hero",
+    "before": {
+      "armor": -3,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 3,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Armor: 3"
+  },
+  {
+    "item": "items/blood_sausage",
+    "name": "Blood Sausage",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 5,
+      "speed": 0
+    },
+    "reason": "Health: 5"
+  },
+  {
+    "item": "items/bramble_vest",
+    "name": "Bramble Vest",
+    "before": {
+      "armor": 3,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 3,
+      "speed": 0
+    },
+    "reason": "Health: 3"
+  },
+  {
+    "item": "items/brittlebark_armor",
+    "name": "Brittlebark Armor",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 4,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 12,
+      "speed": 0
+    },
+    "reason": "Health: 12"
+  },
+  {
+    "item": "items/emerald_crown",
+    "name": "Emerald Crown",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 3,
+      "speed": 0
+    },
+    "after": {
+      "attack": -1,
+      "armor": 0,
+      "health": 8,
+      "speed": 0
+    },
+    "reason": "Attack: -1, Health: 8"
+  },
+  {
+    "item": "items/explosive_roast",
+    "name": "Explosive Roast",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 5,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 5,
+      "speed": 0
+    },
+    "reason": "Health: 5"
+  },
+  {
+    "item": "items/leather_glove",
+    "name": "Leather Glove",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 3,
+      "speed": 1
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 3,
+      "speed": 1
+    },
+    "reason": "Health: 3, Speed: 1"
+  },
+  {
+    "item": "items/redwood_cloak",
+    "name": "Redwood Cloak",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 5,
+      "speed": 4
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 2,
+      "speed": 0
+    },
+    "reason": "Health: 2"
+  },
+  {
+    "item": "items/rock_roast",
+    "name": "Rock Roast",
+    "before": {
+      "armor": 2,
+      "attack": 0,
+      "health": 3,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 6,
+      "speed": 6
+    },
+    "reason": "Health: 6, Armor: 6 (note: document shows both)"
+  },
+  {
+    "item": "items/boots_of_the_hero",
+    "name": "Boots of the Hero",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 2
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 2
+    },
+    "reason": "Speed: 2"
+  },
+  {
+    "item": "items/ironstone_sandals",
+    "name": "Ironstone Sandals",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": -1
+    },
+    "reason": "Speed: -1"
+  },
+  {
+    "item": "items/ruby_crown",
+    "name": "Ruby Crown",
+    "before": {
+      "armor": 0,
+      "attack": 1,
+      "health": 0,
+      "speed": -1
+    },
+    "after": {
+      "attack": 1,
+      "armor": 0,
+      "health": 0,
+      "speed": -1
+    },
+    "reason": "Attack: 1, Speed: -1"
+  },
+  {
+    "item": "items/saffron_feather",
+    "name": "Saffron Feather",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 1
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 1
+    },
+    "reason": "Speed: 1"
+  },
+  {
+    "item": "items/swiftstrike_cloak",
+    "name": "Swiftstrike Cloak",
+    "before": {
+      "armor": 0,
+      "attack": 2,
+      "health": 0,
+      "speed": 4
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 1
+    },
+    "reason": "Speed: 1"
+  },
+  {
+    "item": "items/elderwood_necklace",
+    "name": "Elderwood Necklace",
+    "before": {
+      "armor": 1,
+      "attack": 1,
+      "health": 0,
+      "speed": 1
+    },
+    "after": {
+      "attack": 1,
+      "armor": 1,
+      "health": 0,
+      "speed": 1
+    },
+    "reason": "Attack: 1, Armor: 1, Speed: 1"
+  },
+  {
+    "item": "weapons/elderwood_staff",
+    "name": "Elderwood Staff",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 1,
+      "armor": 1,
+      "health": 0,
+      "speed": 1
+    },
+    "reason": "Attack: 1, Armor: 1, Speed: 1"
+  },
+  {
+    "item": "weapons/ancient_warhammer",
+    "name": "Ancient Warhammer",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 5,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 5"
+  },
+  {
+    "item": "weapons/arcane_wand",
+    "name": "Arcane Wand",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 0"
+  },
+  {
+    "item": "weapons/basilisk_fang",
+    "name": "Basilisk Fang",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 3,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 3"
+  },
+  {
+    "item": "weapons/bubblegloop_staff",
+    "name": "Bubblegloop Staff",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 0"
+  },
+  {
+    "item": "weapons/chainmail_sword",
+    "name": "Chainmail Sword",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 2,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2, Armor: 2"
+  },
+  {
+    "item": "weapons/cleaver_of_wrath",
+    "name": "Cleaver of Wrath",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 10,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 10"
+  },
+  {
+    "item": "weapons/fungal_rapier",
+    "name": "Fungal Rapier",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 3,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 3"
+  },
+  {
+    "item": "weapons/forge_hammer",
+    "name": "Forge Hammer",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 4,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 4"
+  },
+  {
+    "item": "weapons/gale_staff",
+    "name": "Gale Staff",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 6
+    },
+    "reason": "Attack: 2, Speed: 6"
+  },
+  {
+    "item": "weapons/granite_axe",
+    "name": "Granite Axe",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 4,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 4"
+  },
+  {
+    "item": "weapons/grilling_skewer",
+    "name": "Grilling Skewer",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 1,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 1"
+  },
+  {
+    "item": "weapons/ironstone_spear",
+    "name": "Ironstone Spear",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/leather_whip",
+    "name": "Leather Whip",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 4,
+      "armor": 0,
+      "health": 5,
+      "speed": 0
+    },
+    "reason": "Attack: 4, Health: 5"
+  },
+  {
+    "item": "weapons/liferoot_hammer",
+    "name": "Liferoot Hammer",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 3,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 3"
+  },
+  {
+    "item": "weapons/liferoot_staff",
+    "name": "Liferoot Staff",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/lightning_rod",
+    "name": "Lightning Rod",
+    "before": {
+      "armor": 0,
+      "attack": 2,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/lightning_whip",
+    "name": "Lightning Whip",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 3,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 3"
+  },
+  {
+    "item": "weapons/melting_iceblade",
+    "name": "Melting Iceblade",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 8,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 8"
+  },
+  {
+    "item": "weapons/moonlight_cleaver",
+    "name": "Moonlight Cleaver",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 3,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 3"
+  },
+  {
+    "item": "weapons/pacifist_staff",
+    "name": "Pacifist Staff",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 0"
+  },
+  {
+    "item": "weapons/purelake_staff",
+    "name": "Purelake Staff",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 1,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 1"
+  },
+  {
+    "item": "weapons/riverflow_rapier",
+    "name": "Riverflow Rapier",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 3,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 3"
+  },
+  {
+    "item": "weapons/rusty_sword",
+    "name": "Rusty Sword",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/sanguine_scepter",
+    "name": "Sanguine Scepter",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 1,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 1"
+  },
+  {
+    "item": "weapons/serpent_dagger",
+    "name": "Serpent Dagger",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/silverscale_dagger",
+    "name": "Silverscale Dagger",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/silverscale_trident",
+    "name": "Silverscale Trident",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 0"
+  },
+  {
+    "item": "weapons/slime_sword",
+    "name": "Slime Sword",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/stormcloud_spear",
+    "name": "Stormcloud Spear",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 2"
+  },
+  {
+    "item": "weapons/tempest_blade",
+    "name": "Tempest Blade",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 2
+    },
+    "reason": "Attack: (equals Speed), Speed: 2"
+  },
+  {
+    "item": "weapons/thunderbound_sabre",
+    "name": "Thunderbound Sabre",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 6,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: 6"
+  },
+  {
+    "item": "weapons/wave_breaker",
+    "name": "Wave Breaker",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": -2,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Attack: -2"
+  },
+  {
+    "item": "items/purelake_helmet",
+    "name": "Purelake Helmet",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 2,
+      "health": 0,
+      "speed": 0
+    },
+    "reason": "Armor: 2"
+  },
+  {
+    "item": "items/liferoot_gauntlet",
+    "name": "Liferoot Gauntlet",
+    "before": {
+      "armor": 0,
+      "attack": 0,
+      "health": 3,
+      "speed": 0
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 3,
+      "speed": 0
+    },
+    "reason": "Health: 3"
+  },
+  {
+    "item": "items/sour_lemon",
+    "name": "Sour Lemon",
+    "before": {
+      "armor": 0,
+      "attack": 4,
+      "health": 0,
+      "speed": 4
+    },
+    "after": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 3
+    },
+    "reason": "Speed: 3"
+  }
+]

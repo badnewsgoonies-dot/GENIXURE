@@ -410,8 +410,8 @@
     "name": "Blastcap Armor",
     "slug": "blastcap_armor",
     "stats": {
+      "armor": 3,
       "attack": 0,
-      "armor": 8,
       "health": 0,
       "speed": 0
     },
@@ -457,9 +457,9 @@
     "name": "Blood Sausage",
     "slug": "blood_sausage",
     "stats": {
-      "attack": 0,
       "armor": 0,
-      "health": 5,
+      "attack": 0,
+      "health": 0,
       "speed": 0
     },
     "tags": [
@@ -612,8 +612,8 @@
     "name": "Boots of the Hero",
     "slug": "boots_of_the_hero",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 2
     },
@@ -664,8 +664,8 @@
     "name": "Bramble Buckler",
     "slug": "bramble_buckler",
     "stats": {
-      "attack": 0,
       "armor": 2,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -702,9 +702,9 @@
     "name": "Bramble Vest",
     "slug": "bramble_vest",
     "stats": {
+      "armor": 3,
       "attack": 0,
-      "armor": 0,
-      "health": 3,
+      "health": 0,
       "speed": 0
     },
     "tags": []
@@ -748,9 +748,9 @@
     "name": "Brittlebark Armor",
     "slug": "brittlebark_armor",
     "stats": {
-      "attack": 0,
       "armor": 0,
-      "health": 12,
+      "attack": 0,
+      "health": 4,
       "speed": 0
     },
     "tags": []
@@ -770,8 +770,8 @@
     "name": "Brittlebark Buckler",
     "slug": "brittlebark_buckler",
     "stats": {
+      "armor": 4,
       "attack": 0,
-      "armor": 10,
       "health": 0,
       "speed": 0
     },
@@ -1619,8 +1619,8 @@
     "name": "Double-plated Armor",
     "slug": "double_plated_armor",
     "stats": {
-      "attack": 0,
       "armor": 2,
+      "attack": 0,
       "health": 0,
       "speed": -2
     },
@@ -1714,8 +1714,8 @@
     "name": "Elderwood Necklace",
     "slug": "elderwood_necklace",
     "stats": {
-      "attack": 1,
       "armor": 1,
+      "attack": 1,
       "health": 0,
       "speed": 1
     },
@@ -1727,9 +1727,9 @@
     "name": "Emerald Crown",
     "slug": "emerald_crown",
     "stats": {
-      "attack": -1,
       "armor": 0,
-      "health": 8,
+      "attack": 0,
+      "health": 3,
       "speed": 0
     },
     "tags": [
@@ -1917,8 +1917,8 @@
     "name": "Explosive Roast",
     "slug": "explosive_roast",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 5,
       "speed": 0
     },
@@ -2151,8 +2151,8 @@
     "name": "Frostbite Armor",
     "slug": "frostbite_armor",
     "stats": {
+      "armor": 0,
       "attack": 0,
-      "armor": 2,
       "health": 0,
       "speed": 0
     },
@@ -2649,8 +2649,8 @@
     "name": "Horned Helmet",
     "slug": "horned_helmet",
     "stats": {
-      "attack": 0,
       "armor": 2,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -2756,8 +2756,8 @@
     "name": "Iceblock Shield",
     "slug": "iceblock_shield",
     "stats": {
+      "armor": 3,
       "attack": 0,
-      "armor": 8,
       "health": 0,
       "speed": 0
     },
@@ -2910,10 +2910,10 @@
     "name": "Ironstone Bracelet",
     "slug": "ironstone_bracelet",
     "stats": {
+      "armor": 0,
       "attack": 0,
-      "armor": 2,
       "health": 0,
-      "speed": -1
+      "speed": 0
     },
     "tags": []
   },
@@ -2923,10 +2923,10 @@
     "name": "Ironstone Sandals",
     "slug": "ironstone_sandals",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
-      "speed": -1
+      "speed": 0
     },
     "tags": []
   },
@@ -3025,8 +3025,8 @@
     "name": "Leather Glove",
     "slug": "leather_glove",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 3,
       "speed": 1
     },
@@ -3038,8 +3038,8 @@
     "name": "Leather Vest",
     "slug": "leather_vest",
     "stats": {
-      "attack": 0,
       "armor": 2,
+      "attack": 0,
       "health": 0,
       "speed": 1
     },
@@ -3214,8 +3214,8 @@
     "name": "Liferoot Gauntlet",
     "slug": "liferoot_gauntlet",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 3,
       "speed": 0
     },
@@ -4031,8 +4031,8 @@
     "name": "Purelake Helmet",
     "slug": "purelake_helmet",
     "stats": {
+      "armor": 0,
       "attack": 0,
-      "armor": 2,
       "health": 0,
       "speed": 0
     },
@@ -4130,10 +4130,10 @@
     "name": "Redwood Cloak",
     "slug": "redwood_cloak",
     "stats": {
-      "attack": 0,
       "armor": 0,
-      "health": 2,
-      "speed": 0
+      "attack": 0,
+      "health": 5,
+      "speed": 4
     },
     "tags": []
   },
@@ -4143,9 +4143,9 @@
     "name": "Redwood Helmet",
     "slug": "redwood_helmet",
     "stats": {
+      "armor": 0,
       "attack": 0,
-      "armor": 1,
-      "health": 1,
+      "health": 0,
       "speed": 0
     },
     "tags": []
@@ -4245,10 +4245,10 @@
     "name": "Rock Roast",
     "slug": "rock_roast",
     "stats": {
+      "armor": 2,
       "attack": 0,
-      "armor": 0,
-      "health": 6,
-      "speed": 6
+      "health": 3,
+      "speed": 0
     },
     "tags": [
       "Food"
@@ -4291,8 +4291,8 @@
     "name": "Royal Helmet",
     "slug": "royal_helmet",
     "stats": {
-      "attack": 0,
       "armor": 1,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -4371,8 +4371,8 @@
     "name": "Ruby Crown",
     "slug": "ruby_crown",
     "stats": {
-      "attack": 1,
       "armor": 0,
+      "attack": 1,
       "health": 0,
       "speed": -1
     },
@@ -4482,8 +4482,8 @@
     "name": "Saffron Feather",
     "slug": "saffron_feather",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 1
     },
@@ -4772,8 +4772,8 @@
     "name": "Shield of the Hero",
     "slug": "shield_of_the_hero",
     "stats": {
+      "armor": -3,
       "attack": 0,
-      "armor": 3,
       "health": 0,
       "speed": 0
     },
@@ -5057,10 +5057,10 @@
     "name": "Sour Lemon",
     "slug": "sour_lemon",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 4,
       "health": 0,
-      "speed": 3
+      "speed": 4
     },
     "tags": []
   },
@@ -5393,10 +5393,10 @@
     "name": "Swiftstrike Cloak",
     "slug": "swiftstrike_cloak",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 2,
       "health": 0,
-      "speed": 1
+      "speed": 4
     },
     "tags": []
   },
@@ -6313,8 +6313,8 @@
     "name": "Ancient Warhammer",
     "slug": "ancient_warhammer",
     "stats": {
-      "attack": 5,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6334,8 +6334,8 @@
     "name": "Arcane Wand",
     "slug": "arcane_wand",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6372,8 +6372,8 @@
     "name": "Basilisk Fang",
     "slug": "basilisk_fang",
     "stats": {
-      "attack": 3,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6398,9 +6398,9 @@
     "name": "Bearclaw Blade",
     "slug": "bearclaw_blade",
     "stats": {
-      "attack": 0,
       "armor": 0,
-      "health": 5,
+      "attack": 0,
+      "health": 0,
       "speed": 0
     },
     "tags": []
@@ -6411,8 +6411,8 @@
     "name": "Bejeweled Blade",
     "slug": "bejeweled_blade",
     "stats": {
-      "attack": 1,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6424,8 +6424,8 @@
     "name": "Blackbriar Blade",
     "slug": "blackbriar_blade",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6526,8 +6526,8 @@
     "name": "Brittlebark Bow",
     "slug": "brittlebark_bow",
     "stats": {
-      "attack": 4,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6539,8 +6539,8 @@
     "name": "Brittlebark Club",
     "slug": "brittlebark_club",
     "stats": {
-      "attack": 7,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6574,8 +6574,8 @@
     "name": "Bubblegloop Staff",
     "slug": "bubblegloop_staff",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6589,8 +6589,8 @@
     "name": "Chainmail Sword",
     "slug": "chainmail_sword",
     "stats": {
-      "attack": 2,
-      "armor": 2,
+      "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6648,8 +6648,8 @@
     "name": "Cleaver of Wrath",
     "slug": "cleaver_of_wrath",
     "stats": {
-      "attack": 10,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6684,10 +6684,10 @@
     "name": "Elderwood Staff",
     "slug": "elderwood_staff",
     "stats": {
-      "attack": 1,
-      "armor": 1,
+      "armor": 0,
+      "attack": 0,
       "health": 0,
-      "speed": 1
+      "speed": 0
     },
     "tags": []
   },
@@ -6710,8 +6710,8 @@
     "name": "Explosive Sword",
     "slug": "explosive_sword",
     "stats": {
-      "attack": 3,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6723,10 +6723,10 @@
     "name": "Featherweight Blade",
     "slug": "featherweight_blade",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
-      "speed": 2
+      "speed": 0
     },
     "tags": []
   },
@@ -6747,8 +6747,8 @@
     "name": "Forge Hammer",
     "slug": "forge_hammer",
     "stats": {
-      "attack": 4,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6760,8 +6760,8 @@
     "name": "Frostbite Dagger",
     "slug": "frostbite_dagger",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6810,8 +6810,8 @@
     "name": "Fungal Rapier",
     "slug": "fungal_rapier",
     "stats": {
-      "attack": 3,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6823,10 +6823,10 @@
     "name": "Gale Staff",
     "slug": "gale_staff",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
-      "speed": 6
+      "speed": 0
     },
     "tags": []
   },
@@ -6836,8 +6836,8 @@
     "name": "Gemstone Scepter",
     "slug": "gemstone_scepter",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6849,8 +6849,8 @@
     "name": "Granite Axe",
     "slug": "granite_axe",
     "stats": {
-      "attack": 4,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6862,8 +6862,8 @@
     "name": "Granite Hammer",
     "slug": "granite_hammer",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6875,8 +6875,8 @@
     "name": "Granite Lance",
     "slug": "granite_lance",
     "stats": {
-      "attack": 2,
-      "armor": 1,
+      "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6900,8 +6900,8 @@
     "name": "Grilling Skewer",
     "slug": "grilling_skewer",
     "stats": {
-      "attack": 1,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6913,8 +6913,8 @@
     "name": "Grindstone Club",
     "slug": "grindstone_club",
     "stats": {
-      "attack": 1,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6926,8 +6926,8 @@
     "name": "Heart Drinker",
     "slug": "heart_drinker",
     "stats": {
-      "attack": 1,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6939,8 +6939,8 @@
     "name": "Hidden Dagger",
     "slug": "hidden_dagger",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6952,8 +6952,8 @@
     "name": "Icicle Spear",
     "slug": "icicle_spear",
     "stats": {
-      "attack": 3,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -6965,10 +6965,10 @@
     "name": "Ironstone Bow",
     "slug": "ironstone_bow",
     "stats": {
-      "attack": 6,
       "armor": 0,
+      "attack": 0,
       "health": 0,
-      "speed": 1
+      "speed": 0
     },
     "tags": []
   },
@@ -6978,10 +6978,10 @@
     "name": "Ironstone Greatsword",
     "slug": "ironstone_greatsword",
     "stats": {
-      "attack": 4,
       "armor": 0,
+      "attack": 0,
       "health": 0,
-      "speed": -2
+      "speed": 0
     },
     "tags": []
   },
@@ -6991,8 +6991,8 @@
     "name": "Ironstone Spear",
     "slug": "ironstone_spear",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7054,9 +7054,9 @@
     "name": "Leather Whip",
     "slug": "leather_whip",
     "stats": {
-      "attack": 4,
       "armor": 0,
-      "health": 5,
+      "attack": 0,
+      "health": 0,
       "speed": 0
     },
     "tags": []
@@ -7067,8 +7067,8 @@
     "name": "Lifeblood Spear",
     "slug": "lifeblood_spear",
     "stats": {
-      "attack": 1,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7080,8 +7080,8 @@
     "name": "Liferoot Hammer",
     "slug": "liferoot_hammer",
     "stats": {
-      "attack": 3,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7093,8 +7093,8 @@
     "name": "Liferoot Staff",
     "slug": "liferoot_staff",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7106,8 +7106,8 @@
     "name": "Lifesteal Scythe",
     "slug": "lifesteal_scythe",
     "stats": {
-      "attack": 1,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7128,8 +7128,8 @@
     "name": "Lightning Rod",
     "slug": "lightning_rod",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 2,
       "health": 0,
       "speed": 0
     },
@@ -7149,8 +7149,8 @@
     "name": "Lightning Whip",
     "slug": "lightning_whip",
     "stats": {
-      "attack": 3,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7175,8 +7175,8 @@
     "name": "Melting Iceblade",
     "slug": "melting_iceblade",
     "stats": {
-      "attack": 8,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7188,8 +7188,8 @@
     "name": "Moonlight Cleaver",
     "slug": "moonlight_cleaver",
     "stats": {
-      "attack": 3,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7214,8 +7214,8 @@
     "name": "Pacifist Staff",
     "slug": "pacifist_staff",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7249,8 +7249,8 @@
     "name": "Purelake Staff",
     "slug": "purelake_staff",
     "stats": {
-      "attack": 1,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7308,8 +7308,8 @@
     "name": "Riverflow Rapier",
     "slug": "riverflow_rapier",
     "stats": {
-      "attack": 3,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7332,8 +7332,8 @@
     "name": "Royal Crownblade",
     "slug": "royal_crownblade",
     "stats": {
-      "attack": 4,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7345,8 +7345,8 @@
     "name": "Royal Scepter",
     "slug": "royal_scepter",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7358,8 +7358,8 @@
     "name": "Rusty Sword",
     "slug": "rusty_sword",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7371,8 +7371,8 @@
     "name": "Sanguine Scepter",
     "slug": "sanguine_scepter",
     "stats": {
-      "attack": 1,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7397,8 +7397,8 @@
     "name": "Serpent Dagger",
     "slug": "serpent_dagger",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7422,8 +7422,8 @@
     "name": "Silverscale Dagger",
     "slug": "silverscale_dagger",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7435,8 +7435,8 @@
     "name": "Silverscale Trident",
     "slug": "silverscale_trident",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7465,8 +7465,8 @@
     "name": "Slime Sword",
     "slug": "slime_sword",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7504,8 +7504,8 @@
     "name": "Stoneslab Sword",
     "slug": "stoneslab_sword",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7517,8 +7517,8 @@
     "name": "Stormcloud Spear",
     "slug": "stormcloud_spear",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7530,8 +7530,8 @@
     "name": "Swiftstrike Bow",
     "slug": "swiftstrike_bow",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7559,8 +7559,8 @@
     "name": "Swiftstrike Rapier",
     "slug": "swiftstrike_rapier",
     "stats": {
-      "attack": 2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7602,8 +7602,8 @@
     "name": "Sword of the Hero",
     "slug": "sword_of_the_hero",
     "stats": {
-      "attack": 3,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7615,10 +7615,10 @@
     "name": "Tempest Blade",
     "slug": "tempest_blade",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
-      "speed": 2
+      "speed": 0
     },
     "tags": []
   },
@@ -7640,8 +7640,8 @@
     "name": "Thunderbound Sabre",
     "slug": "thunderbound_sabre",
     "stats": {
-      "attack": 6,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7653,8 +7653,8 @@
     "name": "Twin Blade",
     "slug": "twin_blade",
     "stats": {
-      "attack": 1,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7677,8 +7677,8 @@
     "name": "Wave Breaker",
     "slug": "wave_breaker",
     "stats": {
-      "attack": -2,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
