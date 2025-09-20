@@ -436,6 +436,7 @@
     },
 
     countdown_tome_caustic: ({ self, other, log, value }) => {
+      console.log('🔍 DEBUG: countdown_tome_caustic called with value:', value);
       const countdownAction = (fighter, opponent, logFn) => {
         const acidAmount = fighter.speed || 0;
         if (acidAmount > 0) {

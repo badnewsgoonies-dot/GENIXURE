@@ -831,20 +831,11 @@
   },
   "items/caustic_tome": {
     "bucket": "items",
-    "effect": "Countdown 15: Give the enemy acid equal to your speed (Gold 10, Diamond 5)",
+    "effect": "Battle Start: Give the enemy acid equal to your speed.",
     "effects": [
       {
-        "trigger": "battleStart",
-        "actions": [
-          {
-            "type": "countdown_tome_caustic",
-            "value": {
-              "turns": 15,
-              "gold": 10,
-              "diamond": 5
-            }
-          }
-        ]
+        "action": "give_enemy_acid_equal_to_speed",
+        "trigger": "battleStart"
       }
     ],
     "name": "Caustic Tome",
@@ -2340,21 +2331,6 @@
     },
     "tags": [
       "Tome"
-    ],
-    "effects": [
-      {
-        "trigger": "turnStart",
-        "actions": [
-          {
-            "type": "countdown_tome_granite",
-            "value": {
-              "base": 6,
-              "gold": 12,
-              "diamond": 24
-            }
-          }
-        ]
-      }
     ]
   },
   "items/ham_bat": {
@@ -2504,17 +2480,18 @@
     "effect": "Countdown 6: +3 Attack (Gold 6, Diamond 12)",
     "effects": [
       {
+        "action": "register_countdown",
         "trigger": "battleStart",
-        "actions": [
-          {
-            "type": "countdown_tome_holy",
-            "value": {
-              "turns": 6,
-              "gold": 6,
-              "diamond": 12
-            }
-          }
-        ]
+        "value": {
+          "action": "gain_stat",
+          "stat": "attack",
+          "base": 3,
+          "diamond": 12,
+          "gold": 6,
+          "name": "Holy Tome",
+          "tag": "Tome",
+          "turns": 6
+        }
       }
     ],
     "name": "Holy Tome",
@@ -3192,21 +3169,6 @@
     },
     "tags": [
       "Tome"
-    ],
-    "effects": [
-      {
-        "trigger": "turnStart",
-        "actions": [
-          {
-            "type": "countdown_tome_liferoot",
-            "value": {
-              "base": 3,
-              "gold": 6,
-              "diamond": 12
-            }
-          }
-        ]
-      }
     ]
   },
   "items/lightning_bottle": {
@@ -4864,21 +4826,6 @@
     },
     "tags": [
       "Tome"
-    ],
-    "effects": [
-      {
-        "trigger": "turnStart",
-        "actions": [
-          {
-            "type": "countdown_tome_silverscale",
-            "value": {
-              "base": 2,
-              "gold": 4,
-              "diamond": 8
-            }
-          }
-        ]
-      }
     ]
   },
   "items/sinful_mirror": {
@@ -5217,21 +5164,6 @@
     },
     "tags": [
       "Tome"
-    ],
-    "effects": [
-      {
-        "trigger": "turnStart",
-        "actions": [
-          {
-            "type": "countdown_tome_stormcloud",
-            "value": {
-              "base": 1,
-              "gold": 2,
-              "diamond": 4
-            }
-          }
-        ]
-      }
     ]
   },
   "items/stormtide_anchor": {
