@@ -874,29 +874,6 @@
       other.addStatus(statusType, amount);
       log(`🧪 ${self.name} gives ${other.name} ${amount} ${statusType}`);
     },
-    spend_stat_for_health: ({ self, log, value, tier }) => {
-      const statToSpend = value?.stat_to_spend || 'speed';
-      
-      let cost = value?.cost;
-      let healthGain = value?.health_gain;
-
-      // Tiered values override base values
-      if (tier === 'gold') {
-        cost = value?.gold_cost ?? cost;
-        healthGain = value?.gold_health_gain ?? healthGain;
-      } else if (tier === 'diamond') {
-        cost = value?.diamond_cost ?? cost;
-        healthGain = value?.diamond_health_gain ?? healthGain;
-      }
-
-      if (self[statToSpend] >= cost) {
-        self[statToSpend] -= cost;
-        const healed = self.heal(healthGain);
-        if (healed > 0) {
-          log(`${self.name} spends ${cost} ${statToSpend} to restore ${healed} health.`);
-        }
-      }
-    },
   };
 
   function checkCondition(condition, { self, other, log, key, isNew }) {

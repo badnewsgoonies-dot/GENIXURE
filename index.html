@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 html,body { margin:0; height:100%; background:#000; color:#f33; font-family: Inter, system-ui, Arial, sans-serif; }
 /* Slightly smaller font for a more compact UI */
@@ -300,15 +299,15 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   <section class="panel" id="panelP">
     <div class="title">Oils</div>
     <div class="oils" id="oilsP">
-      <div class="oil" data-kind="attack"><img src="assets/attack.png" alt="Attack Oil"><span>Attack Oil</span></div>
-      <div class="oil" data-kind="armor"><img src="assets/armor.png" alt="Armor Oil"><span>Armor Oil</span></div>
-      <div class="oil" data-kind="speed"><img src="assets/speed.png" alt="Speed Oil"><span>Speed Oil</span></div>
+      <div class="oil" data-kind="attack"><img src="assets/attack.png"><span>Attack Oil</span></div>
+      <div class="oil" data-kind="armor"><img src="assets/armor.png"><span>Armor Oil</span></div>
+      <div class="oil" data-kind="speed"><img src="assets/speed.png"><span>Speed Oil</span></div>
     </div>
     <div class="weapon-slot" id="weaponP">Drop a Weapon</div>
     <div class="edge-tile">
       <div class="edge-body">
         <img id="edgePIcon" src="assets/placeholder.png" alt="">
-        <select id="edgeP" title="Select Player Edge"><option value="">â€” Select Edge â€”</option></select>
+        <select id="edgeP"><option value="">â€” Select Edge â€”</option></select>
       </div>
       <div id="edgePEffect" class="meta effect"></div>
     </div>
@@ -332,11 +331,11 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
     </div>
     <section class="center" id="compendiumTab" style="flex:1; display:flex; flex-direction:column; min-height:0;">
       <div class="toolbar">
-        <input id="q" type="search" placeholder="Search name/effect/tagâ€¦" title="Search by name, effect, or tag">
-        <select id="bucket" title="Filter by type">
+        <input id="q" type="search" placeholder="Search name/effect/tagâ€¦">
+        <select id="bucket">
           <option value="All">All</option><option value="items" selected>Items</option><option value="weapons">Weapons</option><option value="upgrades">Upgrades</option>
         </select>
-        <select id="cat" title="Filter by category">
+        <select id="cat">
           <option value="All">All</option>
           <option value="Jewelry">Jewelry</option><option value="Tome">Tome</option><option value="Food">Food</option>
         </select>
@@ -421,7 +420,7 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
     <div class="edge-tile">
       <div class="edge-body">
         <img id="edgeOIcon" src="assets/placeholder.png" alt="">
-        <select id="edgeO" title="Select Opponent Edge"><option value="">â€” Select Edge â€”</option></select>
+        <select id="edgeO"><option value="">â€” Select Edge â€”</option></select>
       </div>
       <div id="edgeOEffect" class="meta effect"></div>
     </div>
