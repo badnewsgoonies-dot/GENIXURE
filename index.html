@@ -156,10 +156,9 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   .slot:focus-visible { outline: 2px solid #f55; outline-offset: 3px; }
   /* Selected slot highlight */
 .slot.active { box-shadow: 0 0 0 3px #f55 inset; background:#120; }
-  /* Card quick actions (Add P / Add O) */
-  .card__actions { display:none; gap:6px; margin-left:auto; }
-  .card:hover .card__actions, .card:focus .card__actions, .card:focus-within .card__actions { display:flex; }
-  .card__btn { background:#1b1216; color:#f33; border:1px solid #f33; border-radius:8px; padding:4px 8px; cursor:pointer; font-size:12px; }
+  /* Card quick actions (Add P / Add O) - REMOVED */
+  .card__actions { display:none !important; }
+  .card__btn { display:none !important; }
   .selIndicator { font-size: 12px; color:#faa; margin:4px 2px; }
 .card .iconWrap { position:relative; }
 .card .iconWrap img { width:48px; height:48px; image-rendering:pixelated; }
@@ -841,15 +840,8 @@ function renderGrid() {
 
     const actions = document.createElement('div'); actions.className = 'card__actions'; actions.style.marginLeft = 'auto';
 
-    const btnP = document.createElement('button'); btnP.className = 'card__btn'; btnP.textContent = 'Add P';
-
-    const btnO = document.createElement('button'); btnO.className = 'card__btn'; btnO.textContent = 'Add O';
-
-    btnP.addEventListener('click', (ev) => { ev.stopPropagation(); quickAdd('P', entry, card.dataset.tier || 'base'); });
-
-    btnO.addEventListener('click', (ev) => { ev.stopPropagation(); quickAdd('O', entry, card.dataset.tier || 'base'); });
-
-    actions.append(tierSel, btnP, btnO);
+    // Tier selector only (P/O buttons removed)
+    actions.append(tierSel);
 
     topRow.appendChild(actions);
 
