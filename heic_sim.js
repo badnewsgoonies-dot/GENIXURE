@@ -842,6 +842,38 @@
         log(`${self.name} gains ${armorGain} armor (from enemy's ${enemyArmor} armor)`);
       }
     },
+    deal_damage_per_tome: ({ self, other, log, value, bonus }) => {
+      const baseDamage = value || 2;
+      const bonusPerTome = bonus || 1;
+      
+      // Count tome items
+      const items = self.items || [];
+      const tomeCount = items.filter(item => {
+        const itemData = window.RAW_DATA[item] || {};
+        const tags = itemData.tags || [];
+        return tags.includes('Tome');
+      }).length;
+      
+      const totalDamage = baseDamage + (tomeCount * bonusPerTome);
+      other.hp = Math.max(0, (other.hp || 0) - totalDamage);
+      log(`🔥 ${self.name} deals ${totalDamage} damage (${baseDamage} base + ${tomeCount} tomes × ${bonusPerTome})`);
+    },
+    spend_speed: ({ self, log, value }) => {
+      const amount = value || 1;
+      if (self.speed >= amount) {
+        self.speed -= amount;
+        log(`⚡ ${self.name} spends ${amount} speed`);
+        return true;
+      }
+      log(`⚡ ${self.name} doesn't have enough speed to spend ${amount}`);
+      return false;
+    },
+    give_enemy_status: ({ self, other, log, status, value }) => {
+      const amount = value || 1;
+      const statusType = status || 'poison';
+      other.addStatus(statusType, amount);
+      log(`🧪 ${self.name} gives ${other.name} ${amount} ${statusType}`);
+    },
   };
 
   function checkCondition(condition, { self, other, log, key, isNew }) {
@@ -1275,6 +1307,8 @@ let CURRENT_SOURCE_SLUG = null;
     if (att.statuses.stun > 0) {
       att.statuses.stun--;
       log(`${att.name} is stunned and misses the strike`);
+      // Trigger strike_skipped event for stunned players
+      runEffects('strike_skipped', att, def, log, { reason: 'stunned' });
       return;
     }
     let dmg = Math.max(0, att.atk + att.tempAtk);

@@ -5847,6 +5847,14 @@
   "weapons/arcane_wand": {
     "bucket": "weapons",
     "effect": "Can't attack. Turn Start: Deal 2 damage. Increase the damage by 1 for each tome equipped",
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "action": "deal_damage_per_tome",
+        "value": 2,
+        "bonus": 1
+      }
+    ],
     "name": "Arcane Wand",
     "slug": "arcane_wand",
     "stats": {
@@ -5855,7 +5863,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": ["no_attack"]
   },
   "weapons/banish_hammer": {
     "bucket": "weapons",
@@ -6061,6 +6069,28 @@
   "weapons/bubblegloop_staff": {
     "bucket": "weapons",
     "effect": "Can't strike. Turn Start: Spend 1 speed to give the enemy 2 acid and 2 poison",
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "condition": "has_speed",
+        "actions": [
+          {
+            "action": "spend_speed",
+            "value": 1
+          },
+          {
+            "action": "give_enemy_status",
+            "status": "acid",
+            "value": 2
+          },
+          {
+            "action": "give_enemy_status", 
+            "status": "poison",
+            "value": 2
+          }
+        ]
+      }
+    ],
     "name": "Bubblegloop Staff",
     "slug": "bubblegloop_staff",
     "stats": {
@@ -6069,7 +6099,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": ["no_strike"]
   },
   "weapons/chainmail_sword": {
     "bucket": "weapons",
@@ -6577,20 +6607,20 @@
   },
   "weapons/lightning_rod": {
     "bucket": "weapons",
-    "effect": "Turn Start: If you're stunned, gain 3 attack",
+    "effect": "Whenever you skip your strike when stunned, gain 2 attack",
     "effects": [
       {
-        "trigger": "turn_start",
+        "trigger": "strike_skipped",
         "condition": "self_stunned",
-        "action": "gain_attack",
-        "value": 3
+        "action": "add_attack",
+        "value": 2
       }
     ],
     "name": "Lightning Rod",
     "slug": "lightning_rod",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 2,
       "health": 0,
       "speed": 0
     },
@@ -6601,7 +6631,7 @@
     "effect": "Turn Start: If the enemy is stunned, gain 1 additional strike",
     "effects": [
       {
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "condition": "enemy_stunned",
         "action": "gain_strikes",
         "value": 1
