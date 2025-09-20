@@ -1487,7 +1487,17 @@
     "tags": [
       "Tome"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "defeatBoss",
+        "actions": [
+          {
+            "type": "transform",
+            "target": "a random Cauldron item"
+          }
+        ]
+      }
+    ]
   },
   "items/corroded_bone": {
     "bucket": "items",
@@ -1681,7 +1691,17 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "defeatBoss",
+        "actions": [
+          {
+            "type": "hatchInto",
+            "creature": "Sanguine Imp"
+          }
+        ]
+      }
+    ]
   },
   "items/double_explosion": {
     "bucket": "items",
@@ -1695,7 +1715,20 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "dealNonWeaponDamage",
+        "condition": {
+          "type": "secondTimePerTurn"
+        },
+        "actions": [
+          {
+            "type": "dealDamage",
+            "amount": 3
+          }
+        ]
+      }
+    ]
   },
   "items/double_plated_armor": {
     "bucket": "items",
@@ -1732,7 +1765,20 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "takeDamage",
+        "condition": {
+          "type": "everyThirdTime"
+        },
+        "actions": [
+          {
+            "type": "gainArmor",
+            "amount": 2
+          }
+        ]
+      }
+    ]
   },
   "items/druid_s_cloak": {
     "bucket": "items",
@@ -1952,7 +1998,20 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "beforeOthers",
+        "condition": {
+          "type": "hasLessSpeedThanEnemy"
+        },
+        "actions": [
+          {
+            "type": "stealEnemySpeed",
+            "amount": 5
+          }
+        ]
+      }
+    ]
   },
   "items/explosive_arrow": {
     "bucket": "items",
@@ -2202,7 +2261,21 @@
     "tags": [
       "Tome"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "countdown",
+        "countdown": 4,
+        "actions": [
+          {
+            "type": "dealDamage",
+            "amount": 4
+          },
+          {
+            "type": "resetCountdown"
+          }
+        ]
+      }
+    ]
   },
   "items/forge_gauntlet": {
     "bucket": "items",
@@ -2280,7 +2353,21 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "enemyFirstStrikeDoubleDamage"
+          },
+          {
+            "type": "giveEnemyStatusAfterFirstStrike",
+            "status": "freeze",
+            "amount": 4
+          }
+        ]
+      }
+    ]
   },
   "items/frostbite_curse": {
     "bucket": "items",
@@ -2436,7 +2523,17 @@
     "tags": [
       "Tome"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "countdown",
+        "countdown": 10,
+        "actions": [
+          {
+            "type": "retriggerAllTomes"
+          }
+        ]
+      }
+    ]
   },
   "items/granite_cherry": {
     "bucket": "items",
@@ -2504,7 +2601,17 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "defeatBoss",
+        "actions": [
+          {
+            "type": "hatchInto",
+            "creature": "Stoneborn Turtle"
+          }
+        ]
+      }
+    ]
   },
   "items/granite_fungi": {
     "bucket": "items",
@@ -2544,7 +2651,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "protectStatusFromStrikes",
+            "status": "thorns",
+            "strikeCount": 3
+          }
+        ]
+      }
+    ]
   },
   "items/granite_tome": {
     "bucket": "items",
@@ -2560,7 +2678,18 @@
     "tags": [
       "Tome"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "countdown",
+        "countdown": 4,
+        "actions": [
+          {
+            "type": "gainArmor",
+            "amount": 6
+          }
+        ]
+      }
+    ]
   },
   "items/ham_bat": {
     "bucket": "weapons",
@@ -2703,7 +2832,16 @@
       "speed": -1
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "statsOnly"
+          }
+        ]
+      }
+    ]
   },
   "items/holy_tome": {
     "bucket": "items",
@@ -2949,7 +3087,22 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "hasExactlyOneOfType",
+          "itemType": "item"
+        },
+        "actions": [
+          {
+            "type": "modifyTriggerCount",
+            "targetType": "item",
+            "multiplier": 3
+          }
+        ]
+      }
+    ]
   },
   "items/iron_shrapnel": {
     "bucket": "items",
@@ -3102,7 +3255,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "defeatBoss",
+        "actions": [
+          {
+            "type": "upgrade"
+          }
+        ]
+      }
+    ]
   },
   "items/leather_belt": {
     "bucket": "items",
@@ -3358,7 +3520,22 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "condition": {
+          "type": "hasNoStatus",
+          "status": "regeneration"
+        },
+        "actions": [
+          {
+            "type": "gainStatus",
+            "status": "regeneration",
+            "amount": 3
+          }
+        ]
+      }
+    ]
   },
   "items/liferoot_gauntlet": {
     "bucket": "items",
@@ -3434,7 +3611,19 @@
     "tags": [
       "Tome"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "countdown",
+        "countdown": 4,
+        "actions": [
+          {
+            "type": "gainStatus",
+            "status": "regeneration",
+            "amount": 3
+          }
+        ]
+      }
+    ]
   },
   "items/lightning_bottle": {
     "bucket": "items",
@@ -4055,7 +4244,20 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "condition": {
+          "type": "healthFull"
+        },
+        "actions": [
+          {
+            "type": "gainPermanentTurnStartThorn",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "items/plated_greaves": {
     "bucket": "items",
@@ -4222,7 +4424,18 @@
       "speed": -1
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "everyOtherTurn",
+        "actions": [
+          {
+            "type": "gainStatus",
+            "status": "purity",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "items/purelake_helmet": {
     "bucket": "items",
@@ -4292,7 +4505,17 @@
     "tags": [
       "Tome"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "countdown",
+        "countdown": 3,
+        "actions": [
+          {
+            "type": "conditionalPurityToggle"
+          }
+        ]
+      }
+    ]
   },
   "items/razor_breastplate": {
     "bucket": "items",
@@ -4684,7 +4907,17 @@
     "tags": [
       "Jewelry"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "everyOtherTurn",
+        "actions": [
+          {
+            "type": "dealDamage",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "items/ruby_gemstone": {
     "bucket": "items",
@@ -4700,7 +4933,21 @@
     "tags": [
       "Jewelry"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "onHit",
+        "condition": {
+          "type": "attackEquals",
+          "value": 1
+        },
+        "actions": [
+          {
+            "type": "dealBonusDamage",
+            "amount": 4
+          }
+        ]
+      }
+    ]
   },
   "items/ruby_ring": {
     "bucket": "items",
@@ -4792,7 +5039,22 @@
       "speed": 1
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "actions": [
+          {
+            "type": "spendStatus",
+            "status": "speed",
+            "amount": 1
+          },
+          {
+            "type": "heal",
+            "amount": 2
+          }
+        ]
+      }
+    ]
   },
   "items/saltcrusted_crown": {
     "bucket": "items",
@@ -4852,7 +5114,23 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "everyNthTurn",
+        "interval": 4,
+        "actions": [
+          {
+            "type": "stunSelf",
+            "amount": 1
+          },
+          {
+            "type": "gainStatus",
+            "status": "regeneration",
+            "amount": 3
+          }
+        ]
+      }
+    ]
   },
   "items/sanguine_rose": {
     "bucket": "items",
@@ -4894,7 +5172,17 @@
     "tags": [
       "Tome"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "countdown",
+        "countdown": 6,
+        "actions": [
+          {
+            "type": "healToFull"
+          }
+        ]
+      }
+    ]
   },
   "items/sapphire_crown": {
     "bucket": "items",
@@ -4926,7 +5214,17 @@
     "tags": [
       "Jewelry"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "everyOtherTurn",
+        "actions": [
+          {
+            "type": "gainArmor",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "items/sapphire_gemstone": {
     "bucket": "items",
@@ -5325,7 +5623,19 @@
     "tags": [
       "Tome"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "countdown",
+        "countdown": 3,
+        "actions": [
+          {
+            "type": "giveEnemyStatus",
+            "status": "riptide",
+            "amount": 2
+          }
+        ]
+      }
+    ]
   },
   "items/sinful_mirror": {
     "bucket": "items",
@@ -5559,7 +5869,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "defeatBoss",
+        "actions": [
+          {
+            "type": "upgrade"
+          }
+        ]
+      }
+    ]
   },
   "items/stillwater_pearl": {
     "bucket": "items",
@@ -5587,7 +5906,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "actions": [
+          {
+            "type": "healOrArmor",
+            "healAmount": 1,
+            "armorAmount": 2
+          }
+        ]
+      }
+    ]
   },
   "items/stormcloud_armor": {
     "bucket": "items",
@@ -5700,7 +6030,18 @@
     "tags": [
       "Tome"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "countdown",
+        "countdown": 4,
+        "actions": [
+          {
+            "type": "stunEnemy",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "items/stormtide_anchor": {
     "bucket": "items",
@@ -5791,7 +6132,25 @@
       "speed": 2
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "condition": {
+          "type": "healthAbovePercent",
+          "percent": 50
+        },
+        "actions": [
+          {
+            "type": "loseHealth",
+            "amount": 3
+          },
+          {
+            "type": "gainAttack",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "items/swiftstrike_belt": {
     "bucket": "items",
@@ -6001,7 +6360,18 @@
     "tags": [
       "Tome"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "countdown",
+        "countdown": 8,
+        "actions": [
+          {
+            "type": "gainArmor",
+            "amount": 4
+          }
+        ]
+      }
+    ]
   },
   "items/toxic_algae": {
     "bucket": "items",
@@ -6122,7 +6492,17 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "defeatBoss",
+        "actions": [
+          {
+            "type": "hatchInto",
+            "creature": "Liferoot Beast"
+          }
+        ]
+      }
+    ]
   },
   "items/twinfuse_knot": {
     "bucket": "items",
@@ -6136,7 +6516,18 @@
       "speed": 2
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "modifyTriggerCount",
+            "targetTag": "bomb",
+            "multiplier": 2
+          }
+        ]
+      }
+    ]
   },
   "items/twisted_root": {
     "bucket": "items",
@@ -6192,7 +6583,21 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "hasExactlyOneOfType",
+          "itemType": "sanguine"
+        },
+        "actions": [
+          {
+            "type": "doubleHealing",
+            "targetType": "sanguine"
+          }
+        ]
+      }
+    ]
   },
   "items/vampiric_stasis": {
     "bucket": "items",
@@ -6364,7 +6769,17 @@
       "speed": 3
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "defeatBoss",
+        "actions": [
+          {
+            "type": "hatchInto",
+            "creature": "Clearspring Duck"
+          }
+        ]
+      }
+    ]
   },
   "upgrades/agile_edge": {
     "bucket": "upgrades",
@@ -6943,7 +7358,19 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "enemyHasArmor"
+        },
+        "actions": [
+          {
+            "type": "doubleAttack"
+          }
+        ]
+      }
+    ]
   },
   "weapons/bearclaw_blade": {
     "bucket": "weapons",
@@ -6957,7 +7384,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "attackEqualsMissingHealth"
+          }
+        ]
+      }
+    ]
   },
   "weapons/bejeweled_blade": {
     "bucket": "weapons",
@@ -7013,7 +7449,24 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "cantStrike"
+          }
+        ]
+      },
+      {
+        "trigger": "turnStart",
+        "actions": [
+          {
+            "type": "gainThornsEqualToAttack"
+          }
+        ]
+      }
+    ]
   },
   "weapons/bloodlord_s_axe": {
     "bucket": "weapons",
@@ -7262,7 +7715,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "maxHealthAlwaysOne"
+          }
+        ]
+      }
+    ]
   },
   "weapons/dashmaster_s_dagger": {
     "bucket": "weapons",
@@ -7391,7 +7853,20 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "onHit",
+        "condition": {
+          "type": "firstTurn"
+        },
+        "actions": [
+          {
+            "type": "giveEnemyStatusEqualToAttack",
+            "status": "freeze"
+          }
+        ]
+      }
+    ]
   },
   "weapons/frozen_iceblade": {
     "bucket": "weapons",
@@ -7479,7 +7954,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "inheritOnHitFromGemstones"
+          }
+        ]
+      }
+    ]
   },
   "weapons/granite_axe": {
     "bucket": "weapons",
@@ -7541,7 +8025,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "doubleBaseArmor"
+          }
+        ]
+      }
+    ]
   },
   "weapons/grilling_skewer": {
     "bucket": "weapons",
@@ -7721,7 +8214,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "defeatBoss",
+        "actions": [
+          {
+            "type": "upgrade"
+          }
+        ]
+      }
+    ]
   },
   "weapons/lakebed_sword": {
     "bucket": "weapons",
@@ -8160,7 +8662,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "attackEqualsGold"
+          }
+        ]
+      }
+    ]
   },
   "weapons/rusty_sword": {
     "bucket": "weapons",
@@ -8322,7 +8833,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "defeatBoss",
+        "actions": [
+          {
+            "type": "upgrade"
+          }
+        ]
+      }
+    ]
   },
   "weapons/stoneslab_sword": {
     "bucket": "weapons",
