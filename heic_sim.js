@@ -475,15 +475,15 @@
       }
     },
     convert_enemy_health_to_armor: ({ self, other, value, log }) => {
-      const converted = Math.floor(other.health * value);
+      const converted = Math.floor(other.hp * value);
       if (converted > 0) {
-        other.health -= converted;
+        other.hp -= converted;
         self.armor += converted;
         if (log) log(`${self.name} converts ${converted} enemy health into armor.`);
       }
     },
     lose_hp: ({ self, value, log }) => {
-      self.health = Math.max(0, self.health - value);
+      self.hp = Math.max(0, self.hp - value);
       if (log) log(`${self.name} loses ${value} health.`);
     },
     give_status_deal_damage_per_stack: ({ self, other, log, value }) => {
@@ -552,7 +552,7 @@
       }
     },
     double_attack: ({ self, log }) => {
-      self.attack = Math.max(0, self.attack * 2);
+      self.atk = Math.max(0, self.atk * 2);
       if (log) log(`${self.name}'s attack is doubled`);
     },
     add_max_health: ({ self, value, log }) => {
@@ -620,7 +620,7 @@
       if (log) log(`Next bomb damage increased by ${increase}`);
     },
     riptide_per_negative_attack: ({ self, other, multiplier, log }) => {
-      const negativeAttack = Math.max(0, -self.attack); // Only count negative attack
+      const negativeAttack = Math.max(0, -self.atk); // Only count negative attack
       const riptideAmount = negativeAttack * (multiplier || 1);
       if (riptideAmount > 0) {
         other.statuses.riptide = (other.statuses.riptide || 0) + riptideAmount;
@@ -1182,11 +1182,11 @@
         return (self.speed || 0) > 0;
       case 'enemy_has_higher_stats':
         if (condition.any) {
-          return other.attack > self.attack || other.armor > self.armor || other.speed > self.speed;
+          return other.atk > self.atk || other.armor > self.armor || other.speed > self.speed;
         }
-        return other.attack > self.attack && other.armor > self.armor && other.speed > self.speed;
+        return other.atk > self.atk && other.armor > self.armor && other.speed > self.speed;
       case 'speed_equals_attack':
-        return self.speed === self.attack;
+        return self.speed === self.atk;
       case 'player_speed_higher_than_enemy':
         return self.speed > other.speed;
       case 'player_speed_higher_than_armor':
