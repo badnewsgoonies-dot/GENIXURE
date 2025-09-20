@@ -1475,9 +1475,13 @@ function uiLog(lines) {
       img.style.marginRight = '8px';
       img.style.verticalAlign = 'text-bottom';
       div.appendChild(img);
-      div.appendChild(document.createTextNode(text));
+      // Use innerHTML to render HTML img tags in the text
+      const textDiv = document.createElement('span');
+      textDiv.innerHTML = text;
+      div.appendChild(textDiv);
     } else {
-      div.textContent = lineStr;
+      // Use innerHTML instead of textContent to render HTML img tags
+      div.innerHTML = lineStr;
     }
     
     log.appendChild(div);
