@@ -5580,10 +5580,9 @@
     "effect": "On Hit: Deal 1 damage",
     "effects": [
       {
-        "trigger": "on_hit",
-        "actions": [
-          { "type": "damage_enemy", "value": 1 }
-        ]
+        "trigger": "onHit",
+        "action": "deal_damage",
+        "value": 1
       }
     ],
     "name": "Cutting Edge",
@@ -5601,12 +5600,8 @@
     "effect": "On Hit: Convert 1 speed to 1 attack",
     "effects": [
       {
-        "trigger": "on_hit",
-        "condition": { "type": "player_has_minimum_status", "status": "speed", "amount": 1 },
-        "actions": [
-          { "type": "remove_status", "key": "speed", "value": 1 },
-          { "type": "add_temp_attack", "value": 1 }
-        ]
+        "trigger": "onHit",
+        "action": "featherweight_edge_convert"
       }
     ],
     "name": "Featherweight Edge",
@@ -5624,10 +5619,10 @@
     "effect": "Battle Start: Give the enemy 3 freeze",
     "effects": [
       {
-        "trigger": "battle_start",
-        "actions": [
-          { "type": "add_status_to_enemy", "key": "freeze", "value": 3 }
-        ]
+        "trigger": "battleStart",
+        "action": "add_status_to_enemy",
+        "key": "freeze",
+        "value": 3
       }
     ],
     "name": "Freezing Edge",
@@ -5645,11 +5640,8 @@
     "effect": "On Hit: If you have less than 10 gold, gain 1 gold",
     "effects": [
       {
-        "trigger": "on_hit",
-        "condition": { "type": "player_has_less_than_gold", "amount": 10 },
-        "actions": [
-          { "type": "add_gold", "value": 1 }
-        ]
+        "trigger": "onHit",
+        "action": "gilded_edge_gold"
       }
     ],
     "name": "Gilded Edge",
@@ -5667,11 +5659,8 @@
     "effect": "On Hit: Gain 2 thorns and take 1 damage",
     "effects": [
       {
-        "trigger": "on_hit",
-        "actions": [
-          { "type": "add_status", "key": "thorns", "value": 2 },
-          { "type": "take_damage", "value": 1 }
-        ]
+        "trigger": "onHit",
+        "action": "jagged_edge_thorns_damage"
       }
     ],
     "name": "Jagged Edge",
@@ -5689,10 +5678,10 @@
     "effect": "Battle Start: Gain 3 regeneration",
     "effects": [
       {
-        "trigger": "battle_start",
-        "actions": [
-          { "type": "add_status", "key": "regeneration", "value": 3 }
-        ]
+        "trigger": "battleStart",
+        "action": "add_status",
+        "key": "regen",
+        "value": 3
       }
     ],
     "name": "Oaken Edge",
@@ -5734,16 +5723,13 @@
     "effect": "Double your attack. On Hit: Gain 1 stun",
     "effects": [
       {
-        "trigger": "passive",
-        "actions": [
-          { "type": "double_attack" }
-        ]
+        "trigger": "preBattle",
+        "action": "multiply_attack",
+        "value": 2
       },
       {
-        "trigger": "on_hit",
-        "actions": [
-          { "type": "add_status", "key": "stun", "value": 1 }
-        ]
+        "trigger": "onHit",
+        "action": "petrified_edge_stun_self"
       }
     ],
     "name": "Petrified Edge",
@@ -5761,12 +5747,9 @@
     "effect": "On Hit: Convert 1 speed to 3 armor",
     "effects": [
       {
-        "trigger": "on_hit",
+        "trigger": "onHit",
         "condition": { "type": "player_has_minimum_status", "status": "speed", "amount": 1 },
-        "actions": [
-          { "type": "remove_status", "key": "speed", "value": 1 },
-          { "type": "add_armor", "value": 3 }
-        ]
+        "action": "plated_edge_speed_to_armor"
       }
     ],
     "name": "Plated Edge",
@@ -5784,10 +5767,9 @@
     "effect": "Battle Start: Gain 1 attack",
     "effects": [
       {
-        "trigger": "battle_start",
-        "actions": [
-          { "type": "add_attack", "value": 1 }
-        ]
+        "trigger": "battleStart",
+        "action": "add_attack",
+        "value": 1
       }
     ],
     "name": "Razor Edge",
@@ -5805,10 +5787,10 @@
     "effect": "Battle Start: Stun the enemy for 1 turn",
     "effects": [
       {
-        "trigger": "battle_start",
-        "actions": [
-          { "type": "add_status_to_enemy", "key": "stun", "value": 1 }
-        ]
+        "trigger": "battleStart",
+        "action": "add_status_to_enemy",
+        "key": "stun",
+        "value": 1
       }
     ],
     "name": "Stormcloud Edge",

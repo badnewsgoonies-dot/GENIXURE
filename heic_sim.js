@@ -645,6 +645,35 @@
         log(`${self.name} spends ${speedCost} speed to deal ${damage} damage`);
       }
     },
+    petrified_edge_stun_self: ({ self, log }) => {
+      self.addStatus('stun', 1);
+      log(`${self.name}'s petrified edge stuns self for 1 turn`);
+    },
+    plated_edge_speed_to_armor: ({ self, log }) => {
+      if (self.getStatus('speed') >= 1) {
+        self.removeStatus('speed', 1);
+        self.armor += 3;
+        log(`${self.name}'s plated edge converts 1 speed to 3 armor`);
+      }
+    },
+    jagged_edge_thorns_damage: ({ self, log }) => {
+      self.addStatus('thorns', 2);
+      self.hp = Math.max(1, self.hp - 1);
+      log(`${self.name}'s jagged edge gains 2 thorns and takes 1 damage`);
+    },
+    gilded_edge_gold: ({ self, log }) => {
+      if ((self.gold || 0) < 10) {
+        self.gold = (self.gold || 0) + 1;
+        log(`${self.name}'s gilded edge gains 1 gold`);
+      }
+    },
+    featherweight_edge_convert: ({ self, log }) => {
+      if (self.speed >= 1) {
+        self.speed -= 1;
+        self.tempAtk += 1;
+        log(`${self.name}'s featherweight edge converts 1 speed to 1 attack`);
+      }
+    },
     whirlpool_edge_strikes: ({ self, other, log, value }) => {
       // Track strikes for whirlpool edge (every 3 strikes = riptide)
       self.whirlpoolStrikes = (self.whirlpoolStrikes || 0) + 1;
