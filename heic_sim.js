@@ -30,21 +30,40 @@
 
     // ===== BASIC STAT MODIFICATION ACTIONS =====
     gain_stat: ({ self, stat, value, log }) => {
+      if (!stat) {
+        console.warn(`gain_stat called with undefined stat`);
+        return;
+      }
       switch (stat) {
-        case 'armor': self.addArmor(value); break;
-        case 'attack': self.addAtk(value); break;
-        case 'temp_attack': self.addTempAtk(value); break;
+        case 'armor': 
+          self.addArmor(value); 
+          if (log) log(`${self.name} gains ${value} ${stat}`);
+          break;
+        case 'attack': 
+          self.addAtk(value); 
+          if (log) log(`${self.name} gains ${value} ${stat}`);
+          break;
+        case 'temp_attack': 
+          self.addTempAtk(value); 
+          if (log) log(`${self.name} gains ${value} ${stat}`);
+          break;
         case 'speed': 
           const oldSpeed = self.speed || 0;
           self.speed = oldSpeed + value;
           runEffects('onGainSpeed', self, null, log, { amount: value, delta: value });
+          if (log) log(`${self.name} gains ${value} ${stat}`);
           break;
-        case 'health': self.heal(value); break;
-        case 'gold': self.addGold(value); break;
+        case 'health': 
+          self.heal(value); 
+          if (log) log(`${self.name} gains ${value} health`);
+          break;
+        case 'gold': 
+          self.addGold(value); 
+          if (log) log(`${self.name} gains ${value} gold`);
+          break;
         default: 
           console.warn(`Unknown stat: ${stat}`);
       }
-      if (log) log(`${self.name} gains ${value} ${stat}`);
     },
     lose_stat: ({ self, stat, value, log }) => {
       switch (stat) {
@@ -893,6 +912,18 @@
       self.hpMax += amount;
       log(`${self.name} gains ${amount} max health`);
     },
+    
+    add_max_hp_from_base_armor: ({ self, other, log, value }) => {
+      const baseArmor = 0; // Base armor is 0 according to the game rules
+      const amount = baseArmor;
+      if (amount > 0) {
+        self.hp += amount;
+        self.hpMax += amount;
+        log(`${self.name} gains ${amount} max health from base armor`);
+      } else {
+        log(`${self.name} would gain max health from base armor (but base armor is ${baseArmor})`);
+      }
+    },
     remove_enemy_armor: ({ self, other, log }) => {
       const removed = other.armor;
       if (removed > 0) {
@@ -983,8 +1014,9 @@
       
       // Count tome items
       const items = self.items || [];
+      const DETAILS_SOURCE = global.HEIC_DETAILS || (typeof window !== 'undefined' ? window.HEIC_DETAILS : undefined);
       const tomeCount = items.filter(item => {
-        const itemData = window.RAW_DATA[item] || {};
+        const itemData = DETAILS_SOURCE?.[item] || {};
         const tags = itemData.tags || [];
         return tags.includes('Tome');
       }).length;
@@ -1012,8 +1044,9 @@
     // BOMB-SPECIFIC ACTIONS
     retrigger_random_bomb: ({ self, other, log }) => {
       // Find all bomb items in inventory
+      const DETAILS_SOURCE = global.HEIC_DETAILS || (typeof window !== 'undefined' ? window.HEIC_DETAILS : undefined);
       const bombItems = self.items.filter(item => {
-        const itemData = window.RAW_DATA[item] || {};
+        const itemData = DETAILS_SOURCE?.[item] || {};
         const tags = (itemData.tags || []).concat(ITEM_TAGS[item] || []);
         return tags.includes('Bomb') || (itemData.name && itemData.name.toLowerCase().includes('bomb'));
       });
@@ -1242,6 +1275,8 @@
         return (self.gold || 0) < (condition.amount || 10);
       case 'player_has_minimum_gold':
         return (self.gold || 0) >= (condition.amount || 1);
+      case 'has_no_base_armor':
+        return (self.baseArmor || 0) === 0;
       // Add more condition types here as needed
       default:
         log(`Unknown condition type: ${condition.type}`);
@@ -1424,6 +1459,20 @@
       // Populate item tags for use in effect conditions and apply item stats
       const DETAILS_SOURCE = global.HEIC_DETAILS || (typeof window !== 'undefined' ? window.HEIC_DETAILS : undefined);
       if (DETAILS_SOURCE) {
+        // Apply weapon stats
+        if (this.weapon && DETAILS_SOURCE[this.weapon]) {
+          const weaponData = DETAILS_SOURCE[this.weapon];
+          if (weaponData.stats) {
+            const stats = weaponData.stats;
+            this.hp += (stats.health || 0);
+            this.hpMax += (stats.health || 0);
+            this.atk += (stats.attack || 0);
+            this.armor += (stats.armor || 0);
+            this.baseArmor += (stats.armor || 0);
+            this.speed += (stats.speed || 0);
+          }
+        }
+        
         this.items.forEach(item => {
           if (DETAILS_SOURCE[item]) {
             // Store tags
@@ -1577,6 +1626,23 @@
         runEffects('onHeal', self, other, log, { amount: healed });
       }
       return healed;
+    };
+    
+    self.countItemsByTag = tag => {
+      let count = 0;
+      // Count items with the specified tag
+      if (self.items && Array.isArray(self.items)) {
+        self.items.forEach(item => {
+          if (ITEM_TAGS[item] && ITEM_TAGS[item].includes(tag)) {
+            count++;
+          }
+        });
+      }
+      // Also check weapon if it has the tag
+      if (self.weapon && ITEM_TAGS[self.weapon] && ITEM_TAGS[self.weapon].includes(tag)) {
+        count++;
+      }
+      return count;
     };
     self.damageOther = (n, target) => {
       const res = applyDamage(self, target, n, log);
