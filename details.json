@@ -1902,7 +1902,16 @@
     "tags": [
       "Jewelry"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "noEffect"
+          }
+        ]
+      }
+    ]
   },
   "items/emerald_earring": {
     "bucket": "items",
@@ -3185,7 +3194,21 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "whileHasStatus",
+          "status": "armor"
+        },
+        "actions": [
+          {
+            "type": "reduceEnemyStrikeDamage",
+            "amount": 2
+          }
+        ]
+      }
+    ]
   },
   "items/ironstone_bracelet": {
     "bucket": "items",
@@ -3199,7 +3222,21 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "whileHasStatus",
+          "status": "armor"
+        },
+        "actions": [
+          {
+            "type": "reduceEnemyStrikeDamage",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "items/ironstone_sandals": {
     "bucket": "items",
@@ -3213,7 +3250,22 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "whileHasStatus",
+          "status": "armor"
+        },
+        "actions": [
+          {
+            "type": "temporaryStatGain",
+            "stat": "attack",
+            "amount": 2
+          }
+        ]
+      }
+    ]
   },
   "items/kindling_bomb": {
     "bucket": "items",
@@ -3709,7 +3761,17 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "dailyStart",
+        "actions": [
+          {
+            "type": "gainGold",
+            "amount": 3
+          }
+        ]
+      }
+    ]
   },
   "items/marble_mirror": {
     "bucket": "items",
@@ -3900,7 +3962,23 @@
     "tags": [
       "Food"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "condition": "exposedOrWounded",
+        "actions": [
+          {
+            "type": "decreaseRandomStatuses",
+            "count": 1,
+            "amount": 1
+          },
+          {
+            "type": "heal",
+            "amount": 3
+          }
+        ]
+      }
+    ]
   },
   "items/melonvine_whip": {
     "bucket": "items",
@@ -3942,7 +4020,28 @@
     "tags": [
       "Food"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "condition": {
+          "type": "or",
+          "conditions": [
+            "exposed",
+            "fullHealth"
+          ]
+        },
+        "actions": [
+          {
+            "type": "decreaseRandomStatus",
+            "amount": 2
+          },
+          {
+            "type": "gainArmor",
+            "amount": 5
+          }
+        ]
+      }
+    ]
   },
   "items/mist_armor": {
     "bucket": "items",
@@ -3956,7 +4055,16 @@
       "speed": 2
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "enemyStrikesIgnoreArmor"
+          }
+        ]
+      }
+    ]
   },
   "items/moonlight_crest": {
     "bucket": "items",
@@ -4031,7 +4139,22 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "whileHasStatus",
+          "status": "regeneration"
+        },
+        "actions": [
+          {
+            "type": "temporaryStatGain",
+            "stat": "attack",
+            "amount": 3
+          }
+        ]
+      }
+    ]
   },
   "items/muscle_potion": {
     "bucket": "items",
@@ -4067,7 +4190,21 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "ifHasStatus",
+          "status": "poison"
+        },
+        "actions": [
+          {
+            "type": "reduceEnemyStrikeDamage",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "items/nerve_poison": {
     "bucket": "items",
@@ -4139,7 +4276,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "gainMaxHealthPerEquippedType",
+            "amount": 3,
+            "itemType": "wood"
+          }
+        ]
+      }
+    ]
   },
   "items/ore_heart": {
     "bucket": "items",
@@ -4206,7 +4354,19 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "giveEnemyStatusPerEquippedType",
+            "status": "stun",
+            "amount": 1,
+            "itemType": "stone"
+          }
+        ]
+      }
+    ]
   },
   "items/petrifying_flask": {
     "bucket": "items",
@@ -4386,7 +4546,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "statusRemovesStat",
+            "status": "Acid",
+            "stat": "health"
+          }
+        ]
+      }
+    ]
   },
   "items/purelake_armor": {
     "bucket": "items",
@@ -4740,7 +4911,16 @@
     "tags": [
       "Food"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "noEffect"
+          }
+        ]
+      }
+    ]
   },
   "items/rocksalt_sword": {
     "bucket": "weapons",
@@ -4891,7 +5071,16 @@
     "tags": [
       "Jewelry"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "noEffect"
+          }
+        ]
+      }
+    ]
   },
   "items/ruby_earring": {
     "bucket": "items",
@@ -5198,7 +5387,16 @@
     "tags": [
       "Jewelry"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "noEffect"
+          }
+        ]
+      }
+    ]
   },
   "items/sapphire_earring": {
     "bucket": "items",
@@ -5536,7 +5734,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "everyOtherTurn",
+        "actions": [
+          {
+            "type": "giveEnemyStatus",
+            "status": "riptide",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "items/silverscale_greaves": {
     "bucket": "items",
@@ -5892,7 +6101,17 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "statusTriggersTwice",
+            "status": "Riptide"
+          }
+        ]
+      }
+    ]
   },
   "items/stoneborn_turtle": {
     "bucket": "items",
@@ -6569,7 +6788,23 @@
     "tags": [
       "Food"
     ],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "condition": "exposedOrWounded",
+        "actions": [
+          {
+            "type": "decreaseRandomStatus",
+            "amount": 1
+          },
+          {
+            "type": "giveEnemyStatus",
+            "status": "Riptide",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "items/vampire_s_tooth": {
     "bucket": "items",
@@ -6833,7 +7068,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "weaponOilBuff",
+            "stat": "armor",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "upgrades/armor_oil_darkened": {
     "bucket": "upgrades",
@@ -6847,7 +7093,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "weaponOilBuff",
+            "stat": "armor",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "upgrades/armor_oil_used": {
     "bucket": "upgrades",
@@ -6861,7 +7118,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "weaponOilBuff",
+            "stat": "armor",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "upgrades/attack_oil": {
     "bucket": "upgrades",
@@ -6875,7 +7143,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "weaponOilBuff",
+            "stat": "attack",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "upgrades/attack_oil_darkened": {
     "bucket": "upgrades",
@@ -6889,7 +7168,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "weaponOilBuff",
+            "stat": "attack",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "upgrades/attack_oil_used": {
     "bucket": "upgrades",
@@ -6903,7 +7193,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "weaponOilBuff",
+            "stat": "attack",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "upgrades/bleeding_edge": {
     "bucket": "upgrades",
@@ -7321,7 +7622,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "removeEnemyTomes"
+          }
+        ]
+      }
+    ]
   },
   "weapons/basilisk_fang": {
     "bucket": "weapons",
@@ -7407,7 +7717,19 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "gainStatPerEquippedType",
+            "stat": "attack",
+            "amount": 2,
+            "itemType": "jewelry"
+          }
+        ]
+      }
+    ]
   },
   "weapons/blackbriar_blade": {
     "bucket": "weapons",
@@ -7580,7 +7902,21 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "afterNthStrike",
+        "strikeCount": 3,
+        "goldStrikeCount": 4,
+        "diamondStrikeCount": 6,
+        "actions": [
+          {
+            "type": "loseStat",
+            "stat": "attack",
+            "amount": 2
+          }
+        ]
+      }
+    ]
   },
   "weapons/brittlebark_club": {
     "bucket": "weapons",
@@ -7594,7 +7930,25 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            "exposed",
+            "wounded"
+          ]
+        },
+        "actions": [
+          {
+            "type": "loseStat",
+            "stat": "attack",
+            "amount": 2
+          }
+        ]
+      }
+    ]
   },
   "weapons/bubblegloop_staff": {
     "bucket": "weapons",
@@ -7774,7 +8128,22 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "everyOtherTurn",
+        "actions": [
+          {
+            "type": "gainStat",
+            "stat": "attack",
+            "amount": 1
+          },
+          {
+            "type": "heal",
+            "amount": 1
+          }
+        ]
+      }
+    ]
   },
   "weapons/explosive_sword": {
     "bucket": "weapons",
@@ -8073,7 +8442,17 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "nextWeaponGainsAttack",
+            "amount": 2
+          }
+        ]
+      }
+    ]
   },
   "weapons/heart_drinker": {
     "bucket": "weapons",
@@ -8111,7 +8490,17 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "scalingWithFoundItems",
+            "itemName": "hidden dagger"
+          }
+        ]
+      }
+    ]
   },
   "weapons/icicle_spear": {
     "bucket": "weapons",
@@ -8186,7 +8575,22 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "whileHasStatus",
+          "status": "armor"
+        },
+        "actions": [
+          {
+            "type": "temporaryStatGain",
+            "stat": "attack",
+            "amount": 2
+          }
+        ]
+      }
+    ]
   },
   "weapons/king_s_blade": {
     "bucket": "weapons",
@@ -8200,7 +8604,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "moveExposedWoundedTriggersToBattleStart"
+          }
+        ]
+      }
+    ]
   },
   "weapons/knight_s_blade": {
     "bucket": "weapons",
@@ -8237,7 +8650,21 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "doubleStatFromSource",
+            "stats": [
+              "health",
+              "attack"
+            ],
+            "source": "purity"
+          }
+        ]
+      }
+    ]
   },
   "weapons/leather_whip": {
     "bucket": "weapons",
@@ -8466,7 +8893,20 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "condition": {
+          "type": "healthBelowPercent",
+          "percent": 50
+        },
+        "actions": [
+          {
+            "type": "blockStatusEffectGain"
+          }
+        ]
+      }
+    ]
   },
   "weapons/mountain_cleaver": {
     "bucket": "weapons",
@@ -8480,7 +8920,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "attackEqualsBaseArmor"
+          }
+        ]
+      }
+    ]
   },
   "weapons/pacifist_staff": {
     "bucket": "weapons",
@@ -8685,7 +9134,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "firstTurn",
+        "condition": "onHit",
+        "actions": [
+          {
+            "type": "giveStatusEqualToAttack",
+            "status": "acid"
+          }
+        ]
+      }
+    ]
   },
   "weapons/sanguine_scepter": {
     "bucket": "weapons",
@@ -8699,7 +9159,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "doubleHealing"
+          }
+        ]
+      }
+    ]
   },
   "weapons/scepter_of_greed": {
     "bucket": "weapons",
@@ -8713,7 +9182,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "blockGoldGain"
+          }
+        ]
+      }
+    ]
   },
   "weapons/serpent_dagger": {
     "bucket": "weapons",
@@ -8727,7 +9205,19 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "everyNthStrike",
+        "strikeCount": 3,
+        "actions": [
+          {
+            "type": "giveEnemyStatus",
+            "status": "poison",
+            "amount": 4
+          }
+        ]
+      }
+    ]
   },
   "weapons/silverscale_dagger": {
     "bucket": "weapons",
@@ -8880,7 +9370,18 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "everyNthStrike",
+        "strikeCount": 5,
+        "actions": [
+          {
+            "type": "stunEnemy",
+            "amount": 2
+          }
+        ]
+      }
+    ]
   },
   "weapons/swiftstrike_bow": {
     "bucket": "weapons",
@@ -8994,7 +9495,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "attackEqualsSpeed"
+          }
+        ]
+      }
+    ]
   },
   "weapons/thunderbound_sabre": {
     "bucket": "weapons",
@@ -9033,7 +9543,16 @@
       "speed": 0
     },
     "tags": [],
-    "effects": []
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          {
+            "type": "strikeTwice"
+          }
+        ]
+      }
+    ]
   },
   "weapons/wave_breaker": {
     "bucket": "weapons",
