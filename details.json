@@ -53,9 +53,16 @@
     "effect": "Battle Start: Decrease all countdowns by 1. Symphony.",
     "effects": [
       {
-        "action": "decrease_all_countdowns",
-        "trigger": "battleStart",
-        "value": 1
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "decrease_all_countdowns", "value": 1 }
+        ]
+      },
+      {
+        "trigger": "symphony",
+        "actions": [
+          { "type": "decrease_all_countdowns", "value": 1 }
+        ]
       }
     ],
     "name": "Arcane Bell",
@@ -66,7 +73,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": ["Symphony"]
   },
   "items/arcane_cloak": {
     "bucket": "items",
@@ -2181,6 +2188,14 @@
   "items/grand_crescendo": {
     "bucket": "items",
     "effect": "Symphony triggers all your other instruments",
+    "effects": [
+      {
+        "trigger": "symphony",
+        "actions": [
+          { "type": "trigger_symphony", "value": 1 }
+        ]
+      }
+    ],
     "name": "Grand Crescendo",
     "slug": "grand_crescendo",
     "stats": {
@@ -2189,7 +2204,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": ["Symphony"]
   },
   "items/grand_tome": {
     "bucket": "items",
@@ -2989,6 +3004,20 @@
   "items/liferoot_lute": {
     "bucket": "items",
     "effect": "Wounded: Gain 3 regeneration. Symphony",
+    "effects": [
+      {
+        "trigger": "wounded",
+        "actions": [
+          { "type": "add_status", "key": "regeneration", "value": 3 }
+        ]
+      },
+      {
+        "trigger": "symphony",
+        "actions": [
+          { "type": "add_status", "key": "regeneration", "value": 3 }
+        ]
+      }
+    ],
     "name": "Liferoot Lute",
     "slug": "liferoot_lute",
     "stats": {
@@ -2997,7 +3026,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": ["Symphony"]
   },
   "items/liferoot_tome": {
     "bucket": "items",
@@ -3760,6 +3789,20 @@
   "items/riverflow_violin": {
     "bucket": "items",
     "effect": "Exposed: Gain 4 armor. Symphony",
+    "effects": [
+      {
+        "trigger": "exposed",
+        "actions": [
+          { "type": "add_armor", "value": 4 }
+        ]
+      },
+      {
+        "trigger": "symphony",
+        "actions": [
+          { "type": "add_armor", "value": 4 }
+        ]
+      }
+    ],
     "name": "Riverflow Violin",
     "slug": "riverflow_violin",
     "stats": {
@@ -3768,7 +3811,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": ["Symphony"]
   },
   "items/rock_candy": {
     "bucket": "items",
@@ -3864,6 +3907,12 @@
         "actions": [
           { "type": "add_gold", "value": 2 }
         ]
+      },
+      {
+        "trigger": "symphony",
+        "actions": [
+          { "type": "add_gold", "value": 2 }
+        ]
       }
     ],
     "name": "Royal Horn",
@@ -3874,7 +3923,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": ["Symphony"]
   },
   "items/royal_shield": {
     "bucket": "items",
@@ -4177,6 +4226,20 @@
   "items/serpent_lyre": {
     "bucket": "items",
     "effect": "Exposed: Give the enemy 3 poison. Symphony",
+    "effects": [
+      {
+        "trigger": "exposed",
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "poison", "value": 3 }
+        ]
+      },
+      {
+        "trigger": "symphony",
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "poison", "value": 3 }
+        ]
+      }
+    ],
     "name": "Serpent Lyre",
     "slug": "serpent_lyre",
     "stats": {
@@ -4185,7 +4248,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": ["Symphony"]
   },
   "items/serpent_mask": {
     "bucket": "items",
@@ -4224,6 +4287,24 @@
   "items/sheet_music": {
     "bucket": "items",
     "effect": "Countdown 6: Trigger Symphony 3 times",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { 
+            "type": "register_countdown", 
+            "value": {
+              "name": "Sheet Music",
+              "turns": 6,
+              "tag": "Tome",
+              "tier": 1,
+              "action": "trigger_symphony",
+              "amount": 3
+            }
+          }
+        ]
+      }
+    ],
     "name": "Sheet Music",
     "slug": "sheet_music",
     "stats": {
@@ -4233,7 +4314,8 @@
       "speed": 3
     },
     "tags": [
-      "Tome"
+      "Tome",
+      "Symphony"
     ]
   },
   "items/shield_of_the_hero": {
@@ -4590,6 +4672,20 @@
   "items/stormcloud_drum": {
     "bucket": "items",
     "effect": "Wounded: Stun the enemy for 1 turn. Symphony",
+    "effects": [
+      {
+        "trigger": "wounded",
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "stun", "value": 1 }
+        ]
+      },
+      {
+        "trigger": "symphony",
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "stun", "value": 1 }
+        ]
+      }
+    ],
     "name": "Stormcloud Drum",
     "slug": "stormcloud_drum",
     "stats": {
@@ -4598,7 +4694,7 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": ["Symphony"]
   },
   "items/stormcloud_tome": {
     "bucket": "items",

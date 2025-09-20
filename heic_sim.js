@@ -44,6 +44,12 @@
           const amount = tier === 3 ? 12 : tier === 2 ? 6 : 3;
           owner.addAtk(amount);
           if (logger) logger(`${owner.name} gains ${amount} attack (${name} complete)`);
+        } else if (action === 'trigger_symphony') {
+          const amount = value?.amount || 1;
+          if (logger) logger(`${name} triggers Symphony ${amount} time(s)!`);
+          for (let i = 0; i < amount; i++) {
+            runEffects('symphony', owner, enemy, logger);
+          }
         }
         // Add more countdown actions as needed
       };
@@ -426,6 +432,15 @@
         return toRemove;
       }
       return 0;
+    },
+    trigger_symphony: ({ self, other, log, value }) => {
+      // Trigger Symphony effects from all equipped instruments
+      const repeatCount = value || 1;
+      log(`Symphony triggered ${repeatCount} time(s)!`);
+      
+      for (let i = 0; i < repeatCount; i++) {
+        runEffects('symphony', self, other, log);
+      }
     },
       reduce_enemy_attack: ({ self, other, log, value }) => {
         const reduction = value || 1;
@@ -829,6 +844,14 @@
 
       const details = (window.HEIC_DETAILS || {})[slug];
       if (!details || !Array.isArray(details.effects)) continue;
+
+      // For Symphony events, only process items that have Symphony in their effect description or tags
+      if (event === 'symphony') {
+        const isSymphonyItem = (details.effect && details.effect.includes('Symphony')) ||
+                               (details.tags && details.tags.includes('Symphony')) ||
+                               (details.tags && details.tags.includes('symphony'));
+        if (!isSymphonyItem) continue;
+      }
 
       const tier = (typeof itemOrSlug === 'object' && itemOrSlug.tier) ? itemOrSlug.tier : 'base';
       const sourceItem = (typeof itemOrSlug === 'object') ? itemOrSlug : { slug };
