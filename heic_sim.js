@@ -386,13 +386,13 @@
       add_status_tiered: ({ self, log, key, baseTier, goldTier, diamondTier, tier }) => {
         const amount = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
         self.addStatus(key, amount);
-        log(`${self.name} gains ${amount} ${key}`);
+        log(`✨ ${self.name} gains ${amount} ${key}`);
       },
     add_status_to_enemy: ({ other, key, value }) => other.addStatus(key, value),
       add_status_to_enemy_tiered: ({ other, log, key, baseTier, goldTier, diamondTier, tier }) => {
         const amount = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
         other.addStatus(key, amount);
-        log(`${other.name} gains ${amount} ${key}`);
+        log(`💀 ${other.name} gains ${amount} ${key}`);
       },
     remove_status: ({ self, key, value }) => {
       const currentAmount = self.statuses[key] || 0;
@@ -647,31 +647,31 @@
     },
     petrified_edge_stun_self: ({ self, log }) => {
       self.addStatus('stun', 1);
-      log(`${self.name}'s petrified edge stuns self for 1 turn`);
+      log(`🗿 ${self.name}'s petrified edge stuns self for 1 turn`);
     },
     plated_edge_speed_to_armor: ({ self, log }) => {
       if (self.getStatus('speed') >= 1) {
         self.removeStatus('speed', 1);
         self.armor += 3;
-        log(`${self.name}'s plated edge converts 1 speed to 3 armor`);
+        log(`🏃‍♂️➡️🛡️ ${self.name}'s plated edge converts 1 speed to 3 armor`);
       }
     },
     jagged_edge_thorns_damage: ({ self, log }) => {
       self.addStatus('thorns', 2);
       self.hp = Math.max(1, self.hp - 1);
-      log(`${self.name}'s jagged edge gains 2 thorns and takes 1 damage`);
+      log(`🗡️ ${self.name}'s jagged edge gains 2 thorns and takes 1 damage`);
     },
     gilded_edge_gold: ({ self, log }) => {
       if ((self.gold || 0) < 10) {
         self.gold = (self.gold || 0) + 1;
-        log(`${self.name}'s gilded edge gains 1 gold`);
+        log(`💰 ${self.name}'s gilded edge gains 1 gold`);
       }
     },
     featherweight_edge_convert: ({ self, log }) => {
       if (self.speed >= 1) {
         self.speed -= 1;
         self.tempAtk += 1;
-        log(`${self.name}'s featherweight edge converts 1 speed to 1 attack`);
+        log(`🪶 ${self.name}'s featherweight edge converts 1 speed to 1 attack`);
       }
     },
     whirlpool_edge_strikes: ({ self, other, log, value }) => {
@@ -680,7 +680,7 @@
       if (self.whirlpoolStrikes >= 3) {
         self.whirlpoolStrikes = 0;
         other.addStatus('riptide', 1);
-        log(`${self.name}'s whirlpool edge gives ${other.name} 1 riptide (3 strikes)`);
+        log(`🌊 ${self.name}'s whirlpool edge gives ${other.name} 1 riptide (3 strikes)`);
       }
     },
     gain_strikes: ({ self, log, value }) => {
@@ -727,12 +727,12 @@
     gain_thorns: ({ self, log, value }) => {
       const amount = value || 1;
       self.addStatus('thorns', amount);
-      log(`${self.name} gains ${amount} thorns`);
+      log(`🌹 ${self.name} gains ${amount} thorns`);
     },
     gain_armor: ({ self, log, value }) => {
       const amount = value || 1;
       self.addArmor(amount);
-      log(`${self.name} gains ${amount} armor`);
+      log(`🛡️ ${self.name} gains ${amount} armor`);
     },
     lose_speed: ({ self, log, value }) => {
       const amount = value || 1;
@@ -742,7 +742,7 @@
     heal_self: ({ self, log, value }) => {
       const amount = value || 1;
       const healed = self.heal(amount);
-      if (healed > 0) log(`${self.name} restores ${healed} health`);
+      if (healed > 0) log(`💚 ${self.name} restores ${healed} health`);
     },
     heal_to_full: ({ self, log }) => {
       const healed = self.heal(self.hpMax - self.hp);
@@ -832,6 +832,15 @@
       const amount = value || 1;
       self.addStatus('poison', amount);
       log(`${self.name} gains ${amount} poison`);
+    },
+    add_armor_from_enemy_armor: ({ self, other, log, value }) => {
+      const multiplier = value || 1;
+      const enemyArmor = other.armor || 0;
+      const armorGain = enemyArmor * multiplier;
+      if (armorGain > 0) {
+        self.addArmor(armorGain);
+        log(`${self.name} gains ${armorGain} armor (from enemy's ${enemyArmor} armor)`);
+      }
     },
   };
 
@@ -1241,8 +1250,8 @@ let CURRENT_SOURCE_SLUG = null;
     dst.hp -= toHp;
     if(dst.hp < 0) dst.hp = 0;
     dst.struckThisTurn = true;
-    if(toArmor>0) log(`${src.name} destroys ${toArmor} armor`);
-    if(toHp>0) log(`${src.name} hits ${dst.name} for ${toHp}`);
+    if(toArmor>0) log(`🛡️ ${src.name} destroys ${toArmor} armor`);
+    if(toHp>0) log(`⚔️ ${src.name} hits ${dst.name} for ${toHp}`);
     if (src && src._summary) {
       if (toArmor > 0) src._summary.armorDestroyedDealt += toArmor;
       if (toHp > 0) src._summary.hpDamageDealt += toHp;
@@ -1400,7 +1409,7 @@ let CURRENT_SOURCE_SLUG = null;
       actor.flags.firstTurn = false;
       [actor, target] = [target, actor];
     }
-    const result = L.hp<=0 && R.hp<=0 ? 'Draw' : L.hp<=0 ? 'RightWin' : R.hp<=0 ? 'LeftWin' : 'Draw';
+    const result = L.hp<=0 && R.hp<=0 ? 'Draw' : L.hp<=0 ? 'Victory' : R.hp<=0 ? 'Defeat' : 'Draw';
     const summarize = (x) => ({
       name: x.name,
       hpRemaining: x.hp,
