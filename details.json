@@ -55,15 +55,21 @@
     "effect": "Battle Start: Decrease all countdowns by 1. Symphony.",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { "type": "decrease_all_countdowns", "value": 1 }
+          {
+            "type": "decrease_all_countdowns",
+            "value": 1
+          }
         ]
       },
       {
         "trigger": "symphony",
         "actions": [
-          { "type": "decrease_all_countdowns", "value": 1 }
+          {
+            "type": "decrease_all_countdowns",
+            "value": 1
+          }
         ]
       }
     ],
@@ -75,7 +81,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": ["Symphony"]
+    "tags": [
+      "Symphony"
+    ]
   },
   "items/arcane_cloak": {
     "bucket": "items",
@@ -133,7 +141,7 @@
     "effect": "Whenever a countdown effect triggers, gain 3 armor",
     "effects": [
       {
-        "trigger": "on_countdown_trigger",
+        "trigger": "onCountdownTrigger",
         "action": "gain_armor",
         "value": 3
       }
@@ -263,7 +271,7 @@
             "value": 1
           }
         ],
-        "event": "turnStart"
+        "trigger": "turnStart"
       }
     ],
     "name": "Bitter Melon",
@@ -304,11 +312,11 @@
     "effect": "Can't strike. Turn Start: Gain thorns equal to your attack.",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "action": "disable_striking"
       },
       {
-        "trigger": "turn_start", 
+        "trigger": "turnStart",
         "action": "gain_thorns_equal_to_attack"
       }
     ],
@@ -327,7 +335,7 @@
     "effect": "Gain 2 thorns for each armor removed by the enemy's first strike",
     "effects": [
       {
-        "trigger": "on_armor_lost_from_enemy_first_strike",
+        "trigger": "onArmorLostFromEnemyFirstStrike",
         "action": "gain_thorns_per_armor_lost",
         "value": 2
       }
@@ -349,7 +357,11 @@
       {
         "trigger": "onHeal",
         "actions": [
-          { "type": "add_status", "key": "thorns", "value": 2 }
+          {
+            "type": "add_status",
+            "key": "thorns",
+            "value": 2
+          }
         ]
       }
     ],
@@ -538,7 +550,7 @@
             "type": "is_exposed_or_wounded"
           }
         ],
-        "event": "battleStart"
+        "trigger": "battleStart"
       }
     ],
     "name": "Boiled Ham",
@@ -859,7 +871,7 @@
             "type": "regain_base_armor"
           }
         ],
-        "event": "onWounded"
+        "trigger": "onWounded"
       }
     ],
     "name": "Chainmail Armor",
@@ -889,7 +901,7 @@
             "value": 1
           }
         ],
-        "event": "turnStart"
+        "trigger": "turnStart"
       }
     ],
     "name": "Chainmail Cloak",
@@ -933,12 +945,12 @@
     "effect": "Battle Start: Reduce your speed by 1. After each strike: Restore 1 health.",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "action": "lose_speed",
         "value": 1
       },
       {
-        "trigger": "after_strike",
+        "trigger": "afterStrike",
         "action": "heal_self",
         "value": 1
       }
@@ -958,9 +970,17 @@
     "effect": "Battle Start: Deal 1 / 2 / 4 damage 2 times",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { "type": "deal_damage_multiple_times", "value": { "damage": 1, "times": 2, "gold_damage": 2, "diamond_damage": 4 } }
+          {
+            "type": "deal_damage_multiple_times",
+            "value": {
+              "damage": 1,
+              "times": 2,
+              "gold_damage": 2,
+              "diamond_damage": 4
+            }
+          }
         ]
       }
     ],
@@ -1056,7 +1076,7 @@
             "type": "is_even_turn"
           }
         ],
-        "event": "turnStart"
+        "trigger": "turnStart"
       }
     ],
     "name": "Citrine Earring",
@@ -1081,7 +1101,7 @@
             "type": "invert_speed"
           }
         ],
-        "event": "battleStart"
+        "trigger": "battleStart"
       }
     ],
     "name": "Citrine Gemstone",
@@ -1146,7 +1166,7 @@
             "type": "remove_all_status_and_gain_armor"
           }
         ],
-        "event": "onExposed"
+        "trigger": "onExposed"
       }
     ],
     "name": "Clearspring Cloak",
@@ -1200,7 +1220,7 @@
             "type": "transfer_random_status_to_enemy"
           }
         ],
-        "event": "battleStart"
+        "trigger": "battleStart"
       }
     ],
     "name": "Clearspring Feather",
@@ -1232,7 +1252,7 @@
             "value": 1
           }
         ],
-        "event": "turnStart"
+        "trigger": "turnStart"
       }
     ],
     "name": "Clearspring Opal",
@@ -1252,7 +1272,10 @@
       {
         "trigger": "onHeal",
         "actions": [
-          { "type": "remove_random_status", "value": 1 }
+          {
+            "type": "remove_random_status",
+            "value": 1
+          }
         ]
       }
     ],
@@ -1336,7 +1359,7 @@
             "type": "has_speed"
           }
         ],
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "value": {
           "damage": 2,
           "speedCost": 1
@@ -1381,7 +1404,7 @@
             "value": 0.5
           }
         ],
-        "event": "battleStart"
+        "trigger": "battleStart"
       }
     ],
     "name": "Corroded Bone",
@@ -1405,7 +1428,7 @@
             "value": 7
           }
         ],
-        "event": "onExposed"
+        "trigger": "onExposed"
       }
     ],
     "name": "Cracked Bouldershield",
@@ -1438,7 +1461,7 @@
             "type": "is_first_turn"
           }
         ],
-        "event": "turnStart"
+        "trigger": "turnStart"
       }
     ],
     "name": "Cracked Whetstone",
@@ -1462,7 +1485,7 @@
             "value": 1
           }
         ],
-        "event": "onDamaged"
+        "trigger": "onDamaged"
       }
     ],
     "name": "Crimson Cloak",
@@ -1495,7 +1518,7 @@
             "type": "is_full_health"
           }
         ],
-        "event": "battleStart"
+        "trigger": "battleStart"
       }
     ],
     "name": "Crimson Fang",
@@ -1520,7 +1543,7 @@
             "value": 3
           }
         ],
-        "event": "battleStart"
+        "trigger": "battleStart"
       },
       {
         "actions": [
@@ -1535,7 +1558,7 @@
             "type": "has_status"
           }
         ],
-        "event": "turnStart"
+        "trigger": "turnStart"
       }
     ],
     "name": "Deathcap Bow",
@@ -1729,7 +1752,7 @@
             "type": "is_even_turn"
           }
         ],
-        "event": "turnStart"
+        "trigger": "turnStart"
       }
     ],
     "name": "Emerald Earring",
@@ -1749,7 +1772,7 @@
     "effect": "Battle Start: if your max Health < enemy's, set to enemy's",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "condition": "self_max_health_less_than_enemy",
         "action": "set_max_health_to_enemy",
         "value": 1
@@ -1833,7 +1856,7 @@
     "effects": [
       {
         "action": "give_status_deal_damage_per_stack",
-        "trigger": "start_battle",
+        "trigger": "battleStart",
         "value": {
           "amount": 1,
           "damagePerStack": 2,
@@ -1879,7 +1902,7 @@
     "effects": [
       {
         "action": "deal_damage_multiple_times",
-        "trigger": "start_battle",
+        "trigger": "battleStart",
         "value": {
           "damage": 1,
           "times": 3
@@ -1949,7 +1972,7 @@
             "type": "has_no_speed"
           }
         ],
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "value": 1
       }
     ],
@@ -1968,9 +1991,13 @@
     "effect": "Battle start: Spend 2 armor to gain 3 speed and 1 attack",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "action": "spend_armor_for_speed_and_attack",
-        "value": {"armorCost": 2, "speedGain": 3, "attackGain": 1}
+        "value": {
+          "armorCost": 2,
+          "speedGain": 3,
+          "attackGain": 1
+        }
       }
     ],
     "name": "Featherweight Helmet",
@@ -1990,10 +2017,14 @@
       {
         "trigger": "battleStart",
         "conditions": [
-          {"type": "speed_less_than_enemy"}
+          {
+            "type": "speed_less_than_enemy"
+          }
         ],
         "actions": [
-          {"type": "gain_attack_equal_to_speed"}
+          {
+            "type": "gain_attack_equal_to_speed"
+          }
         ]
       }
     ],
@@ -2127,9 +2158,12 @@
     "effect": "Battle Start: Give yourself and the enemy 5 freeze each",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "action": "give_self_and_enemy_status",
-        "value": {"status": "freeze", "amount": 5}
+        "value": {
+          "status": "freeze",
+          "amount": 5
+        }
       }
     ],
     "name": "Frostbite Curse",
@@ -2170,9 +2204,12 @@
     "effect": "Whenever you lose speed, give the enemy 1 freeze",
     "effects": [
       {
-        "trigger": "on_lose_speed",
+        "trigger": "onLoseSpeed",
         "action": "add_status_to_enemy",
-        "value": {"status": "freeze", "amount": 1}
+        "value": {
+          "status": "freeze",
+          "amount": 1
+        }
       }
     ],
     "name": "Frostbite Greaves",
@@ -2237,7 +2274,10 @@
       {
         "trigger": "symphony",
         "actions": [
-          { "type": "trigger_symphony", "value": 1 }
+          {
+            "type": "trigger_symphony",
+            "value": 1
+          }
         ]
       }
     ],
@@ -2249,7 +2289,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": ["Symphony"]
+    "tags": [
+      "Symphony"
+    ]
   },
   "items/grand_tome": {
     "bucket": "items",
@@ -2438,12 +2480,26 @@
       {
         "trigger": "onDamaged",
         "conditions": [
-          {"type": "health_equals", "value": 1},
-          {"type": "counter", "value": {"key": "heart_potion_used", "max": 1}}
+          {
+            "type": "health_equals",
+            "value": 1
+          },
+          {
+            "type": "counter",
+            "value": {
+              "key": "heart_potion_used",
+              "max": 1
+            }
+          }
         ],
         "actions": [
-          {"type": "heal_to_full"},
-          {"type": "increment_counter", "value": "heart_potion_used"}
+          {
+            "type": "heal_to_full"
+          },
+          {
+            "type": "increment_counter",
+            "value": "heart_potion_used"
+          }
         ]
       }
     ],
@@ -2512,7 +2568,7 @@
         "trigger": "battleStart",
         "value": {
           "action": "gain_stat",
-        "stat": "attack",
+          "stat": "attack",
           "base": 3,
           "diamond": 12,
           "gold": 6,
@@ -2539,9 +2595,11 @@
     "effect": "Battle Start: Give all your status effects to the enemy",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { "type": "transfer_all_statuses_to_enemy" }
+          {
+            "type": "transfer_all_statuses_to_enemy"
+          }
         ]
       }
     ],
@@ -2562,7 +2620,7 @@
     "effect": "Battle Start: Gain 1 thorns (Gold: 2; Diamond: 4).",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "action": "gain_status",
         "status": "thorns",
         "value": 1,
@@ -2639,11 +2697,20 @@
       {
         "trigger": "turnStart",
         "conditions": [
-          {"type": "no_armor"}
+          {
+            "type": "no_armor"
+          }
         ],
         "actions": [
-          {"type": "gain_armor", "value": 3},
-          {"type": "add_status", "key": "freeze", "value": 1}
+          {
+            "type": "gain_armor",
+            "value": 3
+          },
+          {
+            "type": "add_status",
+            "key": "freeze",
+            "value": 1
+          }
         ]
       }
     ],
@@ -2705,7 +2772,10 @@
       {
         "trigger": "onHeal",
         "actions": [
-          { "type": "add_armor", "value": 1 }
+          {
+            "type": "add_armor",
+            "value": 1
+          }
         ]
       }
     ],
@@ -2739,9 +2809,13 @@
     "effect": "Battle start: Deal 3 damage to the enemy, if they don't have armor, double the damage dealt",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { "type": "conditional_damage_to_enemy", "baseDamage": 3, "doubleIfNoArmor": true }
+          {
+            "type": "conditional_damage_to_enemy",
+            "baseDamage": 3,
+            "doubleIfNoArmor": true
+          }
         ]
       }
     ],
@@ -2760,12 +2834,12 @@
     "effect": "Turn Start: Gain 2 armor and lose 1 health",
     "effects": [
       {
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "action": "gain_armor",
         "value": 2
       },
       {
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "action": "lose_hp",
         "value": 1
       }
@@ -2785,7 +2859,7 @@
     "effect": "Battle Start: Gain armor equal to lost health",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "action": "gain_armor_equal_to_lost_health"
       }
     ],
@@ -2843,10 +2917,16 @@
     "effect": "Battle Start: Deal 1 damage to the enemy. The damage of the next bomb that triggers is increased by 3",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { "type": "deal_damage_to_enemy", "value": 1 },
-          { "type": "increase_next_bomb_damage", "value": 3 }
+          {
+            "type": "deal_damage_to_enemy",
+            "value": 1
+          },
+          {
+            "type": "increase_next_bomb_damage",
+            "value": 3
+          }
         ]
       }
     ],
@@ -2899,10 +2979,15 @@
       {
         "trigger": "battleStart",
         "conditions": [
-          {"type": "speed_greater_than_enemy"}
+          {
+            "type": "speed_greater_than_enemy"
+          }
         ],
         "actions": [
-          {"type": "gain_attack", "value": 2}
+          {
+            "type": "gain_attack",
+            "value": 2
+          }
         ]
       }
     ],
@@ -2960,11 +3045,23 @@
     "effect": "On Hit: Spend 2 Speed to gain 1 extra Strike next turn",
     "effects": [
       {
-        "trigger": "on_hit",
-        "condition": { "type": "player_has_minimum_status", "status": "speed", "amount": 2 },
+        "trigger": "onHit",
+        "condition": {
+          "type": "player_has_minimum_status",
+          "status": "speed",
+          "amount": 2
+        },
         "actions": [
-          { "type": "remove_status", "status": "speed", "amount": 2 },
-          { "type": "add_status", "status": "extra_strike", "amount": 1 }
+          {
+            "type": "remove_status",
+            "status": "speed",
+            "amount": 2
+          },
+          {
+            "type": "add_status",
+            "status": "extra_strike",
+            "amount": 1
+          }
         ]
       }
     ],
@@ -2987,8 +3084,14 @@
       {
         "trigger": "battleStart",
         "actions": [
-          {"type": "set_health_to", "value": 1},
-          {"type": "stun_enemy", "value": 2}
+          {
+            "type": "set_health_to",
+            "value": 1
+          },
+          {
+            "type": "stun_enemy",
+            "value": 2
+          }
         ]
       }
     ],
@@ -3007,9 +3110,12 @@
     "effect": "Battle Start: Convert 50% of your current health to that amount of armor",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { "type": "convert_health_to_armor", "percentage": 0.5 }
+          {
+            "type": "convert_health_to_armor",
+            "percentage": 0.5
+          }
         ]
       }
     ],
@@ -3090,15 +3196,23 @@
     "effect": "Wounded: Gain 3 regeneration. Symphony",
     "effects": [
       {
-        "trigger": "wounded",
+        "trigger": "onWounded",
         "actions": [
-          { "type": "add_status", "key": "regeneration", "value": 3 }
+          {
+            "type": "add_status",
+            "key": "regeneration",
+            "value": 3
+          }
         ]
       },
       {
         "trigger": "symphony",
         "actions": [
-          { "type": "add_status", "key": "regeneration", "value": 3 }
+          {
+            "type": "add_status",
+            "key": "regeneration",
+            "value": 3
+          }
         ]
       }
     ],
@@ -3110,7 +3224,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": ["Symphony"]
+    "tags": [
+      "Symphony"
+    ]
   },
   "items/liferoot_tome": {
     "bucket": "items",
@@ -3184,7 +3300,7 @@
             "type": "is_not_full_health"
           }
         ],
-        "event": "turnStart"
+        "trigger": "turnStart"
       }
     ],
     "name": "Limestone Fruit",
@@ -3259,13 +3375,22 @@
     "effect": "Battle Start (if Exposed and full health): +5 Armor and give enemy 1 Riptide",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "conditions": [
-          { "type": "is_exposed_and_full_health" }
+          {
+            "type": "is_exposed_and_full_health"
+          }
         ],
         "actions": [
-          { "type": "add_armor", "value": 5 },
-          { "type": "add_status_to_enemy", "key": "riptide", "value": 1 }
+          {
+            "type": "add_armor",
+            "value": 5
+          },
+          {
+            "type": "add_status_to_enemy",
+            "key": "riptide",
+            "value": 1
+          }
         ]
       }
     ],
@@ -3311,15 +3436,27 @@
     "effect": "Battle Start (if Exposed or Wounded): Decrease a random status by 1; when a status is decreased, deal 1 damage",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "conditions": [
-          { "type": "has_status", "status": "exposed" },
-          { "type": "has_status", "status": "wounded" }
+          {
+            "type": "has_status",
+            "status": "exposed"
+          },
+          {
+            "type": "has_status",
+            "status": "wounded"
+          }
         ],
         "condition_logic": "any",
         "actions": [
-          { "type": "decrease_random_status", "value": 1 },
-          { "type": "deal_damage_when_status_decreased", "value": 1 }
+          {
+            "type": "decrease_random_status",
+            "value": 1
+          },
+          {
+            "type": "deal_damage_when_status_decreased",
+            "value": 1
+          }
         ]
       }
     ],
@@ -3340,12 +3477,17 @@
     "effect": "Battle Start (if Exposed or Wounded): Remove all Acid",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "conditions": [
-          { "type": "is_exposed_or_wounded" }
+          {
+            "type": "is_exposed_or_wounded"
+          }
         ],
         "actions": [
-          { "type": "remove_all_status", "key": "acid" }
+          {
+            "type": "remove_all_status",
+            "key": "acid"
+          }
         ]
       }
     ],
@@ -3381,9 +3523,12 @@
     "effect": "On Hit: Decrease 1 random status effect",
     "effects": [
       {
-        "trigger": "on_hit",
+        "trigger": "onHit",
         "actions": [
-          { "type": "remove_random_status", "amount": 1 }
+          {
+            "type": "remove_random_status",
+            "amount": 1
+          }
         ]
       }
     ],
@@ -3434,10 +3579,17 @@
       {
         "trigger": "turnStart",
         "conditions": [
-          {"type": "health_below_percent", "value": 50}
+          {
+            "type": "health_below_percent",
+            "value": 50
+          }
         ],
         "actions": [
-          {"type": "add_status", "key": "regen", "value": 1}
+          {
+            "type": "add_status",
+            "key": "regen",
+            "value": 1
+          }
         ]
       }
     ],
@@ -3458,10 +3610,16 @@
       {
         "trigger": "turnStart",
         "conditions": [
-          {"type": "health_below_percent", "value": 50}
+          {
+            "type": "health_below_percent",
+            "value": 50
+          }
         ],
         "actions": [
-          {"type": "gain_armor", "value": 2}
+          {
+            "type": "gain_armor",
+            "value": 2
+          }
         ]
       }
     ],
@@ -3543,8 +3701,16 @@
       {
         "trigger": "turnStart",
         "actions": [
-          {"type": "add_status", "key": "poison", "value": 1},
-          {"type": "add_status_to_enemy", "key": "poison", "value": 1}
+          {
+            "type": "add_status",
+            "key": "poison",
+            "value": 1
+          },
+          {
+            "type": "add_status_to_enemy",
+            "key": "poison",
+            "value": 1
+          }
         ]
       }
     ],
@@ -3576,9 +3742,12 @@
     "effect": "Battle Start: Gain 3 armor for each equipped stone item",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "action": "gain_armor_per_tagged_item",
-        "value": {"tag": "Stone", "armor_per_item": 3}
+        "value": {
+          "tag": "Stone",
+          "armor_per_item": 3
+        }
       }
     ],
     "name": "Ore Heart",
@@ -3596,15 +3765,15 @@
     "effect": "Battle Start (if full health): +6 Thorns and +6 Armor",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "condition": "self_full_health",
         "action": "gain_status",
         "status": "thorns",
         "value": 6
       },
       {
-        "trigger": "battle_start",
-        "condition": "self_full_health", 
+        "trigger": "battleStart",
+        "condition": "self_full_health",
         "action": "gain_armor",
         "value": 6
       }
@@ -3665,11 +3834,22 @@
     "effect": "Exposed: Convert 3 speed to 9 armor",
     "effects": [
       {
-        "trigger": "exposed",
-        "condition": { "type": "player_has_minimum_status", "status": "speed", "amount": 3 },
+        "trigger": "onExposed",
+        "condition": {
+          "type": "player_has_minimum_status",
+          "status": "speed",
+          "amount": 3
+        },
         "actions": [
-          { "type": "remove_status", "key": "speed", "value": 3 },
-          { "type": "add_armor", "value": 9 }
+          {
+            "type": "remove_status",
+            "key": "speed",
+            "value": 3
+          },
+          {
+            "type": "add_armor",
+            "value": 9
+          }
         ]
       }
     ],
@@ -3808,9 +3988,14 @@
     "effect": "Battle Start: Gain 1 Purity — at Gold: 2, at Diamond: 4",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "action": "add_status",
-        "value": {"status": "purity", "amount": 1, "gold": 2, "diamond": 4}
+        "value": {
+          "status": "purity",
+          "amount": 1,
+          "gold": 2,
+          "diamond": 4
+        }
       }
     ],
     "name": "Purelake Helmet",
@@ -3828,10 +4013,17 @@
     "effect": "Battle start: Remove all your armor and gain 3 purity",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { "type": "set_armor", "value": 0 },
-          { "type": "add_status", "key": "purity", "value": 3 }
+          {
+            "type": "set_armor",
+            "value": 0
+          },
+          {
+            "type": "add_status",
+            "key": "purity",
+            "value": 3
+          }
         ]
       }
     ],
@@ -3891,12 +4083,17 @@
     "effect": "Battle Start: If your health is not full, restore 2 health — at Gold: 4, at Diamond: 8",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "conditions": [
-          { "type": "is_not_full_health" }
+          {
+            "type": "is_not_full_health"
+          }
         ],
         "actions": [
-          { "type": "restore_health", "value": 2 }
+          {
+            "type": "restore_health",
+            "value": 2
+          }
         ]
       }
     ],
@@ -3941,15 +4138,21 @@
     "effect": "Exposed: Gain 4 armor. Symphony",
     "effects": [
       {
-        "trigger": "exposed",
+        "trigger": "onExposed",
         "actions": [
-          { "type": "add_armor", "value": 4 }
+          {
+            "type": "add_armor",
+            "value": 4
+          }
         ]
       },
       {
         "trigger": "symphony",
         "actions": [
-          { "type": "add_armor", "value": 4 }
+          {
+            "type": "add_armor",
+            "value": 4
+          }
         ]
       }
     ],
@@ -3961,24 +4164,36 @@
       "health": 0,
       "speed": 0
     },
-    "tags": ["Symphony"]
+    "tags": [
+      "Symphony"
+    ]
   },
   "items/rock_candy": {
     "bucket": "items",
     "effect": "Battle Start: Gain 15 Armor (30 if health is full)",
     "effects": [
       {
-        "trigger": "battle_start",
-        "condition": { "type": "is_full_health" },
+        "trigger": "battleStart",
+        "condition": {
+          "type": "is_full_health"
+        },
         "actions": [
-          { "type": "add_armor", "value": 30 }
+          {
+            "type": "add_armor",
+            "value": 30
+          }
         ]
       },
       {
-        "trigger": "battle_start",
-        "condition": { "type": "is_not_full_health" },
+        "trigger": "battleStart",
+        "condition": {
+          "type": "is_not_full_health"
+        },
         "actions": [
-          { "type": "add_armor", "value": 15 }
+          {
+            "type": "add_armor",
+            "value": 15
+          }
         ]
       }
     ],
@@ -4016,10 +4231,15 @@
       {
         "trigger": "turnStart",
         "conditions": [
-          {"type": "is_full_health"}
+          {
+            "type": "is_full_health"
+          }
         ],
         "actions": [
-          {"type": "add_extra_strikes", "value": 1}
+          {
+            "type": "add_extra_strikes",
+            "value": 1
+          }
         ]
       }
     ],
@@ -4053,15 +4273,21 @@
     "effect": "Wounded: Gain 2 gold. Symphony",
     "effects": [
       {
-        "trigger": "wounded",
+        "trigger": "onWounded",
         "actions": [
-          { "type": "add_gold", "value": 2 }
+          {
+            "type": "add_gold",
+            "value": 2
+          }
         ]
       },
       {
         "trigger": "symphony",
         "actions": [
-          { "type": "add_gold", "value": 2 }
+          {
+            "type": "add_gold",
+            "value": 2
+          }
         ]
       }
     ],
@@ -4073,18 +4299,29 @@
       "health": 0,
       "speed": 0
     },
-    "tags": ["Symphony"]
+    "tags": [
+      "Symphony"
+    ]
   },
   "items/royal_shield": {
     "bucket": "items",
     "effect": "Turn Start: Convert 1 gold to 3 armor",
     "effects": [
       {
-        "trigger": "turn_start",
-        "condition": { "type": "player_has_minimum_gold", "amount": 1 },
+        "trigger": "turnStart",
+        "condition": {
+          "type": "player_has_minimum_gold",
+          "amount": 1
+        },
         "actions": [
-          { "type": "remove_gold", "value": 1 },
-          { "type": "add_armor", "value": 3 }
+          {
+            "type": "remove_gold",
+            "value": 1
+          },
+          {
+            "type": "add_armor",
+            "value": 3
+          }
         ]
       }
     ],
@@ -4245,12 +4482,12 @@
     "effect": "Turn Start: Deal 1 damage and restore 1 health",
     "effects": [
       {
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "action": "deal_damage",
         "value": 1
       },
       {
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "action": "heal_self",
         "value": 1
       }
@@ -4285,7 +4522,10 @@
       {
         "trigger": "onHeal",
         "actions": [
-          { "type": "restore_health", "value": 1 }
+          {
+            "type": "restore_health",
+            "value": 1
+          }
         ]
       }
     ],
@@ -4388,15 +4628,23 @@
     "effect": "Exposed: Give the enemy 3 poison. Symphony",
     "effects": [
       {
-        "trigger": "exposed",
+        "trigger": "onExposed",
         "actions": [
-          { "type": "add_status_to_enemy", "key": "poison", "value": 3 }
+          {
+            "type": "add_status_to_enemy",
+            "key": "poison",
+            "value": 3
+          }
         ]
       },
       {
         "trigger": "symphony",
         "actions": [
-          { "type": "add_status_to_enemy", "key": "poison", "value": 3 }
+          {
+            "type": "add_status_to_enemy",
+            "key": "poison",
+            "value": 3
+          }
         ]
       }
     ],
@@ -4408,16 +4656,22 @@
       "health": 0,
       "speed": 0
     },
-    "tags": ["Symphony"]
+    "tags": [
+      "Symphony"
+    ]
   },
   "items/serpent_mask": {
     "bucket": "items",
     "effect": "Battle Start: Give the enemy poison equal to your attack",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { "type": "add_status_to_enemy_from_stat", "key": "poison", "stat": "attack" }
+          {
+            "type": "add_status_to_enemy_from_stat",
+            "key": "poison",
+            "stat": "attack"
+          }
         ]
       }
     ],
@@ -4449,10 +4703,10 @@
     "effect": "Countdown 6: Trigger Symphony 3 times",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { 
-            "type": "register_countdown", 
+          {
+            "type": "register_countdown",
             "value": {
               "name": "Sheet Music",
               "turns": 6,
@@ -4561,12 +4815,18 @@
     "effect": "Battle Start: If you have more speed than the enemy, give them 2 riptide",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "conditions": [
-          { "type": "player_speed_higher_than_enemy" }
+          {
+            "type": "player_speed_higher_than_enemy"
+          }
         ],
         "actions": [
-          { "type": "add_status_to_enemy", "key": "riptide", "value": 2 }
+          {
+            "type": "add_status_to_enemy",
+            "key": "riptide",
+            "value": 2
+          }
         ]
       }
     ],
@@ -4585,18 +4845,27 @@
     "effect": "Battle Start: Gain 1 extra Strike; first turn on hit give 1 Riptide",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { "type": "add_strikes", "value": 1 }
+          {
+            "type": "add_strikes",
+            "value": 1
+          }
         ]
       },
       {
-        "trigger": "on_hit",
+        "trigger": "onHit",
         "conditions": [
-          { "type": "is_first_turn" }
+          {
+            "type": "is_first_turn"
+          }
         ],
         "actions": [
-          { "type": "add_status_to_enemy", "key": "riptide", "value": 1 }
+          {
+            "type": "add_status_to_enemy",
+            "key": "riptide",
+            "value": 1
+          }
         ]
       }
     ],
@@ -4766,10 +5035,13 @@
     "effect": "Turn Start: If you're stunned, give the enemy 1 riptide",
     "effects": [
       {
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "condition": "self_stunned",
         "action": "add_status_to_enemy",
-        "value": {"status": "riptide", "amount": 1}
+        "value": {
+          "status": "riptide",
+          "amount": 1
+        }
       }
     ],
     "name": "Spiral Shell",
@@ -4787,12 +5059,17 @@
     "effect": "Battle Start: If your speed is equal to your attack, gain 3 attack",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "conditions": [
-          { "type": "speed_equals_attack" }
+          {
+            "type": "speed_equals_attack"
+          }
         ],
         "actions": [
-          { "type": "add_attack", "value": 3 }
+          {
+            "type": "add_attack",
+            "value": 3
+          }
         ]
       }
     ],
@@ -4850,12 +5127,18 @@
     "effect": "Battle Start: If you have more speed than armor, stun the enemy for 2 turns",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "conditions": [
-          { "type": "player_speed_higher_than_armor" }
+          {
+            "type": "player_speed_higher_than_armor"
+          }
         ],
         "actions": [
-          { "type": "add_status_to_enemy", "key": "stun", "value": 2 }
+          {
+            "type": "add_status_to_enemy",
+            "key": "stun",
+            "value": 2
+          }
         ]
       }
     ],
@@ -4874,10 +5157,18 @@
     "effect": "Battle Start: Stun the enemy and yourself for 2 turns",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "actions": [
-          { "type": "add_status_to_enemy", "key": "stun", "value": 2 },
-          { "type": "add_status", "key": "stun", "value": 2 }
+          {
+            "type": "add_status_to_enemy",
+            "key": "stun",
+            "value": 2
+          },
+          {
+            "type": "add_status",
+            "key": "stun",
+            "value": 2
+          }
         ]
       }
     ],
@@ -4896,15 +5187,23 @@
     "effect": "Wounded: Stun the enemy for 1 turn. Symphony",
     "effects": [
       {
-        "trigger": "wounded",
+        "trigger": "onWounded",
         "actions": [
-          { "type": "add_status_to_enemy", "key": "stun", "value": 1 }
+          {
+            "type": "add_status_to_enemy",
+            "key": "stun",
+            "value": 1
+          }
         ]
       },
       {
         "trigger": "symphony",
         "actions": [
-          { "type": "add_status_to_enemy", "key": "stun", "value": 1 }
+          {
+            "type": "add_status_to_enemy",
+            "key": "stun",
+            "value": 1
+          }
         ]
       }
     ],
@@ -4916,7 +5215,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": ["Symphony"]
+    "tags": [
+      "Symphony"
+    ]
   },
   "items/stormcloud_tome": {
     "bucket": "items",
@@ -4971,9 +5272,15 @@
     "effect": "Turn Start: Deal 1 damage 3 times",
     "effects": [
       {
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "actions": [
-          { "type": "deal_damage_multiple_times", "value": { "damage": 1, "times": 3 } }
+          {
+            "type": "deal_damage_multiple_times",
+            "value": {
+              "damage": 1,
+              "times": 3
+            }
+          }
         ]
       }
     ],
@@ -5017,7 +5324,7 @@
             "value": 1
           }
         ],
-        "event": "turnStart"
+        "trigger": "turnStart"
       }
     ],
     "name": "Swiftstrike Belt",
@@ -5035,12 +5342,17 @@
     "effect": "Battle Start: If you have more speed than the enemy, gain 1 additional strike",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "conditions": [
-          { "type": "player_speed_higher_than_enemy" }
+          {
+            "type": "player_speed_higher_than_enemy"
+          }
         ],
         "actions": [
-          { "type": "add_strikes", "value": 1 }
+          {
+            "type": "add_strikes",
+            "value": 1
+          }
         ]
       }
     ],
@@ -5125,15 +5437,22 @@
     "effect": "Exposed: Deal 1 damage. Turn start: This item gains 2 damage",
     "effects": [
       {
-        "trigger": "exposed",
+        "trigger": "onExposed",
         "actions": [
-          { "type": "deal_damage_to_enemy", "value": 1 }
+          {
+            "type": "deal_damage_to_enemy",
+            "value": 1
+          }
         ]
       },
       {
-        "trigger": "turn_start",
+        "trigger": "turnStart",
         "actions": [
-          { "type": "gain_stat", "stat": "attack", "value": 2 }
+          {
+            "type": "gain_stat",
+            "stat": "attack",
+            "value": 2
+          }
         ]
       }
     ],
@@ -5210,7 +5529,11 @@
       {
         "trigger": "onHeal",
         "actions": [
-          { "type": "add_status_to_enemy", "key": "poison", "value": 1 }
+          {
+            "type": "add_status_to_enemy",
+            "key": "poison",
+            "value": 1
+          }
         ]
       }
     ],
@@ -5415,12 +5738,17 @@
     "effect": "Battle Start: If you have 0 base armor, gain 4 armor — at Gold: 8, at Diamond: 16",
     "effects": [
       {
-        "trigger": "battle_start",
+        "trigger": "battleStart",
         "conditions": [
-          { "type": "no_armor" }
+          {
+            "type": "no_armor"
+          }
         ],
         "actions": [
-          { "type": "add_armor", "value": 4 }
+          {
+            "type": "add_armor",
+            "value": 4
+          }
         ]
       }
     ],
@@ -5832,7 +6160,11 @@
     "effects": [
       {
         "trigger": "onHit",
-        "condition": { "type": "player_has_minimum_status", "status": "speed", "amount": 1 },
+        "condition": {
+          "type": "player_has_minimum_status",
+          "status": "speed",
+          "amount": 1
+        },
         "action": "plated_edge_speed_to_armor"
       }
     ],
@@ -5915,7 +6247,9 @@
       {
         "trigger": "onHit",
         "actions": [
-          {"type": "remove_enemy_armor"}
+          {
+            "type": "remove_enemy_armor"
+          }
         ]
       }
     ],
@@ -5948,7 +6282,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": ["no_attack"]
+    "tags": [
+      "no_attack"
+    ]
   },
   "weapons/banish_hammer": {
     "bucket": "weapons",
@@ -5970,7 +6306,10 @@
       {
         "trigger": "onHit",
         "action": "transfer_status_to_enemy",
-        "value": {"status": "poison", "amount": 2}
+        "value": {
+          "status": "poison",
+          "amount": 2
+        }
       }
     ],
     "name": "Basilisk Fang",
@@ -6055,8 +6394,14 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "deal_damage_to_enemy", "value": 5 },
-          { "type": "restore_health", "value": 5 }
+          {
+            "type": "deal_damage_to_enemy",
+            "value": 5
+          },
+          {
+            "type": "restore_health",
+            "value": 5
+          }
         ]
       }
     ],
@@ -6090,7 +6435,10 @@
       {
         "trigger": "onHit",
         "actions": [
-          {"type": "take_damage", "value": 1}
+          {
+            "type": "take_damage",
+            "value": 1
+          }
         ]
       }
     ],
@@ -6111,7 +6459,10 @@
       {
         "trigger": "onHit",
         "actions": [
-          {"type": "damage_enemy", "value": 1}
+          {
+            "type": "damage_enemy",
+            "value": 1
+          }
         ]
       }
     ],
@@ -6169,7 +6520,7 @@
             "value": 2
           },
           {
-            "action": "give_enemy_status", 
+            "action": "give_enemy_status",
             "status": "poison",
             "value": 2
           }
@@ -6184,7 +6535,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": ["no_strike"]
+    "tags": [
+      "no_strike"
+    ]
   },
   "weapons/chainmail_sword": {
     "bucket": "weapons",
@@ -6219,13 +6572,19 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "add_speed", "value": -1 }
+          {
+            "type": "add_speed",
+            "value": -1
+          }
         ]
       },
       {
         "trigger": "after_strike",
         "actions": [
-          { "type": "restore_health", "value": 1 }
+          {
+            "type": "restore_health",
+            "value": 1
+          }
         ]
       }
     ],
@@ -6259,7 +6618,9 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "add_strikes_equal_to_speed" }
+          {
+            "type": "add_strikes_equal_to_speed"
+          }
         ]
       }
     ],
@@ -6332,7 +6693,10 @@
       {
         "trigger": "onHit",
         "actions": [
-          {"type": "give_enemy_armor", "value": 2}
+          {
+            "type": "give_enemy_armor",
+            "value": 2
+          }
         ]
       }
     ],
@@ -6366,7 +6730,11 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "add_status", "key": "freeze", "value": 3 }
+          {
+            "type": "add_status",
+            "key": "freeze",
+            "value": 3
+          }
         ]
       }
     ],
@@ -6387,7 +6755,11 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "add_status", "key": "poison", "value": 1 }
+          {
+            "type": "add_status",
+            "key": "poison",
+            "value": 1
+          }
         ]
       }
     ],
@@ -6473,7 +6845,11 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "add_status", "key": "extra_strike", "value": 1 }
+          {
+            "type": "add_status",
+            "key": "extra_strike",
+            "value": 1
+          }
         ]
       }
     ],
@@ -6624,7 +7000,10 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "add_max_health", "value": 5 }
+          {
+            "type": "add_max_health",
+            "value": 5
+          }
         ]
       }
     ],
@@ -6805,13 +7184,21 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "add_status", "key": "purity", "value": 2 }
+          {
+            "type": "add_status",
+            "key": "purity",
+            "value": 2
+          }
         ]
       },
       {
         "trigger": "on_hit",
         "actions": [
-          { "type": "remove_status", "key": "purity", "value": 1 }
+          {
+            "type": "remove_status",
+            "key": "purity",
+            "value": 1
+          }
         ]
       }
     ],
@@ -6891,7 +7278,10 @@
       {
         "trigger": "on_hit",
         "actions": [
-          { "type": "add_gold", "value": 1 }
+          {
+            "type": "add_gold",
+            "value": 1
+          }
         ]
       }
     ],
@@ -6977,7 +7367,11 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "add_status_to_enemy", "key": "riptide", "value": 1 }
+          {
+            "type": "add_status_to_enemy",
+            "key": "riptide",
+            "value": 1
+          }
         ]
       }
     ],
@@ -7011,8 +7405,16 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "add_status", "key": "acid", "value": 3 },
-          { "type": "add_status_to_enemy", "key": "acid", "value": 3 }
+          {
+            "type": "add_status",
+            "key": "acid",
+            "value": 3
+          },
+          {
+            "type": "add_status_to_enemy",
+            "key": "acid",
+            "value": 3
+          }
         ]
       }
     ],
@@ -7098,10 +7500,15 @@
       {
         "trigger": "battle_start",
         "conditions": [
-          { "type": "player_speed_higher_than_enemy" }
+          {
+            "type": "player_speed_higher_than_enemy"
+          }
         ],
         "actions": [
-          { "type": "add_strikes", "value": 3 }
+          {
+            "type": "add_strikes",
+            "value": 3
+          }
         ]
       }
     ],
@@ -7122,10 +7529,16 @@
       {
         "trigger": "battle_start",
         "conditions": [
-          { "type": "enemy_has_higher_stats", "any": true }
+          {
+            "type": "enemy_has_higher_stats",
+            "any": true
+          }
         ],
         "actions": [
-          { "type": "take_damage", "value": 3 }
+          {
+            "type": "take_damage",
+            "value": 3
+          }
         ]
       }
     ],
@@ -7172,7 +7585,11 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "add_status", "key": "stun", "value": 2 }
+          {
+            "type": "add_status",
+            "key": "stun",
+            "value": 2
+          }
         ]
       }
     ],
@@ -7206,7 +7623,10 @@
       {
         "trigger": "battle_start",
         "actions": [
-          { "type": "riptide_per_negative_attack", "multiplier": 2 }
+          {
+            "type": "riptide_per_negative_attack",
+            "multiplier": 2
+          }
         ]
       }
     ],
