@@ -372,13 +372,6 @@
       }
     },
     heal: ({ self, value }) => self.heal(value),
-    heal_from_speed: ({ self, other, log, value }) => {
-      const healAmount = self.speed || 0;
-      if (healAmount > 0) {
-        self.hp = Math.min(self.maxHp || self.hp + healAmount, (self.hp || 0) + healAmount);
-        log(`<img src="assets/health.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name} restores ${healAmount} health from speed`);
-      }
-    },
     set_flag: ({ self, key, value }) => {
       self.flags[key] = value;
     },
@@ -806,7 +799,7 @@
       if (self.getStatus('speed') >= 1) {
         self.removeStatus('speed', 1);
         self.armor += 3;
-        log(`<img src="assets/speed.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;">➡️<img src="assets/armor.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name}'s plated edge converts 1 speed to 3 armor`);
+        log(`🏃‍♂️➡️🛡️ ${self.name}'s plated edge converts 1 speed to 3 armor`);
       }
     },
     jagged_edge_thorns_damage: ({ self, log }) => {
@@ -886,7 +879,7 @@
     gain_armor: ({ self, log, value }) => {
       const amount = value || 1;
       self.addArmor(amount);
-      log(`<img src="assets/armor.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name} gains ${amount} armor`);
+      log(`🛡️ ${self.name} gains ${amount} armor`);
     },
     lose_speed: ({ self, log, value }) => {
       const amount = value || 1;
@@ -1133,7 +1126,7 @@
     gain_attack: ({ self, log, value }) => {
       const amount = value || 1;
       self.addAtk(amount);
-      log(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name} gains ${amount} attack`);
+      log(`⚔️ ${self.name} gains ${amount} attack`);
     },
     gain_speed: ({ self, log, value }) => {
       const amount = value || 1;
@@ -1154,7 +1147,7 @@
     gain_temp_attack: ({ self, log, value }) => {
       const amount = value || 1;
       self.addTempAtk(amount);
-      log(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name} gains ${amount} temporary attack`);
+      log(`⚔️ ${self.name} gains ${amount} temporary attack`);
     },
     increment_counter: ({ self, log, value }) => {
       const counterName = value?.name || 'counter';
@@ -1195,7 +1188,7 @@
     first_turn_extra_strike: ({ self, log }) => {
       if (self.flags && self.flags.firstTurn) {
         self.addExtraStrikes(1);
-        log(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name} gains +1 extra strike on first turn (Bloodmoon Strike set).`);
+        log(`⚔️ ${self.name} gains +1 extra strike on first turn (Bloodmoon Strike set).`);
       }
     },
 
@@ -1844,8 +1837,8 @@ let CURRENT_SOURCE_SLUG = null;
     dst.hp -= toHp;
     if(dst.hp < 0) dst.hp = 0;
     dst.struckThisTurn = true;
-    if(toArmor>0) log(`<img src="assets/armor.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${src.name} destroys ${toArmor} armor`);
-    if(toHp>0) log(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${src.name} hits ${dst.name} for ${toHp}`);
+    if(toArmor>0) log(`🛡️ ${src.name} destroys ${toArmor} armor`);
+    if(toHp>0) log(`⚔️ ${src.name} hits ${dst.name} for ${toHp}`);
     if (src && src._summary) {
       if (toArmor > 0) src._summary.armorDestroyedDealt += toArmor;
       if (toHp > 0) src._summary.hpDamageDealt += toHp;
