@@ -417,8 +417,8 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
           <option value="All">All</option>
           <option value="Jewelry">Jewelry</option><option value="Tome">Tome</option><option value="Food">Food</option>
         </select>
-        <button id="randBuildBtn" type="button" title="Fill your slots with random items and a random weapon from the compendium" style="background:#f33;color:#000;border:1px solid #f33;border-radius:8px;padding:6px 10px;cursor:pointer;">ðŸŽ² Random Build</button>
-        <button id="randEnemyBtn" type="button" title="Randomize the opponent's loadout" style="background:#f33;color:#000;border:1px solid #f33;border-radius:8px;padding:6px 10px;cursor:pointer;">ðŸŽ² Random Enemy</button>
+        <button id="randBuildBtn" type="button" title="Fill your slots with random items, a random weapon, and a random edge from the compendium" style="background:#f33;color:#000;border:1px solid #f33;border-radius:8px;padding:6px 10px;cursor:pointer;">🎲 Random Build</button>
+        <button id="randEnemyBtn" type="button" title="Randomize the opponent's loadout with items, weapon, and edge" style="background:#f33;color:#000;border:1px solid #f33;border-radius:8px;padding:6px 10px;cursor:pointer;">🎲 Random Enemy</button>
         <button id="showSimBtn" type="button" style="background:#0f3;color:#000;border:1px solid #0f3;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;margin-left:16px;">Show Simulation</button>
         <span id="count" style="margin-left:auto;">Shown: 0</span>
       </div>
@@ -1282,12 +1282,29 @@ function randomizeSide(targetSide){
   const gridEl = targetSide === 'P' ? $('#gridP') : $('#gridO');
   const weapons = DATA_ARR.filter(e => e.bucket === 'weapons');
   const itemsList = DATA_ARR.filter(e => e.bucket === 'items');
+  const edges = DATA_ARR.filter(e => e.bucket === 'upgrades' && /edge/i.test(e.slug) && !(/_used$/i.test(e.slug) || /_darkened$/i.test(e.slug)));
+  
   if (weapons.length) {
     const w = weapons[Math.floor(Math.random()*weapons.length)];
     side.weapon = w;
 
     wSlot.innerHTML = `<div class="miniCard"><img src="${w.bucket}/${w.slug}/icon.png" alt="${w.name}"><span class="name">${w.name}</span></div>`;
 
+  }
+  
+  // Randomly select an edge
+  if (edges.length) {
+    const randomEdge = edges[Math.floor(Math.random() * edges.length)];
+    side.edge = randomEdge;
+    
+    // Update the edge select dropdown
+    const edgeSelect = targetSide === 'P' ? $('#edgeP') : $('#edgeO');
+    const edgeEffect = targetSide === 'P' ? $('#edgePEffect') : $('#edgeOEffect');
+    const edgeIcon = targetSide === 'P' ? $('#edgePIcon') : $('#edgeOIcon');
+    
+    edgeSelect.value = randomEdge.slug;
+    edgeEffect.textContent = randomEdge.effect || '';
+    edgeIcon.src = `${randomEdge.bucket}/${randomEdge.slug}/icon.png`;
   }
   const copy = itemsList.slice();
   const chosen = [];
