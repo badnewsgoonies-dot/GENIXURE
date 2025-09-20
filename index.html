@@ -289,6 +289,85 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   text-align: center;
   padding: 20px;
 }
+
+/* Simulation enhancements */
+@keyframes pulse-vs {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes battle-glow {
+  0%, 100% { box-shadow: 0 0 40px rgba(0,255,51,0.2); }
+  50% { box-shadow: 0 0 60px rgba(0,255,51,0.4); }
+}
+
+.battle-button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.battle-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,255,51,0.4);
+}
+
+.battle-button:active {
+  transform: translateY(0);
+}
+
+.battle-log-line {
+  border-left: 3px solid transparent;
+  padding-left: 8px;
+  margin: 4px 0;
+  transition: all 0.2s ease;
+}
+
+.battle-log-line.player {
+  border-left-color: #0f3;
+}
+
+.battle-log-line.opponent {
+  border-left-color: #f33;
+}
+
+.battle-log-line.system {
+  border-left-color: #fa0;
+}
+
+.battle-log-line:hover {
+  background: rgba(0,255,51,0.1);
+  border-radius: 4px;
+}
+
+.sim-preview-item {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  margin: 2px;
+  background: #111;
+  image-rendering: pixelated;
+}
+
+.result-victory {
+  color: #0f3;
+  text-shadow: 0 0 10px rgba(0,255,51,0.5);
+  font-weight: 900;
+}
+
+.result-defeat {
+  color: #f33;
+  text-shadow: 0 0 10px rgba(255,51,51,0.5);
+  font-weight: 900;
+}
+
+.result-draw {
+  color: #fa0;
+  text-shadow: 0 0 10px rgba(255,170,0,0.5);
+  font-weight: 900;
+}
 </style>
 </head>
 <body>
@@ -396,13 +475,101 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
         </div>
       </div>
     </section>
-    <section class="center" id="simulationTab" style="flex:1; display:none; flex-direction:column; align-items:center; justify-content:center; min-height:0;">
-      <div id="simPanel" style="width:640px;max-width:100%;margin:24px auto;background:#000;border:2px solid #0f3;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:18px;box-shadow:0 0 32px #000;">
-        <div id="simControls" style="display:flex;gap:18px;flex-wrap:wrap;align-items:center;">
-          <button id="btnSimulate" type="button" title="Run a simulation between the two loadouts" style="background:#0f3;color:#000;border:1px solid #0f3;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:20px;">â–¶ Simulate</button>
-          <button id="btnClearLog" type="button" title="Clear the simulation log" style="background:#333;color:#0f3;border:1px solid #0f3;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:20px;">Clear Log</button>
+    <section class="center" id="simulationTab" style="flex:1; display:none; flex-direction:column; align-items:center; justify-content:flex-start; min-height:0; padding:20px; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);">
+      <!-- Simulation Header -->
+      <div style="text-align:center; margin-bottom:32px;">
+        <h1 style="color:#0f3; font-size:36px; margin:0; text-shadow:0 0 20px rgba(0,255,51,0.3); font-weight:700;">⚔️ BATTLE SIMULATION ⚔️</h1>
+        <p style="color:#0a8; font-size:18px; margin:12px 0 0 0; opacity:0.8;">Watch your loadouts clash in epic combat!</p>
+      </div>
+
+      <!-- Battle Arena Visualization -->
+      <div style="width:100%; max-width:800px; margin-bottom:32px; background:linear-gradient(45deg, #001100 0%, #003300 50%, #001100 100%); border:3px solid #0f3; border-radius:20px; padding:24px; box-shadow:0 0 40px rgba(0,255,51,0.2);">
+        <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:32px; align-items:center;">
+          <!-- Player 1 Preview -->
+          <div style="text-align:center;">
+            <div style="color:#0f3; font-size:24px; font-weight:700; margin-bottom:16px; text-shadow:0 0 10px rgba(0,255,51,0.5);">🛡️ PLAYER</div>
+            <div id="simPlayerPreview" style="background:rgba(0,255,51,0.1); border:2px solid #0f3; border-radius:12px; padding:16px; min-height:120px;">
+              <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                <img id="simPlayerWeapon" src="assets/placeholder.png" style="width:48px; height:48px; image-rendering:pixelated; border:2px solid #0f3; border-radius:8px; background:#001100;">
+                <div style="text-align:left;">
+                  <div id="simPlayerWeaponName" style="color:#0f3; font-weight:700; font-size:16px;">No Weapon</div>
+                  <div id="simPlayerStats" style="color:#0a8; font-size:14px;">HP: 10 | ATK: 0 | ARM: 0 | SPD: 0</div>
+                </div>
+              </div>
+              <div id="simPlayerItems" style="display:flex; flex-wrap:wrap; gap:4px; justify-content:center;">
+                <span style="color:#666; font-style:italic;">No items equipped</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- VS Badge -->
+          <div style="text-align:center;">
+            <div style="background:radial-gradient(circle, #ff3366 0%, #cc1144 100%); color:#fff; font-size:32px; font-weight:900; width:80px; height:80px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:4px solid #fff; box-shadow:0 0 30px rgba(255,51,102,0.6); animation:pulse-vs 2s infinite;">VS</div>
+          </div>
+
+          <!-- Player 2 Preview -->
+          <div style="text-align:center;">
+            <div style="color:#f33; font-size:24px; font-weight:700; margin-bottom:16px; text-shadow:0 0 10px rgba(255,51,51,0.5);">⚔️ OPPONENT</div>
+            <div id="simOpponentPreview" style="background:rgba(255,51,51,0.1); border:2px solid #f33; border-radius:12px; padding:16px; min-height:120px;">
+              <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                <img id="simOpponentWeapon" src="assets/placeholder.png" style="width:48px; height:48px; image-rendering:pixelated; border:2px solid #f33; border-radius:8px; background:#110000;">
+                <div style="text-align:left;">
+                  <div id="simOpponentWeaponName" style="color:#f33; font-weight:700; font-size:16px;">No Weapon</div>
+                  <div id="simOpponentStats" style="color:#a05; font-size:14px;">HP: 10 | ATK: 0 | ARM: 0 | SPD: 0</div>
+                </div>
+              </div>
+              <div id="simOpponentItems" style="display:flex; flex-wrap:wrap; gap:4px; justify-content:center;">
+                <span style="color:#666; font-style:italic;">No items equipped</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="simLog" style="flex:1;min-height:240px;max-height:60vh;overflow:auto;background:#111;border:2px solid #0f3;border-radius:12px;padding:18px;font-size:18px;font-family:monospace;color:#0f3;"></div>
+      </div>
+
+      <!-- Controls Section -->
+      <div style="width:100%; max-width:600px; margin-bottom:24px;">
+        <div id="simControls" style="display:flex; gap:24px; flex-wrap:wrap; align-items:center; justify-content:center; background:rgba(0,0,0,0.3); border:2px solid #333; border-radius:16px; padding:20px;">
+          <button id="btnSimulate" type="button" title="Run a simulation between the two loadouts" class="battle-button" style="background:linear-gradient(135deg, #0f3 0%, #0a8 100%); color:#000; border:none; border-radius:12px; padding:16px 32px; cursor:pointer; font-size:20px; font-weight:700; box-shadow:0 4px 15px rgba(0,255,51,0.3); transition:all 0.3s ease; text-shadow:none;">▶️ START BATTLE</button>
+          <button id="btnClearLog" type="button" title="Clear the simulation log" class="battle-button" style="background:linear-gradient(135deg, #666 0%, #444 100%); color:#fff; border:none; border-radius:12px; padding:16px 32px; cursor:pointer; font-size:20px; font-weight:700; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:all 0.3s ease;">🧹 Clear Log</button>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <label style="color:#0f3; font-weight:700;">Max Turns:</label>
+            <input id="maxTurnsInput" type="number" value="50" min="10" max="200" style="background:#111; color:#0f3; border:2px solid #0f3; border-radius:8px; padding:8px 12px; width:80px; text-align:center; font-size:16px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Battle Log Section -->
+      <div style="width:100%; max-width:900px; background:linear-gradient(135deg, #000 0%, #111 100%); border:3px solid #0f3; border-radius:20px; box-shadow:0 0 40px rgba(0,255,51,0.2); overflow:hidden;">
+        <!-- Log Header -->
+        <div style="background:linear-gradient(90deg, #0f3 0%, #0a8 100%); padding:16px 24px; border-bottom:2px solid #0f3;">
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <h3 style="color:#000; font-size:24px; font-weight:700; margin:0;">📜 BATTLE LOG</h3>
+            <div id="battleStatus" style="color:#000; font-size:18px; font-weight:700;">Ready for Battle</div>
+          </div>
+        </div>
+        
+        <!-- Log Content -->
+        <div id="simLog" style="min-height:300px; max-height:500px; overflow:auto; padding:24px; font-size:16px; font-family:'Courier New', monospace; color:#0f3; line-height:1.6; background-image:repeating-linear-gradient(0deg, transparent, transparent 1.6em, rgba(0,255,51,0.05) 1.6em, rgba(0,255,51,0.05) 3.2em);">
+          <div style="text-align:center; color:#666; font-style:italic; font-size:18px; padding:60px 20px;">
+            ⚔️ Ready to witness epic battles!<br><br>
+            Configure your loadouts and hit <strong style="color:#0f3;">"START BATTLE"</strong> to begin the simulation.
+          </div>
+        </div>
+      </div>
+
+      <!-- Battle Results Summary (Hidden by default) -->
+      <div id="battleSummary" style="width:100%; max-width:900px; margin-top:24px; background:linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); border:3px solid #f93; border-radius:20px; padding:24px; display:none; box-shadow:0 0 40px rgba(255,153,51,0.2);">
+        <h3 style="color:#f93; font-size:24px; font-weight:700; text-align:center; margin:0 0 20px 0; text-shadow:0 0 10px rgba(255,153,51,0.5);">🏆 BATTLE SUMMARY</h3>
+        <div id="summaryContent" style="display:grid; grid-template-columns:1fr 1fr; gap:24px; color:#fff; font-size:16px;">
+          <div id="playerSummary" style="background:rgba(0,255,51,0.1); border:2px solid #0f3; border-radius:12px; padding:16px;">
+            <h4 style="color:#0f3; margin:0 0 12px 0; font-size:18px;">🛡️ Player Stats</h4>
+            <div id="playerSummaryContent"></div>
+          </div>
+          <div id="opponentSummary" style="background:rgba(255,51,51,0.1); border:2px solid #f33; border-radius:12px; padding:16px;">
+            <h4 style="color:#f33; margin:0 0 12px 0; font-size:18px;">⚔️ Opponent Stats</h4>
+            <div id="opponentSummaryContent"></div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -600,6 +767,11 @@ function updateTotals(sideKey) {
   // Update analysis if currently visible
   if (typeof analysisTab !== 'undefined' && analysisTab && analysisTab.style.display !== 'none') {
     renderAnalysis();
+  }
+
+  // Update simulation preview if simulation tab is visible
+  if (typeof simulationTab !== 'undefined' && simulationTab && simulationTab.style.display !== 'none') {
+    updateSimulationPreview();
   }
 }
 
@@ -1178,92 +1350,245 @@ function collectEntityData(sideKey) {
 // collect the current loadouts, run the simulation via HeICSim and print the
 // result and log lines into #simLog. Clear Log simply wipes the log container.
 
+// Simulation UI wiring and enhancements
+function updateSimulationPreview() {
+  // Update Player preview
+  const playerSide = sides['P'];
+  const playerWeaponImg = document.getElementById('simPlayerWeapon');
+  const playerWeaponName = document.getElementById('simPlayerWeaponName');
+  const playerStats = document.getElementById('simPlayerStats');
+  const playerItems = document.getElementById('simPlayerItems');
+
+  if (playerSide.weapon) {
+    playerWeaponImg.src = `${playerSide.weapon.bucket}/${playerSide.weapon.slug}/icon.png`;
+    playerWeaponName.textContent = playerSide.weapon.name;
+  } else {
+    playerWeaponImg.src = 'assets/placeholder.png';
+    playerWeaponName.textContent = 'No Weapon';
+  }
+
+  const pHP = parseInt(document.getElementById('pH').textContent) || 10;
+  const pATK = parseInt(document.getElementById('pA').textContent) || 0;
+  const pARM = parseInt(document.getElementById('pR').textContent) || 0;
+  const pSPD = parseInt(document.getElementById('pS').textContent) || 0;
+  playerStats.textContent = `HP: ${pHP} | ATK: ${pATK} | ARM: ${pARM} | SPD: ${pSPD}`;
+
+  // Show equipped items as mini icons
+  const equippedItems = playerSide.items.filter(item => item !== null);
+  if (equippedItems.length > 0) {
+    playerItems.innerHTML = equippedItems.map(item => 
+      `<img class="sim-preview-item" src="${item.bucket}/${item.slug}/icon.png" title="${item.name}" alt="${item.name}">`
+    ).join('');
+  } else {
+    playerItems.innerHTML = '<span style="color:#666; font-style:italic;">No items equipped</span>';
+  }
+
+  // Update Opponent preview
+  const opponentSide = sides['O'];
+  const opponentWeaponImg = document.getElementById('simOpponentWeapon');
+  const opponentWeaponName = document.getElementById('simOpponentWeaponName');
+  const opponentStats = document.getElementById('simOpponentStats');
+  const opponentItems = document.getElementById('simOpponentItems');
+
+  if (opponentSide.weapon) {
+    opponentWeaponImg.src = `${opponentSide.weapon.bucket}/${opponentSide.weapon.slug}/icon.png`;
+    opponentWeaponName.textContent = opponentSide.weapon.name;
+  } else {
+    opponentWeaponImg.src = 'assets/placeholder.png';
+    opponentWeaponName.textContent = 'No Weapon';
+  }
+
+  const oHP = parseInt(document.getElementById('oH').textContent) || 10;
+  const oATK = parseInt(document.getElementById('oA').textContent) || 0;
+  const oARM = parseInt(document.getElementById('oR').textContent) || 0;
+  const oSPD = parseInt(document.getElementById('oS').textContent) || 0;
+  opponentStats.textContent = `HP: ${oHP} | ATK: ${oATK} | ARM: ${oARM} | SPD: ${oSPD}`;
+
+  const equippedOpponentItems = opponentSide.items.filter(item => item !== null);
+  if (equippedOpponentItems.length > 0) {
+    opponentItems.innerHTML = equippedOpponentItems.map(item => 
+      `<img class="sim-preview-item" src="${item.bucket}/${item.slug}/icon.png" title="${item.name}" alt="${item.name}">`
+    ).join('');
+  } else {
+    opponentItems.innerHTML = '<span style="color:#666; font-style:italic;">No items equipped</span>';
+  }
+}
+
 function uiLogClear() {
   const log = document.getElementById('simLog');
-  if (log) log.innerHTML = '';
+  const battleStatus = document.getElementById('battleStatus');
+  const battleSummary = document.getElementById('battleSummary');
+  
+  if (log) {
+    log.innerHTML = `
+      <div style="text-align:center; color:#666; font-style:italic; font-size:18px; padding:60px 20px;">
+        ⚔️ Ready to witness epic battles!<br><br>
+        Configure your loadouts and hit <strong style="color:#0f3;">"START BATTLE"</strong> to begin the simulation.
+      </div>
+    `;
+  }
+  
+  if (battleStatus) battleStatus.textContent = 'Ready for Battle';
+  if (battleSummary) battleSummary.style.display = 'none';
 }
 
 function uiLog(lines) {
   const log = document.getElementById('simLog');
   if (!log) return;
+  
+  // Clear initial message if it's the first log entry
+  if (log.innerHTML.includes('Ready to witness epic battles')) {
+    log.innerHTML = '';
+  }
+  
   const renderLine = (line) => {
     if (line == null) return;
     const div = document.createElement('div');
-    div.className = 'logLine';
-    const m = String(line).match(/^::icon:([^:]+)::\s*(.*)$/);
+    div.className = 'logLine battle-log-line';
+    
+    const lineStr = String(line);
+    
+    // Determine line type for styling
+    if (lineStr.includes('Player') || lineStr.includes('Fighter')) {
+      div.classList.add('player');
+    } else if (lineStr.includes('Opponent') || lineStr.includes('Enemy')) {
+      div.classList.add('opponent');
+    } else if (lineStr.includes('Turn') || lineStr.includes('Result') || lineStr.includes('Summary')) {
+      div.classList.add('system');
+    }
+    
+    const m = lineStr.match(/^::icon:([^:]+)::\s*(.*)$/);
     if (m) {
       const slug = m[1];
       const text = m[2];
       const img = document.createElement('img');
       img.src = slug + '/icon.png';
       img.alt = '';
-      img.style.width = '18px';
-      img.style.height = '18px';
+      img.style.width = '20px';
+      img.style.height = '20px';
       img.style.imageRendering = 'pixelated';
       img.style.marginRight = '8px';
       img.style.verticalAlign = 'text-bottom';
       div.appendChild(img);
       div.appendChild(document.createTextNode(text));
     } else {
-      div.textContent = String(line);
+      div.textContent = lineStr;
     }
+    
     log.appendChild(div);
   };
-  if (Array.isArray(lines)) { for (const l of lines) renderLine(l); }
-  else { renderLine(lines); }
+  
+  if (Array.isArray(lines)) { 
+    for (const l of lines) renderLine(l); 
+  } else { 
+    renderLine(lines); 
+  }
+  
   log.scrollTop = log.scrollHeight;
+}
+
+function displayBattleResult(result, rounds, summary) {
+  const battleStatus = document.getElementById('battleStatus');
+  const battleSummary = document.getElementById('battleSummary');
+  const playerSummaryContent = document.getElementById('playerSummaryContent');
+  const opponentSummaryContent = document.getElementById('opponentSummaryContent');
+  
+  // Update battle status with result
+  if (battleStatus) {
+    let statusText = '';
+    let statusClass = '';
+    
+    switch(result) {
+      case 'Victory':
+        statusText = '🏆 VICTORY!';
+        statusClass = 'result-victory';
+        break;
+      case 'Defeat':
+        statusText = '💀 DEFEAT!';
+        statusClass = 'result-defeat';
+        break;
+      case 'Draw':
+        statusText = '🤝 DRAW!';
+        statusClass = 'result-draw';
+        break;
+      default:
+        statusText = result;
+        break;
+    }
+    
+    battleStatus.innerHTML = `<span class="${statusClass}">${statusText} (${rounds} rounds)</span>`;
+  }
+  
+  // Show summary if available
+  if (summary && battleSummary) {
+    battleSummary.style.display = 'block';
+    
+    const formatSummary = (s) => {
+      return `
+        <div style="margin-bottom:8px;"><strong>HP Remaining:</strong> ${s.hpRemaining}</div>
+        <div style="margin-bottom:8px;"><strong>Damage Dealt:</strong> ${s.hpDamageDealt}</div>
+        <div style="margin-bottom:8px;"><strong>Armor Destroyed:</strong> ${s.armorDestroyedDealt}</div>
+        <div style="margin-bottom:8px;"><strong>Strikes:</strong> ${s.strikesLanded}/${s.strikesAttempted}</div>
+        <div style="margin-bottom:8px;"><strong>Bomb Damage:</strong> ${s.bombHpDealt || 0}</div>
+      `;
+    };
+    
+    if (playerSummaryContent) {
+      playerSummaryContent.innerHTML = formatSummary(summary.left);
+    }
+    
+    if (opponentSummaryContent) {
+      opponentSummaryContent.innerHTML = formatSummary(summary.right);
+    }
+  }
 }
 
 const simBtn = document.getElementById('btnSimulate');
 const showSimBtn = document.getElementById('showSimBtn');
-// Import tab removed; set to null to avoid undefined references
-const tabImport = null;
+
 if (simBtn) {
   simBtn.addEventListener('click', () => {
     updateTotals('P');
     updateTotals('O');
     const left = collectEntityData('P');
     const right = collectEntityData('O');
+    const maxTurns = parseInt(document.getElementById('maxTurnsInput')?.value) || 50;
+    
+    // Update battle status
+    const battleStatus = document.getElementById('battleStatus');
+    if (battleStatus) battleStatus.textContent = '⚔️ Battle in Progress...';
+    
     uiLogClear();
+    
     if (typeof HeICSim === 'undefined' || !HeICSim.simulate) {
-      uiLog('Simulation engine failed to load.');
+      uiLog('❌ Simulation engine failed to load.');
+      if (battleStatus) battleStatus.textContent = 'Error: Engine Failed';
       return;
     }
-  try {
-      const res = HeICSim.simulate(left, right);
-      uiLog(`Result: ${res.result}`);
-      uiLog(`Rounds: ${res.rounds}`);
-      if (res.summary) {
-        const fmt = (s) => {
-          const gained = s.statusesGained && Object.keys(s.statusesGained).length
-            ? Object.entries(s.statusesGained).map(([k,v])=>`${k}:${v}`).join(', ')
-            : 'none';
-          const inflicted = s.statusesInflicted && Object.keys(s.statusesInflicted).length
-            ? Object.entries(s.statusesInflicted).map(([k,v])=>`${k}:${v}`).join(', ')
-            : 'none';
-          return [
-            `${s.name} Summary`,
-            `  Damage to HP: ${s.hpDamageDealt}`,
-            `  Armor destroyed: ${s.armorDestroyedDealt}`,
-            `  Bomb HP: ${s.bombHpDealt}`,
-            `  Strikes: ${s.strikesLanded}/${s.strikesAttempted}`,
-            `  Statuses gained: ${gained}`,
-            `  Statuses inflicted: ${inflicted}`
-          ].join('\n');
-        };
-        uiLog('--- Summary ---');
-        uiLog(fmt(res.summary.left));
-        uiLog('');
-        uiLog(fmt(res.summary.right));
-        uiLog('----------------');
-      }
+    
+    try {
+      const res = HeICSim.simulate(left, right, { maxTurns: maxTurns, includeSummary: true });
+      
+      uiLog(`⚔️ BATTLE BEGINS! (Max ${maxTurns} turns)`);
+      uiLog(`🛡️ ${left.name}: ${left.hp} HP, ${left.atk} ATK, ${left.armor} ARM, ${left.speed} SPD`);
+      uiLog(`⚔️ ${right.name}: ${right.hp} HP, ${right.atk} ATK, ${right.armor} ARM, ${right.speed} SPD`);
+      uiLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      
       if (res.log && res.log.length) uiLog(res.log);
+      
+      uiLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      uiLog(`🏁 BATTLE ENDED: ${res.result} in ${res.rounds} rounds!`);
+      
+      displayBattleResult(res.result, res.rounds, res.summary);
+      
     } catch (ex) {
       console.error(ex);
-      uiLog('Error running simulation.');
+      uiLog('❌ Error running simulation: ' + ex.message);
+      if (battleStatus) battleStatus.textContent = 'Error: Simulation Failed';
     }
   });
 }
+
 const clearBtn = document.getElementById('btnClearLog');
 if (clearBtn) {
   clearBtn.addEventListener('click', () => uiLogClear());
@@ -1610,6 +1935,7 @@ function showTab(tabName) {
   } else if (tabName === 'simulation') {
     simulationTab.style.display = 'flex';  
     tabSimulation.style.background = '#030';
+    updateSimulationPreview(); // Update simulation preview
   }
 }
 
