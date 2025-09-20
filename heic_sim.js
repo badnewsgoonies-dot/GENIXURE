@@ -1201,7 +1201,7 @@
       const slug = (typeof itemOrSlug === 'string') ? itemOrSlug : (itemOrSlug.slug || itemOrSlug.key);
       if (!slug) continue;
 
-      const details = (window.HEIC_DETAILS || {})[slug];
+      const details = (global.HEIC_DETAILS || window.HEIC_DETAILS || {})[slug];
       if (!details || !Array.isArray(details.effects)) continue;
 
       // For Symphony events, only process items that have Symphony in their effect description or tags
@@ -1218,8 +1218,29 @@
       const effectCtx = { self, other, log, tier, sourceItem, ...extra };
 
       for (const effect of details.effects) {
-        // Check if trigger matches event (all triggers now standardized to camelCase)
-        const triggerMatches = effect.trigger === event;
+        // Map simulator event names to our trigger names
+        const eventToTriggerMap = {
+          'battleStart': 'battleStart',
+          'turnStart': 'turnStart',
+          'onHit': 'hit',
+          'onWounded': 'wounded',
+          'onExposed': 'exposed',
+          'onDamaged': 'damaged',
+          'onKill': 'kill',
+          'afterStrike': 'afterStrike',
+          'onHeal': 'heal',
+          'onGainArmor': 'gainArmor',
+          'onGainSpeed': 'gainSpeed',
+          'onGainStatus': 'gainStatus',
+          'onPoisonTick': 'poisonTick',
+          'strikeSkipped': 'strikeSkipped',
+          'bombTrigger': 'bombTrigger',
+          'postCountdownTrigger': 'postCountdownTrigger',
+          'symphony': 'symphony'
+        };
+        
+        const mappedTrigger = eventToTriggerMap[event] || event;
+        const triggerMatches = effect.trigger === mappedTrigger;
 
         if (!triggerMatches) continue;
 
@@ -1321,11 +1342,26 @@
         thorns:0, regen:0, purity:0
       }, raw.statuses || {});
 
-      // Populate item tags for use in effect conditions
-      if (typeof DETAILS !== 'undefined') {
+      // Populate item tags for use in effect conditions and apply item stats
+      const DETAILS_SOURCE = global.HEIC_DETAILS || (typeof window !== 'undefined' ? window.HEIC_DETAILS : undefined);
+      if (DETAILS_SOURCE) {
         this.items.forEach(item => {
-          if (DETAILS[item] && DETAILS[item].tags) {
-            ITEM_TAGS[item] = DETAILS[item].tags;
+          if (DETAILS_SOURCE[item]) {
+            // Store tags
+            if (DETAILS_SOURCE[item].tags) {
+              ITEM_TAGS[item] = DETAILS_SOURCE[item].tags;
+            }
+            
+            // Apply item stats
+            if (DETAILS_SOURCE[item].stats) {
+              const stats = DETAILS_SOURCE[item].stats;
+              this.hp += (stats.health || 0);
+              this.hpMax += (stats.health || 0);
+              this.atk += (stats.attack || 0);
+              this.armor += (stats.armor || 0);
+              this.baseArmor += (stats.armor || 0);
+              this.speed += (stats.speed || 0);
+            }
           }
         });
       }
@@ -1662,6 +1698,20 @@ let CURRENT_SOURCE_SLUG = null;
     return { result, rounds: round, log: logArr, summary: { left: summarize(L), right: summarize(R) } };
   }
 
-  if(typeof module !== "undefined" && module.exports) module.exports = { simulate, Fighter };
+  // Load data when running in Node.js
+  if(typeof module !== "undefined" && module.exports) {
+    // Load details.json when in Node.js environment
+    try {
+      const fs = require('fs');
+      const path = require('path');
+      const detailsPath = path.join(__dirname, 'details.json');
+      if (fs.existsSync(detailsPath)) {
+        global.HEIC_DETAILS = JSON.parse(fs.readFileSync(detailsPath, 'utf8'));
+      }
+    } catch (err) {
+      console.warn('Could not load details.json:', err.message);
+    }
+    module.exports = { simulate, Fighter };
+  }
   global.HeICSim = { simulate };
 })(typeof window !== 'undefined' ? window : globalThis);
