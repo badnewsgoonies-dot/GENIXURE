@@ -208,31 +208,29 @@
     "effect": "On first turn (on hit): give enemy 4 Poison, 3 Acid, 2 Stun",
     "effects": [
       {
-        "action": "add_status_to_enemy",
-        "if": {
-          "type": "is_first_turn"
-        },
-        "key": "poison",
         "trigger": "onHit",
-        "value": 4
-      },
-      {
-        "action": "add_status_to_enemy",
-        "if": {
-          "type": "is_first_turn"
-        },
-        "key": "acid",
-        "trigger": "onHit",
-        "value": 3
-      },
-      {
-        "action": "add_status_to_enemy",
-        "if": {
-          "type": "is_first_turn"
-        },
-        "key": "stun",
-        "trigger": "onHit",
-        "value": 2
+        "conditions": [
+          {
+            "type": "is_first_turn"
+          }
+        ],
+        "actions": [
+          {
+            "type": "add_status_to_enemy",
+            "key": "poison",
+            "value": 4
+          },
+          {
+            "type": "add_status_to_enemy",
+            "key": "acid",
+            "value": 3
+          },
+          {
+            "type": "add_status_to_enemy",
+            "key": "stun",
+            "value": 2
+          }
+        ]
       }
     ],
     "name": "Bee Stinger",
@@ -2544,7 +2542,19 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "set_flag",
+            "key": "double_on_hit_first_turn",
+            "value": true
+          }
+        ]
+      }
+    ]
   },
   "items/holy_shield": {
     "bucket": "items",
@@ -3153,7 +3163,19 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "set_flag",
+            "key": "lifeblood_active",
+            "value": true
+          }
+        ]
+      }
+    ]
   },
   "items/liferoot_beast": {
     "bucket": "items",
@@ -5664,7 +5686,28 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "onHit",
+        "conditions": [
+          {
+            "type": "is_first_turn"
+          }
+        ],
+        "actions": [
+          {
+            "type": "add_status_to_enemy",
+            "key": "poison",
+            "by_tier": [
+              2,
+              4,
+              8
+            ]
+          }
+        ]
+      }
+    ]
   },
   "items/viper_extract": {
     "bucket": "items",
