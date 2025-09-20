@@ -590,6 +590,18 @@
         if (gained > 0) log(`${self.name} gains ${gained} health`);
       }
     },
+    remove_enemy_armor: ({ self, other, log }) => {
+      const removed = other.armor;
+      if (removed > 0) {
+        other.armor = 0;
+        log(`${self.name} removes all ${removed} of ${other.name}'s armor`);
+      }
+    },
+    give_enemy_armor: ({ self, other, log, value }) => {
+      const amount = value || 1;
+      other.armor += amount;
+      log(`${self.name} gives ${other.name} ${amount} armor`);
+    },
     transfer_status_to_enemy: ({ self, other, log, value }) => {
       const status = value?.status || 'poison';
       const amount = value?.amount || 1;

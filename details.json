@@ -5468,6 +5468,14 @@
   "weapons/bloodmoon_sickle": {
     "bucket": "weapons",
     "effect": "On Hit: Take 1 damage",
+    "effects": [
+      {
+        "trigger": "onHit",
+        "actions": [
+          {"type": "take_damage", "value": 1}
+        ]
+      }
+    ],
     "name": "Bloodmoon Sickle",
     "slug": "bloodmoon_sickle",
     "stats": {
@@ -5481,6 +5489,14 @@
   "weapons/boom_stick": {
     "bucket": "weapons",
     "effect": "On Hit: Deal 1 damage",
+    "effects": [
+      {
+        "trigger": "onHit",
+        "actions": [
+          {"type": "damage_enemy", "value": 1}
+        ]
+      }
+    ],
     "name": "Boom Stick",
     "slug": "boom_stick",
     "stats": {
@@ -5650,6 +5666,14 @@
   "weapons/forge_hammer": {
     "bucket": "weapons",
     "effect": "On Hit: Give the enemy 2 armor.",
+    "effects": [
+      {
+        "trigger": "onHit",
+        "actions": [
+          {"type": "give_enemy_armor", "value": 2}
+        ]
+      }
+    ],
     "name": "Forge Hammer",
     "slug": "forge_hammer",
     "stats": {
