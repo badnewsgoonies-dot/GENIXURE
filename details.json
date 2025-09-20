@@ -2632,7 +2632,7 @@
       {
         "trigger": "battleStart",
         "action": "gain_status",
-        "status": "thorns",
+        "key": "thorns",
         "value": 1,
         "value_gold": 2,
         "value_diamond": 4
@@ -3790,7 +3790,7 @@
         "trigger": "battleStart",
         "condition": "self_full_health",
         "action": "gain_status",
-        "status": "thorns",
+        "key": "thorns",
         "value": 6
       },
       {
@@ -7695,5 +7695,283 @@
       "speed": 0
     },
     "tags": []
+  },
+  "sets/highborn": {
+    "bucket": "sets",
+    "name": "Highborn",
+    "slug": "highborn",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "gain_highborn_flag"
+          }
+        ]
+      }
+    ]
+  },
+  "sets/iron_chain": {
+    "bucket": "sets",
+    "name": "Iron Chain",
+    "slug": "iron_chain",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "gain_armor",
+            "value": 5
+          }
+        ]
+      }
+    ]
+  },
+  "sets/ironstone_arrowhead": {
+    "bucket": "sets",
+    "name": "Ironstone Arrowhead",
+    "slug": "ironstone_arrowhead",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "hit",
+        "actions": [
+          {
+            "type": "gain_armor",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  "sets/sanguine_gemstone": {
+    "bucket": "sets",
+    "name": "Sanguine Gemstone",
+    "slug": "sanguine_gemstone",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "hit",
+        "actions": [
+          {
+            "type": "heal_if_attack_equals_1"
+          }
+        ]
+      }
+    ]
+  },
+  "sets/glasses_of_the_hero": {
+    "bucket": "sets",
+    "name": "Glasses of the Hero",
+    "slug": "glasses_of_the_hero",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "hit",
+        "actions": [
+          {
+            "type": "reduce_countdowns",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  "sets/weaver_medallion": {
+    "bucket": "sets",
+    "name": "Weaver Medallion",
+    "slug": "weaver_medallion",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_max_hp",
+            "value": 5
+          }
+        ]
+      }
+    ]
+  },
+  "sets/basilisk_gaze": {
+    "bucket": "sets",
+    "name": "Basilisk's Gaze",
+    "slug": "basilisk_gaze",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "hit",
+        "actions": [
+          {
+            "type": "add_status_to_enemy",
+            "key": "poison",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  "sets/bloodmoon_strike": {
+    "bucket": "sets",
+    "name": "Bloodmoon Strike",
+    "slug": "bloodmoon_strike",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "actions": [
+          {
+            "type": "first_turn_extra_strike"
+          }
+        ]
+      }
+    ]
+  },
+  "sets/bloodstone_pendant": {
+    "bucket": "sets",
+    "name": "Bloodstone Pendant",
+    "slug": "bloodstone_pendant",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "heal",
+        "actions": [
+          {
+            "type": "gain_gold",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  "sets/briar_greaves": {
+    "bucket": "sets",
+    "name": "Briar Greaves",
+    "slug": "briar_greaves",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "gainArmor",
+        "actions": [
+          {
+            "type": "add_status",
+            "key": "thorns",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  "sets/brittlebark_blessing": {
+    "bucket": "sets",
+    "name": "Brittlebark Blessing",
+    "slug": "brittlebark_blessing",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "gain_armor",
+            "value": 1
+          },
+          {
+            "type": "add_status",
+            "key": "thorns",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  "sets/ironbark_shield": {
+    "bucket": "sets",
+    "name": "Ironbark Shield",
+    "slug": "ironbark_shield",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "gainArmor",
+        "actions": [
+          {
+            "type": "add_status",
+            "key": "thorns",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  "sets/ironstone_ore": {
+    "bucket": "sets",
+    "name": "Ironstone Ore",
+    "slug": "ironstone_ore",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "actions": [
+          {
+            "type": "convert_armor_to_thorns",
+            "armor_cost": 1,
+            "thorns_gain": 2
+          }
+        ]
+      }
+    ]
+  },
+  "sets/liquid_metal": {
+    "bucket": "sets",
+    "name": "Liquid Metal",
+    "slug": "liquid_metal",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "gainArmor",
+        "actions": [
+          {
+            "type": "add_status",
+            "key": "thorns",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+  "sets/saffron_talon": {
+    "bucket": "sets",
+    "name": "Saffron Talon",
+    "slug": "saffron_talon",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 0 },
+    "tags": [],
+    "effects": [
+      {
+        "trigger": "hit",
+        "actions": [
+          {
+            "type": "add_status",
+            "key": "thorns",
+            "value": 1
+          }
+        ]
+      }
+    ]
   }
 }

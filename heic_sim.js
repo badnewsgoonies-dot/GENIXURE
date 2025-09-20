@@ -1161,6 +1161,46 @@
       other.addStatus('stun', amount);
       log(`💫 ${self.name} stuns ${other.name} for ${amount} turn(s)`);
     },
+
+    // ===== SET BONUS ACTIONS =====
+    gain_highborn_flag: ({ self, log }) => {
+      self._setHighborn = true;
+      log(`🏆 ${self.name} activates Highborn (ring items trigger twice).`);
+    },
+
+    heal_if_attack_equals_1: ({ self, log }) => {
+      if ((self.atk || 0) === 1) {
+        const healed = self.heal(1);
+        if (healed > 0) {
+          log(`💚 ${self.name} restores ${healed} health (Sanguine Gemstone set).`);
+        }
+      }
+    },
+
+    reduce_countdowns: ({ self, log, value }) => {
+      const amount = value || 1;
+      if (typeof self.decAllCountdowns === 'function') {
+        self.decAllCountdowns(amount);
+        log(`⏱️ ${self.name} reduces countdowns by ${amount} (Glasses of the Hero set).`);
+      }
+    },
+
+    first_turn_extra_strike: ({ self, log }) => {
+      if (self.flags && self.flags.firstTurn) {
+        self.addExtraStrikes(1);
+        log(`⚔️ ${self.name} gains +1 extra strike on first turn (Bloodmoon Strike set).`);
+      }
+    },
+
+    gain_gold: ({ self, log, value }) => {
+      const amount = value || 1;
+      if (typeof self.addGold === 'function') {
+        const gained = self.addGold(amount);
+        if (gained > 0) {
+          log(`💰 ${self.name} gains ${gained} gold.`);
+        }
+      }
+    },
   };
 
   function checkCondition(condition, { self, other, log, key, isNew }) {
@@ -1299,6 +1339,11 @@
     // Process items in battle order: weapon first, then weaponEdge, then items 1→12
     // Ensures Battle Start effects activate in correct slot order per battle logic
     const allItems = [self.weapon, self.weaponEdge, ...self.items].filter(Boolean);
+    
+    // Add set effects to processing
+    if (self.setEffectSlugs && self.setEffectSlugs.length > 0) {
+      allItems.push(...self.setEffectSlugs);
+    }
 
     for (const itemOrSlug of allItems) {
       const slug = (typeof itemOrSlug === 'string') ? itemOrSlug : (itemOrSlug.slug || itemOrSlug.key);
@@ -1437,6 +1482,106 @@
   }
   // --- End of Effect Engine ---
 
+  // --- Set Logic ---
+  function getTagsFor(slug) {
+    let tags = [];
+    try {
+      const DETAILS_SOURCE = global.HEIC_DETAILS || (typeof window !== 'undefined' ? window.HEIC_DETAILS : undefined);
+      const d = (DETAILS_SOURCE && DETAILS_SOURCE[slug]) || null;
+      if (d && Array.isArray(d.tags)) {
+        tags = [...d.tags]; // Start with existing tags from data
+      }
+    } catch (_) {}
+    
+    // Add pattern-based tags
+    if (/tome/i.test(slug) && !tags.includes('Tome')) tags.push('Tome');
+    if (/(ring|earring|crown|gemstone|necklace|amulet|pendant|bracelet|talisman|diadem|circlet|band)/i.test(slug) && !tags.includes('Jewelry')) tags.push('Jewelry');
+    if ((/ring_/i.test(slug) || /_ring$/i.test(slug)) && !tags.includes('Ring')) tags.push('Ring');
+    if (/earring/i.test(slug) && !tags.includes('Earring')) tags.push('Earring');
+    if (/bracelet/i.test(slug) && !tags.includes('Bracelet')) tags.push('Bracelet');
+    if (/(stone|granite|marble|ore|rock|jade|quartz|sapphire|ruby|citrine|opal|gem|gemstone)/i.test(slug) && !tags.includes('Stone')) tags.push('Stone');
+    return tags;
+  }
+
+  function normalizeSlug(x) {
+    if (!x) return '';
+    if (typeof x === 'string') return x;
+    if (x.bucket && x.slug) return `${x.bucket}/${x.slug}`;
+    if (x.slug) return String(x.slug);
+    return String(x);
+  }
+
+  function countByTag(slugs, tag) {
+    let n = 0;
+    for (const s of slugs) {
+      const t = getTagsFor(s);
+      if (t && t.indexOf(tag) !== -1) n++;
+    }
+    return n;
+  }
+
+  function reqSatisfied(req, slugs) {
+    if (!req) return false;
+    if (req.kind === 'slugs') {
+      const have = new Set(slugs);
+      return (req.all || []).every(s => have.has(s));
+    }
+    if (req.kind === 'tag-count') {
+      const c = countByTag(slugs.filter(s => /^items\//.test(s)), req.tag);
+      return c >= (req.count || 0);
+    }
+    return false;
+  }
+
+  const SETS = [
+    { key:'highborn', name:'Highborn', desc:'Ring items trigger twice',
+      reqs:[{ kind:'tag-count', tag:'Ring', count:3 }], effectSlug:'sets/highborn' },
+    { key:'iron_chain', name:'Iron Chain', desc:'Battle Start: Gain 5 armor',
+      reqs:[{ kind:'slugs', all:['weapons/chainmail_sword','items/chainmail_armor'] }], effectSlug:'sets/iron_chain' },
+    { key:'ironstone_arrowhead', name:'Ironstone Arrowhead', desc:'On Hit: Gain 1 armor',
+      reqs:[{ kind:'slugs', all:['weapons/ironstone_spear','items/ironstone_sandals'] }], effectSlug:'sets/ironstone_arrowhead' },
+    { key:'sanguine_gemstone', name:'Sanguine Gemstone', desc:'If ATK is 1, heal 1 on hit',
+      reqs:[{ kind:'slugs', all:['weapons/sanguine_scepter','items/ruby_gemstone'] }], effectSlug:'sets/sanguine_gemstone' },
+    { key:'glasses_of_the_hero', name:'Glasses of the Hero', desc:'On Hit: Reduce countdowns by 1',
+      reqs:[{ kind:'slugs', all:['items/tome_of_the_hero','items/hero_s_crossguard'] }], effectSlug:'sets/glasses_of_the_hero' },
+    { key:'weaver_medallion', name:'Weaver Medallion', desc:'Battle Start: Restore 5 health',
+      reqs:[{ kind:'slugs', all:['items/weaver_armor','items/weaver_shield'] }], effectSlug:'sets/weaver_medallion' },
+    { key:'basilisk_gaze', name:"Basilisk's Gaze", desc:'On Hit: Give the enemy 1 poison',
+      reqs:[{ kind:'slugs', all:['weapons/basilisk_fang','items/basilisk_scale'] }], effectSlug:'sets/basilisk_gaze' },
+    { key:'bloodmoon_strike', name:'Bloodmoon Strike', desc:'First turn: +1 extra strike',
+      reqs:[{ kind:'slugs', all:['weapons/bloodmoon_dagger','items/bloodmoon_armor'] }], effectSlug:'sets/bloodmoon_strike' },
+    { key:'bloodstone_pendant', name:'Bloodstone Pendant', desc:'On Heal: Gain 1 gold',
+      reqs:[{ kind:'slugs', all:['items/bloodstone_ring','items/elderwood_necklace'] }], effectSlug:'sets/bloodstone_pendant' },
+    { key:'briar_greaves', name:'Briar Greaves', desc:'On Gain Armor: Gain 1 thorns',
+      reqs:[{ kind:'slugs', all:['items/briar_greaves','items/blackbriar_rose'] }], effectSlug:'sets/briar_greaves' },
+    { key:'brittlebark_blessing', name:'Brittlebark Blessing', desc:'Battle Start: Gain 1 armor and 1 thorns',
+      reqs:[{ kind:'slugs', all:['items/brittlebark_helm','items/brittlebark_bow'] }], effectSlug:'sets/brittlebark_blessing' },
+    { key:'ironbark_shield', name:'Ironbark Shield', desc:'On Gain Armor: Gain 1 thorns',
+      reqs:[{ kind:'slugs', all:['items/ironbark_shield','items/ironbark_brace'] }], effectSlug:'sets/ironbark_shield' },
+    { key:'ironstone_ore', name:'Ironstone Ore', desc:'Turn Start: Convert 1 armor → 2 thorns',
+      reqs:[{ kind:'slugs', all:['items/ironstone_ore','items/ironstone_helm'] }], effectSlug:'sets/ironstone_ore' },
+    { key:'liquid_metal', name:'Liquid Metal', desc:'On Gain Armor: Gain 1 thorns',
+      reqs:[{ kind:'slugs', all:['items/liquid_metal','items/liquid_core'] }], effectSlug:'sets/liquid_metal' },
+    { key:'saffron_talon', name:'Saffron Talon', desc:'On Hit: Gain 1 thorns',
+      reqs:[{ kind:'slugs', all:['items/saffron_talon','items/saffron_gloves'] }], effectSlug:'sets/saffron_talon' }
+  ];
+
+  function computeActive(slugs) {
+    const list = [];
+    try {
+      const setSlugs = slugs.map(normalizeSlug).filter(Boolean);
+      for (const def of SETS) {
+        if ((def.reqs || []).every(r => reqSatisfied(r, setSlugs))) list.push(def);
+      }
+    } catch (_) {}
+    return list;
+  }
+
+  function computeActiveEffectSlugs(slugs) {
+    return computeActive(slugs).map(d => d.effectSlug);
+  }
+  // --- End of Set Logic ---
+
   class Fighter {
     constructor(raw={}){
       const stats = raw.stats || raw;
@@ -1491,6 +1636,15 @@
             }
           }
         });
+      }
+
+      // Detect active sets and add their effect slugs
+      this.activeSets = [];
+      this.setEffectSlugs = [];
+      if (DETAILS_SOURCE) {
+        const allSlugs = [this.weapon, this.weaponEdge, ...this.items].filter(Boolean);
+        this.activeSets = computeActive(allSlugs);
+        this.setEffectSlugs = this.activeSets.map(set => set.effectSlug);
       }
 
       this.flags = { firstTurn: true };
@@ -1891,7 +2045,7 @@ let CURRENT_SOURCE_SLUG = null;
     } catch (err) {
       console.warn('Could not load details.json:', err.message);
     }
-    module.exports = { simulate, Fighter };
+    module.exports = { simulate, Fighter, getTagsFor, computeActive, computeActiveEffectSlugs };
   }
   global.HeICSim = { simulate };
 })(typeof window !== 'undefined' ? window : globalThis);
