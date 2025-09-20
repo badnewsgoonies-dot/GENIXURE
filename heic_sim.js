@@ -3,9 +3,10 @@
   const ITEM_TAGS = {};
 
   // --- Data-Driven Effect Engine ---
+  // This object contains all action handlers that can be called from item effects
   const EFFECT_ACTIONS = {
-    // GENERIC ACTIONS
-    // COUNTDOWN EFFECTS
+
+    // ===== COUNTDOWN & AMPLIFICATION ACTIONS =====
     amplify_tome_countdown: ({ self, other, log, countdown }) => {
       try {
         const items = self.items || [];
@@ -26,7 +27,8 @@
       }
       return false;
     },
-    // GENERIC STAT ACTIONS
+
+    // ===== BASIC STAT MODIFICATION ACTIONS =====
     gain_stat: ({ self, stat, value, log }) => {
       switch (stat) {
         case 'armor': self.addArmor(value); break;
@@ -59,13 +61,14 @@
       self.addStatus(status, value);
       if (log) log(`${self.name} gains ${value} ${status}`);
     },
-    // LEGACY ACTIONS (for backward compatibility)
+
+    // ===== DIRECT STAT HELPERS =====
     add_gold: ({ self, value }) => self.addGold(value),
     add_armor: ({ self, value }) => self.addArmor(value),
     add_attack: ({ self, value }) => self.addAtk(value),
     add_temp_attack: ({ self, value }) => self.addTempAtk(value),
     register_countdown: ({ self, log, value }) => {
-      // Register a countdown for data-driven effects
+      // Register countdown actions for data-driven effects
       const name = value?.name || 'Effect';
       const turns = value?.turns || 6;
       const tag = value?.tag || 'Effect';
@@ -91,6 +94,8 @@
       self.addCountdown(name, turns, tag, countdownAction);
       if (log) log(`${self.name} starts a countdown effect (${turns} turns)`);
     },
+
+    // ===== STAT & STATUS INTERACTION ACTIONS =====
     add_temp_attack_from_status: ({ self, key }) => {
       const statusValue = self.statuses[key] || 0;
       if (statusValue > 0) self.addTempAtk(statusValue);
@@ -325,7 +330,7 @@
         log(`${self.name} enters a rage, gaining ${strikes} extra strikes`);
       }
     },
-    // LEGACY SPEED ACTION (use gain_stat with stat='speed' instead)
+    // Speed modification with trigger event
     add_speed: ({ self, other, log, value }) => { 
       const oldSpeed = self.speed || 0;
       self.speed = oldSpeed + value; 
@@ -406,7 +411,7 @@
         if (log) log(`${self.name} halves all countdowns`);
       }
     },
-    // LEGACY ACTION (use convert_status_to_stat with fromStatus='acid', toStat='attack' instead)
+    // Convert acid status to attack stat
     convert_acid_to_attack: ({ self, log, value }) => {
       if ((self.statuses.acid || 0) > 0) {
         self.statuses.acid -= 1;
@@ -415,7 +420,7 @@
         if (log) log(`${self.name} converts 1 acid into ${attackGain} attack`);
       }
     },
-    // LEGACY ACTION (use give_enemy_status_equal_to_stat with status='acid', stat='speed' instead)
+    // Apply acid status based on speed stat
     give_enemy_acid_equal_to_speed: ({ self, other, log }) => {
       if (self.speed > 0) {
         other.addStatus('acid', self.speed);
@@ -632,7 +637,7 @@
       return 0;
     },
     trigger_symphony: ({ self, other, log, value }) => {
-      // Trigger Symphony effects from all equipped instruments
+      // Trigger Symphony actions from all equipped instruments
       const repeatCount = value || 1;
       log(`Symphony triggered ${repeatCount} time(s)!`);
       
@@ -716,7 +721,7 @@
                       log(`${self.name} deals ${dmg} damage and gains ${thornGain} thorns`);
                     }
                   },
-    // NEW ACTIONS for pending migrations
+    // EXTENDED ACTION HANDLERS
     multiply_enemy_attack: ({ other, log, value }) => {
       const factor = value || 2;
       other.atk = (other.atk || 0) * factor;
@@ -841,7 +846,7 @@
         log(`${self.name} gains ${thornsGain} thorns (${multiplier} per armor lost)`);
       }
     },
-    // LEGACY ACTIONS (for backward compatibility - use generic actions instead)
+    // Simple status and stat modification actions
     gain_thorns: ({ self, log, value }) => {
       const amount = value || 1;
       self.addStatus('thorns', amount);
@@ -946,7 +951,7 @@
         log(`${self.name} steals ${stolen} armor from ${other.name}`);
       }
     },
-    // LEGACY STATUS ACTION (use gain_status instead)
+    // Apply poison status to self
     gain_poison: ({ self, log, value }) => {
       const amount = value || 1;
       self.addStatus('poison', amount);
@@ -1005,7 +1010,7 @@
       if (bombItems.length > 0) {
         const randomBomb = bombItems[Math.floor(Math.random() * bombItems.length)];
         log(`${self.name} retriggers ${randomBomb}!`);
-        // Trigger the bomb's effects
+        // Trigger item effects
         runEffects('battleStart', self, other, log, { sourceItem: randomBomb });
       } else {
         log(`${self.name} tries to retrigger a bomb, but has no bombs!`);
@@ -1015,7 +1020,7 @@
       const times = value?.times || 2;
       log(`${self.name} triggers bomb effects ${times} times!`);
       for (let i = 0; i < times; i++) {
-        // This would trigger all bomb effects multiple times
+        // Trigger all bomb actions multiple times
         runEffects('bombTrigger', self, other, log, { iteration: i + 1 });
       }
     },
@@ -1073,7 +1078,7 @@
       log(`${self.name} deals ${damage} damage to ${other.name}`);
     },
     
-    // MISSING ACTIONS - Added to fix verification errors
+    // ADDITIONAL ACTION HANDLERS
     gain_attack: ({ self, log, value }) => {
       const amount = value || 1;
       self.addAtk(amount);
@@ -1237,7 +1242,7 @@
     const log = (m) => baseLog(CURRENT_SOURCE_SLUG ? `::icon:${CURRENT_SOURCE_SLUG}:: ${m}` : m);
 
     // Process items in battle order: weapon first, then weaponEdge, then items 1→12
-    // This ensures Battle Start effects activate in correct slot order per battle logic
+    // Ensures Battle Start effects activate in correct slot order per battle logic
     const allItems = [self.weapon, self.weaponEdge, ...self.items].filter(Boolean);
 
     for (const itemOrSlug of allItems) {
@@ -1247,7 +1252,7 @@
       const details = (global.HEIC_DETAILS || window.HEIC_DETAILS || {})[slug];
       if (!details || !Array.isArray(details.effects)) continue;
 
-      // For Symphony events, only process items that have Symphony in their effect description or tags
+      // For Symphony events, only process items that have Symphony effects or tags
       if (event === 'symphony') {
         const isSymphonyItem = (details.effect && details.effect.includes('Symphony')) ||
                                (details.tags && details.tags.includes('Symphony')) ||
@@ -1287,7 +1292,7 @@
 
         if (!triggerMatches) continue;
 
-        // Handle old trigger format (skip if using new actions array format)
+        // Handle current and legacy trigger formats
         if (effect && !Array.isArray(effect.actions) && effect.action) {
           if (checkCondition(effect.if, effectCtx)) {
             const actionFn = EFFECT_ACTIONS[effect.action];
@@ -1346,7 +1351,7 @@
             // Handle single condition string
             conditionsMet = checkCondition({ type: effect.condition }, effectCtx);
           } else if (effect.if) {
-            // Handle legacy if conditions
+            // Handle condition formats (current and backward compatibility)
             conditionsMet = checkCondition(effect.if, effectCtx);
           }
 
