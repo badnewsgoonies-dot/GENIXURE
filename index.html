@@ -2074,11 +2074,44 @@ function renderAnalysisItem(item, type) {
 
 // Initial render happens after details.json loads via loadData()
 
-// Screenshot Analysis System
+// Screenshot Analysis System - Advanced Computer Vision
 let currentScreenshot = null;
 let analysisData = null;
+let iconTemplateLibrary = null;
 
-// Initialize screenshot upload
+// Advanced CV Configuration
+const CV_CONFIG = {
+  gridDetection: {
+    expectedRatio: 1.0, // Expected aspect ratio for item slots
+    minSlotSize: 32,    // Minimum slot size in pixels
+    maxSlotSize: 128,   // Maximum slot size in pixels
+    gridTolerance: 0.1  // Grid alignment tolerance
+  },
+  edgeDetection: {
+    lowThreshold: 50,
+    highThreshold: 150,
+    kernelSize: 3
+  },
+  templateMatching: {
+    matchMethods: ['CCOEFF_NORMED', 'CCORR_NORMED', 'SQDIFF_NORMED'],
+    multiScale: true,
+    scaleRange: [0.5, 2.0],
+    scaleSteps: 8
+  },
+  featureDetection: {
+    cornerThreshold: 0.01,
+    blockSize: 3,
+    k: 0.04,
+    maxCorners: 100
+  },
+  colorAnalysis: {
+    histogramBins: 32,
+    dominantColorCount: 8,
+    colorClusterThreshold: 30
+  }
+};
+
+// Initialize advanced screenshot upload system
 function initScreenshotUpload() {
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('screenshotFile');
@@ -2089,6 +2122,9 @@ function initScreenshotUpload() {
   const applyBtn = document.getElementById('applyLoadoutBtn');
 
   if (!dropZone || !fileInput || !previewCanvas) return;
+
+  // Initialize icon template library
+  initIconTemplateLibrary();
 
   // Confidence slider
   confidenceSlider.addEventListener('input', () => {
@@ -2131,6 +2167,1269 @@ function initScreenshotUpload() {
   applyBtn.addEventListener('click', applyDetectedLoadout);
 }
 
+// Build comprehensive icon template library
+async function initIconTemplateLibrary() {
+  if (!window.HEIC_DETAILS) return;
+  
+  iconTemplateLibrary = {};
+  const itemEntries = Object.entries(window.HEIC_DETAILS);
+  
+  console.log('🔍 Building icon template library...');
+  
+  for (const [itemId, itemData] of itemEntries) {
+    try {
+      const iconPath = `${itemId}/icon.png`;
+      const template = await loadAndProcessIcon(iconPath, itemData);
+      if (template) {
+        iconTemplateLibrary[itemId] = {
+          ...itemData,
+          template,
+          iconPath,
+          id: itemId
+        };
+      }
+    } catch (error) {
+      // Icon not found or failed to load
+      continue;
+    }
+  }
+  
+  console.log(`✅ Loaded ${Object.keys(iconTemplateLibrary).length} icon templates`);
+}
+
+async function loadAndProcessIcon(iconPath, itemData) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    
+    img.onload = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+        
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const template = processIconTemplate(imageData, itemData);
+        resolve(template);
+      } catch (error) {
+        reject(error);
+      }
+    };
+    
+    img.onerror = () => reject(new Error('Failed to load icon'));
+    img.src = iconPath;
+  });
+}
+
+function processIconTemplate(imageData, itemData) {
+  const { width, height, data } = imageData;
+  
+  // Extract multiple feature descriptors
+  return {
+    // Original image data
+    imageData: imageData,
+    width,
+    height,
+    
+    // Color features
+    colorHistogram: calculateColorHistogram(data, width, height),
+    dominantColors: extractAdvancedDominantColors(data, width, height),
+    averageColor: calculateAverageColor(data, width, height),
+    colorMoments: calculateColorMoments(data, width, height),
+    
+    // Geometric features
+    edgeMap: detectEdges(imageData),
+    corners: detectCorners(imageData),
+    contours: extractContours(imageData),
+    
+    // Texture features
+    textureDescriptor: calculateTextureDescriptor(imageData),
+    gradientMagnitude: calculateGradientMagnitude(imageData),
+    
+    // Shape features
+    boundingRect: calculateBoundingRect(imageData),
+    aspectRatio: width / height,
+    fillRatio: calculateFillRatio(imageData),
+    
+    // Metadata
+    tags: itemData.tags || [],
+    name: itemData.name || '',
+    stats: itemData.stats || {}
+  };
+}
+
+// Advanced color histogram with multiple color spaces
+function calculateColorHistogram(data, width, height) {
+  const bins = CV_CONFIG.colorAnalysis.histogramBins;
+  const binSize = 256 / bins;
+  
+  const histograms = {
+    rgb: { r: new Array(bins).fill(0), g: new Array(bins).fill(0), b: new Array(bins).fill(0) },
+    hsv: { h: new Array(bins).fill(0), s: new Array(bins).fill(0), v: new Array(bins).fill(0) }
+  };
+  
+  let validPixels = 0;
+  
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    const a = data[i + 3];
+    
+    if (a < 50) continue; // Skip transparent pixels
+    validPixels++;
+    
+    // RGB histogram
+    histograms.rgb.r[Math.floor(r / binSize)]++;
+    histograms.rgb.g[Math.floor(g / binSize)]++;
+    histograms.rgb.b[Math.floor(b / binSize)]++;
+    
+    // Convert to HSV
+    const hsv = rgbToHsv(r, g, b);
+    histograms.hsv.h[Math.floor(hsv.h * bins / 360)]++;
+    histograms.hsv.s[Math.floor(hsv.s * bins)]++;
+    histograms.hsv.v[Math.floor(hsv.v * bins)]++;
+  }
+  
+  // Normalize histograms
+  if (validPixels > 0) {
+    ['r', 'g', 'b'].forEach(channel => {
+      for (let i = 0; i < bins; i++) {
+        histograms.rgb[channel][i] /= validPixels;
+      }
+    });
+    
+    ['h', 's', 'v'].forEach(channel => {
+      for (let i = 0; i < bins; i++) {
+        histograms.hsv[channel][i] /= validPixels;
+      }
+    });
+  }
+  
+  return histograms;
+}
+
+function rgbToHsv(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const delta = max - min;
+  
+  let h = 0;
+  if (delta !== 0) {
+    if (max === r) h = ((g - b) / delta) % 6;
+    else if (max === g) h = (b - r) / delta + 2;
+    else h = (r - g) / delta + 4;
+  }
+  h *= 60;
+  if (h < 0) h += 360;
+  
+  const s = max === 0 ? 0 : delta / max;
+  const v = max;
+  
+  return { h, s, v };
+}
+
+// Advanced edge detection using Sobel operators
+function detectEdges(imageData) {
+  const { width, height, data } = imageData;
+  const gray = convertToGrayscale(data, width, height);
+  const edges = new Array(width * height).fill(0);
+  
+  // Sobel kernels
+  const sobelX = [-1, 0, 1, -2, 0, 2, -1, 0, 1];
+  const sobelY = [-1, -2, -1, 0, 0, 0, 1, 2, 1];
+  
+  for (let y = 1; y < height - 1; y++) {
+    for (let x = 1; x < width - 1; x++) {
+      let gx = 0, gy = 0;
+      
+      for (let ky = -1; ky <= 1; ky++) {
+        for (let kx = -1; kx <= 1; kx++) {
+          const pixel = gray[(y + ky) * width + (x + kx)];
+          const kernelIndex = (ky + 1) * 3 + (kx + 1);
+          gx += pixel * sobelX[kernelIndex];
+          gy += pixel * sobelY[kernelIndex];
+        }
+      }
+      
+      edges[y * width + x] = Math.sqrt(gx * gx + gy * gy);
+    }
+  }
+  
+  return { edges, width, height };
+}
+
+function convertToGrayscale(data, width, height) {
+  const gray = new Array(width * height);
+  
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    const grayscale = 0.299 * r + 0.587 * g + 0.114 * b;
+    gray[i / 4] = grayscale;
+  }
+  
+  return gray;
+}
+
+// Corner detection using Harris corner detector
+function detectCorners(imageData) {
+  const { width, height } = imageData;
+  const gray = convertToGrayscale(imageData.data, width, height);
+  const corners = [];
+  
+  // Calculate gradients
+  const gradX = new Array(width * height);
+  const gradY = new Array(width * height);
+  
+  for (let y = 1; y < height - 1; y++) {
+    for (let x = 1; x < width - 1; x++) {
+      const idx = y * width + x;
+      gradX[idx] = gray[idx + 1] - gray[idx - 1];
+      gradY[idx] = gray[idx + width] - gray[idx - width];
+    }
+  }
+  
+  // Harris response
+  const k = CV_CONFIG.featureDetection.k;
+  const blockSize = CV_CONFIG.featureDetection.blockSize;
+  const threshold = CV_CONFIG.featureDetection.cornerThreshold;
+  
+  for (let y = blockSize; y < height - blockSize; y++) {
+    for (let x = blockSize; x < width - blockSize; x++) {
+      let Ix2 = 0, Iy2 = 0, IxIy = 0;
+      
+      for (let dy = -blockSize; dy <= blockSize; dy++) {
+        for (let dx = -blockSize; dx <= blockSize; dx++) {
+          const idx = (y + dy) * width + (x + dx);
+          const ix = gradX[idx];
+          const iy = gradY[idx];
+          
+          Ix2 += ix * ix;
+          Iy2 += iy * iy;
+          IxIy += ix * iy;
+        }
+      }
+      
+      const det = Ix2 * Iy2 - IxIy * IxIy;
+      const trace = Ix2 + Iy2;
+      const response = det - k * trace * trace;
+      
+      if (response > threshold) {
+        corners.push({ x, y, response });
+      }
+    }
+  }
+  
+  // Non-maximum suppression
+  return corners.sort((a, b) => b.response - a.response)
+                .slice(0, CV_CONFIG.featureDetection.maxCorners);
+}
+
+// Advanced template matching with multiple methods and scales
+async function performTemplateMatching(screenshot, template, method = 'CCOEFF_NORMED') {
+  const screenCanvas = document.createElement('canvas');
+  const screenCtx = screenCanvas.getContext('2d');
+  screenCanvas.width = screenshot.width;
+  screenCanvas.height = screenshot.height;
+  screenCtx.drawImage(screenshot, 0, 0);
+  
+  const screenData = screenCtx.getImageData(0, 0, screenshot.width, screenshot.height);
+  const templateData = template.imageData;
+  
+  const matches = [];
+  
+  // Multi-scale template matching
+  if (CV_CONFIG.templateMatching.multiScale) {
+    const scaleRange = CV_CONFIG.templateMatching.scaleRange;
+    const steps = CV_CONFIG.templateMatching.scaleSteps;
+    
+    for (let i = 0; i < steps; i++) {
+      const scale = scaleRange[0] + (scaleRange[1] - scaleRange[0]) * i / (steps - 1);
+      const scaledTemplate = scaleImageData(templateData, scale);
+      
+      const scaleMatches = performSingleTemplateMatch(screenData, scaledTemplate, method);
+      matches.push(...scaleMatches.map(match => ({ ...match, scale })));
+    }
+  } else {
+    const singleMatches = performSingleTemplateMatch(screenData, templateData, method);
+    matches.push(...singleMatches.map(match => ({ ...match, scale: 1.0 })));
+  }
+  
+  return matches.sort((a, b) => b.confidence - a.confidence);
+}
+
+function performSingleTemplateMatch(screenData, templateData, method) {
+  const matches = [];
+  const { width: sW, height: sH, data: sData } = screenData;
+  const { width: tW, height: tH, data: tData } = templateData;
+  
+  if (tW >= sW || tH >= sH) return matches;
+  
+  const stepSize = Math.max(1, Math.floor(Math.min(tW, tH) / 8)); // Adaptive step size
+  
+  for (let y = 0; y <= sH - tH; y += stepSize) {
+    for (let x = 0; x <= sW - tW; x += stepSize) {
+      const confidence = calculateMatchConfidence(
+        sData, sW, sH, x, y,
+        tData, tW, tH,
+        method
+      );
+      
+      if (confidence > 0.3) { // Threshold for considering a match
+        matches.push({
+          x, y, width: tW, height: tH,
+          confidence,
+          method
+        });
+      }
+    }
+  }
+  
+  return matches;
+}
+
+function calculateMatchConfidence(sData, sW, sH, sx, sy, tData, tW, tH, method) {
+  let numerator = 0;
+  let denomSrc = 0;
+  let denomTpl = 0;
+  let srcMean = 0;
+  let tplMean = 0;
+  let count = 0;
+  
+  // Calculate means first for normalized correlation
+  for (let y = 0; y < tH; y++) {
+    for (let x = 0; x < tW; x++) {
+      const sIdx = ((sy + y) * sW + (sx + x)) * 4;
+      const tIdx = (y * tW + x) * 4;
+      
+      if (sData[sIdx + 3] < 50 || tData[tIdx + 3] < 50) continue; // Skip transparent
+      
+      const sGray = 0.299 * sData[sIdx] + 0.587 * sData[sIdx + 1] + 0.114 * sData[sIdx + 2];
+      const tGray = 0.299 * tData[tIdx] + 0.587 * tData[tIdx + 1] + 0.114 * tData[tIdx + 2];
+      
+      srcMean += sGray;
+      tplMean += tGray;
+      count++;
+    }
+  }
+  
+  if (count === 0) return 0;
+  
+  srcMean /= count;
+  tplMean /= count;
+  
+  // Calculate correlation coefficient
+  for (let y = 0; y < tH; y++) {
+    for (let x = 0; x < tW; x++) {
+      const sIdx = ((sy + y) * sW + (sx + x)) * 4;
+      const tIdx = (y * tW + x) * 4;
+      
+      if (sData[sIdx + 3] < 50 || tData[tIdx + 3] < 50) continue;
+      
+      const sGray = 0.299 * sData[sIdx] + 0.587 * sData[sIdx + 1] + 0.114 * sData[sIdx + 2];
+      const tGray = 0.299 * tData[tIdx] + 0.587 * tData[tIdx + 1] + 0.114 * tData[tIdx + 2];
+      
+      const sDiff = sGray - srcMean;
+      const tDiff = tGray - tplMean;
+      
+      numerator += sDiff * tDiff;
+      denomSrc += sDiff * sDiff;
+      denomTpl += tDiff * tDiff;
+    }
+  }
+  
+  const denom = Math.sqrt(denomSrc * denomTpl);
+  return denom === 0 ? 0 : Math.abs(numerator / denom);
+}
+
+// Enhanced screenshot analysis with multiple algorithms
+async function analyzeScreenshot() {
+  if (!currentScreenshot || !window.HEIC_DETAILS || !iconTemplateLibrary) {
+    alert('Screenshot, item data, and icon templates must be loaded first');
+    return;
+  }
+
+  const confidence = parseInt(document.getElementById('confidenceSlider').value) / 100;
+  const resultsDiv = document.getElementById('resultsContent');
+  const resultsContainer = document.getElementById('analysisResults');
+  
+  resultsDiv.innerHTML = '<div style="text-align:center; color:#a5f;">🔍 Running advanced computer vision analysis...</div>';
+  resultsContainer.style.display = 'block';
+
+  try {
+    // Step 1: Intelligent grid detection
+    const gridSlots = await detectItemSlots(currentScreenshot);
+    console.log(`🎯 Detected ${gridSlots.length} potential item slots`);
+    
+    // Step 2: Multi-algorithm feature extraction
+    const features = await extractAdvancedFeatures(currentScreenshot, gridSlots);
+    console.log(`🔍 Extracted features for ${features.length} regions`);
+    
+    // Step 3: Multi-modal matching (template + color + shape)
+    const matches = await performMultiModalMatching(features, confidence);
+    console.log(`✅ Found ${matches.length} confident matches`);
+    
+    // Step 4: Post-processing and validation
+    const validatedMatches = validateAndRankMatches(matches);
+    
+    // Display results
+    displayAdvancedAnalysisResults(validatedMatches);
+    
+    analysisData = validatedMatches;
+    if (validatedMatches.length > 0) {
+      document.getElementById('applyLoadoutBtn').disabled = false;
+      document.getElementById('applyLoadoutBtn').style.opacity = '1';
+    }
+  } catch (error) {
+    console.error('Advanced analysis error:', error);
+    resultsDiv.innerHTML = `<div style="color:#f33;">❌ Advanced analysis failed: ${error.message}</div>`;
+  }
+}
+
+// Intelligent grid detection using edge analysis and geometric constraints
+async function detectItemSlots(screenshot) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = screenshot.width;
+  canvas.height = screenshot.height;
+  ctx.drawImage(screenshot, 0, 0);
+  
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const edgeMap = detectEdges(imageData);
+  
+  // Find rectangular regions that could be item slots
+  const slots = [];
+  const minSize = CV_CONFIG.gridDetection.minSlotSize;
+  const maxSize = CV_CONFIG.gridDetection.maxSlotSize;
+  const expectedRatio = CV_CONFIG.gridDetection.expectedRatio;
+  const tolerance = CV_CONFIG.gridDetection.gridTolerance;
+  
+  // Use a sliding window approach to find rectangular regions
+  for (let y = 0; y < screenshot.height - minSize; y += Math.floor(minSize / 2)) {
+    for (let x = 0; x < screenshot.width - minSize; x += Math.floor(minSize / 2)) {
+      for (let size = minSize; size <= maxSize && x + size < screenshot.width && y + size < screenshot.height; size += 4) {
+        const region = {
+          x, y, 
+          width: size, 
+          height: size,
+          centerX: x + size / 2,
+          centerY: y + size / 2
+        };
+        
+        const edgeScore = calculateRegionEdgeScore(edgeMap, region);
+        const contentScore = calculateRegionContentScore(imageData, region);
+        
+        if (edgeScore > 0.1 && contentScore > 0.2) {
+          region.score = edgeScore * contentScore;
+          slots.push(region);
+        }
+      }
+    }
+  }
+  
+  // Non-maximum suppression to avoid overlapping detections
+  return nonMaximumSuppression(slots);
+}
+
+function calculateRegionEdgeScore(edgeMap, region) {
+  const { edges, width } = edgeMap;
+  const { x, y, width: w, height: h } = region;
+  
+  let edgeSum = 0;
+  let count = 0;
+  
+  // Check border pixels for edges (item slots typically have borders)
+  for (let dx = 0; dx < w; dx++) {
+    // Top and bottom borders
+    if (y >= 0 && y < edgeMap.height) edgeSum += edges[y * width + (x + dx)];
+    if (y + h - 1 >= 0 && y + h - 1 < edgeMap.height) edgeSum += edges[(y + h - 1) * width + (x + dx)];
+    count += 2;
+  }
+  
+  for (let dy = 1; dy < h - 1; dy++) {
+    // Left and right borders
+    if (x >= 0 && x < width && y + dy >= 0 && y + dy < edgeMap.height) edgeSum += edges[(y + dy) * width + x];
+    if (x + w - 1 >= 0 && x + w - 1 < width && y + dy >= 0 && y + dy < edgeMap.height) edgeSum += edges[(y + dy) * width + (x + w - 1)];
+    count += 2;
+  }
+  
+  return count > 0 ? edgeSum / count / 255 : 0;
+}
+
+function calculateRegionContentScore(imageData, region) {
+  const { data, width } = imageData;
+  const { x, y, width: w, height: h } = region;
+  
+  let nonTransparentPixels = 0;
+  let totalPixels = 0;
+  let colorVariance = 0;
+  let totalR = 0, totalG = 0, totalB = 0;
+  
+  for (let dy = 0; dy < h; dy++) {
+    for (let dx = 0; dx < w; dx++) {
+      const idx = ((y + dy) * width + (x + dx)) * 4;
+      if (idx >= data.length - 3) continue;
+      
+      const r = data[idx];
+      const g = data[idx + 1];
+      const b = data[idx + 2];
+      const a = data[idx + 3];
+      
+      totalPixels++;
+      
+      if (a > 50) {
+        nonTransparentPixels++;
+        totalR += r;
+        totalG += g;
+        totalB += b;
+      }
+    }
+  }
+  
+  if (nonTransparentPixels === 0) return 0;
+  
+  const avgR = totalR / nonTransparentPixels;
+  const avgG = totalG / nonTransparentPixels;
+  const avgB = totalB / nonTransparentPixels;
+  
+  // Calculate color variance (higher variance suggests content)
+  for (let dy = 0; dy < h; dy++) {
+    for (let dx = 0; dx < w; dx++) {
+      const idx = ((y + dy) * width + (x + dx)) * 4;
+      if (idx >= data.length - 3) continue;
+      
+      const r = data[idx];
+      const g = data[idx + 1];
+      const b = data[idx + 2];
+      const a = data[idx + 3];
+      
+      if (a > 50) {
+        colorVariance += Math.pow(r - avgR, 2) + Math.pow(g - avgG, 2) + Math.pow(b - avgB, 2);
+      }
+    }
+  }
+  
+  const fillRatio = nonTransparentPixels / totalPixels;
+  const varianceScore = Math.min(1, Math.sqrt(colorVariance / nonTransparentPixels) / 100);
+  
+  return fillRatio * 0.7 + varianceScore * 0.3;
+}
+
+function nonMaximumSuppression(slots, overlapThreshold = 0.5) {
+  slots.sort((a, b) => b.score - a.score);
+  const keep = [];
+  
+  for (let i = 0; i < slots.length; i++) {
+    const slot = slots[i];
+    let suppress = false;
+    
+    for (const kept of keep) {
+      const overlap = calculateOverlap(slot, kept);
+      if (overlap > overlapThreshold) {
+        suppress = true;
+        break;
+      }
+    }
+    
+    if (!suppress) {
+      keep.push(slot);
+    }
+  }
+  
+  return keep;
+}
+
+function calculateOverlap(rect1, rect2) {
+  const x1 = Math.max(rect1.x, rect2.x);
+  const y1 = Math.max(rect1.y, rect2.y);
+  const x2 = Math.min(rect1.x + rect1.width, rect2.x + rect2.width);
+  const y2 = Math.min(rect1.y + rect1.height, rect2.y + rect2.height);
+  
+  if (x2 <= x1 || y2 <= y1) return 0;
+  
+  const intersection = (x2 - x1) * (y2 - y1);
+  const area1 = rect1.width * rect1.height;
+  const area2 = rect2.width * rect2.height;
+  const union = area1 + area2 - intersection;
+  
+  return intersection / union;
+}
+
+// Extract comprehensive features from detected regions
+async function extractAdvancedFeatures(screenshot, slots) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = screenshot.width;
+  canvas.height = screenshot.height;
+  ctx.drawImage(screenshot, 0, 0);
+  
+  const features = [];
+  
+  for (const slot of slots) {
+    try {
+      const regionData = ctx.getImageData(slot.x, slot.y, slot.width, slot.height);
+      
+      const feature = {
+        region: slot,
+        
+        // Color features
+        colorHistogram: calculateColorHistogram(regionData.data, slot.width, slot.height),
+        dominantColors: extractAdvancedDominantColors(regionData.data, slot.width, slot.height),
+        averageColor: calculateAverageColor(regionData.data, slot.width, slot.height),
+        colorMoments: calculateColorMoments(regionData.data, slot.width, slot.height),
+        
+        // Geometric features
+        edgeMap: detectEdges(regionData),
+        corners: detectCorners(regionData),
+        
+        // Texture features
+        textureDescriptor: calculateTextureDescriptor(regionData),
+        gradientMagnitude: calculateGradientMagnitude(regionData),
+        
+        // Shape features
+        boundingRect: calculateBoundingRect(regionData),
+        aspectRatio: slot.width / slot.height,
+        fillRatio: calculateFillRatio(regionData)
+      };
+      
+      features.push(feature);
+    } catch (error) {
+      console.warn('Failed to extract features for region:', error);
+    }
+  }
+  
+  return features;
+}
+
+// Advanced dominant color extraction using k-means clustering
+function extractAdvancedDominantColors(data, width, height) {
+  const colors = [];
+  
+  // Collect all non-transparent pixels
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    const a = data[i + 3];
+    
+    if (a > 50) {
+      colors.push({ r, g, b });
+    }
+  }
+  
+  if (colors.length === 0) return [];
+  
+  // Simple k-means clustering for color quantization
+  const k = Math.min(CV_CONFIG.colorAnalysis.dominantColorCount, colors.length);
+  const clusters = initializeClusters(colors, k);
+  
+  // Run k-means iterations
+  for (let iter = 0; iter < 10; iter++) {
+    const assignments = assignPointsToClusters(colors, clusters);
+    const newClusters = updateClusters(colors, assignments, k);
+    
+    // Check convergence
+    if (clustersConverged(clusters, newClusters)) break;
+    clusters.splice(0, clusters.length, ...newClusters);
+  }
+  
+  // Calculate cluster statistics
+  const assignments = assignPointsToClusters(colors, clusters);
+  return clusters.map((cluster, idx) => ({
+    color: cluster,
+    weight: assignments.filter(a => a === idx).length / colors.length,
+    count: assignments.filter(a => a === idx).length
+  })).sort((a, b) => b.weight - a.weight);
+}
+
+function initializeClusters(colors, k) {
+  const clusters = [];
+  
+  for (let i = 0; i < k; i++) {
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    clusters.push({ ...colors[randomIndex] });
+  }
+  
+  return clusters;
+}
+
+function assignPointsToClusters(colors, clusters) {
+  return colors.map(color => {
+    let minDistance = Infinity;
+    let assignment = 0;
+    
+    clusters.forEach((cluster, idx) => {
+      const distance = colorDistance(color, cluster);
+      if (distance < minDistance) {
+        minDistance = distance;
+        assignment = idx;
+      }
+    });
+    
+    return assignment;
+  });
+}
+
+function updateClusters(colors, assignments, k) {
+  const newClusters = [];
+  
+  for (let i = 0; i < k; i++) {
+    const clusterColors = colors.filter((_, idx) => assignments[idx] === i);
+    
+    if (clusterColors.length === 0) {
+      // Reinitialize empty cluster
+      newClusters.push({ ...colors[Math.floor(Math.random() * colors.length)] });
+    } else {
+      const avgR = clusterColors.reduce((sum, c) => sum + c.r, 0) / clusterColors.length;
+      const avgG = clusterColors.reduce((sum, c) => sum + c.g, 0) / clusterColors.length;
+      const avgB = clusterColors.reduce((sum, c) => sum + c.b, 0) / clusterColors.length;
+      
+      newClusters.push({ r: avgR, g: avgG, b: avgB });
+    }
+  }
+  
+  return newClusters;
+}
+
+function clustersConverged(oldClusters, newClusters) {
+  const threshold = 5; // Color distance threshold for convergence
+  
+  for (let i = 0; i < oldClusters.length; i++) {
+    if (colorDistance(oldClusters[i], newClusters[i]) > threshold) {
+      return false;
+    }
+  }
+  
+  return true;
+}
+
+function colorDistance(color1, color2) {
+  return Math.sqrt(
+    Math.pow(color1.r - color2.r, 2) +
+    Math.pow(color1.g - color2.g, 2) +
+    Math.pow(color1.b - color2.b, 2)
+  );
+}
+
+// Calculate color moments (mean, std dev, skewness)
+function calculateColorMoments(data, width, height) {
+  const moments = { r: [], g: [], b: [] };
+  const colors = { r: [], g: [], b: [] };
+  
+  // Collect color values
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    const a = data[i + 3];
+    
+    if (a > 50) {
+      colors.r.push(r);
+      colors.g.push(g);
+      colors.b.push(b);
+    }
+  }
+  
+  // Calculate moments for each channel
+  ['r', 'g', 'b'].forEach(channel => {
+    const values = colors[channel];
+    if (values.length === 0) {
+      moments[channel] = { mean: 0, stdDev: 0, skewness: 0 };
+      return;
+    }
+    
+    const mean = values.reduce((sum, v) => sum + v, 0) / values.length;
+    const variance = values.reduce((sum, v) => sum + Math.pow(v - mean, 2), 0) / values.length;
+    const stdDev = Math.sqrt(variance);
+    
+    const skewness = stdDev === 0 ? 0 : 
+      values.reduce((sum, v) => sum + Math.pow((v - mean) / stdDev, 3), 0) / values.length;
+    
+    moments[channel] = { mean, stdDev, skewness };
+  });
+  
+  return moments;
+}
+
+// Advanced texture analysis using Local Binary Patterns
+function calculateTextureDescriptor(imageData) {
+  const { data, width, height } = imageData;
+  const gray = convertToGrayscale(data, width, height);
+  const lbp = new Array(width * height).fill(0);
+  
+  // Calculate Local Binary Pattern
+  for (let y = 1; y < height - 1; y++) {
+    for (let x = 1; x < width - 1; x++) {
+      const center = gray[y * width + x];
+      let pattern = 0;
+      
+      // 8-neighborhood offsets
+      const offsets = [
+        [-1, -1], [-1, 0], [-1, 1],
+        [0, 1], [1, 1], [1, 0],
+        [1, -1], [0, -1]
+      ];
+      
+      offsets.forEach((offset, idx) => {
+        const neighborY = y + offset[0];
+        const neighborX = x + offset[1];
+        const neighborValue = gray[neighborY * width + neighborX];
+        
+        if (neighborValue >= center) {
+          pattern |= (1 << idx);
+        }
+      });
+      
+      lbp[y * width + x] = pattern;
+    }
+  }
+  
+  // Create histogram of LBP values
+  const histogram = new Array(256).fill(0);
+  lbp.forEach(value => histogram[value]++);
+  
+  // Normalize histogram
+  const total = lbp.length;
+  return histogram.map(count => count / total);
+}
+
+// Calculate gradient magnitude using Sobel operators
+function calculateGradientMagnitude(imageData) {
+  const { data, width, height } = imageData;
+  const gray = convertToGrayscale(data, width, height);
+  const magnitude = new Array(width * height);
+  
+  for (let y = 1; y < height - 1; y++) {
+    for (let x = 1; x < width - 1; x++) {
+      // Sobel X
+      const gx = -gray[(y-1)*width + (x-1)] + gray[(y-1)*width + (x+1)] +
+                 -2*gray[y*width + (x-1)] + 2*gray[y*width + (x+1)] +
+                 -gray[(y+1)*width + (x-1)] + gray[(y+1)*width + (x+1)];
+      
+      // Sobel Y
+      const gy = -gray[(y-1)*width + (x-1)] - 2*gray[(y-1)*width + x] - gray[(y-1)*width + (x+1)] +
+                  gray[(y+1)*width + (x-1)] + 2*gray[(y+1)*width + x] + gray[(y+1)*width + (x+1)];
+      
+      magnitude[y * width + x] = Math.sqrt(gx * gx + gy * gy);
+    }
+  }
+  
+  return magnitude;
+}
+
+// Calculate average color with transparency handling
+function calculateAverageColor(data, width, height) {
+  let totalR = 0, totalG = 0, totalB = 0, count = 0;
+  
+  for (let i = 0; i < data.length; i += 4) {
+    const a = data[i + 3];
+    if (a > 50) {
+      totalR += data[i];
+      totalG += data[i + 1];
+      totalB += data[i + 2];
+      count++;
+    }
+  }
+  
+  return count > 0 ? {
+    r: totalR / count,
+    g: totalG / count,
+    b: totalB / count
+  } : { r: 0, g: 0, b: 0 };
+}
+
+// Calculate bounding rectangle of non-transparent content
+function calculateBoundingRect(imageData) {
+  const { data, width, height } = imageData;
+  let minX = width, minY = height, maxX = -1, maxY = -1;
+  
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const a = data[(y * width + x) * 4 + 3];
+      if (a > 50) {
+        minX = Math.min(minX, x);
+        minY = Math.min(minY, y);
+        maxX = Math.max(maxX, x);
+        maxY = Math.max(maxY, y);
+      }
+    }
+  }
+  
+  return {
+    x: minX,
+    y: minY,
+    width: maxX - minX + 1,
+    height: maxY - minY + 1
+  };
+}
+
+// Calculate fill ratio (non-transparent pixels / total pixels)
+function calculateFillRatio(imageData) {
+  const { data } = imageData;
+  let nonTransparent = 0;
+  
+  for (let i = 3; i < data.length; i += 4) {
+    if (data[i] > 50) nonTransparent++;
+  }
+  
+  return nonTransparent / (data.length / 4);
+}
+
+// Multi-modal matching combining template matching, color, and shape analysis
+async function performMultiModalMatching(features, minConfidence) {
+  const matches = [];
+  
+  for (const feature of features) {
+    const candidates = await findMatchingCandidates(feature);
+    
+    for (const candidate of candidates) {
+      const scores = await calculateMultiModalScore(feature, candidate);
+      const finalScore = combineScores(scores);
+      
+      if (finalScore >= minConfidence) {
+        matches.push({
+          region: feature.region,
+          itemId: candidate.id,
+          itemData: candidate,
+          scores: scores,
+          finalScore: finalScore,
+          confidence: finalScore
+        });
+      }
+    }
+  }
+  
+  return matches;
+}
+
+async function findMatchingCandidates(feature) {
+  const candidates = [];
+  
+  // Quick filtering based on basic properties
+  for (const [itemId, template] of Object.entries(iconTemplateLibrary)) {
+    // Size compatibility check
+    const sizeRatio = Math.min(feature.region.width / template.template.width, 
+                              template.template.width / feature.region.width);
+    if (sizeRatio < 0.5) continue;
+    
+    // Basic color compatibility
+    const colorSim = calculateBasicColorSimilarity(feature.averageColor, template.template.averageColor);
+    if (colorSim < 0.1) continue;
+    
+    candidates.push(template);
+  }
+  
+  return candidates;
+}
+
+async function calculateMultiModalScore(feature, candidate) {
+  const scores = {};
+  
+  // 1. Template matching score (30% weight)
+  scores.template = await calculateTemplateMatchScore(feature, candidate);
+  
+  // 2. Color histogram similarity (25% weight)  
+  scores.colorHistogram = calculateHistogramSimilarity(
+    feature.colorHistogram, 
+    candidate.template.colorHistogram
+  );
+  
+  // 3. Dominant color matching (20% weight)
+  scores.dominantColor = calculateDominantColorSimilarity(
+    feature.dominantColors,
+    candidate.template.dominantColors
+  );
+  
+  // 4. Shape/edge similarity (15% weight)
+  scores.shape = calculateShapeSimilarity(feature, candidate.template);
+  
+  // 5. Texture similarity (10% weight)
+  scores.texture = calculateTextureSimilarity(
+    feature.textureDescriptor,
+    candidate.template.textureDescriptor
+  );
+  
+  return scores;
+}
+
+function combineScores(scores) {
+  const weights = {
+    template: 0.30,
+    colorHistogram: 0.25,
+    dominantColor: 0.20,
+    shape: 0.15,
+    texture: 0.10
+  };
+  
+  let finalScore = 0;
+  let totalWeight = 0;
+  
+  Object.entries(weights).forEach(([key, weight]) => {
+    if (scores[key] !== undefined && !isNaN(scores[key])) {
+      finalScore += scores[key] * weight;
+      totalWeight += weight;
+    }
+  });
+  
+  return totalWeight > 0 ? finalScore / totalWeight : 0;
+}
+
+// Enhanced results display with detailed analysis
+function displayAdvancedAnalysisResults(matches) {
+  const resultsDiv = document.getElementById('resultsContent');
+  
+  if (matches.length === 0) {
+    resultsDiv.innerHTML = '<div style="color:#f93;">⚠️ No confident matches found with advanced analysis. Try adjusting the confidence threshold or uploading a clearer image.</div>';
+    return;
+  }
+  
+  let html = `<div style="margin-bottom:12px; color:#0f3; font-weight:700;">🎯 Advanced CV Analysis: Found ${matches.length} high-confidence matches:</div>`;
+  
+  matches.slice(0, 10).forEach((match, index) => {
+    const percentage = Math.round(match.finalScore * 100);
+    const region = match.region;
+    const position = `(${region.x},${region.y}) ${region.width}×${region.height}`;
+    
+    // Build detailed score breakdown
+    const scoreDetails = Object.entries(match.scores || {})
+      .map(([type, score]) => `${type}: ${Math.round(score * 100)}%`)
+      .join(' • ');
+    
+    html += `
+      <div style="background:rgba(170,85,255,0.05); border:1px solid #a5f; border-radius:8px; padding:12px; margin:6px 0; display:flex; align-items:center; gap:12px;">
+        <div style="background:#a5f; color:#000; border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700;">${index + 1}</div>
+        <div style="flex:1;">
+          <div style="color:#c5f; font-weight:700; font-size:16px;">${match.itemData.name}</div>
+          <div style="color:#c8a; font-size:13px; margin:2px 0;">Region: ${position} • Overall: ${percentage}%</div>
+          <div style="color:#a8c; font-size:11px; margin:2px 0;">Tags: ${(match.itemData.tags || []).join(', ')}</div>
+          <div style="color:#98b; font-size:10px; margin:2px 0; font-family:monospace;">${scoreDetails}</div>
+        </div>
+      </div>
+    `;
+  });
+  
+  if (matches.length > 10) {
+    html += `<div style="color:#c8a; text-align:center; margin-top:8px; font-size:12px;">... and ${matches.length - 10} more matches (showing top 10)</div>`;
+  }
+  
+  resultsDiv.innerHTML = html;
+}
+
+// Validate and rank matches using contextual information
+function validateAndRankMatches(matches) {
+  // Remove duplicate matches for same region
+  const regionMap = new Map();
+  
+  matches.forEach(match => {
+    const regionKey = `${match.region.x},${match.region.y}`;
+    
+    if (!regionMap.has(regionKey) || regionMap.get(regionKey).finalScore < match.finalScore) {
+      regionMap.set(regionKey, match);
+    }
+  });
+  
+  const uniqueMatches = Array.from(regionMap.values());
+  
+  // Sort by confidence and apply additional validation
+  return uniqueMatches
+    .sort((a, b) => b.finalScore - a.finalScore)
+    .filter(match => {
+      // Additional validation rules
+      if (match.finalScore < 0.3) return false;
+      if (match.region.width < 16 || match.region.height < 16) return false;
+      
+      return true;
+    });
+}
+
+// Helper functions for score calculations
+function calculateBasicColorSimilarity(color1, color2) {
+  const distance = Math.sqrt(
+    Math.pow(color1.r - color2.r, 2) +
+    Math.pow(color1.g - color2.g, 2) +
+    Math.pow(color1.b - color2.b, 2)
+  );
+  return Math.max(0, 1 - distance / (255 * Math.sqrt(3)));
+}
+
+async function calculateTemplateMatchScore(feature, candidate) {
+  // Simplified template matching - in a real implementation this would
+  // use the full template matching algorithm
+  const colorSim = calculateBasicColorSimilarity(
+    feature.averageColor, 
+    candidate.template.averageColor
+  );
+  
+  const sizeSim = Math.min(
+    feature.region.width / candidate.template.width,
+    candidate.template.width / feature.region.width,
+    feature.region.height / candidate.template.height,
+    candidate.template.height / feature.region.height
+  );
+  
+  return colorSim * 0.6 + sizeSim * 0.4;
+}
+
+function calculateHistogramSimilarity(hist1, hist2) {
+  if (!hist1 || !hist2) return 0;
+  
+  // Calculate Bhattacharyya coefficient for RGB histograms
+  let similarity = 0;
+  let channels = 0;
+  
+  ['r', 'g', 'b'].forEach(channel => {
+    if (hist1.rgb && hist2.rgb && hist1.rgb[channel] && hist2.rgb[channel]) {
+      let bhattacharyya = 0;
+      const bins = Math.min(hist1.rgb[channel].length, hist2.rgb[channel].length);
+      
+      for (let i = 0; i < bins; i++) {
+        bhattacharyya += Math.sqrt(hist1.rgb[channel][i] * hist2.rgb[channel][i]);
+      }
+      
+      similarity += bhattacharyya;
+      channels++;
+    }
+  });
+  
+  return channels > 0 ? similarity / channels : 0;
+}
+
+function calculateDominantColorSimilarity(colors1, colors2) {
+  if (!colors1 || !colors2 || colors1.length === 0 || colors2.length === 0) return 0;
+  
+  let totalSimilarity = 0;
+  let comparisons = 0;
+  
+  // Compare dominant colors using weighted similarity
+  colors1.slice(0, 3).forEach(c1 => {
+    colors2.slice(0, 3).forEach(c2 => {
+      const colorSim = calculateBasicColorSimilarity(c1.color, c2.color);
+      const weightedSim = colorSim * Math.min(c1.weight, c2.weight);
+      totalSimilarity += weightedSim;
+      comparisons++;
+    });
+  });
+  
+  return comparisons > 0 ? totalSimilarity / comparisons : 0;
+}
+
+function calculateShapeSimilarity(feature1, feature2) {
+  if (!feature1.edgeMap || !feature2.edgeMap) return 0;
+  
+  // Compare edge density and corner count
+  const edgeDensity1 = feature1.edgeMap.edges.reduce((sum, val) => sum + (val > 0 ? 1 : 0), 0) / feature1.edgeMap.edges.length;
+  const edgeDensity2 = feature2.edgeMap.edges.reduce((sum, val) => sum + (val > 0 ? 1 : 0), 0) / feature2.edgeMap.edges.length;
+  
+  const edgeSimilarity = 1 - Math.abs(edgeDensity1 - edgeDensity2);
+  
+  const cornerCount1 = feature1.corners ? feature1.corners.length : 0;
+  const cornerCount2 = feature2.corners ? feature2.corners.length : 0;
+  const cornerSimilarity = cornerCount1 === 0 && cornerCount2 === 0 ? 1 : 
+    1 - Math.abs(cornerCount1 - cornerCount2) / Math.max(cornerCount1, cornerCount2, 1);
+  
+  return edgeSimilarity * 0.7 + cornerSimilarity * 0.3;
+}
+
+function calculateTextureSimilarity(texture1, texture2) {
+  if (!texture1 || !texture2 || !Array.isArray(texture1) || !Array.isArray(texture2)) return 0;
+  
+  // Calculate chi-square distance between LBP histograms
+  let chiSquare = 0;
+  const bins = Math.min(texture1.length, texture2.length);
+  
+  for (let i = 0; i < bins; i++) {
+    const sum = texture1[i] + texture2[i];
+    if (sum > 0) {
+      const diff = texture1[i] - texture2[i];
+      chiSquare += (diff * diff) / sum;
+    }
+  }
+  
+  // Convert chi-square distance to similarity
+  return Math.exp(-chiSquare / 2);
+}
+
+// Extract contours (simplified version)
+function extractContours(imageData) {
+  const { edges } = detectEdges(imageData);
+  const { width, height } = imageData;
+  
+  // Find connected edge components (simplified contour detection)
+  const visited = new Array(width * height).fill(false);
+  const contours = [];
+  
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const idx = y * width + x;
+      if (edges[idx] > 100 && !visited[idx]) {
+        const contour = traceContour(edges, visited, x, y, width, height);
+        if (contour.length > 10) { // Minimum contour length
+          contours.push(contour);
+        }
+      }
+    }
+  }
+  
+  return contours;
+}
+
+function traceContour(edges, visited, startX, startY, width, height) {
+  const contour = [];
+  const stack = [{ x: startX, y: startY }];
+  
+  while (stack.length > 0) {
+    const { x, y } = stack.pop();
+    const idx = y * width + x;
+    
+    if (x < 0 || x >= width || y < 0 || y >= height || visited[idx] || edges[idx] < 100) {
+      continue;
+    }
+    
+    visited[idx] = true;
+    contour.push({ x, y });
+    
+    // Add 8-connected neighbors
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dx = -1; dx <= 1; dx++) {
+        if (dx === 0 && dy === 0) continue;
+        stack.push({ x: x + dx, y: y + dy });
+      }
+    }
+  }
+  
+  return contour;
+}
+
+// Scale image data for multi-scale template matching
+function scaleImageData(imageData, scale) {
+  const { width, height, data } = imageData;
+  const newWidth = Math.round(width * scale);
+  const newHeight = Math.round(height * scale);
+  
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = width;
+  canvas.height = height;
+  
+  // Put original data
+  ctx.putImageData(imageData, 0, 0);
+  
+  // Scale
+  const scaledCanvas = document.createElement('canvas');
+  const scaledCtx = scaledCanvas.getContext('2d');
+  scaledCanvas.width = newWidth;
+  scaledCanvas.height = newHeight;
+  scaledCtx.imageSmoothingEnabled = false;
+  scaledCtx.drawImage(canvas, 0, 0, newWidth, newHeight);
+  
+  return scaledCtx.getImageData(0, 0, newWidth, newHeight);
+}
+
 function handleImageFile(file) {
   const reader = new FileReader();
   reader.onload = (e) => {
@@ -2142,6 +3441,8 @@ function handleImageFile(file) {
       document.getElementById('analyzeBtn').style.opacity = '1';
       document.getElementById('analysisResults').style.display = 'none';
       analysisData = null;
+      
+      console.log(`📷 Screenshot loaded: ${img.width}x${img.height}px`);
     };
     img.src = e.target.result;
   };
@@ -2153,8 +3454,8 @@ function displayPreview(img) {
   const ctx = canvas.getContext('2d');
   
   // Scale image to fit canvas
-  const maxWidth = 400;
-  const maxHeight = 300;
+  const maxWidth = 500;
+  const maxHeight = 400;
   let { width, height } = img;
   
   if (width > maxWidth || height > maxHeight) {
@@ -2167,6 +3468,22 @@ function displayPreview(img) {
   canvas.height = height;
   ctx.drawImage(img, 0, 0, width, height);
   canvas.style.display = 'block';
+  
+  // Add visual feedback about preview scaling
+  const previewInfo = document.querySelector('#previewCanvas + .preview-info') || 
+    Object.assign(document.createElement('div'), {
+      className: 'preview-info',
+      style: 'text-align:center; color:#a8c; font-size:11px; margin-top:4px;'
+    });
+  
+  if (!document.querySelector('#previewCanvas + .preview-info')) {
+    canvas.insertAdjacentElement('afterend', previewInfo);
+  }
+  
+  const scaleRatio = width / img.width;
+  previewInfo.textContent = scaleRatio < 0.99 ? 
+    `Preview scaled to ${Math.round(scaleRatio * 100)}% (original: ${img.width}×${img.height})` :
+    `Original size: ${img.width}×${img.height}`;
 }
 
 async function analyzeScreenshot() {
