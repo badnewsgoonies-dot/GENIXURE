@@ -345,8 +345,9 @@
     "effects": [
       {
         "trigger": "on_heal",
-        "action": "gain_thorns",
-        "value": 2
+        "actions": [
+          { "type": "add_status", "key": "thorns", "value": 2 }
+        ]
       }
     ],
     "name": "Blackbriar Rose",
@@ -357,7 +358,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Rose"
+    ]
   },
   "items/blacksmith_bond": {
     "bucket": "items",
@@ -1221,9 +1224,10 @@
     "effect": "Whenever you restore health, decrease a random status effect by 1. You can only equip 1 rose",
     "effects": [
       {
-        "action": "decrease_random_status",
-        "trigger": "onHeal",
-        "value": 1
+        "trigger": "on_heal",
+        "actions": [
+          { "type": "remove_random_status", "value": 1 }
+        ]
       }
     ],
     "name": "Clearspring Rose",
@@ -1234,7 +1238,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Rose"
+    ]
   },
   "items/clearspring_watermelon": {
     "bucket": "items",
@@ -2654,9 +2660,9 @@
     "effect": "Whenever you restore health, gain 1 armor. You can only equip 1 rose",
     "effects": [
       {
-        "trigger": "onHeal",
+        "trigger": "on_heal",
         "actions": [
-          {"type": "gain_armor", "value": 1}
+          { "type": "add_armor", "value": 1 }
         ]
       }
     ],
@@ -2668,7 +2674,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Rose"
+    ]
   },
   "items/iron_rune": {
     "bucket": "items",
