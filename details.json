@@ -344,7 +344,7 @@
     "effect": "Whenever you restore health, gain 2 thorns. You can only equip 1 rose",
     "effects": [
       {
-        "trigger": "on_heal",
+        "trigger": "onHeal",
         "actions": [
           { "type": "add_status", "key": "thorns", "value": 2 }
         ]
@@ -1224,7 +1224,7 @@
     "effect": "Whenever you restore health, decrease a random status effect by 1. You can only equip 1 rose",
     "effects": [
       {
-        "trigger": "on_heal",
+        "trigger": "onHeal",
         "actions": [
           { "type": "remove_random_status", "value": 1 }
         ]
@@ -2660,7 +2660,7 @@
     "effect": "Whenever you restore health, gain 1 armor. You can only equip 1 rose",
     "effects": [
       {
-        "trigger": "on_heal",
+        "trigger": "onHeal",
         "actions": [
           { "type": "add_armor", "value": 1 }
         ]
@@ -4215,6 +4215,14 @@
   "items/sanguine_rose": {
     "bucket": "items",
     "effect": "Whenever you restore health, restore 1 additional health. You can only equip 1 rose",
+    "effects": [
+      {
+        "trigger": "onHeal",
+        "actions": [
+          { "type": "restore_health", "value": 1 }
+        ]
+      }
+    ],
     "name": "Sanguine Rose",
     "slug": "sanguine_rose",
     "stats": {
@@ -4223,7 +4231,9 @@
       "health": 4,
       "speed": 3
     },
-    "tags": []
+    "tags": [
+      "Rose"
+    ]
   },
   "items/sanguine_tome": {
     "bucket": "items",
@@ -5112,6 +5122,14 @@
   "items/toxic_rose": {
     "bucket": "items",
     "effect": "Whenever you restore health, give the enemy 1 poison. You can only equip 1 rose",
+    "effects": [
+      {
+        "trigger": "onHeal",
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "poison", "value": 1 }
+        ]
+      }
+    ],
     "name": "Toxic Rose",
     "slug": "toxic_rose",
     "stats": {
@@ -5120,7 +5138,9 @@
       "health": 0,
       "speed": 6
     },
-    "tags": []
+    "tags": [
+      "Rose"
+    ]
   },
   "items/trail_mix": {
     "bucket": "items",
