@@ -602,6 +602,13 @@
       other.armor += amount;
       log(`${self.name} gives ${other.name} ${amount} armor`);
     },
+    gain_attack_equal_to_speed: ({ self, log }) => {
+      const speedGain = self.speed || 0;
+      if (speedGain > 0) {
+        self.atk += speedGain;
+        log(`${self.name} gains ${speedGain} attack equal to speed`);
+      }
+    },
     transfer_status_to_enemy: ({ self, other, log, value }) => {
       const status = value?.status || 'poison';
       const amount = value?.amount || 1;
@@ -733,12 +740,19 @@
         return (self.armor || 0) >= (condition.value || 1);
       case 'enemy_has_no_armor':
         return other.armor === 0;
+      case 'speed_greater_than_enemy':
+        return (self.speed || 0) > (other.speed || 0);
+      case 'speed_less_than_enemy':
+        return (self.speed || 0) < (other.speed || 0);
       case 'self_stunned':
         return (self.statuses.stun || 0) > 0;
       case 'enemy_stunned':
         return (other.statuses.stun || 0) > 0;
       case 'self_full_health':
         return self.hp === self.hpMax;
+      case 'health_below_percent':
+        const percent = condition.value || 50;
+        return self.hp < (self.hpMax * percent / 100);
       case 'health_equals':
         return self.hp === condition.value;
       case 'self_max_health_less_than_enemy':

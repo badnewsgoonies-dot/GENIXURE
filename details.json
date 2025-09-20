@@ -1935,6 +1935,17 @@
   "items/featherweight_wings": {
     "bucket": "items",
     "effect": "Battle Start: If you have less speed than the enemy, gain attack equal to your speed",
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "conditions": [
+          {"type": "speed_less_than_enemy"}
+        ],
+        "actions": [
+          {"type": "gain_attack_equal_to_speed"}
+        ]
+      }
+    ],
     "name": "Featherweight Wings",
     "slug": "featherweight_wings",
     "stats": {
@@ -2552,6 +2563,18 @@
   "items/ice_tomb": {
     "bucket": "items",
     "effect": "Turn Start: If you have no armor, gain 3 armor and 1 freeze",
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "conditions": [
+          {"type": "no_armor"}
+        ],
+        "actions": [
+          {"type": "gain_armor", "value": 3},
+          {"type": "add_status", "key": "freeze", "value": 1}
+        ]
+      }
+    ],
     "name": "Ice Tomb",
     "slug": "ice_tomb",
     "stats": {
@@ -2781,6 +2804,17 @@
   "items/leather_boots": {
     "bucket": "items",
     "effect": "Battle Start: If you have more speed than the enemy, gain 2 attack",
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "conditions": [
+          {"type": "speed_greater_than_enemy"}
+        ],
+        "actions": [
+          {"type": "gain_attack", "value": 2}
+        ]
+      }
+    ],
     "name": "Leather Boots",
     "slug": "leather_boots",
     "stats": {
@@ -3228,6 +3262,17 @@
   "items/moonlight_crest": {
     "bucket": "items",
     "effect": "Turn Start: If you're below 50% health, gain 1 regeneration",
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "conditions": [
+          {"type": "health_below_percent", "value": 50}
+        ],
+        "actions": [
+          {"type": "add_status", "key": "regen", "value": 1}
+        ]
+      }
+    ],
     "name": "Moonlight Crest",
     "slug": "moonlight_crest",
     "stats": {
@@ -3241,6 +3286,17 @@
   "items/moonlight_shield": {
     "bucket": "items",
     "effect": "Turn Start: If you're below 50% health, gain 2 armor",
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "conditions": [
+          {"type": "health_below_percent", "value": 50}
+        ],
+        "actions": [
+          {"type": "gain_armor", "value": 2}
+        ]
+      }
+    ],
     "name": "Moonlight Shield",
     "slug": "moonlight_shield",
     "stats": {
@@ -3315,6 +3371,15 @@
   "items/noxious_gas": {
     "bucket": "items",
     "effect": "Turn Start: Both you and the enemy gain 1 poison",
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "actions": [
+          {"type": "add_status", "key": "poison", "value": 1},
+          {"type": "add_status_to_enemy", "key": "poison", "value": 1}
+        ]
+      }
+    ],
     "name": "Noxious Gas",
     "slug": "noxious_gas",
     "stats": {
@@ -3710,6 +3775,17 @@
   "items/rocksalt_sword": {
     "bucket": "weapons",
     "effect": "Turn Start: if health is full, gain 1 extra Strike",
+    "effects": [
+      {
+        "trigger": "turnStart",
+        "conditions": [
+          {"type": "is_full_health"}
+        ],
+        "actions": [
+          {"type": "add_extra_strikes", "value": 1}
+        ]
+      }
+    ],
     "name": "Rocksalt Sword",
     "slug": "rocksalt_sword",
     "stats": {
