@@ -18,24 +18,15 @@ function testRecentMigrations() {
   console.log('Testing recently migrated items...\n');
   
   const testCases = [
-    'items/arcane_shield',
-    'items/blackbriar_bow',
-    'items/blackbriar_gauntlet',
-    'items/blackbriar_rose',
-    'items/cherry_bomb',
-    'items/cherry_blade',
-    'upgrades/bleeding_edge',
-    'items/horned_helmet',
-    'items/iron_transfusion',
-    'items/sanguine_imp',
-    'items/emerald_gemstone',
-    'items/ironskin_potion',
-    'items/ore_heart',
-    'items/purelake_helmet',
-    'items/ruby_ring',
-    'items/sapphire_ring',
-    'items/sugar_bomb',
-    'items/toxic_cherry'
+    'items/impressive_physique',
+    'items/marshlight_lantern',
+    'items/iron_rose',
+    'items/heart_shaped_potion',
+    'items/life_zap',
+    'upgrades/agile_edge',
+    'upgrades/agile_edge_used',
+    'upgrades/blunt_edge',
+    'upgrades/blunt_edge_used'
   ];
   
   for (const itemKey of testCases) {

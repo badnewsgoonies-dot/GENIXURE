@@ -575,6 +575,32 @@
       const healed = self.heal(amount);
       if (healed > 0) log(`${self.name} restores ${healed} health`);
     },
+    heal_to_full: ({ self, log }) => {
+      const healed = self.heal(self.hpMax - self.hp);
+      if (healed > 0) log(`${self.name} restores to full health`);
+    },
+    set_health_to: ({ self, log, value }) => {
+      const targetHealth = value || 1;
+      if (self.hp > targetHealth) {
+        const lost = self.hp - targetHealth;
+        self.hp = targetHealth;
+        log(`${self.name} loses ${lost} health`);
+      } else if (self.hp < targetHealth) {
+        const gained = self.heal(targetHealth - self.hp);
+        if (gained > 0) log(`${self.name} gains ${gained} health`);
+      }
+    },
+    transfer_status_to_enemy: ({ self, other, log, value }) => {
+      const status = value?.status || 'poison';
+      const amount = value?.amount || 1;
+      const currentAmount = self.statuses[status] || 0;
+      const actualTransfer = Math.min(amount, currentAmount);
+      if (actualTransfer > 0) {
+        self.statuses[status] -= actualTransfer;
+        other.addStatus(status, actualTransfer);
+        log(`${self.name} transfers ${actualTransfer} ${status} to ${other.name}`);
+      }
+    },
     set_max_health_to_enemy: ({ self, other, log }) => {
       if (self.hpMax < other.hpMax) {
         self.hpMax = other.hpMax;
@@ -701,6 +727,8 @@
         return (other.statuses.stun || 0) > 0;
       case 'self_full_health':
         return self.hp === self.hpMax;
+      case 'health_equals':
+        return self.hp === condition.value;
       case 'self_max_health_less_than_enemy':
         return self.hpMax < other.hpMax;
       // Add more condition types here as needed

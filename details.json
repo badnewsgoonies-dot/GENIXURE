@@ -2361,6 +2361,19 @@
   "items/heart_shaped_potion": {
     "bucket": "items",
     "effect": "When you are reduced to exactly 1 health for the first time, restore health to full",
+    "effects": [
+      {
+        "trigger": "onDamaged",
+        "conditions": [
+          {"type": "health_equals", "value": 1},
+          {"type": "counter", "value": {"key": "heart_potion_used", "max": 1}}
+        ],
+        "actions": [
+          {"type": "heal_to_full"},
+          {"type": "increment_counter", "value": "heart_potion_used"}
+        ]
+      }
+    ],
     "name": "Heart-shaped Potion",
     "slug": "heart_shaped_potion",
     "stats": {
@@ -2573,6 +2586,13 @@
   "items/impressive_physique": {
     "bucket": "items",
     "effect": "Exposed: Stun the enemy for 1 turn",
+    "effects": [
+      {
+        "trigger": "onExposed",
+        "action": "stun_enemy_for_turns",
+        "value": 1
+      }
+    ],
     "name": "Impressive Physique",
     "slug": "impressive_physique",
     "stats": {
@@ -2586,6 +2606,14 @@
   "items/iron_rose": {
     "bucket": "items",
     "effect": "Whenever you restore health, gain 1 armor. You can only equip 1 rose",
+    "effects": [
+      {
+        "trigger": "onHeal",
+        "actions": [
+          {"type": "gain_armor", "value": 1}
+        ]
+      }
+    ],
     "name": "Iron Rose",
     "slug": "iron_rose",
     "stats": {
@@ -2820,6 +2848,15 @@
   "items/life_zap": {
     "bucket": "items",
     "effect": "Battle Start: Lose all your health except 1 and stun the enemy for 2 turns",
+    "effects": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {"type": "set_health_to", "value": 1},
+          {"type": "stun_enemy", "value": 2}
+        ]
+      }
+    ],
     "name": "Life Zap",
     "slug": "life_zap",
     "stats": {
@@ -3078,6 +3115,18 @@
   "items/marshlight_lantern": {
     "bucket": "items",
     "effect": "Exposed: Lose 3 health and gain 8 armor",
+    "effects": [
+      {
+        "trigger": "onExposed",
+        "action": "lose_hp",
+        "value": 3
+      },
+      {
+        "trigger": "onExposed",
+        "action": "gain_armor",
+        "value": 8
+      }
+    ],
     "name": "Marshlight Lantern",
     "slug": "marshlight_lantern",
     "stats": {
@@ -4890,6 +4939,13 @@
   "upgrades/agile_edge": {
     "bucket": "upgrades",
     "effect": "Battle Start: Gain 1 additional strike.",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "gain_strikes",
+        "value": 1
+      }
+    ],
     "name": "Agile Edge",
     "slug": "agile_edge",
     "stats": {
@@ -4903,6 +4959,13 @@
   "upgrades/agile_edge_used": {
     "bucket": "upgrades",
     "effect": "Battle Start: Gain 1 additional strike.",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "action": "gain_strikes",
+        "value": 1
+      }
+    ],
     "name": "Agile Edge Used",
     "slug": "agile_edge_used",
     "stats": {
@@ -5027,6 +5090,13 @@
   "upgrades/blunt_edge": {
     "bucket": "upgrades",
     "effect": "On Hit: Gain 1 armor.",
+    "effects": [
+      {
+        "trigger": "onHit",
+        "action": "gain_armor",
+        "value": 1
+      }
+    ],
     "name": "Blunt Edge",
     "slug": "blunt_edge",
     "stats": {
@@ -5040,6 +5110,13 @@
   "upgrades/blunt_edge_used": {
     "bucket": "upgrades",
     "effect": "On Hit: Gain 1 armor.",
+    "effects": [
+      {
+        "trigger": "onHit",
+        "action": "gain_armor",
+        "value": 1
+      }
+    ],
     "name": "Blunt Edge Used",
     "slug": "blunt_edge_used",
     "stats": {
@@ -5233,6 +5310,14 @@
   "weapons/ancient_warhammer": {
     "bucket": "weapons",
     "effect": "On Hit: Remove all of the enemy's armor",
+    "effects": [
+      {
+        "trigger": "onHit",
+        "actions": [
+          {"type": "remove_enemy_armor"}
+        ]
+      }
+    ],
     "name": "Ancient Warhammer",
     "slug": "ancient_warhammer",
     "stats": {
@@ -5272,6 +5357,13 @@
   "weapons/basilisk_fang": {
     "bucket": "weapons",
     "effect": "On Hit: Decrease your poison by 2 and give it to the enemy",
+    "effects": [
+      {
+        "trigger": "onHit",
+        "action": "transfer_status_to_enemy",
+        "value": {"status": "poison", "amount": 2}
+      }
+    ],
     "name": "Basilisk Fang",
     "slug": "basilisk_fang",
     "stats": {
