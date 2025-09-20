@@ -446,6 +446,21 @@
       self.addCountdown('Caustic Tome', value.turns || 3, 'tome', countdownAction);
     },
 
+    countdown_sheet_music: ({ self, other, log, value }) => {
+      const countdownAction = (fighter, opponent, logFn) => {
+        logFn(`${fighter.name} plays the Sheet Music!`);
+        // Trigger Symphony multiple times
+        const symphonyTriggers = value?.symphony_triggers || 3;
+        for (let i = 0; i < symphonyTriggers; i++) {
+          runEffects('symphony', fighter, opponent, logFn);
+        }
+        // Re-schedule for the next countdown
+        fighter.addCountdown('Sheet Music', value?.turns || 6, 'Instrument', countdownAction);
+      };
+      self.addCountdown('Sheet Music', value?.turns || 6, 'Instrument', countdownAction);
+      log(`${self.name} prepares the Sheet Music countdown.`);
+    },
+
     set_flag: ({ self, key, value }) => {
       self.flags[key] = value;
     },
@@ -1458,8 +1473,8 @@
           'battleStart': 'battleStart',
           'turnStart': 'turnStart',
           'onHit': 'hit',
-          'onWounded': 'onWounded',
-          'onExposed': 'onExposed',
+          'onWounded': 'wounded',
+          'onExposed': 'exposed',
           'onDamaged': 'damaged',
           'onKill': 'kill',
           'afterStrike': 'afterStrike',
@@ -1961,12 +1976,14 @@ let CURRENT_SOURCE_SLUG = null;
     let woundedFired = !!res.woundedNow;
     if (!exposedFired && armorBefore > 0 && def.armor === 0 && def._exposedCount < (def._exposedLimit||1)) {
       def._exposedCount++;
-      runEffects('onExposed', def, att, log);
+      log(`🛡️ ${def.name} is now exposed!`);
+      runEffects('exposed', def, att, log);
       exposedFired = true;
     }
     if (!woundedFired && !def.woundedDone && def.hp <= Math.floor(def.hpMax/2)) {
       def.woundedDone = true;
-      runEffects('onWounded', def, att, log);
+      log(`🩸 ${def.name} is now wounded!`);
+      runEffects('wounded', def, att, log);
       woundedFired = true;
     }
 
