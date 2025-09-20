@@ -4,181 +4,723 @@
 
   // --- Data-Driven Effect Engine ---
   const EFFECT_ACTIONS = {
-    // === Original Actions (preserved) ===
-    gainStat: ({ self, log, value, stat }) => {
-      if (stat && value) {
-        if (stat === 'armor') {
-          self.addArmor(value);
-          log(`${self.name} gains ${value} armor`);
-        } else if (stat === 'atk') {
-          self.addAttack(value);
-          log(`${self.name} gains ${value} attack`);
-        } else if (stat === 'hp') {
-          self.heal(value);
-          log(`${self.name} gains ${value} health`);
-        } else if (stat === 'speed') {
-          self.speed = (self.speed || 0) + value;
-          log(`${self.name} gains ${value} speed`);
-        }
-      }
-    },
-    gainStatus: ({ self, log, value, status }) => {
-      if (status && value) {
-        self.addStatus(status, value);
-        log(`${self.name} gains ${value} ${status}`);
-      }
-    },
-    giveEnemyStatus: ({ other, log, value, status }) => {
-      if (status && value) {
-        other.addStatus(status, value);
-        log(`${other.name} gains ${value} ${status}`);
-      }
-    },
-    heal: ({ self, log, value }) => {
-      const healed = self.heal(value || 1);
-      if (healed > 0) log(`${self.name} heals ${healed} health`);
-    },
-    dealDamage: ({ self, other, log, value }) => {
-      const damage = value || 1;
-      other.hp = Math.max(0, (other.hp || 0) - damage);
-      log(`${self.name} deals ${damage} damage`);
-    },
-    loseStat: ({ self, log, value, stat }) => {
-      if (stat && value) {
-        if (stat === 'armor') {
-          self.armor = Math.max(0, (self.armor || 0) - value);
-          log(`${self.name} loses ${value} armor`);
-        } else if (stat === 'atk') {
-          self.tempAtk = Math.max(0, (self.tempAtk || 0) - value);
-          log(`${self.name} loses ${value} attack`);
-        } else if (stat === 'speed') {
-          self.speed = Math.max(0, (self.speed || 0) - value);
-          log(`${self.name} loses ${value} speed`);
-        }
-      }
-    },
+    // GENERIC ACTIONS
+    // COUNTDOWN EFFECTS
+    amplify_tome_countdown: ({ self, other, log, countdown }) => {
+      try {
+        const items = self.items || [];
+        const tomeCount = items.filter(s => {
+          const tags = (s.tags || []).concat(ITEM_TAGS[s] || []);
+          return tags.includes('Tome');
+        }).length;
 
-    // === Add Actions ===
-    add_armor: ({ self, log, value }) => {
-      self.addArmor(value || 1);
-      log(`${self.name} gains ${value || 1} armor`);
+        if (tomeCount === 1 && countdown && typeof countdown.action === 'function') {
+          // Already fired once from the normal system; fire two more times
+          countdown.action(self, other, log, countdown);
+          countdown.action(self, other, log, countdown);
+          log(`${self.name}'s Arcane Lens amplifies the tome.`);
+          return true;
+        }
+      } catch(e) { 
+        console.error('Error in amplify_tome_countdown', e);
+      }
+      return false;
     },
-    add_attack: ({ self, log, value }) => {
-      self.addAttack(value || 1);
-      log(`${self.name} gains ${value || 1} attack`);
+    // GENERIC STAT ACTIONS
+    gain_stat: ({ self, stat, value, log }) => {
+      switch (stat) {
+        case 'armor': self.addArmor(value); break;
+        case 'attack': self.addAtk(value); break;
+        case 'temp_attack': self.addTempAtk(value); break;
+        case 'speed': 
+          const oldSpeed = self.speed || 0;
+          self.speed = oldSpeed + value;
+          runEffects('onGainSpeed', self, null, log, { amount: value, delta: value });
+          break;
+        case 'health': self.heal(value); break;
+        case 'gold': self.addGold(value); break;
+        default: 
+          console.warn(`Unknown stat: ${stat}`);
+      }
+      if (log) log(`${self.name} gains ${value} ${stat}`);
+    },
+    lose_stat: ({ self, stat, value, log }) => {
+      switch (stat) {
+        case 'armor': self.armor = Math.max(0, self.armor - value); break;
+        case 'attack': self.atk = Math.max(0, self.atk - value); break;
+        case 'speed': self.speed = Math.max(0, self.speed - value); break;
+        case 'health': self.hp = Math.max(0, self.hp - value); break;
+        default: 
+          console.warn(`Unknown stat: ${stat}`);
+      }
+      if (log) log(`${self.name} loses ${value} ${stat}`);
+    },
+    gain_status: ({ self, status, value, log }) => {
+      self.addStatus(status, value);
+      if (log) log(`${self.name} gains ${value} ${status}`);
+    },
+    // LEGACY ACTIONS (for backward compatibility)
+    add_gold: ({ self, value }) => self.addGold(value),
+    add_armor: ({ self, value }) => self.addArmor(value),
+    add_attack: ({ self, value }) => self.addAtk(value),
+    add_temp_attack: ({ self, value }) => self.addTempAtk(value),
+    register_countdown: ({ self, log, value }) => {
+      // Register a countdown for data-driven effects
+      const name = value?.name || 'Effect';
+      const turns = value?.turns || 6;
+      const tag = value?.tag || 'Effect';
+      const tier = value?.tier || 1;
+      const action = value?.action || 'add_attack';
+      
+      // Create a function that will be called when countdown completes
+      const countdownAction = (owner, enemy, logger) => {
+        if (action === 'add_attack') {
+          const amount = tier === 3 ? 12 : tier === 2 ? 6 : 3;
+          owner.addAtk(amount);
+          if (logger) logger(`${owner.name} gains ${amount} attack (${name} complete)`);
+        } else if (action === 'trigger_symphony') {
+          const amount = value?.amount || 1;
+          if (logger) logger(`${name} triggers Symphony ${amount} time(s)!`);
+          for (let i = 0; i < amount; i++) {
+            runEffects('symphony', owner, enemy, logger);
+          }
+        }
+        // Add more countdown actions as needed
+      };
+      
+      self.addCountdown(name, turns, tag, countdownAction);
+      if (log) log(`${self.name} starts a countdown effect (${turns} turns)`);
+    },
+    add_temp_attack_from_status: ({ self, key }) => {
+      const statusValue = self.statuses[key] || 0;
+      if (statusValue > 0) self.addTempAtk(statusValue);
+    },
+    add_status_to_enemy_from_stat: ({ self, other, key, stat }) => {
+      const statValue = self[stat] || 0;
+      if (statValue > 0) other.addStatus(key, statValue);
+    },
+    add_extra_strikes_to_enemy: ({ other, value }) => {
+      other.extraStrikes = (other.extraStrikes || 0) + value;
+    },
+    convert_stat_to_status: ({ self, log, fromStat, toStatus, value, multiplier }) => {
+      const mult = multiplier || 1;
+      let fromValue, maxConvert;
+      
+      switch (fromStat) {
+        case 'armor': fromValue = self.armor; break;
+        case 'attack': fromValue = self.atk; break;
+        case 'speed': fromValue = self.speed; break;
+        case 'health': fromValue = self.hp; break;
+        default: 
+          console.warn(`Unknown stat: ${fromStat}`);
+          return;
+      }
+      
+      maxConvert = Math.min(fromValue, value || 1);
+      if (maxConvert > 0) {
+        // Reduce the stat
+        switch (fromStat) {
+          case 'armor': self.armor -= maxConvert; break;
+          case 'attack': self.atk -= maxConvert; break;
+          case 'speed': self.speed -= maxConvert; break;
+          case 'health': self.hp -= maxConvert; break;
+        }
+        
+        // Add the status
+        const statusAmount = maxConvert * mult;
+        self.addStatus(toStatus, statusAmount);
+        if (log) log(`${self.name} converts ${maxConvert} ${fromStat} to ${statusAmount} ${toStatus}`);
+      }
+    },
+    convert_status_to_stat: ({ self, log, fromStatus, toStat, value, multiplier }) => {
+      const mult = multiplier || 1;
+      const statusValue = self.statuses[fromStatus] || 0;
+      const convertAmount = Math.min(statusValue, value || 1);
+      
+      if (convertAmount > 0) {
+        self.statuses[fromStatus] -= convertAmount;
+        const statAmount = convertAmount * mult;
+        
+        switch (toStat) {
+          case 'armor': self.addArmor(statAmount); break;
+          case 'attack': self.addAtk(statAmount); break;
+          case 'speed': self.speed += statAmount; break;
+          case 'health': self.heal(statAmount); break;
+          default: 
+            console.warn(`Unknown stat: ${toStat}`);
+        }
+        
+        if (log) log(`${self.name} converts ${convertAmount} ${fromStatus} to ${statAmount} ${toStat}`);
+      }
+    },
+    give_enemy_status_equal_to_stat: ({ self, other, log, status, stat }) => {
+      let statValue;
+      switch (stat) {
+        case 'armor': statValue = self.armor; break;
+        case 'attack': statValue = self.atk; break;
+        case 'speed': statValue = self.speed; break;
+        case 'health': statValue = self.hp; break;
+        default: 
+          console.warn(`Unknown stat: ${stat}`);
+          return;
+      }
+      
+      if (statValue > 0) {
+        other.addStatus(status, statValue);
+        if (log) log(`${other.name} gains ${statValue} ${status}`);
+      }
+    },
+    convert_armor_to_thorns: ({ self, log, value }) => {
+      const converted = Math.min(self.armor, value);
+      if (converted > 0) {
+        self.armor -= converted;
+        self.addStatus('thorns', converted * 2); // Convert 1 armor to 2 thorns
+        log(`${self.name} converts ${converted} armor to ${converted * 2} thorns`);
+      }
+    },
+    convert_random_status_to_poison: ({ self, log, value }) => {
+      const convertible = Object.keys(self.statuses || {}).filter(k => k !== 'poison' && (self.statuses[k] || 0) > 0);
+      if (convertible.length > 0) {
+        const keyToConvert = convertible[Math.floor(Math.random() * convertible.length)];
+        const convertAmount = Math.min(value || 1, self.statuses[keyToConvert]);
+        self.statuses[keyToConvert] = (self.statuses[keyToConvert] || 0) - convertAmount;
+        self.addStatus('poison', convertAmount);
+        log(`${self.name} converts ${convertAmount} ${keyToConvert} into ${convertAmount} poison`);
+      }
+    },
+    decrease_all_statuses: ({ self, log, value }) => {
+      const amount = value || 1;
+      for (const k of Object.keys(self.statuses || {})) {
+        if (self.statuses[k] && self.statuses[k] > 0) {
+          const decrease = Math.min(amount, self.statuses[k]);
+          self.statuses[k] -= decrease;
+          if (decrease > 0) log(`${self.name} decreases ${k} by ${decrease}`);
+        }
+      }
+    },
+    decrease_random_status: ({ self, log, value }) => {
+      const amount = value || 1;
+      const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
+      if (keys.length > 0) {
+        const key = keys[Math.floor(Math.random() * keys.length)];
+        const decrease = Math.min(amount, self.statuses[key]);
+        self.statuses[key] -= decrease;
+        if (decrease > 0) log(`${self.name} decreases ${key} by ${decrease}`);
+      }
     },
     add_extra_strikes: ({ self, log, value }) => {
-      self.flags.extraStrikes = (self.flags.extraStrikes || 0) + (value || 1);
-      log(`${self.name} gains ${value || 1} extra strike${(value || 1) > 1 ? 's' : ''}`);
+      const strikes = value || 1;
+      self.extraStrikes = (self.extraStrikes || 0) + strikes;
+      log(`${self.name} gains ${strikes} extra strike${strikes > 1 ? 's' : ''} this turn`);
     },
-    add_gold: ({ self, log, value }) => {
-      self.gold = (self.gold || 0) + (value || 1);
-      log(`${self.name} gains ${value || 1} gold`);
-    },
-    add_max_health: ({ self, log, value }) => {
-      self.hpMax += (value || 1);
-      log(`${self.name} gains ${value || 1} max health`);
-    },
-    add_speed: ({ self, log, value }) => {
-      self.speed = (self.speed || 0) + (value || 1);
-      log(`${self.name} gains ${value || 1} speed`);
-    },
-    add_status: ({ self, log, value, status }) => {
-      if (status) {
-        self.addStatus(status, value || 1);
-        log(`${self.name} gains ${value || 1} ${status}`);
+    cleanse_status_effects: ({ self, log, value }) => {
+      const amount = value || 1;
+      const statusesToCleanse = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
+      let cleansed = 0;
+      for (const status of statusesToCleanse) {
+        if (cleansed >= amount) break;
+        const reduction = Math.min(self.statuses[status], amount - cleansed);
+        self.statuses[status] -= reduction;
+        cleansed += reduction;
+        if (reduction > 0) log(`${self.name} cleanses ${reduction} ${status}`);
       }
     },
-    add_status_to_enemy: ({ other, log, value, status }) => {
-      if (status) {
-        other.addStatus(status, value || 1);
-        log(`${other.name} gains ${value || 1} ${status}`);
+    double_status: ({ self, other, log, value }) => {
+      const status = value.status || value;
+      const target = value.target === 'enemy' ? other : self;
+      const current = target.statuses[status] || 0;
+      if (current > 0) {
+        target.addStatus(status, current);
+        log(`${target.name}'s ${status} is doubled`);
       }
     },
-    add_status_to_enemy_from_stat: ({ self, other, log, stat, status }) => {
-      if (stat && status) {
-        const amount = self.getStat ? self.getStat(stat) : (self[stat] || 0);
-        if (amount > 0) {
-          other.addStatus(status, amount);
-          log(`${other.name} gains ${amount} ${status} (from ${self.name}'s ${stat})`);
+    apply_status_based_on_armor: ({ self, other, log, value }) => {
+      const threshold = value.threshold || 0;
+      const status = value.status;
+      const amount = value.amount || 1;
+      if (other.armor <= threshold) {
+        other.addStatus(status, amount);
+        log(`${other.name} gains ${amount} ${status} (armor <= ${threshold})`);
+      }
+    },
+    gain_temp_stats: ({ self, log, value }) => {
+      ['attack', 'health', 'armor', 'speed'].forEach(stat => {
+        if (value[stat]) {
+          const tempKey = `temp${stat.charAt(0).toUpperCase() + stat.slice(1)}`;
+          self[tempKey] = (self[tempKey] || 0) + value[stat];
+          log(`${self.name} gains ${value[stat]} temporary ${stat}`);
+        }
+      });
+    },
+    register_countdown: ({ self, log, value }) => {
+      // Register a countdown for data-driven effects
+      const name = value?.name || 'Effect';
+      const turns = value?.turns || 6;
+      const tag = value?.tag || 'Effect';
+      const tier = value?.tier || 1;
+      const action = value?.action || 'add_attack';
+      
+      // Create a function that will be called when countdown completes
+      const countdownAction = (owner, enemy, logger) => {
+        if (action === 'add_attack') {
+          const amount = tier === 3 ? (value?.diamond || 12) : tier === 2 ? (value?.gold || 6) : (value?.base || 3);
+          owner.addAtk(amount);
+          if (logger) logger(`${owner.name} gains ${amount} attack (${name || 'Countdown'} complete)`);
+        }
+        // Add more countdown actions as needed
+      };
+      
+      self.addCountdown(name, turns, tag, countdownAction);
+      if (log) log(`${self.name} starts a countdown effect (${turns} turns)`);
+    },
+    set_one_time_flag: ({ self, value, key }) => {
+      self.flags[key || value] = true;
+    },
+    add_status_on_enemy_gain_status: ({ self, other, log, value, key }) => {
+      // This is a complex trigger that needs special handling in the onGainStatus event
+      if (!self.flags[`${key}_triggered`]) {
+        other.addStatus(value.status, value.amount);
+        self.flags[`${key}_triggered`] = true;
+        log(`${other.name} gains ${value.amount} additional ${value.status} (${self.name})`);
+      }
+    },
+    reduce_damage_if_condition: ({ self, log, value }) => {
+      // Sets a flag for damage reduction; checked during strike processing
+      if (value.reduction) {
+        self.flags.damageReduction = (self.flags.damageReduction || 0) + value.reduction;
+        log(`${self.name} reduces incoming damage by ${value.reduction}`);
+      }
+    },
+    heal_if_condition: ({ self, log, value }) => {
+      const healed = self.heal(value);
+      if (healed > 0) log(`${self.name} restores ${healed} health`);
+    },
+      heal_loop: ({ self, log, value, count }) => {
+        const healAmount = value || 1;
+        const healCount = count || 5;
+        for (let i = 0; i < healCount; i++) {
+          const healed = self.heal(healAmount);
+          if (healed > 0) log(`${self.name} restores ${healed} health (tick ${i+1}/${healCount})`);
+        }
+      },
+    set_enraged_flag: ({ self, log }) => {
+      self.flags.winebottleEnraged = true;
+      log(`${self.name} becomes enraged`);
+    },
+    enraged_extra_strikes: ({ self, log, value }) => {
+      if (self.flags.winebottleEnraged) {
+        const strikes = value || 10;
+        self.addExtraStrikes(strikes);
+        self.flags.winebottleEnraged = false; // Consumed
+        log(`${self.name} enters a rage, gaining ${strikes} extra strikes`);
+      }
+    },
+    // LEGACY SPEED ACTION (use gain_stat with stat='speed' instead)
+    add_speed: ({ self, other, log, value }) => { 
+      const oldSpeed = self.speed || 0;
+      self.speed = oldSpeed + value; 
+      // Trigger onGainSpeed event for items that react to speed changes
+      runEffects('onGainSpeed', self, other, log, { amount: value, delta: value });
+    },
+    add_extra_strikes: ({ self, value }) => self.addExtraStrikes(value),
+    deal_damage: ({ self, other, value, target }) => {
+      const dmg = value || 1;
+      if (target === 'self') {
+        // Apply damage to self, respecting armor
+        const toArmor = Math.min(self.armor, dmg);
+        self.armor -= toArmor;
+        const toHp = dmg - toArmor;
+        if (toHp > 0) {
+          self.hp = Math.max(0, self.hp - toHp);
+        }
+      } else {
+        self.damageOther(dmg, other);
+      }
+    },
+    heal: ({ self, value }) => self.heal(value),
+    set_flag: ({ self, key, value }) => {
+      self.flags[key] = value;
+    },
+    steal_attack: ({ self, other, log, value }) => {
+      const steal = Math.min(value || 1, other.atk || 0);
+      if (steal > 0) {
+        other.atk -= steal;
+        self.addAtk(steal);
+        if (log) log(`${self.name} steals ${steal} attack from ${other.name}`);
+      }
+    },
+    deal_self_damage: ({ self, log, value }) => {
+      if (self.hp > 0) {
+        const damage = Math.min(value || 1, self.hp);
+        self.hp -= damage;
+        if (log) log(`${self.name} takes ${damage} damage`);
+      }
+    },
+    decrease_random_statuses_and_gain_thorns: ({ self, log, value }) => {
+      const amount = value || 2;
+      const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
+      let totalDecreased = 0;
+      
+      for (let i = 0; i < amount && keys.length > 0; i++) {
+        const idx = Math.floor(Math.random() * keys.length);
+        const key = keys[idx];
+        const decrease = Math.min(1, self.statuses[key]);
+        self.statuses[key] -= decrease;
+        totalDecreased += decrease;
+        if (decrease > 0 && log) log(`${self.name} decreases ${key} by ${decrease}`);
+        keys.splice(idx, 1);
+      }
+      
+      if (totalDecreased > 0) {
+        self.addStatus('thorns', totalDecreased);
+        if (log) log(`${self.name} gains ${totalDecreased} thorns`);
+      }
+    },
+    deal_damage_and_heal: ({ self, other, log, value }) => {
+      const damage = value || 3;
+      const healAmount = value || 3;
+      self.damageOther(damage, other);
+      const healed = self.heal(healAmount);
+      if (log) log(`${self.name} deals ${damage} damage and restores ${healed} health`);
+    },
+    decrease_all_countdowns: ({ self, log, value }) => {
+      const amount = value || 1;
+      if (typeof self.decAllCountdowns === 'function') {
+        self.decAllCountdowns(amount);
+        if (log) log(`${self.name} decreases all countdowns by ${amount}`);
+      }
+    },
+    halve_all_countdowns: ({ self, log }) => {
+      if (typeof self.halveCountdowns === 'function') {
+        self.halveCountdowns();
+        if (log) log(`${self.name} halves all countdowns`);
+      }
+    },
+    // LEGACY ACTION (use convert_status_to_stat with fromStatus='acid', toStat='attack' instead)
+    convert_acid_to_attack: ({ self, log, value }) => {
+      if ((self.statuses.acid || 0) > 0) {
+        self.statuses.acid -= 1;
+        const attackGain = value || 2;
+        self.addAtk(attackGain);
+        if (log) log(`${self.name} converts 1 acid into ${attackGain} attack`);
+      }
+    },
+    // LEGACY ACTION (use give_enemy_status_equal_to_stat with status='acid', stat='speed' instead)
+    give_enemy_acid_equal_to_speed: ({ self, other, log }) => {
+      if (self.speed > 0) {
+        other.addStatus('acid', self.speed);
+        if (log) log(`${other.name} gains ${self.speed} acid`);
+      }
+    },
+    invert_speed: ({ self, log }) => {
+      self.speed = (self.speed || 0) * -1;
+      if (log) log(`${self.name} inverts its speed.`);
+    },
+    remove_all_status_and_gain_armor: ({ self, log }) => {
+      let removedCount = 0;
+      if (self.statuses) {
+        for (const key in self.statuses) {
+          if (self.statuses[key] > 0) {
+            removedCount += self.statuses[key];
+            self.statuses[key] = 0;
+          }
         }
       }
+      if (removedCount > 0) {
+        self.armor += removedCount;
+        if (log) log(`${self.name} removes all status effects and gains ${removedCount} armor.`);
+      }
     },
-    add_strikes: ({ self, log, value }) => {
-      self.flags.additionalStrikes = (self.flags.additionalStrikes || 0) + (value || 1);
-      log(`${self.name} gains ${value || 1} additional strike${(value || 1) > 1 ? 's' : ''}`);
+    transfer_random_status_to_enemy: ({ self, other, value, log, tier }) => {
+      if (!self.statuses) return;
+      const keys = Object.keys(self.statuses).filter(k => (self.statuses[k] || 0) > 0);
+      if (keys.length > 0) {
+        const key = keys[Math.floor(Math.random() * keys.length)];
+        const amount = typeof value === 'object' ? getValueByTier(value, tier) : value;
+        const transfer = Math.min(self.statuses[key], amount);
+        self.statuses[key] -= transfer;
+        other.addStatus(key, transfer);
+        if (log) log(`${self.name} transfers ${transfer} ${key} to ${other.name}.`);
+      }
+    },
+    spend_speed_decrease_random_status: ({ self, log }) => {
+      if (!self.statuses || self.speed <= 0) return;
+      const keys = Object.keys(self.statuses).filter(k => (self.statuses[k] || 0) > 0);
+      if (keys.length > 0) {
+        self.speed -= 1;
+        const key = keys[Math.floor(Math.random() * keys.length)];
+        self.statuses[key] = Math.max(0, (self.statuses[key] || 0) - 1);
+        if (log) log(`${self.name} spends 1 speed to decrease ${key} by 1.`);
+      }
+    },
+    regain_base_armor: ({ self, log }) => {
+      if (self.baseArmor > 0) {
+        self.armor += self.baseArmor;
+        if (log) log(`${self.name} regains ${self.baseArmor} base armor.`);
+      }
+    },
+    convert_enemy_health_to_armor: ({ self, other, value, log }) => {
+      const converted = Math.floor(other.health * value);
+      if (converted > 0) {
+        other.health -= converted;
+        self.armor += converted;
+        if (log) log(`${self.name} converts ${converted} enemy health into armor.`);
+      }
+    },
+    lose_hp: ({ self, value, log }) => {
+      self.health = Math.max(0, self.health - value);
+      if (log) log(`${self.name} loses ${value} health.`);
+    },
+    give_status_deal_damage_per_stack: ({ self, other, log, value }) => {
+      const status = value.status;
+      const amount = value.amount || 1;
+      const damagePerStack = value.damagePerStack || 1;
+      
+      other.addStatus(status, amount);
+      const totalStacks = other.statuses[status] || 0;
+      const damage = totalStacks * damagePerStack;
+      
+      if (damage > 0) {
+        self.damageOther(damage);
+        log(`${other.name} gains ${amount} ${status} and takes ${damage} damage (${damagePerStack} per stack).`);
+      } else {
+        log(`${other.name} gains ${amount} ${status}.`);
+      }
+    },
+    add_status: ({ self, key, value }) => self.addStatus(key, value),
+      add_status_tiered: ({ self, log, key, baseTier, goldTier, diamondTier, tier }) => {
+        const amount = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
+        self.addStatus(key, amount);
+        log(`✨ ${self.name} gains ${amount} ${key}`);
+      },
+    add_status_to_enemy: ({ other, key, value }) => other.addStatus(key, value),
+      add_status_to_enemy_tiered: ({ other, log, key, baseTier, goldTier, diamondTier, tier }) => {
+        const amount = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
+        other.addStatus(key, amount);
+        log(`💀 ${other.name} gains ${amount} ${key}`);
+      },
+    remove_status: ({ self, key, value }) => {
+      const currentAmount = self.statuses[key] || 0;
+      if (currentAmount > 0) {
+        const toRemove = Math.min(value || 1, currentAmount);
+        self.addStatus(key, -toRemove);
+        return toRemove;
+      }
+      return 0;
+    },
+    remove_all_status: ({ self, key, log }) => {
+      const currentAmount = self.statuses[key] || 0;
+      if (currentAmount > 0) {
+        self.addStatus(key, -currentAmount);
+        if (log) log(`${self.name} removes all ${key} (${currentAmount})`);
+        return currentAmount;
+      }
+      return 0;
+    },
+    remove_random_status: ({ self, value }) => {
+      const statusKeys = Object.keys(self.statuses).filter(k => self.statuses[k] > 0);
+      if (statusKeys.length > 0) {
+        const randomKey = statusKeys[Math.floor(Math.random() * statusKeys.length)];
+        const currentAmount = self.statuses[randomKey];
+        const toRemove = Math.min(value || 1, currentAmount);
+        self.addStatus(randomKey, -toRemove);
+        return { key: randomKey, amount: toRemove };
+      }
+      return null;
+    },
+    damage_enemy: ({ other, value, log }) => {
+      if (other && typeof other.takeDamage === 'function') {
+        other.takeDamage(value || 1);
+        if (log) log(`Direct damage: ${other.name} takes ${value || 1} damage`);
+      }
+    },
+    double_attack: ({ self, log }) => {
+      self.attack = Math.max(0, self.attack * 2);
+      if (log) log(`${self.name}'s attack is doubled`);
+    },
+    add_max_health: ({ self, value, log }) => {
+      const amount = value || 1;
+      self.hpMax += amount;
+      self.hp += amount; // Also restore the health gained
+      if (log) log(`${self.name} gains ${amount} max health`);
+    },
+    convert_health_to_armor: ({ self, percentage, log }) => {
+      const healthToConvert = Math.floor(self.hp * percentage);
+      if (healthToConvert > 0) {
+        self.hp -= healthToConvert;
+        self.armor += healthToConvert;
+        if (log) log(`${self.name} converts ${healthToConvert} health to armor`);
+      }
+    },
+    deal_damage_to_enemy: ({ self, other, value, log }) => {
+      const damage = value || 1;
+      other.hp -= damage;
+      if (log) log(`${other.name} takes ${damage} damage`);
+    },
+    restore_health: ({ self, value, log }) => {
+      const amount = value || 1;
+      const actualRestore = Math.min(amount, self.hpMax - self.hp);
+      self.hp += actualRestore;
+      if (log) log(`${self.name} restores ${actualRestore} health`);
+    },
+    set_armor: ({ self, value, log }) => {
+      self.armor = value || 0;
+      if (log) log(`${self.name}'s armor is set to ${self.armor}`);
+    },
+    conditional_damage_to_enemy: ({ self, other, baseDamage, doubleIfNoArmor, log }) => {
+      let damage = baseDamage || 1;
+      if (doubleIfNoArmor && other.armor === 0) {
+        damage *= 2;
+      }
+      other.hp -= damage;
+      if (log) log(`${other.name} takes ${damage} damage${doubleIfNoArmor && other.armor === 0 ? ' (doubled for no armor)' : ''}`);
+    },
+    add_strikes: ({ self, value, log }) => {
+      const strikes = value || 1;
+      self.additionalStrikes = (self.additionalStrikes || 0) + strikes;
+      if (log) log(`${self.name} gains ${strikes} additional strikes`);
     },
     add_strikes_equal_to_speed: ({ self, log }) => {
-      const strikes = self.speed || 0;
-      if (strikes > 0) {
-        self.flags.additionalStrikes = (self.flags.additionalStrikes || 0) + strikes;
-        log(`${self.name} gains ${strikes} additional strikes equal to speed`);
+      const strikes = self.speed;
+      self.additionalStrikes = (self.additionalStrikes || 0) + strikes;
+      if (log) log(`${self.name} gains ${strikes} additional strikes (equal to speed)`);
+    },
+    transfer_all_statuses_to_enemy: ({ self, other, log }) => {
+      const statuses = Object.keys(self.statuses || {});
+      let transferred = 0;
+      statuses.forEach(status => {
+        if (self.statuses[status] > 0) {
+          other.statuses[status] = (other.statuses[status] || 0) + self.statuses[status];
+          self.statuses[status] = 0;
+          transferred++;
+        }
+      });
+      if (log) log(`${self.name} transfers all status effects to ${other.name}`);
+    },
+    increase_next_bomb_damage: ({ self, value, log }) => {
+      const increase = value || 1;
+      self.nextBombDamageBonus = (self.nextBombDamageBonus || 0) + increase;
+      if (log) log(`Next bomb damage increased by ${increase}`);
+    },
+    riptide_per_negative_attack: ({ self, other, multiplier, log }) => {
+      const negativeAttack = Math.max(0, -self.attack); // Only count negative attack
+      const riptideAmount = negativeAttack * (multiplier || 1);
+      if (riptideAmount > 0) {
+        other.statuses.riptide = (other.statuses.riptide || 0) + riptideAmount;
+        if (log) log(`${other.name} gains ${riptideAmount} riptide (${negativeAttack} negative attack × ${multiplier})`);
       }
     },
-
-    // === Gain Actions ===
-    gainArmor: ({ self, log, value }) => {
-      self.addArmor(value || 1);
-      log(`${self.name} gains ${value || 1} armor`);
+    remove_gold: ({ self, value }) => {
+      const currentGold = self.gold || 0;
+      if (currentGold > 0) {
+        const toRemove = Math.min(value || 1, currentGold);
+        self.addGold(-toRemove);
+        return toRemove;
+      }
+      return 0;
     },
-    gainAttack: ({ self, log, value }) => {
-      self.addAttack(value || 1);
-      log(`${self.name} gains ${value || 1} attack`);
-    },
-    gainGold: ({ self, log, value }) => {
-      self.gold = (self.gold || 0) + (value || 1);
-      log(`${self.name} gains ${value || 1} gold`);
-    },
-    gain_armor: ({ self, log, value }) => {
-      self.addArmor(value || 1);
-      log(`${self.name} gains ${value || 1} armor`);
-    },
-    gain_attack: ({ self, log, value }) => {
-      self.addAttack(value || 1);
-      log(`${self.name} gains ${value || 1} attack`);
-    },
-    gain_attack_equal_to_speed: ({ self, log }) => {
-      const attack = self.speed || 0;
-      if (attack > 0) {
-        self.addAttack(attack);
-        log(`${self.name} gains ${attack} attack equal to speed`);
+    trigger_symphony: ({ self, other, log, value }) => {
+      // Trigger Symphony effects from all equipped instruments
+      const repeatCount = value || 1;
+      log(`Symphony triggered ${repeatCount} time(s)!`);
+      
+      for (let i = 0; i < repeatCount; i++) {
+        runEffects('symphony', self, other, log);
       }
     },
-    gain_speed: ({ self, log, value }) => {
-      self.speed = (self.speed || 0) + (value || 1);
-      log(`${self.name} gains ${value || 1} speed`);
+      reduce_enemy_attack: ({ self, other, log, value }) => {
+        const reduction = value || 1;
+        const before = other.atk || 0;
+        if (before > 0) {
+          other.atk = Math.max(0, before - reduction);
+          log(`${other.name} loses ${reduction} attack`);
+        }
+      },
+    
+    // COMPLEX/CUSTOM ACTIONS
+    // These can be added for effects that are too complex for simple key-value pairs.
+    // Example: 'action': 'custom_brittlebark_buckler'
+      leather_belt_boost: ({ self, log, tier }) => {
+        const base = self.baseArmor || 0;
+        if (base === 0) {
+          const old = self.hpMax || 0;
+          const factor = tier === 3 ? 8 : tier === 2 ? 4 : 2; // Diamond: x8, Gold: x4, Base: x2
+          const newMax = Math.max(old, old * factor);
+          const extra = newMax - old;
+          self.hpMax = newMax;
+          // Do not auto-heal; keep current hp where it is
+          if (extra > 0) log(`${self.name}'s max health increases by ${extra} (Leather Belt${tier ? ` tier ${tier}` : ''})`);
+        }
+      },
+        spend_speed_gain_temp_attack: ({ self, log, value }) => {
+          const maxSpend = value?.maxSpend || 2;
+          const attackGain = value?.attackGain || 4;
+          const spent = Math.min(maxSpend, self.speed || 0);
+          if (spent > 0) {
+            self.speed = (self.speed || 0) - spent;
+            log(`${self.name} spends ${spent} speed`);
+            self.addTempAtk(attackGain);
+          }
+        },
+          muscle_potion_strike_counter: ({ self, log, baseTier, goldTier, diamondTier, tier }) => {
+            self._mpStrikes = (self._mpStrikes || 0) + 1;
+            if (self._mpStrikes % 3 === 0) {
+              const inc = tier === 3 ? diamondTier : tier === 2 ? goldTier : baseTier;
+              self.addAtk(inc);
+              log(`${self.name} gains ${inc} attack (every 3rd strike)`);
+            }
+          },
+            plated_shield_double: ({ self, log, amount }) => {
+              if (!self._platedUsed && amount > 0) {
+                self.armor = (self.armor || 0) + amount;
+                self._platedUsed = true;
+                log(`${self.name} doubles armor gain (+${amount})`);
+              }
+            },
+              armor_equal_to_health: ({ self, log }) => {
+                if ((self.baseArmor || 0) === 0) {
+                  const gain = self.hp || 0;
+                  if (gain > 0) {
+                    self.addArmor(gain);
+                    log(`${self.name} gains ${gain} armor (equal to current health)`);
+                  }
+                }
+              },
+                convert_acid_to_attack: ({ self, log, value }) => {
+                  const attackGain = value || 2;
+                  if ((self.statuses?.acid || 0) > 0) {
+                    self.statuses.acid = (self.statuses.acid || 0) - 1;
+                    self.addTempAtk(attackGain);
+                    log(`${self.name} converts 1 acid into ${attackGain} attack`);
+                  }
+                },
+                  damage_and_thorns_loop: ({ self, other, log, count, damage, thorns }) => {
+                    const loops = count || 2;
+                    const dmg = damage || 1;
+                    const thornGain = thorns || 1;
+                    for (let i = 0; i < loops; i++) {
+                      other.hp = Math.max(0, (other.hp || 0) - dmg);
+                      self.addStatus('thorns', thornGain);
+                      log(`${self.name} deals ${dmg} damage and gains ${thornGain} thorns`);
+                    }
+                  },
+    // NEW ACTIONS for pending migrations
+    multiply_enemy_attack: ({ other, log, value }) => {
+      const factor = value || 2;
+      other.atk = (other.atk || 0) * factor;
+      log(`${other.name}'s attack multiplied by ${factor}`);
     },
-    gain_stat: ({ self, log, value, stat }) => {
-      if (stat === 'armor') {
-        self.addArmor(value || 1);
-        log(`${self.name} gains ${value || 1} armor`);
-      } else if (stat === 'attack') {
-        self.addAttack(value || 1);
-        log(`${self.name} gains ${value || 1} attack`);
-      } else if (stat === 'speed') {
-        self.speed = (self.speed || 0) + (value || 1);
-        log(`${self.name} gains ${value || 1} speed`);
-      }
+    add_armor_to_enemy: ({ other, value, log }) => {
+      other.addArmor(value);
+      log(`${other.name} gains ${value} armor`);
     },
-    gain_temp_attack: ({ self, log, value }) => {
-      self.tempAtk = (self.tempAtk || 0) + (value || 1);
-      log(`${self.name} gains ${value || 1} temporary attack`);
+    stun_enemy_for_turns: ({ other, log, value }) => {
+      other.addStatus('stun', value || 1);
+      log(`${other.name} is stunned for ${value || 1} turn${value > 1 ? 's' : ''}`);
     },
-    gain_strikes: ({ self, log, value }) => {
-      self.flags.additionalStrikes = (self.flags.additionalStrikes || 0) + (value || 1);
-      log(`${self.name} gains ${value || 1} additional strike${(value || 1) > 1 ? 's' : ''}`);
-    },
-
-    // === Damage Actions ===
-    damage_enemy: ({ other, log, value }) => {
-      const damage = value || 1;
-      other.hp = Math.max(0, (other.hp || 0) - damage);
-      log(`${other.name} takes ${damage} damage`);
-    },
-    dealBonusDamage: ({ self, other, log, value }) => {
-      const bonus = value || 1;
-      other.hp = Math.max(0, (other.hp || 0) - bonus);
-      log(`${self.name} deals ${bonus} bonus damage`);
+    stun_self_for_turns: ({ self, log, value }) => {
+      self.addStatus('stun', value || 1);
+      log(`${self.name} is stunned for ${value || 1} turn${value > 1 ? 's' : ''}`);
     },
     deal_damage_multiple_times: ({ self, other, log, value }) => {
       const damage = value?.damage || 1;
@@ -188,627 +730,336 @@
         log(`${self.name} deals ${damage} damage (${i+1}/${times})`);
       }
     },
+    set_double_attack_on_full_health: ({ self, log }) => {
+      // Sets a flag for conditional double attack
+      self.flags.doubleAttackOnFullHealth = true;
+      log(`${self.name} gains double attack when at full health`);
+    },
+    heal_to_full_if_no_base_armor: ({ self, log }) => {
+      if ((self.baseArmor || 0) === 0) {
+        const healed = self.heal(self.hpMax - self.hp);
+        if (healed > 0) log(`${self.name} restores health to full (${healed} healed)`);
+      }
+    },
+    spend_speed_to_deal_damage: ({ self, other, log, value }) => {
+      const speedCost = value?.speedCost || 1;
+      const damage = value?.damage || 2;
+      if (self.speed >= speedCost) {
+        self.speed -= speedCost;
+        other.hp = Math.max(0, (other.hp || 0) - damage);
+        log(`${self.name} spends ${speedCost} speed to deal ${damage} damage`);
+      }
+    },
+    petrified_edge_stun_self: ({ self, log }) => {
+      self.addStatus('stun', 1);
+      log(`🗿 ${self.name}'s petrified edge stuns self for 1 turn`);
+    },
+    plated_edge_speed_to_armor: ({ self, log }) => {
+      if (self.getStatus('speed') >= 1) {
+        self.removeStatus('speed', 1);
+        self.armor += 3;
+        log(`🏃‍♂️➡️🛡️ ${self.name}'s plated edge converts 1 speed to 3 armor`);
+      }
+    },
+    jagged_edge_thorns_damage: ({ self, log }) => {
+      self.addStatus('thorns', 2);
+      self.hp = Math.max(1, self.hp - 1);
+      log(`🗡️ ${self.name}'s jagged edge gains 2 thorns and takes 1 damage`);
+    },
+    gilded_edge_gold: ({ self, log }) => {
+      if ((self.gold || 0) < 10) {
+        self.gold = (self.gold || 0) + 1;
+        log(`💰 ${self.name}'s gilded edge gains 1 gold`);
+      }
+    },
+    featherweight_edge_convert: ({ self, log }) => {
+      if (self.speed >= 1) {
+        self.speed -= 1;
+        self.tempAtk += 1;
+        log(`🪶 ${self.name}'s featherweight edge converts 1 speed to 1 attack`);
+      }
+    },
+    whirlpool_edge_strikes: ({ self, other, log, value }) => {
+      // Track strikes for whirlpool edge (every 3 strikes = riptide)
+      self.whirlpoolStrikes = (self.whirlpoolStrikes || 0) + 1;
+      if (self.whirlpoolStrikes >= 3) {
+        self.whirlpoolStrikes = 0;
+        other.addStatus('riptide', 1);
+        log(`🌊 ${self.name}'s whirlpool edge gives ${other.name} 1 riptide (3 strikes)`);
+      }
+    },
+    gain_strikes: ({ self, log, value }) => {
+      self.flags.additionalStrikes = (self.flags.additionalStrikes || 0) + (value || 1);
+      log(`${self.name} gains ${value || 1} additional strike${value > 1 ? 's' : ''}`);
+    },
+    spend_armor_for_speed_and_attack: ({ self, log, value }) => {
+      const armorCost = value?.armorCost || 2;
+      const speedGain = value?.speedGain || 3;
+      const attackGain = value?.attackGain || 1;
+      if (self.armor >= armorCost) {
+        self.armor -= armorCost;
+        self.speed += speedGain;
+        self.atk += attackGain;
+        log(`${self.name} spends ${armorCost} armor to gain ${speedGain} speed and ${attackGain} attack`);
+      }
+    },
+    give_self_and_enemy_status: ({ self, other, log, value }) => {
+      const status = value?.status || 'freeze';
+      const amount = value?.amount || 1;
+      self.addStatus(status, amount);
+      other.addStatus(status, amount);
+      log(`${self.name} gives ${amount} ${status} to self and enemy`);
+    },
+    disable_striking: ({ self, log }) => {
+      self.flags.cannotStrike = true;
+      log(`${self.name} cannot strike`);
+    },
+    gain_thorns_equal_to_attack: ({ self, log }) => {
+      const thornsGain = self.atk || 0;
+      if (thornsGain > 0) {
+        self.addStatus('thorns', thornsGain);
+        log(`${self.name} gains ${thornsGain} thorns`);
+      }
+    },
+    gain_thorns_per_armor_lost: ({ self, log, value, armorLost }) => {
+      const multiplier = value || 1;
+      const thornsGain = (armorLost || 0) * multiplier;
+      if (thornsGain > 0) {
+        self.addStatus('thorns', thornsGain);
+        log(`${self.name} gains ${thornsGain} thorns (${multiplier} per armor lost)`);
+      }
+    },
+    // LEGACY ACTIONS (for backward compatibility - use generic actions instead)
+    gain_thorns: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.addStatus('thorns', amount);
+      log(`🌹 ${self.name} gains ${amount} thorns`);
+    },
+    gain_armor: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.addArmor(amount);
+      log(`🛡️ ${self.name} gains ${amount} armor`);
+    },
+    lose_speed: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.speed = Math.max(0, self.speed - amount);
+      log(`${self.name} loses ${amount} speed`);
+    },
+    heal_self: ({ self, log, value }) => {
+      const amount = value || 1;
+      const healed = self.heal(amount);
+      if (healed > 0) log(`💚 ${self.name} restores ${healed} health`);
+    },
+    heal_to_full: ({ self, log }) => {
+      const healed = self.heal(self.hpMax - self.hp);
+      if (healed > 0) log(`${self.name} restores to full health`);
+    },
+    set_health_to: ({ self, log, value }) => {
+      const targetHealth = value || 1;
+      if (self.hp > targetHealth) {
+        const lost = self.hp - targetHealth;
+        self.hp = targetHealth;
+        log(`${self.name} loses ${lost} health`);
+      } else if (self.hp < targetHealth) {
+        const gained = self.heal(targetHealth - self.hp);
+        if (gained > 0) log(`${self.name} gains ${gained} health`);
+      }
+    },
+    remove_enemy_armor: ({ self, other, log }) => {
+      const removed = other.armor;
+      if (removed > 0) {
+        other.armor = 0;
+        log(`${self.name} removes all ${removed} of ${other.name}'s armor`);
+      }
+    },
+    give_enemy_armor: ({ self, other, log, value }) => {
+      const amount = value || 1;
+      other.armor += amount;
+      log(`${self.name} gives ${other.name} ${amount} armor`);
+    },
+    gain_attack_equal_to_speed: ({ self, log }) => {
+      const speedGain = self.speed || 0;
+      if (speedGain > 0) {
+        self.atk += speedGain;
+        log(`${self.name} gains ${speedGain} attack equal to speed`);
+      }
+    },
+    transfer_status_to_enemy: ({ self, other, log, value }) => {
+      const status = value?.status || 'poison';
+      const amount = value?.amount || 1;
+      const currentAmount = self.statuses[status] || 0;
+      const actualTransfer = Math.min(amount, currentAmount);
+      if (actualTransfer > 0) {
+        self.statuses[status] -= actualTransfer;
+        other.addStatus(status, actualTransfer);
+        log(`${self.name} transfers ${actualTransfer} ${status} to ${other.name}`);
+      }
+    },
+    set_max_health_to_enemy: ({ self, other, log }) => {
+      if (self.hpMax < other.hpMax) {
+        self.hpMax = other.hpMax;
+        log(`${self.name} sets max health to ${other.hpMax}`);
+      }
+    },
+    gain_armor_equal_to_lost_health: ({ self, log }) => {
+      const lostHealth = self.hpMax - self.hp;
+      if (lostHealth > 0) {
+        self.addArmor(lostHealth);
+        log(`${self.name} gains ${lostHealth} armor (equal to lost health)`);
+      }
+    },
+    gain_armor_per_tagged_item: ({ self, log, value }) => {
+      const tag = value?.tag || 'Stone';
+      const armorPerItem = value?.armor_per_item || 3;
+      // This will need to be implemented by the simulation engine
+      // as it needs access to the item tagging system
+      const stoneItems = self.countItemsByTag(tag);
+      const armorGain = stoneItems * armorPerItem;
+      if (armorGain > 0) {
+        self.addArmor(armorGain);
+        log(`${self.name} gains ${armorGain} armor (${armorPerItem} per ${tag} item)`);
+      }
+    },
+    take_damage: ({ self, log, value }) => {
+      const amount = value || 1;
+      const damaged = self.damage(amount);
+      if (damaged > 0) log(`${self.name} takes ${damaged} damage`);
+    },
+    steal_armor: ({ self, other, log, value }) => {
+      const amount = value || 1;
+      const stolen = Math.min(amount, other.armor);
+      if (stolen > 0) {
+        other.armor = Math.max(0, other.armor - stolen);
+        self.addArmor(stolen);
+        log(`${self.name} steals ${stolen} armor from ${other.name}`);
+      }
+    },
+    // LEGACY STATUS ACTION (use gain_status instead)
+    gain_poison: ({ self, log, value }) => {
+      const amount = value || 1;
+      self.addStatus('poison', amount);
+      log(`${self.name} gains ${amount} poison`);
+    },
+    add_armor_from_enemy_armor: ({ self, other, log, value }) => {
+      const multiplier = value || 1;
+      const enemyArmor = other.armor || 0;
+      const armorGain = enemyArmor * multiplier;
+      if (armorGain > 0) {
+        self.addArmor(armorGain);
+        log(`${self.name} gains ${armorGain} armor (from enemy's ${enemyArmor} armor)`);
+      }
+    },
+    deal_damage_per_tome: ({ self, other, log, value, bonus }) => {
+      const baseDamage = value || 2;
+      const bonusPerTome = bonus || 1;
+      
+      // Count tome items
+      const items = self.items || [];
+      const tomeCount = items.filter(item => {
+        const itemData = window.RAW_DATA[item] || {};
+        const tags = itemData.tags || [];
+        return tags.includes('Tome');
+      }).length;
+      
+      const totalDamage = baseDamage + (tomeCount * bonusPerTome);
+      other.hp = Math.max(0, (other.hp || 0) - totalDamage);
+      log(`🔥 ${self.name} deals ${totalDamage} damage (${baseDamage} base + ${tomeCount} tomes × ${bonusPerTome})`);
+    },
+    spend_speed: ({ self, log, value }) => {
+      const amount = value || 1;
+      if (self.speed >= amount) {
+        self.speed -= amount;
+        log(`⚡ ${self.name} spends ${amount} speed`);
+        return true;
+      }
+      log(`⚡ ${self.name} doesn't have enough speed to spend ${amount}`);
+      return false;
+    },
+    give_enemy_status: ({ self, other, log, status, value }) => {
+      const amount = value || 1;
+      const statusType = status || 'poison';
+      other.addStatus(statusType, amount);
+      log(`🧪 ${self.name} gives ${other.name} ${amount} ${statusType}`);
+    },
+    // BOMB-SPECIFIC ACTIONS
+    retrigger_random_bomb: ({ self, other, log }) => {
+      // Find all bomb items in inventory
+      const bombItems = self.items.filter(item => {
+        const itemData = window.RAW_DATA[item] || {};
+        const tags = (itemData.tags || []).concat(ITEM_TAGS[item] || []);
+        return tags.includes('Bomb') || (itemData.name && itemData.name.toLowerCase().includes('bomb'));
+      });
+      
+      if (bombItems.length > 0) {
+        const randomBomb = bombItems[Math.floor(Math.random() * bombItems.length)];
+        log(`${self.name} retriggers ${randomBomb}!`);
+        // Trigger the bomb's effects
+        runEffects('battleStart', self, other, log, { sourceItem: randomBomb });
+      } else {
+        log(`${self.name} tries to retrigger a bomb, but has no bombs!`);
+      }
+    },
+    trigger_bomb_multiple_times: ({ self, other, log, value }) => {
+      const times = value?.times || 2;
+      log(`${self.name} triggers bomb effects ${times} times!`);
+      for (let i = 0; i < times; i++) {
+        // This would trigger all bomb effects multiple times
+        runEffects('bombTrigger', self, other, log, { iteration: i + 1 });
+      }
+    },
+    increase_bomb_damage: ({ self, log, value }) => {
+      const amount = value || 1;
+      // Set a flag that other bomb damage calculations can check
+      self.flags.bombDamageBonus = (self.flags.bombDamageBonus || 0) + amount;
+      log(`${self.name}'s bomb damage increased by ${amount} permanently`);
+    },
+    increase_next_bomb_damage: ({ self, log, value }) => {
+      const amount = value || 1;
+      // Set a flag for the next bomb only
+      self.flags.nextBombDamageBonus = (self.flags.nextBombDamageBonus || 0) + amount;
+      log(`${self.name}'s next bomb damage increased by ${amount}`);
+    },
+    spend_speed: ({ self, log, value }) => {
+      const speedCost = value || 1;
+      if (self.speed >= speedCost) {
+        self.speed -= speedCost;
+        log(`${self.name} spends ${speedCost} speed`);
+        return true;
+      } else {
+        log(`${self.name} doesn't have enough speed to spend ${speedCost}`);
+        return false;
+      }
+    },
+    decrease_random_status: ({ self, other, log, value }) => {
+      const amount = value || 1;
+      const target = other || self;
+      const statuses = Object.keys(target.statuses).filter(key => target.statuses[key] > 0);
+      
+      if (statuses.length > 0) {
+        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+        const removed = Math.min(target.statuses[randomStatus], amount);
+        target.statuses[randomStatus] -= removed;
+        if (target.statuses[randomStatus] <= 0) {
+          delete target.statuses[randomStatus];
+        }
+        log(`${target.name} loses ${removed} ${randomStatus}`);
+        return { status: randomStatus, amount: removed };
+      } else {
+        log(`${target.name} has no status to decrease`);
+        return null;
+      }
+    },
+    deal_damage_when_status_decreased: ({ self, other, log, value }) => {
+      const damage = value || 1;
+      // This would be triggered when decrease_random_status runs
+      other.hp = Math.max(0, (other.hp || 0) - damage);
+      log(`${self.name} deals ${damage} damage when status decreased`);
+    },
     deal_damage_to_enemy: ({ self, other, log, value }) => {
       const damage = value || 1;
       other.hp = Math.max(0, (other.hp || 0) - damage);
       log(`${self.name} deals ${damage} damage to ${other.name}`);
     },
-    deal_damage_when_status_decreased: ({ self, other, log, value }) => {
-      const damage = value || 1;
-      other.hp = Math.max(0, (other.hp || 0) - damage);
-      log(`${self.name} deals ${damage} damage when status decreased`);
-    },
-    conditional_damage_to_enemy: ({ self, other, log, value, condition }) => {
-      // Check condition if provided
-      if (condition && typeof checkCondition === 'function' && !checkCondition(condition, { self, other, log })) return;
-      const damage = value || 1;
-      other.hp = Math.max(0, (other.hp || 0) - damage);
-      log(`${self.name} deals ${damage} conditional damage to ${other.name}`);
-    },
-    take_damage: ({ self, log, value }) => {
-      const damage = value || 1;
-      self.hp = Math.max(0, self.hp - damage);
-      log(`${self.name} takes ${damage} damage`);
-    },
-
-    // === Heal Actions ===
-    heal_to_full: ({ self, log }) => {
-      const healed = self.heal(self.hpMax - self.hp);
-      if (healed > 0) log(`${self.name} heals to full (${healed} healed)`);
-    },
-    healToFull: ({ self, log }) => {
-      const healed = self.heal(self.hpMax - self.hp);
-      if (healed > 0) log(`${self.name} heals to full (${healed} healed)`);
-    },
-    healOrArmor: ({ self, log, value }) => {
-      const amount = value || 1;
-      if (self.hp < self.hpMax) {
-        const healed = self.heal(amount);
-        if (healed > 0) log(`${self.name} heals ${healed}`);
-      } else {
-        self.addArmor(amount);
-        log(`${self.name} gains ${amount} armor`);
-      }
-    },
-    healEqualToThornsLost: ({ self, log, value }) => {
-      const thornsLost = value || 0;
-      if (thornsLost > 0) {
-        const healed = self.heal(thornsLost);
-        if (healed > 0) log(`${self.name} heals ${healed} equal to thorns lost`);
-      }
-    },
-    restore_health: ({ self, log, value }) => {
-      const healed = self.heal(value || 1);
-      if (healed > 0) log(`${self.name} restores ${healed} health`);
-    },
-
-    // === Status Management Actions ===
-    remove_status: ({ self, log, value, status }) => {
-      if (status) {
-        const removed = self.removeStatus ? self.removeStatus(status, value || 1) : 0;
-        if (removed > 0) log(`${self.name} loses ${removed} ${status}`);
-      }
-    },
-    remove_all_status: ({ self, log }) => {
-      const statuses = Object.keys(self.statuses || {});
-      statuses.forEach(status => {
-        self.statuses[status] = 0;
-      });
-      if (statuses.length > 0) log(`${self.name} loses all status effects`);
-    },
-    remove_all_status_and_gain_armor: ({ self, log }) => {
-      const statuses = Object.keys(self.statuses || {});
-      let totalArmor = 0;
-      statuses.forEach(status => {
-        totalArmor += self.statuses[status] || 0;
-        self.statuses[status] = 0;
-      });
-      if (totalArmor > 0) {
-        self.addArmor(totalArmor);
-        log(`${self.name} loses all status effects and gains ${totalArmor} armor`);
-      }
-    },
-    remove_random_status: ({ self, log }) => {
-      const statuses = Object.keys(self.statuses || {}).filter(s => (self.statuses[s] || 0) > 0);
-      if (statuses.length > 0) {
-        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-        const removed = self.removeStatus ? self.removeStatus(randomStatus, 1) : 0;
-        if (removed > 0) log(`${self.name} loses 1 ${randomStatus}`);
-      }
-    },
-    decrease_random_status: ({ self, log }) => {
-      const statuses = Object.keys(self.statuses || {}).filter(s => (self.statuses[s] || 0) > 0);
-      if (statuses.length > 0) {
-        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-        const removed = self.removeStatus ? self.removeStatus(randomStatus, 1) : 0;
-        if (removed > 0) log(`${self.name} decreases 1 ${randomStatus}`);
-      }
-    },
-    decreaseRandomStatus: ({ self, log }) => {
-      const statuses = Object.keys(self.statuses || {}).filter(s => (self.statuses[s] || 0) > 0);
-      if (statuses.length > 0) {
-        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-        const removed = self.removeStatus ? self.removeStatus(randomStatus, 1) : 0;
-        if (removed > 0) log(`${self.name} decreases 1 ${randomStatus}`);
-      }
-    },
-    decreaseRandomStatuses: ({ self, log, value }) => {
-      const count = value || 1;
-      for (let i = 0; i < count; i++) {
-        const statuses = Object.keys(self.statuses || {}).filter(s => (self.statuses[s] || 0) > 0);
-        if (statuses.length > 0) {
-          const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-          const removed = self.removeStatus ? self.removeStatus(randomStatus, 1) : 0;
-          if (removed > 0) log(`${self.name} decreases 1 ${randomStatus} (${i+1}/${count})`);
-        }
-      }
-    },
-    decrease_all_statuses: ({ self, log }) => {
-      const statuses = Object.keys(self.statuses || {});
-      let decreased = false;
-      statuses.forEach(status => {
-        if ((self.statuses[status] || 0) > 0) {
-          self.statuses[status] = Math.max(0, self.statuses[status] - 1);
-          decreased = true;
-        }
-      });
-      if (decreased) log(`${self.name} decreases all status effects by 1`);
-    },
-    decrease_all_countdowns: ({ self, log }) => {
-      const statuses = Object.keys(self.statuses || {});
-      let decreased = false;
-      statuses.forEach(status => {
-        if ((self.statuses[status] || 0) > 0) {
-          self.statuses[status] = Math.max(0, self.statuses[status] - 1);
-          decreased = true;
-        }
-      });
-      if (decreased) log(`${self.name} decreases all countdowns by 1`);
-    },
-
-    // === Enemy Actions ===
-    remove_enemy_armor: ({ other, log, value }) => {
-      const removed = Math.min(other.armor || 0, value || 1);
-      other.armor = Math.max(0, (other.armor || 0) - removed);
-      if (removed > 0) log(`${other.name} loses ${removed} armor`);
-    },
-    give_enemy_armor: ({ other, log, value }) => {
-      other.addArmor(value || 1);
-      log(`${other.name} gains ${value || 1} armor`);
-    },
-    stun_enemy: ({ other, log, value }) => {
-      other.addStatus('stun', value || 1);
-      log(`${other.name} is stunned for ${value || 1} turn${(value || 1) > 1 ? 's' : ''}`);
-    },
-    stunEnemy: ({ other, log, value }) => {
-      other.addStatus('stun', value || 1);
-      log(`${other.name} is stunned for ${value || 1} turn${(value || 1) > 1 ? 's' : ''}`);
-    },
-    stunSelf: ({ self, log, value }) => {
-      self.addStatus('stun', value || 1);
-      log(`${self.name} is stunned for ${value || 1} turn${(value || 1) > 1 ? 's' : ''}`);
-    },
-    stun_self: ({ self, log, value }) => {
-      self.addStatus('stun', value || 1);
-      log(`${self.name} is stunned for ${value || 1} turn${(value || 1) > 1 ? 's' : ''}`);
-    },
-    stealEnemySpeed: ({ self, other, log, value }) => {
-      const speedToSteal = Math.min(other.speed || 0, value || 1);
-      if (speedToSteal > 0) {
-        other.speed = (other.speed || 0) - speedToSteal;
-        self.speed = (self.speed || 0) + speedToSteal;
-        log(`${self.name} steals ${speedToSteal} speed from ${other.name}`);
-      }
-    },
-
-    // === Set/Modify Actions ===
-    set_armor: ({ self, log, value }) => {
-      self.armor = value || 0;
-      log(`${self.name}'s armor is set to ${value || 0}`);
-    },
-    set_health_to: ({ self, log, value }) => {
-      self.hp = Math.max(1, value || 1);
-      log(`${self.name}'s health is set to ${value || 1}`);
-    },
-    set_flag: ({ self, log, flag, value }) => {
-      if (flag) {
-        self.flags = self.flags || {};
-        self.flags[flag] = value !== undefined ? value : true;
-        log(`${self.name} sets ${flag} flag to ${value !== undefined ? value : true}`);
-      }
-    },
-
-    // === Convert Actions ===
-    convert_health_to_armor: ({ self, log, value }) => {
-      const healthToConvert = Math.min(self.hp - 1, value || 1);
-      if (healthToConvert > 0) {
-        self.hp -= healthToConvert;
-        self.addArmor(healthToConvert);
-        log(`${self.name} converts ${healthToConvert} health to armor`);
-      }
-    },
-    convert_enemy_health_to_armor: ({ self, other, log, value }) => {
-      const healthToConvert = Math.min(other.hp, value || 1);
-      if (healthToConvert > 0) {
-        other.hp = Math.max(0, other.hp - healthToConvert);
-        self.addArmor(healthToConvert);
-        log(`${self.name} converts ${healthToConvert} of ${other.name}'s health to armor`);
-      }
-    },
-    convert_random_status_to_poison: ({ self, log }) => {
-      const statuses = Object.keys(self.statuses || {}).filter(s => s !== 'poison' && (self.statuses[s] || 0) > 0);
-      if (statuses.length > 0) {
-        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-        const amount = self.statuses[randomStatus] || 0;
-        self.statuses[randomStatus] = 0;
-        self.addStatus('poison', amount);
-        log(`${self.name} converts ${amount} ${randomStatus} to poison`);
-      }
-    },
-
-    // === Transfer Actions ===
-    transfer_all_statuses_to_enemy: ({ self, other, log }) => {
-      const statuses = Object.keys(self.statuses || {});
-      let transferred = false;
-      statuses.forEach(status => {
-        const amount = self.statuses[status] || 0;
-        if (amount > 0) {
-          other.addStatus(status, amount);
-          self.statuses[status] = 0;
-          transferred = true;
-        }
-      });
-      if (transferred) log(`${self.name} transfers all status effects to ${other.name}`);
-    },
-    transfer_random_status_to_enemy: ({ self, other, log }) => {
-      const statuses = Object.keys(self.statuses || {}).filter(s => (self.statuses[s] || 0) > 0);
-      if (statuses.length > 0) {
-        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-        const amount = self.statuses[randomStatus] || 0;
-        self.statuses[randomStatus] = 0;
-        other.addStatus(randomStatus, amount);
-        log(`${self.name} transfers ${amount} ${randomStatus} to ${other.name}`);
-      }
-    },
-
-    // === Spend Actions ===
-    spend_speed: ({ self, log, value }) => {
-      const speedToSpend = Math.min(self.speed || 0, value || 1);
-      if (speedToSpend > 0) {
-        self.speed -= speedToSpend;
-        log(`${self.name} spends ${speedToSpend} speed`);
-      }
-    },
-    spend_speed_decrease_random_status: ({ self, log }) => {
-      if ((self.speed || 0) > 0) {
-        self.speed -= 1;
-        const statuses = Object.keys(self.statuses || {}).filter(s => (self.statuses[s] || 0) > 0);
-        if (statuses.length > 0) {
-          const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-          const removed = self.removeStatus ? self.removeStatus(randomStatus, 1) : 0;
-          log(`${self.name} spends 1 speed to decrease ${removed} ${randomStatus}`);
-        } else {
-          log(`${self.name} spends 1 speed (no status to decrease)`);
-        }
-      }
-    },
-    spendStatus: ({ self, log, value, status }) => {
-      if (status) {
-        const spent = self.removeStatus ? self.removeStatus(status, value || 1) : 0;
-        if (spent > 0) log(`${self.name} spends ${spent} ${status}`);
-      }
-    },
-
-    // === Special Complex Actions ===
-    custom: ({ self, other, log, value, customAction }) => {
-      if (customAction && typeof customAction === 'function') {
-        customAction({ self, other, log, value });
-      } else {
-        log(`${self.name} performs custom action`);
-      }
-    },
-    
-    noEffect: ({ self, log }) => {
-      // Explicitly do nothing - useful for conditional effects that may not trigger
-    },
-
-    // === Lose/Remove Actions ===
-    lose_hp: ({ self, log, value }) => {
-      const damage = value || 1;
-      self.hp = Math.max(1, self.hp - damage);
-      log(`${self.name} loses ${damage} health`);
-    },
-    loseHealth: ({ self, log, value }) => {
-      const damage = value || 1;
-      self.hp = Math.max(1, self.hp - damage);
-      log(`${self.name} loses ${damage} health`);
-    },
-    remove_gold: ({ self, log, value }) => {
-      const goldToRemove = Math.min(self.gold || 0, value || 1);
-      self.gold = Math.max(0, (self.gold || 0) - goldToRemove);
-      if (goldToRemove > 0) log(`${self.name} loses ${goldToRemove} gold`);
-    },
-
-    // === Miscellaneous Actions ===
-    upgrade: ({ self, log, value }) => {
-      log(`${self.name} upgrades${value ? ` (${value})` : ''}`);
-    },
-    transform: ({ self, log, value }) => {
-      log(`${self.name} transforms${value ? ` into ${value}` : ''}`);
-    },
-    hatchInto: ({ self, log, value }) => {
-      log(`${self.name} hatches${value ? ` into ${value}` : ''}`);
-    },
-
-    // === Remaining Action Types ===
-    alwaysHunted: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.alwaysHunted = true;
-      log(`${self.name} is always hunted`);
-    },
-    attackEqualsBaseArmor: ({ self, log }) => {
-      self.tempAtk = self.baseArmor || 0;
-      log(`${self.name}'s attack equals base armor (${self.baseArmor || 0})`);
-    },
-    attackEqualsGold: ({ self, log }) => {
-      self.tempAtk = self.gold || 0;
-      log(`${self.name}'s attack equals gold (${self.gold || 0})`);
-    },
-    attackEqualsMissingHealth: ({ self, log }) => {
-      const missing = self.hpMax - self.hp;
-      self.tempAtk = missing;
-      log(`${self.name}'s attack equals missing health (${missing})`);
-    },
-    attackEqualsSpeed: ({ self, log }) => {
-      self.tempAtk = self.speed || 0;
-      log(`${self.name}'s attack equals speed (${self.speed || 0})`);
-    },
-    blockGoldGain: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.blockGoldGain = true;
-      log(`${self.name} blocks gold gain`);
-    },
-    blockStatusEffectGain: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.blockStatusEffectGain = true;
-      log(`${self.name} blocks status effect gain`);
-    },
-    cantStrike: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.cantStrike = true;
-      log(`${self.name} cannot strike`);
-    },
-    conditionalPurityToggle: ({ self, log, value }) => {
-      self.flags = self.flags || {};
-      self.flags.purityToggle = !self.flags.purityToggle;
-      log(`${self.name} toggles purity condition`);
-    },
-    doubleAttack: ({ self, log }) => {
-      self.tempAtk = (self.tempAtk || 0) * 2;
-      log(`${self.name} doubles attack`);
-    },
-    doubleBaseArmor: ({ self, log }) => {
-      self.baseArmor = (self.baseArmor || 0) * 2;
-      log(`${self.name} doubles base armor`);
-    },
-    doubleHealing: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.doubleHealing = true;
-      log(`${self.name} gains double healing`);
-    },
-    doubleStatFromSource: ({ self, log, stat }) => {
-      if (stat === 'attack') {
-        self.tempAtk = (self.tempAtk || 0) * 2;
-        log(`${self.name} doubles attack from source`);
-      } else if (stat === 'armor') {
-        self.armor = (self.armor || 0) * 2;
-        log(`${self.name} doubles armor from source`);
-      }
-    },
-    enemyFirstStrikeDoubleDamage: ({ other, log }) => {
-      other.flags = other.flags || {};
-      other.flags.firstStrikeDoubleDamage = true;
-      log(`${other.name}'s first strike deals double damage`);
-    },
-    enemyStrikesIgnoreArmor: ({ other, log }) => {
-      other.flags = other.flags || {};
-      other.flags.strikesIgnoreArmor = true;
-      log(`${other.name}'s strikes ignore armor`);
-    },
-    
-    // === Simple stub implementations for remaining action types ===
-    gainMaxHealthPerEquippedType: ({ self, log, value }) => {
-      const healthGain = value || 1;
-      self.hpMax += healthGain;
-      log(`${self.name} gains ${healthGain} max health per equipped type`);
-    },
-    gainPermanentTurnStartThorn: ({ self, log, value }) => {
-      self.flags = self.flags || {};
-      self.flags.permanentTurnStartThorn = (self.flags.permanentTurnStartThorn || 0) + (value || 1);
-      log(`${self.name} gains ${value || 1} permanent turn start thorn`);
-    },
-    gainStatPerEquippedType: ({ self, log, stat, value }) => {
-      const statGain = value || 1;
-      if (stat === 'armor') {
-        self.addArmor(statGain);
-      } else if (stat === 'attack') {
-        self.addAttack(statGain);
-      }
-      log(`${self.name} gains ${statGain} ${stat} per equipped type`);
-    },
-    gainStatusPerTag: ({ self, log, status, value, tag }) => {
-      const statusGain = value || 1;
-      if (status) {
-        self.addStatus(status, statusGain);
-        log(`${self.name} gains ${statusGain} ${status} per ${tag || 'tag'}`);
-      }
-    },
-    gainThornsEqualToAttack: ({ self, log }) => {
-      const attack = (self.tempAtk || 0) + (self.atk || 0);
-      if (attack > 0) {
-        self.addStatus('thorns', attack);
-        log(`${self.name} gains ${attack} thorns equal to attack`);
-      }
-    },
-    giveEnemyStatusAfterFirstStrike: ({ other, log, status, value }) => {
-      if (status) {
-        other.flags = other.flags || {};
-        other.flags.statusAfterFirstStrike = { status, value: value || 1 };
-        log(`${other.name} will gain ${value || 1} ${status} after first strike`);
-      }
-    },
-    giveEnemyStatusEqualToAttack: ({ self, other, log, status }) => {
-      if (status) {
-        const attack = (self.tempAtk || 0) + (self.atk || 0);
-        if (attack > 0) {
-          other.addStatus(status, attack);
-          log(`${other.name} gains ${attack} ${status} equal to ${self.name}'s attack`);
-        }
-      }
-    },
-    giveEnemyStatusPerEquippedType: ({ other, log, status, value }) => {
-      if (status) {
-        const statusGain = value || 1;
-        other.addStatus(status, statusGain);
-        log(`${other.name} gains ${statusGain} ${status} per equipped type`);
-      }
-    },
-    giveStatusEqualToAttack: ({ self, log, status }) => {
-      if (status) {
-        const attack = (self.tempAtk || 0) + (self.atk || 0);
-        if (attack > 0) {
-          self.addStatus(status, attack);
-          log(`${self.name} gains ${attack} ${status} equal to attack`);
-        }
-      }
-    },
-    increase_next_bomb_damage: ({ self, log, value }) => {
-      self.flags = self.flags || {};
-      self.flags.nextBombDamageBonus = (self.flags.nextBombDamageBonus || 0) + (value || 1);
-      log(`${self.name} increases next bomb damage by ${value || 1}`);
-    },
-    increment_counter: ({ self, log, counter, value }) => {
-      if (counter) {
-        self.counters = self.counters || {};
-        self.counters[counter] = (self.counters[counter] || 0) + (value || 1);
-        log(`${self.name} increments ${counter} by ${value || 1}`);
-      }
-    },
-    inheritOnHitFromGemstones: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.inheritOnHitFromGemstones = true;
-      log(`${self.name} inherits on-hit effects from gemstones`);
-    },
-    invert_speed: ({ self, log }) => {
-      self.speed = -(self.speed || 0);
-      log(`${self.name} inverts speed to ${self.speed}`);
-    },
-    maxHealthAlwaysOne: ({ self, log }) => {
-      self.hpMax = 1;
-      self.hp = Math.min(self.hp, 1);
-      log(`${self.name}'s max health is always 1`);
-    },
-    modifyTriggerCount: ({ self, log, value }) => {
-      self.flags = self.flags || {};
-      self.flags.triggerCountModifier = (self.flags.triggerCountModifier || 0) + (value || 1);
-      log(`${self.name} modifies trigger count by ${value || 1}`);
-    },
-    moveExposedWoundedTriggersToBattleStart: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.moveExposedWoundedTriggersToBattleStart = true;
-      log(`${self.name} moves exposed wounded triggers to battle start`);
-    },
-    nextWeaponGainsAttack: ({ self, log, value }) => {
-      self.flags = self.flags || {};
-      self.flags.nextWeaponAttackBonus = (self.flags.nextWeaponAttackBonus || 0) + (value || 1);
-      log(`${self.name}'s next weapon gains ${value || 1} attack`);
-    },
-    protectStatusFromStrikes: ({ self, log, status }) => {
-      if (status) {
-        self.flags = self.flags || {};
-        self.flags.protectedStatuses = self.flags.protectedStatuses || [];
-        self.flags.protectedStatuses.push(status);
-        log(`${self.name} protects ${status} from strikes`);
-      }
-    },
-    redirectDamageToEnemy: ({ self, other, log, value }) => {
-      const damage = value || 1;
-      other.hp = Math.max(0, (other.hp || 0) - damage);
-      log(`${self.name} redirects ${damage} damage to ${other.name}`);
-    },
-    reduceEnemyStrikeDamage: ({ other, log, value }) => {
-      other.flags = other.flags || {};
-      other.flags.strikeDamageReduction = (other.flags.strikeDamageReduction || 0) + (value || 1);
-      log(`${other.name}'s strike damage reduced by ${value || 1}`);
-    },
-    regain_base_armor: ({ self, log }) => {
-      const baseArmor = self.baseArmor || 0;
-      if (baseArmor > 0) {
-        self.addArmor(baseArmor);
-        log(`${self.name} regains ${baseArmor} base armor`);
-      }
-    },
-    register_countdown: ({ self, log, value, countdown }) => {
-      if (countdown) {
-        self.countdowns = self.countdowns || {};
-        self.countdowns[countdown] = value || 1;
-        log(`${self.name} registers ${countdown} countdown for ${value || 1}`);
-      }
-    },
-    removeEnemyTomes: ({ other, log }) => {
-      other.flags = other.flags || {};
-      other.flags.removedTomes = true;
-      log(`${other.name} loses all tome effects`);
-    },
-    resetCountdown: ({ self, log, countdown, value }) => {
-      if (countdown) {
-        self.countdowns = self.countdowns || {};
-        self.countdowns[countdown] = value || 0;
-        log(`${self.name} resets ${countdown} countdown to ${value || 0}`);
-      }
-    },
-    retriggerAllTomes: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.retriggerAllTomes = true;
-      log(`${self.name} retriggers all tome effects`);
-    },
-    retriggerLastWoundedItem: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.retriggerLastWoundedItem = true;
-      log(`${self.name} retriggers last wounded item`);
-    },
-    retrigger_random_bomb: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.retriggerRandomBomb = true;
-      log(`${self.name} retriggers random bomb`);
-    },
-    riptide_per_negative_attack: ({ self, other, log }) => {
-      const attack = (self.tempAtk || 0) + (self.atk || 0);
-      const negativeAttack = Math.abs(Math.min(0, attack));
-      if (negativeAttack > 0) {
-        other.addStatus('riptide', negativeAttack);
-        log(`${other.name} gains ${negativeAttack} riptide per negative attack`);
-      }
-    },
-    scalingWithFoundItems: ({ self, log, value }) => {
-      const scaling = value || 1;
-      log(`${self.name} scales by ${scaling} with found items`);
-    },
-    statsOnly: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.statsOnly = true;
-      log(`${self.name} provides stats only`);
-    },
-    statusRemovesStat: ({ self, log, status, stat, value }) => {
-      const statusAmount = self.statuses && self.statuses[status] ? self.statuses[status] : 0;
-      if (status && stat && statusAmount > 0) {
-        const reduction = value || 1;
-        if (stat === 'attack') {
-          self.tempAtk = Math.max(0, (self.tempAtk || 0) - reduction);
-          log(`${self.name}'s ${status} removes ${reduction} attack`);
-        } else if (stat === 'armor') {
-          self.armor = Math.max(0, (self.armor || 0) - reduction);
-          log(`${self.name}'s ${status} removes ${reduction} armor`);
-        }
-      }
-    },
-    statusTriggersTwice: ({ self, log, status }) => {
-      if (status) {
-        self.flags = self.flags || {};
-        self.flags.statusTriggersTwice = self.flags.statusTriggersTwice || [];
-        self.flags.statusTriggersTwice.push(status);
-        log(`${self.name}'s ${status} triggers twice`);
-      }
-    },
-    strikeTwice: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.strikeTwice = true;
-      log(`${self.name} strikes twice`);
-    },
-    temporaryStatGain: ({ self, log, stat, value }) => {
-      if (stat === 'attack') {
-        self.tempAtk = (self.tempAtk || 0) + (value || 1);
-        log(`${self.name} temporarily gains ${value || 1} attack`);
-      } else if (stat === 'armor') {
-        self.tempArmor = (self.tempArmor || 0) + (value || 1);
-        log(`${self.name} temporarily gains ${value || 1} armor`);
-      }
-    },
-    triggerAllWoundedItems: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.triggerAllWoundedItems = true;
-      log(`${self.name} triggers all wounded items`);
-    },
-    trigger_symphony: ({ self, log }) => {
-      self.flags = self.flags || {};
-      self.flags.triggerSymphony = true;
-      log(`${self.name} triggers symphony`);
-    },
-    weaponOilBuff: ({ self, log, value }) => {
-      self.flags = self.flags || {};
-      self.flags.weaponOilBuff = (self.flags.weaponOilBuff || 0) + (value || 1);
-      log(`${self.name} gains weapon oil buff (+${value || 1})`);
-    }
   };
 
   function checkCondition(condition, { self, other, log, key, isNew }) {
@@ -839,6 +1090,8 @@
         return isNew === true; // Used with onGainStatus trigger
       case 'is_exposed_or_wounded':
         return (self.statuses.exposed || 0) > 0 || (self.statuses.wounded || 0) > 0;
+      case 'exposed_and_wounded':
+        return (self.statuses.exposed || 0) > 0 && (self.statuses.wounded || 0) > 0;
       case 'is_even_turn':
         return (self.flags.turnCount || 0) % 2 === 0;
       case 'is_odd_turn':
@@ -940,6 +1193,8 @@
     
     const log = (m) => baseLog(CURRENT_SOURCE_SLUG ? `::icon:${CURRENT_SOURCE_SLUG}:: ${m}` : m);
 
+    // Process items in battle order: weapon first, then weaponEdge, then items 1→12
+    // This ensures Battle Start effects activate in correct slot order per battle logic
     const allItems = [self.weapon, self.weaponEdge, ...self.items].filter(Boolean);
 
     for (const itemOrSlug of allItems) {
@@ -963,8 +1218,13 @@
       const effectCtx = { self, other, log, tier, sourceItem, ...extra };
 
       for (const effect of details.effects) {
-        // Handle old trigger format
-        if (effect && effect.trigger === event) {
+        // Check if trigger matches event (all triggers now standardized to camelCase)
+        const triggerMatches = effect.trigger === event;
+
+        if (!triggerMatches) continue;
+
+        // Handle old trigger format (skip if using new actions array format)
+        if (effect && !Array.isArray(effect.actions) && effect.action) {
           if (checkCondition(effect.if, effectCtx)) {
             const actionFn = EFFECT_ACTIONS[effect.action];
             if (typeof actionFn === 'function') {
@@ -996,17 +1256,23 @@
                 }
               });
             } else {
-              log(`Unknown action: ${effect.action}`);
+              log(`Unknown action: ${effect.action} (item: ${slug}, trigger: ${effect.trigger || effect.event})`);
             }
           }
         }
 
-        // Handle new event/actions format
-        if (effect && effect.event === event) {
+        // Handle new event/actions format  
+        if (effect && triggerMatches && Array.isArray(effect.actions)) {
           // Check conditions first
           let conditionsMet = true;
           if (Array.isArray(effect.conditions)) {
             conditionsMet = effect.conditions.every(condition => checkCondition(condition, effectCtx));
+          } else if (effect.condition) {
+            // Handle single condition string
+            conditionsMet = checkCondition({ type: effect.condition }, effectCtx);
+          } else if (effect.if) {
+            // Handle legacy if conditions
+            conditionsMet = checkCondition(effect.if, effectCtx);
           }
 
           if (conditionsMet && Array.isArray(effect.actions)) {
@@ -1243,7 +1509,7 @@ let CURRENT_SOURCE_SLUG = null;
       att.statuses.stun--;
       log(`${att.name} is stunned and misses the strike`);
       // Trigger strike_skipped event for stunned players
-      runEffects('strike_skipped', att, def, log, { reason: 'stunned' });
+      runEffects('strikeSkipped', att, def, log, { reason: 'stunned' });
       return;
     }
     let dmg = Math.max(0, att.atk + att.tempAtk);
@@ -1350,6 +1616,7 @@ let CURRENT_SOURCE_SLUG = null;
     runEffects('preBattle', L, R, m=>logArr.push(m));
     runEffects('preBattle', R, L, m=>logArr.push(m));
     
+    // Battle Start Phase: Items activate in slot order (weapon first, then items 1→12)
     runEffects('battleStart', L, R, m=>logArr.push(m));
     runEffects('battleStart', R, L, m=>logArr.push(m));
 
