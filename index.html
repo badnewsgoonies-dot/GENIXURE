@@ -2225,6 +2225,37 @@ async function initNeuralTemplateLibrary() {
   console.log(`   - Synthetic: ${Object.values(iconTemplateLibrary).filter(t => t.synthetic).length}`);
 }
 
+// Initialize adaptive learning system
+function initAdaptiveLearning() {
+  console.log('🎓 Initializing adaptive learning system...');
+  
+  // Initialize learning parameters
+  window.adaptiveLearning = {
+    confidenceHistory: [],
+    successfulMatches: new Map(),
+    failedMatches: new Map(),
+    dynamicThresholds: {
+      base: 0.5,
+      feature: 0.4,
+      keypoint: 0.3,
+      spatial: 0.6
+    }
+  };
+  
+  console.log('✅ Adaptive learning system ready');
+}
+
+// Update adaptive thresholds based on confidence slider
+function updateAdaptiveThresholds(baseConfidence) {
+  if (!window.adaptiveLearning) return;
+  
+  const learning = window.adaptiveLearning;
+  learning.dynamicThresholds.base = baseConfidence;
+  learning.dynamicThresholds.feature = Math.max(0.2, baseConfidence - 0.1);
+  learning.dynamicThresholds.keypoint = Math.max(0.1, baseConfidence - 0.2);
+  learning.dynamicThresholds.spatial = Math.min(0.9, baseConfidence + 0.1);
+}
+
 async function loadAndProcessNeuralIcon(iconPath, itemData) {
   return new Promise((resolve, reject) => {
     const img = new Image();
