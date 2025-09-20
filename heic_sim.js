@@ -388,6 +388,45 @@
         other.addStatus(key, amount);
         log(`${other.name} gains ${amount} ${key}`);
       },
+    remove_status: ({ self, key, value }) => {
+      const currentAmount = self.statuses[key] || 0;
+      if (currentAmount > 0) {
+        const toRemove = Math.min(value || 1, currentAmount);
+        self.addStatus(key, -toRemove);
+        return toRemove;
+      }
+      return 0;
+    },
+    remove_random_status: ({ self, value }) => {
+      const statusKeys = Object.keys(self.statuses).filter(k => self.statuses[k] > 0);
+      if (statusKeys.length > 0) {
+        const randomKey = statusKeys[Math.floor(Math.random() * statusKeys.length)];
+        const currentAmount = self.statuses[randomKey];
+        const toRemove = Math.min(value || 1, currentAmount);
+        self.addStatus(randomKey, -toRemove);
+        return { key: randomKey, amount: toRemove };
+      }
+      return null;
+    },
+    damage_enemy: ({ other, value, log }) => {
+      if (other && typeof other.takeDamage === 'function') {
+        other.takeDamage(value || 1);
+        if (log) log(`Direct damage: ${other.name} takes ${value || 1} damage`);
+      }
+    },
+    double_attack: ({ self, log }) => {
+      self.attack = Math.max(0, self.attack * 2);
+      if (log) log(`${self.name}'s attack is doubled`);
+    },
+    remove_gold: ({ self, value }) => {
+      const currentGold = self.gold || 0;
+      if (currentGold > 0) {
+        const toRemove = Math.min(value || 1, currentGold);
+        self.addGold(-toRemove);
+        return toRemove;
+      }
+      return 0;
+    },
       reduce_enemy_attack: ({ self, other, log, value }) => {
         const reduction = value || 1;
         const before = other.atk || 0;
@@ -757,6 +796,12 @@
         return self.hp === condition.value;
       case 'self_max_health_less_than_enemy':
         return self.hpMax < other.hpMax;
+      case 'player_has_minimum_status':
+        return (self.statuses[condition.status] || 0) >= (condition.amount || 1);
+      case 'player_has_less_than_gold':
+        return (self.gold || 0) < (condition.amount || 10);
+      case 'player_has_minimum_gold':
+        return (self.gold || 0) >= (condition.amount || 1);
       // Add more condition types here as needed
       default:
         log(`Unknown condition type: ${condition.type}`);

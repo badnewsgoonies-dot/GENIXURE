@@ -2867,6 +2867,16 @@
   "items/lemontree_branch": {
     "bucket": "weapons",
     "effect": "On Hit: Spend 2 Speed to gain 1 extra Strike next turn",
+    "effects": [
+      {
+        "trigger": "on_hit",
+        "condition": { "type": "player_has_minimum_status", "status": "speed", "amount": 2 },
+        "actions": [
+          { "type": "remove_status", "status": "speed", "amount": 2 },
+          { "type": "add_status", "status": "extra_strike", "amount": 1 }
+        ]
+      }
+    ],
     "name": "Lemontree Branch",
     "slug": "lemontree_branch",
     "stats": {
@@ -3219,6 +3229,14 @@
   "items/melonvine_whip": {
     "bucket": "items",
     "effect": "On Hit: Decrease 1 random status effect",
+    "effects": [
+      {
+        "trigger": "on_hit",
+        "actions": [
+          { "type": "remove_random_status", "amount": 1 }
+        ]
+      }
+    ],
     "name": "Melonvine Whip",
     "slug": "melonvine_whip",
     "stats": {
@@ -3494,6 +3512,16 @@
   "items/plated_greaves": {
     "bucket": "items",
     "effect": "Exposed: Convert 3 speed to 9 armor",
+    "effects": [
+      {
+        "trigger": "exposed",
+        "condition": { "type": "player_has_minimum_status", "status": "speed", "amount": 3 },
+        "actions": [
+          { "type": "remove_status", "key": "speed", "value": 3 },
+          { "type": "add_armor", "value": 9 }
+        ]
+      }
+    ],
     "name": "Plated Greaves",
     "slug": "plated_greaves",
     "stats": {
@@ -3745,6 +3773,22 @@
   "items/rock_candy": {
     "bucket": "items",
     "effect": "Battle Start: Gain 15 Armor (30 if health is full)",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "condition": { "type": "is_full_health" },
+        "actions": [
+          { "type": "add_armor", "value": 30 }
+        ]
+      },
+      {
+        "trigger": "battle_start",
+        "condition": { "type": "is_not_full_health" },
+        "actions": [
+          { "type": "add_armor", "value": 15 }
+        ]
+      }
+    ],
     "name": "Rock Candy",
     "slug": "rock_candy",
     "stats": {
@@ -3814,6 +3858,14 @@
   "items/royal_horn": {
     "bucket": "items",
     "effect": "Wounded: Gain 2 gold. Symphony",
+    "effects": [
+      {
+        "trigger": "wounded",
+        "actions": [
+          { "type": "add_gold", "value": 2 }
+        ]
+      }
+    ],
     "name": "Royal Horn",
     "slug": "royal_horn",
     "stats": {
@@ -3827,6 +3879,16 @@
   "items/royal_shield": {
     "bucket": "items",
     "effect": "Turn Start: Convert 1 gold to 3 armor",
+    "effects": [
+      {
+        "trigger": "turn_start",
+        "condition": { "type": "player_has_minimum_gold", "amount": 1 },
+        "actions": [
+          { "type": "remove_gold", "value": 1 },
+          { "type": "add_armor", "value": 3 }
+        ]
+      }
+    ],
     "name": "Royal Shield",
     "slug": "royal_shield",
     "stats": {
@@ -4128,6 +4190,14 @@
   "items/serpent_mask": {
     "bucket": "items",
     "effect": "Battle Start: Give the enemy poison equal to your attack",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status_to_enemy_from_stat", "key": "poison", "stat": "attack" }
+        ]
+      }
+    ],
     "name": "Serpent Mask",
     "slug": "serpent_mask",
     "stats": {
@@ -5219,6 +5289,14 @@
   "upgrades/cutting_edge": {
     "bucket": "upgrades",
     "effect": "On Hit: Deal 1 damage",
+    "effects": [
+      {
+        "trigger": "on_hit",
+        "actions": [
+          { "type": "damage_enemy", "value": 1 }
+        ]
+      }
+    ],
     "name": "Cutting Edge",
     "slug": "cutting_edge",
     "stats": {
@@ -5232,6 +5310,16 @@
   "upgrades/featherweight_edge": {
     "bucket": "upgrades",
     "effect": "On Hit: Convert 1 speed to 1 attack",
+    "effects": [
+      {
+        "trigger": "on_hit",
+        "condition": { "type": "player_has_minimum_status", "status": "speed", "amount": 1 },
+        "actions": [
+          { "type": "remove_status", "key": "speed", "value": 1 },
+          { "type": "add_temp_attack", "value": 1 }
+        ]
+      }
+    ],
     "name": "Featherweight Edge",
     "slug": "featherweight_edge",
     "stats": {
@@ -5258,6 +5346,15 @@
   "upgrades/gilded_edge": {
     "bucket": "upgrades",
     "effect": "On Hit: If you have less than 10 gold, gain 1 gold",
+    "effects": [
+      {
+        "trigger": "on_hit",
+        "condition": { "type": "player_has_less_than_gold", "amount": 10 },
+        "actions": [
+          { "type": "add_gold", "value": 1 }
+        ]
+      }
+    ],
     "name": "Gilded Edge",
     "slug": "gilded_edge",
     "stats": {
@@ -5271,6 +5368,15 @@
   "upgrades/jagged_edge": {
     "bucket": "upgrades",
     "effect": "On Hit: Gain 2 thorns and take 1 damage",
+    "effects": [
+      {
+        "trigger": "on_hit",
+        "actions": [
+          { "type": "add_status", "key": "thorns", "value": 2 },
+          { "type": "take_damage", "value": 1 }
+        ]
+      }
+    ],
     "name": "Jagged Edge",
     "slug": "jagged_edge",
     "stats": {
@@ -5284,6 +5390,14 @@
   "upgrades/oaken_edge": {
     "bucket": "upgrades",
     "effect": "Battle Start: Gain 3 regeneration",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status", "key": "regeneration", "value": 3 }
+        ]
+      }
+    ],
     "name": "Oaken Edge",
     "slug": "oaken_edge",
     "stats": {
@@ -5321,6 +5435,20 @@
   "upgrades/petrified_edge": {
     "bucket": "upgrades",
     "effect": "Double your attack. On Hit: Gain 1 stun",
+    "effects": [
+      {
+        "trigger": "passive",
+        "actions": [
+          { "type": "double_attack" }
+        ]
+      },
+      {
+        "trigger": "on_hit",
+        "actions": [
+          { "type": "add_status", "key": "stun", "value": 1 }
+        ]
+      }
+    ],
     "name": "Petrified Edge",
     "slug": "petrified_edge",
     "stats": {
@@ -5334,6 +5462,16 @@
   "upgrades/plated_edge": {
     "bucket": "upgrades",
     "effect": "On Hit: Convert 1 speed to 3 armor",
+    "effects": [
+      {
+        "trigger": "on_hit",
+        "condition": { "type": "player_has_minimum_status", "status": "speed", "amount": 1 },
+        "actions": [
+          { "type": "remove_status", "key": "speed", "value": 1 },
+          { "type": "add_armor", "value": 3 }
+        ]
+      }
+    ],
     "name": "Plated Edge",
     "slug": "plated_edge",
     "stats": {
@@ -5347,6 +5485,14 @@
   "upgrades/razor_edge": {
     "bucket": "upgrades",
     "effect": "Battle Start: Gain 1 attack",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_attack", "value": 1 }
+        ]
+      }
+    ],
     "name": "Razor Edge",
     "slug": "razor_edge",
     "stats": {
@@ -5360,6 +5506,14 @@
   "upgrades/stormcloud_edge": {
     "bucket": "upgrades",
     "effect": "Battle Start: Stun the enemy for 1 turn",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "stun", "value": 1 }
+        ]
+      }
+    ],
     "name": "Stormcloud Edge",
     "slug": "stormcloud_edge",
     "stats": {
@@ -6254,6 +6408,14 @@
   "weapons/royal_crownblade": {
     "bucket": "weapons",
     "effect": "On Hit: Gain 1 gold.",
+    "effects": [
+      {
+        "trigger": "on_hit",
+        "actions": [
+          { "type": "add_gold", "value": 1 }
+        ]
+      }
+    ],
     "name": "Royal Crownblade",
     "slug": "royal_crownblade",
     "stats": {
