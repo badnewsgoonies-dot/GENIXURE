@@ -403,6 +403,15 @@
       }
       return 0;
     },
+    remove_all_status: ({ self, key, log }) => {
+      const currentAmount = self.statuses[key] || 0;
+      if (currentAmount > 0) {
+        self.addStatus(key, -currentAmount);
+        if (log) log(`${self.name} removes all ${key} (${currentAmount})`);
+        return currentAmount;
+      }
+      return 0;
+    },
     remove_random_status: ({ self, value }) => {
       const statusKeys = Object.keys(self.statuses).filter(k => self.statuses[k] > 0);
       if (statusKeys.length > 0) {
@@ -482,6 +491,19 @@
         }
       });
       if (log) log(`${self.name} transfers all status effects to ${other.name}`);
+    },
+    increase_next_bomb_damage: ({ self, value, log }) => {
+      const increase = value || 1;
+      self.nextBombDamageBonus = (self.nextBombDamageBonus || 0) + increase;
+      if (log) log(`Next bomb damage increased by ${increase}`);
+    },
+    riptide_per_negative_attack: ({ self, other, multiplier, log }) => {
+      const negativeAttack = Math.max(0, -self.attack); // Only count negative attack
+      const riptideAmount = negativeAttack * (multiplier || 1);
+      if (riptideAmount > 0) {
+        other.statuses.riptide = (other.statuses.riptide || 0) + riptideAmount;
+        if (log) log(`${other.name} gains ${riptideAmount} riptide (${negativeAttack} negative attack × ${multiplier})`);
+      }
     },
     remove_gold: ({ self, value }) => {
       const currentGold = self.gold || 0;
@@ -858,6 +880,8 @@
         return self.speed > other.speed;
       case 'player_speed_higher_than_armor':
         return self.speed > self.armor;
+      case 'is_exposed_and_full_health':
+        return (self.statuses.exposed || 0) > 0 && self.hp === self.hpMax;
       case 'min_speed':
         return (self.speed || 0) >= (condition.value || 1);
       case 'min_armor':

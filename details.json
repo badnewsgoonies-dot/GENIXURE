@@ -2790,6 +2790,15 @@
   "items/kindling_bomb": {
     "bucket": "items",
     "effect": "Battle Start: Deal 1 damage to the enemy. The damage of the next bomb that triggers is increased by 3",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "deal_damage_to_enemy", "value": 1 },
+          { "type": "increase_next_bomb_damage", "value": 3 }
+        ]
+      }
+    ],
     "name": "Kindling Bomb",
     "slug": "kindling_bomb",
     "stats": {
@@ -3197,6 +3206,18 @@
   "items/marbled_stonefish": {
     "bucket": "items",
     "effect": "Battle Start (if Exposed and full health): +5 Armor and give enemy 1 Riptide",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "is_exposed_and_full_health" }
+        ],
+        "actions": [
+          { "type": "add_armor", "value": 5 },
+          { "type": "add_status_to_enemy", "key": "riptide", "value": 1 }
+        ]
+      }
+    ],
     "name": "Marbled Stonefish",
     "slug": "marbled_stonefish",
     "stats": {
@@ -3252,6 +3273,17 @@
   "items/melon_lemonade": {
     "bucket": "items",
     "effect": "Battle Start (if Exposed or Wounded): Remove all Acid",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "conditions": [
+          { "type": "is_exposed_or_wounded" }
+        ],
+        "actions": [
+          { "type": "remove_all_status", "key": "acid" }
+        ]
+      }
+    ],
     "name": "Melon Lemonade",
     "slug": "melon_lemonade",
     "stats": {
@@ -4467,6 +4499,23 @@
   "items/silverscale_swordfish": {
     "bucket": "weapons",
     "effect": "Battle Start: Gain 1 extra Strike; first turn on hit give 1 Riptide",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "add_strikes", "value": 1 }
+        ]
+      },
+      {
+        "trigger": "on_hit",
+        "conditions": [
+          { "type": "is_first_turn" }
+        ],
+        "actions": [
+          { "type": "add_status_to_enemy", "key": "riptide", "value": 1 }
+        ]
+      }
+    ],
     "name": "Silverscale Swordfish",
     "slug": "silverscale_swordfish",
     "stats": {
@@ -7012,6 +7061,14 @@
   "weapons/wave_breaker": {
     "bucket": "weapons",
     "effect": "Can't strike. Battle Start: Give the enemy 2 riptide for each negative base attack you have.",
+    "effects": [
+      {
+        "trigger": "battle_start",
+        "actions": [
+          { "type": "riptide_per_negative_attack", "multiplier": 2 }
+        ]
+      }
+    ],
     "name": "Wave Breaker",
     "slug": "wave_breaker",
     "stats": {
