@@ -473,10 +473,10 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
     </section>
     <section class="center" id="simulationTab" style="flex:1; display:none; flex-direction:column; min-height:0; padding:20px; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);">
       <!-- Battle Arena: Three-column layout -->
-      <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 24px; width: 100%; flex: 1; min-height: 0;">
+      <div style="display: grid; grid-template-columns: 300px 1fr 300px; gap: 24px; width: 100%; flex: 1; min-height: 0;">
 
         <!-- Player Arena (Left) -->
-        <div id="simPlayerArena" style="display: flex; flex-direction: column; gap: 16px; background: rgba(0,255,51,0.05); border: 2px solid #0f3; border-radius: 16px; padding: 16px;">
+        <div id="simPlayerArena" style="display: flex; flex-direction: column; gap: 16px; background: rgba(0,255,51,0.05); border: 2px solid #0f3; border-radius: 16px; padding: 16px; overflow-y: auto;">
           <h2 style="color:#0f3; text-align:center; margin:0 0 8px 0; text-shadow:0 0 10px rgba(0,255,51,0.5);">PLAYER</h2>
           <div id="simPlayerPreview" style="display: flex; flex-direction: column; gap: 12px;">
             <!-- Player content will be dynamically rendered here -->
@@ -484,32 +484,47 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
         </div>
 
         <!-- Center Column (Log & Controls) -->
-        <div style="display: flex; flex-direction: column; gap: 24px; min-height: 0;">
+        <div style="display: flex; flex-direction: column; gap: 16px; min-height: 0;">
           <!-- Controls -->
-          <div id="simControls" style="display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:center; background:rgba(0,0,0,0.3); border:2px solid #333; border-radius:16px; padding:16px;">
+          <div id="simControls" style="display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:center; background:rgba(0,0,0,0.3); border:2px solid #333; border-radius:16px; padding:12px;">
             <button id="btnSimulate" type="button" title="Run a simulation between the two loadouts" class="battle-button" style="background:linear-gradient(135deg, #0f3 0%, #0a8 100%); color:#000; border:none; border-radius:12px; padding:12px 24px; cursor:pointer; font-size:18px; font-weight:700; box-shadow:0 4px 15px rgba(0,255,51,0.3);">▶️ START BATTLE</button>
             <button id="btnClearLog" type="button" title="Clear the simulation log" class="battle-button" style="background:linear-gradient(135deg, #666 0%, #444 100%); color:#fff; border:none; border-radius:12px; padding:12px 24px; cursor:pointer; font-size:18px; font-weight:700;">🧹 Clear Log</button>
           </div>
+          
           <!-- Battle Log -->
           <div style="flex: 1; display: flex; flex-direction: column; background:linear-gradient(135deg, #000 0%, #111 100%); border:3px solid #0f3; border-radius:20px; box-shadow:0 0 40px rgba(0,255,51,0.2); overflow:hidden; min-height: 0;">
-            <div style="background:linear-gradient(90deg, #0f3 0%, #0a8 100%); padding:12px 20px; border-bottom:2px solid #0f3;">
+            <div style="background:linear-gradient(90deg, #0f3 0%, #0a8 100%); padding:12px 20px; border-bottom:2px solid #0f3; flex-shrink: 0;">
               <div style="display:flex; align-items:center; justify-content:space-between;">
                 <h3 style="color:#000; font-size:20px; font-weight:700; margin:0;">📜 BATTLE LOG</h3>
                 <div id="battleStatus" style="color:#000; font-size:16px; font-weight:700;">Ready</div>
               </div>
             </div>
-            <div id="simLog" style="flex: 1; overflow:auto; padding:16px; font-size:16px; font-family:'Courier New', monospace; color:#0f3; line-height:1.6;">
-              <!-- Log content -->
+            <div id="simLog" style="flex: 1; overflow:auto; padding:16px; font-size:16px; font-family:'Courier New', monospace; color:#0f3; line-height:1.6; min-height: 0;">
+              <div style="text-align:center; color:#666; font-style:italic; font-size:18px; padding:40px 20px;">
+                <img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> Ready to witness epic battles!<br><br>
+                Configure your loadouts and hit <strong style="color:#0f3;">"START BATTLE"</strong> to begin the simulation.
+              </div>
             </div>
           </div>
+          
           <!-- Battle Summary (optional) -->
-          <div id="battleSummary" style="display:none; /* Summary styles from before */">
-             <!-- Summary content will be here -->
+          <div id="battleSummary" style="display:none; background:linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); border:3px solid #f93; border-radius:20px; padding:20px; box-shadow:0 0 40px rgba(255,153,51,0.2);">
+            <h3 style="color:#f93; font-size:20px; font-weight:700; text-align:center; margin:0 0 16px 0; text-shadow:0 0 10px rgba(255,153,51,0.5);"><img src="assets/health.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> BATTLE SUMMARY</h3>
+            <div id="summaryContent" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; color:#fff; font-size:16px;">
+              <div id="playerSummary" style="background:rgba(0,255,51,0.1); border:2px solid #0f3; border-radius:12px; padding:16px;">
+                <h4 style="color:#0f3; margin:0 0 12px 0; font-size:18px;"><img src="assets/armor.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> Player Stats</h4>
+                <div id="playerSummaryContent" style="font-size:14px;"></div>
+              </div>
+              <div id="opponentSummary" style="background:rgba(255,51,51,0.1); border:2px solid #f33; border-radius:12px; padding:16px;">
+                <h4 style="color:#f33; margin:0 0 12px 0; font-size:18px;"><img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> Opponent Stats</h4>
+                <div id="opponentSummaryContent" style="font-size:14px;"></div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Opponent Arena (Right) -->
-        <div id="simOpponentArena" style="display: flex; flex-direction: column; gap: 16px; background: rgba(255,51,51,0.05); border: 2px solid #f33; border-radius: 16px; padding: 16px;">
+        <div id="simOpponentArena" style="display: flex; flex-direction: column; gap: 16px; background: rgba(255,51,51,0.05); border: 2px solid #f33; border-radius: 16px; padding: 16px; overflow-y: auto;">
           <h2 style="color:#f33; text-align:center; margin:0 0 8px 0; text-shadow:0 0 10px rgba(255,51,51,0.5);">OPPONENT</h2>
           <div id="simOpponentPreview" style="display: flex; flex-direction: column; gap: 12px;">
             <!-- Opponent content will be dynamically rendered here -->
