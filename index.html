@@ -2677,6 +2677,63 @@ async function loadData() {
     initSlots();
     // Initialize Advanced Compendium System
     initAdvancedCompendium();
+    
+    // TEMP: Show all items immediately for debugging
+    setTimeout(() => {
+      console.log('TEMP: Forcing display of all items');
+      const itemGridElement = document.getElementById('itemGrid');
+      if (itemGridElement && DATA_ARR && DATA_ARR.length > 0) {
+        console.log('TEMP: Found itemGrid and DATA_ARR with', DATA_ARR.length, 'items');
+        
+        // Clear any existing content
+        itemGridElement.innerHTML = '';
+        
+        // Show first 20 items directly
+        DATA_ARR.slice(0, 20).forEach((item, index) => {
+          const card = document.createElement('div');
+          card.style.cssText = `
+            background: #000;
+            border: 2px solid #f33;
+            border-radius: 16px;
+            padding: 14px;
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 8px;
+          `;
+          
+          card.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+              <img src="${item.key}/icon.png" alt="${item.name}" 
+                   style="width: 48px; height: 48px; image-rendering: pixelated;"
+                   onerror="this.src='placeholder.png'">
+              <div>
+                <div style="font-weight: 700; font-size: 18px; color: #f33;">${item.name}</div>
+                <div style="font-size: 12px; color: #aaa;">${item.key}</div>
+              </div>
+            </div>
+            <div style="color: #ccc; font-size: 13px;">${item.effect || 'No description'}</div>
+          `;
+          
+          // Add drag functionality
+          card.draggable = true;
+          card.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', item.key);
+          });
+          
+          itemGridElement.appendChild(card);
+        });
+        
+        // Update the count
+        const resultCountElement = document.getElementById('resultCount');
+        if (resultCountElement) {
+          resultCountElement.textContent = `${DATA_ARR.length} items (temp display)`;
+        }
+        
+        console.log('TEMP: Direct display complete');
+      } else {
+        console.log('TEMP: itemGrid or DATA_ARR not found');
+      }
+    }, 500);
     // Compute initial totals for player and opponent (empty builds)
     updateTotals('P');
     updateTotals('O');
@@ -2736,6 +2793,7 @@ function getCompendiumElements() {
 // Advanced Compendium State
 let compendiumState = {
   searchTerms: [],
+  searchQuery: '', // Add this for immediate search
   activeFilters: {
     bucket: new Set(),
     tags: new Set(), 
@@ -3221,12 +3279,15 @@ function renderCompendium() {
   getCompendiumElements();
   
   if (!DATA_ARR || !DATA_ARR.length) {
-    console.warn('No DATA_ARR available, showing error message');
+    console.warn('No DATA_ARR available, DATA_ARR length:', DATA_ARR ? DATA_ARR.length : 'undefined');
     showNoDataMessage('Compendium data not available. Check details.js or details.json.');
     return;
   }
   
   console.log('Rendering compendium with', DATA_ARR.length, 'total items');
+  console.log('Current filters:', compendiumState.activeFilters);
+  console.log('Search query:', compendiumState.searchQuery);
+  console.log('Search terms:', compendiumState.searchTerms);
   
   // Filter items based on current state
   const filteredItems = filterItems(DATA_ARR);
@@ -3250,29 +3311,32 @@ function renderCompendium() {
 
 // Filter items based on current compendium state
 function filterItems(items) {
+  console.log('Filtering', items.length, 'total items');
+  
   return items.filter(item => {
-    // Search terms filter
-    if (compendiumState.searchTerms.length > 0 || compendiumState.searchQuery) {
+    // Search terms filter - only filter if there are search terms
+    if (compendiumState.searchTerms.length > 0 || (compendiumState.searchQuery && compendiumState.searchQuery.trim())) {
       const searchText = `${item.name} ${item.effect || ''} ${item.key} ${(item.tags || []).join(' ')}`.toLowerCase();
       
-      const queryMatch = !compendiumState.searchQuery || searchText.includes(compendiumState.searchQuery.toLowerCase());
+      const queryMatch = !compendiumState.searchQuery || !compendiumState.searchQuery.trim() || 
+        searchText.includes(compendiumState.searchQuery.toLowerCase());
       const termsMatch = compendiumState.searchTerms.length === 0 || 
         compendiumState.searchTerms.every(term => searchText.includes(term.toLowerCase()));
         
       if (!queryMatch || !termsMatch) return false;
     }
     
-    // Bucket filter
+    // Bucket filter - only filter if buckets are selected
     if (compendiumState.activeFilters.bucket.size > 0) {
       if (!compendiumState.activeFilters.bucket.has(item.bucket)) return false;
     }
     
-    // Tag filter
+    // Tag filter - only filter if tags are selected
     if (compendiumState.activeFilters.tags.size > 0) {
       if (!item.tags || !item.tags.some(tag => compendiumState.activeFilters.tags.has(tag))) return false;
     }
     
-    // Trigger filter
+    // Trigger filter - only filter if triggers are selected
     if (compendiumState.activeFilters.triggers.size > 0) {
       const itemTriggers = new Set();
       if (item.effects && Array.isArray(item.effects)) {
@@ -3283,14 +3347,14 @@ function filterItems(items) {
       if (!Array.from(compendiumState.activeFilters.triggers).some(trigger => itemTriggers.has(trigger))) return false;
     }
     
-    // Stat filters
+    // Stat filters - only filter if stat minimums are set > 0
     if (item.stats) {
       for (const [stat, minValue] of Object.entries(compendiumState.activeFilters.stats)) {
         if (minValue > 0 && (item.stats[stat] || 0) < minValue) return false;
       }
     }
     
-    // Advanced filters
+    // Advanced filters - only filter if advanced options are selected
     if (compendiumState.activeFilters.advanced.has('hasTieredValues')) {
       if (!window.TIERABLE || !window.TIERABLE.has(item.key)) return false;
     }
@@ -3315,7 +3379,7 @@ function filterItems(items) {
       if (!isFirstTurnOnly) return false;
     }
     
-    // Needs review filter
+    // Needs review filter - only filter if enabled
     if (compendiumState.needsReviewOnly) {
       const hasIssues = getItemIssues(item).length > 0;
       if (!hasIssues) return false;
