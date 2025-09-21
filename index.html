@@ -97,6 +97,261 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
     box-sizing: border-box;
   }
 
+  /* Advanced Compendium Styles */
+  .view-mode {
+    padding: 6px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 18px;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+  }
+  .view-mode.active {
+    background: #3498db;
+    color: white;
+  }
+
+  .tier-btn {
+    padding: 4px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 14px;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+  }
+  .tier-btn.active {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+  }
+
+  .needs-review-toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 16px;
+    color: #ffc107;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+  }
+  .needs-review-toggle:hover {
+    background: rgba(255, 193, 7, 0.2);
+  }
+  .review-count {
+    background: #ffc107;
+    color: #000;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-weight: bold;
+    min-width: 16px;
+    text-align: center;
+  }
+
+  .quick-action-btn {
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+  }
+  .quick-action-btn:hover {
+    background: rgba(255,255,255,0.2);
+  }
+  .primary-action-btn {
+    padding: 8px 16px;
+    background: #0f3;
+    border: 1px solid #0f3;
+    border-radius: 16px;
+    color: #000;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .search-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .search-chip {
+    background: rgba(52, 152, 219, 0.2);
+    border: 1px solid rgba(52, 152, 219, 0.4);
+    border-radius: 12px;
+    padding: 2px 8px;
+    color: #3498db;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .search-chip .remove {
+    margin-left: 4px;
+    font-weight: bold;
+  }
+
+  .filter-sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.3) transparent;
+  }
+  .filter-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .filter-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+  }
+
+  .filter-group {
+    margin-bottom: 20px;
+    padding: 0 16px;
+  }
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .filter-header h4 {
+    margin: 0;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .filter-clear {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 11px;
+    padding: 2px 4px;
+  }
+
+  .filter-options label {
+    display: block;
+    padding: 4px 0;
+    color: #ccc;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .filter-options input[type="checkbox"] {
+    margin: 0;
+    accent-color: #3498db;
+  }
+  .filter-count {
+    color: #666;
+    font-size: 11px;
+  }
+
+  .tag-family {
+    margin-bottom: 12px;
+  }
+  .tag-family-header {
+    font-weight: bold;
+    color: #3498db;
+    font-size: 11px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stat-slider {
+    margin-bottom: 12px;
+  }
+  .stat-slider label {
+    display: block;
+    color: #ccc;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  .stat-slider input[type="range"] {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 10px;
+    height: 6px;
+  }
+
+  .item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  .item-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .item-table th {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+  }
+  .item-table th.sortable:hover {
+    background: rgba(255,255,255,0.15);
+  }
+  .item-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #ccc;
+    font-size: 13px;
+  }
+  .item-table tbody tr:hover {
+    background: rgba(255,255,255,0.05);
+  }
+
+  .compare-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .qa-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .qa-header h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 16px;
+  }
+  .qa-content {
+    padding: 20px;
+  }
+
   /* Mini card styling for filled slots and weapon */
   .miniCard {
     display:flex; align-items:center; gap:8px;
@@ -1132,21 +1387,284 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
       <button id="tabSimulation" class="tabBtn" style="background:#111;color:#0f3;border:2px solid #0f3;border-radius:8px 8px 0 0;padding:8px 24px;cursor:pointer;font-size:16px;">Simulation</button>
     </div>
     <section class="center" id="compendiumTab" style="flex:1; display:flex; flex-direction:column; min-height:0;">
-      <div class="toolbar">
-        <input id="q" type="search" placeholder="Search name/effect/tagâ€¦">
-        <select id="bucket">
-          <option value="All" selected>All</option><option value="items">Items</option><option value="weapons">Weapons</option><option value="upgrades">Upgrades</option>
-        </select>
-        <select id="cat">
-          <option value="All">All</option>
-          <option value="Jewelry">Jewelry</option><option value="Tome">Tome</option><option value="Food">Food</option>
-        </select>
-        <button id="randBuildBtn" type="button" title="Fill your slots with random items, a random weapon, and a random edge from the compendium" style="background:#f33;color:#000;border:1px solid #f33;border-radius:8px;padding:6px 10px;cursor:pointer;">🎲 Random Build</button>
-        <button id="randEnemyBtn" type="button" title="Randomize the opponent's loadout with items, weapon, and edge" style="background:#f33;color:#000;border:1px solid #f33;border-radius:8px;padding:6px 10px;cursor:pointer;">🎲 Random Enemy</button>
-        <button id="showSimBtn" type="button" style="background:#0f3;color:#000;border:1px solid #0f3;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;margin-left:16px;">Show Simulation</button>
-        <span id="count" style="margin-left:auto;">Shown: 0</span>
+      
+      <!-- Advanced Search & Control Bar -->
+      <div class="compendium-header" style="
+        background: linear-gradient(135deg, #1a1f2e 0%, #16202d 100%); 
+        padding: 16px; 
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      ">
+        <!-- Primary Search Row -->
+        <div class="search-row" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div class="search-box-container" style="flex: 1; position: relative; max-width: 400px;">
+            <input id="globalSearch" type="search" placeholder="Search items, effects, tags..." style="
+              width: 100%; 
+              padding: 8px 12px 8px 36px; 
+              border: 2px solid rgba(255,255,255,0.2); 
+              border-radius: 20px; 
+              background: rgba(0,0,0,0.3); 
+              color: #fff; 
+              font-size: 14px;
+            ">
+            <div class="search-icon" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #aaa;">🔍</div>
+            <div id="searchChips" class="search-chips" style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px;"></div>
+          </div>
+          
+          <div class="view-switches" style="display: flex; align-items: center; gap: 8px;">
+            <div class="view-mode-group" style="background: rgba(0,0,0,0.3); border-radius: 20px; padding: 2px; display: flex;">
+              <button id="viewCards" class="view-mode active" data-mode="cards">Cards</button>
+              <button id="viewTable" class="view-mode" data-mode="table">Table</button>
+              <button id="viewCompare" class="view-mode" data-mode="compare">Compare</button>
+            </div>
+            
+            <div class="tier-switcher" style="background: rgba(0,0,0,0.3); border-radius: 16px; padding: 2px; display: flex;">
+              <button id="tierBase" class="tier-btn active" data-tier="base">Base</button>
+              <button id="tierGold" class="tier-btn" data-tier="gold">Gold</button>
+              <button id="tierDiamond" class="tier-btn" data-tier="diamond">Diamond</button>
+            </div>
+            
+            <button id="needsReviewToggle" class="needs-review-toggle" title="Show only items needing review">
+              <span class="review-icon">⚠</span>
+              <span class="review-count" id="reviewCount">0</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Results Info & Quick Actions -->
+        <div class="results-row" style="display: flex; align-items: center; justify-content: space-between;">
+          <div class="results-info" style="color: #aaa; font-size: 13px;">
+            <span id="resultCount">0 items</span>
+            <span id="filterSummary"></span>
+          </div>
+          
+          <div class="quick-actions" style="display: flex; gap: 8px;">
+            <button id="randBuildBtn" class="quick-action-btn" title="Fill your slots with random items">
+              🎲 Random Build
+            </button>
+            <button id="randEnemyBtn" class="quick-action-btn" title="Randomize opponent loadout">
+              🎲 Random Enemy
+            </button>
+            <button id="exportVisible" class="quick-action-btn" title="Export filtered results to JSON">
+              📋 Export
+            </button>
+            <button id="showSimBtn" class="primary-action-btn">Show Simulation</button>
+          </div>
+        </div>
       </div>
-      <div id="grid" class="grid" style="flex:1;"></div>
+      
+      <!-- Main Content Area -->
+      <div class="compendium-main" style="flex: 1; display: flex; min-height: 0;">
+        
+        <!-- Left Sidebar - Faceted Filters -->
+        <div id="filterSidebar" class="filter-sidebar" style="
+          width: 280px; 
+          background: rgba(255,255,255,0.02); 
+          border-right: 1px solid rgba(255,255,255,0.1);
+          overflow-y: auto;
+          padding: 16px 0;
+        ">
+          
+          <!-- Bucket Filter -->
+          <div class="filter-group">
+            <div class="filter-header">
+              <h4>Type</h4>
+              <button class="filter-clear" data-filter="bucket">Clear</button>
+            </div>
+            <div class="filter-options" id="bucketFilters">
+              <label><input type="checkbox" value="items"> <span class="filter-count">(0)</span> Items</label>
+              <label><input type="checkbox" value="weapons"> <span class="filter-count">(0)</span> Weapons</label>
+              <label><input type="checkbox" value="sets"> <span class="filter-count">(0)</span> Sets</label>
+              <label><input type="checkbox" value="upgrades"> <span class="filter-count">(0)</span> Upgrades</label>
+            </div>
+          </div>
+          
+          <!-- Tag Families Filter -->
+          <div class="filter-group">
+            <div class="filter-header">
+              <h4>Tags</h4>
+              <button class="filter-clear" data-filter="tags">Clear</button>
+            </div>
+            <div class="filter-options" id="tagFilters">
+              <div class="tag-family">
+                <div class="tag-family-header">Combat</div>
+                <label><input type="checkbox" value="Tome"> <span class="filter-count">(0)</span> Tome</label>
+                <label><input type="checkbox" value="Bomb"> <span class="filter-count">(0)</span> Bomb</label>
+                <label><input type="checkbox" value="Symphony"> <span class="filter-count">(0)</span> Symphony</label>
+              </div>
+              <div class="tag-family">
+                <div class="tag-family-header">Materials</div>
+                <label><input type="checkbox" value="Stone"> <span class="filter-count">(0)</span> Stone</label>
+                <label><input type="checkbox" value="Wood"> <span class="filter-count">(0)</span> Wood</label>
+                <label><input type="checkbox" value="Water"> <span class="filter-count">(0)</span> Water</label>
+              </div>
+              <div class="tag-family">
+                <div class="tag-family-header">Status Effects</div>
+                <label><input type="checkbox" value="Poison"> <span class="filter-count">(0)</span> Poison</label>
+                <label><input type="checkbox" value="Freeze"> <span class="filter-count">(0)</span> Freeze</label>
+                <label><input type="checkbox" value="Acid"> <span class="filter-count">(0)</span> Acid</label>
+                <label><input type="checkbox" value="Riptide"> <span class="filter-count">(0)</span> Riptide</label>
+              </div>
+              <div class="tag-family">
+                <div class="tag-family-header">Other</div>
+                <label><input type="checkbox" value="Food"> <span class="filter-count">(0)</span> Food</label>
+                <label><input type="checkbox" value="Jewelry"> <span class="filter-count">(0)</span> Jewelry</label>
+                <label><input type="checkbox" value="Rose"> <span class="filter-count">(0)</span> Rose</label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Trigger Filter -->
+          <div class="filter-group">
+            <div class="filter-header">
+              <h4>Triggers</h4>
+              <button class="filter-clear" data-filter="triggers">Clear</button>
+            </div>
+            <div class="filter-options" id="triggerFilters">
+              <label><input type="checkbox" value="battleStart"> <span class="filter-count">(0)</span> Battle Start</label>
+              <label><input type="checkbox" value="turnStart"> <span class="filter-count">(0)</span> Turn Start</label>
+              <label><input type="checkbox" value="onHit"> <span class="filter-count">(0)</span> On Hit</label>
+              <label><input type="checkbox" value="onWounded"> <span class="filter-count">(0)</span> On Wounded</label>
+              <label><input type="checkbox" value="onExposed"> <span class="filter-count">(0)</span> On Exposed</label>
+              <label><input type="checkbox" value="countdown"> <span class="filter-count">(0)</span> Countdown</label>
+              <label><input type="checkbox" value="passive"> <span class="filter-count">(0)</span> Passive</label>
+            </div>
+          </div>
+          
+          <!-- Stat Ranges -->
+          <div class="filter-group">
+            <div class="filter-header">
+              <h4>Stats</h4>
+              <button class="filter-clear" data-filter="stats">Clear</button>
+            </div>
+            <div class="stat-sliders">
+              <div class="stat-slider">
+                <label>Attack: <span id="attackValue">Any</span></label>
+                <input type="range" id="attackSlider" min="0" max="10" value="0" style="width: 100%;">
+              </div>
+              <div class="stat-slider">
+                <label>Armor: <span id="armorValue">Any</span></label>
+                <input type="range" id="armorSlider" min="0" max="10" value="0" style="width: 100%;">
+              </div>
+              <div class="stat-slider">
+                <label>Health: <span id="healthValue">Any</span></label>
+                <input type="range" id="healthSlider" min="0" max="20" value="0" style="width: 100%;">
+              </div>
+              <div class="stat-slider">
+                <label>Speed: <span id="speedValue">Any</span></label>
+                <input type="range" id="speedSlider" min="0" max="10" value="0" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Advanced Filters -->
+          <div class="filter-group">
+            <div class="filter-header">
+              <h4>Advanced</h4>
+              <button class="filter-clear" data-filter="advanced">Clear</button>
+            </div>
+            <div class="filter-options">
+              <label><input type="checkbox" id="hasTieredValues"> Has Tiered Values</label>
+              <label><input type="checkbox" id="hasConditions"> Has Conditions</label>
+              <label><input type="checkbox" id="firstTurnOnly"> First Turn Only</label>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Main Content Panel -->
+        <div class="content-main" style="flex: 1; overflow: auto; position: relative;">
+          
+          <!-- Cards View -->
+          <div id="cardsView" class="content-view active" style="padding: 16px;">
+            <div id="itemGrid" class="item-grid"></div>
+          </div>
+          
+          <!-- Table View -->
+          <div id="tableView" class="content-view" style="display: none; padding: 16px;">
+            <div class="table-container">
+              <table id="itemTable" class="item-table">
+                <thead>
+                  <tr>
+                    <th class="sortable" data-sort="name">Name</th>
+                    <th class="sortable" data-sort="bucket">Type</th>
+                    <th class="sortable" data-sort="tags">Tags</th>
+                    <th>Triggers</th>
+                    <th>Stats</th>
+                    <th>Status Effects</th>
+                    <th class="sortable" data-sort="tiered">Tiered</th>
+                    <th>Issues</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+              </table>
+            </div>
+          </div>
+          
+          <!-- Compare View -->
+          <div id="compareView" class="content-view" style="display: none; padding: 16px;">
+            <div class="compare-header">
+              <h3>Compare Items</h3>
+              <div class="compare-instructions">Select 2-3 items from cards or table to compare side-by-side</div>
+            </div>
+            <div id="compareContainer" class="compare-container"></div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <!-- Item Detail Modal -->
+      <div id="itemDetailModal" class="item-detail-modal" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 1000;
+        display: none;
+        overflow-y: auto;
+      ">
+        <div class="modal-content" style="
+          max-width: 900px;
+          margin: 40px auto;
+          background: #1a1f2e;
+          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,0.2);
+          position: relative;
+        ">
+          <button class="modal-close" id="closeItemDetail">×</button>
+          <div id="itemDetailContent"></div>
+        </div>
+      </div>
+      
+      <!-- QA Panel (Drawer) -->
+      <div id="qaPanel" class="qa-panel" style="
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 400px;
+        height: 100vh;
+        background: #1a1f2e;
+        border-left: 1px solid rgba(255,255,255,0.2);
+        z-index: 1001;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+      ">
+        <div class="qa-header">
+          <h3>QA & Authoring Tools</h3>
+          <button id="closeQAPanel">×</button>
+        </div>
+        <div class="qa-content">
+          <div id="lintResults"></div>
+          <div id="wikiDriftResults"></div>
+          <div id="playgroundEditor"></div>
+        </div>
+      </div>
+      
     </section>
     <section class="center" id="analysisTab" style="flex:1; display:none; flex-direction:column; min-height:0;">
       <!-- Battle Analysis Header -->
@@ -2157,8 +2675,8 @@ async function loadData() {
     populateEdges();
     // Build empty item grids for both sides
     initSlots();
-    // Render the compendium grid
-    renderGrid();
+    // Initialize Advanced Compendium System
+    initAdvancedCompendium();
     // Compute initial totals for player and opponent (empty builds)
     updateTotals('P');
     updateTotals('O');
@@ -2180,11 +2698,43 @@ BattleReplayController.init();
 const ICONS = { attack:'attack.png', health:'health.png', armor:'armor.png', speed:'speed.png' };
 
 const $ = sel => document.querySelector(sel);
-const grid = $('#grid');
-const countSpan = $('#count');
-const searchIn = $('#q');
-const bucketSel = $('#bucket');
-const catSel = $('#cat');
+
+// Advanced Compendium Elements
+const globalSearch = $('#globalSearch');
+const searchChips = $('#searchChips');
+const itemGrid = $('#itemGrid');
+const itemTable = $('#itemTable');
+const tableBody = $('#tableBody');
+const compareContainer = $('#compareContainer');
+const resultCount = $('#resultCount');
+const filterSummary = $('#filterSummary');
+const reviewCount = $('#reviewCount');
+const itemDetailModal = $('#itemDetailModal');
+const itemDetailContent = $('#itemDetailContent');
+const qaPanel = $('#qaPanel');
+
+// Legacy elements for backwards compatibility
+const grid = $('#itemGrid'); // Point to new grid
+const countSpan = $('#resultCount'); // Point to new counter
+
+// Advanced Compendium State
+let compendiumState = {
+  searchTerms: [],
+  activeFilters: {
+    bucket: new Set(),
+    tags: new Set(), 
+    triggers: new Set(),
+    stats: { attack: 0, armor: 0, health: 0, speed: 0 },
+    advanced: new Set()
+  },
+  viewMode: 'cards',
+  currentTier: 'base',
+  needsReviewOnly: false,
+  sortBy: 'name',
+  sortDirection: 'asc',
+  compareItems: new Set(),
+  qaResults: { lint: [], drift: [] }
+};
 
 // Force the bucket selector to "All" to ensure it shows all items by default
 bucketSel.value = 'All';
@@ -2428,279 +2978,867 @@ function showDetail(entry) {
   detailModal.style.display = 'flex';
 }
 
-function renderGrid() {
+// =============================================
+// ADVANCED COMPENDIUM SYSTEM
+// =============================================
 
-  if (!grid) return;
-
-  const term = (searchIn && searchIn.value ? searchIn.value : '').trim().toLowerCase();
-
-  const bucketVal = bucketSel ? bucketSel.value : 'All';
-
-  const catVal = catSel ? catSel.value : 'All';
-
-  const total = Array.isArray(DATA_ARR) ? DATA_ARR.length : 0;
-
-  if (!total) {
-
-    showNoDataMessage('Compendium data not available. Check details.js or details.json.');
-
+// Initialize Advanced Compendium
+function initAdvancedCompendium() {
+  if (!DATA_ARR || !DATA_ARR.length) {
+    console.warn('No data available for advanced compendium');
     return;
-
-  }
-
-  let shown = 0;
-
-  grid.innerHTML = '';
-  
-  console.log(`renderGrid called with bucketVal: "${bucketVal}", total DATA_ARR: ${DATA_ARR?.length}`);
-  
-  DATA_ARR.forEach(entry => {
-    // Case-insensitive matching for better reliability
-    const entryBucket = (entry.bucket || '').toLowerCase();
-    const bucketValLower = bucketVal.toLowerCase();
-    
-    const isMatch = bucketVal.toLowerCase() === 'all' || entryBucket === bucketValLower;
-    
-    if (!isMatch) return;
-
-    if (catVal !== 'All') {
-
-      if (!entry.tags || !entry.tags.includes(catVal)) return;
-
-    }
-
-    const hay = `${entry.name} ${entry.effect || ''} ${entry.key}`.toLowerCase();
-
-    if (term && !hay.includes(term)) return;
-
-    shown++;
-
-    const card = document.createElement('div'); card.className='card';
-
-    card.draggable = true; card.dataset.key = entry.key;
-
-    card.dataset.cat = (entry.tags||[]).find(t=>t==='Jewelry'||t==='Tome'||t==='Food') || '';
-    
-    // Add a visual indicator for weapons
-    if (entry.bucket === 'weapons') {
-      card.dataset.weapon = 'true';
-      card.style.borderColor = '#ff9900';
-    }
-
-
-
-    const topRow = document.createElement('div'); topRow.style.display='flex'; topRow.style.alignItems='center'; topRow.style.gap='8px';
-
-    const icon = document.createElement('img');
-
-    // Build a robust set of icon path candidates so weapons display correctly
-    // even if we recategorized bucket values. Prefer the data key path first.
-    const iconCandidates = [];
-    if (entry.key) iconCandidates.push(`${entry.key}/icon.png`);
-    if (entry.bucket && entry.slug) iconCandidates.push(`${entry.bucket}/${entry.slug}/icon.png`);
-    if (entry.slug) {
-      iconCandidates.push(`items/${entry.slug}/icon.png`);
-      iconCandidates.push(`weapons/${entry.slug}/icon.png`);
-    }
-    let iconTry = 0;
-    icon.src = iconCandidates[iconTry] || 'placeholder.png';
-
-    icon.alt = entry.name;
-
-    icon.onerror = () => {
-      iconTry += 1;
-      if (iconTry < iconCandidates.length) {
-        icon.src = iconCandidates[iconTry];
-      } else {
-        icon.onerror = null;
-        icon.src = 'placeholder.png';
-      }
-    };
-
-    icon.style.width = '48px';
-
-    icon.style.height = '48px';
-
-    icon.style.imageRendering = 'pixelated';
-
-    icon.style.marginRight = '12px';
-
-    const nameSlug = document.createElement('div');
-
-    nameSlug.innerHTML = `<div style="font-weight:700;font-size:20px;color:#f33;">${entry.name}</div><div style="font-size:15px;color:#faa;">${entry.key}</div>`;
-
-    topRow.appendChild(icon);
-
-    topRow.appendChild(nameSlug);
-
-    const tierSel = document.createElement('select'); tierSel.innerHTML = '<option value="base">Base</option><option value="gold">Gold</option><option value="diamond">Diamond</option>';
-
-    tierSel.style.background = '#1b1216'; tierSel.style.color = '#f33'; tierSel.style.border = '1px solid #f33'; tierSel.style.borderRadius = '8px'; tierSel.style.padding = '2px 6px'; tierSel.style.fontSize = '12px';
-
-    tierSel.addEventListener('click', ev => ev.stopPropagation());
-
-    card.dataset.tier = 'base';
-
-    tierSel.addEventListener('change', () => { card.dataset.tier = tierSel.value; });
-
-    const supportsTier = (window.TIERABLE && window.TIERABLE.has(entry.key));
-
-    if (!supportsTier) tierSel.style.display = 'none';
-
-    const actions = document.createElement('div'); actions.className = 'card__actions'; actions.style.marginLeft = 'auto';
-
-    // Tier selector only (P/O buttons removed)
-    actions.append(tierSel);
-
-    topRow.appendChild(actions);
-
-
-
-    const effectDiv = document.createElement('div');
-
-    effectDiv.className = 'effect';
-
-    effectDiv.style.marginTop = '8px';
-
-    effectDiv.style.marginBottom = '8px';
-
-    effectDiv.style.color = '#fff';
-
-    effectDiv.style.fontSize = '12px';
-
-    effectDiv.textContent = entry.effect || '';
-
-    const divider = document.createElement('div');
-
-    divider.style.height = '3px';
-
-    divider.style.background = '#f33';
-
-    divider.style.margin = '8px 0 8px 0';
-
-    divider.style.borderRadius = '2px';
-
-
-
-    const statRow1 = document.createElement('div'); statRow1.style.display='flex'; statRow1.style.gap='16px'; statRow1.style.marginBottom='8px';
-
-    const statRow2 = document.createElement('div'); statRow2.style.display='flex'; statRow2.style.gap='16px';
-
-    const statOrder = [
-
-      { key:'attack', label:'Attack', color:'#f33', icon:'attack.png' },
-
-      { key:'armor', label:'Armor', color:'#3af', icon:'armor.png' },
-
-      { key:'health', label:'Health', color:'#95d5b2', icon:'health.png' },
-
-      { key:'speed', label:'Speed', color:'#ffd166', icon:'speed.png' }
-
-    ];
-
-    statOrder.forEach((st, idx) => {
-
-      const val = entry.stats && typeof entry.stats[st.key] === 'number' ? entry.stats[st.key] : 0;
-
-      const pill = document.createElement('div');
-
-      pill.style.display = 'flex';
-
-      pill.style.alignItems = 'center';
-
-      pill.style.gap = '8px';
-
-      pill.style.background = '#210';
-
-      pill.style.border = '2px solid #f33';
-
-      pill.style.borderRadius = '16px';
-
-      pill.style.padding = '8px 18px';
-
-      pill.style.fontSize = '18px';
-
-      pill.style.color = st.color;
-
-      const pImg = document.createElement('img'); pImg.src = st.icon; pImg.style.width='24px'; pImg.style.height='24px'; pImg.style.imageRendering='pixelated';
-
-      const pTxt = document.createElement('span'); pTxt.textContent = `${st.label}: ${val}`;
-
-      pill.appendChild(pImg);
-
-      pill.appendChild(pTxt);
-
-      if (idx < 2) statRow1.appendChild(pill); else statRow2.appendChild(pill);
-
-    });
-
-
-
-    card.style.background = '#000';
-
-    card.style.border = '2px solid #f33';
-
-    card.style.borderRadius = '16px';
-
-    card.style.padding = '14px';
-
-    card.style.margin = '4px';
-
-    card.style.color = '#fff';
-
-    card.style.display = 'flex';
-
-    card.style.flexDirection = 'column';
-
-    card.style.gap = '6px';
-
-    card.style.width = '100%';
-
-    card.style.boxSizing = 'border-box';
-
-
-
-    card.appendChild(topRow);
-
-    card.appendChild(effectDiv);
-
-    card.appendChild(divider);
-
-    card.appendChild(statRow1);
-
-    card.appendChild(statRow2);
-
-
-
-    card.addEventListener('dragstart', e => {
-
-      e.dataTransfer.setData('text/plain', entry.key);
-
-      try { e.dataTransfer.setData('application/json', JSON.stringify({ key: entry.key, tier: card.dataset.tier || 'base' })); } catch(_){ }
-
-    });
-
-    card.addEventListener('click', () => showDetail(entry));
-
-    grid.appendChild(card);
-
-  });
-  
-  console.log(`Compendium showing ${shown} items for bucket: ${bucketVal}`);
-  
-  if (shown === 0 && bucketVal === 'All') {
-    grid.innerHTML = '<div style="color: #f33; padding: 20px; text-align: center;">No items loaded. Check console for data loading details.</div>';
   }
   
-  // console.debug('renderGrid finished, shown:', shown, 'bucketVal:', bucketVal);
-  countSpan.textContent = `Shown: ${shown}`;
+  // Build filter counts and options
+  buildFilterOptions();
+  
+  // Setup event listeners
+  setupCompendiumListeners();
+  
+  // Initial render
+  renderCompendium();
+  
+  // Run QA analysis
+  runQAAnalysis();
 }
 
-// Filter listeners
-[searchIn, bucketSel, catSel].forEach(el => {
-  el.addEventListener('input', renderGrid);
-  el.addEventListener('change', renderGrid);
-});
+// Build dynamic filter options with counts
+function buildFilterOptions() {
+  const bucketCounts = new Map();
+  const tagCounts = new Map();  
+  const triggerCounts = new Map();
+  
+  DATA_ARR.forEach(item => {
+    // Count buckets
+    const bucket = item.bucket || 'unknown';
+    bucketCounts.set(bucket, (bucketCounts.get(bucket) || 0) + 1);
+    
+    // Count tags
+    if (item.tags) {
+      item.tags.forEach(tag => {
+        tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+      });
+    }
+    
+    // Count triggers (from effects)
+    if (item.effects && Array.isArray(item.effects)) {
+      item.effects.forEach(effect => {
+        if (effect.trigger) {
+          triggerCounts.set(effect.trigger, (triggerCounts.get(effect.trigger) || 0) + 1);
+        }
+      });
+    }
+  });
+  
+  // Update bucket filter options
+  const bucketFilters = $('#bucketFilters');
+  if (bucketFilters) {
+    bucketFilters.innerHTML = '';
+    ['items', 'weapons', 'sets', 'upgrades'].forEach(bucket => {
+      const count = bucketCounts.get(bucket) || 0;
+      const label = document.createElement('label');
+      label.innerHTML = `<input type="checkbox" value="${bucket}"> <span class="filter-count">(${count})</span> ${bucket.charAt(0).toUpperCase() + bucket.slice(1)}`;
+      bucketFilters.appendChild(label);
+    });
+  }
+  
+  // Update trigger filter options
+  const triggerFilters = $('#triggerFilters');
+  if (triggerFilters) {
+    triggerFilters.innerHTML = '';
+    const commonTriggers = ['battleStart', 'turnStart', 'onHit', 'onWounded', 'onExposed', 'countdown', 'passive'];
+    commonTriggers.forEach(trigger => {
+      const count = triggerCounts.get(trigger) || 0;
+      const label = document.createElement('label');
+      const displayName = trigger.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+      label.innerHTML = `<input type="checkbox" value="${trigger}"> <span class="filter-count">(${count})</span> ${displayName}`;
+      triggerFilters.appendChild(label);
+    });
+  }
+}
+
+// Setup event listeners for all compendium controls
+function setupCompendiumListeners() {
+  // Search input
+  if (globalSearch) {
+    globalSearch.addEventListener('input', debounce(handleSearch, 300));
+    globalSearch.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleSearchSubmit();
+      }
+    });
+  }
+  
+  // View mode switchers
+  document.querySelectorAll('.view-mode').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.view-mode').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      compendiumState.viewMode = btn.dataset.mode;
+      renderCompendium();
+    });
+  });
+  
+  // Tier switchers
+  document.querySelectorAll('.tier-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      compendiumState.currentTier = btn.dataset.tier;
+      renderCompendium();
+    });
+  });
+  
+  // Needs review toggle
+  const needsReviewToggle = $('#needsReviewToggle');
+  if (needsReviewToggle) {
+    needsReviewToggle.addEventListener('click', () => {
+      compendiumState.needsReviewOnly = !compendiumState.needsReviewOnly;
+      needsReviewToggle.classList.toggle('active', compendiumState.needsReviewOnly);
+      renderCompendium();
+    });
+  }
+  
+  // Filter listeners
+  document.querySelectorAll('#bucketFilters input, #tagFilters input, #triggerFilters input').forEach(input => {
+    input.addEventListener('change', handleFilterChange);
+  });
+  
+  // Stat sliders
+  ['attack', 'armor', 'health', 'speed'].forEach(stat => {
+    const slider = $(`#${stat}Slider`);
+    const valueSpan = $(`#${stat}Value`);
+    if (slider && valueSpan) {
+      slider.addEventListener('input', () => {
+        const value = parseInt(slider.value);
+        compendiumState.activeFilters.stats[stat] = value;
+        valueSpan.textContent = value === 0 ? 'Any' : `${value}+`;
+        renderCompendium();
+      });
+    }
+  });
+  
+  // Advanced filters
+  document.querySelectorAll('#hasTieredValues, #hasConditions, #firstTurnOnly').forEach(input => {
+    input.addEventListener('change', () => {
+      if (input.checked) {
+        compendiumState.activeFilters.advanced.add(input.id);
+      } else {
+        compendiumState.activeFilters.advanced.delete(input.id);
+      }
+      renderCompendium();
+    });
+  });
+  
+  // Quick actions
+  const randBuildBtn = $('#randBuildBtn');
+  const randEnemyBtn = $('#randEnemyBtn');
+  const showSimBtn = $('#showSimBtn');
+  
+  if (randBuildBtn) randBuildBtn.addEventListener('click', () => randomizeSide('P'));
+  if (randEnemyBtn) randEnemyBtn.addEventListener('click', () => randomizeSide('O'));
+  if (showSimBtn) showSimBtn.addEventListener('click', () => switchToTab('simulation'));
+  
+  // Table sorting
+  document.querySelectorAll('.sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const sortKey = th.dataset.sort;
+      if (compendiumState.sortBy === sortKey) {
+        compendiumState.sortDirection = compendiumState.sortDirection === 'asc' ? 'desc' : 'asc';
+      } else {
+        compendiumState.sortBy = sortKey;
+        compendiumState.sortDirection = 'asc';
+      }
+      renderCompendium();
+    });
+  });
+  
+  // Modal close
+  const closeItemDetail = $('#closeItemDetail');
+  if (closeItemDetail) {
+    closeItemDetail.addEventListener('click', () => {
+      itemDetailModal.style.display = 'none';
+    });
+  }
+}
+
+// Handle search input with chips
+function handleSearch() {
+  const query = globalSearch.value.trim();
+  compendiumState.searchQuery = query;
+  renderCompendium();
+}
+
+function handleSearchSubmit() {
+  const query = globalSearch.value.trim();
+  if (query && !compendiumState.searchTerms.includes(query)) {
+    compendiumState.searchTerms.push(query);
+    globalSearch.value = '';
+    updateSearchChips();
+    renderCompendium();
+  }
+}
+
+function updateSearchChips() {
+  if (!searchChips) return;
+  
+  searchChips.innerHTML = '';
+  compendiumState.searchTerms.forEach((term, index) => {
+    const chip = document.createElement('div');
+    chip.className = 'search-chip';
+    chip.innerHTML = `${term} <span class="remove">×</span>`;
+    chip.querySelector('.remove').addEventListener('click', () => {
+      compendiumState.searchTerms.splice(index, 1);
+      updateSearchChips();
+      renderCompendium();
+    });
+    searchChips.appendChild(chip);
+  });
+}
+
+// Handle filter changes
+function handleFilterChange(e) {
+  const input = e.target;
+  const value = input.value;
+  
+  if (input.closest('#bucketFilters')) {
+    if (input.checked) {
+      compendiumState.activeFilters.bucket.add(value);
+    } else {
+      compendiumState.activeFilters.bucket.delete(value);
+    }
+  } else if (input.closest('#tagFilters')) {
+    if (input.checked) {
+      compendiumState.activeFilters.tags.add(value);
+    } else {
+      compendiumState.activeFilters.tags.delete(value);
+    }
+  } else if (input.closest('#triggerFilters')) {
+    if (input.checked) {
+      compendiumState.activeFilters.triggers.add(value);
+    } else {
+      compendiumState.activeFilters.triggers.delete(value);
+    }
+  }
+  
+  renderCompendium();
+}
+
+// Main render function for the compendium
+function renderCompendium() {
+  if (!DATA_ARR || !DATA_ARR.length) {
+    showNoDataMessage('Compendium data not available. Check details.js or details.json.');
+    return;
+  }
+  
+  // Filter items based on current state
+  const filteredItems = filterItems(DATA_ARR);
+  
+  // Update result count
+  updateResultCount(filteredItems.length);
+  
+  // Render based on view mode
+  if (compendiumState.viewMode === 'cards') {
+    renderCardsView(filteredItems);
+  } else if (compendiumState.viewMode === 'table') {
+    renderTableView(filteredItems);
+  } else if (compendiumState.viewMode === 'compare') {
+    renderCompareView();
+  }
+  
+  // Update review count
+  updateReviewCount();
+}
+
+// Filter items based on current compendium state
+function filterItems(items) {
+  return items.filter(item => {
+    // Search terms filter
+    if (compendiumState.searchTerms.length > 0 || compendiumState.searchQuery) {
+      const searchText = `${item.name} ${item.effect || ''} ${item.key} ${(item.tags || []).join(' ')}`.toLowerCase();
+      
+      const queryMatch = !compendiumState.searchQuery || searchText.includes(compendiumState.searchQuery.toLowerCase());
+      const termsMatch = compendiumState.searchTerms.length === 0 || 
+        compendiumState.searchTerms.every(term => searchText.includes(term.toLowerCase()));
+        
+      if (!queryMatch || !termsMatch) return false;
+    }
+    
+    // Bucket filter
+    if (compendiumState.activeFilters.bucket.size > 0) {
+      if (!compendiumState.activeFilters.bucket.has(item.bucket)) return false;
+    }
+    
+    // Tag filter
+    if (compendiumState.activeFilters.tags.size > 0) {
+      if (!item.tags || !item.tags.some(tag => compendiumState.activeFilters.tags.has(tag))) return false;
+    }
+    
+    // Trigger filter
+    if (compendiumState.activeFilters.triggers.size > 0) {
+      const itemTriggers = new Set();
+      if (item.effects && Array.isArray(item.effects)) {
+        item.effects.forEach(effect => {
+          if (effect.trigger) itemTriggers.add(effect.trigger);
+        });
+      }
+      if (!Array.from(compendiumState.activeFilters.triggers).some(trigger => itemTriggers.has(trigger))) return false;
+    }
+    
+    // Stat filters
+    if (item.stats) {
+      for (const [stat, minValue] of Object.entries(compendiumState.activeFilters.stats)) {
+        if (minValue > 0 && (item.stats[stat] || 0) < minValue) return false;
+      }
+    }
+    
+    // Advanced filters
+    if (compendiumState.activeFilters.advanced.has('hasTieredValues')) {
+      if (!window.TIERABLE || !window.TIERABLE.has(item.key)) return false;
+    }
+    
+    if (compendiumState.activeFilters.advanced.has('hasConditions')) {
+      let hasConditions = false;
+      if (item.effects && Array.isArray(item.effects)) {
+        hasConditions = item.effects.some(effect => 
+          effect.actions && effect.actions.some(action => action.condition)
+        );
+      }
+      if (!hasConditions) return false;
+    }
+    
+    if (compendiumState.activeFilters.advanced.has('firstTurnOnly')) {
+      let isFirstTurnOnly = false;
+      if (item.effects && Array.isArray(item.effects)) {
+        isFirstTurnOnly = item.effects.some(effect => 
+          effect.trigger === 'battleStart' || effect.trigger === 'preBattle'
+        );
+      }
+      if (!isFirstTurnOnly) return false;
+    }
+    
+    // Needs review filter
+    if (compendiumState.needsReviewOnly) {
+      const hasIssues = getItemIssues(item).length > 0;
+      if (!hasIssues) return false;
+    }
+    
+    return true;
+  });
+}
+
+// Render cards view
+function renderCardsView(items) {
+  if (!itemGrid) return;
+  
+  // Sort items
+  const sortedItems = sortItems(items);
+  
+  itemGrid.innerHTML = '';
+  
+  if (sortedItems.length === 0) {
+    itemGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #666; padding: 40px;">No items match current filters</div>';
+    return;
+  }
+  
+  sortedItems.forEach(item => {
+    const card = createItemCard(item);
+    itemGrid.appendChild(card);
+  });
+}
+
+// Create an enhanced item card
+function createItemCard(item) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.key = item.key;
+  card.draggable = true;
+  
+  // Add tier data
+  card.dataset.tier = compendiumState.currentTier;
+  
+  // Card styling
+  card.style.background = '#000';
+  card.style.border = '2px solid #f33';
+  card.style.borderRadius = '16px';
+  card.style.padding = '14px';
+  card.style.color = '#fff';
+  card.style.cursor = 'pointer';
+  card.style.transition = 'all 0.2s ease';
+  
+  // Special styling for weapons
+  if (item.bucket === 'weapons') {
+    card.style.borderColor = '#ff9900';
+  }
+  
+  // Create card content
+  card.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+      <img src="${getItemIconPath(item)}" alt="${item.name}" 
+           style="width: 48px; height: 48px; image-rendering: pixelated;"
+           onerror="this.src='placeholder.png'">
+      <div style="flex: 1;">
+        <div style="font-weight: 700; font-size: 18px; color: #f33; margin-bottom: 4px;">${item.name}</div>
+        <div style="font-size: 12px; color: #aaa;">${item.key}</div>
+        ${getItemIssues(item).length > 0 ? '<div class="issue-badges" style="margin-top: 4px;"></div>' : ''}
+      </div>
+      ${window.TIERABLE && window.TIERABLE.has(item.key) ? 
+        `<select class="tier-selector" style="background: #1b1216; color: #f33; border: 1px solid #f33; border-radius: 8px; padding: 2px 6px; font-size: 12px;">
+          <option value="base">Base</option>
+          <option value="gold">Gold</option>
+          <option value="diamond">Diamond</option>
+        </select>` : ''
+      }
+    </div>
+    
+    <div style="color: #ccc; font-size: 13px; margin-bottom: 12px; min-height: 40px;">
+      ${item.effect || 'No description available'}
+    </div>
+    
+    <div style="height: 3px; background: #f33; margin: 8px 0; border-radius: 2px;"></div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+      ${createStatPills(item.stats)}
+    </div>
+    
+    ${(item.tags && item.tags.length > 0) ? `
+      <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 4px;">
+        ${item.tags.map(tag => `<span class="tag-chip" style="background: rgba(52, 152, 219, 0.2); color: #3498db; padding: 2px 6px; border-radius: 10px; font-size: 11px;">${tag}</span>`).join('')}
+      </div>
+    ` : ''}
+  `;
+  
+  // Add issue badges if any
+  const issueContainer = card.querySelector('.issue-badges');
+  if (issueContainer) {
+    const issues = getItemIssues(item);
+    issues.forEach(issue => {
+      const badge = document.createElement('span');
+      badge.className = 'issue-badge';
+      badge.style.cssText = 'background: #e74c3c; color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; margin-right: 4px;';
+      badge.textContent = issue.type;
+      badge.title = issue.message;
+      issueContainer.appendChild(badge);
+    });
+  }
+  
+  // Event listeners
+  card.addEventListener('click', () => showItemDetail(item));
+  card.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('text/plain', item.key);
+    try {
+      e.dataTransfer.setData('application/json', JSON.stringify({ 
+        key: item.key, 
+        tier: card.dataset.tier || 'base' 
+      }));
+    } catch(_) {}
+  });
+  
+  // Tier selector
+  const tierSelector = card.querySelector('.tier-selector');
+  if (tierSelector) {
+    tierSelector.value = compendiumState.currentTier;
+    tierSelector.addEventListener('click', (e) => e.stopPropagation());
+    tierSelector.addEventListener('change', () => {
+      card.dataset.tier = tierSelector.value;
+    });
+  }
+  
+  return card;
+}
+
+// Create stat pills for an item
+function createStatPills(stats) {
+  const statOrder = [
+    { key: 'attack', label: 'ATK', icon: 'attack.png', color: '#f33' },
+    { key: 'armor', label: 'ARM', icon: 'armor.png', color: '#3af' },
+    { key: 'health', label: 'HP', icon: 'health.png', color: '#95d5b2' },
+    { key: 'speed', label: 'SPD', icon: 'speed.png', color: '#ffd166' }
+  ];
+  
+  return statOrder.map(stat => {
+    const value = stats && typeof stats[stat.key] === 'number' ? stats[stat.key] : 0;
+    return `
+      <div style="display: flex; align-items: center; gap: 6px; background: #210; border: 1px solid ${stat.color}; border-radius: 12px; padding: 6px 10px;">
+        <img src="${stat.icon}" style="width: 16px; height: 16px; image-rendering: pixelated;">
+        <span style="color: ${stat.color}; font-size: 14px; font-weight: bold;">${value}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+// Get appropriate icon path for an item
+function getItemIconPath(item) {
+  if (item.key) return `${item.key}/icon.png`;
+  if (item.bucket && item.slug) return `${item.bucket}/${item.slug}/icon.png`;
+  if (item.slug) return `items/${item.slug}/icon.png`;
+  return 'placeholder.png';
+}
+
+// Get issues for QA analysis
+function getItemIssues(item) {
+  const issues = [];
+  
+  // Check for missing required fields
+  if (!item.name || item.name.trim() === '') {
+    issues.push({ type: 'Missing Name', message: 'Item has no name' });
+  }
+  
+  if (!item.effect || item.effect.trim() === '') {
+    issues.push({ type: 'No Description', message: 'Item has no effect description' });
+  }
+  
+  // Check for malformed effects
+  if (item.effects && Array.isArray(item.effects)) {
+    item.effects.forEach((effect, idx) => {
+      if (!effect.trigger) {
+        issues.push({ type: 'Bad Effect', message: `Effect ${idx + 1} missing trigger` });
+      }
+      if (!effect.actions || !Array.isArray(effect.actions)) {
+        issues.push({ type: 'Bad Effect', message: `Effect ${idx + 1} missing actions` });
+      }
+    });
+  }
+  
+  return issues;
+}
+
+// Show detailed item modal
+function showItemDetail(item) {
+  if (!itemDetailModal || !itemDetailContent) return;
+  
+  itemDetailContent.innerHTML = createItemDetailHTML(item);
+  itemDetailModal.style.display = 'block';
+}
+
+// Create detailed HTML for item modal
+function createItemDetailHTML(item) {
+  return `
+    <div style="padding: 24px;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+        <img src="${getItemIconPath(item)}" alt="${item.name}" 
+             style="width: 64px; height: 64px; image-rendering: pixelated;"
+             onerror="this.src='placeholder.png'">
+        <div>
+          <h2 style="margin: 0 0 8px 0; color: #f33; font-size: 24px;">${item.name}</h2>
+          <div style="color: #aaa; font-size: 14px;">${item.key}</div>
+          <div style="color: #aaa; font-size: 12px; margin-top: 4px;">
+            Type: ${item.bucket || 'Unknown'} | Tags: ${(item.tags || []).join(', ') || 'None'}
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-bottom: 24px;">
+        <h3 style="color: #fff; margin-bottom: 12px;">Description</h3>
+        <div style="color: #ccc; line-height: 1.5;">${item.effect || 'No description available'}</div>
+      </div>
+      
+      <div style="margin-bottom: 24px;">
+        <h3 style="color: #fff; margin-bottom: 12px;">Stats</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
+          ${createStatPills(item.stats)}
+        </div>
+      </div>
+      
+      ${item.effects && item.effects.length > 0 ? `
+        <div style="margin-bottom: 24px;">
+          <h3 style="color: #fff; margin-bottom: 12px;">Effects</h3>
+          <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 16px;">
+            <pre style="color: #ccc; font-size: 12px; margin: 0; white-space: pre-wrap;">${JSON.stringify(item.effects, null, 2)}</pre>
+          </div>
+        </div>
+      ` : ''}
+      
+      <div style="display: flex; gap: 12px; justify-content: flex-end;">
+        <button onclick="addItemToCompare('${item.key}')" style="background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">
+          Add to Compare
+        </button>
+        <button onclick="copyItemData('${item.key}')" style="background: #95a5a6; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">
+          Copy Data
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// Sort items based on current sort settings
+function sortItems(items) {
+  return [...items].sort((a, b) => {
+    let aVal, bVal;
+    
+    switch (compendiumState.sortBy) {
+      case 'name':
+        aVal = a.name || '';
+        bVal = b.name || '';
+        break;
+      case 'bucket':
+        aVal = a.bucket || '';
+        bVal = b.bucket || '';
+        break;
+      case 'tags':
+        aVal = (a.tags || []).join(', ');
+        bVal = (b.tags || []).join(', ');
+        break;
+      case 'tiered':
+        aVal = window.TIERABLE && window.TIERABLE.has(a.key) ? 1 : 0;
+        bVal = window.TIERABLE && window.TIERABLE.has(b.key) ? 1 : 0;
+        break;
+      default:
+        aVal = a.name || '';
+        bVal = b.name || '';
+    }
+    
+    let result = 0;
+    if (typeof aVal === 'string' && typeof bVal === 'string') {
+      result = aVal.localeCompare(bVal);
+    } else {
+      result = aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+    }
+    
+    return compendiumState.sortDirection === 'desc' ? -result : result;
+  });
+}
+
+// Update result count display
+function updateResultCount(count) {
+  if (resultCount) {
+    resultCount.textContent = `${count} items`;
+  }
+  
+  // Update legacy counter for backwards compatibility
+  if (countSpan) {
+    countSpan.textContent = `Shown: ${count}`;
+  }
+}
+
+// Update review count
+function updateReviewCount() {
+  if (!reviewCount) return;
+  
+  let totalIssues = 0;
+  if (DATA_ARR) {
+    DATA_ARR.forEach(item => {
+      totalIssues += getItemIssues(item).length;
+    });
+  }
+  
+  reviewCount.textContent = totalIssues;
+  reviewCount.parentElement.style.display = totalIssues > 0 ? 'flex' : 'none';
+}
+
+// Run QA analysis
+function runQAAnalysis() {
+  // This would perform comprehensive QA checks
+  compendiumState.qaResults.lint = [];
+  compendiumState.qaResults.drift = [];
+  
+  if (DATA_ARR) {
+    DATA_ARR.forEach(item => {
+      const issues = getItemIssues(item);
+      issues.forEach(issue => {
+        compendiumState.qaResults.lint.push({
+          item: item.key,
+          ...issue
+        });
+      });
+    });
+  }
+}
+
+// Utility functions
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+function showNoDataMessage(message) {
+  if (itemGrid) {
+    itemGrid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: #f33; padding: 40px;">${message}</div>`;
+  }
+}
+
+// Backwards compatibility - keep old renderGrid function name
+function renderGrid() {
+  renderCompendium();
+}
+
+// Additional helper functions for compendium
+
+function addItemToCompare(key) {
+  compendiumState.compareItems.add(key);
+  if (compendiumState.compareItems.size >= 2) {
+    // Switch to compare view
+    document.querySelectorAll('.view-mode').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('[data-mode="compare"]')?.classList.add('active');
+    compendiumState.viewMode = 'compare';
+    renderCompendium();
+  }
+}
+
+function copyItemData(key) {
+  const item = RAW_DATA[key];
+  if (item) {
+    navigator.clipboard.writeText(JSON.stringify(item, null, 2)).then(() => {
+      console.log('Item data copied to clipboard');
+    }).catch(err => {
+      console.error('Failed to copy item data', err);
+    });
+  }
+}
+
+function renderTableView(items) {
+  if (!itemTable || !tableBody) return;
+  
+  // Show table view
+  document.querySelectorAll('.content-view').forEach(view => view.style.display = 'none');
+  document.getElementById('tableView').style.display = 'block';
+  
+  const sortedItems = sortItems(items);
+  
+  tableBody.innerHTML = '';
+  
+  sortedItems.forEach(item => {
+    const row = document.createElement('tr');
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', () => showItemDetail(item));
+    
+    const triggers = new Set();
+    if (item.effects && Array.isArray(item.effects)) {
+      item.effects.forEach(effect => {
+        if (effect.trigger) triggers.add(effect.trigger);
+      });
+    }
+    
+    const statString = item.stats ? 
+      `ATK:${item.stats.attack || 0} ARM:${item.stats.armor || 0} HP:${item.stats.health || 0} SPD:${item.stats.speed || 0}` : 
+      'No stats';
+    
+    const issues = getItemIssues(item);
+    const issuesString = issues.length > 0 ? 
+      issues.map(issue => issue.type).join(', ') : 
+      'None';
+    
+    row.innerHTML = `
+      <td>${item.name || 'Unnamed'}</td>
+      <td>${item.bucket || 'Unknown'}</td>
+      <td>${(item.tags || []).join(', ') || 'None'}</td>
+      <td>${Array.from(triggers).join(', ') || 'None'}</td>
+      <td>${statString}</td>
+      <td>TODO: Status effects</td>
+      <td>${window.TIERABLE && window.TIERABLE.has(item.key) ? '✓' : ''}</td>
+      <td style="color: ${issues.length > 0 ? '#e74c3c' : '#27ae60'};">${issuesString}</td>
+    `;
+    
+    tableBody.appendChild(row);
+  });
+}
+
+function renderCompareView() {
+  if (!compareContainer) return;
+  
+  // Show compare view
+  document.querySelectorAll('.content-view').forEach(view => view.style.display = 'none');
+  document.getElementById('compareView').style.display = 'block';
+  
+  const selectedItems = Array.from(compendiumState.compareItems)
+    .map(key => RAW_DATA[key])
+    .filter(Boolean);
+  
+  compareContainer.innerHTML = '';
+  
+  if (selectedItems.length === 0) {
+    compareContainer.innerHTML = '<div style="text-align: center; color: #666; padding: 40px;">Select items from cards or table to compare</div>';
+    return;
+  }
+  
+  selectedItems.forEach(item => {
+    const compareCard = document.createElement('div');
+    compareCard.style.cssText = `
+      background: rgba(255,255,255,0.05);
+      border: 2px solid #f33;
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+    `;
+    
+    compareCard.innerHTML = `
+      <button onclick="removeFromCompare('${item.key}')" style="
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        font-size: 12px;
+      ">×</button>
+      
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <img src="${getItemIconPath(item)}" alt="${item.name}" 
+             style="width: 48px; height: 48px; image-rendering: pixelated;"
+             onerror="this.src='placeholder.png'">
+        <div>
+          <h3 style="margin: 0; color: #f33;">${item.name}</h3>
+          <div style="color: #aaa; font-size: 12px;">${item.key}</div>
+        </div>
+      </div>
+      
+      <div style="color: #ccc; margin-bottom: 16px; font-size: 13px;">
+        ${item.effect || 'No description'}
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        ${createStatPills(item.stats)}
+      </div>
+      
+      ${(item.tags && item.tags.length > 0) ? `
+        <div style="margin-top: 12px;">
+          <strong style="color: #fff;">Tags:</strong>
+          <div style="margin-top: 4px;">${item.tags.map(tag => `<span style="background: rgba(52,152,219,0.2); color: #3498db; padding: 2px 6px; border-radius: 8px; font-size: 11px; margin-right: 4px;">${tag}</span>`).join('')}</div>
+        </div>
+      ` : ''}
+    `;
+    
+    compareContainer.appendChild(compareCard);
+  });
+}
+
+function removeFromCompare(key) {
+  compendiumState.compareItems.delete(key);
+  renderCompendium();
+}
+
+function switchToTab(tabName) {
+  // Switch to simulation tab
+  if (tabName === 'simulation') {
+    document.querySelectorAll('.tabBtn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.textContent.toLowerCase().includes('simulation')) {
+        btn.classList.add('active');
+      }
+    });
+    
+    document.querySelectorAll('section[id$="Tab"]').forEach(section => {
+      section.style.display = 'none';
+    });
+    
+    const simTab = document.getElementById('simulationTab');
+    if (simTab) {
+      simTab.style.display = 'flex';
+    }
+  }
+}
 
 // Drag and drop helpers
 function setupDrop(zoneSel, sideKey, type) {
