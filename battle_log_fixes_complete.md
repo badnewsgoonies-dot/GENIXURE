@@ -3,11 +3,13 @@
 ## 🚨 Issues Identified and Fixed
 
 ### 1. **Unknown Action Error** ❌➡️✅
+
 **Issue**: `Unknown action: heal_from_speed (item: items/lightspeed_potion, trigger: battleStart)`
 
 **Root Cause**: The `heal_from_speed` action was defined in `details.json` but not implemented in the simulator's `EFFECT_ACTIONS`
 
 **Fix Applied**: Added the missing action to `heic_sim.js`:
+
 ```javascript
 heal_from_speed: ({ self, other, log, value }) => {
   const healAmount = self.speed || 0;
@@ -21,11 +23,14 @@ heal_from_speed: ({ self, other, log, value }) => {
 **Result**: Lightspeed Potion now works correctly and heals based on speed stat at battle start.
 
 ### 2. **Inconsistent Icon Usage** 🛡️⚔️➡️🖼️
+
 **Issue**: Battle log showed a mix of emojis and HTML img tags:
-- UI wrapper messages had proper icons ✅ 
+
+- UI wrapper messages had proper icons ✅
 - Simulator-generated messages still used emojis ❌
 
 **Locations Fixed**:
+
 - `🛡️` (shield emoji) → `<img src="assets/armor.png" ...>` (3 instances)
 - `⚔️` (sword emoji) → `<img src="assets/attack.png" ...>` (4 instances)  
 - `🏃‍♂️➡️🛡️` (run+shield) → `<img src="assets/speed.png" ...>➡️<img src="assets/armor.png" ...>` (1 instance)
@@ -33,9 +38,11 @@ heal_from_speed: ({ self, other, log, value }) => {
 **Result**: All battle log messages now use consistent game icons.
 
 ### 3. **Final Battle Message** 🏁➡️🖼️
+
 **Issue**: "🏁 BATTLE ENDED:" still used flag emoji
 
 **Fix Applied**: Already fixed in previous session - now uses health icon
+
 ```javascript
 uiLog(`<img src="assets/health.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> BATTLE ENDED: ${res.result} in ${res.rounds} rounds!`);
 ```
@@ -45,6 +52,7 @@ uiLog(`<img src="assets/health.png" style="width:16px; height:16px; vertical-ali
 **Test Simulation**: Player with Lightspeed Potion vs Opponent with Switchblade Bow
 
 **Battle Log Output**:
+
 ```
 ::icon:items/lightspeed_potion:: <img src="assets/health.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> Player restores 1 health from speed [PlayerHP: 11 | OpponentHP: 10]
 ```
@@ -83,6 +91,7 @@ With these fixes, battle logs should now show consistent formatting like:
 ## ✅ Status: COMPLETE
 
 All battle log issues have been resolved:
+
 - ✅ Missing action implementations added
 - ✅ Emoji icons replaced with consistent game icons  
 - ✅ Battle simulator displays professional, game-consistent output
