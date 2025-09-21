@@ -1319,6 +1319,10 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
           
           <!-- Summary Stats -->
           <div style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+            <div id="dataHealthIndicator" style="display: flex; align-items: center; gap: 4px;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #666;" id="healthDot"></span>
+              <span style="color: #666; font-size: 10px;" id="healthText">Loading...</span>
+            </div>
             <span style="color: #aaa;">Showing:</span>
             <span id="shownCount" style="color: #fff; font-weight: 600;">0</span>
             <span style="color: #666;">/</span>
@@ -2413,36 +2417,110 @@ let RAW_DATA = {};
 let DATA_ARR = [];
 async function loadData() {
   try {
-    // Merge both sources when available to avoid missing entries.
-    // Start with any pre-bundled details (file:// safe).
+    console.log('🚀 Starting robust data load...');
+    
+    // Start with any pre-bundled details (file:// safe)
     RAW_DATA = (window.HEIC_DETAILS && typeof window.HEIC_DETAILS === 'object') ? window.HEIC_DETAILS : {};
-
-    // Try to fetch compiled_details.json first (preferred - contains merged stats)
-    try {
-      const res = await fetch('compiled_details.json', { cache: 'no-store' });
-      if (res.ok) {
-        const fromJson = await res.json();
-        // Use compiled data as primary source
-        RAW_DATA = Object.assign({}, RAW_DATA, fromJson); 
-        console.log('✅ Loaded compiled_details.json (pre-merged stats)');
-      } else {
-        throw new Error('compiled_details.json not found');
-      }
-    } catch(_compiledErr) {
-      // Fallback: try original details.json and do runtime merge
-      console.log('⚠️  Falling back to runtime merge (run npm run build for better performance)');
+    
+    // Robust loader with multiple fallback paths
+    const baseUrl = location.origin + '/';
+    const candidates = [
+      `${baseUrl}compiled_details.json`,
+      `${baseUrl}details.json`,
+      `${location.origin}/compiled_details.json`,
+      `${location.origin}/details.json`,
+      `${location.origin}/data/compiled_details.json`,
+      `${location.origin}/data/details.json`,
+      `${location.origin}/assets/compiled_details.json`,
+      `${location.origin}/assets/details.json`,
+      // Relative fallbacks
+      './compiled_details.json',
+      './details.json',
+      './data/compiled_details.json',
+      './data/details.json'
+    ];
+    
+    const errors = [];
+    let loadedFromNetwork = false;
+    
+    for (const url of candidates) {
       try {
-        const res = await fetch('details.json', { cache: 'no-store' });
-        if (res.ok) {
-          const fromJson = await res.json();
-          // Prioritize JSON data, but keep JS data as a fallback.
-          RAW_DATA = Object.assign({}, RAW_DATA, fromJson); 
+        console.log(`🔍 Trying: ${url}`);
+        const res = await fetch(url, { cache: 'no-cache' });
+        
+        if (!res.ok) {
+          errors.push(`${url} → HTTP ${res.status} ${res.statusText}`);
+          continue;
         }
-      } catch(_fetchErr) {
-        // ignore fetch failure (e.g., file://), rely on details.js
+        
+        const contentType = res.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          errors.push(`${url} → Wrong content-type: ${contentType}`);
+          continue;
+        }
+        
+        const fromJson = await res.json();
+        
+        // Integrity check - ensure we have actual data
+        const itemCount = Object.keys(fromJson || {}).length;
+        console.log(`📊 ${url} has ${itemCount} top-level keys`);
+        
+        if (itemCount === 0) {
+          errors.push(`${url} → 0 items (empty or invalid JSON)`);
+          continue;
+        }
+        
+        // Success! Use this data
+        RAW_DATA = Object.assign({}, RAW_DATA, fromJson);
+        console.log(`✅ Successfully loaded ${itemCount} items from: ${url}`);
+        loadedFromNetwork = true;
+        break;
+        
+      } catch (e) {
+        errors.push(`${url} → ${e.message || e}`);
       }
-
-      // If using fallback, try to load and merge stats_overrides.json
+    }
+    
+    // If no network data loaded, check if we have any bundled data
+    const totalItems = Object.keys(RAW_DATA).length;
+    
+    if (totalItems === 0) {
+      const errorMsg = `❌ Failed to load compendium data. Tried:\n${errors.join('\n')}\n\nTip: Ensure details.json is in the root directory or /public folder`;
+      console.error(errorMsg);
+      
+      // Show detailed error in UI
+      const compendiumGrid = document.getElementById('itemGrid');
+      if (compendiumGrid) {
+        compendiumGrid.innerHTML = `
+          <div style="grid-column: 1/-1; padding: 20px; background: #1a0000; border: 2px solid #f33; border-radius: 12px; margin: 20px;">
+            <h3 style="color: #f33; margin: 0 0 16px 0;">❌ Data Loading Failed</h3>
+            <p style="color: #fa0; margin: 0 0 16px 0; font-weight: 600;">Could not load compendium data from any source.</p>
+            <details style="color: #ccc; font-size: 11px; font-family: monospace;">
+              <summary style="color: #f33; cursor: pointer; margin-bottom: 8px;">🔍 Debugging Info (click to expand)</summary>
+              <pre style="background: #000; padding: 12px; border-radius: 6px; overflow-x: auto; white-space: pre-wrap;">${errors.join('\n')}</pre>
+            </details>
+            <p style="color: #aaa; font-size: 12px; margin: 16px 0 0 0;">
+              💡 <strong>Fix:</strong> Place <code>details.json</code> in your project's root directory or <code>/public</code> folder
+            </p>
+          </div>
+        `;
+      }
+      
+      // Also show error in other parts of the UI
+      const facetPanel = document.querySelector('.facet-panel');
+      if (facetPanel) {
+        facetPanel.innerHTML = '<div style="color: #f33; padding: 16px; text-align: center;">⚠️ Data not loaded</div>';
+      }
+      
+      return; // Stop initialization
+    }
+    
+    if (!loadedFromNetwork && totalItems > 0) {
+      console.log(`⚠️ Using bundled data (${totalItems} items) - network loading failed`);
+    }
+    
+    // Try to load stats overrides if using fallback data
+    if (!loadedFromNetwork) {
       try {
         const resO = await fetch('stats_overrides.json', { cache: 'no-store' });
         if (resO.ok) {
@@ -2453,9 +2531,10 @@ async function loadData() {
               RAW_DATA[k].stats = Object.assign({}, baseStats, statObj);
             }
           }
+          console.log('✅ Applied stats overrides');
         }
-      } catch(_overrideErr) {
-        // ignore override failure
+      } catch (e) {
+        console.warn('Failed to load stats overrides:', e.message);
       }
     }
 
@@ -3209,29 +3288,52 @@ function isItemNeedsReview(item) {
 
 // Update compendium counts
 function updateCompendiumCounts() {
-  compendiumState.data.itemCounts = {
+  const counts = {
     total: compendiumState.data.allItems.length,
     shown: compendiumState.data.filteredItems.length,
     selected: compendiumState.selectedItems.size
   };
   
-  // Update UI
+  compendiumState.data.itemCounts = counts;
+  
+  // Update UI elements
   const shownCount = document.getElementById('shownCount');
   const totalCount = document.getElementById('totalCount');
   const selectedCount = document.getElementById('selectedCount');
   const reviewCount = document.getElementById('reviewCount');
   
-  if (shownCount) shownCount.textContent = compendiumState.data.itemCounts.shown;
-  if (totalCount) totalCount.textContent = compendiumState.data.itemCounts.total;
-  if (selectedCount) selectedCount.textContent = compendiumState.data.itemCounts.selected;
+  if (shownCount) shownCount.textContent = counts.shown;
+  if (totalCount) totalCount.textContent = counts.total;
+  if (selectedCount) selectedCount.textContent = counts.selected;
   
   if (reviewCount) {
     const needsReviewItems = compendiumState.data.allItems.filter(isItemNeedsReview);
     reviewCount.textContent = needsReviewItems.length;
   }
   
+  // Update health indicator
+  updateDataHealthIndicator(counts.total > 0);
+  
   // Update facet counts
   updateFacetCounts();
+}
+
+// Update data health indicator
+function updateDataHealthIndicator(isHealthy) {
+  const healthDot = document.getElementById('healthDot');
+  const healthText = document.getElementById('healthText');
+  
+  if (healthDot && healthText) {
+    if (isHealthy) {
+      healthDot.style.background = '#0f3';
+      healthText.textContent = 'Data OK';
+      healthText.style.color = '#0f3';
+    } else {
+      healthDot.style.background = '#f33';
+      healthText.textContent = 'No Data';
+      healthText.style.color = '#f33';
+    }
+  }
 }
 
 // Update facet counts
@@ -4015,6 +4117,66 @@ function runQAValidation() {
   return { issueCount, totalItems, issues };
 }
 
+// Diagnostic tool for debugging data loading issues (accessible from console)
+window.debugCompendium = async function() {
+  console.log('🔧 Compendium Diagnostics');
+  console.log('========================');
+  
+  const results = {
+    currentData: {
+      RAW_DATA_keys: Object.keys(window.RAW_DATA || {}).length,
+      DATA_ARR_length: Array.isArray(window.DATA_ARR) ? window.DATA_ARR.length : 'not array',
+      compendiumState: window.compendiumState?.data?.allItems?.length || 'not initialized'
+    },
+    urlTests: []
+  };
+  
+  console.log('Current data state:', results.currentData);
+  
+  const testUrls = [
+    `${location.origin}/details.json`,
+    `${location.origin}/compiled_details.json`,
+    './details.json',
+    './compiled_details.json'
+  ];
+  
+  for (const url of testUrls) {
+    try {
+      const start = performance.now();
+      const res = await fetch(url, { cache: 'no-cache' });
+      const time = Math.round(performance.now() - start);
+      
+      if (res.ok) {
+        const json = await res.json();
+        const itemCount = Object.keys(json || {}).length;
+        results.urlTests.push({
+          url,
+          status: `✅ ${res.status} (${time}ms) - ${itemCount} items`,
+          working: true
+        });
+        console.log(`✅ ${url} → ${res.status} (${time}ms) - ${itemCount} items`);
+      } else {
+        results.urlTests.push({
+          url,
+          status: `❌ ${res.status} ${res.statusText} (${time}ms)`,
+          working: false
+        });
+        console.log(`❌ ${url} → ${res.status} ${res.statusText} (${time}ms)`);
+      }
+    } catch (e) {
+      results.urlTests.push({
+        url,
+        status: `❌ ${e.message}`,
+        working: false
+      });
+      console.log(`❌ ${url} → ${e.message}`);
+    }
+  }
+  
+  console.log('\n💡 Usage: window.debugCompendium() to run again');
+  return results;
+};
+
 // Generate effect description from effects array
 function generateEffectDescription(effects) {
   if (!effects || effects.length === 0) return '';
@@ -4042,10 +4204,17 @@ function resolveIconCandidates(item) {
 // Initialize the advanced compendium after data loads
 function initializeCompendiumData() {
   try {
-    console.log('initializeCompendiumData called');
+    console.log('🔧 initializeCompendiumData called');
     
     if (!Array.isArray(DATA_ARR)) {
       console.error('DATA_ARR is not an array:', typeof DATA_ARR, DATA_ARR);
+      showCompendiumError('Invalid data format - DATA_ARR is not an array');
+      return;
+    }
+    
+    if (DATA_ARR.length === 0) {
+      console.error('DATA_ARR is empty - no items to display');
+      showCompendiumError('No items loaded - check data file loading');
       return;
     }
     
@@ -4062,24 +4231,37 @@ function initializeCompendiumData() {
     
     compendiumState.data.filteredItems = [...compendiumState.data.allItems];
     
-    console.log('Advanced compendium data:', compendiumState.data.allItems.length, 'items');
+    console.log(`✅ Advanced compendium initialized with ${compendiumState.data.allItems.length} items`);
     
+    // Only initialize UI after we have valid data
     initializeAdvancedCompendium();
     renderCompendium();
+    
   } catch (error) {
     console.error('Error initializing compendium data:', error);
-    // Show error in compendium
-    const compendiumGrid = document.getElementById('itemGrid');
-    if (compendiumGrid) {
-      compendiumGrid.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #f33;">
-          <h3>Failed to initialize compendium</h3>
-          <p style="color: #fa0; margin: 16px 0;">Error: ${error.message}</p>
-          <p style="color: #ccc;">Please refresh the page</p>
-        </div>
-      `;
-    }
+    showCompendiumError(`Failed to initialize: ${error.message}`);
   }
+}
+
+// Show error state in compendium UI
+function showCompendiumError(message) {
+  const compendiumGrid = document.getElementById('itemGrid');
+  if (compendiumGrid) {
+    compendiumGrid.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #f33;">
+        <h3>⚠️ Compendium Error</h3>
+        <p style="color: #fa0; margin: 16px 0;">${message}</p>
+        <p style="color: #ccc;">Check the browser console for details</p>
+      </div>
+    `;
+  }
+  
+  // Also update the counts to show the error state
+  const elements = ['shownCount', 'totalCount', 'selectedCount', 'reviewCount'];
+  elements.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '!';
+  });
 }
 
 // Filter listeners
