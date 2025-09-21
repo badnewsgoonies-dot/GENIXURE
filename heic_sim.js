@@ -1291,6 +1291,101 @@
         }
       }
     },
+
+    // ===== NORMALIZED FORMAT ACTION TYPES =====
+    add_temp_attack_from_status: ({ self, log, key }) => {
+      const statusAmount = self.statuses[key] || 0;
+      if (statusAmount > 0) {
+        self.addTempAtk(statusAmount);
+        log(`⚔️ ${self.name} gains ${statusAmount} temporary attack from ${key}.`);
+      }
+    },
+
+    give_enemy_status_equal_to_stat: ({ self, other, log, stat, status }) => {
+      const statValue = self[stat] || 0;
+      if (statValue > 0) {
+        other.addStatus(status, statValue);
+        log(`🎯 ${self.name} gives ${other.name} ${statValue} ${status} (equal to ${stat}).`);
+      }
+    },
+
+    decrease_all_countdowns: ({ self, log, value }) => {
+      const amount = value || 1;
+      if (typeof self.decAllCountdowns === 'function') {
+        self.decAllCountdowns(amount);
+        log(`⏱️ ${self.name} decreases all countdowns by ${amount}.`);
+      }
+    },
+
+    halve_all_countdowns: ({ self, log }) => {
+      if (self.countdowns && Array.isArray(self.countdowns)) {
+        self.countdowns.forEach(cd => {
+          cd.turnsLeft = Math.floor(cd.turnsLeft / 2);
+        });
+        log(`⏱️ ${self.name} halves all countdowns.`);
+      }
+    },
+
+    disable_striking: ({ self, log }) => {
+      self.cannotStrike = true;
+      log(`🚫 ${self.name} cannot strike this turn.`);
+    },
+
+    gain_thorns_equal_to_attack: ({ self, log }) => {
+      const attack = self.atk || 0;
+      if (attack > 0) {
+        self.addStatus('thorns', attack);
+        log(`🌹 ${self.name} gains ${attack} thorns (equal to attack).`);
+      }
+    },
+
+    gain_thorns_per_armor_lost: ({ self, log, value }) => {
+      const thornsPerArmor = value || 1;
+      const armorLost = self._armorLostThisTurn || 0;
+      if (armorLost > 0) {
+        const thornsGained = armorLost * thornsPerArmor;
+        self.addStatus('thorns', thornsGained);
+        log(`🌹 ${self.name} gains ${thornsGained} thorns from ${armorLost} armor lost.`);
+      }
+    },
+
+    set_flag: ({ self, log, key, value }) => {
+      if (!self.flags) self.flags = {};
+      self.flags[key] = value;
+      if (log) log(`🏳️ ${self.name} sets flag ${key} to ${value}.`);
+    },
+
+    heal_loop: ({ self, log, value }) => {
+      const { healed, iterations } = value || { healed: 1, iterations: 3 };
+      for (let i = 0; i < iterations; i++) {
+        const actualHealed = self.heal(healed);
+        if (actualHealed > 0) {
+          log(`💚 ${self.name} heals ${actualHealed} (${i+1}/${iterations}).`);
+        } else {
+          break; // Stop if no healing possible
+        }
+      }
+    },
+
+    convert_random_status_to_poison: ({ self, log }) => {
+      if (!self.statuses) return;
+      
+      const statusKeys = Object.keys(self.statuses).filter(key => 
+        key !== 'poison' && self.statuses[key] > 0
+      );
+      
+      if (statusKeys.length > 0) {
+        const randomKey = statusKeys[Math.floor(Math.random() * statusKeys.length)];
+        const amount = Math.min(1, self.statuses[randomKey]);
+        
+        self.statuses[randomKey] -= amount;
+        if (self.statuses[randomKey] <= 0) delete self.statuses[randomKey];
+        
+        self.addStatus('poison', amount);
+        log(`🧪 ${self.name} converts 1 ${randomKey} to 1 poison.`);
+      }
+    },
+
   };
 
   function checkCondition(condition, { self, other, log, key, isNew }) {
@@ -1472,27 +1567,50 @@
         // Map simulator event names to our trigger names
         const eventToTriggerMap = {
           'battleStart': 'battleStart',
+          'battle_start': 'battleStart', // Normalized format
           'turnStart': 'turnStart',
+          'turn_start': 'turnStart', // Normalized format
           'turnEnd': 'turnEnd',
+          'turn_end': 'turnEnd', // Normalized format
           'firstTurn': 'first_turn',
+          'first_turn': 'first_turn', // Already normalized
           'everyOtherTurn': 'every_other_turn',
+          'every_other_turn': 'every_other_turn', // Already normalized
           'countdown': 'countdown',
           'nextBoss': 'next_boss',
+          'next_boss': 'next_boss', // Already normalized
           'firstTime': 'first_time',
+          'first_time': 'first_time', // Already normalized
           'onHit': 'hit',
+          'on_hit': 'hit', // Normalized format
           'onWounded': 'wounded',
+          'on_wounded': 'wounded', // Normalized format
           'onExposed': 'exposed',
+          'on_exposed': 'exposed', // Normalized format
           'onDamaged': 'damaged',
+          'on_damaged': 'damaged', // Normalized format
           'onKill': 'kill',
+          'on_kill': 'kill', // Normalized format
           'afterStrike': 'afterStrike',
+          'after_strike': 'afterStrike', // Normalized format
           'onHeal': 'heal',
+          'on_heal': 'heal', // Normalized format
           'onGainArmor': 'gainArmor',
+          'on_gain_armor': 'gainArmor', // Normalized format
           'onGainSpeed': 'gainSpeed',
+          'on_gain_speed': 'gainSpeed', // Normalized format
           'onGainStatus': 'gainStatus',
+          'on_gain_status': 'gainStatus', // Normalized format
           'onPoisonTick': 'poisonTick',
+          'on_poison_tick': 'poisonTick', // Normalized format
           'strikeSkipped': 'strikeSkipped',
+          'strike_skipped': 'strikeSkipped', // Normalized format
           'bombTrigger': 'bombTrigger',
+          'bomb_trigger': 'bombTrigger', // Normalized format
           'postCountdownTrigger': 'postCountdownTrigger',
+          'post_countdown_trigger': 'postCountdownTrigger', // Normalized format
+          'preBattle': 'preBattle',
+          'pre_battle': 'preBattle', // Normalized format
           'symphony': 'symphony'
         };
         
@@ -2225,7 +2343,7 @@ let CURRENT_SOURCE_SLUG = null;
     } catch (err) {
       console.warn('Could not load details.json:', err.message);
     }
-    module.exports = { simulate, Fighter, getTagsFor, computeActive, computeActiveEffectSlugs };
+    module.exports = { simulate, Fighter, getTagsFor, computeActive, computeActiveEffectSlugs, EFFECT_ACTIONS };
   }
   global.HeICSim = { simulate };
 })(typeof window !== 'undefined' ? window : globalThis);
