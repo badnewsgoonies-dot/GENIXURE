@@ -317,6 +317,7 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   padding-left: 8px;
   margin: 4px 0;
   transition: all 0.2s ease;
+  line-height: 1.8;
 }
 
 .battle-log-line.player {
@@ -334,6 +335,44 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
 .battle-log-line:hover {
   background: rgba(0,255,51,0.1);
   border-radius: 4px;
+}
+
+/* Enhanced player name styling */
+.player-name {
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 8px currentColor;
+  padding: 2px 0;
+}
+
+.player-name.player-1 {
+  color: #00ff88 !important;
+  text-shadow: 0 0 8px #00ff88;
+}
+
+.player-name.player-2 {
+  color: #ff4466 !important;
+  text-shadow: 0 0 8px #ff4466;
+}
+
+/* Section dividers */
+.battle-divider {
+  margin: 12px 0;
+  padding: 8px 0;
+  border-top: 2px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.battle-divider.major {
+  border-top: 3px solid #0f3;
+  color: #0f3;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 16px 0;
 }
 
 .sim-preview-item {
@@ -1516,6 +1555,22 @@ function updateSimulationPreview() {
   }
 }
 
+// Function to enhance player names in battle log text
+function enhancePlayerNames(text) {
+  if (!text) return text;
+  
+  // Enhanced Player name styling - make it bigger and more prominent
+  text = text.replace(/\bPlayer\b/g, '<span class="player-name player-1">Player</span>');
+  
+  // Enhanced Opponent name styling - make it bigger and more prominent  
+  text = text.replace(/\bOpponent\b/g, '<span class="player-name player-2">Opponent</span>');
+  
+  // Also handle Fighter names if they appear
+  text = text.replace(/\bFighter\b(?=\s+(hits|deals|gains|loses))/g, '<span class="player-name player-1">Fighter</span>');
+  
+  return text;
+}
+
 function uiLogClear() {
   const log = document.getElementById('simLog');
   const battleStatus = document.getElementById('battleStatus');
@@ -1549,6 +1604,22 @@ function uiLog(lines) {
     div.className = 'logLine battle-log-line';
     
     const lineStr = String(line);
+    
+    // Check for section dividers first
+    if (lineStr.includes('━━━') || lineStr.includes('BATTLE BEGINS') || lineStr.includes('BATTLE ENDED')) {
+      div.className = 'battle-divider major';
+      div.innerHTML = lineStr;
+      log.appendChild(div);
+      return;
+    }
+    
+    // Check for turn headers
+    if (lineStr.match(/^\d+\.\s*--\s*Turn\s+\d+\s*--/)) {
+      div.className = 'battle-divider';
+      div.innerHTML = lineStr;
+      log.appendChild(div);
+      return;
+    }
     
     // Determine line type for styling
     if (lineStr.includes('Player') || lineStr.includes('Fighter')) {
@@ -1590,11 +1661,11 @@ function uiLog(lines) {
       }
       
       const textDiv = document.createElement('span');
-      textDiv.innerHTML = text;
+      textDiv.innerHTML = enhancePlayerNames(text);
       div.appendChild(textDiv);
     } else {
       // Use innerHTML instead of textContent to render HTML img tags
-      div.innerHTML = lineStr;
+      div.innerHTML = enhancePlayerNames(lineStr);
     }
     
     log.appendChild(div);
