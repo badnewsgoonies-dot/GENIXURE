@@ -1315,65 +1315,61 @@ function collectEntityData(sideKey) {
 
 // Simulation UI wiring and enhancements
 function updateSimulationPreview() {
-  // Update Player preview
-  const playerSide = sides['P'];
-  const playerWeaponImg = document.getElementById('simPlayerWeapon');
-  const playerWeaponName = document.getElementById('simPlayerWeaponName');
-  const playerStats = document.getElementById('simPlayerStats');
-  const playerItems = document.getElementById('simPlayerItems');
+  const createSideHtml = (sideKey) => {
+    const side = sides[sideKey];
+    const prefix = sideKey === 'P' ? 'p' : 'o';
+    const hp = parseInt(document.getElementById(`${prefix}H`).textContent) || 10;
+    const atk = parseInt(document.getElementById(`${prefix}A`).textContent) || 0;
+    const arm = parseInt(document.getElementById(`${prefix}R`).textContent) || 0;
+    const spd = parseInt(document.getElementById(`${prefix}S`).textContent) || 0;
 
-  if (playerSide.weapon) {
-    playerWeaponImg.src = `${playerSide.weapon.bucket}/${playerSide.weapon.slug}/icon.png`;
-    playerWeaponName.textContent = playerSide.weapon.name;
-  } else {
-    playerWeaponImg.src = 'assets/placeholder.png';
-    playerWeaponName.textContent = 'No Weapon';
+    const color = sideKey === 'P' ? '#0f3' : '#f33';
+    const bgColor = sideKey === 'P' ? 'rgba(0,255,51,0.1)' : 'rgba(255,51,51,0.1)';
+
+    let weaponHtml = `
+      <div class="analysisItem weapon" style="background:${bgColor}; border-color:${color}; margin-bottom:0;">
+        <div class="analysisItemHeader">
+          <img src="assets/placeholder.png" alt="No Weapon">
+          <div class="analysisItemName">No Weapon</div>
+        </div>
+        <div class="analysisItemStats">
+          <div class="pill"><img src="assets/health.png" alt="health"><span>${hp}</span></div>
+          <div class="pill"><img src="assets/attack.png" alt="attack"><span>${atk}</span></div>
+          <div class="pill"><img src="assets/armor.png" alt="armor"><span>${arm}</span></div>
+          <div class="pill"><img src="assets/speed.png" alt="speed"><span>${spd}</span></div>
+        </div>
+      </div>
+    `;
+    if (side.weapon) {
+      weaponHtml = renderAnalysisItem(side.weapon, 'weapon', {bgColor, color});
+    }
+
+    let edgeHtml = '';
+    if (side.edge) {
+      edgeHtml = renderAnalysisItem(side.edge, 'edge', {bgColor, color});
+    }
+
+    const items = side.items.filter(Boolean);
+    const itemsHtml = items.length > 0 
+      ? items.map(item => renderAnalysisItem(item, 'item', {bgColor, color})).join('')
+      : '<div class="emptySlot">No items equipped</div>';
+
+    return `
+      ${weaponHtml}
+      ${edgeHtml}
+      <div style="border-top: 2px solid ${color}; margin: 8px 0;"></div>
+      ${itemsHtml}
+    `;
+  };
+
+  const playerPreview = document.getElementById('simPlayerPreview');
+  const opponentPreview = document.getElementById('simOpponentPreview');
+
+  if (playerPreview) {
+    playerPreview.innerHTML = createSideHtml('P');
   }
-
-  const pHP = parseInt(document.getElementById('pH').textContent) || 10;
-  const pATK = parseInt(document.getElementById('pA').textContent) || 0;
-  const pARM = parseInt(document.getElementById('pR').textContent) || 0;
-  const pSPD = parseInt(document.getElementById('pS').textContent) || 0;
-  playerStats.textContent = `HP: ${pHP} | ATK: ${pATK} | ARM: ${pARM} | SPD: ${pSPD}`;
-
-  // Show equipped items as mini icons
-  const equippedItems = playerSide.items.filter(item => item !== null);
-  if (equippedItems.length > 0) {
-    playerItems.innerHTML = equippedItems.map(item => 
-      `<img class="sim-preview-item" src="${item.bucket}/${item.slug}/icon.png" title="${item.name}" alt="${item.name}">`
-    ).join('');
-  } else {
-    playerItems.innerHTML = '<span style="color:#666; font-style:italic;">No items equipped</span>';
-  }
-
-  // Update Opponent preview
-  const opponentSide = sides['O'];
-  const opponentWeaponImg = document.getElementById('simOpponentWeapon');
-  const opponentWeaponName = document.getElementById('simOpponentWeaponName');
-  const opponentStats = document.getElementById('simOpponentStats');
-  const opponentItems = document.getElementById('simOpponentItems');
-
-  if (opponentSide.weapon) {
-    opponentWeaponImg.src = `${opponentSide.weapon.bucket}/${opponentSide.weapon.slug}/icon.png`;
-    opponentWeaponName.textContent = opponentSide.weapon.name;
-  } else {
-    opponentWeaponImg.src = 'assets/placeholder.png';
-    opponentWeaponName.textContent = 'No Weapon';
-  }
-
-  const oHP = parseInt(document.getElementById('oH').textContent) || 10;
-  const oATK = parseInt(document.getElementById('oA').textContent) || 0;
-  const oARM = parseInt(document.getElementById('oR').textContent) || 0;
-  const oSPD = parseInt(document.getElementById('oS').textContent) || 0;
-  opponentStats.textContent = `HP: ${oHP} | ATK: ${oATK} | ARM: ${oARM} | SPD: ${oSPD}`;
-
-  const equippedOpponentItems = opponentSide.items.filter(item => item !== null);
-  if (equippedOpponentItems.length > 0) {
-    opponentItems.innerHTML = equippedOpponentItems.map(item => 
-      `<img class="sim-preview-item" src="${item.bucket}/${item.slug}/icon.png" title="${item.name}" alt="${item.name}">`
-    ).join('');
-  } else {
-    opponentItems.innerHTML = '<span style="color:#666; font-style:italic;">No items equipped</span>';
+  if (opponentPreview) {
+    opponentPreview.innerHTML = createSideHtml('O');
   }
 }
 
