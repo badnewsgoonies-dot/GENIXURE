@@ -470,6 +470,141 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
 .status-chip.riptide { border-color: #4169e1; color: #4169e1; }
 .status-chip.purity { border-color: #f0f8ff; color: #f0f8ff; }
 
+/* Enhanced status chip micro-patterns */
+.status-chip-icon {
+  font-size: 10px;
+}
+
+.status-chip-value {
+  font-weight: bold;
+  color: inherit;
+}
+
+.status-chip-trend {
+  font-size: 8px;
+  opacity: 0.8;
+  margin-left: 2px;
+}
+
+.status-chip-trend.positive { color: #0f3; }
+.status-chip-trend.negative { color: #f33; }
+
+/* Enhanced phase headers */
+.log-phase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #2a3441 0%, #1e2832 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.phase-title {
+  font-size: 13px;
+  color: #fff;
+}
+
+.phase-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #aaa;
+}
+
+.trigger-count {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Effect rows with enhanced styling */
+.effect-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 12px;
+}
+
+.effect-source {
+  color: #4a9eff;
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.effect-arrow {
+  color: #666;
+  font-weight: normal;
+}
+
+.effect-target {
+  color: #ff6b6b;
+  font-weight: 500;
+}
+
+.effect-description {
+  color: #ccc;
+  flex: 1;
+}
+
+/* Synergy tags */
+.synergy-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  margin: 1px 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.synergy-tag.symphony { 
+  background: linear-gradient(135deg, #9c88ff 0%, #7c4dff 100%);
+}
+
+.synergy-tag.bomb { 
+  background: linear-gradient(135deg, #ff9500 0%, #ff6b35 100%);
+}
+
+.synergy-tag.fruit { 
+  background: linear-gradient(135deg, #26de81 0%, #20bf6b 100%);
+}
+
+/* Summary strip */
+.summary-strip {
+  display: flex;
+  gap: 12px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  margin: 4px 0;
+}
+
+.summary-stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ccc;
+}
+
+.summary-stat-value {
+  color: #fff;
+  font-weight: bold;
+}
+
+.summary-stat.damage .summary-stat-value { color: #ff6b6b; }
+.summary-stat.healing .summary-stat-value { color: #26de81; }
+.summary-stat.strikes .summary-stat-value { color: #4a9eff; }
+.summary-stat.cooldown .summary-stat-value { color: #ffa726; }
+
 .delta-indicator {
   font-size: 10px;
   font-weight: 700;
@@ -2479,8 +2614,26 @@ function updateFighterCards() {
     playerAttack.textContent = atk;
     playerSpeed.textContent = spd;
     
-    // Update status effects (placeholder for now)
-    playerStatusEffects.innerHTML = '<div style="color: #666; font-size: 11px; font-style: italic;">No status effects</div>';
+    // Update status effects with enhanced chips
+    if (playerStatusEffects) {
+      // This is placeholder - real status effects would come from battle simulation
+      playerStatusEffects.innerHTML = '';
+      
+      // Example enhanced status chips (would be populated with actual data)
+      const exampleStatuses = [
+        { name: 'Poison', value: 5, trend: 2, icon: '☠️' },
+        { name: 'Regen', value: 3, trend: -1, icon: '💚' }
+      ];
+      
+      if (exampleStatuses.length === 0) {
+        playerStatusEffects.innerHTML = '<div style="color: #666; font-size: 11px; font-style: italic;">No status effects</div>';
+      } else {
+        exampleStatuses.forEach(status => {
+          const chip = createEnhancedStatusChip(status.name, status.value, status.trend, status.icon);
+          playerStatusEffects.appendChild(chip);
+        });
+      }
+    }
   }
   
   // Opponent card
@@ -2519,9 +2672,113 @@ function updateFighterCards() {
     opponentAttack.textContent = atk;
     opponentSpeed.textContent = spd;
     
-    // Update status effects (placeholder for now)
-    opponentStatusEffects.innerHTML = '<div style="color: #666; font-size: 11px; font-style: italic;">No status effects</div>';
+    // Update status effects with enhanced chips
+    if (opponentStatusEffects) {
+      opponentStatusEffects.innerHTML = '';
+      
+      // Example enhanced status chips (would be populated with actual data)
+      const exampleStatuses = [
+        { name: 'Thorns', value: 2, trend: 0, icon: '🌿' }
+      ];
+      
+      if (exampleStatuses.length === 0) {
+        opponentStatusEffects.innerHTML = '<div style="color: #666; font-size: 11px; font-style: italic;">No status effects</div>';
+      } else {
+        exampleStatuses.forEach(status => {
+          const chip = createEnhancedStatusChip(status.name, status.value, status.trend, status.icon);
+          opponentStatusEffects.appendChild(chip);
+        });
+      }
+    }
   }
+}
+
+// Enhanced micro-pattern helper functions
+function createEnhancedStatusChip(statusName, value, trend, icon) {
+  const chip = document.createElement('div');
+  chip.className = `status-chip ${statusName.toLowerCase()}`;
+  
+  let content = '';
+  if (icon) {
+    content += `<span class="status-chip-icon">${icon}</span>`;
+  }
+  content += `<span class="status-chip-value">${statusName} ${value}</span>`;
+  
+  if (trend !== undefined && trend !== 0) {
+    const trendClass = trend > 0 ? 'positive' : 'negative';
+    const trendSymbol = trend > 0 ? '+' : '';
+    content += `<span class="status-chip-trend ${trendClass}">${trendSymbol}${trend}</span>`;
+  }
+  
+  chip.innerHTML = content;
+  return chip;
+}
+
+function createEnhancedPhaseHeader(phaseName, triggerCount, metadata) {
+  const header = document.createElement('div');
+  header.className = 'log-phase-header';
+  
+  const title = document.createElement('div');
+  title.className = 'phase-title';
+  title.textContent = phaseName;
+  
+  const meta = document.createElement('div');
+  meta.className = 'phase-meta';
+  
+  if (triggerCount > 0) {
+    const triggers = document.createElement('span');
+    triggers.className = 'trigger-count';
+    triggers.textContent = `${triggerCount} triggers`;
+    meta.appendChild(triggers);
+  }
+  
+  if (metadata) {
+    const metaText = document.createElement('span');
+    metaText.textContent = metadata;
+    meta.appendChild(metaText);
+  }
+  
+  header.appendChild(title);
+  header.appendChild(meta);
+  return header;
+}
+
+function createEffectRow(source, target, description) {
+  const row = document.createElement('div');
+  row.className = 'effect-row';
+  
+  row.innerHTML = `
+    <span class="effect-source">${source}</span>
+    <span class="effect-arrow">→</span>
+    <span class="effect-target">${target}:</span>
+    <span class="effect-description">${description}</span>
+  `;
+  
+  return row;
+}
+
+function createSynergyTag(type, count) {
+  const tag = document.createElement('span');
+  tag.className = `synergy-tag ${type.toLowerCase()}`;
+  tag.textContent = `${type} ×${count}`;
+  return tag;
+}
+
+function createSummaryStrip(stats) {
+  const strip = document.createElement('div');
+  strip.className = 'summary-strip';
+  
+  Object.entries(stats).forEach(([key, value]) => {
+    const stat = document.createElement('div');
+    stat.className = `summary-stat ${key.toLowerCase()}`;
+    stat.innerHTML = `
+      <span>${key.charAt(0).toUpperCase() + key.slice(1)}</span>
+      <span class="summary-stat-value">${value}</span>
+    `;
+    strip.appendChild(stat);
+  });
+  
+  return strip;
 }
 
 // Update loadout trays
@@ -2592,17 +2849,72 @@ function updateLoadoutTray(sideName, side, containerId) {
 }
 
 // Update pinned metrics (placeholder for now)
-function updatePinnedMetrics() {
-  // These will be updated during actual battle simulation
-  const totalDamageDealt = document.getElementById('totalDamageDealt');
-  const totalDamageTaken = document.getElementById('totalDamageTaken');
-  const strikesQueued = document.getElementById('strikesQueued');
-  const lethalETA = document.getElementById('lethalETA');
+function updatePinnedMetrics(battleSummary) {
+  // Get or create the pinned metrics container
+  const pinnedMetrics = document.getElementById('pinnedMetrics');
+  if (!pinnedMetrics) return;
   
-  if (totalDamageDealt) totalDamageDealt.textContent = '0';
-  if (totalDamageTaken) totalDamageTaken.textContent = '0';
-  if (strikesQueued) strikesQueued.textContent = '0';
-  if (lethalETA) lethalETA.textContent = '∞';
+  if (battleSummary && battleSummary.left && battleSummary.right) {
+    // Clear existing content
+    pinnedMetrics.innerHTML = '';
+    
+    // Create summary strip with actual battle data
+    const summaryStats = {
+      'Dmg Dealt': battleSummary.left.damageDealt || 0,
+      'Dmg Taken': battleSummary.left.damageTaken || 0,
+      'Healing': battleSummary.left.healingReceived || 0,
+      'Effects': battleSummary.left.effectsTriggered || 0
+    };
+    
+    const summaryStrip = createSummaryStrip(summaryStats);
+    pinnedMetrics.appendChild(summaryStrip);
+    
+    // Add synergy tags if available
+    const synergyContainer = document.createElement('div');
+    synergyContainer.style.marginTop = '8px';
+    
+    // Example synergy detection (would need actual implementation)
+    const playerItems = sides.P.items.concat([sides.P.weapon]).filter(Boolean);
+    const symphonyCount = playerItems.filter(item => item.tags && item.tags.includes('Symphony')).length;
+    const bombCount = playerItems.filter(item => item.tags && item.tags.includes('Bomb')).length;
+    const fruitCount = playerItems.filter(item => item.tags && item.tags.includes('Fruit')).length;
+    
+    if (symphonyCount >= 2) {
+      synergyContainer.appendChild(createSynergyTag('Symphony', symphonyCount));
+    }
+    if (bombCount >= 2) {
+      synergyContainer.appendChild(createSynergyTag('Bomb', bombCount));
+    }
+    if (fruitCount >= 2) {
+      synergyContainer.appendChild(createSynergyTag('Fruit', fruitCount));
+    }
+    
+    if (synergyContainer.children.length > 0) {
+      pinnedMetrics.appendChild(synergyContainer);
+    }
+  } else {
+    // Default placeholder content
+    pinnedMetrics.innerHTML = `
+      <div class="summary-strip">
+        <div class="summary-stat">
+          <span>Dmg Dealt</span>
+          <span class="summary-stat-value">0</span>
+        </div>
+        <div class="summary-stat">
+          <span>Dmg Taken</span>
+          <span class="summary-stat-value">0</span>
+        </div>
+        <div class="summary-stat">
+          <span>Healing</span>
+          <span class="summary-stat-value">0</span>
+        </div>
+        <div class="summary-stat">
+          <span>Effects</span>
+          <span class="summary-stat-value">0</span>
+        </div>
+      </div>
+    `;
+  }
 }
 
 // Enhanced log rendering for new three-pane layout
@@ -2652,20 +2964,21 @@ function renderCardifiedLog(logEntries) {
     const phaseCard = document.createElement('div');
     phaseCard.className = 'log-phase-card';
     
-    const header = document.createElement('div');
-    header.className = `log-phase-header ${phase.type}`;
-    header.innerHTML = `
-      <div>
-        <strong>${phase.header}</strong>
-        <div class="log-phase-summary">${phase.triggers} triggers, ${phase.changes} changes</div>
-      </div>
-      <div style="font-size: 18px;">▼</div>
-    `;
+    // Use enhanced phase header with micro-patterns
+    const phaseName = phase.header.replace(/^\d+\.\s*--\s*/, '').replace(/\s*--.*$/, '');
+    let metadata = '';
+    if (phase.type === 'turn-start') {
+      metadata = `On Hit (${phase.triggers} triggers)`;
+    } else {
+      metadata = phase.triggers > 0 ? `${phase.triggers} effects` : '';
+    }
+    
+    const header = createEnhancedPhaseHeader(phaseName, phase.triggers, metadata);
     
     const content = document.createElement('div');
     content.className = 'log-phase-content';
     
-    // Render entries
+    // Render entries with enhanced effect rows
     phase.entries.forEach(entry => {
       const entryDiv = document.createElement('div');
       entryDiv.style.marginBottom = '4px';
@@ -2679,10 +2992,22 @@ function renderCardifiedLog(logEntries) {
         const slug = iconMatch[1];
         const text = iconMatch[2];
         
-        entryDiv.innerHTML = `
-          <img src="${slug}/icon.png" style="width: 16px; height: 16px; image-rendering: pixelated; margin-right: 6px; vertical-align: middle;" onerror="this.style.display='none'">
-          <span>${enhancePlayerNames(text)}</span>
-        `;
+        // Try to create an enhanced effect row
+        const effectMatch = text.match(/(.+?)\s+(gains?|loses?|deals?)\s+(.+)/);
+        if (effectMatch) {
+          const itemName = slug.split('/').pop().replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+          const target = effectMatch[1];
+          const action = effectMatch[2];
+          const effect = effectMatch[3];
+          
+          const effectRow = createEffectRow(itemName, target, `${action} ${effect}`);
+          entryDiv.appendChild(effectRow);
+        } else {
+          entryDiv.innerHTML = `
+            <img src="${slug}/icon.png" style="width: 16px; height: 16px; image-rendering: pixelated; margin-right: 6px; vertical-align: middle;" onerror="this.style.display='none'">
+            <span>${enhancePlayerNames(text)}</span>
+          `;
+        }
       } else {
         entryDiv.innerHTML = enhancePlayerNames(entryStr);
       }
@@ -2991,6 +3316,7 @@ if (simBtn) {
       // Update final HP/stats if available in summary
       if (res.summary) {
         updateFinalStats(res.summary);
+        updatePinnedMetrics(res.summary);
       }
       
       // Re-apply noise filter if active
