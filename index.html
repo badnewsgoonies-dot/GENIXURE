@@ -886,8 +886,20 @@ function selectSlot(sideKey, idx){
 }
 
 // Mini card HTML
+function resolveIconCandidates(obj){
+  const arr=[];
+  if (obj && obj.key) arr.push(`${obj.key}/icon.png`);
+  if (obj && obj.bucket && obj.slug) arr.push(`${obj.bucket}/${obj.slug}/icon.png`);
+  if (obj && obj.slug){ arr.push(`items/${obj.slug}/icon.png`); arr.push(`weapons/${obj.slug}/icon.png`); }
+  return arr;
+}
+
 function mini(it){
-  return `<div class="miniCard"><img src="${it.bucket}/${it.slug}/icon.png" alt="${it.name}"><span class="name">${it.name}</span></div>`;
+  const cands = resolveIconCandidates(it);
+  const first = cands[0] || 'placeholder.png';
+  // inline onerror fallback to keep markup simple
+  const onerr = `(function(el){var c=['${(cands.map(c=>c.replace(/"/g,'&quot;'))).join("','")}'];var i=1;el.onerror=function(){if(i<c.length){el.src=c[i++];}else{el.onerror=null;el.src='placeholder.png';}}})(this)`;
+  return `<div class="miniCard"><img src="${first}" onerror="${onerr}" alt="${it.name}"><span class="name">${it.name}</span></div>`;
 }
 
 function firstEmptyIndex(side){
@@ -1037,11 +1049,29 @@ function renderGrid() {
 
     const icon = document.createElement('img');
 
-    icon.src = `${entry.bucket}/${entry.slug}/icon.png`;
+    // Build a robust set of icon path candidates so weapons display correctly
+    // even if we recategorized bucket values. Prefer the data key path first.
+    const iconCandidates = [];
+    if (entry.key) iconCandidates.push(`${entry.key}/icon.png`);
+    if (entry.bucket && entry.slug) iconCandidates.push(`${entry.bucket}/${entry.slug}/icon.png`);
+    if (entry.slug) {
+      iconCandidates.push(`items/${entry.slug}/icon.png`);
+      iconCandidates.push(`weapons/${entry.slug}/icon.png`);
+    }
+    let iconTry = 0;
+    icon.src = iconCandidates[iconTry] || 'placeholder.png';
 
     icon.alt = entry.name;
 
-    icon.onerror = () => { icon.onerror = null; icon.src = 'placeholder.png'; };
+    icon.onerror = () => {
+      iconTry += 1;
+      if (iconTry < iconCandidates.length) {
+        icon.src = iconCandidates[iconTry];
+      } else {
+        icon.onerror = null;
+        icon.src = 'placeholder.png';
+      }
+    };
 
     icon.style.width = '48px';
 
@@ -1247,7 +1277,7 @@ function setupDrop(zoneSel, sideKey, type) {
       if (item.bucket !== 'weapons') return;
       side.weapon = item;
 
-      zone.innerHTML = `<div class="miniCard"><img src="${item.bucket}/${item.slug}/icon.png" alt="${item.name}"><span class="name">${item.name}</span></div>`;
+  zone.innerHTML = mini(item);
 
     } else if (type === 'items') {
       // Only accept items in the item grid.  Do not allow duplicates and do not exceed SLOT_COUNT.
@@ -1265,7 +1295,7 @@ function setupDrop(zoneSel, sideKey, type) {
       const annotated = Object.assign({}, item, { tier });
       side.items[idx] = annotated;
       if (slotEl) {
-        slotEl.innerHTML = `<div class=\"miniCard\"><img src=\"${item.bucket}/${item.slug}/icon.png\" alt=\"${item.name}\"><span class=\"name\">${item.name}</span></div>`;
+  slotEl.innerHTML = mini(item);
         slotEl.classList.add('filled');
         selectSlot(sideKey, idx);
       }
@@ -1322,7 +1352,10 @@ function populateEdges() {
       effects[idx].textContent = pick ? (pick.effect || '') : '';
       const iconEl = icons[idx];
       if (pick) {
-        iconEl.src = `${pick.bucket}/${pick.slug}/icon.png`;
+  // Prefer key-based path then fallbacks
+  const cands = resolveIconCandidates(pick);
+  let i=0; iconEl.src = cands[i] || 'placeholder.png';
+  iconEl.onerror = () => { i+=1; if (i<cands.length) { iconEl.src=cands[i]; } else { iconEl.onerror=null; iconEl.src='placeholder.png'; } };
       } else {
         iconEl.src = 'assets/placeholder.png';
       }
@@ -1363,7 +1396,16 @@ function randomizeSide(targetSide){
     const w = weapons[Math.floor(Math.random()*weapons.length)];
     side.weapon = w;
 
-    wSlot.innerHTML = `<div class="miniCard"><img src="${w.bucket}/${w.slug}/icon.png" alt="${w.name}"><span class="name">${w.name}</span></div>`;
+    // Build mini card icon with fallbacks using key first
+    const wIconCandidates = [];
+    if (w.key) wIconCandidates.push(`${w.key}/icon.png`);
+    if (w.bucket && w.slug) wIconCandidates.push(`${w.bucket}/${w.slug}/icon.png`);
+    if (w.slug) {
+      wIconCandidates.push(`items/${w.slug}/icon.png`);
+      wIconCandidates.push(`weapons/${w.slug}/icon.png`);
+    }
+    const wFirstIcon = wIconCandidates[0] || 'placeholder.png';
+    wSlot.innerHTML = `<div class="miniCard"><img src="${wFirstIcon}" onerror="(function(el){var c=['${wIconCandidates.map(c=>c.replace(/"/g,'&quot;')).join("','")}'];var i=1;el.onerror=function(){if(i<c.length){el.src=c[i++];}else{el.onerror=null;el.src='placeholder.png';}}})(this)" alt="${w.name}"><span class="name">${w.name}</span></div>`;
 
   }
   
@@ -1392,7 +1434,7 @@ function randomizeSide(targetSide){
   chosen.forEach((it, idxItem) => {
     side.items[idxItem] = it;
     const cell = cells[idxItem];
-    cell.innerHTML = `<div class=\"miniCard\"><img src=\"${it.bucket}/${it.slug}/icon.png\" alt=\"${it.name}\"><span class=\"name\">${it.name}</span></div>`;
+  cell.innerHTML = mini(it);
     cell.classList.add('filled');
   });
   updateTotals(targetSide);
@@ -1885,7 +1927,29 @@ function saveCache(list) {
     // Swallowing exceptions here prevents the cache failure from breaking the UI.
   }
 }
-  async function buildIconLib(){ if(iconLib) return iconLib; const cached=loadCache(); if (cached) { iconLib=cached; log(`Icon library loaded from cache (${iconLib.length}).`); return iconLib; } const list=[]; for(const [k,v] of Object.entries(RAW_DATA||{})){ if(!/(^items\/|^weapons\/|^upgrades\/)/.test(k)) continue; const path=`${v.bucket}/${v.slug}/icon.png`; const im=new Image(); await new Promise(res=>{ im.onload=res; im.onerror=res; im.src=path; }); if (!im.width) continue; const tmp=document.createElement('canvas'); tmp.width=im.width||32; tmp.height=im.height||32; const tx=tmp.getContext('2d'); tx.imageSmoothingEnabled=false; tx.drawImage(im,0,0,tmp.width,tmp.height); const fp=hashFromCanvas(tmp); list.push({ slug:k, fp, path }); } iconLib=list; saveCache(list); log(`Icon library ready (${list.length}).`); return iconLib; }
+  async function buildIconLib(){
+    if(iconLib) return iconLib;
+    const cached=loadCache();
+    if (cached) { iconLib=cached; log(`Icon library loaded from cache (${iconLib.length}).`); return iconLib; }
+    const list=[];
+    for(const [k,v] of Object.entries(RAW_DATA||{})){
+      if(!/(^items\/|^weapons\/|^upgrades\/)/.test(k)) continue;
+      // Try key path first, then bucket/slug
+      const candidates = [];
+      candidates.push(`${k}/icon.png`);
+      if (v && v.bucket && v.slug) candidates.push(`${v.bucket}/${v.slug}/icon.png`);
+      let okPath=null;
+      for (const p of candidates){
+        const im=new Image();
+        await new Promise(res=>{ im.onload=res; im.onerror=res; im.src=p; });
+        if (im.width){ okPath=p; break; }
+      }
+      if (!okPath) continue;
+      const tmp=document.createElement('canvas'); tmp.width=32; tmp.height=32; const tx=tmp.getContext('2d'); tx.imageSmoothingEnabled=false; tx.drawImage(im,0,0,tmp.width,tmp.height); const fp=hashFromCanvas(tmp);
+      list.push({ slug:k, fp, path: okPath });
+    }
+    iconLib=list; saveCache(list); log(`Icon library ready (${list.length}).`); return iconLib;
+  }
   async function buildOilsLib(){ if (oilsLib) return oilsLib; const entries=[{slug:'oil-attack',path:'assets/attack.png',kind:'attack'},{slug:'oil-armor',path:'assets/armor.png',kind:'armor'},{slug:'oil-speed',path:'assets/speed.png',kind:'speed'}]; const out=[]; for(const e of entries){ const im=new Image(); await new Promise(res=>{ im.onload=res; im.onerror=res; im.src=e.path; }); const tmp=document.createElement('canvas'); tmp.width=im.width||22; tmp.height=im.height||22; const tx=tmp.getContext('2d'); tx.imageSmoothingEnabled=false; tx.drawImage(im,0,0,tmp.width,tmp.height); const fp=hashFromCanvas(tmp); out.push({ slug:e.slug, fp, path:e.path, kind:e.kind }); } oilsLib=out; return out; }
   function viewToSrcRect(x,y,w,h){ if (!srcCanvas.width || !canvas.width) return {sx:0,sy:0,sw:1,sh:1}; const sx = Math.max(0, Math.round(x * srcCanvas.width / canvas.width)); const sy = Math.max(0, Math.round(y * srcCanvas.height / canvas.height)); const sw = Math.max(1, Math.round(w * srcCanvas.width / canvas.width)); const sh = Math.max(1, Math.round(h * srcCanvas.height / canvas.height)); return {sx,sy,sw,sh}; }
   function cropHash(x,y,w,h){ const r=viewToSrcRect(x,y,w,h); const tmp=document.createElement('canvas'); tmp.width=Math.max(1,r.sw); tmp.height=Math.max(1,r.sh); const tx=tmp.getContext('2d'); tx.imageSmoothingEnabled=true; tx.drawImage(srcCanvas,r.sx,r.sy,r.sw,r.sh,0,0,tmp.width,tmp.height); return hashFromCanvas(tmp); }
@@ -1911,8 +1975,8 @@ function saveCache(list) {
     const lOcr = await tryOcrEdge(ROIS['left-edge'],'P'); if (lOcr) picks.left.edge = lOcr;
     const rOcr = await tryOcrEdge(ROIS['right-edge'],'O'); if (rOcr) picks.right.edge = rOcr;
     render();
-    function applySide(key,pred){ const side=key==='P'?sides.P:sides.O; const wSlot=key==='P'?document.getElementById('weaponP'):document.getElementById('weaponO'); if(pred.weapon && RAW_DATA[pred.weapon]){ side.weapon=RAW_DATA[pred.weapon]; if(wSlot) wSlot.innerHTML=`<div class="miniCard"><img src="${side.weapon.bucket}/${side.weapon.slug}/icon.png"><span class="name">${side.weapon.name||side.weapon.slug}</span></div>`; }
-      const gridEl=key==='P'?document.getElementById('gridP'):document.getElementById('gridO'); const cells=gridEl?gridEl.querySelectorAll('.slot'):[]; const list=(pred.items||[]).filter(s=>/^items\//.test(s)).slice(0,SLOT_COUNT); for(let i=0;i<SLOT_COUNT;i++){ const slug=list[i]; const cell=cells[i]; if(slug && RAW_DATA[slug]){ const it=RAW_DATA[slug]; side.items[i]=it; if(cell){ cell.classList.add('filled'); cell.innerHTML=`<div class=\"miniCard\"><img src=\"${it.bucket}/${it.slug}/icon.png\"><span class=\"name\">${it.name||it.slug}</span></div>`; } } else { side.items[i]=null; if(cell){ cell.classList.remove('filled'); cell.innerHTML=''; } } } updateTotals(key); }
+  function applySide(key,pred){ const side=key==='P'?sides.P:sides.O; const wSlot=key==='P'?document.getElementById('weaponP'):document.getElementById('weaponO'); if(pred.weapon && RAW_DATA[pred.weapon]){ side.weapon=RAW_DATA[pred.weapon]; if(wSlot) wSlot.innerHTML=mini(side.weapon); }
+  const gridEl=key==='P'?document.getElementById('gridP'):document.getElementById('gridO'); const cells=gridEl?gridEl.querySelectorAll('.slot'):[]; const list=(pred.items||[]).filter(s=>/^items\//.test(s)).slice(0,SLOT_COUNT); for(let i=0;i<SLOT_COUNT;i++){ const slug=list[i]; const cell=cells[i]; if(slug && RAW_DATA[slug]){ const it=RAW_DATA[slug]; side.items[i]=it; if(cell){ cell.classList.add('filled'); cell.innerHTML=mini(it); } } else { side.items[i]=null; if(cell){ cell.classList.remove('filled'); cell.innerHTML=''; } } } updateTotals(key); }
     function applyOils(key,set){ const box = key==='P'?document.getElementById('oilsP'):document.getElementById('oilsO'); const kinds=['attack','armor','speed']; if (box){ kinds.forEach(k=>{ const el = box.querySelector(`.oil[data-kind="${k}"]`); if (el){ if (set.has(k)) el.classList.add('active'); else el.classList.remove('active'); } }); } const side = key==='P'?sides.P:sides.O; side.oils = new Set(set); updateTotals(key); }
     function applyEdge(key, slug){ if (!slug || !RAW_DATA[slug]) return; const side = key==='P'?sides.P:sides.O; side.edge = RAW_DATA[slug]; const sel = key==='P'?document.getElementById('edgeP'):document.getElementById('edgeO'); const eff = key==='P'?document.getElementById('edgePEffect'):document.getElementById('edgeOEffect'); const ic = key==='P'?document.getElementById('edgePIcon'):document.getElementById('edgeOIcon'); if (sel){ sel.value = side.edge.slug; } if (eff){ eff.textContent = side.edge.effect || ''; } if (ic){ ic.src = `${side.edge.bucket}/${side.edge.slug}/icon.png`; } updateTotals(key); }
     // Fill warnings list
