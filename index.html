@@ -615,86 +615,36 @@ async function loadData() {
     DATA_ARR = Object.entries(RAW_DATA).map(([key,val]) => { 
       val.key = key; 
       
-      // Fix weapon bucket issue - ensure all weapons are properly categorized
-      if (key.startsWith('weapons/') && (!val.bucket || val.bucket !== 'weapons')) {
-        val.bucket = 'weapons';
-      }
-      
-      // Comprehensive weapon detection based on multiple factors
-      
-      // 1. Check by path prefix
+      // Conservative fix: Only ensure items that should be weapons are properly categorized
+      // Don't change bucket for items that already have a bucket set
       if (key.startsWith('weapons/')) {
         val.bucket = 'weapons';
       }
       
-      // 2. Check for common weapon-related terms in name
-      const weaponTermsInName = [
-        'sword', 'blade', 'bow', 'stinger', 'bat', 'branch', 'swordfish', 'dagger', 'axe', 'mace', 
-        'hammer', 'spear', 'staff', 'club', 'flail', 'whip', 'lance', 'rapier', 'knife', 'scythe',
-        'gun', 'pistol', 'rifle', 'cannon', 'wand', 'scepter', 'halberd', 'pike', 'javelin', 'crossbow',
-        'gauntlet', 'glove', 'fist', 'claw', 'shuriken', 'katana', 'scimitar', 'saber', 'cutlass',
-        'talons', 'talisman', 'fangs', 'stave', 'greataxe', 'greatsword', 'rod'
+      // Only fix specific known weapons that are miscategorized
+      const knownMiscategorizedWeapons = [
+        'items/blackbriar_bow', 
+        'items/cherry_blade', 
+        'items/deathcap_bow', 
+        'items/ham_bat',
+        'items/lemontree_branch', 
+        'items/rocksalt_sword', 
+        'items/silverscale_swordfish'
       ];
       
-      const nameWords = (val.name || '').toLowerCase().split(/\s+/);
-      const hasWeaponTermInName = nameWords.some(word => 
-        weaponTermsInName.some(term => word.includes(term))
-      );
-      
-      // 3. Check for weapon-related patterns in effect description
-      const hasWeaponEffect = val.effect && (
-        /\b(strike|hit|attack|damage|slash|pierce|stab|shoot|throw|weapon)\b/i.test(val.effect) ||
-        /\bon hit\b/i.test(val.effect) ||
-        /\bextra strike\b/i.test(val.effect) ||
-        /\bdeal.*damage\b/i.test(val.effect)
-      );
-      
-      // 4. Check stats - weapons usually have attack value
-      const hasAttackStat = val.stats && val.stats.attack && val.stats.attack > 0;
-      
-      // 5. Special cases for known weapons that might not match other patterns
-      const knownWeaponPaths = [
-        '/blackbriar_bow', '/cherry_blade', '/deathcap_bow', '/ham_bat',
-        '/lemontree_branch', '/rocksalt_sword', '/silverscale_swordfish',
-        '/bitter_melon', '/blood_chalice', '/blood_syringe', '/bracelet_talisman',
-        '/bramble_talisman', '/bracelet_vest', '/briar_greaves', '/brittle', '/broken',
-        '/caustic_tome', '/choicest_medallion', '/citrine_earring', '/citrine_gemstone',
-        '/crown', '/cyanide', '/dagger', '/deadeye', '/death_mask', '/demon', '/devils',
-        '/diamond_cutter', '/dire', '/dragon', '/dread', '/dusk', '/embersoul',
-        '/executioner', '/fang', '/final', '/fire', '/flame', '/frost', '/ghost',
-        '/glass', '/gloom', '/golden', '/grim', '/hellfire', '/hook', '/horn',
-        '/hunter', '/ice', '/infernal', '/iron', '/jade', '/jeweled', '/kings',
-        '/knight', '/leech', '/legendary', '/life', '/lightning', '/mace',
-        '/machete', '/mageblade', '/meteor', '/might', '/mystic', '/needle',
-        '/obsidian', '/phoenix', '/rage', '/razor', '/royal', '/ruby', '/runic',
-        '/sacrosanct', '/scythe', '/shadow', '/shard', '/shiv', '/skull',
-        '/smasher', '/soul', '/spiked', '/star', '/steel', '/storm', '/talon',
-        '/thunder', '/titan', '/tooth', '/toxic', '/trident', '/vampiric',
-        '/venomous', '/void', '/war', '/whisper', '/winged', '/winter',
-        '/witch', '/wooden', '/wraith', '/wrath'
-      ];
-      
-      const isKnownWeaponPath = knownWeaponPaths.some(path => key.toLowerCase().includes(path.toLowerCase()));
-      
-      // Combine all weapon detection methods
-      if (
-        key.startsWith('items/') && (
-          hasWeaponTermInName || 
-          hasWeaponEffect || 
-          hasAttackStat || 
-          isKnownWeaponPath
-        )
-      ) {
-        // This is likely a weapon, categorize it as such
+      if (knownMiscategorizedWeapons.includes(key) && val.bucket !== 'weapons') {
         val.bucket = 'weapons';
       }
       
       return val; 
     });
     
-    // Count and log the number of weapons for verification
-  // Count weapons for internal use if needed
-  // const weaponsCount = DATA_ARR.filter(item => item.bucket === 'weapons').length;
+    // Count and log the number of items by bucket for verification
+    const itemsCount = DATA_ARR.filter(item => item.bucket === 'items').length;
+    const weaponsCount = DATA_ARR.filter(item => item.bucket === 'weapons').length;
+    const upgradesCount = DATA_ARR.filter(item => item.bucket === 'upgrades').length;
+    const totalCount = DATA_ARR.length;
+    console.log(`Data loaded: ${totalCount} total items (Items: ${itemsCount}, Weapons: ${weaponsCount}, Upgrades: ${upgradesCount})`);
     
     // Build a set of keys that support Gold/Diamond tiers either because:
     // - effect text mentions Gold/Diamond, or
@@ -1003,11 +953,6 @@ function renderGrid() {
 
   grid.innerHTML = '';
   
-  // For weapons, log all available weapons to help debugging
-  // if (bucketVal === 'weapons') {
-  //   const weaponItems = DATA_ARR.filter(entry => entry.bucket === 'weapons');
-  // }
-  
   DATA_ARR.forEach(entry => {
     // Case-insensitive matching for better reliability
     const entryBucket = (entry.bucket || '').toLowerCase();
@@ -1239,6 +1184,13 @@ function renderGrid() {
     grid.appendChild(card);
 
   });
+  
+  console.log(`Compendium showing ${shown} items for bucket: ${bucketVal}`);
+  
+  if (shown === 0 && bucketVal === 'All') {
+    grid.innerHTML = '<div style="color: #f33; padding: 20px; text-align: center;">No items loaded. Check console for data loading details.</div>';
+  }
+  
   // console.debug('renderGrid finished, shown:', shown, 'bucketVal:', bucketVal);
   countSpan.textContent = `Shown: ${shown}`;
 }
