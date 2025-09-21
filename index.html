@@ -993,7 +993,7 @@ function renderGrid() {
     const entryBucket = (entry.bucket || '').toLowerCase();
     const bucketValLower = bucketVal.toLowerCase();
     
-    const isMatch = bucketVal === 'All' || entryBucket === bucketValLower;
+    const isMatch = bucketVal.toLowerCase() === 'all' || entryBucket === bucketValLower;
     
     if (!isMatch) return;
 
