@@ -1472,6 +1472,12 @@
         const eventToTriggerMap = {
           'battleStart': 'battleStart',
           'turnStart': 'turnStart',
+          'turnEnd': 'turnEnd',
+          'firstTurn': 'first_turn',
+          'everyOtherTurn': 'every_other_turn',
+          'countdown': 'countdown',
+          'nextBoss': 'next_boss',
+          'firstTime': 'first_time',
           'onHit': 'hit',
           'onWounded': 'wounded',
           'onExposed': 'exposed',
@@ -2103,7 +2109,18 @@ let CURRENT_SOURCE_SLUG = null;
       logWithHP(`-- Turn ${round} -- ${actor.name}`);
       
       turnStartTicks(actor, target, logWithHP);
+      
+      // First turn trigger
+      if (actor.flags && actor.flags.firstTurn) {
+        runEffects('first_turn', actor, target, logWithHP);
+      }
+      
       runEffects('turnStart', actor, target, logWithHP);
+      
+      // Every other turn trigger (every 2nd turn)
+      if (actor.turnCount % 2 === 0) {
+        runEffects('every_other_turn', actor, target, logWithHP);
+      }
       
       let strikes = 1 + (actor.extraStrikes || 0);
       if (actor.cannotStrike || actor.skipTurn) strikes = 0;
