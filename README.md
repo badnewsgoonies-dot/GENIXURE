@@ -1,6 +1,6 @@
-He Is Coming — Loadout Builder (v5)
+# He Is Coming — Loadout Builder (v5)
 
-## Quick Start
+Entry point
 
 1. **Build the data**: `npm run build`
 2. **Start server**: `python -m http.server 5500`
