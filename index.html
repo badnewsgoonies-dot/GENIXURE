@@ -612,7 +612,36 @@ async function loadData() {
     } catch(oerr) {
       // Ignore missing overrides file; it's optional.
     }
-    DATA_ARR = Object.entries(RAW_DATA).map(([key,val]) => { val.key = key; return val; });
+    DATA_ARR = Object.entries(RAW_DATA).map(([key,val]) => { 
+      val.key = key; 
+      
+      // Fix weapon bucket issue - ensure all weapons are properly categorized
+      if (key.startsWith('weapons/') && (!val.bucket || val.bucket !== 'weapons')) {
+        val.bucket = 'weapons';
+      }
+      
+      // Also ensure items/ paths that are weapons are properly categorized
+      // Check for common weapon keywords in name or effect
+      const isWeaponByName = val.name && /\b(sword|blade|bow|stinger|bat|branch|swordfish)\b/i.test(val.name);
+      const isWeaponByEffect = val.effect && /\b(strike|hit|attack|damage|weapon)\b/i.test(val.effect);
+      const isWeaponByPath = key.includes('/blackbriar_bow') || 
+                            key.includes('/cherry_blade') || 
+                            key.includes('/deathcap_bow') || 
+                            key.includes('/ham_bat') || 
+                            key.includes('/lemontree_branch') || 
+                            key.includes('/rocksalt_sword') || 
+                            key.includes('/silverscale_swordfish');
+                            
+      if ((key.startsWith('items/') && (isWeaponByName || isWeaponByPath)) || 
+          (val.bucket === 'weapons')) {
+        // This is likely a weapon, ensure it's in the weapons bucket
+        val.bucket = 'weapons';
+        console.log(`Fixed weapon categorization for: ${val.name} (${key})`);
+      }
+      
+      return val; 
+    });
+    
     // Build a set of keys that support Gold/Diamond tiers either because:
     // - effect text mentions Gold/Diamond, or
     // - sibling variant slugs *_gold or *_diamond exist.
@@ -907,13 +936,22 @@ function renderGrid() {
   let shown = 0;
 
   grid.innerHTML = '';
+  
+  // For weapons, log all available weapons to help debugging
+  if (bucketVal === 'weapons') {
+    console.log('Weapons filter selected, looking for items with bucket="weapons"');
+    const weaponItems = DATA_ARR.filter(entry => entry.bucket === 'weapons');
+    console.log(`Found ${weaponItems.length} weapons:`, weaponItems.map(w => w.name));
+  }
+  
   DATA_ARR.forEach(entry => {
-    // Debug: Check if we're filtering for weapons
-    if (bucketVal === 'weapons') {
-      console.log(`Checking ${entry.name}: bucket="${entry.bucket}", bucketVal="${bucketVal}", match:`, entry.bucket === bucketVal);
-    }
-
-    if (bucketVal !== 'All' && entry.bucket !== bucketVal) return;
+    // Case-insensitive matching for better reliability
+    const entryBucket = (entry.bucket || '').toLowerCase();
+    const bucketValLower = bucketVal.toLowerCase();
+    
+    const isMatch = bucketVal === 'All' || entryBucket === bucketValLower;
+    
+    if (!isMatch) return;
 
     if (catVal !== 'All') {
 
