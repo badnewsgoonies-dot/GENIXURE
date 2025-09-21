@@ -655,6 +655,18 @@ async function loadData() {
     // Log first few items to check bucket values
     console.log('Sample items:', DATA_ARR.slice(0, 5).map(item => ({ key: item.key, name: item.name, bucket: item.bucket })));
     
+    // Check if RAW_DATA has more entries than DATA_ARR
+    const rawDataCount = Object.keys(RAW_DATA).length;
+    console.log(`RAW_DATA has ${rawDataCount} entries, DATA_ARR has ${totalCount} entries`);
+    
+    // Check for items that might not have standard bucket values
+    const bucketTypes = {};
+    DATA_ARR.forEach(item => {
+      const bucket = item.bucket || 'undefined';
+      bucketTypes[bucket] = (bucketTypes[bucket] || 0) + 1;
+    });
+    console.log('All bucket types:', bucketTypes);
+    
     // Build a set of keys that support Gold/Diamond tiers either because:
     // - effect text mentions Gold/Diamond, or
     // - sibling variant slugs *_gold or *_diamond exist.
@@ -698,6 +710,9 @@ const countSpan = $('#count');
 const searchIn = $('#q');
 const bucketSel = $('#bucket');
 const catSel = $('#cat');
+
+// Force the bucket selector to "All" to ensure it shows all items by default
+bucketSel.value = 'All';
 const detailModal = $('#detailModal');
 const detailName = $('#detailName');
 const detailEffect = $('#detailEffect');
