@@ -1934,6 +1934,15 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
      For file:// usage (no local server), we also ship a pre-bundled
      details.js that defines window.HEIC_DETAILS as a fallback. -->
 <script src="details.js"></script>
+<script>
+  // Debug: Check if details.js loaded correctly
+  console.log('🔍 Checking bundled data immediately after details.js...');
+  console.log('window.HEIC_DETAILS exists:', !!window.HEIC_DETAILS);
+  if (window.HEIC_DETAILS) {
+    console.log('window.HEIC_DETAILS item count:', Object.keys(window.HEIC_DETAILS).length);
+    console.log('First few keys:', Object.keys(window.HEIC_DETAILS).slice(0, 3));
+  }
+</script>
 <script src="heic_sim.js"></script>
 <script src="heic_effects.js"></script>
 <script src="heic_sets.js"></script>
@@ -2421,63 +2430,72 @@ async function loadData() {
     
     // Start with any pre-bundled details (file:// safe)
     RAW_DATA = (window.HEIC_DETAILS && typeof window.HEIC_DETAILS === 'object') ? window.HEIC_DETAILS : {};
+    console.log(`� Initial RAW_DATA has ${Object.keys(RAW_DATA).length} items`);
     
-    // Robust loader with multiple fallback paths
-    const baseUrl = location.origin + '/';
-    const candidates = [
-      `${baseUrl}compiled_details.json`,
-      `${baseUrl}details.json`,
-      `${location.origin}/compiled_details.json`,
-      `${location.origin}/details.json`,
-      `${location.origin}/data/compiled_details.json`,
-      `${location.origin}/data/details.json`,
-      `${location.origin}/assets/compiled_details.json`,
-      `${location.origin}/assets/details.json`,
-      // Relative fallbacks
-      './compiled_details.json',
-      './details.json',
-      './data/compiled_details.json',
-      './data/details.json'
-    ];
-    
-    const errors = [];
-    let loadedFromNetwork = false;
-    
-    for (const url of candidates) {
+    // Try multiple loading strategies
+    if (Object.keys(RAW_DATA).length === 0) {
+      console.log('🌐 No bundled data, attempting network loading...');
+      
+      // Strategy 1: Direct fetch with better error handling and shorter timeout
+      const loadPromises = [
+        './compiled_details.json',
+        './details.json',
+        `${location.origin}/compiled_details.json`,
+        `${location.origin}/details.json`
+      ].map(async (url) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+        
+        try {
+          console.log(`🔍 Trying: ${url}`);
+          const response = await fetch(url, { 
+            signal: controller.signal,
+            cache: 'no-store',
+            credentials: 'same-origin'
+          });
+          
+          clearTimeout(timeoutId);
+          
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+          
+          const data = await response.json();
+          const itemCount = Object.keys(data || {}).length;
+          
+          if (itemCount === 0) {
+            throw new Error('Empty data file');
+          }
+          
+          console.log(`✅ Successfully loaded ${itemCount} items from: ${url}`);
+          return data;
+          
+        } catch (error) {
+          clearTimeout(timeoutId);
+          console.log(`❌ ${url} failed: ${error.message}`);
+          throw error;
+        }
+      });
+      
+      // Try all URLs in parallel, use the first successful one
       try {
-        console.log(`🔍 Trying: ${url}`);
-        const res = await fetch(url, { cache: 'no-cache' });
+        const results = await Promise.allSettled(loadPromises);
+        const successful = results.find(result => result.status === 'fulfilled');
         
-        if (!res.ok) {
-          errors.push(`${url} → HTTP ${res.status} ${res.statusText}`);
-          continue;
+        if (successful) {
+          RAW_DATA = Object.assign({}, RAW_DATA, successful.value);
+          console.log(`✅ Network loading successful: ${Object.keys(RAW_DATA).length} items`);
+        } else {
+          console.log('❌ All network loading attempts failed');
+          // Log all errors for debugging
+          results.forEach((result, index) => {
+            if (result.status === 'rejected') {
+              console.log(`  - URL ${index}: ${result.reason.message}`);
+            }
+          });
         }
-        
-        const contentType = res.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-          errors.push(`${url} → Wrong content-type: ${contentType}`);
-          continue;
-        }
-        
-        const fromJson = await res.json();
-        
-        // Integrity check - ensure we have actual data
-        const itemCount = Object.keys(fromJson || {}).length;
-        console.log(`📊 ${url} has ${itemCount} top-level keys`);
-        
-        if (itemCount === 0) {
-          errors.push(`${url} → 0 items (empty or invalid JSON)`);
-          continue;
-        }
-        
-        // Success! Use this data
-        RAW_DATA = Object.assign({}, RAW_DATA, fromJson);
-        console.log(`✅ Successfully loaded ${itemCount} items from: ${url}`);
-        loadedFromNetwork = true;
-        break;
-        
-      } catch (e) {
-        errors.push(`${url} → ${e.message || e}`);
+      } catch (parallelError) {
+        console.error('❌ Parallel loading error:', parallelError);
       }
     }
     
@@ -2541,6 +2559,11 @@ async function loadData() {
     try { window.HEIC_DETAILS = RAW_DATA; } catch(_) {}
 
     // Make data iterable
+    console.log('🔄 About to create DATA_ARR from RAW_DATA');
+    console.log('🔄 RAW_DATA type:', typeof RAW_DATA);
+    console.log('🔄 RAW_DATA has keys:', !!RAW_DATA && Object.keys(RAW_DATA).length);
+    console.log('🔄 RAW_DATA sample keys:', RAW_DATA ? Object.keys(RAW_DATA).slice(0, 3) : 'none');
+    
     DATA_ARR = Object.entries(RAW_DATA).map(([key,val]) => { 
       val.key = key; 
       
@@ -2557,6 +2580,10 @@ async function loadData() {
       
       return val; 
     });
+    
+    console.log('✅ DATA_ARR created successfully');
+    console.log('✅ DATA_ARR length:', DATA_ARR.length);
+    console.log('✅ First DATA_ARR item:', DATA_ARR[0]);
     
     // Count and log the number of items by bucket for verification
     const itemsCount = DATA_ARR.filter(item => item.bucket === 'items').length;
@@ -2608,6 +2635,10 @@ async function loadData() {
     // Build empty item grids for both sides
     initSlots();
     // Render the compendium grid
+    console.log('🔧 About to call initializeCompendiumData');
+    console.log('📊 RAW_DATA keys count:', Object.keys(RAW_DATA).length);
+    console.log('📊 DATA_ARR length:', DATA_ARR.length);
+    console.log('📊 window.HEIC_DETAILS exists at init time:', !!window.HEIC_DETAILS);
     initializeCompendiumData();
     // Compute initial totals for player and opponent (empty builds)
     updateTotals('P');
@@ -2620,8 +2651,280 @@ async function loadData() {
     msg.textContent = 'Failed to load details.json. Please serve files via a local server (e.g., python -m http.server) instead of opening via file://';
     document.body.insertBefore(msg, document.body.firstChild);
   }
+// Non-fatal JSON fetch helper
+async function fetchJson(url) {
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`HTTP ${res.status} @ ${url}`);
+  const ct = res.headers.get('content-type') || '';
+  if (!ct.includes('application/json')) {
+    const text = await res.text();
+    throw new Error(`Expected JSON, got ${ct || 'unknown'} @ ${url}. First 120: ${text.slice(0,120)}`);
+  }
+  return res.json();
 }
-loadData();
+
+// Script loading fallback for CORS-free access
+function loadViaScript(src, globalKey) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.defer = true;
+    s.src = src;
+    s.onload = () => {
+      const data = window[globalKey];
+      data ? resolve(data) : reject(new Error(`Global ${globalKey} missing after ${src}`));
+    };
+    s.onerror = () => reject(new Error(`Failed to load script ${src}`));
+    document.head.appendChild(s);
+  });
+}
+
+// Non-blocking error display
+function showNonBlockingError(message) {
+  const banner = document.createElement('div');
+  banner.id = 'nonBlockingErrorBanner';
+  banner.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: linear-gradient(135deg, #1a0000, #330000);
+    border-bottom: 2px solid #f33;
+    color: #f33;
+    padding: 8px 16px;
+    font-size: 12px;
+    text-align: center;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(255, 51, 51, 0.3);
+  `;
+  
+  banner.innerHTML = `
+    <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <span>⚠️ ${message}</span>
+      <button onclick="this.parentElement.parentElement.remove()" 
+              style="pointer-events: auto; background: #f33; color: #fff; border: none; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 10px;">
+        Dismiss
+      </button>
+    </div>
+  `;
+  
+  document.body.prepend(banner);
+  
+  // Auto-dismiss after 10 seconds
+  setTimeout(() => {
+    if (banner.parentNode) {
+      banner.remove();
+    }
+  }, 10000);
+}
+
+// NON-FATAL data loader - never blocks the UI
+async function loadData() {
+  console.log('🚀 Starting non-fatal data load...');
+  
+  // Initialize with any pre-bundled data
+  RAW_DATA = (window.HEIC_DETAILS && typeof window.HEIC_DETAILS === 'object') ? window.HEIC_DETAILS : {};
+  console.log(`🔧 Initial RAW_DATA has ${Object.keys(RAW_DATA).length} items`);
+  
+  // Only try network loading if we don't have data yet
+  if (Object.keys(RAW_DATA).length === 0) {
+    console.log('🌐 No bundled data, trying multiple sources...');
+    
+    const base = location.origin + '/';
+    const tries = [
+      () => fetchJson(`${base}compiled_details.json`),
+      () => fetchJson(`${base}details.json`),
+      () => fetchJson('./compiled_details.json'),
+      () => fetchJson('./details.json'),
+      () => loadViaScript(`${base}compiled_details.js`, '__COMPILED_DETAILS__'),
+      () => loadViaScript(`${base}details.js`, '__DETAILS__'),
+      () => loadViaScript('./compiled_details.js', '__COMPILED_DETAILS__'),
+      () => loadViaScript('./details.js', '__DETAILS__')
+    ];
+    
+    let lastErr;
+    let loadedSource = null;
+    
+    for (let i = 0; i < tries.length; i++) {
+      const attempt = tries[i];
+      try {
+        console.log(`🔍 Attempting source ${i + 1}/${tries.length}...`);
+        const data = await attempt();
+        const itemCount = Object.keys(data || {}).length;
+        
+        if (itemCount > 0) {
+          RAW_DATA = Object.assign({}, RAW_DATA, data);
+          loadedSource = `source ${i + 1}`;
+          console.log(`✅ Successfully loaded ${itemCount} items from ${loadedSource}`);
+          break;
+        } else {
+          console.log(`⚠️ Source ${i + 1} returned empty data, trying next...`);
+        }
+      } catch (e) {
+        lastErr = e;
+        console.log(`❌ Source ${i + 1} failed: ${e.message}`);
+      }
+    }
+    
+    // Store debug info globally
+    window.__COMPENDIUM_DEBUG__ = {
+      ok: Object.keys(RAW_DATA).length > 0,
+      source: loadedSource,
+      error: lastErr ? String(lastErr) : null,
+      totalItems: Object.keys(RAW_DATA).length
+    };
+  }
+
+  // Final check - if we still have no data, show a NON-BLOCKING error
+  const totalItems = Object.keys(RAW_DATA).length;
+  
+  if (totalItems === 0) {
+    console.warn(`⚠️ No data loaded from any source - continuing with empty state`);
+    
+    // Show non-blocking error banner with pointer-events: none
+    showNonBlockingError('No compendium data could be loaded. The app will continue with limited functionality.');
+    
+    // Set up empty arrays so the rest of the app doesn't crash
+    DATA_ARR = [];
+    window.TIERABLE = new Set();
+    
+    // Still try to initialize the UI (it will show empty state)
+    try {
+      populateEdges();
+      initSlots();
+      initializeCompendiumData();
+      updateTotals('P');
+      updateTotals('O');
+    } catch (initError) {
+      console.warn('UI initialization failed with empty data:', initError);
+    }
+    
+    return; // Continue execution, don't throw
+  }
+
+  console.log(`✅ Proceeding with ${totalItems} items`);
+
+  // Try to load stats overrides
+  try {
+    const resO = await fetch('stats_overrides.json', { cache: 'no-store' });
+    if (resO.ok) {
+      const overrides = await resO.json();
+      for (const [k, statObj] of Object.entries(overrides || {})) {
+        if (RAW_DATA[k]) {
+          const baseStats = RAW_DATA[k].stats || {};
+          RAW_DATA[k].stats = Object.assign({}, baseStats, statObj);
+        }
+      }
+      console.log('✅ Applied stats overrides');
+    }
+  } catch (e) {
+    console.warn('Failed to load stats overrides:', e.message);
+  }
+
+  try { window.HEIC_DETAILS = RAW_DATA; } catch(_) {}
+
+  // Make data iterable
+  DATA_ARR = Object.entries(RAW_DATA).map(([key,val]) => { 
+    val.key = key; 
+    
+    // Set bucket based on the key's prefix
+    if (key.startsWith('weapons/')) {
+      val.bucket = 'weapons';
+    } else if (key.startsWith('items/')) {
+      val.bucket = 'items';
+    } else if (key.startsWith('upgrades/')) {
+      val.bucket = 'upgrades';
+    } else if (key.startsWith('sets/')) {
+      val.bucket = 'sets';
+    }
+    
+    return val; 
+  });
+  
+  // Count and log the number of items by bucket for verification
+  const itemsCount = DATA_ARR.filter(item => item.bucket === 'items').length;
+  const weaponsCount = DATA_ARR.filter(item => item.bucket === 'weapons').length;
+  const upgradesCount = DATA_ARR.filter(item => item.bucket === 'upgrades').length;
+  const setsCount = DATA_ARR.filter(item => item.bucket === 'sets').length;
+  const noBucketCount = DATA_ARR.filter(item => !item.bucket).length;
+  const totalCount = DATA_ARR.length;
+  
+  console.log(`Data loaded: ${totalCount} total items`);
+  console.log(`  - Items: ${itemsCount}`);
+  console.log(`  - Weapons: ${weaponsCount}`);
+  console.log(`  - Upgrades: ${upgradesCount}`);
+  console.log(`  - Sets: ${setsCount}`);
+  console.log(`  - No bucket: ${noBucketCount}`);
+  
+  // Log first few items to check bucket values
+  console.log('Sample items:', DATA_ARR.slice(0, 5).map(item => ({ key: item.key, name: item.name, bucket: item.bucket })));
+  
+  // Check if RAW_DATA has more entries than DATA_ARR
+  const rawDataCount = Object.keys(RAW_DATA).length;
+  console.log(`RAW_DATA has ${rawDataCount} entries, DATA_ARR has ${totalCount} entries`);
+  
+  // Check for items that might not have standard bucket values
+  const bucketTypes = {};
+  DATA_ARR.forEach(item => {
+    const bucket = item.bucket || 'undefined';
+    bucketTypes[bucket] = (bucketTypes[bucket] || 0) + 1;
+  });
+  console.log('All bucket types:', bucketTypes);
+  
+  // Build a set of keys that support Gold/Diamond tiers
+  window.TIERABLE = new Set();
+  const keys = Object.keys(RAW_DATA);
+  const hasVariant = (slug) => keys.some(k => /^(items|weapons)\//.test(k) && (k.endsWith(slug+"_gold") || k.endsWith(slug+"_diamond")));
+  for (const [k, v] of Object.entries(RAW_DATA)){
+    if (!v || typeof v !== 'object') continue;
+    const eff = (v.effect||'');
+    const m = /^(items|weapons)\/(.+)$/.exec(k);
+    const baseSlug = m ? m[2] : '';
+    if (/gold|diamond/i.test(eff) || hasVariant(baseSlug)) {
+      window.TIERABLE.add(k);
+    }
+  }
+  
+  // Populate edge selects once data is ready
+  populateEdges();
+  // Build empty item grids for both sides
+  initSlots();
+  // Render the compendium grid
+  initializeCompendiumData();
+  // Compute initial totals for player and opponent (empty builds)
+  updateTotals('P');
+  updateTotals('O');
+}
+
+// Wrapper for robust error handling
+async function safeLoadData() {
+  try {
+    await loadData();
+  } catch(err) {
+    // This should rarely happen with the new non-fatal approach, but just in case
+    console.error('Unexpected critical error in loadData:', err);
+    showNonBlockingError(`Critical loading error: ${err.message}`);
+    
+    // Initialize with empty state
+    RAW_DATA = {};
+    DATA_ARR = [];
+    window.TIERABLE = new Set();
+    
+    try {
+      populateEdges();
+      initSlots();
+      initializeCompendiumData();
+      updateTotals('P');
+      updateTotals('O');
+    } catch (fallbackError) {
+      console.error('Fallback initialization also failed:', fallbackError);
+      showNonBlockingError('Complete initialization failure - please refresh the page');
+    }
+  }
+}
+
+// Wait a moment for bundled scripts to load, then start data loading
+setTimeout(safeLoadData, 100);
 
 // Initialize Battle Replay System
 BattleReplayController.init();
