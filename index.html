@@ -1423,13 +1423,29 @@ function uiLog(lines) {
       const img = document.createElement('img');
       img.src = slug + '/icon.png';
       img.alt = '';
-      img.style.width = '20px';
-      img.style.height = '20px';
+      img.style.width = '24px';
+      img.style.height = '24px';
       img.style.imageRendering = 'pixelated';
       img.style.marginRight = '8px';
-      img.style.verticalAlign = 'text-bottom';
+      img.style.verticalAlign = 'middle';
+      img.style.border = '1px solid rgba(0,255,51,0.3)';
+      img.style.borderRadius = '4px';
+      img.style.backgroundColor = 'rgba(0,0,0,0.2)';
+      img.onerror = () => {
+        img.style.display = 'none';
+      };
       div.appendChild(img);
-      // Use innerHTML to render HTML img tags in the text
+      
+      // Add item name if we can find it
+      const itemData = (window.HEIC_DETAILS || {})[slug];
+      if (itemData && itemData.name) {
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = `[${itemData.name}] `;
+        nameSpan.style.color = '#fa0';
+        nameSpan.style.fontWeight = 'bold';
+        div.appendChild(nameSpan);
+      }
+      
       const textDiv = document.createElement('span');
       textDiv.innerHTML = text;
       div.appendChild(textDiv);
