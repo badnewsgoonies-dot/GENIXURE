@@ -399,6 +399,100 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   font-weight: 900;
 }
 
+/* Battle Replay System Styles */
+.replay-btn {
+  transition: all 0.2s ease;
+  font-size: 14px;
+  min-width: 40px;
+}
+
+.replay-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0,255,51,0.3);
+}
+
+.replay-btn:active {
+  transform: scale(0.95);
+}
+
+.replay-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Enhanced battle log with replay features */
+.battle-log-line {
+  border-left: 3px solid transparent;
+  padding-left: 8px;
+  margin: 4px 0;
+  transition: all 0.2s ease;
+  line-height: 1.8;
+  cursor: pointer;
+  position: relative;
+}
+
+.battle-log-line.active {
+  background: rgba(0,255,51,0.15);
+  border-radius: 4px;
+  border-left-color: #0f3;
+  box-shadow: 0 0 15px rgba(0,255,51,0.2);
+  transform: translateX(4px);
+}
+
+.battle-log-line.current-turn {
+  background: rgba(255,215,0,0.1);
+  border-left-color: #ffd700;
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 5px rgba(255,215,0,0.3); }
+  50% { box-shadow: 0 0 20px rgba(255,215,0,0.6); }
+}
+
+.battle-log-line .log-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+  image-rendering: pixelated;
+  opacity: 0.9;
+}
+
+.battle-log-line .turn-marker {
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #0a5;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.battle-log-line.active .turn-marker {
+  opacity: 1;
+}
+
+/* HP tracking in log lines */
+.hp-tracker {
+  font-size: 12px;
+  color: #888;
+  margin-left: 8px;
+  font-weight: normal;
+}
+
+.hp-tracker.player {
+  color: #0a8;
+}
+
+.hp-tracker.opponent {
+  color: #a55;
+}
+
 .result-draw {
   color: #fa0;
   text-shadow: 0 0 10px rgba(255,170,0,0.5);
@@ -539,7 +633,35 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
                 <div id="battleStatus" style="color:#000; font-size:16px; font-weight:700;">Ready</div>
               </div>
             </div>
-            <div id="simLog" style="flex: 1; overflow:auto; padding:16px; font-size:16px; font-family:'Courier New', monospace; color:#0f3; line-height:1.6; min-height: 0;">
+            
+            <!-- Battle Replay Controls -->
+            <div id="replayControls" style="display:none; background:rgba(0,20,0,0.8); border-bottom:2px solid #0a5; padding:12px 20px; flex-shrink: 0;">
+              <div style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <button id="replayFirst" aria-label="Go to first turn" class="replay-btn" style="background:#0a5; color:#000; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; font-weight:700;">⏮️</button>
+                  <button id="replayBack" aria-label="Step back" class="replay-btn" style="background:#0a5; color:#000; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; font-weight:700;">&lt;&lt;</button>
+                  <button id="replayPlay" aria-label="Auto-play battle" class="replay-btn" style="background:#0f3; color:#000; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; font-weight:700;">▶️</button>
+                  <button id="replayForward" aria-label="Step forward" class="replay-btn" style="background:#0a5; color:#000; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; font-weight:700;">&gt;&gt;</button>
+                  <button id="replayLast" aria-label="Go to last turn" class="replay-btn" style="background:#0a5; color:#000; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; font-weight:700;">⏭️</button>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; color:#0f3;">
+                  <label for="turnInput" style="font-size:14px; font-weight:600;">Turn:</label>
+                  <input id="turnInput" type="number" min="1" value="1" style="width:60px; background:#000; color:#0f3; border:1px solid #0a5; border-radius:4px; padding:6px 8px; font-size:14px; text-align:center;">
+                  <span id="turnTotal" style="font-size:14px;">/ 0</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; color:#0f3;">
+                  <label for="replaySpeed" style="font-size:14px; font-weight:600;">Speed:</label>
+                  <select id="replaySpeed" style="background:#000; color:#0f3; border:1px solid #0a5; border-radius:4px; padding:4px 6px; font-size:14px;">
+                    <option value="2000">0.5x</option>
+                    <option value="1000" selected>1x</option>
+                    <option value="500">2x</option>
+                    <option value="250">4x</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div id="simLog" style="flex: 1; overflow:auto; padding:16px; font-size:16px; font-family:'Courier New', monospace; color:#0f3; line-height:1.6; min-height: 0;" aria-live="polite">
               <div style="text-align:center; color:#666; font-style:italic; font-size:18px; padding:40px 20px;">
                 <img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> Ready to witness epic battles!<br><br>
                 Configure your loadouts and hit <strong style="color:#0f3;">"START BATTLE"</strong> to begin the simulation.
@@ -621,6 +743,479 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
 <script src="heic_sim.js"></script>
 <script src="heic_effects.js"></script>
 <script src="heic_sets.js"></script>
+
+<script>
+/* Battle Replay System - Icon Renderer Module */
+const BattleIconRenderer = {
+  // Map action types and events to icon paths
+  ICON_MAP: {
+    // Combat actions
+    'attack': 'assets/attack.png',
+    'hit': 'assets/attack.png',
+    'strike': 'assets/attack.png',
+    'damage': 'assets/attack.png',
+    
+    // Healing and recovery
+    'heal': 'assets/health.png',
+    'regen': 'assets/health.png',
+    'recovery': 'assets/health.png',
+    
+    // Defense
+    'armor': 'assets/armor.png',
+    'shield': 'assets/armor.png',
+    'block': 'assets/armor.png',
+    
+    // Speed and movement
+    'speed': 'assets/speed.png',
+    'haste': 'assets/speed.png',
+    'slow': 'assets/speed.png',
+    
+    // Status effects - use item icons when available
+    'poison': 'items/poisonous_mushroom/icon.png',
+    'thorns': 'items/bramble_vest/icon.png',
+    'fire': 'items/cherry_bomb/icon.png',
+    'explosion': 'items/cherry_bomb/icon.png',
+    
+    // Default fallbacks
+    'effect': 'assets/placeholder.png',
+    'item': 'assets/placeholder.png',
+    'weapon': 'assets/attack.png',
+    'turn': 'assets/speed.png'
+  },
+  
+  // Extract action type from log text
+  getActionFromText(text) {
+    const lowerText = text.toLowerCase();
+    
+    // Check for specific patterns
+    if (lowerText.includes('hits') || lowerText.includes('attacks') || lowerText.includes('strikes')) return 'attack';
+    if (lowerText.includes('heals') || lowerText.includes('recovers')) return 'heal';
+    if (lowerText.includes('gains') && lowerText.includes('armor')) return 'armor';
+    if (lowerText.includes('gains') && lowerText.includes('speed')) return 'speed';
+    if (lowerText.includes('poison')) return 'poison';
+    if (lowerText.includes('thorns')) return 'thorns';
+    if (lowerText.includes('explosion') || lowerText.includes('explodes')) return 'explosion';
+    if (lowerText.includes('turn') && lowerText.includes('--')) return 'turn';
+    
+    // Extract item references (::icon:items/name::)
+    const iconMatch = lowerText.match(/::icon:(items|weapons)\/([^:]+)::/);
+    if (iconMatch) {
+      return `${iconMatch[1]}/${iconMatch[2]}/icon.png`;
+    }
+    
+    return 'effect'; // default
+  },
+  
+  // Create icon element for log entry
+  createIcon(actionType, fallbackText = '') {
+    const iconPath = this.ICON_MAP[actionType] || actionType;
+    const img = document.createElement('img');
+    img.className = 'log-icon';
+    img.src = iconPath;
+    img.alt = actionType;
+    
+    // Fallback to placeholder if icon fails to load
+    img.onerror = () => {
+      if (img.src !== this.ICON_MAP.effect) {
+        img.src = this.ICON_MAP.effect;
+      }
+    };
+    
+    return img;
+  },
+  
+  // Render icons for a log entry element
+  renderIcons(entryEl, logText) {
+    // Remove existing icons
+    const existingIcons = entryEl.querySelectorAll('.log-icon');
+    existingIcons.forEach(icon => icon.remove());
+    
+    // Don't add icons to dividers or special entries
+    if (entryEl.classList.contains('battle-divider')) return;
+    
+    const actionType = this.getActionFromText(logText);
+    const icon = this.createIcon(actionType, logText);
+    
+    // Insert icon at the beginning of the entry
+    entryEl.insertBefore(icon, entryEl.firstChild);
+  }
+};
+</script>
+
+<script>
+/* Battle Replay System - State Manager Module */
+const BattleStateManager = {
+  logEntries: [],
+  stateSnapshots: [],
+  battleData: null,
+  
+  // Initialize with battle result data
+  initBattle(simulationResult) {
+    this.logEntries = [];
+    this.stateSnapshots = [];
+    this.battleData = simulationResult;
+    
+    if (simulationResult.log && Array.isArray(simulationResult.log)) {
+      // Process log entries into structured format
+      simulationResult.log.forEach((line, index) => {
+        if (line && line.trim()) {
+          this.logEntries.push({
+            index,
+            text: line,
+            type: this.classifyLogLine(line),
+            hp: this.extractHPFromLine(line)
+          });
+        }
+      });
+    }
+    
+    // Create state snapshots (simplified for now)
+    this.createStateSnapshots();
+  },
+  
+  // Classify log line type for styling
+  classifyLogLine(line) {
+    const lineStr = String(line);
+    if (lineStr.includes('━━━') || lineStr.includes('BATTLE')) return 'major-divider';
+    if (lineStr.match(/^\d+\.\s*--\s*Turn\s+\d+\s*--/)) return 'turn-header';
+    if (lineStr.includes('Player') || lineStr.includes('Fighter')) return 'player';
+    if (lineStr.includes('Opponent') || lineStr.includes('Enemy')) return 'opponent';
+    return 'system';
+  },
+  
+  // Extract HP information from log line
+  extractHPFromLine(line) {
+    const hpMatch = line.match(/\[PlayerHP:\s*(\d+)\s*\|\s*OpponentHP:\s*(\d+)\]/);
+    if (hpMatch) {
+      return {
+        player: parseInt(hpMatch[1], 10),
+        opponent: parseInt(hpMatch[2], 10)
+      };
+    }
+    return null;
+  },
+  
+  // Create state snapshots for each turn
+  createStateSnapshots() {
+    // For now, create simple snapshots
+    // This could be enhanced to capture actual fighter states
+    this.logEntries.forEach((entry, index) => {
+      this.stateSnapshots.push({
+        index,
+        turnNumber: this.getTurnNumber(entry.text),
+        hp: entry.hp,
+        timestamp: Date.now()
+      });
+    });
+  },
+  
+  // Extract turn number from log text
+  getTurnNumber(text) {
+    const turnMatch = text.match(/Turn\s+(\d+)/);
+    return turnMatch ? parseInt(turnMatch[1], 10) : 0;
+  },
+  
+  // Get log entry by index
+  getLogEntry(index) {
+    return this.logEntries[index] || null;
+  },
+  
+  // Get state snapshot by index
+  getStateSnapshot(index) {
+    return this.stateSnapshots[index] || null;
+  },
+  
+  // Get total number of entries
+  getTotalEntries() {
+    return this.logEntries.length;
+  },
+  
+  // Check if battle data is loaded
+  isLoaded() {
+    return this.battleData !== null && this.logEntries.length > 0;
+  }
+};
+</script>
+
+<script>
+/* Battle Replay System - Replay Controller Module */
+const BattleReplayController = {
+  currentIndex: 0,
+  isPlaying: false,
+  playbackSpeed: 1000, // ms between turns
+  playbackTimer: null,
+  elements: {},
+  
+  // Initialize replay controller
+  init() {
+    this.elements = {
+      controls: document.getElementById('replayControls'),
+      first: document.getElementById('replayFirst'),
+      back: document.getElementById('replayBack'),
+      play: document.getElementById('replayPlay'),
+      forward: document.getElementById('replayForward'),
+      last: document.getElementById('replayLast'),
+      turnInput: document.getElementById('turnInput'),
+      turnTotal: document.getElementById('turnTotal'),
+      speedSelect: document.getElementById('replaySpeed'),
+      log: document.getElementById('simLog')
+    };
+    
+    this.setupEventListeners();
+    this.hide();
+  },
+  
+  // Setup event listeners for controls
+  setupEventListeners() {
+    if (!this.elements.first) return;
+    
+    this.elements.first.addEventListener('click', () => this.goToFirst());
+    this.elements.back.addEventListener('click', () => this.stepBack());
+    this.elements.play.addEventListener('click', () => this.togglePlayback());
+    this.elements.forward.addEventListener('click', () => this.stepForward());
+    this.elements.last.addEventListener('click', () => this.goToLast());
+    
+    this.elements.turnInput.addEventListener('change', () => this.goToTurn());
+    this.elements.speedSelect.addEventListener('change', () => this.updateSpeed());
+    
+    // Add keyboard shortcuts
+    document.addEventListener('keydown', (e) => this.handleKeyboard(e));
+  },
+  
+  // Handle keyboard shortcuts
+  handleKeyboard(e) {
+    if (!this.isVisible() || e.target.tagName === 'INPUT') return;
+    
+    switch(e.key) {
+      case 'ArrowLeft':
+        e.preventDefault();
+        this.stepBack();
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        this.stepForward();
+        break;
+      case ' ':
+        e.preventDefault();
+        this.togglePlayback();
+        break;
+      case 'Home':
+        e.preventDefault();
+        this.goToFirst();
+        break;
+      case 'End':
+        e.preventDefault();
+        this.goToLast();
+        break;
+    }
+  },
+  
+  // Initialize replay with battle data
+  loadBattle(simulationResult) {
+    BattleStateManager.initBattle(simulationResult);
+    
+    if (!BattleStateManager.isLoaded()) {
+      this.hide();
+      return;
+    }
+    
+    this.currentIndex = 0;
+    this.updateTurnCounter();
+    this.renderBattleLog();
+    this.show();
+    this.updateControls();
+  },
+  
+  // Render the complete battle log with replay features
+  renderBattleLog() {
+    if (!this.elements.log) return;
+    
+    this.elements.log.innerHTML = '';
+    const totalEntries = BattleStateManager.getTotalEntries();
+    
+    for (let i = 0; i < totalEntries; i++) {
+      const entry = BattleStateManager.getLogEntry(i);
+      if (!entry) continue;
+      
+      const div = document.createElement('div');
+      div.className = `battle-log-line ${entry.type}`;
+      div.dataset.index = i;
+      div.innerHTML = entry.text;
+      
+      // Add turn marker
+      const marker = document.createElement('div');
+      marker.className = 'turn-marker';
+      div.appendChild(marker);
+      
+      // Add HP tracker if available
+      if (entry.hp) {
+        const hpTracker = document.createElement('span');
+        hpTracker.className = 'hp-tracker';
+        hpTracker.innerHTML = ` [P:${entry.hp.player} | O:${entry.hp.opponent}]`;
+        div.appendChild(hpTracker);
+      }
+      
+      // Add click listener for direct navigation
+      div.addEventListener('click', () => this.goToIndex(i));
+      
+      // Render appropriate icon
+      BattleIconRenderer.renderIcons(div, entry.text);
+      
+      this.elements.log.appendChild(div);
+    }
+    
+    // Highlight current entry
+    this.highlightCurrentEntry();
+  },
+  
+  // Highlight the current log entry
+  highlightCurrentEntry() {
+    if (!this.elements.log) return;
+    
+    // Remove previous highlights
+    const previous = this.elements.log.querySelectorAll('.battle-log-line.active');
+    previous.forEach(el => el.classList.remove('active'));
+    
+    // Highlight current entry
+    const current = this.elements.log.querySelector(`[data-index="${this.currentIndex}"]`);
+    if (current) {
+      current.classList.add('active');
+      current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  },
+  
+  // Navigation methods
+  goToFirst() {
+    this.currentIndex = 0;
+    this.updateView();
+  },
+  
+  goToLast() {
+    this.currentIndex = Math.max(0, BattleStateManager.getTotalEntries() - 1);
+    this.updateView();
+  },
+  
+  stepBack() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.updateView();
+    }
+  },
+  
+  stepForward() {
+    const total = BattleStateManager.getTotalEntries();
+    if (this.currentIndex < total - 1) {
+      this.currentIndex++;
+      this.updateView();
+    }
+  },
+  
+  goToIndex(index) {
+    const total = BattleStateManager.getTotalEntries();
+    this.currentIndex = Math.max(0, Math.min(total - 1, index));
+    this.updateView();
+  },
+  
+  goToTurn() {
+    const turnNumber = parseInt(this.elements.turnInput.value, 10) - 1;
+    this.goToIndex(turnNumber);
+  },
+  
+  // Playback control
+  togglePlayback() {
+    if (this.isPlaying) {
+      this.stopPlayback();
+    } else {
+      this.startPlayback();
+    }
+  },
+  
+  startPlayback() {
+    this.isPlaying = true;
+    this.elements.play.textContent = '⏸️';
+    this.elements.play.setAttribute('aria-label', 'Pause auto-play');
+    
+    this.playbackTimer = setInterval(() => {
+      if (this.currentIndex >= BattleStateManager.getTotalEntries() - 1) {
+        this.stopPlayback();
+        return;
+      }
+      this.stepForward();
+    }, this.playbackSpeed);
+  },
+  
+  stopPlayback() {
+    this.isPlaying = false;
+    this.elements.play.textContent = '▶️';
+    this.elements.play.setAttribute('aria-label', 'Auto-play battle');
+    
+    if (this.playbackTimer) {
+      clearInterval(this.playbackTimer);
+      this.playbackTimer = null;
+    }
+  },
+  
+  updateSpeed() {
+    this.playbackSpeed = parseInt(this.elements.speedSelect.value, 10);
+    
+    // Restart playback with new speed if currently playing
+    if (this.isPlaying) {
+      this.stopPlayback();
+      this.startPlayback();
+    }
+  },
+  
+  // UI updates
+  updateView() {
+    this.highlightCurrentEntry();
+    this.updateTurnCounter();
+    this.updateControls();
+  },
+  
+  updateTurnCounter() {
+    const total = BattleStateManager.getTotalEntries();
+    this.elements.turnInput.value = this.currentIndex + 1;
+    this.elements.turnInput.max = total;
+    this.elements.turnTotal.textContent = `/ ${total}`;
+  },
+  
+  updateControls() {
+    const total = BattleStateManager.getTotalEntries();
+    const isFirst = this.currentIndex === 0;
+    const isLast = this.currentIndex >= total - 1;
+    
+    this.elements.first.disabled = isFirst;
+    this.elements.back.disabled = isFirst;
+    this.elements.forward.disabled = isLast;
+    this.elements.last.disabled = isLast;
+  },
+  
+  // Visibility control
+  show() {
+    if (this.elements.controls) {
+      this.elements.controls.style.display = 'block';
+    }
+  },
+  
+  hide() {
+    if (this.elements.controls) {
+      this.elements.controls.style.display = 'none';
+    }
+    this.stopPlayback();
+  },
+  
+  isVisible() {
+    return this.elements.controls && 
+           this.elements.controls.style.display !== 'none';
+  },
+  
+  // Cleanup
+  destroy() {
+    this.stopPlayback();
+    // Remove event listeners if needed
+  }
+};
+</script>
 
 <script>
 /* Main builder logic using embedded details data */
@@ -758,6 +1353,10 @@ async function loadData() {
   }
 }
 loadData();
+
+// Initialize Battle Replay System
+BattleReplayController.init();
+
 // Icons for stats
 const ICONS = { attack:'attack.png', health:'health.png', armor:'armor.png', speed:'speed.png' };
 
@@ -1785,6 +2384,8 @@ if (simBtn) {
     const battleStatus = document.getElementById('battleStatus');
     if (battleStatus) battleStatus.innerHTML = '<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> Battle in Progress...';
     
+    // Hide replay controls during simulation
+    BattleReplayController.hide();
     uiLogClear();
     
     if (typeof HeICSim === 'undefined' || !HeICSim.simulate) {
@@ -1796,15 +2397,17 @@ if (simBtn) {
     try {
       const res = HeICSim.simulate(left, right, { maxTurns: maxTurns, includeSummary: true });
       
-      uiLog(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> BATTLE BEGINS! (Max ${maxTurns} turns)`);
-      uiLog(`<img src="assets/armor.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${left.name}: ${left.hp} HP, ${left.atk} ATK, ${left.armor} ARM, ${left.speed} SPD`);
-      uiLog(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${right.name}: ${right.hp} HP, ${right.atk} ATK, ${right.armor} ARM, ${right.speed} SPD`);
-      uiLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      // Load battle into replay system instead of using traditional log
+      BattleReplayController.loadBattle(res);
       
-      if (res.log && res.log.length) uiLog(res.log);
-      
-      uiLog('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      uiLog(`<img src="assets/health.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> BATTLE ENDED: ${res.result} in ${res.rounds} rounds!`);
+      // Update battle status
+      if (battleStatus) {
+        const resultText = res.result === 'Victory' ? 'Player Victory!' : 
+                          res.result === 'Defeat' ? 'Player Defeat!' : 'Draw!';
+        const resultColor = res.result === 'Victory' ? '#0f3' : 
+                           res.result === 'Defeat' ? '#f33' : '#fa0';
+        battleStatus.innerHTML = `<span style="color:${resultColor}">${resultText} (${res.rounds} rounds)</span>`;
+      }
       
       displayBattleResult(res.result, res.rounds, res.summary);
       
@@ -1812,13 +2415,17 @@ if (simBtn) {
       console.error(ex);
       uiLog('❌ Error running simulation: ' + ex.message);
       if (battleStatus) battleStatus.textContent = 'Error: Simulation Failed';
+      BattleReplayController.hide();
     }
   });
 }
 
 const clearBtn = document.getElementById('btnClearLog');
 if (clearBtn) {
-  clearBtn.addEventListener('click', () => uiLogClear());
+  clearBtn.addEventListener('click', () => {
+    uiLogClear();
+    BattleReplayController.hide(); // Hide replay controls when clearing
+  });
 }
 
 // Normalize any garbled labels from past encoding issues
