@@ -97,261 +97,6 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
     box-sizing: border-box;
   }
 
-  /* Advanced Compendium Styles */
-  .view-mode {
-    padding: 6px 12px;
-    background: transparent;
-    border: none;
-    border-radius: 18px;
-    color: #aaa;
-    cursor: pointer;
-    font-size: 13px;
-    transition: all 0.2s ease;
-  }
-  .view-mode.active {
-    background: #3498db;
-    color: white;
-  }
-
-  .tier-btn {
-    padding: 4px 12px;
-    background: transparent;
-    border: none;
-    border-radius: 14px;
-    color: #aaa;
-    cursor: pointer;
-    font-size: 12px;
-    transition: all 0.2s ease;
-  }
-  .tier-btn.active {
-    background: linear-gradient(135deg, #f39c12, #e67e22);
-    color: white;
-  }
-
-  .needs-review-toggle {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 6px 10px;
-    background: rgba(255, 193, 7, 0.1);
-    border: 1px solid rgba(255, 193, 7, 0.3);
-    border-radius: 16px;
-    color: #ffc107;
-    cursor: pointer;
-    font-size: 12px;
-    transition: all 0.2s ease;
-  }
-  .needs-review-toggle:hover {
-    background: rgba(255, 193, 7, 0.2);
-  }
-  .review-count {
-    background: #ffc107;
-    color: #000;
-    border-radius: 10px;
-    padding: 2px 6px;
-    font-weight: bold;
-    min-width: 16px;
-    text-align: center;
-  }
-
-  .quick-action-btn {
-    padding: 6px 12px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 16px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 12px;
-    transition: all 0.2s ease;
-  }
-  .quick-action-btn:hover {
-    background: rgba(255,255,255,0.2);
-  }
-  .primary-action-btn {
-    padding: 8px 16px;
-    background: #0f3;
-    border: 1px solid #0f3;
-    border-radius: 16px;
-    color: #000;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-  }
-
-  .search-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-  .search-chip {
-    background: rgba(52, 152, 219, 0.2);
-    border: 1px solid rgba(52, 152, 219, 0.4);
-    border-radius: 12px;
-    padding: 2px 8px;
-    color: #3498db;
-    font-size: 11px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .search-chip .remove {
-    margin-left: 4px;
-    font-weight: bold;
-  }
-
-  .filter-sidebar {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,0.3) transparent;
-  }
-  .filter-sidebar::-webkit-scrollbar {
-    width: 6px;
-  }
-  .filter-sidebar::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.3);
-    border-radius: 3px;
-  }
-
-  .filter-group {
-    margin-bottom: 20px;
-    padding: 0 16px;
-  }
-  .filter-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .filter-header h4 {
-    margin: 0;
-    color: #fff;
-    font-size: 13px;
-    font-weight: bold;
-  }
-  .filter-clear {
-    background: none;
-    border: none;
-    color: #e74c3c;
-    cursor: pointer;
-    font-size: 11px;
-    padding: 2px 4px;
-  }
-
-  .filter-options label {
-    display: block;
-    padding: 4px 0;
-    color: #ccc;
-    font-size: 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .filter-options input[type="checkbox"] {
-    margin: 0;
-    accent-color: #3498db;
-  }
-  .filter-count {
-    color: #666;
-    font-size: 11px;
-  }
-
-  .tag-family {
-    margin-bottom: 12px;
-  }
-  .tag-family-header {
-    font-weight: bold;
-    color: #3498db;
-    font-size: 11px;
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .stat-slider {
-    margin-bottom: 12px;
-  }
-  .stat-slider label {
-    display: block;
-    color: #ccc;
-    font-size: 12px;
-    margin-bottom: 4px;
-  }
-  .stat-slider input[type="range"] {
-    background: rgba(255,255,255,0.1);
-    border: none;
-    border-radius: 10px;
-    height: 6px;
-  }
-
-  .item-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 16px;
-  }
-
-  .item-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: rgba(255,255,255,0.02);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .item-table th {
-    background: rgba(255,255,255,0.1);
-    color: #fff;
-    padding: 12px;
-    text-align: left;
-    font-weight: bold;
-    cursor: pointer;
-    position: relative;
-  }
-  .item-table th.sortable:hover {
-    background: rgba(255,255,255,0.15);
-  }
-  .item-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    color: #ccc;
-    font-size: 13px;
-  }
-  .item-table tbody tr:hover {
-    background: rgba(255,255,255,0.05);
-  }
-
-  .compare-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 16px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #fff;
-    cursor: pointer;
-    z-index: 1;
-  }
-
-  .qa-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  .qa-header h3 {
-    margin: 0;
-    color: #fff;
-    font-size: 16px;
-  }
-  .qa-content {
-    padding: 20px;
-  }
-
   /* Mini card styling for filled slots and weapon */
   .miniCard {
     display:flex; align-items:center; gap:8px;
@@ -359,6 +104,126 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
     background:#111; color:#fff; box-shadow: 0 2px 8px rgba(255,51,51,0.15);
   }
   .miniCard img { width:28px; height:28px; image-rendering:pixelated; }
+
+  /* Advanced Compendium Styles */
+  .advanced-card {
+    transition: all 0.2s ease !important;
+  }
+  
+  .advanced-card:hover {
+    transform: translateY(-2px) !important;
+  }
+  
+  .compendium-header {
+    background: linear-gradient(135deg, #1a1f2e 0%, #16202d 100%);
+  }
+  
+  .header-controls {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .control-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .control-group label {
+    color: #f33;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .chip {
+    background: rgba(255,255,255,0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  
+  .facet-panel {
+    background: rgba(0,0,0,0.6);
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .facet-section {
+    margin-bottom: 20px;
+  }
+  
+  .facet-title {
+    color: #f33;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding: 0 8px;
+  }
+  
+  .facet-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+    cursor: pointer;
+    font-size: 11px;
+  }
+  
+  .facet-option:hover {
+    background: rgba(255,255,255,0.05);
+  }
+  
+  .facet-option input[type="checkbox"] {
+    margin: 0;
+    accent-color: #f33;
+  }
+  
+  .facet-option .count {
+    margin-left: auto;
+    color: #888;
+    font-size: 10px;
+  }
+  
+  .trust-badge {
+    white-space: nowrap;
+  }
+  
+  .trigger-chip {
+    white-space: nowrap;
+    font-weight: 500 !important;
+  }
+  
+  .content-view {
+    background: #000;
+  }
+  
+  #itemGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  #compareContent {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .card-actions button {
+    transition: all 0.2s ease;
+  }
+  
+  .card-actions button:hover {
+    transform: scale(1.05);
+  }
   .slot.filled { border-style:solid; }
   .slot.filled .miniCard .name { font-size:12px; color:#faa; }
 
@@ -1387,284 +1252,272 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
       <button id="tabSimulation" class="tabBtn" style="background:#111;color:#0f3;border:2px solid #0f3;border-radius:8px 8px 0 0;padding:8px 24px;cursor:pointer;font-size:16px;">Simulation</button>
     </div>
     <section class="center" id="compendiumTab" style="flex:1; display:flex; flex-direction:column; min-height:0;">
-      
-      <!-- Advanced Search & Control Bar -->
+      <!-- Advanced Compendium Header -->
       <div class="compendium-header" style="
         background: linear-gradient(135deg, #1a1f2e 0%, #16202d 100%); 
-        padding: 16px; 
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        position: sticky;
-        top: 0;
-        z-index: 100;
+        padding: 16px 20px; 
+        border-bottom: 2px solid #f33;
+        flex-shrink: 0;
       ">
-        <!-- Primary Search Row -->
-        <div class="search-row" style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-          <div class="search-box-container" style="flex: 1; position: relative; max-width: 400px;">
+        <!-- Top Row: Search + View Controls -->
+        <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px; flex-wrap: wrap;">
+          
+          <!-- Global Search with Chips -->
+          <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 300px;">
             <input id="globalSearch" type="search" placeholder="Search items, effects, tags..." style="
-              width: 100%; 
-              padding: 8px 12px 8px 36px; 
-              border: 2px solid rgba(255,255,255,0.2); 
-              border-radius: 20px; 
-              background: rgba(0,0,0,0.3); 
-              color: #fff; 
+              flex: 1; 
+              background: #000; 
+              color: #f33; 
+              border: 2px solid #f33; 
+              border-radius: 8px; 
+              padding: 8px 12px; 
               font-size: 14px;
             ">
-            <div class="search-icon" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #aaa;">🔍</div>
-            <div id="searchChips" class="search-chips" style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px;"></div>
+            <div id="searchChips" style="display: flex; gap: 4px; flex-wrap: wrap;"></div>
           </div>
           
-          <div class="view-switches" style="display: flex; align-items: center; gap: 8px;">
-            <div class="view-mode-group" style="background: rgba(0,0,0,0.3); border-radius: 20px; padding: 2px; display: flex;">
-              <button id="viewCards" class="view-mode active" data-mode="cards">Cards</button>
-              <button id="viewTable" class="view-mode" data-mode="table">Table</button>
-              <button id="viewCompare" class="view-mode" data-mode="compare">Compare</button>
-            </div>
-            
-            <div class="tier-switcher" style="background: rgba(0,0,0,0.3); border-radius: 16px; padding: 2px; display: flex;">
-              <button id="tierBase" class="tier-btn active" data-tier="base">Base</button>
-              <button id="tierGold" class="tier-btn" data-tier="gold">Gold</button>
-              <button id="tierDiamond" class="tier-btn" data-tier="diamond">Diamond</button>
-            </div>
-            
-            <button id="needsReviewToggle" class="needs-review-toggle" title="Show only items needing review">
-              <span class="review-icon">⚠</span>
-              <span class="review-count" id="reviewCount">0</span>
-            </button>
+          <!-- View Switch -->
+          <div class="view-switch" style="display: flex; gap: 2px; background: #000; border: 2px solid #f33; border-radius: 8px; overflow: hidden;">
+            <button id="viewCards" class="view-btn active" style="padding: 8px 16px; background: #f33; color: #000; border: none; cursor: pointer; font-size: 12px; font-weight: 600;">Cards</button>
+            <button id="viewTable" class="view-btn" style="padding: 8px 16px; background: transparent; color: #f33; border: none; cursor: pointer; font-size: 12px; font-weight: 600;">Table</button>
+            <button id="viewCompare" class="view-btn" style="padding: 8px 16px; background: transparent; color: #f33; border: none; cursor: pointer; font-size: 12px; font-weight: 600;">Compare</button>
           </div>
+          
+          <!-- Needs Review Toggle -->
+          <label style="display: flex; align-items: center; gap: 6px; color: #fa0; font-size: 12px; font-weight: 600;">
+            <input type="checkbox" id="needsReviewToggle" style="accent-color: #fa0;">
+            <span>⚑ Needs Review</span>
+            <span id="reviewCount" style="background: #fa0; color: #000; border-radius: 10px; padding: 1px 6px; font-size: 10px;">0</span>
+          </label>
+          
+          <!-- Tier Switcher -->
+          <div class="tier-switcher" style="display: flex; gap: 2px; background: #000; border: 2px solid #ffd166; border-radius: 8px; overflow: hidden;">
+            <button id="tierBase" class="tier-btn active" style="padding: 6px 12px; background: #ffd166; color: #000; border: none; cursor: pointer; font-size: 11px; font-weight: 600;">Base</button>
+            <button id="tierGold" class="tier-btn" style="padding: 6px 12px; background: transparent; color: #ffd166; border: none; cursor: pointer; font-size: 11px; font-weight: 600;">Gold</button>
+            <button id="tierDiamond" class="tier-btn" style="padding: 6px 12px; background: transparent; color: #ffd166; border: none; cursor: pointer; font-size: 11px; font-weight: 600;">Diamond</button>
+          </div>
+          
         </div>
         
-        <!-- Results Info & Quick Actions -->
-        <div class="results-row" style="display: flex; align-items: center; justify-content: space-between;">
-          <div class="results-info" style="color: #aaa; font-size: 13px;">
-            <span id="resultCount">0 items</span>
-            <span id="filterSummary"></span>
+        <!-- Bottom Row: Quick Actions + Stats -->
+        <div style="display: flex; gap: 12px; align-items: center; justify-content: space-between;">
+          
+          <!-- Quick Actions -->
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button id="randBuildBtn" type="button" title="Fill your slots with random items, a random weapon, and a random edge" style="background:#f33;color:#000;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:600;">🎲 Random Build</button>
+            <button id="randEnemyBtn" type="button" title="Randomize the opponent's loadout" style="background:#f33;color:#000;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:600;">🎲 Random Enemy</button>
+            <button id="showSimBtn" type="button" style="background:#0f3;color:#000;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:600;">⚔️ Battle</button>
+            
+            <!-- QA & Authoring Tools -->
+            <div style="border-left: 1px solid #666; padding-left: 8px; margin-left: 8px; display: flex; gap: 6px;">
+              <button id="bulkSelectAll" title="Select all visible items" style="background: transparent; color: #0f3; border: 1px solid #0f3; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">All</button>
+              <button id="bulkSelectNone" title="Clear all selections" style="background: transparent; color: #f30; border: 1px solid #f30; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">None</button>
+              <button id="exportSelected" title="Export selected items as JSON" style="background: transparent; color: #fa0; border: 1px solid #fa0; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">Export</button>
+              <button id="qaValidate" title="Run quality assurance checks" style="background: transparent; color: #af5; border: 1px solid #af5; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">QA</button>
+            </div>
           </div>
           
-          <div class="quick-actions" style="display: flex; gap: 8px;">
-            <button id="randBuildBtn" class="quick-action-btn" title="Fill your slots with random items">
-              🎲 Random Build
-            </button>
-            <button id="randEnemyBtn" class="quick-action-btn" title="Randomize opponent loadout">
-              🎲 Random Enemy
-            </button>
-            <button id="exportVisible" class="quick-action-btn" title="Export filtered results to JSON">
-              📋 Export
-            </button>
-            <button id="showSimBtn" class="primary-action-btn">Show Simulation</button>
+          <!-- Summary Stats -->
+          <div style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+            <span style="color: #aaa;">Showing:</span>
+            <span id="shownCount" style="color: #fff; font-weight: 600;">0</span>
+            <span style="color: #666;">/</span>
+            <span id="totalCount" style="color: #aaa;">0</span>
+            <div style="width: 1px; height: 16px; background: #666;"></div>
+            <span style="color: #aaa;">Selected:</span>
+            <span id="selectedCount" style="color: #fa0; font-weight: 600;">0</span>
           </div>
+          
         </div>
       </div>
       
-      <!-- Main Content Area -->
-      <div class="compendium-main" style="flex: 1; display: flex; min-height: 0;">
+      <!-- Main Content Layout -->
+      <div class="compendium-main" style="flex: 1; display: flex; min-height: 0; overflow: hidden;">
         
-        <!-- Left Sidebar - Faceted Filters -->
-        <div id="filterSidebar" class="filter-sidebar" style="
+        <!-- Left Facet Panel -->
+        <div class="facet-panel" style="
           width: 280px; 
-          background: rgba(255,255,255,0.02); 
-          border-right: 1px solid rgba(255,255,255,0.1);
-          overflow-y: auto;
-          padding: 16px 0;
+          background: #0a0a0a; 
+          border-right: 2px solid #333; 
+          overflow-y: auto; 
+          padding: 16px; 
+          flex-shrink: 0;
         ">
           
           <!-- Bucket Filter -->
-          <div class="filter-group">
-            <div class="filter-header">
-              <h4>Type</h4>
-              <button class="filter-clear" data-filter="bucket">Clear</button>
-            </div>
-            <div class="filter-options" id="bucketFilters">
-              <label><input type="checkbox" value="items"> <span class="filter-count">(0)</span> Items</label>
-              <label><input type="checkbox" value="weapons"> <span class="filter-count">(0)</span> Weapons</label>
-              <label><input type="checkbox" value="sets"> <span class="filter-count">(0)</span> Sets</label>
-              <label><input type="checkbox" value="upgrades"> <span class="filter-count">(0)</span> Upgrades</label>
-            </div>
-          </div>
-          
-          <!-- Tag Families Filter -->
-          <div class="filter-group">
-            <div class="filter-header">
-              <h4>Tags</h4>
-              <button class="filter-clear" data-filter="tags">Clear</button>
-            </div>
-            <div class="filter-options" id="tagFilters">
-              <div class="tag-family">
-                <div class="tag-family-header">Combat</div>
-                <label><input type="checkbox" value="Tome"> <span class="filter-count">(0)</span> Tome</label>
-                <label><input type="checkbox" value="Bomb"> <span class="filter-count">(0)</span> Bomb</label>
-                <label><input type="checkbox" value="Symphony"> <span class="filter-count">(0)</span> Symphony</label>
-              </div>
-              <div class="tag-family">
-                <div class="tag-family-header">Materials</div>
-                <label><input type="checkbox" value="Stone"> <span class="filter-count">(0)</span> Stone</label>
-                <label><input type="checkbox" value="Wood"> <span class="filter-count">(0)</span> Wood</label>
-                <label><input type="checkbox" value="Water"> <span class="filter-count">(0)</span> Water</label>
-              </div>
-              <div class="tag-family">
-                <div class="tag-family-header">Status Effects</div>
-                <label><input type="checkbox" value="Poison"> <span class="filter-count">(0)</span> Poison</label>
-                <label><input type="checkbox" value="Freeze"> <span class="filter-count">(0)</span> Freeze</label>
-                <label><input type="checkbox" value="Acid"> <span class="filter-count">(0)</span> Acid</label>
-                <label><input type="checkbox" value="Riptide"> <span class="filter-count">(0)</span> Riptide</label>
-              </div>
-              <div class="tag-family">
-                <div class="tag-family-header">Other</div>
-                <label><input type="checkbox" value="Food"> <span class="filter-count">(0)</span> Food</label>
-                <label><input type="checkbox" value="Jewelry"> <span class="filter-count">(0)</span> Jewelry</label>
-                <label><input type="checkbox" value="Rose"> <span class="filter-count">(0)</span> Rose</label>
-              </div>
+          <div class="facet-group" style="margin-bottom: 20px;">
+            <h4 style="color: #f33; margin: 0 0 8px 0; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Bucket</h4>
+            <div class="bucket-filters" style="display: flex; flex-direction: column; gap: 4px;">
+              <label class="facet-option active" style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; cursor: pointer; font-size: 12px; background: rgba(255,51,51,0.1); border-left: 3px solid #f33;">
+                <input type="checkbox" name="bucket" value="all" checked style="accent-color: #f33;">
+                <span style="color: #f33; font-weight: 600;">All Items</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                <input type="checkbox" name="bucket" value="items" style="accent-color: #f33;">
+                <span>Items</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                <input type="checkbox" name="bucket" value="weapons" style="accent-color: #f33;">
+                <span>Weapons</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                <input type="checkbox" name="bucket" value="upgrades" style="accent-color: #f33;">
+                <span>Upgrades</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
             </div>
           </div>
           
-          <!-- Trigger Filter -->
-          <div class="filter-group">
-            <div class="filter-header">
-              <h4>Triggers</h4>
-              <button class="filter-clear" data-filter="triggers">Clear</button>
-            </div>
-            <div class="filter-options" id="triggerFilters">
-              <label><input type="checkbox" value="battleStart"> <span class="filter-count">(0)</span> Battle Start</label>
-              <label><input type="checkbox" value="turnStart"> <span class="filter-count">(0)</span> Turn Start</label>
-              <label><input type="checkbox" value="onHit"> <span class="filter-count">(0)</span> On Hit</label>
-              <label><input type="checkbox" value="onWounded"> <span class="filter-count">(0)</span> On Wounded</label>
-              <label><input type="checkbox" value="onExposed"> <span class="filter-count">(0)</span> On Exposed</label>
-              <label><input type="checkbox" value="countdown"> <span class="filter-count">(0)</span> Countdown</label>
-              <label><input type="checkbox" value="passive"> <span class="filter-count">(0)</span> Passive</label>
+          <!-- Tag Families -->
+          <div class="facet-group" style="margin-bottom: 20px;">
+            <h4 style="color: #f33; margin: 0 0 8px 0; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Tag Families</h4>
+            <div class="tag-families" style="display: flex; flex-direction: column; gap: 2px;">
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="tag" value="Tome" style="accent-color: #73d2de;">
+                <span>📜 Tome</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="tag" value="Bomb" style="accent-color: #ff9500;">
+                <span>💣 Bomb</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="tag" value="Symphony" style="accent-color: #9c88ff;">
+                <span>🎵 Symphony</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="tag" value="Food" style="accent-color: #95d5b2;">
+                <span>🍃 Food</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="tag" value="Jewelry" style="accent-color: #ffd166;">
+                <span>💎 Jewelry</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="tag" value="Ring" style="accent-color: #ffd166;">
+                <span>💍 Ring</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="tag" value="Stone" style="accent-color: #8b4513;">
+                <span>🪨 Stone</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="tag" value="Water" style="accent-color: #4169e1;">
+                <span>💧 Water</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
             </div>
           </div>
           
-          <!-- Stat Ranges -->
-          <div class="filter-group">
-            <div class="filter-header">
-              <h4>Stats</h4>
-              <button class="filter-clear" data-filter="stats">Clear</button>
-            </div>
-            <div class="stat-sliders">
-              <div class="stat-slider">
-                <label>Attack: <span id="attackValue">Any</span></label>
-                <input type="range" id="attackSlider" min="0" max="10" value="0" style="width: 100%;">
-              </div>
-              <div class="stat-slider">
-                <label>Armor: <span id="armorValue">Any</span></label>
-                <input type="range" id="armorSlider" min="0" max="10" value="0" style="width: 100%;">
-              </div>
-              <div class="stat-slider">
-                <label>Health: <span id="healthValue">Any</span></label>
-                <input type="range" id="healthSlider" min="0" max="20" value="0" style="width: 100%;">
-              </div>
-              <div class="stat-slider">
-                <label>Speed: <span id="speedValue">Any</span></label>
-                <input type="range" id="speedSlider" min="0" max="10" value="0" style="width: 100%;">
-              </div>
+          <!-- Trigger Filters -->
+          <div class="facet-group" style="margin-bottom: 20px;">
+            <h4 style="color: #f33; margin: 0 0 8px 0; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Triggers</h4>
+            <div class="trigger-filters" style="display: flex; flex-direction: column; gap: 2px;">
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="trigger" value="battleStart" style="accent-color: #0f3;">
+                <span>🎯 Battle Start</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="trigger" value="turnStart" style="accent-color: #fa0;">
+                <span>⏰ Turn Start</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="trigger" value="hit" style="accent-color: #f33;">
+                <span>⚔️ On Hit</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="trigger" value="wounded" style="accent-color: #f0a;">
+                <span>💔 On Wounded</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="trigger" value="exposed" style="accent-color: #af5;">
+                <span>🛡️ On Exposed</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
+              <label class="facet-option" style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 11px;">
+                <input type="checkbox" name="trigger" value="passive" style="accent-color: #888;">
+                <span>⚡ Passive</span>
+                <span class="count" style="margin-left: auto; color: #aaa; font-size: 10px;">0</span>
+              </label>
             </div>
           </div>
           
-          <!-- Advanced Filters -->
-          <div class="filter-group">
-            <div class="filter-header">
-              <h4>Advanced</h4>
-              <button class="filter-clear" data-filter="advanced">Clear</button>
+          <!-- Clear Filters -->
+          <button id="clearAllFilters" style="
+            width: 100%; 
+            background: transparent; 
+            color: #666; 
+            border: 1px solid #666; 
+            border-radius: 4px; 
+            padding: 8px; 
+            cursor: pointer; 
+            font-size: 11px; 
+            margin-top: 16px;
+          ">Clear All Filters</button>
+          
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="main-content" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+          
+          <!-- Cards View (Default) -->
+          <div id="cardsView" class="content-view" style="flex: 1; overflow-y: auto; padding: 16px;">
+            <div id="itemGrid" class="grid" style="
+              display: grid; 
+              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+              gap: 12px; 
+              justify-items: stretch; 
+              align-content: start;
+            "></div>
+          </div>
+          
+          <!-- Table View (Hidden by default) -->
+          <div id="tableView" class="content-view" style="display: none; flex: 1; overflow: auto; padding: 16px;">
+            <table id="itemTable" style="width: 100%; border-collapse: collapse; font-size: 11px;">
+              <thead>
+                <tr style="background: rgba(255,255,255,0.05); position: sticky; top: 0;">
+                  <th style="text-align: left; padding: 8px; border-bottom: 1px solid #333; color: #f33;">Name</th>
+                  <th style="text-align: left; padding: 8px; border-bottom: 1px solid #333; color: #f33;">Bucket</th>
+                  <th style="text-align: left; padding: 8px; border-bottom: 1px solid #333; color: #f33;">Tags</th>
+                  <th style="text-align: center; padding: 8px; border-bottom: 1px solid #333; color: #f33;">Triggers</th>
+                  <th style="text-align: center; padding: 8px; border-bottom: 1px solid #333; color: #f33;">ATK</th>
+                  <th style="text-align: center; padding: 8px; border-bottom: 1px solid #333; color: #f33;">ARM</th>
+                  <th style="text-align: center; padding: 8px; border-bottom: 1px solid #333; color: #f33;">HP</th>
+                  <th style="text-align: center; padding: 8px; border-bottom: 1px solid #333; color: #f33;">SPD</th>
+                  <th style="text-align: left; padding: 8px; border-bottom: 1px solid #333; color: #f33;">Effect</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+          
+          <!-- Compare View (Hidden by default) -->
+          <div id="compareView" class="content-view" style="display: none; flex: 1; overflow: auto; padding: 16px;">
+            <div class="compare-header" style="text-align: center; margin-bottom: 20px;">
+              <h3 style="color: #f33; margin: 0;">Compare Items</h3>
+              <p style="color: #aaa; font-size: 12px; margin: 8px 0;">Select 2-3 items from the Cards view to compare side-by-side</p>
             </div>
-            <div class="filter-options">
-              <label><input type="checkbox" id="hasTieredValues"> Has Tiered Values</label>
-              <label><input type="checkbox" id="hasConditions"> Has Conditions</label>
-              <label><input type="checkbox" id="firstTurnOnly"> First Turn Only</label>
+            <div id="compareContent" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+              <div style="color: #666; font-style: italic; grid-column: 1/-1; text-align: center; padding: 40px;">No items selected for comparison</div>
             </div>
           </div>
           
         </div>
         
-        <!-- Main Content Panel -->
-        <div class="content-main" style="flex: 1; overflow: auto; position: relative;">
-          
-          <!-- Cards View -->
-          <div id="cardsView" class="content-view active" style="padding: 16px;">
-            <div id="itemGrid" class="item-grid"></div>
-          </div>
-          
-          <!-- Table View -->
-          <div id="tableView" class="content-view" style="display: none; padding: 16px;">
-            <div class="table-container">
-              <table id="itemTable" class="item-table">
-                <thead>
-                  <tr>
-                    <th class="sortable" data-sort="name">Name</th>
-                    <th class="sortable" data-sort="bucket">Type</th>
-                    <th class="sortable" data-sort="tags">Tags</th>
-                    <th>Triggers</th>
-                    <th>Stats</th>
-                    <th>Status Effects</th>
-                    <th class="sortable" data-sort="tiered">Tiered</th>
-                    <th>Issues</th>
-                  </tr>
-                </thead>
-                <tbody id="tableBody"></tbody>
-              </table>
-            </div>
-          </div>
-          
-          <!-- Compare View -->
-          <div id="compareView" class="content-view" style="display: none; padding: 16px;">
-            <div class="compare-header">
-              <h3>Compare Items</h3>
-              <div class="compare-instructions">Select 2-3 items from cards or table to compare side-by-side</div>
-            </div>
-            <div id="compareContainer" class="compare-container"></div>
-          </div>
-          
-        </div>
-        
       </div>
-      
-      <!-- Item Detail Modal -->
-      <div id="itemDetailModal" class="item-detail-modal" style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.8);
-        z-index: 1000;
-        display: none;
-        overflow-y: auto;
-      ">
-        <div class="modal-content" style="
-          max-width: 900px;
-          margin: 40px auto;
-          background: #1a1f2e;
-          border-radius: 12px;
-          border: 1px solid rgba(255,255,255,0.2);
-          position: relative;
-        ">
-          <button class="modal-close" id="closeItemDetail">×</button>
-          <div id="itemDetailContent"></div>
-        </div>
-      </div>
-      
-      <!-- QA Panel (Drawer) -->
-      <div id="qaPanel" class="qa-panel" style="
-        position: fixed;
-        top: 0;
-        right: -400px;
-        width: 400px;
-        height: 100vh;
-        background: #1a1f2e;
-        border-left: 1px solid rgba(255,255,255,0.2);
-        z-index: 1001;
-        transition: right 0.3s ease;
-        overflow-y: auto;
-      ">
-        <div class="qa-header">
-          <h3>QA & Authoring Tools</h3>
-          <button id="closeQAPanel">×</button>
-        </div>
-        <div class="qa-content">
-          <div id="lintResults"></div>
-          <div id="wikiDriftResults"></div>
-          <div id="playgroundEditor"></div>
-        </div>
-      </div>
-      
     </section>
     <section class="center" id="analysisTab" style="flex:1; display:none; flex-direction:column; min-height:0;">
       <!-- Battle Analysis Header -->
@@ -2675,65 +2528,8 @@ async function loadData() {
     populateEdges();
     // Build empty item grids for both sides
     initSlots();
-    // Initialize Advanced Compendium System
-    initAdvancedCompendium();
-    
-    // TEMP: Show all items immediately for debugging
-    setTimeout(() => {
-      console.log('TEMP: Forcing display of all items');
-      const itemGridElement = document.getElementById('itemGrid');
-      if (itemGridElement && DATA_ARR && DATA_ARR.length > 0) {
-        console.log('TEMP: Found itemGrid and DATA_ARR with', DATA_ARR.length, 'items');
-        
-        // Clear any existing content
-        itemGridElement.innerHTML = '';
-        
-        // Show first 20 items directly
-        DATA_ARR.slice(0, 20).forEach((item, index) => {
-          const card = document.createElement('div');
-          card.style.cssText = `
-            background: #000;
-            border: 2px solid #f33;
-            border-radius: 16px;
-            padding: 14px;
-            color: #fff;
-            cursor: pointer;
-            margin-bottom: 8px;
-          `;
-          
-          card.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-              <img src="${item.key}/icon.png" alt="${item.name}" 
-                   style="width: 48px; height: 48px; image-rendering: pixelated;"
-                   onerror="this.src='placeholder.png'">
-              <div>
-                <div style="font-weight: 700; font-size: 18px; color: #f33;">${item.name}</div>
-                <div style="font-size: 12px; color: #aaa;">${item.key}</div>
-              </div>
-            </div>
-            <div style="color: #ccc; font-size: 13px;">${item.effect || 'No description'}</div>
-          `;
-          
-          // Add drag functionality
-          card.draggable = true;
-          card.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text/plain', item.key);
-          });
-          
-          itemGridElement.appendChild(card);
-        });
-        
-        // Update the count
-        const resultCountElement = document.getElementById('resultCount');
-        if (resultCountElement) {
-          resultCountElement.textContent = `${DATA_ARR.length} items (temp display)`;
-        }
-        
-        console.log('TEMP: Direct display complete');
-      } else {
-        console.log('TEMP: itemGrid or DATA_ARR not found');
-      }
-    }, 500);
+    // Render the compendium grid
+    initializeCompendiumData();
     // Compute initial totals for player and opponent (empty builds)
     updateTotals('P');
     updateTotals('O');
@@ -2755,60 +2551,11 @@ BattleReplayController.init();
 const ICONS = { attack:'attack.png', health:'health.png', armor:'armor.png', speed:'speed.png' };
 
 const $ = sel => document.querySelector(sel);
-
-// Advanced Compendium Elements (will be queried when needed)
-let globalSearch, searchChips, itemGrid, itemTable, tableBody, compareContainer;
-let resultCount, filterSummary, reviewCount, itemDetailModal, itemDetailContent, qaPanel;
-let grid, countSpan; // Legacy elements
-
-function getCompendiumElements() {
-  if (!globalSearch) {
-    globalSearch = $('#globalSearch');
-    searchChips = $('#searchChips');
-    itemGrid = $('#itemGrid');
-    itemTable = $('#itemTable');
-    tableBody = $('#tableBody');
-    compareContainer = $('#compareContainer');
-    resultCount = $('#resultCount');
-    filterSummary = $('#filterSummary');
-    reviewCount = $('#reviewCount');
-    itemDetailModal = $('#itemDetailModal');
-    itemDetailContent = $('#itemDetailContent');
-    qaPanel = $('#qaPanel');
-    
-    // Legacy elements for backwards compatibility - try both new and old IDs
-    grid = itemGrid || $('#grid'); // Try new first, fallback to old
-    countSpan = resultCount || $('#count'); // Try new first, fallback to old
-    
-    console.log('Elements found:', {
-      globalSearch: !!globalSearch,
-      itemGrid: !!itemGrid,
-      grid: !!grid,
-      resultCount: !!resultCount,
-      countSpan: !!countSpan
-    });
-  }
-}
-
-// Advanced Compendium State
-let compendiumState = {
-  searchTerms: [],
-  searchQuery: '', // Add this for immediate search
-  activeFilters: {
-    bucket: new Set(),
-    tags: new Set(), 
-    triggers: new Set(),
-    stats: { attack: 0, armor: 0, health: 0, speed: 0 },
-    advanced: new Set()
-  },
-  viewMode: 'cards',
-  currentTier: 'base',
-  needsReviewOnly: false,
-  sortBy: 'name',
-  sortDirection: 'asc',
-  compareItems: new Set(),
-  qaResults: { lint: [], drift: [] }
-};
+const grid = $('#grid');
+const countSpan = $('#count');
+const searchIn = $('#q');
+const bucketSel = $('#bucket');
+const catSel = $('#cat');
 
 // Force the bucket selector to "All" to ensure it shows all items by default
 bucketSel.value = 'All';
@@ -3052,683 +2799,1082 @@ function showDetail(entry) {
   detailModal.style.display = 'flex';
 }
 
-// =============================================
-// ADVANCED COMPENDIUM SYSTEM
-// =============================================
+// ============================================================================
+// Advanced Compendium System
+// ============================================================================
+
+// Global compendium state
+let compendiumState = {
+  currentView: 'cards', // 'cards' | 'table' | 'compare'
+  currentTier: 'base', // 'base' | 'gold' | 'diamond'
+  selectedItems: new Set(),
+  filters: {
+    search: '',
+    buckets: new Set(['all']),
+    tags: new Set(),
+    triggers: new Set(),
+    needsReview: false
+  },
+  data: {
+    allItems: [],
+    filteredItems: [],
+    itemCounts: {
+      total: 0,
+      shown: 0,
+      selected: 0
+    }
+  }
+};
 
 // Initialize Advanced Compendium
-function initAdvancedCompendium() {
-  console.log('Initializing Advanced Compendium...');
+function initializeAdvancedCompendium() {
+  console.log('initializeAdvancedCompendium called');
+  setupCompendiumEventListeners();
+  updateCompendiumCounts();
   
-  // Wait for DOM to be ready
-  setTimeout(() => {
-    // Ensure elements are available
-    getCompendiumElements();
-    
-    if (!DATA_ARR || !DATA_ARR.length) {
-      console.warn('No data available for advanced compendium');
-      showNoDataMessage('Compendium data not available. Check details.js or details.json.');
-      return;
-    }
-    
-    console.log('DATA_ARR loaded with', DATA_ARR.length, 'items');
-    
-    // Build filter counts and options
-    buildFilterOptions();
-    
-    // Setup event listeners
-    setupCompendiumListeners();
-    
-    // Initial render
-    renderCompendium();
-    
-    // Run QA analysis
-    runQAAnalysis();
-    
-    console.log('Advanced Compendium initialization complete');
-  }, 100);
+  // Set cards as the default active view
+  switchCompendiumView('cards');
 }
 
-// Build dynamic filter options with counts
-function buildFilterOptions() {
-  const bucketCounts = new Map();
-  const tagCounts = new Map();  
-  const triggerCounts = new Map();
+// Setup all event listeners for the advanced compendium
+function setupCompendiumEventListeners() {
+  try {
+    // Global Search
+    const globalSearch = document.getElementById('globalSearch');
+    if (globalSearch) {
+      globalSearch.addEventListener('input', debounce(() => {
+        compendiumState.filters.search = globalSearch.value.trim();
+        renderCompendium();
+      }, 300));
+    } else {
+      console.warn('Global search element not found');
+    }
   
-  DATA_ARR.forEach(item => {
-    // Count buckets
-    const bucket = item.bucket || 'unknown';
-    bucketCounts.set(bucket, (bucketCounts.get(bucket) || 0) + 1);
-    
-    // Count tags
-    if (item.tags) {
-      item.tags.forEach(tag => {
-        tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  // View Switch
+  const viewButtons = ['viewCards', 'viewTable', 'viewCompare'];
+  viewButtons.forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      btn.addEventListener('click', () => {
+        switchCompendiumView(id.replace('view', '').toLowerCase());
       });
     }
-    
-    // Count triggers (from effects)
-    if (item.effects && Array.isArray(item.effects)) {
+  });
+  
+  // Tier Switch
+  const tierButtons = ['tierBase', 'tierGold', 'tierDiamond'];
+  tierButtons.forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      btn.addEventListener('click', () => {
+        switchTier(id.replace('tier', '').toLowerCase());
+      });
+    }
+  });
+  
+  // Needs Review Toggle
+  const needsReviewToggle = document.getElementById('needsReviewToggle');
+  if (needsReviewToggle) {
+    needsReviewToggle.addEventListener('change', () => {
+      compendiumState.filters.needsReview = needsReviewToggle.checked;
+      renderCompendium();
+    });
+  }
+  
+  // Facet Filters
+  setupFacetFilters();
+  
+  // Clear All Filters
+  const clearFilters = document.getElementById('clearAllFilters');
+  if (clearFilters) {
+    clearFilters.addEventListener('click', clearAllFilters);
+  }
+  
+  // QA & Authoring Tools
+  const bulkSelectAll = document.getElementById('bulkSelectAll');
+  const bulkSelectNone = document.getElementById('bulkSelectNone');
+  const exportSelected = document.getElementById('exportSelected');
+  const qaValidate = document.getElementById('qaValidate');
+  
+  if (bulkSelectAll) {
+    bulkSelectAll.addEventListener('click', () => {
+      compendiumState.data.filteredItems.forEach(item => {
+        compendiumState.selectedItems.add(item.key);
+      });
+      updateCompendiumCounts();
+      renderCurrentView(); // Refresh to show selected state
+    });
+  }
+  
+  if (bulkSelectNone) {
+    bulkSelectNone.addEventListener('click', () => {
+      compendiumState.selectedItems.clear();
+      updateCompendiumCounts();
+      renderCurrentView(); // Refresh to show unselected state
+    });
+  }
+  
+  if (exportSelected) {
+    exportSelected.addEventListener('click', exportSelectedItems);
+  }
+  
+  if (qaValidate) {
+    qaValidate.addEventListener('click', runQAValidation);
+  }
+  } catch (error) {
+    console.error('Error setting up compendium event listeners:', error);
+  }
+}
+
+// Setup facet filter listeners
+function setupFacetFilters() {
+  // Bucket filters
+  const bucketInputs = document.querySelectorAll('input[name="bucket"]');
+  bucketInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      updateBucketFilters();
+      renderCompendium();
+    });
+  });
+  
+  // Tag filters
+  const tagInputs = document.querySelectorAll('input[name="tag"]');
+  tagInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      updateTagFilters();
+      renderCompendium();
+    });
+  });
+  
+  // Trigger filters
+  const triggerInputs = document.querySelectorAll('input[name="trigger"]');
+  triggerInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      updateTriggerFilters();
+      renderCompendium();
+    });
+  });
+}
+
+// Update bucket filter state
+function updateBucketFilters() {
+  const bucketInputs = document.querySelectorAll('input[name="bucket"]');
+  const newBuckets = new Set();
+  
+  bucketInputs.forEach(input => {
+    if (input.checked) {
+      if (input.value === 'all') {
+        newBuckets.clear();
+        newBuckets.add('all');
+        // Uncheck other buckets when 'all' is selected
+        bucketInputs.forEach(otherInput => {
+          if (otherInput.value !== 'all') {
+            otherInput.checked = false;
+          }
+        });
+      } else {
+        // If specific bucket is selected, uncheck 'all'
+        const allInput = document.querySelector('input[name="bucket"][value="all"]');
+        if (allInput) allInput.checked = false;
+        newBuckets.delete('all');
+        newBuckets.add(input.value);
+      }
+    }
+  });
+  
+  // If nothing is selected, default to 'all'
+  if (newBuckets.size === 0) {
+    const allInput = document.querySelector('input[name="bucket"][value="all"]');
+    if (allInput) {
+      allInput.checked = true;
+      newBuckets.add('all');
+    }
+  }
+  
+  compendiumState.filters.buckets = newBuckets;
+  updateFacetStyles();
+}
+
+// Update tag filter state
+function updateTagFilters() {
+  const tagInputs = document.querySelectorAll('input[name="tag"]');
+  const newTags = new Set();
+  
+  tagInputs.forEach(input => {
+    if (input.checked) {
+      newTags.add(input.value);
+    }
+  });
+  
+  compendiumState.filters.tags = newTags;
+  updateFacetStyles();
+}
+
+// Update trigger filter state
+function updateTriggerFilters() {
+  const triggerInputs = document.querySelectorAll('input[name="trigger"]');
+  const newTriggers = new Set();
+  
+  triggerInputs.forEach(input => {
+    if (input.checked) {
+      newTriggers.add(input.value);
+    }
+  });
+  
+  compendiumState.filters.triggers = newTriggers;
+  updateFacetStyles();
+}
+
+// Update visual styling for active facets
+function updateFacetStyles() {
+  // Update bucket facet styles
+  const bucketOptions = document.querySelectorAll('.facet-option:has(input[name="bucket"])');
+  bucketOptions.forEach(option => {
+    const input = option.querySelector('input');
+    if (input.checked) {
+      option.style.background = 'rgba(255,51,51,0.1)';
+      option.style.borderLeft = '3px solid #f33';
+    } else {
+      option.style.background = '';
+      option.style.borderLeft = '';
+    }
+  });
+  
+  // Update tag facet styles
+  const tagOptions = document.querySelectorAll('.facet-option:has(input[name="tag"])');
+  tagOptions.forEach(option => {
+    const input = option.querySelector('input');
+    if (input.checked) {
+      option.style.background = 'rgba(255,165,0,0.1)';
+      option.style.borderLeft = '3px solid #ffa500';
+    } else {
+      option.style.background = '';
+      option.style.borderLeft = '';
+    }
+  });
+  
+  // Update trigger facet styles
+  const triggerOptions = document.querySelectorAll('.facet-option:has(input[name="trigger"])');
+  triggerOptions.forEach(option => {
+    const input = option.querySelector('input');
+    if (input.checked) {
+      option.style.background = 'rgba(0,255,51,0.1)';
+      option.style.borderLeft = '3px solid #0f3';
+    } else {
+      option.style.background = '';
+      option.style.borderLeft = '';
+    }
+  });
+}
+
+// Switch compendium view
+function switchCompendiumView(viewName) {
+  compendiumState.currentView = viewName;
+  
+  // Update button states
+  ['viewCards', 'viewTable', 'viewCompare'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      if (id === `view${viewName.charAt(0).toUpperCase() + viewName.slice(1)}`) {
+        btn.style.background = '#f33';
+        btn.style.color = '#000';
+      } else {
+        btn.style.background = 'transparent';
+        btn.style.color = '#f33';
+      }
+    }
+  });
+  
+  // Show appropriate view
+  const views = ['cardsView', 'tableView', 'compareView'];
+  views.forEach(id => {
+    const view = document.getElementById(id);
+    if (view) {
+      view.style.display = id === `${viewName}View` ? 'block' : 'none';
+    }
+  });
+  
+  // Render content for the active view
+  renderCurrentView();
+}
+
+// Switch tier
+function switchTier(tierName) {
+  compendiumState.currentTier = tierName;
+  
+  // Update button states
+  ['tierBase', 'tierGold', 'tierDiamond'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      if (id === `tier${tierName.charAt(0).toUpperCase() + tierName.slice(1)}`) {
+        btn.style.background = '#ffd166';
+        btn.style.color = '#000';
+      } else {
+        btn.style.background = 'transparent';
+        btn.style.color = '#ffd166';
+      }
+    }
+  });
+  
+  // Re-render current view with new tier
+  renderCurrentView();
+}
+
+// Clear all filters
+function clearAllFilters() {
+  // Reset filter state
+  compendiumState.filters = {
+    search: '',
+    buckets: new Set(['all']),
+    tags: new Set(),
+    triggers: new Set(),
+    needsReview: false
+  };
+  
+  // Reset UI
+  const globalSearch = document.getElementById('globalSearch');
+  if (globalSearch) globalSearch.value = '';
+  
+  const needsReviewToggle = document.getElementById('needsReviewToggle');
+  if (needsReviewToggle) needsReviewToggle.checked = false;
+  
+  // Reset all checkboxes
+  const allInputs = document.querySelectorAll('.facet-panel input[type="checkbox"]');
+  allInputs.forEach(input => {
+    input.checked = input.name === 'bucket' && input.value === 'all';
+  });
+  
+  updateFacetStyles();
+  renderCompendium();
+}
+
+// Filter items based on current state
+function filterItems() {
+  const { search, buckets, tags, triggers, needsReview } = compendiumState.filters;
+  
+  let filtered = compendiumState.data.allItems;
+  
+  // Search filter
+  if (search) {
+    const searchLower = search.toLowerCase();
+    filtered = filtered.filter(item => {
+      const searchText = `${item.name} ${item.effect || ''} ${item.key} ${(item.tags || []).join(' ')}`.toLowerCase();
+      return searchText.includes(searchLower);
+    });
+  }
+  
+  // Bucket filter
+  if (!buckets.has('all')) {
+    filtered = filtered.filter(item => {
+      return buckets.has(item.bucket);
+    });
+  }
+  
+  // Tag filters
+  if (tags.size > 0) {
+    filtered = filtered.filter(item => {
+      if (!item.tags || item.tags.length === 0) return false;
+      return Array.from(tags).some(tag => item.tags.includes(tag));
+    });
+  }
+  
+  // Trigger filters
+  if (triggers.size > 0) {
+    filtered = filtered.filter(item => {
+      if (!item.effects || item.effects.length === 0) return false;
+      return item.effects.some(effect => {
+        return Array.from(triggers).includes(effect.trigger);
+      });
+    });
+  }
+  
+  // Needs review filter
+  if (needsReview) {
+    filtered = filtered.filter(item => {
+      return isItemNeedsReview(item);
+    });
+  }
+  
+  compendiumState.data.filteredItems = filtered;
+  updateCompendiumCounts();
+}
+
+// Check if item needs review
+function isItemNeedsReview(item) {
+  if (!item.effect || item.effect === '' || item.effect === '-') return true;
+  if (!item.tags || item.tags.length === 0) return true;
+  if (item.name.toLowerCase().includes('todo') || item.name.toLowerCase().includes('placeholder')) return true;
+  return false;
+}
+
+// Update compendium counts
+function updateCompendiumCounts() {
+  compendiumState.data.itemCounts = {
+    total: compendiumState.data.allItems.length,
+    shown: compendiumState.data.filteredItems.length,
+    selected: compendiumState.selectedItems.size
+  };
+  
+  // Update UI
+  const shownCount = document.getElementById('shownCount');
+  const totalCount = document.getElementById('totalCount');
+  const selectedCount = document.getElementById('selectedCount');
+  const reviewCount = document.getElementById('reviewCount');
+  
+  if (shownCount) shownCount.textContent = compendiumState.data.itemCounts.shown;
+  if (totalCount) totalCount.textContent = compendiumState.data.itemCounts.total;
+  if (selectedCount) selectedCount.textContent = compendiumState.data.itemCounts.selected;
+  
+  if (reviewCount) {
+    const needsReviewItems = compendiumState.data.allItems.filter(isItemNeedsReview);
+    reviewCount.textContent = needsReviewItems.length;
+  }
+  
+  // Update facet counts
+  updateFacetCounts();
+}
+
+// Update facet counts
+function updateFacetCounts() {
+  const allItems = compendiumState.data.allItems;
+  
+  // Update bucket counts
+  const bucketCounts = {
+    all: allItems.length,
+    items: allItems.filter(item => item.bucket === 'items').length,
+    weapons: allItems.filter(item => item.bucket === 'weapons').length,
+    upgrades: allItems.filter(item => item.bucket === 'upgrades').length
+  };
+  
+  Object.entries(bucketCounts).forEach(([bucket, count]) => {
+    const option = document.querySelector(`input[name="bucket"][value="${bucket}"]`);
+    if (option) {
+      const countEl = option.parentElement.querySelector('.count');
+      if (countEl) countEl.textContent = count;
+    }
+  });
+  
+  // Update tag counts
+  const tagCounts = {};
+  allItems.forEach(item => {
+    if (item.tags) {
+      item.tags.forEach(tag => {
+        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+      });
+    }
+  });
+  
+  ['Tome', 'Bomb', 'Symphony', 'Food', 'Jewelry', 'Ring', 'Stone', 'Water'].forEach(tag => {
+    const option = document.querySelector(`input[name="tag"][value="${tag}"]`);
+    if (option) {
+      const countEl = option.parentElement.querySelector('.count');
+      if (countEl) countEl.textContent = tagCounts[tag] || 0;
+    }
+  });
+  
+  // Update trigger counts
+  const triggerCounts = {};
+  allItems.forEach(item => {
+    if (item.effects) {
       item.effects.forEach(effect => {
-        if (effect.trigger) {
-          triggerCounts.set(effect.trigger, (triggerCounts.get(effect.trigger) || 0) + 1);
+        const trigger = effect.trigger;
+        if (trigger) {
+          triggerCounts[trigger] = (triggerCounts[trigger] || 0) + 1;
         }
       });
     }
   });
   
-  // Update bucket filter options
-  const bucketFilters = $('#bucketFilters');
-  if (bucketFilters) {
-    bucketFilters.innerHTML = '';
-    ['items', 'weapons', 'sets', 'upgrades'].forEach(bucket => {
-      const count = bucketCounts.get(bucket) || 0;
-      const label = document.createElement('label');
-      label.innerHTML = `<input type="checkbox" value="${bucket}"> <span class="filter-count">(${count})</span> ${bucket.charAt(0).toUpperCase() + bucket.slice(1)}`;
-      bucketFilters.appendChild(label);
-    });
-  }
-  
-  // Update trigger filter options
-  const triggerFilters = $('#triggerFilters');
-  if (triggerFilters) {
-    triggerFilters.innerHTML = '';
-    const commonTriggers = ['battleStart', 'turnStart', 'onHit', 'onWounded', 'onExposed', 'countdown', 'passive'];
-    commonTriggers.forEach(trigger => {
-      const count = triggerCounts.get(trigger) || 0;
-      const label = document.createElement('label');
-      const displayName = trigger.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-      label.innerHTML = `<input type="checkbox" value="${trigger}"> <span class="filter-count">(${count})</span> ${displayName}`;
-      triggerFilters.appendChild(label);
-    });
-  }
-}
-
-// Setup event listeners for all compendium controls
-function setupCompendiumListeners() {
-  console.log('Setting up compendium listeners...');
-  
-  // Ensure elements are available
-  getCompendiumElements();
-  
-  // Search input
-  if (globalSearch) {
-    globalSearch.addEventListener('input', debounce(handleSearch, 300));
-    globalSearch.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        handleSearchSubmit();
-      }
-    });
-    console.log('Search listeners set up');
-  } else {
-    console.warn('globalSearch element not found');
-  }
-  
-  // View mode switchers
-  document.querySelectorAll('.view-mode').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.view-mode').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      compendiumState.viewMode = btn.dataset.mode;
-      renderCompendium();
-    });
-  });
-  console.log('View mode listeners set up');
-  
-  // Tier switchers
-  document.querySelectorAll('.tier-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      compendiumState.currentTier = btn.dataset.tier;
-      renderCompendium();
-    });
-  });
-  console.log('Tier switchers set up');
-  
-  // Needs review toggle
-  const needsReviewToggle = document.getElementById('needsReviewToggle');
-  if (needsReviewToggle) {
-    needsReviewToggle.addEventListener('click', () => {
-      compendiumState.needsReviewOnly = !compendiumState.needsReviewOnly;
-      needsReviewToggle.classList.toggle('active', compendiumState.needsReviewOnly);
-      renderCompendium();
-    });
-  }
-  
-  // Quick actions
-  const randBuildBtn = document.getElementById('randBuildBtn');
-  const randEnemyBtn = document.getElementById('randEnemyBtn');
-  const showSimBtn = document.getElementById('showSimBtn');
-  
-  if (randBuildBtn) randBuildBtn.addEventListener('click', () => randomizeSide('P'));
-  if (randEnemyBtn) randEnemyBtn.addEventListener('click', () => randomizeSide('O'));
-  if (showSimBtn) showSimBtn.addEventListener('click', () => switchToTab('simulation'));
-  
-  console.log('Quick action listeners set up');
-}
-
-// Handle search input with chips
-function handleSearch() {
-  const query = globalSearch.value.trim();
-  compendiumState.searchQuery = query;
-  renderCompendium();
-}
-
-function handleSearchSubmit() {
-  const query = globalSearch.value.trim();
-  if (query && !compendiumState.searchTerms.includes(query)) {
-    compendiumState.searchTerms.push(query);
-    globalSearch.value = '';
-    updateSearchChips();
-    renderCompendium();
-  }
-}
-
-function updateSearchChips() {
-  if (!searchChips) return;
-  
-  searchChips.innerHTML = '';
-  compendiumState.searchTerms.forEach((term, index) => {
-    const chip = document.createElement('div');
-    chip.className = 'search-chip';
-    chip.innerHTML = `${term} <span class="remove">×</span>`;
-    chip.querySelector('.remove').addEventListener('click', () => {
-      compendiumState.searchTerms.splice(index, 1);
-      updateSearchChips();
-      renderCompendium();
-    });
-    searchChips.appendChild(chip);
+  ['battleStart', 'turnStart', 'hit', 'wounded', 'exposed', 'passive'].forEach(trigger => {
+    const option = document.querySelector(`input[name="trigger"][value="${trigger}"]`);
+    if (option) {
+      const countEl = option.parentElement.querySelector('.count');
+      if (countEl) countEl.textContent = triggerCounts[trigger] || 0;
+    }
   });
 }
 
-// Handle filter changes
-function handleFilterChange(e) {
-  const input = e.target;
-  const value = input.value;
-  
-  if (input.closest('#bucketFilters')) {
-    if (input.checked) {
-      compendiumState.activeFilters.bucket.add(value);
-    } else {
-      compendiumState.activeFilters.bucket.delete(value);
-    }
-  } else if (input.closest('#tagFilters')) {
-    if (input.checked) {
-      compendiumState.activeFilters.tags.add(value);
-    } else {
-      compendiumState.activeFilters.tags.delete(value);
-    }
-  } else if (input.closest('#triggerFilters')) {
-    if (input.checked) {
-      compendiumState.activeFilters.triggers.add(value);
-    } else {
-      compendiumState.activeFilters.triggers.delete(value);
-    }
-  }
-  
-  renderCompendium();
-}
-
-// Main render function for the compendium
+// Main render function
 function renderCompendium() {
-  console.log('renderCompendium called');
-  
-  // Ensure elements are available
-  getCompendiumElements();
-  
-  if (!DATA_ARR || !DATA_ARR.length) {
-    console.warn('No DATA_ARR available, DATA_ARR length:', DATA_ARR ? DATA_ARR.length : 'undefined');
-    showNoDataMessage('Compendium data not available. Check details.js or details.json.');
-    return;
+  try {
+    filterItems();
+    renderCurrentView();
+  } catch (error) {
+    console.error('Error rendering compendium:', error);
+    const itemGrid = document.getElementById('itemGrid');
+    if (itemGrid) {
+      itemGrid.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #f33;">
+          <h3>Error rendering compendium</h3>
+          <p style="color: #fa0; margin: 16px 0;">Please refresh the page or check the console</p>
+        </div>
+      `;
+    }
   }
-  
-  console.log('Rendering compendium with', DATA_ARR.length, 'total items');
-  console.log('Current filters:', compendiumState.activeFilters);
-  console.log('Search query:', compendiumState.searchQuery);
-  console.log('Search terms:', compendiumState.searchTerms);
-  
-  // Filter items based on current state
-  const filteredItems = filterItems(DATA_ARR);
-  console.log('Filtered to', filteredItems.length, 'items');
-  
-  // Update result count
-  updateResultCount(filteredItems.length);
-  
-  // Render based on view mode
-  if (compendiumState.viewMode === 'cards') {
-    renderCardsView(filteredItems);
-  } else if (compendiumState.viewMode === 'table') {
-    renderTableView(filteredItems);
-  } else if (compendiumState.viewMode === 'compare') {
-    renderCompareView();
-  }
-  
-  // Update review count
-  updateReviewCount();
 }
 
-// Filter items based on current compendium state
-function filterItems(items) {
-  console.log('Filtering', items.length, 'total items');
-  
-  return items.filter(item => {
-    // Search terms filter - only filter if there are search terms
-    if (compendiumState.searchTerms.length > 0 || (compendiumState.searchQuery && compendiumState.searchQuery.trim())) {
-      const searchText = `${item.name} ${item.effect || ''} ${item.key} ${(item.tags || []).join(' ')}`.toLowerCase();
-      
-      const queryMatch = !compendiumState.searchQuery || !compendiumState.searchQuery.trim() || 
-        searchText.includes(compendiumState.searchQuery.toLowerCase());
-      const termsMatch = compendiumState.searchTerms.length === 0 || 
-        compendiumState.searchTerms.every(term => searchText.includes(term.toLowerCase()));
-        
-      if (!queryMatch || !termsMatch) return false;
+// Render the current view
+function renderCurrentView() {
+  try {
+    switch (compendiumState.currentView) {
+      case 'cards':
+        renderCardsView();
+        break;
+      case 'table':
+        renderTableView();
+        break;
+      case 'compare':
+        renderCompareView();
+        break;
+      default:
+        console.warn('Unknown view:', compendiumState.currentView);
+        renderCardsView(); // Fallback to cards view
     }
-    
-    // Bucket filter - only filter if buckets are selected
-    if (compendiumState.activeFilters.bucket.size > 0) {
-      if (!compendiumState.activeFilters.bucket.has(item.bucket)) return false;
+  } catch (error) {
+    console.error('Error rendering current view:', error);
+    // Fallback to cards view
+    compendiumState.currentView = 'cards';
+    try {
+      renderCardsView();
+    } catch (fallbackError) {
+      console.error('Error in fallback render:', fallbackError);
     }
-    
-    // Tag filter - only filter if tags are selected
-    if (compendiumState.activeFilters.tags.size > 0) {
-      if (!item.tags || !item.tags.some(tag => compendiumState.activeFilters.tags.has(tag))) return false;
-    }
-    
-    // Trigger filter - only filter if triggers are selected
-    if (compendiumState.activeFilters.triggers.size > 0) {
-      const itemTriggers = new Set();
-      if (item.effects && Array.isArray(item.effects)) {
-        item.effects.forEach(effect => {
-          if (effect.trigger) itemTriggers.add(effect.trigger);
-        });
-      }
-      if (!Array.from(compendiumState.activeFilters.triggers).some(trigger => itemTriggers.has(trigger))) return false;
-    }
-    
-    // Stat filters - only filter if stat minimums are set > 0
-    if (item.stats) {
-      for (const [stat, minValue] of Object.entries(compendiumState.activeFilters.stats)) {
-        if (minValue > 0 && (item.stats[stat] || 0) < minValue) return false;
-      }
-    }
-    
-    // Advanced filters - only filter if advanced options are selected
-    if (compendiumState.activeFilters.advanced.has('hasTieredValues')) {
-      if (!window.TIERABLE || !window.TIERABLE.has(item.key)) return false;
-    }
-    
-    if (compendiumState.activeFilters.advanced.has('hasConditions')) {
-      let hasConditions = false;
-      if (item.effects && Array.isArray(item.effects)) {
-        hasConditions = item.effects.some(effect => 
-          effect.actions && effect.actions.some(action => action.condition)
-        );
-      }
-      if (!hasConditions) return false;
-    }
-    
-    if (compendiumState.activeFilters.advanced.has('firstTurnOnly')) {
-      let isFirstTurnOnly = false;
-      if (item.effects && Array.isArray(item.effects)) {
-        isFirstTurnOnly = item.effects.some(effect => 
-          effect.trigger === 'battleStart' || effect.trigger === 'preBattle'
-        );
-      }
-      if (!isFirstTurnOnly) return false;
-    }
-    
-    // Needs review filter - only filter if enabled
-    if (compendiumState.needsReviewOnly) {
-      const hasIssues = getItemIssues(item).length > 0;
-      if (!hasIssues) return false;
-    }
-    
-    return true;
-  });
+  }
 }
 
 // Render cards view
-function renderCardsView(items) {
-  console.log('renderCardsView called with', items.length, 'items');
+function renderCardsView() {
+  const itemGrid = document.getElementById('itemGrid');
+  if (!itemGrid) return;
   
-  // Ensure elements are available
-  getCompendiumElements();
+  itemGrid.innerHTML = '';
   
-  // Use either the new itemGrid or fall back to any available grid
-  const targetGrid = itemGrid || grid || $('#grid');
-  
-  if (!targetGrid) {
-    console.error('No grid element found! Checked itemGrid, grid, and #grid');
-    // Try to find any element that might work
-    const fallback = document.querySelector('.item-grid, .grid, [id*="grid"], [class*="grid"]');
-    console.log('Fallback element found:', !!fallback, fallback);
-    if (fallback) {
-      fallback.innerHTML = '<div style="color: #f33; padding: 20px;">Advanced compendium system needs debugging - grid element issue</div>';
-    }
+  if (compendiumState.data.filteredItems.length === 0) {
+    itemGrid.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666; font-style: italic;">
+        <h3 style="color: #f33; margin-bottom: 16px;">No items found</h3>
+        <p>Try adjusting your filters or search terms</p>
+      </div>
+    `;
     return;
   }
   
-  console.log('Using grid element:', targetGrid.id || targetGrid.className);
-  
-  // Sort items
-  const sortedItems = sortItems(items);
-  
-  targetGrid.innerHTML = '';
-  
-  if (sortedItems.length === 0) {
-    targetGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #666; padding: 40px;">No items match current filters</div>';
-    return;
-  }
-  
-  console.log('Creating cards for', sortedItems.length, 'items');
-  
-  sortedItems.forEach((item, index) => {
-    console.log(`Creating card ${index + 1}:`, item.name);
-    const card = createItemCard(item);
-    targetGrid.appendChild(card);
+  compendiumState.data.filteredItems.forEach(item => {
+    const card = createAdvancedCard(item);
+    itemGrid.appendChild(card);
   });
-  
-  console.log('Cards rendered successfully');
 }
 
-// Create an enhanced item card
-function createItemCard(item) {
+// Create an advanced item card
+function createAdvancedCard(item) {
   const card = document.createElement('div');
-  card.className = 'card';
+  card.className = 'advanced-card';
   card.dataset.key = item.key;
   card.draggable = true;
   
-  // Add tier data
-  card.dataset.tier = compendiumState.currentTier;
+  // Card styling based on bucket and tags
+  let borderColor = '#f33';
+  if (item.bucket === 'weapons') borderColor = '#ff9900';
+  if (item.tags?.includes('Jewelry')) borderColor = '#ffd166';
+  if (item.tags?.includes('Tome')) borderColor = '#73d2de';
+  if (item.tags?.includes('Food')) borderColor = '#95d5b2';
   
-  // Card styling
-  card.style.background = '#000';
-  card.style.border = '2px solid #f33';
-  card.style.borderRadius = '16px';
-  card.style.padding = '14px';
-  card.style.color = '#fff';
-  card.style.cursor = 'pointer';
-  card.style.transition = 'all 0.2s ease';
-  
-  // Special styling for weapons
-  if (item.bucket === 'weapons') {
-    card.style.borderColor = '#ff9900';
-  }
-  
-  // Create card content
-  card.innerHTML = `
-    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-      <img src="${getItemIconPath(item)}" alt="${item.name}" 
-           style="width: 48px; height: 48px; image-rendering: pixelated;"
-           onerror="this.src='placeholder.png'">
-      <div style="flex: 1;">
-        <div style="font-weight: 700; font-size: 18px; color: #f33; margin-bottom: 4px;">${item.name}</div>
-        <div style="font-size: 12px; color: #aaa;">${item.key}</div>
-        ${getItemIssues(item).length > 0 ? '<div class="issue-badges" style="margin-top: 4px;"></div>' : ''}
-      </div>
-      ${window.TIERABLE && window.TIERABLE.has(item.key) ? 
-        `<select class="tier-selector" style="background: #1b1216; color: #f33; border: 1px solid #f33; border-radius: 8px; padding: 2px 6px; font-size: 12px;">
-          <option value="base">Base</option>
-          <option value="gold">Gold</option>
-          <option value="diamond">Diamond</option>
-        </select>` : ''
-      }
-    </div>
-    
-    <div style="color: #ccc; font-size: 13px; margin-bottom: 12px; min-height: 40px;">
-      ${item.effect || 'No description available'}
-    </div>
-    
-    <div style="height: 3px; background: #f33; margin: 8px 0; border-radius: 2px;"></div>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-      ${createStatPills(item.stats)}
-    </div>
-    
-    ${(item.tags && item.tags.length > 0) ? `
-      <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 4px;">
-        ${item.tags.map(tag => `<span class="tag-chip" style="background: rgba(52, 152, 219, 0.2); color: #3498db; padding: 2px 6px; border-radius: 10px; font-size: 11px;">${tag}</span>`).join('')}
-      </div>
-    ` : ''}
+  card.style.cssText = `
+    background: #111;
+    border: 2px solid ${borderColor};
+    border-radius: 12px;
+    padding: 14px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
   `;
   
-  // Add issue badges if any
-  const issueContainer = card.querySelector('.issue-badges');
-  if (issueContainer) {
-    const issues = getItemIssues(item);
-    issues.forEach(issue => {
-      const badge = document.createElement('span');
-      badge.className = 'issue-badge';
-      badge.style.cssText = 'background: #e74c3c; color: white; padding: 2px 6px; border-radius: 8px; font-size: 10px; margin-right: 4px;';
-      badge.textContent = issue.type;
-      badge.title = issue.message;
-      issueContainer.appendChild(badge);
-    });
-  }
-  
-  // Event listeners
-  card.addEventListener('click', () => showItemDetail(item));
-  card.addEventListener('dragstart', (e) => {
-    e.dataTransfer.setData('text/plain', item.key);
-    try {
-      e.dataTransfer.setData('application/json', JSON.stringify({ 
-        key: item.key, 
-        tier: card.dataset.tier || 'base' 
-      }));
-    } catch(_) {}
+  // Hover effect
+  card.addEventListener('mouseenter', () => {
+    card.style.transform = 'translateY(-2px)';
+    card.style.boxShadow = `0 6px 20px ${borderColor}40`;
   });
   
-  // Tier selector
-  const tierSelector = card.querySelector('.tier-selector');
-  if (tierSelector) {
-    tierSelector.value = compendiumState.currentTier;
-    tierSelector.addEventListener('click', (e) => e.stopPropagation());
-    tierSelector.addEventListener('change', () => {
-      card.dataset.tier = tierSelector.value;
-    });
-  }
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    card.style.boxShadow = '';
+  });
+  
+  // Trust badges
+  const trustBadges = getTrustBadges(item);
+  const trustBadgeHtml = trustBadges.map(badge => 
+    `<span class="trust-badge ${badge.type}" style="
+      background: ${badge.bg}; 
+      color: ${badge.color}; 
+      padding: 2px 6px; 
+      border-radius: 8px; 
+      font-size: 10px; 
+      margin-left: 4px;
+    ">${badge.icon} ${badge.text}</span>`
+  ).join('');
+  
+  // Build card content
+  const iconCandidates = resolveIconCandidates(item);
+  const iconPath = iconCandidates[0] || 'assets/placeholder.png';
+  
+  // Plain English effect
+  const plainEffect = generatePlainEnglishEffect(item);
+  
+  // Trigger indicators
+  const triggerIndicators = getTriggerIndicators(item);
+  
+  // Tier support indicator
+  const supportsTier = window.TIERABLE && window.TIERABLE.has(item.key);
+  const tierIndicator = supportsTier ? '<span style="color: #ffd166; font-size: 10px;">◊</span>' : '';
+  
+  card.innerHTML = `
+    <!-- Header -->
+    <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px;">
+      <img src="${iconPath}" alt="${item.name}" style="
+        width: 48px; 
+        height: 48px; 
+        image-rendering: pixelated; 
+        border-radius: 6px;
+        border: 1px solid rgba(255,255,255,0.2);
+      " onerror="this.src='assets/placeholder.png'">
+      
+      <div style="flex: 1; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+          <h4 style="margin: 0; color: ${borderColor}; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.name}</h4>
+          ${tierIndicator}
+          ${trustBadgeHtml}
+        </div>
+        <div style="color: #888; font-size: 10px; margin-bottom: 6px;">${item.key}</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+          ${triggerIndicators.map(t => `<span class="trigger-chip ${t.class}" style="
+            background: ${t.bg}; 
+            color: ${t.color}; 
+            padding: 1px 6px; 
+            border-radius: 8px; 
+            font-size: 10px;
+            font-weight: 500;
+          ">${t.icon} ${t.name}</span>`).join('')}
+        </div>
+      </div>
+      
+      <div class="card-actions" style="display: flex; align-items: center; gap: 4px;">
+        <button class="select-btn" style="
+          background: ${compendiumState.selectedItems.has(item.key) ? '#fa0' : 'transparent'}; 
+          color: ${compendiumState.selectedItems.has(item.key) ? '#000' : '#fa0'}; 
+          border: 1px solid #fa0; 
+          border-radius: 4px; 
+          padding: 4px 8px; 
+          cursor: pointer; 
+          font-size: 10px;
+        ">${compendiumState.selectedItems.has(item.key) ? '✓' : '+'}</button>
+      </div>
+    </div>
+    
+    <!-- Plain English Effect -->
+    <div style="
+      background: rgba(255,255,255,0.05); 
+      padding: 8px; 
+      border-radius: 6px; 
+      margin-bottom: 10px; 
+      font-size: 11px; 
+      line-height: 1.4;
+      color: #ccc;
+    ">${plainEffect}</div>
+    
+    <!-- Stats Row -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+      ${['attack', 'armor', 'health', 'speed'].map(stat => {
+        const value = item.stats?.[stat] || 0;
+        const icon = stat === 'health' ? 'health' : stat;
+        return `
+          <div style="display: flex; align-items: center; justify-content: center; gap: 4px; 
+                      background: rgba(255,255,255,0.05); padding: 6px 4px; border-radius: 4px;
+                      ${value > 0 ? `border: 1px solid ${getStatColor(stat)};` : ''}">
+            <img src="assets/${icon}.png" style="width: 12px; height: 12px; image-rendering: pixelated;">
+            <span style="font-size: 11px; font-weight: 600; color: ${value > 0 ? getStatColor(stat) : '#666'};">${value}</span>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+  
+  // Event listeners
+  card.addEventListener('click', (e) => {
+    if (e.target.classList.contains('select-btn')) {
+      toggleItemSelection(item.key);
+      e.stopPropagation();
+    } else {
+      showAdvancedDetail(item);
+    }
+  });
+  
+  // Drag and drop
+  card.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('text/plain', item.key);
+    const tierData = { key: item.key, tier: compendiumState.currentTier };
+    e.dataTransfer.setData('application/json', JSON.stringify(tierData));
+  });
   
   return card;
 }
 
-// Create stat pills for an item
-function createStatPills(stats) {
-  const statOrder = [
-    { key: 'attack', label: 'ATK', icon: 'attack.png', color: '#f33' },
-    { key: 'armor', label: 'ARM', icon: 'armor.png', color: '#3af' },
-    { key: 'health', label: 'HP', icon: 'health.png', color: '#95d5b2' },
-    { key: 'speed', label: 'SPD', icon: 'speed.png', color: '#ffd166' }
-  ];
-  
-  return statOrder.map(stat => {
-    const value = stats && typeof stats[stat.key] === 'number' ? stats[stat.key] : 0;
-    return `
-      <div style="display: flex; align-items: center; gap: 6px; background: #210; border: 1px solid ${stat.color}; border-radius: 12px; padding: 6px 10px;">
-        <img src="${stat.icon}" style="width: 16px; height: 16px; image-rendering: pixelated;">
-        <span style="color: ${stat.color}; font-size: 14px; font-weight: bold;">${value}</span>
-      </div>
-    `;
-  }).join('');
-}
-
-// Get appropriate icon path for an item
-function getItemIconPath(item) {
-  if (item.key) return `${item.key}/icon.png`;
-  if (item.bucket && item.slug) return `${item.bucket}/${item.slug}/icon.png`;
-  if (item.slug) return `items/${item.slug}/icon.png`;
-  return 'placeholder.png';
-}
-
-// Get issues for QA analysis
-function getItemIssues(item) {
-  const issues = [];
-  
-  // Check for missing required fields
-  if (!item.name || item.name.trim() === '') {
-    issues.push({ type: 'Missing Name', message: 'Item has no name' });
+// Generate plain English effect description
+function generatePlainEnglishEffect(item) {
+  if (!item.effects || item.effects.length === 0) {
+    return item.effect || 'No effect description available.';
   }
   
-  if (!item.effect || item.effect.trim() === '') {
-    issues.push({ type: 'No Description', message: 'Item has no effect description' });
-  }
+  // Simple effect-to-English conversion (expandable)
+  const sentences = item.effects.map(effect => {
+    const trigger = getTriggerName(effect.trigger);
+    const actions = effect.actions.map(action => getActionDescription(action)).join(', ');
+    
+    return `<strong>${trigger}:</strong> ${actions}.`;
+  });
   
-  // Check for malformed effects
-  if (item.effects && Array.isArray(item.effects)) {
-    item.effects.forEach((effect, idx) => {
-      if (!effect.trigger) {
-        issues.push({ type: 'Bad Effect', message: `Effect ${idx + 1} missing trigger` });
-      }
-      if (!effect.actions || !Array.isArray(effect.actions)) {
-        issues.push({ type: 'Bad Effect', message: `Effect ${idx + 1} missing actions` });
-      }
+  return sentences.join(' ');
+}
+
+// Get trigger display name
+function getTriggerName(trigger) {
+  const triggerNames = {
+    battleStart: 'Battle Start',
+    turnStart: 'Turn Start',
+    hit: 'On Hit',
+    wounded: 'When Wounded',
+    exposed: 'When Exposed',
+    passive: 'Passive'
+  };
+  return triggerNames[trigger] || trigger;
+}
+
+// Get action description
+function getActionDescription(action) {
+  if (!action || !action.type) return 'unknown effect';
+  
+  // Simple action descriptions (expandable)
+  const descriptions = {
+    deal_damage: `deal ${action.value || 1} damage`,
+    heal: `heal ${action.value || 1} HP`,
+    gain_armor: `gain ${action.value || 1} armor`,
+    gain_attack: `gain ${action.value || 1} attack`,
+    gain_speed: `gain ${action.value || 1} speed`,
+    apply_poison: `apply poison (${action.value || 1})`,
+    apply_thorns: `apply thorns (${action.value || 1})`,
+    apply_regen: `apply regen (${action.value || 1})`
+  };
+  
+  return descriptions[action.type] || action.type.replace(/_/g, ' ');
+}
+
+// Get trust badges for an item
+function getTrustBadges(item) {
+  const badges = [];
+  
+  // Valid badge (has effect and stats)
+  if (item.effect && item.stats) {
+    badges.push({
+      type: 'valid',
+      icon: '✓',
+      text: 'Valid',
+      bg: '#26de81',
+      color: '#000'
     });
   }
   
-  return issues;
-}
-
-// Show detailed item modal
-function showItemDetail(item) {
-  if (!itemDetailModal || !itemDetailContent) return;
+  // Needs review
+  if (isItemNeedsReview(item)) {
+    badges.push({
+      type: 'review',
+      icon: '⚑',
+      text: 'Review',
+      bg: '#fa0',
+      color: '#000'
+    });
+  }
   
-  itemDetailContent.innerHTML = createItemDetailHTML(item);
-  itemDetailModal.style.display = 'block';
+  // Has tiers
+  if (window.TIERABLE && window.TIERABLE.has(item.key)) {
+    badges.push({
+      type: 'tiered',
+      icon: '◊',
+      text: 'Tiered',
+      bg: '#ffd166',
+      color: '#000'
+    });
+  }
+  
+  return badges;
 }
 
-// Create detailed HTML for item modal
-function createItemDetailHTML(item) {
-  return `
-    <div style="padding: 24px;">
-      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
-        <img src="${getItemIconPath(item)}" alt="${item.name}" 
-             style="width: 64px; height: 64px; image-rendering: pixelated;"
-             onerror="this.src='placeholder.png'">
-        <div>
-          <h2 style="margin: 0 0 8px 0; color: #f33; font-size: 24px;">${item.name}</h2>
-          <div style="color: #aaa; font-size: 14px;">${item.key}</div>
-          <div style="color: #aaa; font-size: 12px; margin-top: 4px;">
-            Type: ${item.bucket || 'Unknown'} | Tags: ${(item.tags || []).join(', ') || 'None'}
-          </div>
-        </div>
-      </div>
-      
-      <div style="margin-bottom: 24px;">
-        <h3 style="color: #fff; margin-bottom: 12px;">Description</h3>
-        <div style="color: #ccc; line-height: 1.5;">${item.effect || 'No description available'}</div>
-      </div>
-      
-      <div style="margin-bottom: 24px;">
-        <h3 style="color: #fff; margin-bottom: 12px;">Stats</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
-          ${createStatPills(item.stats)}
-        </div>
-      </div>
-      
-      ${item.effects && item.effects.length > 0 ? `
-        <div style="margin-bottom: 24px;">
-          <h3 style="color: #fff; margin-bottom: 12px;">Effects</h3>
-          <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 16px;">
-            <pre style="color: #ccc; font-size: 12px; margin: 0; white-space: pre-wrap;">${JSON.stringify(item.effects, null, 2)}</pre>
-          </div>
-        </div>
-      ` : ''}
-      
-      <div style="display: flex; gap: 12px; justify-content: flex-end;">
-        <button onclick="addItemToCompare('${item.key}')" style="background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">
-          Add to Compare
-        </button>
-        <button onclick="copyItemData('${item.key}')" style="background: #95a5a6; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">
-          Copy Data
-        </button>
-      </div>
-    </div>
-  `;
-}
-
-// Sort items based on current sort settings
-function sortItems(items) {
-  return [...items].sort((a, b) => {
-    let aVal, bVal;
-    
-    switch (compendiumState.sortBy) {
-      case 'name':
-        aVal = a.name || '';
-        bVal = b.name || '';
-        break;
-      case 'bucket':
-        aVal = a.bucket || '';
-        bVal = b.bucket || '';
-        break;
-      case 'tags':
-        aVal = (a.tags || []).join(', ');
-        bVal = (b.tags || []).join(', ');
-        break;
-      case 'tiered':
-        aVal = window.TIERABLE && window.TIERABLE.has(a.key) ? 1 : 0;
-        bVal = window.TIERABLE && window.TIERABLE.has(b.key) ? 1 : 0;
-        break;
-      default:
-        aVal = a.name || '';
-        bVal = b.name || '';
-    }
-    
-    let result = 0;
-    if (typeof aVal === 'string' && typeof bVal === 'string') {
-      result = aVal.localeCompare(bVal);
-    } else {
-      result = aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
-    }
-    
-    return compendiumState.sortDirection === 'desc' ? -result : result;
+// Get trigger indicators for an item
+function getTriggerIndicators(item) {
+  if (!item.effects || item.effects.length === 0) {
+    return [];
+  }
+  
+  const triggerMap = {
+    battleStart: { name: 'Start', icon: '🎯', bg: '#0f3', color: '#000', class: 'battle-start' },
+    turnStart: { name: 'Turn', icon: '⏰', bg: '#fa0', color: '#000', class: 'turn-start' },
+    hit: { name: 'Hit', icon: '⚔️', bg: '#f33', color: '#fff', class: 'hit' },
+    wounded: { name: 'Wound', icon: '💔', bg: '#f0a', color: '#fff', class: 'wounded' },
+    exposed: { name: 'Expose', icon: '🛡️', bg: '#af5', color: '#000', class: 'exposed' },
+    passive: { name: 'Passive', icon: '⚡', bg: '#888', color: '#fff', class: 'passive' }
+  };
+  
+  const triggers = [...new Set(item.effects.map(e => e.trigger))];
+  return triggers.map(trigger => triggerMap[trigger] || {
+    name: trigger,
+    icon: '?',
+    bg: '#666',
+    color: '#fff',
+    class: 'unknown'
   });
 }
 
-// Update result count display
-function updateResultCount(count) {
-  if (resultCount) {
-    resultCount.textContent = `${count} items`;
+// Get stat color
+function getStatColor(stat) {
+  const colors = {
+    attack: '#f33',
+    armor: '#4a9eff',
+    health: '#26de81',
+    speed: '#ffd166'
+  };
+  return colors[stat] || '#fff';
+}
+
+// Toggle item selection
+function toggleItemSelection(itemKey) {
+  if (compendiumState.selectedItems.has(itemKey)) {
+    compendiumState.selectedItems.delete(itemKey);
+  } else {
+    compendiumState.selectedItems.add(itemKey);
   }
   
-  // Update legacy counter for backwards compatibility
-  if (countSpan) {
-    countSpan.textContent = `Shown: ${count}`;
+  updateCompendiumCounts();
+  
+  // Update the button visual state
+  const card = document.querySelector(`[data-key="${itemKey}"]`);
+  if (card) {
+    const btn = card.querySelector('.select-btn');
+    if (btn) {
+      const isSelected = compendiumState.selectedItems.has(itemKey);
+      btn.style.background = isSelected ? '#fa0' : 'transparent';
+      btn.style.color = isSelected ? '#000' : '#fa0';
+      btn.textContent = isSelected ? '✓' : '+';
+    }
+  }
+  
+  // Update compare view if it's active
+  if (compendiumState.currentView === 'compare') {
+    renderCompareView();
   }
 }
 
-// Update review count
-function updateReviewCount() {
-  if (!reviewCount) return;
-  
-  let totalIssues = 0;
-  if (DATA_ARR) {
-    DATA_ARR.forEach(item => {
-      totalIssues += getItemIssues(item).length;
-    });
-  }
-  
-  reviewCount.textContent = totalIssues;
-  reviewCount.parentElement.style.display = totalIssues > 0 ? 'flex' : 'none';
+// Show advanced detail modal/panel
+function showAdvancedDetail(item) {
+  // For now, use the existing detail modal
+  // This could be enhanced with the full entry page system
+  showDetail(item);
 }
 
-// Run QA analysis
-function runQAAnalysis() {
-  // This would perform comprehensive QA checks
-  compendiumState.qaResults.lint = [];
-  compendiumState.qaResults.drift = [];
+// Render table view
+function renderTableView() {
+  const tableBody = document.getElementById('tableBody');
+  if (!tableBody) return;
   
-  if (DATA_ARR) {
-    DATA_ARR.forEach(item => {
-      const issues = getItemIssues(item);
-      issues.forEach(issue => {
-        compendiumState.qaResults.lint.push({
-          item: item.key,
-          ...issue
-        });
-      });
-    });
+  tableBody.innerHTML = '';
+  
+  if (compendiumState.data.filteredItems.length === 0) {
+    const row = tableBody.insertRow();
+    const cell = row.insertCell();
+    cell.colSpan = 9;
+    cell.style.textAlign = 'center';
+    cell.style.padding = '40px';
+    cell.style.color = '#666';
+    cell.style.fontStyle = 'italic';
+    cell.textContent = 'No items found';
+    return;
   }
+  
+  compendiumState.data.filteredItems.forEach(item => {
+    const row = tableBody.insertRow();
+    row.style.borderBottom = '1px solid #333';
+    row.style.fontSize = '11px';
+    row.style.color = '#ccc';
+    
+    // Name
+    const nameCell = row.insertCell();
+    nameCell.style.padding = '8px';
+    nameCell.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <img src="${resolveIconCandidates(item)[0] || 'assets/placeholder.png'}" 
+             style="width: 20px; height: 20px; image-rendering: pixelated;" 
+             onerror="this.src='assets/placeholder.png'">
+        <span style="color: #fff; font-weight: 500;">${item.name}</span>
+      </div>
+    `;
+    
+    // Bucket
+    const bucketCell = row.insertCell();
+    bucketCell.style.padding = '8px';
+    bucketCell.textContent = item.bucket || '-';
+    
+    // Tags
+    const tagsCell = row.insertCell();
+    tagsCell.style.padding = '8px';
+    tagsCell.innerHTML = item.tags ? item.tags.map(tag => 
+      `<span style="background: rgba(255,255,255,0.1); padding: 1px 4px; border-radius: 8px; margin-right: 2px; font-size: 10px;">${tag}</span>`
+    ).join('') : '-';
+    
+    // Triggers
+    const triggersCell = row.insertCell();
+    triggersCell.style.padding = '8px';
+    triggersCell.style.textAlign = 'center';
+    const triggerIcons = getTriggerIndicators(item);
+    triggersCell.innerHTML = triggerIcons.map(t => t.icon).join(' ');
+    
+    // Stats
+    ['attack', 'armor', 'health', 'speed'].forEach(stat => {
+      const statCell = row.insertCell();
+      statCell.style.padding = '8px';
+      statCell.style.textAlign = 'center';
+      const value = item.stats?.[stat] || 0;
+      statCell.innerHTML = value > 0 ? 
+        `<span style="color: ${getStatColor(stat)}; font-weight: 600;">${value}</span>` : 
+        '<span style="color: #666;">0</span>';
+    });
+    
+    // Effect
+    const effectCell = row.insertCell();
+    effectCell.style.padding = '8px';
+    effectCell.style.maxWidth = '200px';
+    effectCell.style.overflow = 'hidden';
+    effectCell.style.textOverflow = 'ellipsis';
+    effectCell.style.whiteSpace = 'nowrap';
+    effectCell.textContent = item.effect || '-';
+    effectCell.title = item.effect || '';
+    
+    // Click handler
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', () => showAdvancedDetail(item));
+  });
+}
+
+// Render compare view
+function renderCompareView() {
+  const compareContent = document.getElementById('compareContent');
+  if (!compareContent) return;
+  
+  const selectedItemKeys = Array.from(compendiumState.selectedItems);
+  
+  if (selectedItemKeys.length === 0) {
+    compareContent.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666; font-style: italic;">
+        <h3 style="color: #f33; margin-bottom: 16px;">No items selected</h3>
+        <p>Select 2-3 items from the Cards view to compare them side-by-side</p>
+      </div>
+    `;
+    return;
+  }
+  
+  if (selectedItemKeys.length > 3) {
+    compareContent.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #fa0;">
+        <h3 style="margin-bottom: 16px;">Too many items selected</h3>
+        <p>Please select only 2-3 items for comparison</p>
+      </div>
+    `;
+    return;
+  }
+  
+  // Render comparison cards
+  compareContent.innerHTML = '';
+  
+  selectedItemKeys.forEach(itemKey => {
+    const item = compendiumState.data.allItems.find(i => i.key === itemKey);
+    if (!item) return;
+    
+    const compareCard = createCompareCard(item, selectedItemKeys);
+    compareContent.appendChild(compareCard);
+  });
+}
+
+// Create a comparison card
+function createCompareCard(item, allSelectedKeys) {
+  const card = document.createElement('div');
+  card.style.cssText = `
+    background: #111;
+    border: 2px solid #f33;
+    border-radius: 12px;
+    padding: 16px;
+    color: #fff;
+  `;
+  
+  const iconPath = resolveIconCandidates(item)[0] || 'assets/placeholder.png';
+  
+  card.innerHTML = `
+    <div style="text-align: center; margin-bottom: 16px;">
+      <img src="${iconPath}" style="width: 64px; height: 64px; image-rendering: pixelated; margin-bottom: 8px;" 
+           onerror="this.src='assets/placeholder.png'">
+      <h3 style="margin: 0; color: #f33;">${item.name}</h3>
+      <div style="color: #888; font-size: 11px; margin-top: 4px;">${item.key}</div>
+    </div>
+    
+    <div style="margin-bottom: 16px;">
+      <h4 style="color: #fa0; font-size: 12px; margin: 0 0 8px 0;">Stats</h4>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+        ${['attack', 'armor', 'health', 'speed'].map(stat => {
+          const value = item.stats?.[stat] || 0;
+          const icon = stat === 'health' ? 'health' : stat;
+          return `
+            <div style="display: flex; align-items: center; gap: 6px; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 4px;">
+              <img src="assets/${icon}.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
+              <span style="font-size: 12px; color: ${getStatColor(stat)}; font-weight: 600;">${value}</span>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+    
+    <div style="margin-bottom: 16px;">
+      <h4 style="color: #fa0; font-size: 12px; margin: 0 0 8px 0;">Effect</h4>
+      <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 6px; font-size: 11px; line-height: 1.4; color: #ccc;">
+        ${generatePlainEnglishEffect(item)}
+      </div>
+    </div>
+    
+    <div>
+      <h4 style="color: #fa0; font-size: 12px; margin: 0 0 8px 0;">Tags</h4>
+      <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+        ${(item.tags || []).map(tag => 
+          `<span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 8px; font-size: 10px;">${tag}</span>`
+        ).join('') || '<span style="color: #666; font-style: italic;">No tags</span>'}
+      </div>
+    </div>
+    
+    <button onclick="toggleItemSelection('${item.key}')" style="
+      margin-top: 16px; 
+      width: 100%; 
+      background: #f33; 
+      color: #000; 
+      border: none; 
+      border-radius: 6px; 
+      padding: 8px; 
+      cursor: pointer; 
+      font-size: 11px; 
+      font-weight: 600;
+    ">Remove from Compare</button>
+  `;
+  
+  return card;
+}
+
+// Update legacy functions to work with new system
+function renderGrid() {
+  renderCompendium();
 }
 
 // Utility functions
@@ -3744,262 +3890,203 @@ function debounce(func, wait) {
   };
 }
 
-function showNoDataMessage(message) {
-  console.log('showNoDataMessage called:', message);
-  getCompendiumElements();
-  
-  // Try multiple fallback strategies to show the message
-  const gridsToTry = [itemGrid, grid, $('#itemGrid'), $('#grid'), $('.item-grid'), $('.grid')];
-  let messageShown = false;
-  
-  for (let targetGrid of gridsToTry) {
-    if (targetGrid && targetGrid.innerHTML !== undefined) {
-      targetGrid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: #f33; padding: 40px; background: rgba(255,51,51,0.1); border: 1px solid #f33; border-radius: 8px;">${message}</div>`;
-      messageShown = true;
-      console.log('Message shown in element:', targetGrid.id || targetGrid.className || 'unnamed');
-      break;
-    }
-  }
-  
-  if (!messageShown) {
-    console.error('Could not find any grid element to show error message');
-    // Last resort - try to find any container in the compendium area
-    const compendiumMain = document.querySelector('.content-main, .compendium-main, #compendiumTab');
-    if (compendiumMain) {
-      const errorDiv = document.createElement('div');
-      errorDiv.style.cssText = 'text-align: center; color: #f33; padding: 40px; background: rgba(255,51,51,0.1); border: 1px solid #f33; border-radius: 8px; margin: 20px;';
-      errorDiv.textContent = message;
-      compendiumMain.appendChild(errorDiv);
-      console.log('Emergency message shown in compendium main');
-    }
-  }
-}
-
-// Emergency fallback renderer
-function renderBasicFallback(container, items) {
-  console.log('Running basic fallback renderer with', items.length, 'items');
-  
-  container.innerHTML = '';
-  
-  items.forEach(item => {
-    const card = document.createElement('div');
-    card.style.cssText = `
-      background: #000;
-      border: 2px solid #f33;
-      border-radius: 16px;
-      padding: 14px;
-      margin: 8px;
-      color: #fff;
-      cursor: pointer;
-    `;
-    
-    card.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-        <img src="${item.key}/icon.png" alt="${item.name}" 
-             style="width: 48px; height: 48px; image-rendering: pixelated;"
-             onerror="this.src='placeholder.png'">
-        <div>
-          <div style="font-weight: 700; font-size: 18px; color: #f33;">${item.name}</div>
-          <div style="font-size: 12px; color: #aaa;">${item.key}</div>
-        </div>
-      </div>
-      <div style="color: #ccc; font-size: 13px;">${item.effect || 'No description'}</div>
-    `;
-    
-    // Add drag functionality
-    card.draggable = true;
-    card.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text/plain', item.key);
-    });
-    
-    container.appendChild(card);
-  });
-  
-  console.log('Basic fallback rendering complete');
-}
-
-// Backwards compatibility - keep old renderGrid function name
-function renderGrid() {
-  try {
-    renderCompendium();
-  } catch (error) {
-    console.error('renderCompendium failed, using fallback:', error);
-    const anyGrid = document.querySelector('#itemGrid, .item-grid, #grid, .grid');
-    if (anyGrid && DATA_ARR && DATA_ARR.length > 0) {
-      renderBasicFallback(anyGrid, DATA_ARR);
-    }
-  }
-}
-
-// Additional helper functions for compendium
-
-function addItemToCompare(key) {
-  compendiumState.compareItems.add(key);
-  if (compendiumState.compareItems.size >= 2) {
-    // Switch to compare view
-    document.querySelectorAll('.view-mode').forEach(btn => btn.classList.remove('active'));
-    document.querySelector('[data-mode="compare"]')?.classList.add('active');
-    compendiumState.viewMode = 'compare';
-    renderCompendium();
-  }
-}
-
-function copyItemData(key) {
-  const item = RAW_DATA[key];
-  if (item) {
-    navigator.clipboard.writeText(JSON.stringify(item, null, 2)).then(() => {
-      console.log('Item data copied to clipboard');
-    }).catch(err => {
-      console.error('Failed to copy item data', err);
-    });
-  }
-}
-
-function renderTableView(items) {
-  if (!itemTable || !tableBody) return;
-  
-  // Show table view
-  document.querySelectorAll('.content-view').forEach(view => view.style.display = 'none');
-  document.getElementById('tableView').style.display = 'block';
-  
-  const sortedItems = sortItems(items);
-  
-  tableBody.innerHTML = '';
-  
-  sortedItems.forEach(item => {
-    const row = document.createElement('tr');
-    row.style.cursor = 'pointer';
-    row.addEventListener('click', () => showItemDetail(item));
-    
-    const triggers = new Set();
-    if (item.effects && Array.isArray(item.effects)) {
-      item.effects.forEach(effect => {
-        if (effect.trigger) triggers.add(effect.trigger);
-      });
-    }
-    
-    const statString = item.stats ? 
-      `ATK:${item.stats.attack || 0} ARM:${item.stats.armor || 0} HP:${item.stats.health || 0} SPD:${item.stats.speed || 0}` : 
-      'No stats';
-    
-    const issues = getItemIssues(item);
-    const issuesString = issues.length > 0 ? 
-      issues.map(issue => issue.type).join(', ') : 
-      'None';
-    
-    row.innerHTML = `
-      <td>${item.name || 'Unnamed'}</td>
-      <td>${item.bucket || 'Unknown'}</td>
-      <td>${(item.tags || []).join(', ') || 'None'}</td>
-      <td>${Array.from(triggers).join(', ') || 'None'}</td>
-      <td>${statString}</td>
-      <td>TODO: Status effects</td>
-      <td>${window.TIERABLE && window.TIERABLE.has(item.key) ? '✓' : ''}</td>
-      <td style="color: ${issues.length > 0 ? '#e74c3c' : '#27ae60'};">${issuesString}</td>
-    `;
-    
-    tableBody.appendChild(row);
-  });
-}
-
-function renderCompareView() {
-  if (!compareContainer) return;
-  
-  // Show compare view
-  document.querySelectorAll('.content-view').forEach(view => view.style.display = 'none');
-  document.getElementById('compareView').style.display = 'block';
-  
-  const selectedItems = Array.from(compendiumState.compareItems)
-    .map(key => RAW_DATA[key])
-    .filter(Boolean);
-  
-  compareContainer.innerHTML = '';
-  
-  if (selectedItems.length === 0) {
-    compareContainer.innerHTML = '<div style="text-align: center; color: #666; padding: 40px;">Select items from cards or table to compare</div>';
+// Export selected items as JSON
+function exportSelectedItems() {
+  if (compendiumState.selectedItems.size === 0) {
+    alert('No items selected for export. Please select some items first.');
     return;
   }
   
-  selectedItems.forEach(item => {
-    const compareCard = document.createElement('div');
-    compareCard.style.cssText = `
-      background: rgba(255,255,255,0.05);
-      border: 2px solid #f33;
-      border-radius: 12px;
-      padding: 20px;
-      position: relative;
-    `;
-    
-    compareCard.innerHTML = `
-      <button onclick="removeFromCompare('${item.key}')" style="
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #e74c3c;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        cursor: pointer;
-        font-size: 12px;
-      ">×</button>
-      
-      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-        <img src="${getItemIconPath(item)}" alt="${item.name}" 
-             style="width: 48px; height: 48px; image-rendering: pixelated;"
-             onerror="this.src='placeholder.png'">
-        <div>
-          <h3 style="margin: 0; color: #f33;">${item.name}</h3>
-          <div style="color: #aaa; font-size: 12px;">${item.key}</div>
-        </div>
-      </div>
-      
-      <div style="color: #ccc; margin-bottom: 16px; font-size: 13px;">
-        ${item.effect || 'No description'}
-      </div>
-      
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-        ${createStatPills(item.stats)}
-      </div>
-      
-      ${(item.tags && item.tags.length > 0) ? `
-        <div style="margin-top: 12px;">
-          <strong style="color: #fff;">Tags:</strong>
-          <div style="margin-top: 4px;">${item.tags.map(tag => `<span style="background: rgba(52,152,219,0.2); color: #3498db; padding: 2px 6px; border-radius: 8px; font-size: 11px; margin-right: 4px;">${tag}</span>`).join('')}</div>
-        </div>
-      ` : ''}
-    `;
-    
-    compareContainer.appendChild(compareCard);
-  });
+  const selectedItemKeys = Array.from(compendiumState.selectedItems);
+  const selectedData = selectedItemKeys.map(key => {
+    const item = compendiumState.data.allItems.find(i => i.key === key);
+    return item ? { 
+      key: item.key,
+      name: item.name,
+      bucket: item.bucket,
+      stats: item.stats,
+      effects: item.effects,
+      tags: item.tags,
+      tier: compendiumState.currentTier
+    } : null;
+  }).filter(Boolean);
+  
+  const exportData = {
+    exported_at: new Date().toISOString(),
+    tier: compendiumState.currentTier,
+    total_items: selectedData.length,
+    items: selectedData
+  };
+  
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `heic_export_${compendiumState.currentTier}_${selectedData.length}items_${new Date().toISOString().split('T')[0]}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  
+  console.log(`Exported ${selectedData.length} items`);
 }
 
-function removeFromCompare(key) {
-  compendiumState.compareItems.delete(key);
-  renderCompendium();
-}
-
-function switchToTab(tabName) {
-  // Switch to simulation tab
-  if (tabName === 'simulation') {
-    document.querySelectorAll('.tabBtn').forEach(btn => {
-      btn.classList.remove('active');
-      if (btn.textContent.toLowerCase().includes('simulation')) {
-        btn.classList.add('active');
+// Run QA validation checks
+function runQAValidation() {
+  const issues = [];
+  const allItems = compendiumState.data.allItems;
+  
+  // Check for missing or invalid data
+  allItems.forEach(item => {
+    const itemIssues = [];
+    
+    // Check for missing name
+    if (!item.name || item.name === 'Unknown' || item.name.toLowerCase().includes('placeholder')) {
+      itemIssues.push('Missing or placeholder name');
+    }
+    
+    // Check for missing effect description
+    if (!item.effect || item.effect === '' || item.effect === '-') {
+      itemIssues.push('Missing effect description');
+    }
+    
+    // Check for missing tags
+    if (!item.tags || item.tags.length === 0) {
+      itemIssues.push('No tags assigned');
+    }
+    
+    // Check for missing effects array
+    if (!item.effects || item.effects.length === 0) {
+      itemIssues.push('No effects defined');
+    }
+    
+    // Check for invalid stats
+    if (!item.stats || typeof item.stats !== 'object') {
+      itemIssues.push('Missing stats object');
+    } else {
+      const statsSum = (item.stats.attack || 0) + (item.stats.armor || 0) + (item.stats.health || 0) + (item.stats.speed || 0);
+      if (statsSum === 0) {
+        itemIssues.push('All stats are zero');
       }
-    });
+    }
     
-    document.querySelectorAll('section[id$="Tab"]').forEach(section => {
-      section.style.display = 'none';
-    });
+    // Check for duplicate keys (this is more of a data integrity check)
+    const duplicates = allItems.filter(otherItem => otherItem.key === item.key && otherItem !== item);
+    if (duplicates.length > 0) {
+      itemIssues.push('Duplicate key detected');
+    }
     
-    const simTab = document.getElementById('simulationTab');
-    if (simTab) {
-      simTab.style.display = 'flex';
+    if (itemIssues.length > 0) {
+      issues.push({
+        key: item.key,
+        name: item.name,
+        issues: itemIssues
+      });
+    }
+  });
+  
+  // Display results
+  const issueCount = issues.length;
+  const totalItems = allItems.length;
+  
+  if (issueCount === 0) {
+    alert(`✅ QA Validation Complete\n\nNo issues found in ${totalItems} items. All items pass quality checks.`);
+  } else {
+    const issueDetails = issues.slice(0, 10).map(item => 
+      `• ${item.name} (${item.key}): ${item.issues.join(', ')}`
+    ).join('\n');
+    
+    const truncateMessage = issues.length > 10 ? `\n... and ${issues.length - 10} more items with issues` : '';
+    
+    alert(`⚠️ QA Validation Results\n\nFound ${issueCount} items with issues out of ${totalItems} total items (${Math.round((1 - issueCount/totalItems) * 100)}% pass rate).\n\nTop issues:\n${issueDetails}${truncateMessage}\n\nUse "Needs Review" filter to focus on problematic items.`);
+  }
+  
+  // Update needs review filter to show items with issues if there are any
+  if (issueCount > 0) {
+    const needsReviewToggle = document.getElementById('needsReviewToggle');
+    if (needsReviewToggle && !needsReviewToggle.checked) {
+      needsReviewToggle.checked = true;
+      compendiumState.filters.needsReview = true;
+      renderCompendium();
+    }
+  }
+  
+  console.log(`QA Validation: ${issueCount} issues found in ${totalItems} items`);
+  return { issueCount, totalItems, issues };
+}
+
+// Generate effect description from effects array
+function generateEffectDescription(effects) {
+  if (!effects || effects.length === 0) return '';
+  
+  return effects.map(effect => {
+    const trigger = getTriggerName(effect.trigger);
+    const actions = effect.actions?.map(action => getActionDescription(action)).join(', ') || 'unknown effect';
+    return `${trigger}: ${actions}`;
+  }).join('. ');
+}
+
+// Resolve icon path candidates for an item
+function resolveIconCandidates(item) {
+  const iconCandidates = [];
+  if (item.key) iconCandidates.push(`${item.key}/icon.png`);
+  if (item.bucket && item.slug) iconCandidates.push(`${item.bucket}/${item.slug}/icon.png`);
+  if (item.slug) {
+    iconCandidates.push(`items/${item.slug}/icon.png`);
+    iconCandidates.push(`weapons/${item.slug}/icon.png`);
+  }
+  iconCandidates.push('assets/placeholder.png');
+  return iconCandidates;
+}
+
+// Initialize the advanced compendium after data loads
+function initializeCompendiumData() {
+  try {
+    console.log('initializeCompendiumData called');
+    
+    if (!Array.isArray(DATA_ARR)) {
+      console.error('DATA_ARR is not an array:', typeof DATA_ARR, DATA_ARR);
+      return;
+    }
+    
+    // Convert DATA_ARR to the new format
+    compendiumState.data.allItems = DATA_ARR.map(item => ({
+      ...item,
+      // Ensure all items have the required properties
+      name: item.name || item.slug || 'Unknown',
+      bucket: item.bucket || 'items',
+      tags: item.tags || [],
+      effects: item.effects || [],
+      stats: item.stats || { attack: 0, armor: 0, health: 0, speed: 0 }
+    }));
+    
+    compendiumState.data.filteredItems = [...compendiumState.data.allItems];
+    
+    console.log('Advanced compendium data:', compendiumState.data.allItems.length, 'items');
+    
+    initializeAdvancedCompendium();
+    renderCompendium();
+  } catch (error) {
+    console.error('Error initializing compendium data:', error);
+    // Show error in compendium
+    const compendiumGrid = document.getElementById('itemGrid');
+    if (compendiumGrid) {
+      compendiumGrid.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #f33;">
+          <h3>Failed to initialize compendium</h3>
+          <p style="color: #fa0; margin: 16px 0;">Error: ${error.message}</p>
+          <p style="color: #ccc;">Please refresh the page</p>
+        </div>
+      `;
     }
   }
 }
+
+// Filter listeners
+[searchIn, bucketSel, catSel].forEach(el => {
+  el.addEventListener('input', renderGrid);
+  el.addEventListener('change', renderGrid);
+});
 
 // Drag and drop helpers
 function setupDrop(zoneSel, sideKey, type) {
