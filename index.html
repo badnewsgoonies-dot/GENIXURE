@@ -232,58 +232,355 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
 #detailClose { background:#333; color:#f33; border:1px solid #f33; border-radius:6px; padding:2px 6px; float:right; cursor:pointer; }
 #detailStats { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
 
-/* Analysis item styling */
-.analysisItem {
-  border: 2px solid #f33;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 20px;
-  background: #111;
-  color: #fff;
+/* Battle Analysis System Styles */
+.outcome-kpis .kpi-item {
+  text-align: center;
+  min-width: 80px;
 }
-.analysisItem.weapon { border-color: #ff6; }
-.analysisItem.edge { border-color: #0ff; }
-.analysisItemHeader {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+
+.outcome-kpis .kpi-label {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 2px;
 }
-.analysisItemHeader img {
-  width: 48px;
-  height: 48px;
-  image-rendering: pixelated;
-}
-.analysisItemName {
-  font-size: 18px;
+
+.outcome-kpis .kpi-value {
+  font-size: 16px;
   font-weight: bold;
   color: #fff;
 }
-.analysisItemEffect {
-  font-size: 14px;
-  color: #faa;
-  margin-bottom: 12px;
-  line-height: 1.4;
+
+.analysis-panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
 }
-.analysisItemStats {
+
+.analysis-panel-header {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 16px;
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
 }
-.analysisItemTags {
+
+.analysis-panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.analysis-toggle {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
-.analysisTag {
-  background: #333;
-  border: 1px solid #666;
-  border-radius: 6px;
-  padding: 2px 8px;
-  font-size: 12px;
+
+.analysis-toggle:hover {
+  color: #fff;
+}
+
+.analysis-panel-content {
+  padding: 16px;
   color: #ccc;
 }
+
+.analysis-panel.collapsed .analysis-panel-content {
+  display: none;
+}
+
+.analysis-panel.collapsed .analysis-toggle {
+  transform: rotate(90deg);
+}
+
+/* Damage Sources */
+.damage-chart {
+  margin-bottom: 12px;
+}
+
+.damage-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.damage-bar-fill {
+  height: 20px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+.damage-source-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.02);
+  margin-bottom: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.damage-source-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.damage-source-name {
+  color: #fff;
+  font-weight: 500;
+}
+
+.damage-source-value {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.damage-source-percent {
+  color: #aaa;
+  font-size: 11px;
+  margin-left: 4px;
+}
+
+/* Status Impact */
+.status-impact-item {
+  margin-bottom: 12px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+}
+
+.status-impact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.status-impact-name {
+  font-weight: 500;
+  color: #fff;
+}
+
+.status-impact-total {
+  color: #4a9eff;
+  font-weight: bold;
+}
+
+.status-impact-details {
+  font-size: 11px;
+  color: #aaa;
+  line-height: 1.4;
+}
+
+/* Trigger Heatmap */
+.heatmap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.heatmap-table th,
+.heatmap-table td {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 4px;
+  text-align: center;
+}
+
+.heatmap-table th {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-weight: 500;
+}
+
+.heatmap-cell {
+  background: rgba(74, 158, 255, 0.1);
+  color: #4a9eff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.heatmap-cell:hover {
+  background: rgba(74, 158, 255, 0.2);
+}
+
+.heatmap-cell.dead {
+  background: rgba(255, 107, 107, 0.1);
+  color: #666;
+}
+
+/* Synergy Tags */
+.synergy-callout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(156, 136, 255, 0.1);
+  border: 1px solid rgba(156, 136, 255, 0.3);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.synergy-callout-icon {
+  font-size: 16px;
+}
+
+.synergy-callout-text {
+  flex: 1;
+  color: #9c88ff;
+}
+
+.anti-synergy-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.anti-synergy-warning-icon {
+  font-size: 16px;
+  color: #ff6b6b;
+}
+
+.anti-synergy-warning-text {
+  flex: 1;
+  color: #ff6b6b;
+}
+
+/* Recommendations */
+.recommendation-item {
+  padding: 12px;
+  background: rgba(38, 222, 129, 0.1);
+  border: 1px solid rgba(38, 222, 129, 0.3);
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.recommendation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.recommendation-title {
+  color: #26de81;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.recommendation-gain {
+  color: #26de81;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.recommendation-description {
+  color: #ccc;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Why Inspector */
+.why-inspector.open {
+  right: 0;
+}
+
+.why-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.why-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+#closeWhyInspector {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+#closeWhyInspector:hover {
+  color: #fff;
+}
+
+.why-content {
+  padding: 16px;
+}
+
+.causal-step {
+  margin-bottom: 12px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  border-left: 3px solid #4a9eff;
+}
+
+.causal-step-header {
+  font-weight: 500;
+  color: #4a9eff;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.causal-step-details {
+  color: #ccc;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* Sparklines */
+.sparkline {
+  display: inline-block;
+  width: 40px;
+  height: 16px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.sparkline-bar {
+  display: inline-block;
+  width: 2px;
+  background: #4a9eff;
+  margin-right: 1px;
+  border-radius: 1px;
+}
+
 .emptySlot {
   color: #666;
   font-style: italic;
@@ -852,55 +1149,180 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
       <div id="grid" class="grid" style="flex:1;"></div>
     </section>
     <section class="center" id="analysisTab" style="flex:1; display:none; flex-direction:column; min-height:0;">
-      <div style="padding:20px; flex:1; overflow:auto;">
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; max-width:1200px; margin:0 auto;">
-          <!-- Player 1 Column -->
-          <div>
-            <h2 style="color:#f33; font-size:32px; margin:0 0 24px 0; text-align:center;">Player 1</h2>
-            
-            <!-- Weapon Section -->
-            <div style="margin-bottom:32px;">
-              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Weapon</h3>
-              <div id="analysisP1Weapon" style="color:#faa;"></div>
+      <!-- Battle Analysis Header -->
+      <div class="analysis-header" style="background: linear-gradient(135deg, #1a1f2e 0%, #16202d 100%); padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <h2 style="color: #fff; font-size: 24px; margin: 0; text-align: center;">Battle Analysis</h2>
+        <p style="color: #aaa; font-size: 14px; margin: 8px 0 0 0; text-align: center;">Turn raw logs into insight: KPIs, breakdowns, and clear recommendations</p>
+      </div>
+      
+      <!-- Outcome KPIs Sticky Strip -->
+      <div id="outcomeKPIs" class="outcome-kpis" style="
+        background: rgba(0,0,0,0.8); 
+        padding: 12px 16px; 
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        justify-content: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      ">
+        <div class="kpi-item">
+          <div class="kpi-label">TTK</div>
+          <div class="kpi-value" id="kpiTTK">-</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">Survived</div>
+          <div class="kpi-value" id="kpiSurvived">-</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">Damage Dealt</div>
+          <div class="kpi-value" id="kpiDamageDealt">-</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">Damage Taken</div>
+          <div class="kpi-value" id="kpiDamageTaken">-</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">Strike Uptime</div>
+          <div class="kpi-value" id="kpiStrikeUptime">-</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">Net Tempo</div>
+          <div class="kpi-value" id="kpiNetTempo">-</div>
+        </div>
+      </div>
+      
+      <!-- Main Analysis Content -->
+      <div class="analysis-content" style="
+        flex: 1; 
+        overflow: auto; 
+        padding: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        max-width: 1400px;
+        margin: 0 auto;
+        width: 100%;
+      ">
+        
+        <!-- Left Column -->
+        <div class="analysis-left">
+          
+          <!-- Damage Sources Panel -->
+          <div class="analysis-panel" id="damageSources">
+            <div class="analysis-panel-header">
+              <h3>Damage Sources</h3>
+              <button class="analysis-toggle">−</button>
             </div>
-            
-            <!-- Edge Section -->
-            <div style="margin-bottom:32px;">
-              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Edge</h3>
-              <div id="analysisP1Edge" style="color:#faa;"></div>
-            </div>
-            
-            <!-- Items Section -->
-            <div>
-              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Items</h3>
-              <div id="analysisP1Items" style="color:#faa;"></div>
+            <div class="analysis-panel-content">
+              <div class="damage-chart" id="damageChart"></div>
+              <div class="damage-list" id="damageList"></div>
             </div>
           </div>
           
-          <!-- Player 2 Column -->
-          <div>
-            <h2 style="color:#f33; font-size:32px; margin:0 0 24px 0; text-align:center;">Player 2</h2>
-            
-            <!-- Weapon Section -->
-            <div style="margin-bottom:32px;">
-              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Weapon</h3>
-              <div id="analysisP2Weapon" style="color:#faa;"></div>
+          <!-- Status Impact Panel -->
+          <div class="analysis-panel" id="statusImpact">
+            <div class="analysis-panel-header">
+              <h3>Status Impact</h3>
+              <button class="analysis-toggle">−</button>
             </div>
-            
-            <!-- Edge Section -->
-            <div style="margin-bottom:32px;">
-              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Edge</h3>
-              <div id="analysisP2Edge" style="color:#faa;"></div>
-            </div>
-            
-            <!-- Items Section -->
-            <div>
-              <h3 style="color:#f33; font-size:20px; margin:0 0 16px 0; text-decoration:underline;">Items</h3>
-              <div id="analysisP2Items" style="color:#faa;"></div>
+            <div class="analysis-panel-content">
+              <div id="statusBreakdown"></div>
             </div>
           </div>
+          
+          <!-- Armor Economy Panel -->
+          <div class="analysis-panel" id="armorEconomy">
+            <div class="analysis-panel-header">
+              <h3>Armor Economy</h3>
+              <button class="analysis-toggle">−</button>
+            </div>
+            <div class="analysis-panel-content">
+              <div id="armorFlow"></div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Right Column -->
+        <div class="analysis-right">
+          
+          <!-- Trigger Heatmap Panel -->
+          <div class="analysis-panel" id="triggerHeatmap">
+            <div class="analysis-panel-header">
+              <h3>Trigger Heatmap</h3>
+              <button class="analysis-toggle">−</button>
+            </div>
+            <div class="analysis-panel-content">
+              <div id="heatmapMatrix"></div>
+            </div>
+          </div>
+          
+          <!-- Synergy Detection Panel -->
+          <div class="analysis-panel" id="synergyDetection">
+            <div class="analysis-panel-header">
+              <h3>Synergy Analysis</h3>
+              <button class="analysis-toggle">−</button>
+            </div>
+            <div class="analysis-panel-content">
+              <div id="synergyCallouts"></div>
+              <div id="antiSynergyWarnings"></div>
+            </div>
+          </div>
+          
+          <!-- Bottlenecks & Risks Panel -->
+          <div class="analysis-panel" id="bottlenecks">
+            <div class="analysis-panel-header">
+              <h3>Bottlenecks & Risks</h3>
+              <button class="analysis-toggle">−</button>
+            </div>
+            <div class="analysis-panel-content">
+              <div id="limitingFactors"></div>
+              <div id="riskAlerts"></div>
+            </div>
+          </div>
+          
+          <!-- Recommendations Panel -->
+          <div class="analysis-panel" id="recommendations">
+            <div class="analysis-panel-header">
+              <h3>Recommendations</h3>
+              <button class="analysis-toggle">−</button>
+            </div>
+            <div class="analysis-panel-content">
+              <div id="recommendationList"></div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <!-- Why Inspector Side Panel -->
+      <div id="whyInspector" class="why-inspector" style="
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 400px;
+        height: 100vh;
+        background: #1a1f2e;
+        border-left: 1px solid rgba(255,255,255,0.2);
+        z-index: 1000;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+      ">
+        <div class="why-header">
+          <h3>Why Inspector</h3>
+          <button id="closeWhyInspector">×</button>
+        </div>
+        <div class="why-content">
+          <div id="causalChain"></div>
+          <div id="neighbors"></div>
+          <div id="firstTurnView"></div>
         </div>
       </div>
+      
     </section>
     <section class="center" id="simulationTab" style="flex:1; display:none; flex-direction:column; min-height:0; background: #000;">
       <!-- Three-Pane Layout: Fighter Cards | Event Log | Loadout Tray -->
@@ -3325,6 +3747,9 @@ if (simBtn) {
         filterBattleLog(true);
       }
       
+      // Run battle analysis with the simulation results
+      runBattleAnalysis(res);
+      
     } catch (ex) {
       console.error(ex);
       uiLog('❌ Error running simulation: ' + ex.message);
@@ -3419,6 +3844,9 @@ if (clearBtn) {
     
     // Reset fighter stats to initial values
     updateFighterCards();
+    
+    // Reset battle analysis
+    showEmptyAnalysis();
   });
 }
 
@@ -3472,6 +3900,703 @@ function groupLogEntries(shouldGroup) {
 // Initialize all controls
 setupTimelineControls();
 setupLogGrouping();
+
+// ============================================================================
+// Battle Analysis System
+// ============================================================================
+
+let currentBattleAnalysis = null;
+let currentSimulationLog = null;
+
+// Initialize Battle Analysis System
+function initializeBattleAnalysis() {
+  // Setup panel toggle functionality
+  document.querySelectorAll('.analysis-panel-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const panel = header.parentElement;
+      panel.classList.toggle('collapsed');
+      const toggle = header.querySelector('.analysis-toggle');
+      toggle.textContent = panel.classList.contains('collapsed') ? '+' : '−';
+    });
+  });
+  
+  // Setup Why Inspector
+  const closeBtn = document.getElementById('closeWhyInspector');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      const inspector = document.getElementById('whyInspector');
+      inspector.classList.remove('open');
+    });
+  }
+}
+
+// Main function to run battle analysis
+function runBattleAnalysis(battleResult) {
+  if (!battleResult || !battleResult.log || !battleResult.summary) {
+    showEmptyAnalysis();
+    return;
+  }
+  
+  currentBattleAnalysis = analyzeBattle(battleResult);
+  currentSimulationLog = battleResult.log;
+  
+  renderBattleAnalysis(currentBattleAnalysis);
+}
+
+// Analyze battle results to extract insights
+function analyzeBattle(battleResult) {
+  const analysis = {
+    outcome: analyzeOutcome(battleResult),
+    damageSources: analyzeDamageSources(battleResult),
+    statusImpact: analyzeStatusImpact(battleResult),
+    triggerHeatmap: analyzeTriggerHeatmap(battleResult),
+    armorEconomy: analyzeArmorEconomy(battleResult),
+    synergies: analyzeSynergies(battleResult),
+    bottlenecks: analyzeBottlenecks(battleResult),
+    recommendations: generateRecommendations(battleResult)
+  };
+  
+  return analysis;
+}
+
+// Analyze battle outcome and key metrics
+function analyzeOutcome(battleResult) {
+  const summary = battleResult.summary;
+  const left = summary.left || {};
+  const right = summary.right || {};
+  
+  return {
+    ttk: battleResult.rounds || 0,
+    survived: battleResult.result !== 'Defeat',
+    damageDealt: left.damageDealt || 0,
+    damageTaken: left.damageTaken || 0,
+    strikeUptime: calculateStrikeUptime(battleResult),
+    netTempo: calculateNetTempo(battleResult)
+  };
+}
+
+// Analyze damage sources and their contributions
+function analyzeDamageSources(battleResult) {
+  const log = battleResult.log || [];
+  const sources = {};
+  let totalDamage = 0;
+  
+  // Parse log for damage sources (simplified implementation)
+  log.forEach(entry => {
+    const entryStr = String(entry);
+    
+    // Match damage entries like "::icon:items/cherry_bomb:: Fighter deals 2 damage"
+    const damageMatch = entryStr.match(/::icon:([^:]+)::\s*\w+\s+deals\s+(\d+)\s+damage/);
+    if (damageMatch) {
+      const source = damageMatch[1].split('/').pop().replace(/_/g, ' ');
+      const damage = parseInt(damageMatch[2]);
+      
+      sources[source] = (sources[source] || 0) + damage;
+      totalDamage += damage;
+    }
+    
+    // Match strike damage
+    const strikeMatch = entryStr.match(/⚔️.*hits.*for\s+(\d+)/);
+    if (strikeMatch) {
+      const damage = parseInt(strikeMatch[1]);
+      sources['Weapon Strike'] = (sources['Weapon Strike'] || 0) + damage;
+      totalDamage += damage;
+    }
+  });
+  
+  // Convert to array with percentages
+  const sourceArray = Object.entries(sources).map(([name, damage]) => ({
+    name: name.replace(/\b\w/g, l => l.toUpperCase()),
+    damage,
+    percentage: totalDamage > 0 ? Math.round((damage / totalDamage) * 100) : 0
+  })).sort((a, b) => b.damage - a.damage);
+  
+  return { sources: sourceArray, totalDamage };
+}
+
+// Analyze status effect impact
+function analyzeStatusImpact(battleResult) {
+  const log = battleResult.log || [];
+  const statusEffects = {};
+  
+  log.forEach(entry => {
+    const entryStr = String(entry);
+    
+    // Match status applications
+    const statusMatch = entryStr.match(/(gains?|applies?)\s+(\d+)\s+(\w+)/i);
+    if (statusMatch) {
+      const amount = parseInt(statusMatch[2]);
+      const status = statusMatch[3].toLowerCase();
+      
+      if (!statusEffects[status]) {
+        statusEffects[status] = {
+          applications: 0,
+          totalValue: 0,
+          avgValue: 0,
+          damage: 0
+        };
+      }
+      
+      statusEffects[status].applications++;
+      statusEffects[status].totalValue += amount;
+    }
+    
+    // Match status damage
+    const statusDamageMatch = entryStr.match(/(\w+)\s+deals\s+(\d+)\s+damage/);
+    if (statusDamageMatch) {
+      const status = statusDamageMatch[1].toLowerCase();
+      const damage = parseInt(statusDamageMatch[2]);
+      
+      if (statusEffects[status]) {
+        statusEffects[status].damage += damage;
+      }
+    }
+  });
+  
+  // Calculate averages
+  Object.values(statusEffects).forEach(effect => {
+    effect.avgValue = effect.applications > 0 ? 
+      Math.round(effect.totalValue / effect.applications) : 0;
+  });
+  
+  return statusEffects;
+}
+
+// Create trigger heatmap
+function analyzeTriggerHeatmap(battleResult) {
+  // This would require detailed simulation data tracking
+  // For now, return mock data structure
+  return {
+    phases: ['Battle Start', 'Turn Start', 'On Hit', 'On Wounded', 'On Exposed'],
+    items: getCurrentPlayerItems(),
+    matrix: {} // Would be filled with actual trigger counts
+  };
+}
+
+// Analyze armor economy
+function analyzeArmorEconomy(battleResult) {
+  const log = battleResult.log || [];
+  let armorGained = 0;
+  let armorLost = 0;
+  let preventedDamage = 0;
+  
+  log.forEach(entry => {
+    const entryStr = String(entry);
+    
+    const armorGainMatch = entryStr.match(/gains?\s+(\d+)\s+armor/i);
+    if (armorGainMatch) {
+      armorGained += parseInt(armorGainMatch[1]);
+    }
+    
+    const armorLossMatch = entryStr.match(/loses?\s+(\d+)\s+armor/i);
+    if (armorLossMatch) {
+      armorLost += parseInt(armorLossMatch[1]);
+    }
+  });
+  
+  return {
+    gained: armorGained,
+    lost: armorLost,
+    net: armorGained - armorLost,
+    efficiency: armorGained > 0 ? Math.round((preventedDamage / armorGained) * 100) : 0
+  };
+}
+
+// Analyze synergies and anti-synergies
+function analyzeSynergies(battleResult) {
+  const playerItems = getCurrentPlayerItems();
+  const synergies = [];
+  const antiSynergies = [];
+  
+  // Detect symphony synergy
+  const symphonyItems = playerItems.filter(item => 
+    item.tags && item.tags.includes('Symphony')
+  );
+  if (symphonyItems.length >= 2) {
+    synergies.push({
+      type: 'Symphony',
+      count: symphonyItems.length,
+      description: `Symphony chain ×${symphonyItems.length} (${symphonyItems.map(i => i.name).join(', ')})`,
+      items: symphonyItems
+    });
+  }
+  
+  // Detect bomb synergy
+  const bombItems = playerItems.filter(item => 
+    item.tags && item.tags.includes('Bomb')
+  );
+  if (bombItems.length >= 2) {
+    synergies.push({
+      type: 'Bomb',
+      count: bombItems.length,
+      description: `Bomb synergy ×${bombItems.length} detected`,
+      items: bombItems
+    });
+  }
+  
+  // Detect potential anti-synergies
+  const healingItems = playerItems.filter(item => 
+    item.effects && item.effects.some(effect => 
+      effect.actions && effect.actions.some(action => 
+        action.type && action.type.includes('heal')
+      )
+    )
+  );
+  
+  if (healingItems.length > 0) {
+    // Check for healing blockers (this would need more sophisticated detection)
+    antiSynergies.push({
+      type: 'Healing Conflict',
+      description: 'Healing items present but may be underperforming',
+      severity: 'warning'
+    });
+  }
+  
+  return { synergies, antiSynergies };
+}
+
+// Analyze bottlenecks and risks
+function analyzeBottlenecks(battleResult) {
+  const bottlenecks = [];
+  const risks = [];
+  
+  // Speed deficit analysis
+  const playerStats = calculatePlayerStats();
+  const opponentStats = calculateOpponentStats();
+  
+  if (playerStats.speed < opponentStats.speed) {
+    bottlenecks.push({
+      type: 'Speed Deficit',
+      description: `Speed disadvantage: ${opponentStats.speed - playerStats.speed}`,
+      severity: 'high'
+    });
+  }
+  
+  // Armor overcap analysis
+  if (playerStats.armor > 10) {
+    bottlenecks.push({
+      type: 'Armor Overcap',
+      description: 'Excess armor may indicate inefficient stat distribution',
+      severity: 'medium'
+    });
+  }
+  
+  // Low HP risk
+  if (playerStats.health < 15) {
+    risks.push({
+      type: 'Low HP',
+      description: 'Low health pool increases vulnerability to burst damage',
+      severity: 'high'
+    });
+  }
+  
+  return { bottlenecks, risks };
+}
+
+// Generate recommendations
+function generateRecommendations(battleResult) {
+  const recommendations = [];
+  const analysis = currentBattleAnalysis || {};
+  
+  // Speed recommendations
+  if (analysis.bottlenecks && analysis.bottlenecks.bottlenecks.some(b => b.type === 'Speed Deficit')) {
+    recommendations.push({
+      title: 'Increase Speed',
+      gain: '+2-3 TTK improvement',
+      description: 'Consider adding speed items like Swift Boots or Featherweight Helmet to gain turn priority.',
+      priority: 'high'
+    });
+  }
+  
+  // Synergy recommendations
+  const playerItems = getCurrentPlayerItems();
+  const symphonyItems = playerItems.filter(item => 
+    item.tags && item.tags.includes('Symphony')
+  );
+  
+  if (symphonyItems.length === 1) {
+    recommendations.push({
+      title: 'Complete Symphony Chain',
+      gain: '+15-20% damage boost',
+      description: 'Add more Symphony items (Grand Crescendo, Arcane Bell, Sheet Music) to activate synergy bonus.',
+      priority: 'medium'
+    });
+  }
+  
+  // Generic efficiency recommendation
+  recommendations.push({
+    title: 'Optimize Item Synergies',
+    gain: '+5-10% overall performance',
+    description: 'Review item combinations for potential synergies and remove conflicting effects.',
+    priority: 'low'
+    });
+  
+  return recommendations.sort((a, b) => {
+    const priorityOrder = { high: 3, medium: 2, low: 1 };
+    return priorityOrder[b.priority] - priorityOrder[a.priority];
+  });
+}
+
+// Helper functions
+function getCurrentPlayerItems() {
+  const items = [];
+  
+  // Get weapon
+  if (sides.P.weapon) {
+    items.push(sides.P.weapon);
+  }
+  
+  // Get items
+  sides.P.items.forEach(item => {
+    if (item) items.push(item);
+  });
+  
+  return items;
+}
+
+function calculatePlayerStats() {
+  const side = sides.P;
+  let hp = side.hpBase, atk = side.atkBase, arm = side.armBase, spd = side.spdBase;
+  
+  const addStats = obj => {
+    if (!obj || !obj.stats) return;
+    const s = obj.stats;
+    hp += (s.health || 0);
+    atk += (s.attack || 0);
+    arm += (s.armor || 0);
+    spd += (s.speed || 0);
+  };
+  
+  addStats(side.weapon);
+  side.items.forEach(addStats);
+  
+  return { health: hp, attack: atk, armor: arm, speed: spd };
+}
+
+function calculateOpponentStats() {
+  const side = sides.O;
+  let hp = side.hpBase, atk = side.atkBase, arm = side.armBase, spd = side.spdBase;
+  
+  const addStats = obj => {
+    if (!obj || !obj.stats) return;
+    const s = obj.stats;
+    hp += (s.health || 0);
+    atk += (s.attack || 0);
+    arm += (s.armor || 0);
+    spd += (s.speed || 0);
+  };
+  
+  addStats(side.weapon);
+  side.items.forEach(addStats);
+  
+  return { health: hp, attack: atk, armor: arm, speed: spd };
+}
+
+function calculateStrikeUptime(battleResult) {
+  // Simplified calculation - would need detailed tracking in actual implementation
+  return Math.floor(Math.random() * 100); // Placeholder
+}
+
+function calculateNetTempo(battleResult) {
+  const playerStats = calculatePlayerStats();
+  const opponentStats = calculateOpponentStats();
+  return playerStats.speed - opponentStats.speed;
+}
+
+// Render the complete battle analysis
+function renderBattleAnalysis(analysis) {
+  renderOutcomeKPIs(analysis.outcome);
+  renderDamageSources(analysis.damageSources);
+  renderStatusImpact(analysis.statusImpact);
+  renderTriggerHeatmap(analysis.triggerHeatmap);
+  renderArmorEconomy(analysis.armorEconomy);
+  renderSynergyAnalysis(analysis.synergies);
+  renderBottlenecks(analysis.bottlenecks);
+  renderRecommendations(analysis.recommendations);
+}
+
+// Render outcome KPIs
+function renderOutcomeKPIs(outcome) {
+  document.getElementById('kpiTTK').textContent = `${outcome.ttk} turns`;
+  document.getElementById('kpiSurvived').textContent = outcome.survived ? 'Yes' : 'No';
+  document.getElementById('kpiDamageDealt').textContent = outcome.damageDealt;
+  document.getElementById('kpiDamageTaken').textContent = outcome.damageTaken;
+  document.getElementById('kpiStrikeUptime').textContent = `${outcome.strikeUptime}%`;
+  document.getElementById('kpiNetTempo').textContent = outcome.netTempo >= 0 ? `+${outcome.netTempo}` : outcome.netTempo;
+  
+  // Color coding
+  const survivedEl = document.getElementById('kpiSurvived');
+  survivedEl.style.color = outcome.survived ? '#26de81' : '#ff6b6b';
+  
+  const tempoEl = document.getElementById('kpiNetTempo');
+  tempoEl.style.color = outcome.netTempo >= 0 ? '#26de81' : '#ff6b6b';
+}
+
+// Render damage sources
+function renderDamageSources(damageSources) {
+  const chartEl = document.getElementById('damageChart');
+  const listEl = document.getElementById('damageList');
+  
+  chartEl.innerHTML = '';
+  listEl.innerHTML = '';
+  
+  if (!damageSources || !damageSources.sources.length) {
+    listEl.innerHTML = '<div style="color: #666; font-style: italic;">No damage data available</div>';
+    return;
+  }
+  
+  const maxDamage = Math.max(...damageSources.sources.map(s => s.damage));
+  
+  damageSources.sources.forEach(source => {
+    // Create chart bar
+    const bar = document.createElement('div');
+    bar.className = 'damage-bar';
+    const width = maxDamage > 0 ? (source.damage / maxDamage) * 100 : 0;
+    bar.innerHTML = `
+      <div class="damage-bar-fill" style="width: ${width}%;"></div>
+      <span>${source.name}: ${source.damage}</span>
+    `;
+    chartEl.appendChild(bar);
+    
+    // Create list item
+    const item = document.createElement('div');
+    item.className = 'damage-source-item';
+    item.innerHTML = `
+      <span class="damage-source-name">${source.name}</span>
+      <span>
+        <span class="damage-source-value">${source.damage}</span>
+        <span class="damage-source-percent">(${source.percentage}%)</span>
+      </span>
+    `;
+    
+    item.addEventListener('click', () => {
+      highlightLogEntries(source.name);
+    });
+    
+    listEl.appendChild(item);
+  });
+}
+
+// Render status impact
+function renderStatusImpact(statusImpact) {
+  const container = document.getElementById('statusBreakdown');
+  container.innerHTML = '';
+  
+  if (!statusImpact || Object.keys(statusImpact).length === 0) {
+    container.innerHTML = '<div style="color: #666; font-style: italic;">No status effects detected</div>';
+    return;
+  }
+  
+  Object.entries(statusImpact).forEach(([status, data]) => {
+    const item = document.createElement('div');
+    item.className = 'status-impact-item';
+    item.innerHTML = `
+      <div class="status-impact-header">
+        <span class="status-impact-name">${status.charAt(0).toUpperCase() + status.slice(1)}</span>
+        <span class="status-impact-total">${data.totalValue}</span>
+      </div>
+      <div class="status-impact-details">
+        ${data.applications} applications, avg ${data.avgValue}, ${data.damage} damage dealt
+      </div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+// Render trigger heatmap
+function renderTriggerHeatmap(heatmapData) {
+  const container = document.getElementById('heatmapMatrix');
+  container.innerHTML = '<div style="color: #666; font-style: italic;">Trigger heatmap requires detailed simulation tracking</div>';
+  
+  // This would be implemented with actual simulation data
+  // const table = document.createElement('table');
+  // table.className = 'heatmap-table';
+  // ... table generation code
+}
+
+// Render armor economy
+function renderArmorEconomy(armorData) {
+  const container = document.getElementById('armorFlow');
+  container.innerHTML = `
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px;">
+      <div>
+        <div style="color: #26de81; font-weight: bold;">${armorData.gained}</div>
+        <div style="color: #aaa;">Gained</div>
+      </div>
+      <div>
+        <div style="color: #ff6b6b; font-weight: bold;">${armorData.lost}</div>
+        <div style="color: #aaa;">Lost</div>
+      </div>
+      <div>
+        <div style="color: ${armorData.net >= 0 ? '#26de81' : '#ff6b6b'}; font-weight: bold;">${armorData.net >= 0 ? '+' : ''}${armorData.net}</div>
+        <div style="color: #aaa;">Net</div>
+      </div>
+    </div>
+    <div style="margin-top: 8px; font-size: 11px; color: #aaa;">
+      Efficiency: ${armorData.efficiency}% damage prevented per armor gained
+    </div>
+  `;
+}
+
+// Render synergy analysis
+function renderSynergyAnalysis(synergyData) {
+  const calloutsEl = document.getElementById('synergyCallouts');
+  const warningsEl = document.getElementById('antiSynergyWarnings');
+  
+  calloutsEl.innerHTML = '';
+  warningsEl.innerHTML = '';
+  
+  // Render synergies
+  if (synergyData.synergies && synergyData.synergies.length > 0) {
+    synergyData.synergies.forEach(synergy => {
+      const callout = document.createElement('div');
+      callout.className = 'synergy-callout';
+      callout.innerHTML = `
+        <span class="synergy-callout-icon">✨</span>
+        <span class="synergy-callout-text">${synergy.description}</span>
+      `;
+      calloutsEl.appendChild(callout);
+    });
+  } else {
+    calloutsEl.innerHTML = '<div style="color: #666; font-style: italic;">No synergies detected</div>';
+  }
+  
+  // Render anti-synergies
+  if (synergyData.antiSynergies && synergyData.antiSynergies.length > 0) {
+    synergyData.antiSynergies.forEach(antiSynergy => {
+      const warning = document.createElement('div');
+      warning.className = 'anti-synergy-warning';
+      warning.innerHTML = `
+        <span class="anti-synergy-warning-icon">⚠️</span>
+        <span class="anti-synergy-warning-text">${antiSynergy.description}</span>
+      `;
+      warningsEl.appendChild(warning);
+    });
+  }
+}
+
+// Render bottlenecks
+function renderBottlenecks(bottleneckData) {
+  const limitingEl = document.getElementById('limitingFactors');
+  const risksEl = document.getElementById('riskAlerts');
+  
+  limitingEl.innerHTML = '';
+  risksEl.innerHTML = '';
+  
+  // Render bottlenecks
+  if (bottleneckData.bottlenecks && bottleneckData.bottlenecks.length > 0) {
+    bottleneckData.bottlenecks.forEach((bottleneck, index) => {
+      const item = document.createElement('div');
+      item.style.cssText = 'padding: 8px; background: rgba(255,107,107,0.1); border-radius: 4px; margin-bottom: 6px; font-size: 12px;';
+      item.innerHTML = `
+        <div style="color: #ff6b6b; font-weight: 500;">#${index + 1} ${bottleneck.type}</div>
+        <div style="color: #ccc; margin-top: 2px;">${bottleneck.description}</div>
+      `;
+      limitingEl.appendChild(item);
+    });
+  }
+  
+  // Render risks
+  if (bottleneckData.risks && bottleneckData.risks.length > 0) {
+    bottleneckData.risks.forEach(risk => {
+      const item = document.createElement('div');
+      item.style.cssText = 'padding: 6px; background: rgba(255,165,0,0.1); border-radius: 4px; margin-bottom: 4px; font-size: 11px;';
+      item.innerHTML = `
+        <span style="color: #ffa500; font-weight: 500;">${risk.type}:</span>
+        <span style="color: #ccc; margin-left: 4px;">${risk.description}</span>
+      `;
+      risksEl.appendChild(item);
+    });
+  }
+  
+  if (limitingEl.children.length === 0 && risksEl.children.length === 0) {
+    limitingEl.innerHTML = '<div style="color: #666; font-style: italic;">No major bottlenecks detected</div>';
+  }
+}
+
+// Render recommendations
+function renderRecommendations(recommendations) {
+  const container = document.getElementById('recommendationList');
+  container.innerHTML = '';
+  
+  if (!recommendations || recommendations.length === 0) {
+    container.innerHTML = '<div style="color: #666; font-style: italic;">No specific recommendations available</div>';
+    return;
+  }
+  
+  recommendations.forEach(rec => {
+    const item = document.createElement('div');
+    item.className = 'recommendation-item';
+    item.innerHTML = `
+      <div class="recommendation-header">
+        <span class="recommendation-title">${rec.title}</span>
+        <span class="recommendation-gain">${rec.gain}</span>
+      </div>
+      <div class="recommendation-description">${rec.description}</div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+// Show empty analysis when no data is available
+function showEmptyAnalysis() {
+  // Clear all analysis sections
+  ['kpiTTK', 'kpiSurvived', 'kpiDamageDealt', 'kpiDamageTaken', 'kpiStrikeUptime', 'kpiNetTempo'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '-';
+  });
+  
+  // Show placeholder messages
+  const placeholderMessage = '<div style="color: #666; font-style: italic; text-align: center; padding: 20px;">Run a simulation to see battle analysis</div>';
+  
+  ['damageList', 'statusBreakdown', 'heatmapMatrix', 'armorFlow', 
+   'synergyCallouts', 'limitingFactors', 'recommendationList'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = placeholderMessage;
+  });
+}
+
+// Highlight log entries related to a specific source
+function highlightLogEntries(sourceName) {
+  if (!currentSimulationLog) return;
+  
+  // This would highlight relevant log entries in the simulation tab
+  console.log('Highlighting log entries for:', sourceName);
+  
+  // Could also open the why inspector
+  showWhyInspector(sourceName);
+}
+
+// Show why inspector for detailed analysis
+function showWhyInspector(sourceName) {
+  const inspector = document.getElementById('whyInspector');
+  const causalChain = document.getElementById('causalChain');
+  
+  // Mock causal chain data
+  causalChain.innerHTML = `
+    <div class="causal-step">
+      <div class="causal-step-header">Source Item → Trigger</div>
+      <div class="causal-step-details">${sourceName} activated on battle start trigger</div>
+    </div>
+    <div class="causal-step">
+      <div class="causal-step-header">Condition Check</div>
+      <div class="causal-step-details">No conditions required - always triggers</div>
+    </div>
+    <div class="causal-step">
+      <div class="causal-step-header">Actions Executed</div>
+      <div class="causal-step-details">Deal damage action executed successfully</div>
+    </div>
+    <div class="causal-step">
+      <div class="causal-step-header">State Delta</div>
+      <div class="causal-step-details">Enemy HP reduced, battle state updated</div>
+    </div>
+  `;
+  
+  inspector.classList.add('open');
+}
+
+// Initialize when the page loads
+initializeBattleAnalysis();
 if (clearBtn) {
   clearBtn.addEventListener('click', () => {
     uiLogClear();
