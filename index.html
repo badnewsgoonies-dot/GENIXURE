@@ -597,7 +597,8 @@ async function loadData() {
       const res = await fetch('details.json', { cache: 'no-store' });
       if (res.ok) {
         const fromJson = await res.json();
-        RAW_DATA = Object.assign({}, fromJson, RAW_DATA);
+        // Prioritize JSON data, but keep JS data as a fallback.
+        RAW_DATA = Object.assign({}, RAW_DATA, fromJson); 
       }
     } catch(_fetchErr) {
       // ignore fetch failure (e.g., file://), rely on details.js
