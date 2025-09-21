@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Weapon Debug Test</title>
+</head>
+<body>
+<h1>Weapon Debug Test</h1>
+<div id="debug"></div>
+
+<script>
+// Load details.json and check weapons
+fetch('details.json')
+  .then(res => res.json())
+  .then(data => {
+    const debugDiv = document.getElementById('debug');
+    
+    // Convert to array like the main app does
+    const dataArr = Object.entries(data).map(([key,val]) => { val.key = key; return val; });
+    
+    console.log('Total entries:', dataArr.length);
+    
+    // Filter for weapons
+    const weapons = dataArr.filter(e => e.bucket === 'weapons');
+    
+    console.log('Found weapons:', weapons.length);
+    debugDiv.innerHTML += `<p>Total entries: ${dataArr.length}</p>`;
+    debugDiv.innerHTML += `<p>Found weapons: ${weapons.length}</p>`;
+    
+    weapons.forEach(weapon => {
+      debugDiv.innerHTML += `
+        <div style="border:1px solid #ccc; margin:10px; padding:10px;">
+          <h3>${weapon.name} (${weapon.key})</h3>
+          <p>Bucket: ${weapon.bucket}</p>
+          <p>Slug: ${weapon.slug}</p>
+          <p>Effect: ${weapon.effect || 'No effect'}</p>
+          <p>Stats: ${JSON.stringify(weapon.stats)}</p>
+        </div>
+      `;
+    });
+  })
+  .catch(err => {
+    document.getElementById('debug').innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
+  });
+</script>
+</body>
+</html>

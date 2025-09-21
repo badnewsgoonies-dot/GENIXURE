@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Main App Debug</title>
+<style>body{font-family:Arial;padding:20px;}</style>
+</head>
+<body>
+<h1>Main App Debugging</h1>
+<div id="debug"></div>
+
+<script>
+// Load details.json and simulate the main app's logic
+fetch('details.json')
+  .then(res => res.json())
+  .then(RAW_DATA => {
+    const debugDiv = document.getElementById('debug');
+    
+    // Simulate the main app's data processing
+    const DATA_ARR = Object.entries(RAW_DATA).map(([key,val]) => { val.key = key; return val; });
+    
+    console.log('DATA_ARR length:', DATA_ARR.length);
+    debugDiv.innerHTML += `<p>DATA_ARR length: ${DATA_ARR.length}</p>`;
+    
+    // Test the filtering logic from renderGrid
+    function testFilter(bucketVal = 'weapons') {
+      let shown = 0;
+      const results = [];
+      
+      DATA_ARR.forEach(entry => {
+        if (bucketVal !== 'All' && entry.bucket !== bucketVal) return;
+        shown++;
+        results.push(entry);
+      });
+      
+      return { shown, results };
+    }
+    
+    // Test filtering for weapons
+    const weaponTest = testFilter('weapons');
+    console.log('Weapon filter test:', weaponTest);
+    debugDiv.innerHTML += `<h2>Weapons Filter Test</h2>`;
+    debugDiv.innerHTML += `<p>Found: ${weaponTest.shown} weapons</p>`;
+    
+    weaponTest.results.forEach(weapon => {
+      debugDiv.innerHTML += `
+        <div style="border:1px solid #f33; margin:5px; padding:8px; background:#111; color:#f33;">
+          <strong>${weapon.name}</strong> (${weapon.key})<br>
+          Bucket: ${weapon.bucket}<br>
+          Effect: ${weapon.effect || 'No effect'}
+        </div>
+      `;
+    });
+    
+    // Test filtering for items to compare
+    const itemTest = testFilter('items');
+    debugDiv.innerHTML += `<h2>Items Filter Test</h2>`;
+    debugDiv.innerHTML += `<p>Found: ${itemTest.shown} items</p>`;
+  })
+  .catch(err => {
+    document.getElementById('debug').innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
+    console.error('Fetch error:', err);
+  });
+</script>
+</body>
+</html>

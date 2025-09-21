@@ -908,6 +908,10 @@ function renderGrid() {
 
   grid.innerHTML = '';
   DATA_ARR.forEach(entry => {
+    // Debug: Check if we're filtering for weapons
+    if (bucketVal === 'weapons') {
+      console.log(`Checking ${entry.name}: bucket="${entry.bucket}", bucketVal="${bucketVal}", match:`, entry.bucket === bucketVal);
+    }
 
     if (bucketVal !== 'All' && entry.bucket !== bucketVal) return;
 
@@ -1109,11 +1113,15 @@ function renderGrid() {
     grid.appendChild(card);
 
   });
+  console.log('renderGrid finished, shown:', shown, 'bucketVal:', bucketVal);
   countSpan.textContent = `Shown: ${shown}`;
 }
 
 // Filter listeners
-[searchIn, bucketSel, catSel].forEach(el => el.addEventListener('input', renderGrid));
+[searchIn, bucketSel, catSel].forEach(el => el.addEventListener('input', () => {
+  console.log('Filter changed, DATA_ARR length:', DATA_ARR?.length);
+  renderGrid();
+}));
 
 // Drag and drop helpers
 function setupDrop(zoneSel, sideKey, type) {
