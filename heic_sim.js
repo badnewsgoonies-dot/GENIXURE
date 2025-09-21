@@ -372,95 +372,6 @@
       }
     },
     heal: ({ self, value }) => self.heal(value),
-    heal_from_speed: ({ self, other, log, value }) => {
-      const healAmount = self.speed || 0;
-      if (healAmount > 0) {
-        self.hp = Math.min(self.maxHp || self.hp + healAmount, (self.hp || 0) + healAmount);
-        log(`<img src="assets/health.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name} restores ${healAmount} health from speed`);
-      }
-    },
-
-    // Helper function to get value by tier
-    getValueByTier: function(value, tier) {
-      if (typeof value === 'object' && value !== null) {
-        const tierNum = tier === 'diamond' ? 3 : tier === 'gold' ? 2 : 1;
-        return tierNum === 3 ? value.diamond : tierNum === 2 ? value.gold : value.base;
-      }
-      return value;
-    },
-
-    // Tome countdown actions
-    countdown_tome_granite: ({ self, other, log, value, tier }) => {
-      const countdownAction = (fighter, opponent, logFn) => {
-        const amount = EFFECT_ACTIONS.getValueByTier(value, tier);
-        fighter.addArmor(amount);
-        logFn(`<img src="assets/armor.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${fighter.name} gains ${amount} armor from Granite Tome`);
-      };
-      self.addCountdown('Granite Tome', value.turns || 4, 'tome', countdownAction);
-    },
-
-    countdown_tome_holy: ({ self, other, log, value, tier }) => {
-      const countdownAction = (fighter, opponent, logFn) => {
-        const amount = EFFECT_ACTIONS.getValueByTier(value, tier);
-        fighter.addAtk(amount);
-        logFn(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${fighter.name} gains ${amount} attack from Holy Tome`);
-      };
-      self.addCountdown('Holy Tome', value.turns || 6, 'tome', countdownAction);
-    },
-
-    countdown_tome_liferoot: ({ self, other, log, value, tier }) => {
-      const countdownAction = (fighter, opponent, logFn) => {
-        const amount = EFFECT_ACTIONS.getValueByTier(value, tier);
-        fighter.addStatus('regen', amount);
-        logFn(`<img src="assets/health.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${fighter.name} gains ${amount} regen from Liferoot Tome`);
-      };
-      self.addCountdown('Liferoot Tome', value.turns || 4, 'tome', countdownAction);
-    },
-
-    countdown_tome_silverscale: ({ self, other, log, value, tier }) => {
-      const countdownAction = (fighter, opponent, logFn) => {
-        const amount = EFFECT_ACTIONS.getValueByTier(value, tier);
-        opponent.addStatus('riptide', amount);
-        logFn(`<img src="assets/speed.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${opponent.name} gains ${amount} riptide from Silverscale Tome`);
-      };
-      self.addCountdown('Silverscale Tome', value.turns || 3, 'tome', countdownAction);
-    },
-
-    countdown_tome_stormcloud: ({ self, other, log, value, tier }) => {
-      const countdownAction = (fighter, opponent, logFn) => {
-        const turns = EFFECT_ACTIONS.getValueByTier(value, tier);
-        opponent.addStatus('stun', turns);
-        logFn(`<img src="assets/speed.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${opponent.name} is stunned for ${turns} turns by Stormcloud Tome`);
-      };
-      self.addCountdown('Stormcloud Tome', value.turns || 4, 'tome', countdownAction);
-    },
-
-    countdown_tome_caustic: ({ self, other, log, value }) => {
-      const countdownAction = (fighter, opponent, logFn) => {
-        const acidAmount = fighter.speed || 0;
-        if (acidAmount > 0) {
-          opponent.addStatus('acid', acidAmount);
-          logFn(`<img src="assets/speed.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${opponent.name} gains ${acidAmount} acid from Caustic Tome (equal to ${fighter.name}'s speed)`);
-        }
-      };
-      self.addCountdown('Caustic Tome', value.turns || 3, 'tome', countdownAction);
-    },
-
-    countdown_sheet_music: ({ self, other, log, value }) => {
-      const countdownAction = (fighter, opponent, logFn) => {
-        logFn(`${fighter.name} plays the Sheet Music!`);
-        // Trigger Symphony multiple times
-        const symphonyTriggers = value?.symphony_triggers || 3;
-        for (let i = 0; i < symphonyTriggers; i++) {
-          runEffects('symphony', fighter, opponent, logFn);
-        }
-        // Re-schedule for the next countdown
-        fighter.addCountdown('Sheet Music', value?.turns || 6, 'Instrument', countdownAction);
-      };
-      self.addCountdown('Sheet Music', value?.turns || 6, 'Instrument', countdownAction);
-      log(`${self.name} prepares the Sheet Music countdown.`);
-    },
-
     set_flag: ({ self, key, value }) => {
       self.flags[key] = value;
     },
@@ -755,7 +666,6 @@
       log(`Symphony triggered ${repeatCount} time(s)!`);
       
       for (let i = 0; i < repeatCount; i++) {
-        log('=== SYMPHONY: Musical effects activate ===');
         runEffects('symphony', self, other, log);
       }
     },
@@ -889,7 +799,7 @@
       if (self.getStatus('speed') >= 1) {
         self.removeStatus('speed', 1);
         self.armor += 3;
-        log(`<img src="assets/speed.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;">➡️<img src="assets/armor.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name}'s plated edge converts 1 speed to 3 armor`);
+        log(`🏃‍♂️➡️🛡️ ${self.name}'s plated edge converts 1 speed to 3 armor`);
       }
     },
     jagged_edge_thorns_damage: ({ self, log }) => {
@@ -969,7 +879,7 @@
     gain_armor: ({ self, log, value }) => {
       const amount = value || 1;
       self.addArmor(amount);
-      log(`<img src="assets/armor.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name} gains ${amount} armor`);
+      log(`🛡️ ${self.name} gains ${amount} armor`);
     },
     lose_speed: ({ self, log, value }) => {
       const amount = value || 1;
@@ -1216,7 +1126,7 @@
     gain_attack: ({ self, log, value }) => {
       const amount = value || 1;
       self.addAtk(amount);
-      log(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name} gains ${amount} attack`);
+      log(`⚔️ ${self.name} gains ${amount} attack`);
     },
     gain_speed: ({ self, log, value }) => {
       const amount = value || 1;
@@ -1237,7 +1147,7 @@
     gain_temp_attack: ({ self, log, value }) => {
       const amount = value || 1;
       self.addTempAtk(amount);
-      log(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name} gains ${amount} temporary attack`);
+      log(`⚔️ ${self.name} gains ${amount} temporary attack`);
     },
     increment_counter: ({ self, log, value }) => {
       const counterName = value?.name || 'counter';
@@ -1278,7 +1188,7 @@
     first_turn_extra_strike: ({ self, log }) => {
       if (self.flags && self.flags.firstTurn) {
         self.addExtraStrikes(1);
-        log(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${self.name} gains +1 extra strike on first turn (Bloodmoon Strike set).`);
+        log(`⚔️ ${self.name} gains +1 extra strike on first turn (Bloodmoon Strike set).`);
       }
     },
 
@@ -1291,101 +1201,113 @@
         }
       }
     },
-
-    // ===== NORMALIZED FORMAT ACTION TYPES =====
-    add_temp_attack_from_status: ({ self, log, key }) => {
-      const statusAmount = self.statuses[key] || 0;
-      if (statusAmount > 0) {
-        self.addTempAtk(statusAmount);
-        log(`⚔️ ${self.name} gains ${statusAmount} temporary attack from ${key}.`);
+    
+    // === MISSING SET ACTION TYPES ===
+    double_base_stats: ({ self, log }) => {
+      const baseAtk = self.baseAtk || 0;
+      const baseArmor = self.baseArmor || 0; 
+      const baseSpeed = self.baseSpeed || 0;
+      if (baseAtk > 0) {
+        self.baseAtk *= 2;
+        log(`⚔️ ${self.name} doubles base attack to ${self.baseAtk}.`);
+      }
+      if (baseArmor > 0) {
+        self.baseArmor *= 2;
+        log(`🛡️ ${self.name} doubles base armor to ${self.baseArmor}.`);
+      }
+      if (baseSpeed > 0) {
+        self.baseSpeed *= 2; 
+        log(`💨 ${self.name} doubles base speed to ${self.baseSpeed}.`);
       }
     },
 
-    give_enemy_status_equal_to_stat: ({ self, other, log, stat, status }) => {
-      const statValue = self[stat] || 0;
-      if (statValue > 0) {
-        other.addStatus(status, statValue);
-        log(`🎯 ${self.name} gives ${other.name} ${statValue} ${status} (equal to ${stat}).`);
-      }
-    },
-
-    decrease_all_countdowns: ({ self, log, value }) => {
+    gain_attack_every_other_turn: ({ self, log, value }) => {
       const amount = value || 1;
-      if (typeof self.decAllCountdowns === 'function') {
-        self.decAllCountdowns(amount);
-        log(`⏱️ ${self.name} decreases all countdowns by ${amount}.`);
+      if (!self.flags.rawHideTurnCount) self.flags.rawHideTurnCount = 0;
+      self.flags.rawHideTurnCount++;
+      if (self.flags.rawHideTurnCount % 2 === 0) {
+        self.addAtk(amount);
+        log(`💪 ${self.name} gains ${amount} attack (every other turn).`);
       }
     },
 
-    halve_all_countdowns: ({ self, log }) => {
-      if (self.countdowns && Array.isArray(self.countdowns)) {
-        self.countdowns.forEach(cd => {
-          cd.turnsLeft = Math.floor(cd.turnsLeft / 2);
-        });
-        log(`⏱️ ${self.name} halves all countdowns.`);
+    double_thorns_if_below_10: ({ self, log }) => {
+      const currentThorns = self.statuses.thorns || 0;
+      if (currentThorns < 10 && currentThorns > 0) {
+        self.statuses.thorns *= 2;
+        log(`🌹 ${self.name} doubles thorns to ${self.statuses.thorns}.`);
       }
     },
 
-    disable_striking: ({ self, log }) => {
-      self.cannotStrike = true;
-      log(`🚫 ${self.name} cannot strike this turn.`);
-    },
-
-    gain_thorns_equal_to_attack: ({ self, log }) => {
-      const attack = self.atk || 0;
-      if (attack > 0) {
-        self.addStatus('thorns', attack);
-        log(`🌹 ${self.name} gains ${attack} thorns (equal to attack).`);
+    add_acid_on_first_poison: ({ self, other, log, value }) => {
+      const amount = value || 5;
+      if (!self.flags.deadlyToxinUsed) {
+        self.flags.deadlyToxinUsed = true;
+        other.addStatus('acid', amount);
+        log(`☠️ ${self.name} gives enemy ${amount} acid (first poison).`);
       }
     },
 
-    gain_thorns_per_armor_lost: ({ self, log, value }) => {
-      const thornsPerArmor = value || 1;
-      const armorLost = self._armorLostThisTurn || 0;
-      if (armorLost > 0) {
-        const thornsGained = armorLost * thornsPerArmor;
-        self.addStatus('thorns', thornsGained);
-        log(`🌹 ${self.name} gains ${thornsGained} thorns from ${armorLost} armor lost.`);
+    negate_negative_stats: ({ self, log }) => {
+      let negated = false;
+      if (self.baseAtk < 0) {
+        self.baseAtk = Math.abs(self.baseAtk);
+        negated = true;
+      }
+      if (self.baseArmor < 0) {
+        self.baseArmor = Math.abs(self.baseArmor);
+        negated = true;
+      }
+      if (self.baseSpeed < 0) {
+        self.baseSpeed = Math.abs(self.baseSpeed);
+        negated = true;
+      }
+      if (negated) {
+        log(`✨ ${self.name} negates negative base stats.`);
       }
     },
 
-    set_flag: ({ self, log, key, value }) => {
-      if (!self.flags) self.flags = {};
-      self.flags[key] = value;
-      if (log) log(`🏳️ ${self.name} sets flag ${key} to ${value}.`);
-    },
-
-    heal_loop: ({ self, log, value }) => {
-      const { healed, iterations } = value || { healed: 1, iterations: 3 };
-      for (let i = 0; i < iterations; i++) {
-        const actualHealed = self.heal(healed);
-        if (actualHealed > 0) {
-          log(`💚 ${self.name} heals ${actualHealed} (${i+1}/${iterations}).`);
-        } else {
-          break; // Stop if no healing possible
-        }
+    steal_armor_from_enemy: ({ self, other, log, value }) => {
+      const amount = value || 2;
+      const stolen = Math.min(amount, other.armor || 0);
+      if (stolen > 0) {
+        other.armor -= stolen;
+        self.addArmor(stolen);
+        log(`🔄 ${self.name} steals ${stolen} armor from enemy.`);
       }
     },
 
-    convert_random_status_to_poison: ({ self, log }) => {
-      if (!self.statuses) return;
-      
-      const statusKeys = Object.keys(self.statuses).filter(key => 
-        key !== 'poison' && self.statuses[key] > 0
-      );
-      
-      if (statusKeys.length > 0) {
-        const randomKey = statusKeys[Math.floor(Math.random() * statusKeys.length)];
-        const amount = Math.min(1, self.statuses[randomKey]);
-        
-        self.statuses[randomKey] -= amount;
-        if (self.statuses[randomKey] <= 0) delete self.statuses[randomKey];
-        
-        self.addStatus('poison', amount);
-        log(`🧪 ${self.name} converts 1 ${randomKey} to 1 poison.`);
+    trigger_exposed: ({ self, other, log }) => {
+      log(`💥 ${self.name} triggers Exposed.`);
+      runEffects('exposed', self, other, log);
+    },
+
+    trigger_symphony_multiple: ({ self, other, log, value }) => {
+      const times = value || 3;
+      for (let i = 0; i < times; i++) {
+        log(`🎵 ${self.name} triggers Symphony (${i + 1}/${times}).`);
+        runEffects('symphony', self, other, log);
       }
     },
 
+    gain_armor_per_speed: ({ self, log, multiplier }) => {
+      const mult = multiplier || 2;
+      const speed = self.speed || 0;
+      const armorGained = speed * mult;
+      if (armorGained > 0) {
+        self.addArmor(armorGained);
+        log(`🛡️ ${self.name} gains ${armorGained} armor (${mult} per speed).`);
+      }
+    },
+
+    double_healing: ({ self, log, value }) => {
+      // This is handled differently - it modifies the heal amount in the heal function
+      // For now just log that the effect is active
+      if (!self.flags.twilightCrestActive) {
+        self.flags.twilightCrestActive = true;
+        log(`🌙 ${self.name} activates doubled healing while below 50% health.`);
+      }
+    }
   };
 
   function checkCondition(condition, { self, other, log, key, isNew }) {
@@ -1432,6 +1354,8 @@
         return (self.statuses.stun || 0) > 0;
       case 'has_temp_health':
         return (self.tempHealth || 0) > 0;
+      case 'below_50_percent_health':
+        return self.hp < (self.hpMax / 2);
       case 'has_any_status':
         const statusesToCheck = effect.value?.statuses || ['poison', 'acid', 'freeze', 'stun'];
         return statusesToCheck.some(status => (self.statuses?.[status] || 0) > 0);
@@ -1567,50 +1491,21 @@
         // Map simulator event names to our trigger names
         const eventToTriggerMap = {
           'battleStart': 'battleStart',
-          'battle_start': 'battleStart', // Normalized format
           'turnStart': 'turnStart',
-          'turn_start': 'turnStart', // Normalized format
-          'turnEnd': 'turnEnd',
-          'turn_end': 'turnEnd', // Normalized format
-          'firstTurn': 'first_turn',
-          'first_turn': 'first_turn', // Already normalized
-          'everyOtherTurn': 'every_other_turn',
-          'every_other_turn': 'every_other_turn', // Already normalized
-          'countdown': 'countdown',
-          'nextBoss': 'next_boss',
-          'next_boss': 'next_boss', // Already normalized
-          'firstTime': 'first_time',
-          'first_time': 'first_time', // Already normalized
           'onHit': 'hit',
-          'on_hit': 'hit', // Normalized format
-          'onWounded': 'wounded',
-          'on_wounded': 'wounded', // Normalized format
-          'onExposed': 'exposed',
-          'on_exposed': 'exposed', // Normalized format
+          'onWounded': 'onWounded',
+          'onExposed': 'onExposed',
           'onDamaged': 'damaged',
-          'on_damaged': 'damaged', // Normalized format
           'onKill': 'kill',
-          'on_kill': 'kill', // Normalized format
           'afterStrike': 'afterStrike',
-          'after_strike': 'afterStrike', // Normalized format
           'onHeal': 'heal',
-          'on_heal': 'heal', // Normalized format
           'onGainArmor': 'gainArmor',
-          'on_gain_armor': 'gainArmor', // Normalized format
           'onGainSpeed': 'gainSpeed',
-          'on_gain_speed': 'gainSpeed', // Normalized format
           'onGainStatus': 'gainStatus',
-          'on_gain_status': 'gainStatus', // Normalized format
           'onPoisonTick': 'poisonTick',
-          'on_poison_tick': 'poisonTick', // Normalized format
           'strikeSkipped': 'strikeSkipped',
-          'strike_skipped': 'strikeSkipped', // Normalized format
           'bombTrigger': 'bombTrigger',
-          'bomb_trigger': 'bombTrigger', // Normalized format
           'postCountdownTrigger': 'postCountdownTrigger',
-          'post_countdown_trigger': 'postCountdownTrigger', // Normalized format
-          'preBattle': 'preBattle',
-          'pre_battle': 'preBattle', // Normalized format
           'symphony': 'symphony'
         };
         
@@ -1797,7 +1692,43 @@
     { key:'liquid_metal', name:'Liquid Metal', desc:'On Gain Armor: Gain 1 thorns',
       reqs:[{ kind:'slugs', all:['items/liquid_metal','items/liquid_core'] }], effectSlug:'sets/liquid_metal' },
     { key:'saffron_talon', name:'Saffron Talon', desc:'On Hit: Gain 1 thorns',
-      reqs:[{ kind:'slugs', all:['items/saffron_talon','items/saffron_gloves'] }], effectSlug:'sets/saffron_talon' }
+      reqs:[{ kind:'slugs', all:['items/saffron_talon','items/saffron_gloves'] }], effectSlug:'sets/saffron_talon' },
+    
+    // === MISSING SETS FROM WIKI ===
+    { key:'crystal_mirror', name:'Crystal Mirror', desc:'Currently disabled',
+      reqs:[{ kind:'slugs', all:['items/marble_mirror','items/sinful_mirror'] }], effectSlug:'sets/crystal_mirror' },
+    { key:'elderwood_mask', name:'Elderwood Mask', desc:'Battle Start: Double your base attack, armor and speed',
+      reqs:[{ kind:'slugs', all:['weapons/elderwood_staff','items/elderwood_necklace'] }], effectSlug:'sets/elderwood_mask' },
+    { key:'heros_return', name:"Hero's Return", desc:'Gain 2 attack, armor and speed',
+      reqs:[{ kind:'slugs', all:['weapons/sword_of_the_hero','items/boots_of_the_hero','items/shield_of_the_hero'] }], effectSlug:'sets/heros_return' },
+    { key:'lifeblood_transfusion', name:'Lifeblood Transfusion', desc:'Restore 10 health after every battle',
+      reqs:[{ kind:'slugs', all:['items/iron_transfusion','items/lifeblood_armor'] }], effectSlug:'sets/lifeblood_transfusion' },
+    { key:'raw_hide', name:'Raw Hide', desc:'Gain 1 attack every other turn',
+      reqs:[{ kind:'slugs', all:['items/leather_boots','items/leather_glove','items/leather_vest'] }], effectSlug:'sets/raw_hide' },
+    { key:'redwood_crown', name:'Redwood Crown', desc:'Wounded: Restore health to full',
+      reqs:[{ kind:'slugs', all:['weapons/redwood_rod','items/redwood_cloak','items/redwood_helmet'] }], effectSlug:'sets/redwood_crown' },
+    { key:'steelplated_thorns', name:'Steelplated Thorns', desc:'Turn Start: If you have less than 10 thorns, double your thorns',
+      reqs:[{ kind:'slugs', all:['weapons/spearshield_lance','items/bramble_buckler'] }], effectSlug:'sets/steelplated_thorns' },
+    { key:'champion_s_greaves', name:"Champion's Greaves", desc:'Gain 6 speed',
+      reqs:[{ kind:'slugs', all:['items/champion_s_armor','weapons/champion_s_blade'] }], effectSlug:'sets/champion_s_greaves' },
+    { key:'deadly_toxin', name:'Deadly Toxin', desc:'The first time the enemy gains poison, give the enemy 5 acid',
+      reqs:[{ kind:'slugs', all:['items/nerve_poison','items/viper_extract'] }], effectSlug:'sets/deadly_toxin' },
+    { key:'holy_crucifix', name:'Holy Crucifix', desc:'Negates negative base stats',
+      reqs:[{ kind:'slugs', all:['items/holy_shield','items/holy_tome'] }], effectSlug:'sets/holy_crucifix' },
+    { key:'ironstone_crest', name:'Ironstone Crest', desc:'Turn Start: Steal 2 armor from the enemy',
+      reqs:[{ kind:'slugs', all:['items/forge_hammer','items/forge_gauntlet'] }], effectSlug:'sets/ironstone_crest' },
+    { key:'ironstone_fang', name:'Ironstone Fang', desc:'First Turn: Gain 3 armor on hit',
+      reqs:[{ kind:'slugs', all:['weapons/crimson_fang','weapons/venomous_fang'] }], effectSlug:'sets/ironstone_fang' },
+    { key:'marble_anvil', name:'Marble Anvil', desc:'Battle Start: Trigger Exposed',
+      reqs:[{ kind:'slugs', all:['weapons/marble_sword','items/serpent_lyre'] }], effectSlug:'sets/marble_anvil' },
+    { key:'marshlight_aria', name:'Marshlight Aria', desc:'Exposed: Trigger Symphony 3 times',
+      reqs:[{ kind:'slugs', all:['items/marshlight_lantern','items/riverflow_violin'] }], effectSlug:'sets/marshlight_aria' },
+    { key:'seafood_hotpot', name:'Seafood Hotpot', desc:'Battle Start: Gain 2 armor for each speed you have',
+      reqs:[{ kind:'slugs', all:['items/clearspring_watermelon','items/snackerel_fin'] }], effectSlug:'sets/seafood_hotpot' },
+    { key:'twilight_crest', name:'Twilight Crest', desc:'As long as you\'re below 50% health, all healing is doubled',
+      reqs:[{ kind:'slugs', all:['items/moonlight_crest','items/sunlight_crest'] }], effectSlug:'sets/twilight_crest' },
+    { key:'vampire_cloak', name:'Vampire Cloak', desc:'Currently removed',
+      reqs:[{ kind:'slugs', all:['items/sanguine_morphosis','items/vampire_stasis'] }], effectSlug:'sets/vampire_cloak' }
   ];
 
   function computeActive(slugs) {
@@ -1881,11 +1812,7 @@
         this.setEffectSlugs = this.activeSets.map(set => set.effectSlug);
       }
 
-      this.flags = { 
-        firstTurn: true,
-        firstTime: true,  // For first-time item usage
-        nextBoss: false   // Campaign-specific boss encounters
-      };
+      this.flags = { firstTurn: true };
 
       this.tempAtk = 0;
       this.extraStrikes = 0;
@@ -1946,10 +1873,6 @@
       const triggeredCountdowns = this.countdowns.filter(cd => cd.turnsLeft === 0 && !cd.triggered);
       triggeredCountdowns.forEach(cd => {
         cd.triggered = true;
-        // Run standard countdown trigger first
-        if (log) log('=== COUNTDOWN: Countdown effects trigger ===');
-        runEffects('countdown', this, other, log, { countdown: cd });
-        
         if (typeof cd.action === 'function') {
           try {
             cd.action(this, other, log);
@@ -2018,7 +1941,6 @@
         self.hp += healed;
         self.healedThisTurn += healed;
         log(`${self.name} heals ${healed}`);
-        log('=== HEAL: Healing effects activate ===');
         runEffects('onHeal', self, other, log, { amount: healed });
       }
       return healed;
@@ -2060,8 +1982,8 @@ let CURRENT_SOURCE_SLUG = null;
     dst.hp -= toHp;
     if(dst.hp < 0) dst.hp = 0;
     dst.struckThisTurn = true;
-    if(toArmor>0) log(`<img src="assets/armor.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${src.name} destroys ${toArmor} armor`);
-    if(toHp>0) log(`<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> ${src.name} hits ${dst.name} for ${toHp}`);
+    if(toArmor>0) log(`🛡️ ${src.name} destroys ${toArmor} armor`);
+    if(toHp>0) log(`⚔️ ${src.name} hits ${dst.name} for ${toHp}`);
     if (src && src._summary) {
       if (toArmor > 0) src._summary.armorDestroyedDealt += toArmor;
       if (toHp > 0) src._summary.hpDamageDealt += toHp;
@@ -2103,7 +2025,6 @@ let CURRENT_SOURCE_SLUG = null;
     const res = applyDamage(att, def, dmg, log);
     if (att && att._summary && (res.toArmor + res.toHp) > 0) att._summary.strikesLanded += 1;
     
-    log('=== HIT: On-hit effects activate ===');
     runEffects('onHit', att, def, log);
     
     // Re-check for exposed/wounded after onHit effects
@@ -2111,16 +2032,12 @@ let CURRENT_SOURCE_SLUG = null;
     let woundedFired = !!res.woundedNow;
     if (!exposedFired && armorBefore > 0 && def.armor === 0 && def._exposedCount < (def._exposedLimit||1)) {
       def._exposedCount++;
-      log(`🛡️ ${def.name} is now exposed!`);
-      log('=== EXPOSED: Armor broken effects activate ===');
-      runEffects('exposed', def, att, log);
+      runEffects('onExposed', def, att, log);
       exposedFired = true;
     }
     if (!woundedFired && !def.woundedDone && def.hp <= Math.floor(def.hpMax/2)) {
       def.woundedDone = true;
-      log(`🩸 ${def.name} is now wounded!`);
-      log('=== WOUNDED: Low health effects activate ===');
-      runEffects('wounded', def, att, log);
+      runEffects('onWounded', def, att, log);
       woundedFired = true;
     }
 
@@ -2161,7 +2078,6 @@ let CURRENT_SOURCE_SLUG = null;
         a.hp -= a.statuses.poison;
         if (a.hp < 0) a.hp = 0;
         log(`${a.name} suffers ${a.statuses.poison} poison damage`);
-        log('=== POISON TICK: Poison effects activate ===');
         runEffects('onPoisonTick', a, other, log, { amount: a.statuses.poison });
         
         // Check if Poison caused Wounded trigger (HP crossed 50% threshold)
@@ -2229,20 +2145,8 @@ let CURRENT_SOURCE_SLUG = null;
     runEffects('preBattle', R, L, logWithHP);
     
     // Battle Start Phase: Items activate in slot order (weapon first, then items 1→12)
-    logWithHP('=== BATTLE START: Items and effects activate ===');
     runEffects('battleStart', L, R, logWithHP);
     runEffects('battleStart', R, L, logWithHP);
-    
-    // First Time triggers (for items that activate only once per battle)
-    if (L.flags && L.flags.firstTime) {
-      logWithHP('=== FIRST TIME: One-time battle effects ===');
-      runEffects('first_time', L, R, logWithHP);
-      L.flags.firstTime = false;
-    }
-    if (R.flags && R.flags.firstTime) {
-      runEffects('first_time', R, L, logWithHP);
-      R.flags.firstTime = false;
-    }
 
     let [actor, target] = pickOrder(L, R);
     let round = 0;
@@ -2253,22 +2157,7 @@ let CURRENT_SOURCE_SLUG = null;
       logWithHP(`-- Turn ${round} -- ${actor.name}`);
       
       turnStartTicks(actor, target, logWithHP);
-      
-      logWithHP('=== TURN START: Turn effects activate ===');
-      
-      // First turn trigger
-      if (actor.flags && actor.flags.firstTurn) {
-        logWithHP('=== FIRST TURN: First turn effects ===');
-        runEffects('first_turn', actor, target, logWithHP);
-      }
-      
       runEffects('turnStart', actor, target, logWithHP);
-      
-      // Every other turn trigger (every 2nd turn)
-      if (actor.turnCount % 2 === 0) {
-        logWithHP('=== EVERY OTHER TURN: Every 2nd turn effects ===');
-        runEffects('every_other_turn', actor, target, logWithHP);
-      }
       
       let strikes = 1 + (actor.extraStrikes || 0);
       if (actor.cannotStrike || actor.skipTurn) strikes = 0;
@@ -2279,7 +2168,6 @@ let CURRENT_SOURCE_SLUG = null;
       }
       
       turnEndTicks(actor, target, logWithHP);
-      logWithHP('=== TURN END: End of turn effects ===');
       runEffects('turnEnd', actor, target, logWithHP);
 
       actor.flags.firstTurn = false;
@@ -2343,7 +2231,7 @@ let CURRENT_SOURCE_SLUG = null;
     } catch (err) {
       console.warn('Could not load details.json:', err.message);
     }
-    module.exports = { simulate, Fighter, getTagsFor, computeActive, computeActiveEffectSlugs, EFFECT_ACTIONS };
+    module.exports = { simulate, Fighter, getTagsFor, computeActive, computeActiveEffectSlugs };
   }
   global.HeICSim = { simulate };
 })(typeof window !== 'undefined' ? window : globalThis);
