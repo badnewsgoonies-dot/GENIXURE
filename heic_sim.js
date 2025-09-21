@@ -751,9 +751,9 @@
       other.atk = (other.atk || 0) * factor;
       log(`${other.name}'s attack multiplied by ${factor}`);
     },
-    add_armor_to_enemy: ({ other, value, log }) => {
+    add_armor_to_enemy: ({ self, other, value, log }) => {
       other.addArmor(value);
-      log(`${other.name} gains ${value} armor`);
+      log(`${self.name} gives ${other.name} ${value} armor`);
     },
     stun_enemy_for_turns: ({ other, log, value }) => {
       other.addStatus('stun', value || 1);
