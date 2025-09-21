@@ -407,7 +407,7 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
       <div class="toolbar">
         <input id="q" type="search" placeholder="Search name/effect/tagâ€¦">
         <select id="bucket">
-          <option value="All">All</option><option value="items" selected>Items</option><option value="weapons">Weapons</option><option value="upgrades">Upgrades</option>
+          <option value="All" selected>All</option><option value="items">Items</option><option value="weapons">Weapons</option><option value="upgrades">Upgrades</option>
         </select>
         <select id="cat">
           <option value="All">All</option>
@@ -643,8 +643,17 @@ async function loadData() {
     const itemsCount = DATA_ARR.filter(item => item.bucket === 'items').length;
     const weaponsCount = DATA_ARR.filter(item => item.bucket === 'weapons').length;
     const upgradesCount = DATA_ARR.filter(item => item.bucket === 'upgrades').length;
+    const noBucketCount = DATA_ARR.filter(item => !item.bucket).length;
     const totalCount = DATA_ARR.length;
-    console.log(`Data loaded: ${totalCount} total items (Items: ${itemsCount}, Weapons: ${weaponsCount}, Upgrades: ${upgradesCount})`);
+    
+    console.log(`Data loaded: ${totalCount} total items`);
+    console.log(`  - Items: ${itemsCount}`);
+    console.log(`  - Weapons: ${weaponsCount}`);
+    console.log(`  - Upgrades: ${upgradesCount}`);
+    console.log(`  - No bucket: ${noBucketCount}`);
+    
+    // Log first few items to check bucket values
+    console.log('Sample items:', DATA_ARR.slice(0, 5).map(item => ({ key: item.key, name: item.name, bucket: item.bucket })));
     
     // Build a set of keys that support Gold/Diamond tiers either because:
     // - effect text mentions Gold/Diamond, or
@@ -952,6 +961,8 @@ function renderGrid() {
   let shown = 0;
 
   grid.innerHTML = '';
+  
+  console.log(`renderGrid called with bucketVal: "${bucketVal}", total DATA_ARR: ${DATA_ARR?.length}`);
   
   DATA_ARR.forEach(entry => {
     // Case-insensitive matching for better reliability
