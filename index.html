@@ -693,8 +693,8 @@ async function loadData() {
     });
     
     // Count and log the number of weapons for verification
-    const weaponsCount = DATA_ARR.filter(item => item.bucket === 'weapons').length;
-    console.log(`Identified ${weaponsCount} weapons in the database`);
+  // Count weapons for internal use if needed
+  // const weaponsCount = DATA_ARR.filter(item => item.bucket === 'weapons').length;
     
     // Build a set of keys that support Gold/Diamond tiers either because:
     // - effect text mentions Gold/Diamond, or
@@ -1004,11 +1004,9 @@ function renderGrid() {
   grid.innerHTML = '';
   
   // For weapons, log all available weapons to help debugging
-  if (bucketVal === 'weapons') {
-    console.log('Weapons filter selected, looking for items with bucket="weapons"');
-    const weaponItems = DATA_ARR.filter(entry => entry.bucket === 'weapons');
-    console.log(`Found ${weaponItems.length} weapons:`, weaponItems.map(w => w.name));
-  }
+  // if (bucketVal === 'weapons') {
+  //   const weaponItems = DATA_ARR.filter(entry => entry.bucket === 'weapons');
+  // }
   
   DATA_ARR.forEach(entry => {
     // Case-insensitive matching for better reliability
@@ -1241,22 +1239,14 @@ function renderGrid() {
     grid.appendChild(card);
 
   });
-  console.log('renderGrid finished, shown:', shown, 'bucketVal:', bucketVal);
+  // console.debug('renderGrid finished, shown:', shown, 'bucketVal:', bucketVal);
   countSpan.textContent = `Shown: ${shown}`;
 }
 
 // Filter listeners
 [searchIn, bucketSel, catSel].forEach(el => {
-  el.addEventListener('input', () => {
-    console.log('Filter changed (input), DATA_ARR length:', DATA_ARR?.length);
-    console.log('bucketSel.value:', bucketSel?.value, 'catSel.value:', catSel?.value);
-    renderGrid();
-  });
-  el.addEventListener('change', () => {
-    console.log('Filter changed (change), DATA_ARR length:', DATA_ARR?.length);
-    console.log('bucketSel.value:', bucketSel?.value, 'catSel.value:', catSel?.value);
-    renderGrid();
-  });
+  el.addEventListener('input', renderGrid);
+  el.addEventListener('change', renderGrid);
 });
 
 // Drag and drop helpers
