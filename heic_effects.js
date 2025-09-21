@@ -188,29 +188,8 @@
   // Caustic Tome: MIGRATED - now uses data-driven effects
   // hooks['items/caustic_tome'] = { ... } // REMOVED - MIGRATED
 
-  // Chainlink Medallion: Your On Hit effects trigger twice
-  hooks['items/chainlink_medallion'] = {
-    afterStrike({ self, other, log, withActor, withSource }) {
-      if (self._chainlinkReplaying) return;
-      self._chainlinkReplaying = true;
-      try {
-        // Replay weapon onHit
-        if (self.weapon) {
-          const wh = hooks[self.weapon];
-          if (wh && typeof wh.onHit === 'function') withActor(self, () => withSource(self.weapon, () => wh.onHit({ self, other, log })));
-        }
-        // Replay items' onHit (excluding Medallion itself)
-        for (const s of (self.items || [])) {
-          if (s === 'items/chainlink_medallion') continue;
-          const h = hooks[s];
-          if (h && typeof h.onHit === 'function') withActor(self, () => withSource(s, () => h.onHit({ self, other, log })));
-        }
-        log(`${self.name}'s on-hit effects trigger twice (Chainlink Medallion).`);
-      } finally {
-        self._chainlinkReplaying = false;
-      }
-    }
-  };
+  // Chainlink Medallion: REMOVED - not a legal game item
+  // hooks['items/chainlink_medallion'] = { ... } // REMOVED - ILLEGAL ITEM
 
   // Chainmail Armor: Wounded: Regain your base armor
   // Chainmail Armor: MIGRATED - now uses data-driven effects
@@ -218,15 +197,8 @@
 
 
 
-  // Cherry Blade: Battle Start (if Exposed): Deal 4 damage
-  hooks['weapons/cherry_blade'] = {
-    battleStart({ self, other, log }) {
-      if (self.s && self.s.exposed > 0) {
-        self.damageOther(4);
-        log(`${other.name} takes 4 damage (Cherry Blade).`);
-      }
-    }
-  };
+  // Cherry Blade: MIGRATED - now uses data-driven effects
+  // hooks['weapons/cherry_blade'] = { ... } // REMOVED - MIGRATED
 
 
 
@@ -237,16 +209,8 @@
   // Arcane Gauntlet: MIGRATED - now uses data-driven effects
   // hooks['items/arcane_gauntlet'] = { ... } // REMOVED - MIGRATED
 
-  hooks['items/arcane_cloak'] = {
-    postCountdownTrigger({ self, countdown, log }) {
-      // Re-add the countdown at its original length (post-trigger)
-      if (countdown && typeof self.addCountdown === 'function') {
-        const t = countdown.origTurns || countdown.turnsLeft || 1;
-        self.addCountdown(countdown.name, t, countdown.tag, countdown.action);
-        log(`${self.name} resets countdown '${countdown.name}' (Arcane Cloak).`);
-      }
-    }
-  };
+  // Arcane Cloak: REMOVED - not a legal game item  
+  // hooks['items/arcane_cloak'] = { ... } // REMOVED - ILLEGAL ITEM
 
   // Arcane Lens does not grant armor itself (Arcane Shield handles +3 armor).
   // Lens duplicates countdown effects via postCountdownTrigger below.
@@ -281,38 +245,6 @@
     };
   }
 
-  // Granite Thorns: preserve thorns for the first 3 strikes received
-  hooks['items/granite_thorns'] = {
-    battleStart({ self, log }) {
-      self._preserveThorns = 3;
-      log(`${self.name} will preserve thorns for 3 strikes (Granite Thorns).`);
-    }
-  };
-
-  // Granite Crown: increase Max HP by base Armor and heal up to that amount
-  hooks['items/granite_crown'] = {
-    battleStart({ self, log }) {
-      const add = Math.max(0, self.baseArmor || 0);
-      if (add > 0) {
-        self.hpMax += add;
-        const healed = self.heal(add);
-        log(`${self.name} fortifies: Max HP +${add}, heals ${healed} (Granite Crown).`);
-      }
-    }
-  };
-
-  // Granite Cherry: if at full HP at Battle Start, do (+2 Armor, 2 damage) ×3
-  hooks['items/granite_cherry'] = {
-    battleStart({ self, other, log }) {
-      if (self.hp === self.hpMax) {
-        for (let i = 0; i < 3; i++) {
-          self.addArmor(2);
-          self.damageOther(2);
-        }
-        log(`${self.name} erupts: +6 armor, 6 damage total (Granite Cherry).`);
-      }
-    }
-  };
 
 
 
@@ -328,14 +260,12 @@
 
 
 
-  // Cold Resistance: Freeze doubles your attack instead of halving it
-  hooks['items/cold_resistance'] = {
-    // NOTE: This requires a modification to the core engine's handling of 'freeze'.
-    // A flag can be set here for the engine to check.
-    battleStart({ self }) {
-      self._coldResistance = true;
-    }
-  };
+
+
+
+
+
+
 
 
 

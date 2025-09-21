@@ -85,19 +85,6 @@
       "Symphony"
     ]
   },
-  "items/arcane_cloak": {
-    "bucket": "items",
-    "effect": "Reset countdowns after they trigger",
-    "name": "Arcane Cloak",
-    "slug": "arcane_cloak",
-    "stats": {
-      "armor": 0,
-      "attack": 0,
-      "health": 0,
-      "speed": 0
-    },
-    "tags": []
-  },
   "items/arcane_gauntlet": {
     "bucket": "items",
     "effect": "Battle Start: Halve all countdowns",
@@ -798,19 +785,6 @@
     ],
     "name": "Caustic Tome",
     "slug": "caustic_tome",
-    "stats": {
-      "armor": 0,
-      "attack": 0,
-      "health": 0,
-      "speed": 0
-    },
-    "tags": []
-  },
-  "items/chainlink_medallion": {
-    "bucket": "items",
-    "effect": "Your On Hit effects trigger twice",
-    "name": "Chainlink Medallion",
-    "slug": "chainlink_medallion",
     "stats": {
       "armor": 0,
       "attack": 0,
@@ -6965,13 +6939,13 @@
   },
   "weapons/cherry_blade": {
     "bucket": "weapons",
-    "effect": "Battle Start: Reduce your speed by 1. After each strike: Restore 1 health.",
+    "effect": "Battle Start: Deal 4 damage. Exposed: Deal 4 damage.",
     "effects": [
       {
         "actions": [
           {
-            "type": "add_speed",
-            "value": -1
+            "type": "deal_damage",
+            "value": 4
           }
         ],
         "trigger": "battle_start"
@@ -6979,11 +6953,11 @@
       {
         "actions": [
           {
-            "type": "restore_health",
-            "value": 1
+            "type": "deal_damage",
+            "value": 4
           }
         ],
-        "trigger": "after_strike"
+        "trigger": "exposed"
       }
     ],
     "name": "Cherry Blade",
