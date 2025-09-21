@@ -620,27 +620,81 @@ async function loadData() {
         val.bucket = 'weapons';
       }
       
-      // Also ensure items/ paths that are weapons are properly categorized
-      // Check for common weapon keywords in name or effect
-      const isWeaponByName = val.name && /\b(sword|blade|bow|stinger|bat|branch|swordfish)\b/i.test(val.name);
-      const isWeaponByEffect = val.effect && /\b(strike|hit|attack|damage|weapon)\b/i.test(val.effect);
-      const isWeaponByPath = key.includes('/blackbriar_bow') || 
-                            key.includes('/cherry_blade') || 
-                            key.includes('/deathcap_bow') || 
-                            key.includes('/ham_bat') || 
-                            key.includes('/lemontree_branch') || 
-                            key.includes('/rocksalt_sword') || 
-                            key.includes('/silverscale_swordfish');
-                            
-      if ((key.startsWith('items/') && (isWeaponByName || isWeaponByPath)) || 
-          (val.bucket === 'weapons')) {
-        // This is likely a weapon, ensure it's in the weapons bucket
+      // Comprehensive weapon detection based on multiple factors
+      
+      // 1. Check by path prefix
+      if (key.startsWith('weapons/')) {
         val.bucket = 'weapons';
-        console.log(`Fixed weapon categorization for: ${val.name} (${key})`);
+      }
+      
+      // 2. Check for common weapon-related terms in name
+      const weaponTermsInName = [
+        'sword', 'blade', 'bow', 'stinger', 'bat', 'branch', 'swordfish', 'dagger', 'axe', 'mace', 
+        'hammer', 'spear', 'staff', 'club', 'flail', 'whip', 'lance', 'rapier', 'knife', 'scythe',
+        'gun', 'pistol', 'rifle', 'cannon', 'wand', 'scepter', 'halberd', 'pike', 'javelin', 'crossbow',
+        'gauntlet', 'glove', 'fist', 'claw', 'shuriken', 'katana', 'scimitar', 'saber', 'cutlass',
+        'talons', 'talisman', 'fangs', 'stave', 'greataxe', 'greatsword', 'rod'
+      ];
+      
+      const nameWords = (val.name || '').toLowerCase().split(/\s+/);
+      const hasWeaponTermInName = nameWords.some(word => 
+        weaponTermsInName.some(term => word.includes(term))
+      );
+      
+      // 3. Check for weapon-related patterns in effect description
+      const hasWeaponEffect = val.effect && (
+        /\b(strike|hit|attack|damage|slash|pierce|stab|shoot|throw|weapon)\b/i.test(val.effect) ||
+        /\bon hit\b/i.test(val.effect) ||
+        /\bextra strike\b/i.test(val.effect) ||
+        /\bdeal.*damage\b/i.test(val.effect)
+      );
+      
+      // 4. Check stats - weapons usually have attack value
+      const hasAttackStat = val.stats && val.stats.attack && val.stats.attack > 0;
+      
+      // 5. Special cases for known weapons that might not match other patterns
+      const knownWeaponPaths = [
+        '/blackbriar_bow', '/cherry_blade', '/deathcap_bow', '/ham_bat',
+        '/lemontree_branch', '/rocksalt_sword', '/silverscale_swordfish',
+        '/bitter_melon', '/blood_chalice', '/blood_syringe', '/bracelet_talisman',
+        '/bramble_talisman', '/bracelet_vest', '/briar_greaves', '/brittle', '/broken',
+        '/caustic_tome', '/choicest_medallion', '/citrine_earring', '/citrine_gemstone',
+        '/crown', '/cyanide', '/dagger', '/deadeye', '/death_mask', '/demon', '/devils',
+        '/diamond_cutter', '/dire', '/dragon', '/dread', '/dusk', '/embersoul',
+        '/executioner', '/fang', '/final', '/fire', '/flame', '/frost', '/ghost',
+        '/glass', '/gloom', '/golden', '/grim', '/hellfire', '/hook', '/horn',
+        '/hunter', '/ice', '/infernal', '/iron', '/jade', '/jeweled', '/kings',
+        '/knight', '/leech', '/legendary', '/life', '/lightning', '/mace',
+        '/machete', '/mageblade', '/meteor', '/might', '/mystic', '/needle',
+        '/obsidian', '/phoenix', '/rage', '/razor', '/royal', '/ruby', '/runic',
+        '/sacrosanct', '/scythe', '/shadow', '/shard', '/shiv', '/skull',
+        '/smasher', '/soul', '/spiked', '/star', '/steel', '/storm', '/talon',
+        '/thunder', '/titan', '/tooth', '/toxic', '/trident', '/vampiric',
+        '/venomous', '/void', '/war', '/whisper', '/winged', '/winter',
+        '/witch', '/wooden', '/wraith', '/wrath'
+      ];
+      
+      const isKnownWeaponPath = knownWeaponPaths.some(path => key.toLowerCase().includes(path.toLowerCase()));
+      
+      // Combine all weapon detection methods
+      if (
+        key.startsWith('items/') && (
+          hasWeaponTermInName || 
+          hasWeaponEffect || 
+          hasAttackStat || 
+          isKnownWeaponPath
+        )
+      ) {
+        // This is likely a weapon, categorize it as such
+        val.bucket = 'weapons';
       }
       
       return val; 
     });
+    
+    // Count and log the number of weapons for verification
+    const weaponsCount = DATA_ARR.filter(item => item.bucket === 'weapons').length;
+    console.log(`Identified ${weaponsCount} weapons in the database`);
     
     // Build a set of keys that support Gold/Diamond tiers either because:
     // - effect text mentions Gold/Diamond, or
@@ -970,6 +1024,12 @@ function renderGrid() {
     card.draggable = true; card.dataset.key = entry.key;
 
     card.dataset.cat = (entry.tags||[]).find(t=>t==='Jewelry'||t==='Tome'||t==='Food') || '';
+    
+    // Add a visual indicator for weapons
+    if (entry.bucket === 'weapons') {
+      card.dataset.weapon = 'true';
+      card.style.borderColor = '#ff9900';
+    }
 
 
 
