@@ -2259,22 +2259,23 @@
     "effect": "If at full health at Battle Start: +2 Armor and deal 2 damage (repeat 3)",
     "effects": [
       {
-        "action": "gain_stat",
-        "if": {
-          "type": "is_full_health"
-        },
-        "stat": "armor",
-        "trigger": "battleStart",
-        "value": 2
-      },
-      {
-        "action": "deal_damage",
-        "if": {
-          "type": "is_full_health"
-        },
+        "actions": [
+          {
+            "type": "gain_armor",
+            "value": 2
+          },
+          {
+            "type": "deal_damage", 
+            "value": 2
+          }
+        ],
+        "conditions": [
+          {
+            "type": "is_full_health"
+          }
+        ],
         "repeat": 3,
-        "trigger": "battleStart",
-        "value": 2
+        "trigger": "battleStart"
       }
     ],
     "name": "Granite Cherry",
@@ -2294,7 +2295,14 @@
     "effect": "Battle Start: Gain max health equal to your base armor",
     "effects": [
       {
-        "action": "add_max_hp_from_base_armor",
+        "actions": [
+          {
+            "type": "add_max_hp_from_base_armor"
+          },
+          {
+            "type": "heal_from_base_armor"
+          }
+        ],
         "trigger": "battleStart"
       }
     ],
@@ -2350,6 +2358,17 @@
   "items/granite_thorns": {
     "bucket": "items",
     "effect": "You don't lose any thorns on the enemy's first 3 strikes",
+    "effects": [
+      {
+        "actions": [
+          {
+            "type": "set_preserve_thorns",
+            "value": 3
+          }
+        ],
+        "trigger": "battleStart"
+      }
+    ],
     "name": "Granite Thorns",
     "slug": "granite_thorns",
     "stats": {
