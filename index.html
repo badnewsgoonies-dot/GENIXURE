@@ -597,7 +597,7 @@ async function loadData() {
       const res = await fetch('details.json', { cache: 'no-store' });
       if (res.ok) {
         const fromJson = await res.json();
-        RAW_DATA = Object.assign({}, RAW_DATA, fromJson);
+        RAW_DATA = Object.assign({}, fromJson, RAW_DATA);
       }
     } catch(_fetchErr) {
       // ignore fetch failure (e.g., file://), rely on details.js
@@ -622,25 +622,15 @@ async function loadData() {
     DATA_ARR = Object.entries(RAW_DATA).map(([key,val]) => { 
       val.key = key; 
       
-      // Conservative fix: Only ensure items that should be weapons are properly categorized
-      // Don't change bucket for items that already have a bucket set
+      // Set bucket based on the key's prefix
       if (key.startsWith('weapons/')) {
         val.bucket = 'weapons';
-      }
-      
-      // Only fix specific known weapons that are miscategorized
-      const knownMiscategorizedWeapons = [
-        'items/blackbriar_bow', 
-        'items/cherry_blade', 
-        'items/deathcap_bow', 
-        'items/ham_bat',
-        'items/lemontree_branch', 
-        'items/rocksalt_sword', 
-        'items/silverscale_swordfish'
-      ];
-      
-      if (knownMiscategorizedWeapons.includes(key) && val.bucket !== 'weapons') {
-        val.bucket = 'weapons';
+      } else if (key.startsWith('items/')) {
+        val.bucket = 'items';
+      } else if (key.startsWith('upgrades/')) {
+        val.bucket = 'upgrades';
+      } else if (key.startsWith('sets/')) {
+        val.bucket = 'sets';
       }
       
       return val; 
