@@ -1930,19 +1930,8 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   </div>
 </div>
 
-<!-- Note: details are loaded from details.json via fetch.
-     For file:// usage (no local server), we also ship a pre-bundled
-     details.js that defines window.HEIC_DETAILS as a fallback. -->
+<!-- Data loader: Generated details.js provides window.HEIC_DETAILS global -->
 <script src="details.js"></script>
-<script>
-  // Debug: Check if details.js loaded correctly
-  console.log('🔍 Checking bundled data immediately after details.js...');
-  console.log('window.HEIC_DETAILS exists:', !!window.HEIC_DETAILS);
-  if (window.HEIC_DETAILS) {
-    console.log('window.HEIC_DETAILS item count:', Object.keys(window.HEIC_DETAILS).length);
-    console.log('First few keys:', Object.keys(window.HEIC_DETAILS).slice(0, 3));
-  }
-</script>
 <script src="heic_sim.js"></script>
 <script src="heic_effects.js"></script>
 <script src="heic_sets.js"></script>
@@ -2421,6 +2410,10 @@ const BattleReplayController = {
 </script>
 
 <script>
+console.log('� Main script starting');
+console.log('� window.HEIC_DETAILS available:', !!window.HEIC_DETAILS);
+console.log('🚀 Items count:', window.HEIC_DETAILS ? Object.keys(window.HEIC_DETAILS).length : 0);
+
 /* Main builder logic using embedded details data */
 let RAW_DATA = {};
 let DATA_ARR = [];
@@ -2923,8 +2916,82 @@ async function safeLoadData() {
   }
 }
 
-// Wait a moment for bundled scripts to load, then start data loading
-setTimeout(safeLoadData, 100);
+// Wait a moment for DOM and bundled scripts to load, then start initialization
+setTimeout(initializeFromBundledData, 100);
+
+// Simple initialization using generated details.js
+async function initializeFromBundledData() {
+  try {
+    console.log('🚀 Initializing from window.HEIC_DETAILS...');
+    
+    if (!window.HEIC_DETAILS) {
+      throw new Error('window.HEIC_DETAILS not found - run "npm run gen:details" to generate details.js');
+    }
+    
+    const itemCount = Object.keys(window.HEIC_DETAILS).length;
+    if (itemCount === 0) {
+      throw new Error('window.HEIC_DETAILS is empty');
+    }
+    
+    console.log(`✅ Found ${itemCount} items in bundled data`);
+    
+    // Set global data
+    RAW_DATA = window.HEIC_DETAILS;
+    
+    // Convert to array format for the UI
+    DATA_ARR = Object.entries(RAW_DATA).map(([key, val]) => { 
+      val.key = key; 
+      return val; 
+    });
+    
+    const bucketCounts = {
+      items: DATA_ARR.filter(item => item.bucket === 'items').length,
+      weapons: DATA_ARR.filter(item => item.bucket === 'weapons').length,
+      upgrades: DATA_ARR.filter(item => item.bucket === 'upgrades').length,
+      sets: DATA_ARR.filter(item => item.bucket === 'sets').length
+    };
+    
+    console.log(`✅ Data processed: ${DATA_ARR.length} items`, bucketCounts);
+    
+    // Build tierable set (for gold/diamond variants)
+    window.TIERABLE = new Set();
+    for (const item of DATA_ARR) {
+      if (item.effect && item.effect.includes('Gold')) {
+        window.TIERABLE.add(item.slug);
+      }
+    }
+    
+    // Initialize UI components
+    populateEdges();
+    initSlots();
+    console.log('🎯 Calling initializeCompendiumData...');
+    initializeCompendiumData();
+    updateTotals('P');
+    updateTotals('O');
+    
+    console.log('🎉 Initialization complete!');
+    
+  } catch (error) {
+    console.error('❌ Initialization failed:', error.message);
+    
+    // Show error in UI but don't crash
+    const errorDiv = document.createElement('div');
+    errorDiv.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a0000; border: 2px solid #f33; color: #fff; padding: 20px; border-radius: 8px; z-index: 10000; max-width: 400px;';
+    errorDiv.innerHTML = `
+      <h3 style="color: #f33; margin: 0 0 12px 0;">⚠️ Initialization Error</h3>
+      <p style="margin: 0 0 12px 0;">${error.message}</p>
+      <p style="margin: 0; font-size: 12px; color: #aaa;">
+        💡 Try running: <code style="background: #333; padding: 2px 4px; border-radius: 2px;">npm run gen:details</code>
+      </p>
+    `;
+    document.body.appendChild(errorDiv);
+    
+    // Set empty data so UI doesn't break
+    RAW_DATA = {};
+    DATA_ARR = [];
+    window.TIERABLE = new Set();
+  }
+}
 
 // Initialize Battle Replay System
 BattleReplayController.init();
@@ -4867,6 +4934,7 @@ function updateSimulationPreview() {
   updateFighterCards();
   updateLoadoutTrays();
   updatePinnedMetrics();
+}
 }
 
 // Update fighter stat cards

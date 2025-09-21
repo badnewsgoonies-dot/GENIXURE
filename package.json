@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "He Is Coming battle simulator",
   "scripts": {
+    "gen:details": "node scripts/build-details.mjs --in details.json --out details.js",
+    "gen:details:min": "MINIFY=1 node scripts/build-details.mjs --in details.json --out details.js",
+    "predev": "npm run gen:details",
+    "prebuild": "npm run gen:details:min",
     "build": "node \"Random Tests/merge_stats_overrides.js\"",
     "test": "node -e \"const sim=require('./heic_sim.js'); sim.simulate({hp:10,atk:0},{hp:10,atk:0});\""
   },
