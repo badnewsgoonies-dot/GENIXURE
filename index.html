@@ -2699,23 +2699,39 @@ const ICONS = { attack:'attack.png', health:'health.png', armor:'armor.png', spe
 
 const $ = sel => document.querySelector(sel);
 
-// Advanced Compendium Elements
-const globalSearch = $('#globalSearch');
-const searchChips = $('#searchChips');
-const itemGrid = $('#itemGrid');
-const itemTable = $('#itemTable');
-const tableBody = $('#tableBody');
-const compareContainer = $('#compareContainer');
-const resultCount = $('#resultCount');
-const filterSummary = $('#filterSummary');
-const reviewCount = $('#reviewCount');
-const itemDetailModal = $('#itemDetailModal');
-const itemDetailContent = $('#itemDetailContent');
-const qaPanel = $('#qaPanel');
+// Advanced Compendium Elements (will be queried when needed)
+let globalSearch, searchChips, itemGrid, itemTable, tableBody, compareContainer;
+let resultCount, filterSummary, reviewCount, itemDetailModal, itemDetailContent, qaPanel;
+let grid, countSpan; // Legacy elements
 
-// Legacy elements for backwards compatibility
-const grid = $('#itemGrid'); // Point to new grid
-const countSpan = $('#resultCount'); // Point to new counter
+function getCompendiumElements() {
+  if (!globalSearch) {
+    globalSearch = $('#globalSearch');
+    searchChips = $('#searchChips');
+    itemGrid = $('#itemGrid');
+    itemTable = $('#itemTable');
+    tableBody = $('#tableBody');
+    compareContainer = $('#compareContainer');
+    resultCount = $('#resultCount');
+    filterSummary = $('#filterSummary');
+    reviewCount = $('#reviewCount');
+    itemDetailModal = $('#itemDetailModal');
+    itemDetailContent = $('#itemDetailContent');
+    qaPanel = $('#qaPanel');
+    
+    // Legacy elements for backwards compatibility - try both new and old IDs
+    grid = itemGrid || $('#grid'); // Try new first, fallback to old
+    countSpan = resultCount || $('#count'); // Try new first, fallback to old
+    
+    console.log('Elements found:', {
+      globalSearch: !!globalSearch,
+      itemGrid: !!itemGrid,
+      grid: !!grid,
+      resultCount: !!resultCount,
+      countSpan: !!countSpan
+    });
+  }
+}
 
 // Advanced Compendium State
 let compendiumState = {
@@ -2984,22 +3000,35 @@ function showDetail(entry) {
 
 // Initialize Advanced Compendium
 function initAdvancedCompendium() {
-  if (!DATA_ARR || !DATA_ARR.length) {
-    console.warn('No data available for advanced compendium');
-    return;
-  }
+  console.log('Initializing Advanced Compendium...');
   
-  // Build filter counts and options
-  buildFilterOptions();
-  
-  // Setup event listeners
-  setupCompendiumListeners();
-  
-  // Initial render
-  renderCompendium();
-  
-  // Run QA analysis
-  runQAAnalysis();
+  // Wait for DOM to be ready
+  setTimeout(() => {
+    // Ensure elements are available
+    getCompendiumElements();
+    
+    if (!DATA_ARR || !DATA_ARR.length) {
+      console.warn('No data available for advanced compendium');
+      showNoDataMessage('Compendium data not available. Check details.js or details.json.');
+      return;
+    }
+    
+    console.log('DATA_ARR loaded with', DATA_ARR.length, 'items');
+    
+    // Build filter counts and options
+    buildFilterOptions();
+    
+    // Setup event listeners
+    setupCompendiumListeners();
+    
+    // Initial render
+    renderCompendium();
+    
+    // Run QA analysis
+    runQAAnalysis();
+    
+    console.log('Advanced Compendium initialization complete');
+  }, 100);
 }
 
 // Build dynamic filter options with counts
@@ -3059,6 +3088,11 @@ function buildFilterOptions() {
 
 // Setup event listeners for all compendium controls
 function setupCompendiumListeners() {
+  console.log('Setting up compendium listeners...');
+  
+  // Ensure elements are available
+  getCompendiumElements();
+  
   // Search input
   if (globalSearch) {
     globalSearch.addEventListener('input', debounce(handleSearch, 300));
@@ -3068,6 +3102,9 @@ function setupCompendiumListeners() {
         handleSearchSubmit();
       }
     });
+    console.log('Search listeners set up');
+  } else {
+    console.warn('globalSearch element not found');
   }
   
   // View mode switchers
@@ -3079,6 +3116,7 @@ function setupCompendiumListeners() {
       renderCompendium();
     });
   });
+  console.log('View mode listeners set up');
   
   // Tier switchers
   document.querySelectorAll('.tier-btn').forEach(btn => {
@@ -3089,9 +3127,10 @@ function setupCompendiumListeners() {
       renderCompendium();
     });
   });
+  console.log('Tier switchers set up');
   
   // Needs review toggle
-  const needsReviewToggle = $('#needsReviewToggle');
+  const needsReviewToggle = document.getElementById('needsReviewToggle');
   if (needsReviewToggle) {
     needsReviewToggle.addEventListener('click', () => {
       compendiumState.needsReviewOnly = !compendiumState.needsReviewOnly;
@@ -3100,67 +3139,16 @@ function setupCompendiumListeners() {
     });
   }
   
-  // Filter listeners
-  document.querySelectorAll('#bucketFilters input, #tagFilters input, #triggerFilters input').forEach(input => {
-    input.addEventListener('change', handleFilterChange);
-  });
-  
-  // Stat sliders
-  ['attack', 'armor', 'health', 'speed'].forEach(stat => {
-    const slider = $(`#${stat}Slider`);
-    const valueSpan = $(`#${stat}Value`);
-    if (slider && valueSpan) {
-      slider.addEventListener('input', () => {
-        const value = parseInt(slider.value);
-        compendiumState.activeFilters.stats[stat] = value;
-        valueSpan.textContent = value === 0 ? 'Any' : `${value}+`;
-        renderCompendium();
-      });
-    }
-  });
-  
-  // Advanced filters
-  document.querySelectorAll('#hasTieredValues, #hasConditions, #firstTurnOnly').forEach(input => {
-    input.addEventListener('change', () => {
-      if (input.checked) {
-        compendiumState.activeFilters.advanced.add(input.id);
-      } else {
-        compendiumState.activeFilters.advanced.delete(input.id);
-      }
-      renderCompendium();
-    });
-  });
-  
   // Quick actions
-  const randBuildBtn = $('#randBuildBtn');
-  const randEnemyBtn = $('#randEnemyBtn');
-  const showSimBtn = $('#showSimBtn');
+  const randBuildBtn = document.getElementById('randBuildBtn');
+  const randEnemyBtn = document.getElementById('randEnemyBtn');
+  const showSimBtn = document.getElementById('showSimBtn');
   
   if (randBuildBtn) randBuildBtn.addEventListener('click', () => randomizeSide('P'));
   if (randEnemyBtn) randEnemyBtn.addEventListener('click', () => randomizeSide('O'));
   if (showSimBtn) showSimBtn.addEventListener('click', () => switchToTab('simulation'));
   
-  // Table sorting
-  document.querySelectorAll('.sortable').forEach(th => {
-    th.addEventListener('click', () => {
-      const sortKey = th.dataset.sort;
-      if (compendiumState.sortBy === sortKey) {
-        compendiumState.sortDirection = compendiumState.sortDirection === 'asc' ? 'desc' : 'asc';
-      } else {
-        compendiumState.sortBy = sortKey;
-        compendiumState.sortDirection = 'asc';
-      }
-      renderCompendium();
-    });
-  });
-  
-  // Modal close
-  const closeItemDetail = $('#closeItemDetail');
-  if (closeItemDetail) {
-    closeItemDetail.addEventListener('click', () => {
-      itemDetailModal.style.display = 'none';
-    });
-  }
+  console.log('Quick action listeners set up');
 }
 
 // Handle search input with chips
@@ -3227,13 +3215,22 @@ function handleFilterChange(e) {
 
 // Main render function for the compendium
 function renderCompendium() {
+  console.log('renderCompendium called');
+  
+  // Ensure elements are available
+  getCompendiumElements();
+  
   if (!DATA_ARR || !DATA_ARR.length) {
+    console.warn('No DATA_ARR available, showing error message');
     showNoDataMessage('Compendium data not available. Check details.js or details.json.');
     return;
   }
   
+  console.log('Rendering compendium with', DATA_ARR.length, 'total items');
+  
   // Filter items based on current state
   const filteredItems = filterItems(DATA_ARR);
+  console.log('Filtered to', filteredItems.length, 'items');
   
   // Update result count
   updateResultCount(filteredItems.length);
@@ -3330,22 +3327,46 @@ function filterItems(items) {
 
 // Render cards view
 function renderCardsView(items) {
-  if (!itemGrid) return;
+  console.log('renderCardsView called with', items.length, 'items');
+  
+  // Ensure elements are available
+  getCompendiumElements();
+  
+  // Use either the new itemGrid or fall back to any available grid
+  const targetGrid = itemGrid || grid || $('#grid');
+  
+  if (!targetGrid) {
+    console.error('No grid element found! Checked itemGrid, grid, and #grid');
+    // Try to find any element that might work
+    const fallback = document.querySelector('.item-grid, .grid, [id*="grid"], [class*="grid"]');
+    console.log('Fallback element found:', !!fallback, fallback);
+    if (fallback) {
+      fallback.innerHTML = '<div style="color: #f33; padding: 20px;">Advanced compendium system needs debugging - grid element issue</div>';
+    }
+    return;
+  }
+  
+  console.log('Using grid element:', targetGrid.id || targetGrid.className);
   
   // Sort items
   const sortedItems = sortItems(items);
   
-  itemGrid.innerHTML = '';
+  targetGrid.innerHTML = '';
   
   if (sortedItems.length === 0) {
-    itemGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #666; padding: 40px;">No items match current filters</div>';
+    targetGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #666; padding: 40px;">No items match current filters</div>';
     return;
   }
   
-  sortedItems.forEach(item => {
+  console.log('Creating cards for', sortedItems.length, 'items');
+  
+  sortedItems.forEach((item, index) => {
+    console.log(`Creating card ${index + 1}:`, item.name);
     const card = createItemCard(item);
-    itemGrid.appendChild(card);
+    targetGrid.appendChild(card);
   });
+  
+  console.log('Cards rendered successfully');
 }
 
 // Create an enhanced item card
@@ -3660,14 +3681,90 @@ function debounce(func, wait) {
 }
 
 function showNoDataMessage(message) {
-  if (itemGrid) {
-    itemGrid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: #f33; padding: 40px;">${message}</div>`;
+  console.log('showNoDataMessage called:', message);
+  getCompendiumElements();
+  
+  // Try multiple fallback strategies to show the message
+  const gridsToTry = [itemGrid, grid, $('#itemGrid'), $('#grid'), $('.item-grid'), $('.grid')];
+  let messageShown = false;
+  
+  for (let targetGrid of gridsToTry) {
+    if (targetGrid && targetGrid.innerHTML !== undefined) {
+      targetGrid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: #f33; padding: 40px; background: rgba(255,51,51,0.1); border: 1px solid #f33; border-radius: 8px;">${message}</div>`;
+      messageShown = true;
+      console.log('Message shown in element:', targetGrid.id || targetGrid.className || 'unnamed');
+      break;
+    }
   }
+  
+  if (!messageShown) {
+    console.error('Could not find any grid element to show error message');
+    // Last resort - try to find any container in the compendium area
+    const compendiumMain = document.querySelector('.content-main, .compendium-main, #compendiumTab');
+    if (compendiumMain) {
+      const errorDiv = document.createElement('div');
+      errorDiv.style.cssText = 'text-align: center; color: #f33; padding: 40px; background: rgba(255,51,51,0.1); border: 1px solid #f33; border-radius: 8px; margin: 20px;';
+      errorDiv.textContent = message;
+      compendiumMain.appendChild(errorDiv);
+      console.log('Emergency message shown in compendium main');
+    }
+  }
+}
+
+// Emergency fallback renderer
+function renderBasicFallback(container, items) {
+  console.log('Running basic fallback renderer with', items.length, 'items');
+  
+  container.innerHTML = '';
+  
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.style.cssText = `
+      background: #000;
+      border: 2px solid #f33;
+      border-radius: 16px;
+      padding: 14px;
+      margin: 8px;
+      color: #fff;
+      cursor: pointer;
+    `;
+    
+    card.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+        <img src="${item.key}/icon.png" alt="${item.name}" 
+             style="width: 48px; height: 48px; image-rendering: pixelated;"
+             onerror="this.src='placeholder.png'">
+        <div>
+          <div style="font-weight: 700; font-size: 18px; color: #f33;">${item.name}</div>
+          <div style="font-size: 12px; color: #aaa;">${item.key}</div>
+        </div>
+      </div>
+      <div style="color: #ccc; font-size: 13px;">${item.effect || 'No description'}</div>
+    `;
+    
+    // Add drag functionality
+    card.draggable = true;
+    card.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text/plain', item.key);
+    });
+    
+    container.appendChild(card);
+  });
+  
+  console.log('Basic fallback rendering complete');
 }
 
 // Backwards compatibility - keep old renderGrid function name
 function renderGrid() {
-  renderCompendium();
+  try {
+    renderCompendium();
+  } catch (error) {
+    console.error('renderCompendium failed, using fallback:', error);
+    const anyGrid = document.querySelector('#itemGrid, .item-grid, #grid, .grid');
+    if (anyGrid && DATA_ARR && DATA_ARR.length > 0) {
+      renderBasicFallback(anyGrid, DATA_ARR);
+    }
+  }
 }
 
 // Additional helper functions for compendium
