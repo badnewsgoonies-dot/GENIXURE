@@ -578,6 +578,8 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
      For file:// usage (no local server), we also ship a pre-bundled
      details.js that defines window.HEIC_DETAILS as a fallback. -->
 <script src="details.js"></script>
+<!-- Weapon manifest ensures proper categorization even when details.json lacks weapon buckets -->
+<script src="weapons_manifest.js"></script>
 <script src="heic_sim.js"></script>
 <script src="heic_effects.js"></script>
 <script src="heic_sets.js"></script>
@@ -588,15 +590,22 @@ let RAW_DATA = {};
 let DATA_ARR = [];
 async function loadData() {
   try {
-    // If pre-bundled details are present (e.g., when opened via file://), use them.
-    if (window.HEIC_DETAILS && typeof window.HEIC_DETAILS === 'object') {
-      RAW_DATA = window.HEIC_DETAILS;
-    } else {
+    // Merge both sources when available to avoid missing entries.
+    // Start with any pre-bundled details (file:// safe).
+    RAW_DATA = (window.HEIC_DETAILS && typeof window.HEIC_DETAILS === 'object') ? window.HEIC_DETAILS : {};
+
+    // Try to fetch details.json and merge/override entries.
+    try {
       const res = await fetch('details.json', { cache: 'no-store' });
-      if (!res.ok) throw new Error('Failed to load details.json: ' + res.status);
-      RAW_DATA = await res.json();
-      try { window.HEIC_DETAILS = RAW_DATA; } catch(_) {}
+      if (res.ok) {
+        const fromJson = await res.json();
+        RAW_DATA = Object.assign({}, RAW_DATA, fromJson);
+      }
+    } catch(_fetchErr) {
+      // ignore fetch failure (e.g., file://), rely on details.js
     }
+
+    try { window.HEIC_DETAILS = RAW_DATA; } catch(_) {}
     // Attempt to load optional stats_overrides.json and merge it into RAW_DATA.
     try {
       const resO = await fetch('stats_overrides.json', { cache: 'no-store' });
@@ -612,6 +621,9 @@ async function loadData() {
     } catch(oerr) {
       // Ignore missing overrides file; it's optional.
     }
+    // Build a fast lookup of known weapon slugs if provided by weapons_manifest.js
+    const WEAPON_SLUG_SET = Array.isArray(window.WEAPON_SLUGS) ? new Set(window.WEAPON_SLUGS) : null;
+
     DATA_ARR = Object.entries(RAW_DATA).map(([key,val]) => { 
       val.key = key; 
       
@@ -634,6 +646,16 @@ async function loadData() {
       
       if (knownMiscategorizedWeapons.includes(key) && val.bucket !== 'weapons') {
         val.bucket = 'weapons';
+      }
+
+      // If we have a manifest of weapon slugs, use it to normalize buckets.
+      if (WEAPON_SLUG_SET) {
+        // Derive slug from data first, then from key
+        const m = /^(?:items|weapons)\/(.+)$/.exec(key);
+        const slug = val.slug || (m ? m[1] : '');
+        if (slug && WEAPON_SLUG_SET.has(slug)) {
+          val.bucket = 'weapons';
+        }
       }
       
       return val; 
