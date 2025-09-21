@@ -1074,6 +1074,32 @@
       "Jewelry"
     ]
   },
+  "items/citrine_ring": {
+    "bucket": "items",
+    "effect": "Battle Start: Gain 1 gold.",
+    "effects": [
+      {
+        "actions": [
+          {
+            "type": "add_gold",
+            "value": 1
+          }
+        ],
+        "trigger": "battleStart"
+      }
+    ],
+    "name": "Citrine Ring",
+    "slug": "citrine_ring",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "tags": [
+      "Jewelry"
+    ]
+  },
   "items/clearspring_cloak": {
     "bucket": "items",
     "effect": "Exposed: Remove all your status effects and gain 1 armor equal to stacks removed",

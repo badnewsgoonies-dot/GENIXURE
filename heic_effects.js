@@ -148,37 +148,11 @@
 
   // Arcane Lens: If exactly 1 tome equipped, its countdown triggers 3 times total
   // Items already migrated to data-driven system - legacy hooks removed:
-  // arcane_lens, ring_blades, bee_stinger, viper_extract, boiled_ham  // Viper Extract: first time the enemy gains poison, give +3 poison
-  hooks['items/viper_extract'] = {
-    battleStart({ self }){
-      self._viperTriggered = false;
-    },
-    onGainStatus({ self, other, log, key, isNew }){
-      if(key === 'poison' && isNew && !self._viperTriggered){
-        other.addStatus('poison', 3);
-        self._viperTriggered = true;
-        log(`${other.name} gains +3 poison (Viper Extract).`);
-      }
-    }
-  };
+  // arcane_lens, ring_blades, bee_stinger, viper_extract, boiled_ham  // Viper Extract: MIGRATED - now uses data-driven effects
+  // hooks['items/viper_extract'] = { ... } // REMOVED - MIGRATED
 
-  // Boiled Ham: if battle start and the holder is exposed or wounded, reduce
-  // all statuses by 1 and log each decrease
-  hooks['items/boiled_ham'] = {
-    battleStart({ self, log }){
-      // Determine if exposed or wounded on start
-      const exposed = self.status && self.status.exposed > 0;
-      const wounded = self.status && self.status.wounded > 0;
-      if(exposed || wounded){
-        for(const k of Object.keys(self.s || {})){
-          if(self.s[k] && self.s[k] > 0){
-            self.s[k] -= 1;
-            log(`${self.name} decreases ${k} by 1 (Boiled Ham).`);
-          }
-        }
-      }
-    }
-  };
+  // Boiled Ham: MIGRATED - now uses data-driven effects  
+  // hooks['items/boiled_ham'] = { ... } // REMOVED - MIGRATED
 
   // Items migrated to data-driven system:
   // bitter_melon, swiftstrike_belt, limestone_fruit, horned_melon, 
@@ -200,56 +174,19 @@
     // brittlebark_armor, brittlebark_buckler, broken_winebottle, cactus_cap
 
   // Brittlebark Buckler: Lose all your armor after your enemy's first strike.
-  hooks['items/brittlebark_buckler'] = {
-    battleStart({ self }) {
-      self._brittlebarkBucklerTriggered = false;
-    },
-    onDamaged({ self, other, log, armorLost, hpLost }) {
-      // This should only trigger on damage from the 'other' entity's strike phase
-      if (other && other.isStriking && (armorLost > 0 || hpLost > 0) && !self._brittlebarkBucklerTriggered) {
-        const lostArmor = self.armor;
-        if (lostArmor > 0) {
-          self.armor = 0;
-          log(`${self.name} loses all ${lostArmor} armor (Brittlebark Buckler).`);
-        }
-        self._brittlebarkBucklerTriggered = true;
-      }
-    }
-  };
+  // Brittlebark Buckler: MIGRATED - now uses data-driven effects
+  // hooks['items/brittlebark_buckler'] = { ... } // REMOVED - MIGRATED
 
   // Broken Winebottle: When Wounded: next turn keep striking enemy until they’re wounded
-  hooks['items/broken_winebottle'] = {
-    onWounded({ self, log }) {
-      self._winebottleEnraged = true;
-      log(`${self.name} becomes enraged (Broken Winebottle).`);
-    },
-    turnStart({ self, log }) {
-      if (self._winebottleEnraged) {
-        // Grant a large number of strikes to simulate "keep striking"
-        self.addExtraStrikes(10); 
-        log(`${self.name} enters a rage, gaining 10 extra strikes (Broken Winebottle).`);
-        self._winebottleEnraged = false; // Effect is consumed
-      }
-    }
-  };
+  // Broken Winebottle: MIGRATED - now uses data-driven effects
+  // hooks['items/broken_winebottle'] = { ... } // REMOVED - MIGRATED
 
   // Cactus Cap: If the enemy has no armor, thorns deal double damage
-  hooks['items/cactus_cap'] = {
-    // NOTE: This effect modifies global damage calculation and cannot be
-    // implemented with a simple item hook. It requires changes to the core
-    // simulation engine (heic_sim.js) where thorns damage is applied.
-    // A placeholder is added to acknowledge the item.
-  };
+  // Cactus Cap: MIGRATED - now uses data-driven effects  
+  // hooks['items/cactus_cap'] = { ... } // REMOVED - MIGRATED (thorns double damage logic)
 
-  // Caustic Tome: Battle Start: Give the enemy acid equal to your speed.
-  hooks['items/caustic_tome'] = {
-    battleStart({ self, other, log }) {
-      if (self.speed > 0) {
-        other.addStatus('acid', self.speed);
-        log(`${other.name} gains ${self.speed} acid (Caustic Tome).`);
-      }
-    }
-  };
+  // Caustic Tome: MIGRATED - now uses data-driven effects
+  // hooks['items/caustic_tome'] = { ... } // REMOVED - MIGRATED
 
   // Chainlink Medallion: Your On Hit effects trigger twice
   hooks['items/chainlink_medallion'] = {
@@ -276,24 +213,10 @@
   };
 
   // Chainmail Armor: Wounded: Regain your base armor
-  hooks['items/chainmail_armor'] = {
-    onWounded({ self, log }) {
-      if (self.baseArmor > 0) {
-        self.addArmor(self.baseArmor);
-        log(`${self.name} regains ${self.baseArmor} base armor (Chainmail Armor).`);
-      }
-    }
-  };
+  // Chainmail Armor: MIGRATED - now uses data-driven effects
+  // hooks['items/chainmail_armor'] = { ... } // REMOVED - MIGRATED
 
-  // Chainmail Cloak: Turn Start: If you have armor, restore 2 health
-  hooks['items/chainmail_cloak'] = {
-    turnStart({ self, log }) {
-      if (self.armor > 0) {
-        const healed = self.heal(2);
-        if (healed > 0) log(`${self.name} restores ${healed} health (Chainmail Cloak).`);
-      }
-    }
-  };
+
 
   // Cherry Blade: Battle Start (if Exposed): Deal 4 damage
   hooks['weapons/cherry_blade'] = {
@@ -313,23 +236,11 @@
   };
 
   // Countdown-related items
-  hooks['items/arcane_bell'] = {
-    battleStart({ self, log }) {
-      if (typeof self.decAllCountdowns === 'function') {
-        self.decAllCountdowns(1);
-        log(`${self.name} decreases all countdowns by 1 (Arcane Bell).`);
-      }
-    }
-  };
+  // Arcane Bell: MIGRATED - now uses data-driven effects
+  // hooks['items/arcane_bell'] = { ... } // REMOVED - MIGRATED
 
-  hooks['items/arcane_gauntlet'] = {
-    battleStart({ self, log }) {
-      if (typeof self.halveCountdowns === 'function') {
-        self.halveCountdowns();
-        log(`${self.name} halves all countdowns (Arcane Gauntlet).`);
-      }
-    }
-  };
+  // Arcane Gauntlet: MIGRATED - now uses data-driven effects
+  // hooks['items/arcane_gauntlet'] = { ... } // REMOVED - MIGRATED
 
   hooks['items/arcane_cloak'] = {
     postCountdownTrigger({ self, countdown, log }) {
@@ -412,20 +323,7 @@
     }
   };
 
-  // Cherry Cocktail: At Battle Start and when Wounded: Deal 3 damage and restore 3 health
-  hooks['items/cherry_cocktail'] = {
-    _effect(self, other, log) {
-      self.damageOther(3);
-      const healed = self.heal(3);
-      log(`${self.name} deals 3 damage and restores ${healed} health (Cherry Cocktail).`);
-    }
-  };
-  hooks['items/cherry_cocktail'].battleStart = ({ self, other, log }) => {
-    hooks['items/cherry_cocktail']._effect(self, other, log);
-  };
-  hooks['items/cherry_cocktail'].onWounded = ({ self, other, log }) => {
-    hooks['items/cherry_cocktail']._effect(self, other, log);
-  };
+
 
   // Citrine Crown: Battle Start: Gain 1 gold.
   hooks['items/citrine_crown'] = {
@@ -435,49 +333,13 @@
     }
   };
 
-  // Citrine Earring: Every other turn: +1 Speed (Gold +2, Diamond +4)
-  hooks['items/citrine_earring'] = {
-    turnStart({ self, log, tier }) {
-      if ((self.turnCount | 0) % 2 === 0) {
-        const gain = valByTier(1, 2, 4, tier);
-        self.speed += gain;
-        log(`${self.name} gains ${gain} speed (Citrine Earring).`);
-      }
-    }
-  };
 
-  // Citrine Gemstone: Base Speed inverted
-  hooks['items/citrine_gemstone'] = {
-    battleStart({ self, log }) {
-      self.speed = (self.speed || 0) * -1;
-      log(`${self.name} inverts its speed (Citrine Gemstone).`);
-    }
-  };
 
-  // Citrine Ring: Battle Start: Gain 1 gold.
-  hooks['items/citrine_ring'] = {
-    battleStart({ self, log }) {
-      self.gold = (self.gold || 0) + 1;
-      log(`${self.name} gains 1 gold (Citrine Ring).`);
-    }
-  };
 
-  // Clearspring Cloak: Exposed: Remove all your status effects and gain 1 armor equal to stacks removed
-  hooks['items/clearspring_cloak'] = {
-    onExposed({ self, log }) {
-      let removedCount = 0;
-      for (const key in self.s) {
-        if (self.s[key] > 0) {
-          removedCount += self.s[key];
-          self.s[key] = 0;
-        }
-      }
-      if (removedCount > 0) {
-        self.addArmor(removedCount);
-        log(`${self.name} removes all status effects and gains ${removedCount} armor (Clearspring Cloak).`);
-      }
-    }
-  };
+
+
+
+
 
   // Clearspring Rose: Whenever you restore health, decrease a random status effect by 1.
   hooks['items/clearspring_rose'] = {
