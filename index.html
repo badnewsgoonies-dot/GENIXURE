@@ -421,6 +421,168 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   transform: none;
 }
 
+/* Three-Pane Layout Specific Styles */
+.fighter-card {
+  transition: all 0.3s ease;
+}
+
+.fighter-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,255,51,0.2);
+}
+
+.fighter-card.opponent-card:hover {
+  box-shadow: 0 4px 12px rgba(255,51,51,0.2);
+}
+
+.stat-chip {
+  transition: all 0.2s ease;
+}
+
+.stat-chip:hover {
+  transform: scale(1.05);
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #666;
+  border-radius: 12px;
+  padding: 2px 6px;
+  font-size: 10px;
+  color: #ccc;
+  transition: all 0.2s ease;
+}
+
+.status-chip:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1);
+}
+
+.status-chip.poison { border-color: #8a2be2; color: #8a2be2; }
+.status-chip.thorns { border-color: #8b4513; color: #8b4513; }
+.status-chip.regen { border-color: #32cd32; color: #32cd32; }
+.status-chip.stun { border-color: #ffd700; color: #ffd700; }
+.status-chip.acid { border-color: #adff2f; color: #adff2f; }
+.status-chip.freeze { border-color: #87ceeb; color: #87ceeb; }
+.status-chip.riptide { border-color: #4169e1; color: #4169e1; }
+.status-chip.purity { border-color: #f0f8ff; color: #f0f8ff; }
+
+.delta-indicator {
+  font-size: 10px;
+  font-weight: 700;
+  margin-left: 4px;
+  animation: deltaFlash 0.6s ease-in-out;
+}
+
+.delta-indicator.positive { color: #0f3; }
+.delta-indicator.negative { color: #f33; }
+
+@keyframes deltaFlash {
+  0% { opacity: 0; transform: scale(1.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Loadout tray styles */
+.loadout-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 11px;
+  transition: all 0.2s ease;
+}
+
+.loadout-item:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #666;
+}
+
+.loadout-item img {
+  width: 20px;
+  height: 20px;
+  image-rendering: pixelated;
+}
+
+.loadout-item.weapon {
+  border-color: #ff9900;
+  color: #ff9900;
+}
+
+.loadout-item.tier-gold {
+  box-shadow: 0 0 4px rgba(255,215,0,0.3);
+}
+
+.loadout-item.tier-diamond {
+  box-shadow: 0 0 4px rgba(185,242,255,0.3);
+}
+
+/* Phase-based log styling */
+.log-phase-card {
+  margin: 12px 0;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.log-phase-card.expanded {
+  border-color: #666;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.log-phase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.log-phase-header:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.log-phase-header.battle-start { border-left: 4px solid #0f3; }
+.log-phase-header.turn-start { border-left: 4px solid #fa0; }
+.log-phase-header.strike { border-left: 4px solid #f33; }
+.log-phase-header.wounded { border-left: 4px solid #f0a; }
+.log-phase-header.exposed { border-left: 4px solid #af5; }
+.log-phase-header.countdown { border-left: 4px solid #5af; }
+
+.log-phase-summary {
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
+}
+
+.log-phase-content {
+  padding: 12px;
+  border-top: 1px solid #333;
+  display: none;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.log-phase-content.expanded {
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Enhanced battle log with replay features */
 .battle-log-line {
   border-left: 3px solid transparent;
@@ -605,91 +767,191 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
         </div>
       </div>
     </section>
-    <section class="center" id="simulationTab" style="flex:1; display:none; flex-direction:column; min-height:0; padding:20px; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);">
-      <!-- Battle Arena: Three-column layout -->
-      <div style="display: grid; grid-template-columns: 300px 1fr 300px; gap: 24px; width: 100%; flex: 1; min-height: 0;">
+    <section class="center" id="simulationTab" style="flex:1; display:none; flex-direction:column; min-height:0; background: #000;">
+      <!-- Three-Pane Layout: Fighter Cards | Event Log | Loadout Tray -->
+      <div class="sim-three-pane" style="display: grid; grid-template-columns: 320px 1fr 320px; gap: 12px; height: 100%; min-height: 0; padding: 12px;">
+        
+        <!-- LEFT PANE: Sticky Summary (Fighter Cards) -->
+        <div class="fighter-summary-pane" style="display: flex; flex-direction: column; gap: 16px; background: #0a0a0a; border: 2px solid #333; border-radius: 12px; padding: 16px; overflow-y: auto; position: sticky; top: 0; height: fit-content; max-height: 100vh;">
+          
+          <!-- Pinned Key Numbers -->
+          <div id="pinnedMetrics" style="background: rgba(0,50,20,0.8); border: 2px solid #0a5; border-radius: 8px; padding: 12px; margin-bottom: 8px;">
+            <div style="color: #0a5; font-size: 12px; font-weight: 600; text-align: center; margin-bottom: 8px;">LIVE METRICS</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px;">
+              <div style="text-align: center;">
+                <div style="color: #888;">Damage Dealt</div>
+                <div id="totalDamageDealt" style="color: #f33; font-weight: 700;">0</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="color: #888;">Damage Taken</div>
+                <div id="totalDamageTaken" style="color: #f33; font-weight: 700;">0</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="color: #888;">Strikes Queued</div>
+                <div id="strikesQueued" style="color: #fa0; font-weight: 700;">0</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="color: #888;">Lethal ETA</div>
+                <div id="lethalETA" style="color: #f0a; font-weight: 700;">∞</div>
+              </div>
+            </div>
+          </div>
 
-        <!-- Player Arena (Left) -->
-        <div id="simPlayerArena" style="display: flex; flex-direction: column; gap: 16px; background: rgba(0,255,51,0.05); border: 2px solid #0f3; border-radius: 16px; padding: 16px; overflow-y: auto;">
-          <h2 style="color:#0f3; text-align:center; margin:0 0 8px 0; text-shadow:0 0 10px rgba(0,255,51,0.5);">PLAYER</h2>
-          <div id="simPlayerPreview" style="display: flex; flex-direction: column; gap: 12px;">
-            <!-- Player content will be dynamically rendered here -->
+          <!-- Player Fighter Card -->
+          <div class="fighter-card player-card" style="background: rgba(0,255,51,0.1); border: 2px solid #0f3; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+              <h3 style="color: #0f3; margin: 0; font-size: 16px; text-shadow: 0 0 8px rgba(0,255,51,0.5);">PLAYER</h3>
+              <div id="playerResult" style="font-size: 12px; font-weight: 600; display: none;"></div>
+            </div>
+            
+            <!-- Core Stats -->
+            <div class="core-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px;">
+              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #0f3; border-radius: 6px; padding: 6px 8px;">
+                <img src="assets/health.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
+                <span style="color: #0f3; font-size: 14px; font-weight: 600;"><span id="playerHP">10</span>/<span id="playerMaxHP">10</span></span>
+              </div>
+              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #0f3; border-radius: 6px; padding: 6px 8px;">
+                <img src="assets/armor.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
+                <span style="color: #0f3; font-size: 14px; font-weight: 600;" id="playerArmor">0</span>
+              </div>
+              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #0f3; border-radius: 6px; padding: 6px 8px;">
+                <img src="assets/attack.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
+                <span style="color: #0f3; font-size: 14px; font-weight: 600;" id="playerAttack">0</span>
+              </div>
+              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #0f3; border-radius: 6px; padding: 6px 8px;">
+                <img src="assets/speed.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
+                <span style="color: #0f3; font-size: 14px; font-weight: 600;" id="playerSpeed">0</span>
+              </div>
+            </div>
+
+            <!-- Status Effects -->
+            <div id="playerStatusEffects" class="status-effects" style="display: flex; flex-wrap: wrap; gap: 6px; min-height: 28px;">
+              <div style="color: #666; font-size: 11px; font-style: italic;">No status effects</div>
+            </div>
+          </div>
+
+          <!-- Opponent Fighter Card -->
+          <div class="fighter-card opponent-card" style="background: rgba(255,51,51,0.1); border: 2px solid #f33; border-radius: 12px; padding: 14px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+              <h3 style="color: #f33; margin: 0; font-size: 16px; text-shadow: 0 0 8px rgba(255,51,51,0.5);">OPPONENT</h3>
+              <div id="opponentResult" style="font-size: 12px; font-weight: 600; display: none;"></div>
+            </div>
+            
+            <!-- Core Stats -->
+            <div class="core-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px;">
+              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #f33; border-radius: 6px; padding: 6px 8px;">
+                <img src="assets/health.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
+                <span style="color: #f33; font-size: 14px; font-weight: 600;"><span id="opponentHP">10</span>/<span id="opponentMaxHP">10</span></span>
+              </div>
+              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #f33; border-radius: 6px; padding: 6px 8px;">
+                <img src="assets/armor.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
+                <span style="color: #f33; font-size: 14px; font-weight: 600;" id="opponentArmor">0</span>
+              </div>
+              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #f33; border-radius: 6px; padding: 6px 8px;">
+                <img src="assets/attack.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
+                <span style="color: #f33; font-size: 14px; font-weight: 600;" id="opponentAttack">0</span>
+              </div>
+              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #f33; border-radius: 6px; padding: 6px 8px;">
+                <img src="assets/speed.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
+                <span style="color: #f33; font-size: 14px; font-weight: 600;" id="opponentSpeed">0</span>
+              </div>
+            </div>
+
+            <!-- Status Effects -->
+            <div id="opponentStatusEffects" class="status-effects" style="display: flex; flex-wrap: wrap; gap: 6px; min-height: 28px;">
+              <div style="color: #666; font-size: 11px; font-style: italic;">No status effects</div>
+            </div>
+          </div>
+
+          <!-- Battle Controls -->
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+            <button id="btnSimulate" type="button" title="Run a simulation between the two loadouts" class="battle-button" style="background: linear-gradient(135deg, #0f3 0%, #0a8 100%); color: #000; border: none; border-radius: 8px; padding: 12px; cursor: pointer; font-size: 14px; font-weight: 700; box-shadow: 0 2px 8px rgba(0,255,51,0.3);">▶️ START BATTLE</button>
+            <button id="btnClearLog" type="button" title="Clear the simulation log" style="background: #333; color: #fff; border: none; border-radius: 8px; padding: 8px; cursor: pointer; font-size: 12px;">🧹 Clear Log</button>
           </div>
         </div>
 
-        <!-- Center Column (Log & Controls) -->
-        <div style="display: flex; flex-direction: column; gap: 16px; min-height: 0;">
-          <!-- Controls -->
-          <div id="simControls" style="display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:center; background:rgba(0,0,0,0.3); border:2px solid #333; border-radius:16px; padding:12px;">
-            <button id="btnSimulate" type="button" title="Run a simulation between the two loadouts" class="battle-button" style="background:linear-gradient(135deg, #0f3 0%, #0a8 100%); color:#000; border:none; border-radius:12px; padding:12px 24px; cursor:pointer; font-size:18px; font-weight:700; box-shadow:0 4px 15px rgba(0,255,51,0.3);">▶️ START BATTLE</button>
-            <button id="btnClearLog" type="button" title="Clear the simulation log" class="battle-button" style="background:linear-gradient(135deg, #666 0%, #444 100%); color:#fff; border:none; border-radius:12px; padding:12px 24px; cursor:pointer; font-size:18px; font-weight:700;">🧹 Clear Log</button>
-          </div>
+        <!-- MIDDLE PANE: Event Log -->
+        <div class="event-log-pane" style="display: flex; flex-direction: column; background: #0a0a0a; border: 2px solid #333; border-radius: 12px; overflow: hidden; min-height: 0;">
           
-          <!-- Battle Log -->
-          <div style="flex: 1; display: flex; flex-direction: column; background:linear-gradient(135deg, #000 0%, #111 100%); border:3px solid #0f3; border-radius:20px; box-shadow:0 0 40px rgba(0,255,51,0.2); overflow:hidden; min-height: 0;">
-            <div style="background:linear-gradient(90deg, #0f3 0%, #0a8 100%); padding:12px 20px; border-bottom:2px solid #0f3; flex-shrink: 0;">
-              <div style="display:flex; align-items:center; justify-content:space-between;">
-                <h3 style="color:#000; font-size:20px; font-weight:700; margin:0;">📜 BATTLE LOG</h3>
-                <div id="battleStatus" style="color:#000; font-size:16px; font-weight:700;">Ready</div>
-              </div>
-            </div>
-            
-            <!-- Battle Replay Controls -->
-            <div id="replayControls" style="display:none; background:rgba(0,20,0,0.8); border-bottom:2px solid #0a5; padding:12px 20px; flex-shrink: 0;">
-              <div style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <button id="replayFirst" aria-label="Go to first turn" class="replay-btn" style="background:#0a5; color:#000; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; font-weight:700;">⏮️</button>
-                  <button id="replayBack" aria-label="Step back" class="replay-btn" style="background:#0a5; color:#000; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; font-weight:700;">&lt;&lt;</button>
-                  <button id="replayPlay" aria-label="Auto-play battle" class="replay-btn" style="background:#0f3; color:#000; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; font-weight:700;">▶️</button>
-                  <button id="replayForward" aria-label="Step forward" class="replay-btn" style="background:#0a5; color:#000; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; font-weight:700;">&gt;&gt;</button>
-                  <button id="replayLast" aria-label="Go to last turn" class="replay-btn" style="background:#0a5; color:#000; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; font-weight:700;">⏭️</button>
-                </div>
-                <div style="display:flex; align-items:center; gap:8px; color:#0f3;">
-                  <label for="turnInput" style="font-size:14px; font-weight:600;">Turn:</label>
-                  <input id="turnInput" type="number" min="1" value="1" style="width:60px; background:#000; color:#0f3; border:1px solid #0a5; border-radius:4px; padding:6px 8px; font-size:14px; text-align:center;">
-                  <span id="turnTotal" style="font-size:14px;">/ 0</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:8px; color:#0f3;">
-                  <label for="replaySpeed" style="font-size:14px; font-weight:600;">Speed:</label>
-                  <select id="replaySpeed" style="background:#000; color:#0f3; border:1px solid #0a5; border-radius:4px; padding:4px 6px; font-size:14px;">
-                    <option value="2000">0.5x</option>
-                    <option value="1000" selected>1x</option>
-                    <option value="500">2x</option>
-                    <option value="250">4x</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            
-            <div id="simLog" style="flex: 1; overflow:auto; padding:16px; font-size:16px; font-family:'Courier New', monospace; color:#0f3; line-height:1.6; min-height: 0;" aria-live="polite">
-              <div style="text-align:center; color:#666; font-style:italic; font-size:18px; padding:40px 20px;">
-                <img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> Ready to witness epic battles!<br><br>
-                Configure your loadouts and hit <strong style="color:#0f3;">"START BATTLE"</strong> to begin the simulation.
+          <!-- Log Header -->
+          <div style="background: linear-gradient(90deg, #333 0%, #555 100%); padding: 12px 16px; border-bottom: 2px solid #333; flex-shrink: 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <h3 style="color: #fff; font-size: 16px; font-weight: 700; margin: 0;">📜 EVENT LOG</h3>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <!-- Noise Filter Toggle -->
+                <label style="display: flex; align-items: center; gap: 6px; color: #ccc; font-size: 12px;">
+                  <input type="checkbox" id="noiseFilterToggle" style="accent-color: #0f3;">
+                  Hide noise
+                </label>
+                <div id="battleStatus" style="color: #ccc; font-size: 12px; font-weight: 600;">Ready</div>
               </div>
             </div>
           </div>
           
-          <!-- Battle Summary (optional) -->
-          <div id="battleSummary" style="display:none; background:linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); border:3px solid #f93; border-radius:20px; padding:20px; box-shadow:0 0 40px rgba(255,153,51,0.2);">
-            <h3 style="color:#f93; font-size:20px; font-weight:700; text-align:center; margin:0 0 16px 0; text-shadow:0 0 10px rgba(255,153,51,0.5);"><img src="assets/health.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> BATTLE SUMMARY</h3>
-            <div id="summaryContent" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; color:#fff; font-size:16px;">
-              <div id="playerSummary" style="background:rgba(0,255,51,0.1); border:2px solid #0f3; border-radius:12px; padding:16px;">
-                <h4 style="color:#0f3; margin:0 0 12px 0; font-size:18px;"><img src="assets/armor.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> Player Stats</h4>
-                <div id="playerSummaryContent" style="font-size:14px;"></div>
+          <!-- Timeline Controls -->
+          <div id="timelineControls" style="display: none; background: rgba(0,20,0,0.8); border-bottom: 2px solid #0a5; padding: 12px 16px; flex-shrink: 0;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <button id="replayFirst" class="replay-btn" style="background: #0a5; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">⏮️</button>
+                <button id="replayBack" class="replay-btn" style="background: #0a5; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">&lt;&lt;</button>
+                <button id="replayPlay" class="replay-btn" style="background: #0f3; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">▶️</button>
+                <button id="replayForward" class="replay-btn" style="background: #0a5; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">&gt;&gt;</button>
+                <button id="replayLast" class="replay-btn" style="background: #0a5; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">⏭️</button>
               </div>
-              <div id="opponentSummary" style="background:rgba(255,51,51,0.1); border:2px solid #f33; border-radius:12px; padding:16px;">
-                <h4 style="color:#f33; margin:0 0 12px 0; font-size:18px;"><img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> Opponent Stats</h4>
-                <div id="opponentSummaryContent" style="font-size:14px;"></div>
+              <div style="display: flex; align-items: center; gap: 6px; color: #0f3; font-size: 11px;">
+                <label>Turn:</label>
+                <input id="turnInput" type="number" min="1" value="1" style="width: 50px; background: #000; color: #0f3; border: 1px solid #0a5; border-radius: 4px; padding: 4px 6px; font-size: 11px; text-align: center;">
+                <span id="turnTotal">/ 0</span>
               </div>
+              <div style="display: flex; align-items: center; gap: 6px; color: #0f3; font-size: 11px;">
+                <label>Speed:</label>
+                <select id="replaySpeed" style="background: #000; color: #0f3; border: 1px solid #0a5; border-radius: 4px; padding: 2px 4px; font-size: 11px;">
+                  <option value="2000">0.5×</option>
+                  <option value="1000" selected>1×</option>
+                  <option value="500">2×</option>
+                  <option value="250">4×</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Battle Log Content -->
+          <div id="simLog" style="flex: 1; overflow-y: auto; padding: 16px; font-size: 14px; color: #ccc; line-height: 1.6; min-height: 0;" aria-live="polite">
+            <div style="text-align: center; color: #666; font-style: italic; padding: 40px 20px;">
+              <img src="assets/attack.png" style="width: 16px; height: 16px; vertical-align: middle; image-rendering: pixelated;"> Ready to witness epic battles!<br><br>
+              Configure your loadouts and hit <strong style="color: #0f3;">"START BATTLE"</strong> to begin.
             </div>
           </div>
         </div>
 
-        <!-- Opponent Arena (Right) -->
-        <div id="simOpponentArena" style="display: flex; flex-direction: column; gap: 16px; background: rgba(255,51,51,0.05); border: 2px solid #f33; border-radius: 16px; padding: 16px; overflow-y: auto;">
-          <h2 style="color:#f33; text-align:center; margin:0 0 8px 0; text-shadow:0 0 10px rgba(255,51,51,0.5);">OPPONENT</h2>
-          <div id="simOpponentPreview" style="display: flex; flex-direction: column; gap: 12px;">
-            <!-- Opponent content will be dynamically rendered here -->
+        <!-- RIGHT PANE: Loadout Tray -->
+        <div class="loadout-tray-pane" style="display: flex; flex-direction: column; gap: 16px; background: #0a0a0a; border: 2px solid #333; border-radius: 12px; padding: 16px; overflow-y: auto;">
+          <h3 style="color: #fff; margin: 0 0 12px 0; font-size: 16px; text-align: center;">⚔️ LOADOUT TRAY</h3>
+          
+          <!-- Player Loadout -->
+          <div class="loadout-section">
+            <h4 style="color: #0f3; margin: 0 0 8px 0; font-size: 14px;">Player Items</h4>
+            <div id="playerLoadoutDisplay" style="display: flex; flex-direction: column; gap: 8px; min-height: 40px;">
+              <div style="color: #666; font-size: 11px; font-style: italic; text-align: center; padding: 12px;">No items equipped</div>
+            </div>
+          </div>
+
+          <!-- Opponent Loadout -->
+          <div class="loadout-section">
+            <h4 style="color: #f33; margin: 0 0 8px 0; font-size: 14px;">Opponent Items</h4>
+            <div id="opponentLoadoutDisplay" style="display: flex; flex-direction: column; gap: 8px; min-height: 40px;">
+              <div style="color: #666; font-size: 11px; font-style: italic; text-align: center; padding: 12px;">No items equipped</div>
+            </div>
+          </div>
+
+          <!-- Tag Groups (Future Implementation) -->
+          <div class="tag-groups" style="display: none;">
+            <h4 style="color: #fa0; margin: 12px 0 8px 0; font-size: 14px;">By Category</h4>
+            <div class="tag-group" data-tag="Food">
+              <div class="tag-header" style="background: #95d5b2; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">🍃 Food</div>
+              <div class="tag-items" style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 4px;"></div>
+            </div>
+            <!-- More tag groups will be added -->
           </div>
         </div>
 
@@ -2172,6 +2434,287 @@ function updateSimulationPreview() {
   }
 }
 
+// Function to update the three-pane simulation interface
+function updateSimulationPreview() {
+  updateFighterCards();
+  updateLoadoutTrays();
+  updatePinnedMetrics();
+}
+
+// Update fighter stat cards
+function updateFighterCards() {
+  // Player card
+  const playerHP = document.getElementById('playerHP');
+  const playerMaxHP = document.getElementById('playerMaxHP');
+  const playerArmor = document.getElementById('playerArmor');
+  const playerAttack = document.getElementById('playerAttack');
+  const playerSpeed = document.getElementById('playerSpeed');
+  const playerStatusEffects = document.getElementById('playerStatusEffects');
+  
+  if (playerHP) {
+    const side = sides.P;
+    let hp = side.hpBase, atk = side.atkBase, arm = side.armBase, spd = side.spdBase;
+    
+    // Calculate stats
+    const addStats = obj => {
+      if (!obj) return;
+      const s = obj.stats || {};
+      hp += (s.health || 0);
+      atk += (s.attack || 0);
+      arm += (s.armor || 0);
+      spd += (s.speed || 0);
+    };
+    
+    addStats(side.weapon);
+    side.items.forEach(addStats);
+    if (side.weapon) {
+      if (side.oils.has('attack')) atk += 1;
+      if (side.oils.has('armor')) arm += 1;
+      if (side.oils.has('speed')) spd += 1;
+    }
+    
+    playerHP.textContent = hp;
+    playerMaxHP.textContent = hp;
+    playerArmor.textContent = arm;
+    playerAttack.textContent = atk;
+    playerSpeed.textContent = spd;
+    
+    // Update status effects (placeholder for now)
+    playerStatusEffects.innerHTML = '<div style="color: #666; font-size: 11px; font-style: italic;">No status effects</div>';
+  }
+  
+  // Opponent card
+  const opponentHP = document.getElementById('opponentHP');
+  const opponentMaxHP = document.getElementById('opponentMaxHP');
+  const opponentArmor = document.getElementById('opponentArmor');
+  const opponentAttack = document.getElementById('opponentAttack');
+  const opponentSpeed = document.getElementById('opponentSpeed');
+  const opponentStatusEffects = document.getElementById('opponentStatusEffects');
+  
+  if (opponentHP) {
+    const side = sides.O;
+    let hp = side.hpBase, atk = side.atkBase, arm = side.armBase, spd = side.spdBase;
+    
+    // Calculate stats
+    const addStats = obj => {
+      if (!obj) return;
+      const s = obj.stats || {};
+      hp += (s.health || 0);
+      atk += (s.attack || 0);
+      arm += (s.armor || 0);
+      spd += (s.speed || 0);
+    };
+    
+    addStats(side.weapon);
+    side.items.forEach(addStats);
+    if (side.weapon) {
+      if (side.oils.has('attack')) atk += 1;
+      if (side.oils.has('armor')) arm += 1;
+      if (side.oils.has('speed')) spd += 1;
+    }
+    
+    opponentHP.textContent = hp;
+    opponentMaxHP.textContent = hp;
+    opponentArmor.textContent = arm;
+    opponentAttack.textContent = atk;
+    opponentSpeed.textContent = spd;
+    
+    // Update status effects (placeholder for now)
+    opponentStatusEffects.innerHTML = '<div style="color: #666; font-size: 11px; font-style: italic;">No status effects</div>';
+  }
+}
+
+// Update loadout trays
+function updateLoadoutTrays() {
+  updateLoadoutTray('Player', sides.P, 'playerLoadoutDisplay');
+  updateLoadoutTray('Opponent', sides.O, 'opponentLoadoutDisplay');
+}
+
+function updateLoadoutTray(sideName, side, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  
+  const items = [];
+  
+  // Add weapon
+  if (side.weapon) {
+    items.push({
+      type: 'weapon',
+      name: side.weapon.name,
+      slug: side.weapon.key || side.weapon.slug,
+      tier: 'base'
+    });
+  }
+  
+  // Add items
+  side.items.forEach((item, idx) => {
+    if (item) {
+      items.push({
+        type: 'item',
+        name: item.name,
+        slug: item.key || item.slug,
+        tier: item.tier || 'base'
+      });
+    }
+  });
+  
+  // Add edge
+  if (side.edge) {
+    const edgeData = RAW_DATA[side.edge];
+    if (edgeData) {
+      items.push({
+        type: 'edge',
+        name: edgeData.name,
+        slug: edgeData.key || edgeData.slug,
+        tier: 'base'
+      });
+    }
+  }
+  
+  if (items.length === 0) {
+    container.innerHTML = '<div style="color: #666; font-size: 11px; font-style: italic; text-align: center; padding: 12px;">No items equipped</div>';
+    return;
+  }
+  
+  container.innerHTML = items.map(item => {
+    const iconPath = `${item.slug}/icon.png`;
+    const tierClass = item.tier !== 'base' ? ` tier-${item.tier}` : '';
+    const typeClass = item.type === 'weapon' ? ' weapon' : '';
+    
+    return `
+      <div class="loadout-item${tierClass}${typeClass}" title="${item.name}${item.tier !== 'base' ? ` (${item.tier})` : ''}">
+        <img src="${iconPath}" alt="${item.name}" onerror="this.src='assets/placeholder.png'">
+        <span>${item.name}</span>
+        ${item.tier !== 'base' ? `<span style="font-size: 9px; color: #fa0; margin-left: 4px;">${item.tier}</span>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+// Update pinned metrics (placeholder for now)
+function updatePinnedMetrics() {
+  // These will be updated during actual battle simulation
+  const totalDamageDealt = document.getElementById('totalDamageDealt');
+  const totalDamageTaken = document.getElementById('totalDamageTaken');
+  const strikesQueued = document.getElementById('strikesQueued');
+  const lethalETA = document.getElementById('lethalETA');
+  
+  if (totalDamageDealt) totalDamageDealt.textContent = '0';
+  if (totalDamageTaken) totalDamageTaken.textContent = '0';
+  if (strikesQueued) strikesQueued.textContent = '0';
+  if (lethalETA) lethalETA.textContent = '∞';
+}
+
+// Enhanced log rendering for new three-pane layout
+function renderCardifiedLog(logEntries) {
+  const simLog = document.getElementById('simLog');
+  if (!simLog || !logEntries) return;
+  
+  // Clear existing content
+  simLog.innerHTML = '';
+  
+  // Group log entries by phase
+  const phases = [];
+  let currentPhase = null;
+  
+  logEntries.forEach((entry, index) => {
+    const entryStr = String(entry);
+    
+    // Detect phase headers
+    if (entryStr.match(/^\d+\.\s*--\s*Turn\s+\d+\s*--/) || entryStr.includes('Battle Start') || entryStr.includes('BATTLE')) {
+      if (currentPhase) {
+        phases.push(currentPhase);
+      }
+      
+      currentPhase = {
+        header: entryStr,
+        type: entryStr.includes('Turn') ? 'turn-start' : 'battle-start',
+        entries: [],
+        triggers: 0,
+        changes: 0
+      };
+    } else if (currentPhase) {
+      currentPhase.entries.push(entry);
+      
+      // Count triggers and changes (simple heuristic)
+      if (entryStr.includes('::icon:')) currentPhase.triggers++;
+      if (entryStr.includes('gains') || entryStr.includes('loses') || entryStr.includes('deals')) currentPhase.changes++;
+    }
+  });
+  
+  // Add final phase
+  if (currentPhase) {
+    phases.push(currentPhase);
+  }
+  
+  // Render phases as cards
+  phases.forEach(phase => {
+    const phaseCard = document.createElement('div');
+    phaseCard.className = 'log-phase-card';
+    
+    const header = document.createElement('div');
+    header.className = `log-phase-header ${phase.type}`;
+    header.innerHTML = `
+      <div>
+        <strong>${phase.header}</strong>
+        <div class="log-phase-summary">${phase.triggers} triggers, ${phase.changes} changes</div>
+      </div>
+      <div style="font-size: 18px;">▼</div>
+    `;
+    
+    const content = document.createElement('div');
+    content.className = 'log-phase-content';
+    
+    // Render entries
+    phase.entries.forEach(entry => {
+      const entryDiv = document.createElement('div');
+      entryDiv.style.marginBottom = '4px';
+      entryDiv.style.fontSize = '12px';
+      entryDiv.style.color = '#ccc';
+      
+      const entryStr = String(entry);
+      const iconMatch = entryStr.match(/^::icon:([^:]+)::\s*(.*)$/);
+      
+      if (iconMatch) {
+        const slug = iconMatch[1];
+        const text = iconMatch[2];
+        
+        entryDiv.innerHTML = `
+          <img src="${slug}/icon.png" style="width: 16px; height: 16px; image-rendering: pixelated; margin-right: 6px; vertical-align: middle;" onerror="this.style.display='none'">
+          <span>${enhancePlayerNames(text)}</span>
+        `;
+      } else {
+        entryDiv.innerHTML = enhancePlayerNames(entryStr);
+      }
+      
+      content.appendChild(entryDiv);
+    });
+    
+    // Toggle functionality
+    let expanded = false;
+    header.addEventListener('click', () => {
+      expanded = !expanded;
+      if (expanded) {
+        content.style.display = 'block';
+        content.classList.add('expanded');
+        header.querySelector('div:last-child').textContent = '▲';
+        phaseCard.classList.add('expanded');
+      } else {
+        content.style.display = 'none';
+        content.classList.remove('expanded');
+        header.querySelector('div:last-child').textContent = '▼';
+        phaseCard.classList.remove('expanded');
+      }
+    });
+    
+    phaseCard.appendChild(header);
+    phaseCard.appendChild(content);
+    simLog.appendChild(phaseCard);
+  });
+  
+  simLog.scrollTop = simLog.scrollHeight;
+}
+
 // Function to enhance player names in battle log text
 function enhancePlayerNames(text) {
   if (!text) return text;
@@ -2385,7 +2928,13 @@ if (simBtn) {
     if (battleStatus) battleStatus.innerHTML = '<img src="assets/attack.png" style="width:16px; height:16px; vertical-align:middle; image-rendering:pixelated;"> Battle in Progress...';
     
     // Hide replay controls during simulation
-    BattleReplayController.hide();
+    const timelineControls = document.getElementById('timelineControls');
+    if (timelineControls) timelineControls.style.display = 'none';
+    
+    // Update fighter cards with initial states
+    updateFighterCards();
+    
+    // Clear log
     uiLogClear();
     
     if (typeof HeICSim === 'undefined' || !HeICSim.simulate) {
@@ -2397,8 +2946,16 @@ if (simBtn) {
     try {
       const res = HeICSim.simulate(left, right, { maxTurns: maxTurns, includeSummary: true });
       
-      // Load battle into replay system instead of using traditional log
-      BattleReplayController.loadBattle(res);
+      // Use new cardified log rendering
+      if (res.log) {
+        renderCardifiedLog(res.log);
+      }
+      
+      // Show timeline controls after simulation
+      if (timelineControls) {
+        timelineControls.style.display = 'block';
+        BattleReplayController.loadBattle(res);
+      }
       
       // Update battle status
       if (battleStatus) {
@@ -2409,18 +2966,186 @@ if (simBtn) {
         battleStatus.innerHTML = `<span style="color:${resultColor}">${resultText} (${res.rounds} rounds)</span>`;
       }
       
-      displayBattleResult(res.result, res.rounds, res.summary);
+      // Update fighter results
+      const playerResult = document.getElementById('playerResult');
+      const opponentResult = document.getElementById('opponentResult');
+      if (playerResult && opponentResult) {
+        if (res.result === 'Victory') {
+          playerResult.innerHTML = '<span style="color: #0f3;">WINNER</span>';
+          playerResult.style.display = 'block';
+          opponentResult.innerHTML = '<span style="color: #666;">LOSER</span>';
+          opponentResult.style.display = 'block';
+        } else if (res.result === 'Defeat') {
+          playerResult.innerHTML = '<span style="color: #666;">LOSER</span>';
+          playerResult.style.display = 'block';
+          opponentResult.innerHTML = '<span style="color: #f33;">WINNER</span>';
+          opponentResult.style.display = 'block';
+        } else {
+          playerResult.innerHTML = '<span style="color: #fa0;">DRAW</span>';
+          playerResult.style.display = 'block';
+          opponentResult.innerHTML = '<span style="color: #fa0;">DRAW</span>';
+          opponentResult.style.display = 'block';
+        }
+      }
+      
+      // Update final HP/stats if available in summary
+      if (res.summary) {
+        updateFinalStats(res.summary);
+      }
+      
+      // Re-apply noise filter if active
+      const noiseFilterToggle = document.getElementById('noiseFilterToggle');
+      if (noiseFilterToggle && noiseFilterToggle.checked) {
+        filterBattleLog(true);
+      }
       
     } catch (ex) {
       console.error(ex);
       uiLog('❌ Error running simulation: ' + ex.message);
       if (battleStatus) battleStatus.textContent = 'Error: Simulation Failed';
-      BattleReplayController.hide();
     }
   });
 }
 
+// Update final stats in fighter cards after simulation
+function updateFinalStats(summary) {
+  if (!summary || !summary.left || !summary.right) return;
+  
+  // Update player final stats
+  const playerHP = document.getElementById('playerHP');
+  const playerArmor = document.getElementById('playerArmor');
+  if (playerHP) playerHP.textContent = summary.left.hpRemaining || 0;
+  if (playerArmor) playerArmor.textContent = summary.left.armorRemaining || 0;
+  
+  // Update opponent final stats
+  const opponentHP = document.getElementById('opponentHP');
+  const opponentArmor = document.getElementById('opponentArmor');
+  if (opponentHP) opponentHP.textContent = summary.right.hpRemaining || 0;
+  if (opponentArmor) opponentArmor.textContent = summary.right.armorRemaining || 0;
+}
+
+// Noise filter functionality
+function setupNoiseFilter() {
+  const noiseFilterToggle = document.getElementById('noiseFilterToggle');
+  if (noiseFilterToggle) {
+    noiseFilterToggle.addEventListener('change', () => {
+      filterBattleLog(noiseFilterToggle.checked);
+    });
+  }
+}
+
+function filterBattleLog(hideNoise) {
+  const logCards = document.querySelectorAll('.log-phase-card');
+  
+  if (!hideNoise) {
+    // Show all cards
+    logCards.forEach(card => {
+      card.style.display = 'block';
+    });
+    return;
+  }
+  
+  // Hide noise entries
+  logCards.forEach(card => {
+    const content = card.querySelector('.log-phase-content');
+    if (!content) return;
+    
+    const entries = content.children;
+    let hasSignificantContent = false;
+    
+    for (let i = 0; i < entries.length; i++) {
+      const entry = entries[i];
+      const text = entry.textContent || '';
+      
+      // Check if this is a "no-op" or redundant event
+      const isNoise = text.includes('Tried to') ||
+                      text.includes('had none to remove') ||
+                      text.includes('already at') ||
+                      text.includes('no effect') ||
+                      text.includes('0 damage') ||
+                      text.includes('misses') ||
+                      (text.includes('gains 0') && !text.includes('loses'));
+      
+      if (!isNoise) {
+        hasSignificantContent = true;
+        break;
+      }
+    }
+    
+    card.style.display = hasSignificantContent ? 'block' : 'none';
+  });
+}
+
 const clearBtn = document.getElementById('btnClearLog');
+if (clearBtn) {
+  clearBtn.addEventListener('click', () => {
+    uiLogClear();
+    
+    // Hide timeline controls when clearing
+    const timelineControls = document.getElementById('timelineControls');
+    if (timelineControls) timelineControls.style.display = 'none';
+    
+    // Reset fighter results
+    const playerResult = document.getElementById('playerResult');
+    const opponentResult = document.getElementById('opponentResult');
+    if (playerResult) playerResult.style.display = 'none';
+    if (opponentResult) opponentResult.style.display = 'none';
+    
+    // Reset fighter stats to initial values
+    updateFighterCards();
+  });
+}
+
+// Initialize noise filter
+setupNoiseFilter();
+
+// Timeline controls functionality
+function setupTimelineControls() {
+  const timelineSlider = document.getElementById('timelineSlider');
+  const stepBackBtn = document.getElementById('stepBackBtn');
+  const stepForwardBtn = document.getElementById('stepForwardBtn');
+  const replayBtn = document.getElementById('replayBtn');
+  
+  // For now, these are placeholders - full timeline functionality would require
+  // tracking simulation state at each step
+  if (stepBackBtn) {
+    stepBackBtn.addEventListener('click', () => {
+      console.log('Step back clicked - feature placeholder');
+    });
+  }
+  
+  if (stepForwardBtn) {
+    stepForwardBtn.addEventListener('click', () => {
+      console.log('Step forward clicked - feature placeholder');
+    });
+  }
+  
+  if (replayBtn) {
+    replayBtn.addEventListener('click', () => {
+      console.log('Replay clicked - feature placeholder');
+    });
+  }
+}
+
+// Setup grouping toggle
+function setupLogGrouping() {
+  const groupToggle = document.getElementById('groupTriggersToggle');
+  if (groupToggle) {
+    groupToggle.addEventListener('change', () => {
+      groupLogEntries(groupToggle.checked);
+    });
+  }
+}
+
+function groupLogEntries(shouldGroup) {
+  // This is a placeholder - full grouping would require analysis of log entries
+  // and restructuring them by trigger type or timing
+  console.log('Log grouping toggled:', shouldGroup);
+}
+
+// Initialize all controls
+setupTimelineControls();
+setupLogGrouping();
 if (clearBtn) {
   clearBtn.addEventListener('click', () => {
     uiLogClear();
