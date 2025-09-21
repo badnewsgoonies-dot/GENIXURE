@@ -755,6 +755,7 @@
       log(`Symphony triggered ${repeatCount} time(s)!`);
       
       for (let i = 0; i < repeatCount; i++) {
+        log('=== SYMPHONY: Musical effects activate ===');
         runEffects('symphony', self, other, log);
       }
     },
@@ -1828,6 +1829,7 @@
       triggeredCountdowns.forEach(cd => {
         cd.triggered = true;
         // Run standard countdown trigger first
+        if (log) log('=== COUNTDOWN: Countdown effects trigger ===');
         runEffects('countdown', this, other, log, { countdown: cd });
         
         if (typeof cd.action === 'function') {
@@ -1898,6 +1900,7 @@
         self.hp += healed;
         self.healedThisTurn += healed;
         log(`${self.name} heals ${healed}`);
+        log('=== HEAL: Healing effects activate ===');
         runEffects('onHeal', self, other, log, { amount: healed });
       }
       return healed;
@@ -1982,6 +1985,7 @@ let CURRENT_SOURCE_SLUG = null;
     const res = applyDamage(att, def, dmg, log);
     if (att && att._summary && (res.toArmor + res.toHp) > 0) att._summary.strikesLanded += 1;
     
+    log('=== HIT: On-hit effects activate ===');
     runEffects('onHit', att, def, log);
     
     // Re-check for exposed/wounded after onHit effects
@@ -1990,12 +1994,14 @@ let CURRENT_SOURCE_SLUG = null;
     if (!exposedFired && armorBefore > 0 && def.armor === 0 && def._exposedCount < (def._exposedLimit||1)) {
       def._exposedCount++;
       log(`🛡️ ${def.name} is now exposed!`);
+      log('=== EXPOSED: Armor broken effects activate ===');
       runEffects('exposed', def, att, log);
       exposedFired = true;
     }
     if (!woundedFired && !def.woundedDone && def.hp <= Math.floor(def.hpMax/2)) {
       def.woundedDone = true;
       log(`🩸 ${def.name} is now wounded!`);
+      log('=== WOUNDED: Low health effects activate ===');
       runEffects('wounded', def, att, log);
       woundedFired = true;
     }
@@ -2037,6 +2043,7 @@ let CURRENT_SOURCE_SLUG = null;
         a.hp -= a.statuses.poison;
         if (a.hp < 0) a.hp = 0;
         log(`${a.name} suffers ${a.statuses.poison} poison damage`);
+        log('=== POISON TICK: Poison effects activate ===');
         runEffects('onPoisonTick', a, other, log, { amount: a.statuses.poison });
         
         // Check if Poison caused Wounded trigger (HP crossed 50% threshold)
@@ -2104,11 +2111,13 @@ let CURRENT_SOURCE_SLUG = null;
     runEffects('preBattle', R, L, logWithHP);
     
     // Battle Start Phase: Items activate in slot order (weapon first, then items 1→12)
+    logWithHP('=== BATTLE START: Items and effects activate ===');
     runEffects('battleStart', L, R, logWithHP);
     runEffects('battleStart', R, L, logWithHP);
     
     // First Time triggers (for items that activate only once per battle)
     if (L.flags && L.flags.firstTime) {
+      logWithHP('=== FIRST TIME: One-time battle effects ===');
       runEffects('first_time', L, R, logWithHP);
       L.flags.firstTime = false;
     }
@@ -2127,8 +2136,11 @@ let CURRENT_SOURCE_SLUG = null;
       
       turnStartTicks(actor, target, logWithHP);
       
+      logWithHP('=== TURN START: Turn effects activate ===');
+      
       // First turn trigger
       if (actor.flags && actor.flags.firstTurn) {
+        logWithHP('=== FIRST TURN: First turn effects ===');
         runEffects('first_turn', actor, target, logWithHP);
       }
       
@@ -2136,6 +2148,7 @@ let CURRENT_SOURCE_SLUG = null;
       
       // Every other turn trigger (every 2nd turn)
       if (actor.turnCount % 2 === 0) {
+        logWithHP('=== EVERY OTHER TURN: Every 2nd turn effects ===');
         runEffects('every_other_turn', actor, target, logWithHP);
       }
       
@@ -2148,6 +2161,7 @@ let CURRENT_SOURCE_SLUG = null;
       }
       
       turnEndTicks(actor, target, logWithHP);
+      logWithHP('=== TURN END: End of turn effects ===');
       runEffects('turnEnd', actor, target, logWithHP);
 
       actor.flags.firstTurn = false;
