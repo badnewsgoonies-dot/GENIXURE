@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "He Is Coming battle simulator",
   "scripts": {
+    "build": "node \"Random Tests/merge_stats_overrides.js\"",
     "test": "node -e \"const sim=require('./heic_sim.js'); sim.simulate({hp:10,atk:0},{hp:10,atk:0});\""
   },
   "devDependencies": {

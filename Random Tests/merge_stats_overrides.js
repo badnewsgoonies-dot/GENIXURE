@@ -1,27 +1,43 @@
 const fs = require('fs');
 const path = require('path');
 
-// Load both files
-const details = JSON.parse(fs.readFileSync('details.json', 'utf8'));
-const overrides = JSON.parse(fs.readFileSync('stats_overrides.json', 'utf8'));
+// Load both files - make paths relative to project root
+const projectRoot = path.resolve(__dirname, '..');
+const detailsPath = path.join(projectRoot, 'details.json');
+const overridesPath = path.join(projectRoot, 'stats_overrides.json');
+const compiledPath = path.join(projectRoot, 'compiled_details.json');
+
+console.log('🔄 Building compiled details.json from base + overrides...\n');
+
+// Load base details (keep this file pure/untouched)
+const baseDetails = JSON.parse(fs.readFileSync(detailsPath, 'utf8'));
+
+// Load stat overrides
+let overrides = {};
+if (fs.existsSync(overridesPath)) {
+  overrides = JSON.parse(fs.readFileSync(overridesPath, 'utf8'));
+} else {
+  console.log('⚠️  No stats_overrides.json found - using base details only');
+}
+
+// Create merged result (don't mutate original)
+const compiled = JSON.parse(JSON.stringify(baseDetails)); // deep clone
 
 let changesCount = 0;
 let missingItems = [];
 
-console.log('🔄 Merging stats from stats_overrides.json into details.json...\n');
-
-// Merge overrides into details
+// Apply overrides to compiled version
 for (const [itemKey, overrideStats] of Object.entries(overrides)) {
-  if (details[itemKey]) {
-    const originalStats = { ...details[itemKey].stats };
+  if (compiled[itemKey]) {
+    const originalStats = { ...compiled[itemKey].stats };
     
-    // Merge override stats into details stats
-    Object.assign(details[itemKey].stats, overrideStats);
+    // Merge override stats into compiled stats
+    Object.assign(compiled[itemKey].stats, overrideStats);
     
     console.log(`✅ ${itemKey}:`);
     console.log(`   Original: ${JSON.stringify(originalStats)}`);
     console.log(`   Override: ${JSON.stringify(overrideStats)}`);
-    console.log(`   Final:    ${JSON.stringify(details[itemKey].stats)}\n`);
+    console.log(`   Final:    ${JSON.stringify(compiled[itemKey].stats)}\n`);
     
     changesCount++;
   } else {
@@ -30,8 +46,9 @@ for (const [itemKey, overrideStats] of Object.entries(overrides)) {
   }
 }
 
-console.log(`\n📊 Summary:`);
-console.log(`   - Successfully merged: ${changesCount} items`);
+console.log(`\n📊 Build Summary:`);
+console.log(`   - Base items: ${Object.keys(baseDetails).length}`);
+console.log(`   - Stat overrides applied: ${changesCount} items`);
 console.log(`   - Missing items: ${missingItems.length}`);
 
 if (missingItems.length > 0) {
@@ -39,16 +56,12 @@ if (missingItems.length > 0) {
   missingItems.forEach(item => console.log(`   - ${item}`));
 }
 
-// Write updated details.json
-fs.writeFileSync('details.json', JSON.stringify(details, null, 2));
-console.log(`\n✅ Updated details.json with merged stats`);
+// Write compiled output (preserving original files)
+fs.writeFileSync(compiledPath, JSON.stringify(compiled, null, 2));
+console.log(`\n✅ Wrote compiled_details.json`);
 
-// Optionally back up stats_overrides.json before deletion
-fs.writeFileSync('stats_overrides_backup.json', JSON.stringify(overrides, null, 2));
-console.log(`📦 Backed up stats_overrides.json to stats_overrides_backup.json`);
-
-// Delete the original stats_overrides.json
-fs.unlinkSync('stats_overrides.json');
-console.log(`🗑️  Deleted stats_overrides.json`);
-
-console.log(`\n✨ Stats merge complete! All stat data is now consolidated in details.json`);
+console.log(`\n✨ Build complete! Use compiled_details.json in your application.`);
+console.log(`📁 Files:`);
+console.log(`   - details.json (base data, unchanged)`);
+console.log(`   - stats_overrides.json (customizations, unchanged)`);
+console.log(`   - compiled_details.json (merged result for production)`);;

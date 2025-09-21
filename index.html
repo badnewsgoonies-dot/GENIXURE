@@ -631,34 +631,51 @@ async function loadData() {
     // Start with any pre-bundled details (file:// safe).
     RAW_DATA = (window.HEIC_DETAILS && typeof window.HEIC_DETAILS === 'object') ? window.HEIC_DETAILS : {};
 
-    // Try to fetch details.json and merge/override entries.
+    // Try to fetch compiled_details.json first (preferred - contains merged stats)
     try {
-      const res = await fetch('details.json', { cache: 'no-store' });
+      const res = await fetch('compiled_details.json', { cache: 'no-store' });
       if (res.ok) {
         const fromJson = await res.json();
-        // Prioritize JSON data, but keep JS data as a fallback.
+        // Use compiled data as primary source
         RAW_DATA = Object.assign({}, RAW_DATA, fromJson); 
+        console.log('✅ Loaded compiled_details.json (pre-merged stats)');
+      } else {
+        throw new Error('compiled_details.json not found');
       }
-    } catch(_fetchErr) {
-      // ignore fetch failure (e.g., file://), rely on details.js
+    } catch(_compiledErr) {
+      // Fallback: try original details.json and do runtime merge
+      console.log('⚠️  Falling back to runtime merge (run npm run build for better performance)');
+      try {
+        const res = await fetch('details.json', { cache: 'no-store' });
+        if (res.ok) {
+          const fromJson = await res.json();
+          // Prioritize JSON data, but keep JS data as a fallback.
+          RAW_DATA = Object.assign({}, RAW_DATA, fromJson); 
+        }
+      } catch(_fetchErr) {
+        // ignore fetch failure (e.g., file://), rely on details.js
+      }
+
+      // If using fallback, try to load and merge stats_overrides.json
+      try {
+        const resO = await fetch('stats_overrides.json', { cache: 'no-store' });
+        if (resO.ok) {
+          const overrides = await resO.json();
+          for (const [k, statObj] of Object.entries(overrides || {})) {
+            if (RAW_DATA[k]) {
+              const baseStats = RAW_DATA[k].stats || {};
+              RAW_DATA[k].stats = Object.assign({}, baseStats, statObj);
+            }
+          }
+        }
+      } catch(_overrideErr) {
+        // ignore override failure
+      }
     }
 
     try { window.HEIC_DETAILS = RAW_DATA; } catch(_) {}
-    // Attempt to load optional stats_overrides.json and merge it into RAW_DATA.
-    try {
-      const resO = await fetch('stats_overrides.json', { cache: 'no-store' });
-      if (resO.ok) {
-        const overrides = await resO.json();
-        for (const [k, statObj] of Object.entries(overrides || {})) {
-          if (RAW_DATA[k]) {
-            const baseStats = RAW_DATA[k].stats || {};
-            RAW_DATA[k].stats = Object.assign({}, baseStats, statObj);
-          }
-        }
-      }
-    } catch(oerr) {
-      // Ignore missing overrides file; it's optional.
-    }
+
+    // Make data iterable
     DATA_ARR = Object.entries(RAW_DATA).map(([key,val]) => { 
       val.key = key; 
       
