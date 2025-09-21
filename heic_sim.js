@@ -1762,7 +1762,11 @@
         this.setEffectSlugs = this.activeSets.map(set => set.effectSlug);
       }
 
-      this.flags = { firstTurn: true };
+      this.flags = { 
+        firstTurn: true,
+        firstTime: true,  // For first-time item usage
+        nextBoss: false   // Campaign-specific boss encounters
+      };
 
       this.tempAtk = 0;
       this.extraStrikes = 0;
@@ -1823,6 +1827,9 @@
       const triggeredCountdowns = this.countdowns.filter(cd => cd.turnsLeft === 0 && !cd.triggered);
       triggeredCountdowns.forEach(cd => {
         cd.triggered = true;
+        // Run standard countdown trigger first
+        runEffects('countdown', this, other, log, { countdown: cd });
+        
         if (typeof cd.action === 'function') {
           try {
             cd.action(this, other, log);
@@ -2099,6 +2106,16 @@ let CURRENT_SOURCE_SLUG = null;
     // Battle Start Phase: Items activate in slot order (weapon first, then items 1→12)
     runEffects('battleStart', L, R, logWithHP);
     runEffects('battleStart', R, L, logWithHP);
+    
+    // First Time triggers (for items that activate only once per battle)
+    if (L.flags && L.flags.firstTime) {
+      runEffects('first_time', L, R, logWithHP);
+      L.flags.firstTime = false;
+    }
+    if (R.flags && R.flags.firstTime) {
+      runEffects('first_time', R, L, logWithHP);
+      R.flags.firstTime = false;
+    }
 
     let [actor, target] = pickOrder(L, R);
     let round = 0;

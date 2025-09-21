@@ -129,7 +129,7 @@
     "effects": [
       {
         "action": "gain_armor",
-        "trigger": "onCountdownTrigger",
+        "trigger": "countdown",
         "value": 3
       }
     ],
