@@ -1118,10 +1118,18 @@ function renderGrid() {
 }
 
 // Filter listeners
-[searchIn, bucketSel, catSel].forEach(el => el.addEventListener('input', () => {
-  console.log('Filter changed, DATA_ARR length:', DATA_ARR?.length);
-  renderGrid();
-}));
+[searchIn, bucketSel, catSel].forEach(el => {
+  el.addEventListener('input', () => {
+    console.log('Filter changed (input), DATA_ARR length:', DATA_ARR?.length);
+    console.log('bucketSel.value:', bucketSel?.value, 'catSel.value:', catSel?.value);
+    renderGrid();
+  });
+  el.addEventListener('change', () => {
+    console.log('Filter changed (change), DATA_ARR length:', DATA_ARR?.length);
+    console.log('bucketSel.value:', bucketSel?.value, 'catSel.value:', catSel?.value);
+    renderGrid();
+  });
+});
 
 // Drag and drop helpers
 function setupDrop(zoneSel, sideKey, type) {
