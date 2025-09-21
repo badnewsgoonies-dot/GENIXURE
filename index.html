@@ -1411,7 +1411,11 @@ function randomizeSide(targetSide){
     
     edgeSelect.value = randomEdge.slug;
     edgeEffect.textContent = randomEdge.effect || '';
-    edgeIcon.src = `${randomEdge.bucket}/${randomEdge.slug}/icon.png`;
+    {
+      const cands = resolveIconCandidates(randomEdge);
+      let i=0; edgeIcon.src = cands[i] || 'placeholder.png';
+      edgeIcon.onerror = () => { i+=1; if (i<cands.length) { edgeIcon.src=cands[i]; } else { edgeIcon.onerror=null; edgeIcon.src='placeholder.png'; } };
+    }
   }
   const copy = itemsList.slice();
   const chosen = [];
@@ -1968,7 +1972,7 @@ function saveCache(list) {
   function applySide(key,pred){ const side=key==='P'?sides.P:sides.O; const wSlot=key==='P'?document.getElementById('weaponP'):document.getElementById('weaponO'); if(pred.weapon && RAW_DATA[pred.weapon]){ side.weapon=RAW_DATA[pred.weapon]; if(wSlot) wSlot.innerHTML=mini(side.weapon); }
   const gridEl=key==='P'?document.getElementById('gridP'):document.getElementById('gridO'); const cells=gridEl?gridEl.querySelectorAll('.slot'):[]; const list=(pred.items||[]).filter(s=>/^items\//.test(s)).slice(0,SLOT_COUNT); for(let i=0;i<SLOT_COUNT;i++){ const slug=list[i]; const cell=cells[i]; if(slug && RAW_DATA[slug]){ const it=RAW_DATA[slug]; side.items[i]=it; if(cell){ cell.classList.add('filled'); cell.innerHTML=mini(it); } } else { side.items[i]=null; if(cell){ cell.classList.remove('filled'); cell.innerHTML=''; } } } updateTotals(key); }
     function applyOils(key,set){ const box = key==='P'?document.getElementById('oilsP'):document.getElementById('oilsO'); const kinds=['attack','armor','speed']; if (box){ kinds.forEach(k=>{ const el = box.querySelector(`.oil[data-kind="${k}"]`); if (el){ if (set.has(k)) el.classList.add('active'); else el.classList.remove('active'); } }); } const side = key==='P'?sides.P:sides.O; side.oils = new Set(set); updateTotals(key); }
-    function applyEdge(key, slug){ if (!slug || !RAW_DATA[slug]) return; const side = key==='P'?sides.P:sides.O; side.edge = RAW_DATA[slug]; const sel = key==='P'?document.getElementById('edgeP'):document.getElementById('edgeO'); const eff = key==='P'?document.getElementById('edgePEffect'):document.getElementById('edgeOEffect'); const ic = key==='P'?document.getElementById('edgePIcon'):document.getElementById('edgeOIcon'); if (sel){ sel.value = side.edge.slug; } if (eff){ eff.textContent = side.edge.effect || ''; } if (ic){ ic.src = `${side.edge.bucket}/${side.edge.slug}/icon.png`; } updateTotals(key); }
+  function applyEdge(key, slug){ if (!slug || !RAW_DATA[slug]) return; const side = key==='P'?sides.P:sides.O; side.edge = RAW_DATA[slug]; const sel = key==='P'?document.getElementById('edgeP'):document.getElementById('edgeO'); const eff = key==='P'?document.getElementById('edgePEffect'):document.getElementById('edgeOEffect'); const ic = key==='P'?document.getElementById('edgePIcon'):document.getElementById('edgeOIcon'); if (sel){ sel.value = side.edge.slug; } if (eff){ eff.textContent = side.edge.effect || ''; } if (ic){ const cands=resolveIconCandidates(side.edge); let i=0; ic.src=cands[i]||'placeholder.png'; ic.onerror=()=>{ i+=1; if(i<cands.length){ ic.src=cands[i]; } else { ic.onerror=null; ic.src='placeholder.png'; } }; } updateTotals(key); }
     // Fill warnings list
     if (warnEl){ warnEl.textContent = warnings.length ? ('Low-confidence matches:\n- ' + warnings.join('\n- ')) : 'No low-confidence matches.'; }
     // Preview-only toggle
@@ -2172,7 +2176,7 @@ function renderPlayerAnalysis(sideKey, playerNum) {
 function renderAnalysisItem(item, type) {
   if (!item) return '';
   
-  const iconPath = `${item.bucket}/${item.slug}/icon.png`;
+  const iconPath = (item && item.key) ? `${item.key}/icon.png` : `${item.bucket}/${item.slug}/icon.png`;
   const stats = item.stats || {};
   const tags = item.tags || [];
   
