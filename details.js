@@ -1,4 +1,4 @@
-/* Generated 2025-09-24T23:18:36.104Z • sha256:6462f866b3e72aa0 */
+/* Generated 2025-09-24T23:26:51.373Z • sha256:ad36577e32dbd222 */
 window.HEIC_DETAILS = {
   "items/acid_mutation": {
     "bucket": "items",
@@ -2858,7 +2858,7 @@ window.HEIC_DETAILS = {
       "armor": 0,
       "attack": 0,
       "health": 0,
-      "speed": -2
+      "speed": -1
     },
     "tags": [
       "Stone"
@@ -2873,7 +2873,7 @@ window.HEIC_DETAILS = {
       "armor": 0,
       "attack": 0,
       "health": 0,
-      "speed": -2
+      "speed": -1
     },
     "tags": [
       "Stone"
