@@ -1931,8 +1931,8 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
 </div>
 
 <!-- Data loader: Generated details.js provides window.HEIC_DETAILS global -->
-<script src="details.js"></script>
-<script src="heic_sim.js"></script>
+<script src="details.js" defer></script>
+<script src="heic_sim.js" defer></script>
 <script src="heic_effects.js"></script>
 <script src="heic_sets.js"></script>
 
@@ -2632,7 +2632,9 @@ async function loadData() {
     console.log('📊 RAW_DATA keys count:', Object.keys(RAW_DATA).length);
     console.log('📊 DATA_ARR length:', DATA_ARR.length);
     console.log('📊 window.HEIC_DETAILS exists at init time:', !!window.HEIC_DETAILS);
-    initializeCompendiumData();
+    if (Array.isArray(window.DATA_ARR) && window.DATA_ARR.length) {
+      initializeCompendiumData();
+    }
     // Compute initial totals for player and opponent (empty builds)
     updateTotals('P');
     updateTotals('O');
@@ -2785,7 +2787,9 @@ async function loadData() {
     try {
       populateEdges();
       initSlots();
-      initializeCompendiumData();
+      if (Array.isArray(window.DATA_ARR) && window.DATA_ARR.length) {
+        initializeCompendiumData();
+      }
       updateTotals('P');
       updateTotals('O');
     } catch (initError) {
@@ -2883,7 +2887,9 @@ async function loadData() {
   // Build empty item grids for both sides
   initSlots();
   // Render the compendium grid
-  initializeCompendiumData();
+  if (Array.isArray(window.DATA_ARR) && window.DATA_ARR.length) {
+    initializeCompendiumData();
+  }
   // Compute initial totals for player and opponent (empty builds)
   updateTotals('P');
   updateTotals('O');
@@ -2906,7 +2912,9 @@ async function safeLoadData() {
     try {
       populateEdges();
       initSlots();
-      initializeCompendiumData();
+      if (Array.isArray(window.DATA_ARR) && window.DATA_ARR.length) {
+        initializeCompendiumData();
+      }
       updateTotals('P');
       updateTotals('O');
     } catch (fallbackError) {
@@ -2916,11 +2924,13 @@ async function safeLoadData() {
   }
 }
 
-// Wait a moment for DOM and bundled scripts to load, then start initialization
-setTimeout(initializeFromBundledData, 100);
+// Disabled: legacy bunded-data kickstart (replaced by a single boot at the end)
+// setTimeout(initializeFromBundledData, 100);
 
 // Simple initialization using generated details.js
+// Disabled path: superseded by __compendiumBoot. Keeping for reference only.
 async function initializeFromBundledData() {
+  return; // no-op
   try {
     console.log('🚀 Initializing from window.HEIC_DETAILS...');
     
@@ -2965,7 +2975,9 @@ async function initializeFromBundledData() {
     populateEdges();
     initSlots();
     console.log('🎯 Calling initializeCompendiumData...');
-    initializeCompendiumData();
+    if (Array.isArray(window.DATA_ARR) && window.DATA_ARR.length) {
+      initializeCompendiumData();
+    }
     updateTotals('P');
     updateTotals('O');
     
@@ -3006,8 +3018,8 @@ const searchIn = $('#q');
 const bucketSel = $('#bucket');
 const catSel = $('#cat');
 
-// Force the bucket selector to "All" to ensure it shows all items by default
-bucketSel.value = 'All';
+// Force the bucket selector to "All" to ensure it shows all items by default (guard for missing legacy UI)
+if (bucketSel) bucketSel.value = 'All';
 const detailModal = $('#detailModal');
 const detailName = $('#detailName');
 const detailEffect = $('#detailEffect');
@@ -4635,7 +4647,8 @@ function showCompendiumError(message) {
 }
 
 // Filter listeners
-[searchIn, bucketSel, catSel].forEach(el => {
+// Legacy filter listeners (guard if elements are missing)
+[searchIn, bucketSel, catSel].filter(Boolean).forEach(el => {
   el.addEventListener('input', renderGrid);
   el.addEventListener('change', renderGrid);
 });
@@ -6997,6 +7010,60 @@ function renderAnalysisItem(item, type) {
 }
 
 // Initial render happens after details.json loads via loadData()
+
+// Disable conflicting loaders 
+window.loadData = () => console.info('loadData disabled');
+window.safeLoadData = () => console.info('safeLoadData disabled');
+
+// Start the application when DOM is ready (single, minimal boot)
+function __compendiumBoot() {
+  // 1) Validate that details.js actually populated the global
+  if (!window.HEIC_DETAILS || typeof window.HEIC_DETAILS !== 'object') {
+    console.error('HEIC_DETAILS missing. Ensure details.js assigns: window.HEIC_DETAILS = {...} and is NOT type="module".');
+    return;
+  }
+
+  console.log('✅ HEIC_DETAILS found:', Object.keys(window.HEIC_DETAILS).length, 'items');
+
+  // 2) Normalize RAW_DATA and build DATA_ARR
+  RAW_DATA = window.HEIC_DETAILS;
+  DATA_ARR = Object.entries(RAW_DATA).map(([id, item]) => ({
+    id,
+    key: id,
+    slug: item.slug || id.split('/').pop(),
+    bucket: item.bucket || id.split('/')[0],   // items / weapons / sets / upgrades
+    tags: Array.isArray(item.tags) ? item.tags : [],
+    stats: item.stats || { armor:0, attack:0, health:0, speed:0 },
+    effect: item.effect || '',
+    effects: Array.isArray(item.effects) ? item.effects : [],
+    name: item.name || id
+  }));
+
+  console.log('✅ DATA_ARR built:', DATA_ARR.length, 'items');
+
+  // 3) Expose globals your UI expects
+  window.RAW_DATA  = RAW_DATA;
+  window.DATA_ARR  = DATA_ARR;
+
+  // 4) Call your app's entry point
+  if (typeof window.initializeCompendiumData === 'function') {
+    console.log('✅ Calling initializeCompendiumData...');
+    window.initializeCompendiumData(DATA_ARR);
+  } else {
+    // If your app defines it earlier via defer, order should be fine. If not,
+    // keep the data around and log a helpful message.
+    console.warn('initializeCompendiumData not found at boot time. Data is ready at window.DATA_ARR.');
+  }
+
+  // 5) Tiny sanity check in console
+  console.log('Compendium items:', DATA_ARR.length, DATA_ARR.slice(0,3));
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', __compendiumBoot);
+} else {
+  // DOM already parsed; run boot immediately
+  setTimeout(__compendiumBoot, 0);
+}
 </script>
 
 </body>
