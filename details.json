@@ -1400,8 +1400,8 @@
     "name": "Cracked Whetstone",
     "slug": "cracked_whetstone",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -2839,8 +2839,8 @@
     "name": "Ironstone Armor",
     "slug": "ironstone_armor",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": -2
     },
@@ -2854,8 +2854,8 @@
     "name": "Ironstone Bracelet",
     "slug": "ironstone_bracelet",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": -1
     },
@@ -2869,8 +2869,8 @@
     "name": "Ironstone Sandals",
     "slug": "ironstone_sandals",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": -1
     },
@@ -3267,8 +3267,8 @@
     "name": "Limestone Fruit",
     "slug": "limestone_fruit",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 3
     },
@@ -3341,8 +3341,8 @@
     "name": "Marbled Stonefish",
     "slug": "marbled_stonefish",
     "stats": {
-      "attack": 4,
       "armor": 0,
+      "attack": 4,
       "health": 6,
       "speed": 0
     },
@@ -3495,8 +3495,8 @@
     "name": "Mineral Water",
     "slug": "mineral_water",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -4127,8 +4127,8 @@
     "name": "Rock Candy",
     "slug": "rock_candy",
     "stats": {
-      "attack": 0,
       "armor": 0,
+      "attack": 0,
       "health": 0,
       "speed": 0
     },
@@ -7967,6 +7967,22 @@
     },
     "tags": []
   },
+  "weapons/rocksalt_sword": {
+    "bucket": "weapons",
+    "effect": "Turn Start: If your health is full, gain 1 additional strike",
+    "name": "Rocksalt Sword",
+    "slug": "rocksalt_sword",
+    "stats": {
+      "armor": 6,
+      "attack": 2,
+      "health": 0,
+      "speed": 0
+    },
+    "tags": [
+      "Food",
+      "Stone"
+    ]
+  },
   "weapons/royal_crownblade": {
     "bucket": "weapons",
     "effect": "On Hit: Gain 1 gold.",
@@ -8351,19 +8367,34 @@
     },
     "tags": []
   },
-  "weapons/rocksalt_sword": {
-    "bucket": "weapons",
-    "effect": "Turn Start: If your health is full, gain 1 additional strike",
-    "name": "Rocksalt Sword",
-    "slug": "rocksalt_sword",
+  "items/stone_steak": {
+    "bucket": "items",
+    "name": "Stone Steak",
+    "slug": "stone_steak",
+    "effect": "Battle Start: If your health is full, gain 5 armor",
     "stats": {
-      "attack": 2,
-      "armor": 6,
+      "attack": 0,
+      "armor": 0,
       "health": 0,
       "speed": 0
     },
     "tags": [
       "Food",
+      "Stone"
+    ]
+  },
+  "items/petrifying_elixir": {
+    "bucket": "items",
+    "name": "Petrifying Elixir",
+    "slug": "petrifying_elixir",
+    "effect": "Wounded: Gain 10 armor and stun yourself and the enemy for 2 turns — at Gold: 20 4, at Diamond: 40 8",
+    "stats": {
+      "attack": 0,
+      "armor": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "tags": [
       "Stone"
     ]
   }

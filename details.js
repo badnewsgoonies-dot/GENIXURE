@@ -1,4 +1,4 @@
-/* Generated 2025-09-24T23:32:38.720Z • sha256:ad36577e32dbd222 */
+/* Generated 2025-09-24T23:51:09.242Z • sha256:3f8a83006951dca6 */
 window.HEIC_DETAILS = {
   "items/acid_mutation": {
     "bucket": "items",
@@ -3755,6 +3755,21 @@ window.HEIC_DETAILS = {
       "Stone"
     ]
   },
+  "items/petrifying_elixir": {
+    "bucket": "items",
+    "effect": "Wounded: Gain 10 armor and stun yourself and the enemy for 2 turns — at Gold: 20 4, at Diamond: 40 8",
+    "name": "Petrifying Elixir",
+    "slug": "petrifying_elixir",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "tags": [
+      "Stone"
+    ]
+  },
   "items/petrifying_flask": {
     "bucket": "items",
     "effect": "Wounded: Gain 10 armor and stun yourself for 2 turns — at Gold: 20 & 4, at Diamond: 40 & 8",
@@ -5011,6 +5026,22 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": []
+  },
+  "items/stone_steak": {
+    "bucket": "items",
+    "effect": "Battle Start: If your health is full, gain 5 armor",
+    "name": "Stone Steak",
+    "slug": "stone_steak",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 0
+    },
+    "tags": [
+      "Food",
+      "Stone"
+    ]
   },
   "items/stoneborn_turtle": {
     "bucket": "items",
