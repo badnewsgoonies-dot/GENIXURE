@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Builds runtime data for HeIsComing"""
 import json, os, re, sys, time
 from pathlib import Path
@@ -13,7 +13,7 @@ def load_json(p, optional=False):
     if not p.exists():
         if optional: return {}
         print(f"[build] ERROR: missing {p}", file=sys.stderr); sys.exit(1)
-    with p.open("r", encoding="utf-8") as f: return json.load(f)
+    with p.open("r", encoding="utf-8-sig") as f: return json.load(f)
 def norm(stats):
     if not isinstance(stats, dict): return {}
     out={}
@@ -53,8 +53,12 @@ def main():
     merged=merge(base, overrides if isinstance(overrides,dict) else {})
     assert_shape(merged)
     ver=os.environ.get("GIT_COMMIT") or os.environ.get("COMMIT_REF") or os.environ.get("VERCEL_GIT_COMMIT_SHA") or str(int(time.time()))
-    with OUT_DETAILS_JSON.open("w", encoding="utf-8") as f: json.dump(merged,f,ensure_ascii=False,indent=2,sort_keys=True)
+    ver=os.environ.get("GIT_COMMIT") or os.environ.get("COMMIT_REF") or os.environ.get("VERCEL_GIT_COMMIT_SHA") or str(int(time.time()))
+    with OUT_DETAILS_JSON.open("w", encoding="utf-8-sig") as f: json.dump(merged,f,ensure_ascii=False,indent=2,sort_keys=True)
     payload=json.dumps(merged, ensure_ascii=False, separators=(",",":"))
-    OUT_DETAILS_JS.write_text(f"// generated {time.strftime('%Y-%m-%d %H:%M:%S')} (v={ver})\nwindow.HEIC_DETAILS={payload};\n", encoding="utf-8")
-    print("[build] OK ✔")
-if __name__=="__main__": main()
+    header = "// generated " + time.strftime("%Y-%m-%d %H:%M:%S") + f" (v={ver})\n"
+    OUT_DETAILS_JS.write_text(header + "window.HEIC_DETAILS=" + payload + ";\n", encoding="utf-8-sig")
+    print("[build] OK")
+if __name__=="__main__":
+    main()
+
