@@ -2212,6 +2212,14 @@ function initializeCompendiumData() {
   }
 }
 
+// Expose renderer for manual calls during debugging
+try { window.renderCompendium = renderCompendium; } catch(_) {}
+
+// Expose key functions on window for easier debugging/manual boot
+try {
+  window.initializeCompendiumData = initializeCompendiumData;
+} catch (_) {}
+
 // Show error state in compendium UI
 function showCompendiumError(message) {
   const compendiumGrid = document.getElementById('itemGrid');
@@ -4638,4 +4646,7 @@ if (document.readyState === 'loading') {
   // DOM already parsed; run boot immediately
   setTimeout(__compendiumBoot, 0);
 }
+
+// Ensure boot function is available globally
+try { window.__compendiumBoot = __compendiumBoot; } catch(_) {}
 
