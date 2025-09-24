@@ -1,4 +1,4 @@
-﻿console.log('  window.HEIC_DETAILS available:', !!window.HEIC_DETAILS);
+console.log('  window.HEIC_DETAILS available:', !!window.HEIC_DETAILS);
 console.log('   Items count:', window.HEIC_DETAILS ? Object.keys(window.HEIC_DETAILS).length : 0);
 
 /* Main builder logic using embedded details data */
@@ -4641,6 +4641,12 @@ function __compendiumBoot() {
   // 3) Expose globals your UI expects
   window.RAW_DATA  = RAW_DATA;
   window.DATA_ARR  = DATA_ARR;
+  // 4) Ensure core UI scaffolding is present (slots, edges, totals)
+  try { if (typeof populateEdges === "function") populateEdges(); } catch(_) {}
+  try { if (typeof initSlots === "function") initSlots(); } catch(_) {}
+  try { if (typeof updateTotals === "function") { updateTotals("P"); updateTotals("O"); } } catch(_) {}
+
+  // 5) Call your app\'s entry point
 
   // 4) Call your app's entry point
   if (typeof window.initializeCompendiumData === 'function') {
