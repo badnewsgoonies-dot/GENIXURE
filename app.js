@@ -2537,14 +2537,12 @@ function updateSimulationPreview() {
   }
 }
 
-<<<<<<< HEAD
-=======
+// --- merge conflict resolved: keep enhanced simulation preview + helpers ---
 // Function to update the three-pane simulation interface
 function updateSimulationPreview() {
   updateFighterCards();
   updateLoadoutTrays();
   updatePinnedMetrics();
-}
 }
 
 // Update fighter stat cards
@@ -3027,7 +3025,7 @@ function enhancePlayerNames(text) {
   return text;
 }
 
->>>>>>> abb468a051566fec97b02204f6a7d469d1a9aea5
+// --- end resolved merge conflict marker ---
 function uiLogClear() {
   const log = document.getElementById('simLog');
   const battleStatus = document.getElementById('battleStatus');
