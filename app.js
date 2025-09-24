@@ -1430,11 +1430,27 @@ function renderCardsView() {
     `;
     return;
   }
-  
+  let appended = 0;
   compendiumState.data.filteredItems.forEach(item => {
-    const card = createAdvancedCard(item);
-    itemGrid.appendChild(card);
+    try {
+      const card = createAdvancedCard(item);
+      if (card) { itemGrid.appendChild(card); appended++; }
+    } catch (e) {
+      console.error('createAdvancedCard failed for', item?.key, e);
+    }
   });
+
+  // Fallback: if nothing rendered (e.g., due to a CSS/HTML quirk), render a simple list
+  if (appended === 0) {
+    console.warn('No cards appended to #itemGrid; rendering simple fallback list');
+    itemGrid.innerHTML = compendiumState.data.filteredItems.map(it => `
+      <div style="background:#111;border:2px solid #f33;border-radius:12px;padding:12px;color:#fff;">
+        <div style="font-weight:600">${it.name || it.slug || it.key}</div>
+        <div style="color:#888;font-size:11px">${it.key}</div>
+      </div>
+    `).join('');
+  }
+  console.log('renderCardsView appended', appended, 'cards');
 }
 
 // Create an advanced item card
