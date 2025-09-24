@@ -1401,7 +1401,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/cracked_whetstone": {
     "bucket": "items",
@@ -1434,7 +1436,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/crimson_cloak": {
     "bucket": "items",
@@ -2304,7 +2308,8 @@
       "speed": 0
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/granite_crown": {
@@ -2324,7 +2329,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/granite_egg": {
     "bucket": "items",
@@ -2337,7 +2344,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/granite_fungi": {
     "bucket": "items",
@@ -2363,7 +2372,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/granite_thorns": {
     "bucket": "items",
@@ -2376,7 +2387,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/granite_tome": {
     "bucket": "items",
@@ -2390,7 +2403,8 @@
       "speed": 0
     },
     "tags": [
-      "Tome"
+      "Tome",
+      "Stone"
     ]
   },
   "items/ham_bat": {
@@ -2860,7 +2874,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/ironstone_bracelet": {
     "bucket": "items",
@@ -2873,7 +2889,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/ironstone_sandals": {
     "bucket": "items",
@@ -2886,7 +2904,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/kindling_bomb": {
     "bucket": "items",
@@ -3300,7 +3320,8 @@
       "speed": 4
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/loose_change": {
@@ -3333,7 +3354,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/marble_mushroom": {
     "bucket": "items",
@@ -3355,7 +3378,8 @@
       "speed": 3
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/marbled_stonefish": {
@@ -3391,7 +3415,8 @@
       "speed": 6
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/marshlight_lantern": {
@@ -3544,7 +3569,8 @@
       "speed": 0
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/mist_armor": {
@@ -3746,7 +3772,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/petrified_chestnut": {
     "bucket": "items",
@@ -3775,7 +3803,8 @@
       "speed": 0
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/petrified_statue": {
@@ -3789,7 +3818,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/petrifying_flask": {
     "bucket": "items",
@@ -3802,7 +3833,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/pinecone_breastplate": {
     "bucket": "items",
@@ -4194,7 +4227,8 @@
       "speed": 0
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/rock_roast": {
@@ -4209,7 +4243,8 @@
       "speed": 0
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/rocksalt_sword": {
@@ -4240,7 +4275,8 @@
       "speed": 0
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/royal_helmet": {
@@ -5112,7 +5148,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "items/stormcloud_armor": {
     "bucket": "items",
@@ -7576,7 +7614,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "weapons/granite_hammer": {
     "bucket": "weapons",
@@ -7589,7 +7629,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "weapons/granite_lance": {
     "bucket": "weapons",
@@ -7602,7 +7644,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "weapons/grilling_skewer": {
     "bucket": "weapons",
@@ -7640,7 +7684,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "weapons/heart_drinker": {
     "bucket": "weapons",
@@ -7692,7 +7738,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "weapons/ironstone_greatsword": {
     "bucket": "weapons",
@@ -7705,7 +7753,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "weapons/ironstone_spear": {
     "bucket": "weapons",
@@ -7718,7 +7768,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "weapons/king_s_blade": {
     "bucket": "weapons",
@@ -7889,7 +7941,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "weapons/melting_iceblade": {
     "bucket": "weapons",
@@ -7928,7 +7982,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "weapons/pacifist_staff": {
     "bucket": "weapons",
@@ -8231,7 +8287,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Stone"
+    ]
   },
   "weapons/stormcloud_spear": {
     "bucket": "weapons",
