@@ -233,6 +233,7 @@ async function loadData() {
     msg.textContent = 'Failed to load details.json. Please serve files via a local server (e.g., python -m http.server) instead of opening via file://';
     document.body.insertBefore(msg, document.body.firstChild);
   }
+}
 // Non-fatal JSON fetch helper
 async function fetchJson(url) {
   const res = await fetch(url, { cache: 'no-store' });
