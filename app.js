@@ -639,12 +639,12 @@ function updateTotals(sideKey) {
     spd += (s.speed  || 0);
   };
   addStats(side.weapon);
-  side.items.forEach(addStats);
-  if (side.weapon) {
-    if (side.oils.has('attack')) atk += 1;
-    if (side.oils.has('armor')) arm += 1;
-    if (side.oils.has('speed')) spd += 1;
-  }
+    side.items.forEach(addStats);
+    if (side.weapon) {
+      if (side.oils.has('attack')) atk += 1;
+      if (side.oils.has('armor')) arm += 1;
+      if (side.oils.has('speed')) spd += 1;
+    }
   const prefix = sideKey === 'P' ? 'p' : 'o';
   $('#'+prefix+'H').textContent = hp;
   $('#'+prefix+'A').textContent = atk;
