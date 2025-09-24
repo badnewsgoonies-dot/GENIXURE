@@ -1891,8 +1891,8 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   </div>
 </div>
 
-<!-- Data loader: Generated details.js provides window.HEIC_DETAILS global -->
-<script src="details.js" defer></script>
+<!-- Data loader: Ensure details.js executes before inline scripts so window.HEIC_DETAILS is ready -->
+<script src="details.js"></script>
 <script src="heic_sim.js" defer></script>
 <script src="heic_effects.js"></script>
 <script src="heic_sets.js"></script>
