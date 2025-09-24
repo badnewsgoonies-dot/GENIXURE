@@ -1,4 +1,4 @@
-/* Generated 2025-09-24T22:58:16.083Z • sha256:b11ce52c32e6c002 */
+/* Generated 2025-09-24T23:18:36.104Z • sha256:6462f866b3e72aa0 */
 window.HEIC_DETAILS = {
   "items/acid_mutation": {
     "bucket": "items",
@@ -1383,17 +1383,6 @@ window.HEIC_DETAILS = {
   "items/cracked_bouldershield": {
     "bucket": "items",
     "effect": "Exposed: Gain 7 armor",
-    "effects": [
-      {
-        "actions": [
-          {
-            "type": "gain_armor",
-            "value": 7
-          }
-        ],
-        "trigger": "onExposed"
-      }
-    ],
     "name": "Cracked Bouldershield",
     "slug": "cracked_bouldershield",
     "stats": {
@@ -1408,27 +1397,7 @@ window.HEIC_DETAILS = {
   },
   "items/cracked_whetstone": {
     "bucket": "items",
-    "effect": "First Turn: Temporarily gain 2 attack — at Gold: 4, at Diamond: 8",
-    "effects": [
-      {
-        "actions": [
-          {
-            "by_tier": [
-              2,
-              4,
-              8
-            ],
-            "type": "gain_temp_attack"
-          }
-        ],
-        "conditions": [
-          {
-            "type": "is_first_turn"
-          }
-        ],
-        "trigger": "turnStart"
-      }
-    ],
+    "effect": "First Turn: Temporarily gain 2 attack — at Gold: 4 , at Diamond: 8",
     "name": "Cracked Whetstone",
     "slug": "cracked_whetstone",
     "stats": {
@@ -2389,7 +2358,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Stone"
+      "Stone",
+      "Illegal"
     ]
   },
   "items/granite_tome": {
@@ -2873,7 +2843,7 @@ window.HEIC_DETAILS = {
       "armor": 0,
       "attack": 0,
       "health": 0,
-      "speed": 0
+      "speed": -2
     },
     "tags": [
       "Stone"
@@ -2888,7 +2858,7 @@ window.HEIC_DETAILS = {
       "armor": 0,
       "attack": 0,
       "health": 0,
-      "speed": 0
+      "speed": -2
     },
     "tags": [
       "Stone"
@@ -2903,7 +2873,7 @@ window.HEIC_DETAILS = {
       "armor": 0,
       "attack": 0,
       "health": 0,
-      "speed": 0
+      "speed": -2
     },
     "tags": [
       "Stone"
@@ -3294,31 +3264,14 @@ window.HEIC_DETAILS = {
   },
   "items/limestone_fruit": {
     "bucket": "items",
-    "effect": "Turn Start: if health not full, gain 2 Acid",
-    "effects": [
-      {
-        "actions": [
-          {
-            "key": "acid",
-            "type": "add_status",
-            "value": 2
-          }
-        ],
-        "conditions": [
-          {
-            "type": "is_not_full_health"
-          }
-        ],
-        "trigger": "turnStart"
-      }
-    ],
+    "effect": "Battle Start: Gain 8 armor. If your health is not full, gain 2 acid",
     "name": "Limestone Fruit",
     "slug": "limestone_fruit",
     "stats": {
       "armor": 0,
-      "attack": 2,
+      "attack": 0,
       "health": 0,
-      "speed": 4
+      "speed": 3
     },
     "tags": [
       "Food",
@@ -3385,35 +3338,14 @@ window.HEIC_DETAILS = {
   },
   "items/marbled_stonefish": {
     "bucket": "items",
-    "effect": "Battle Start (if Exposed and full health): +5 Armor and give enemy 1 Riptide",
-    "effects": [
-      {
-        "actions": [
-          {
-            "type": "add_armor",
-            "value": 5
-          },
-          {
-            "key": "riptide",
-            "type": "add_status_to_enemy",
-            "value": 1
-          }
-        ],
-        "conditions": [
-          {
-            "type": "is_exposed_and_full_health"
-          }
-        ],
-        "trigger": "battleStart"
-      }
-    ],
+    "effect": "Battle Start & Exposed: If your health is full, gain 5 armor and give the enemy 1 riptide",
     "name": "Marbled Stonefish",
     "slug": "marbled_stonefish",
     "stats": {
       "armor": 0,
       "attack": 4,
-      "health": 0,
-      "speed": 6
+      "health": 6,
+      "speed": 0
     },
     "tags": [
       "Food",
@@ -4192,33 +4124,7 @@ window.HEIC_DETAILS = {
   },
   "items/rock_candy": {
     "bucket": "items",
-    "effect": "Battle Start: Gain 15 Armor (30 if health is full)",
-    "effects": [
-      {
-        "actions": [
-          {
-            "type": "add_armor",
-            "value": 30
-          }
-        ],
-        "condition": {
-          "type": "is_full_health"
-        },
-        "trigger": "battleStart"
-      },
-      {
-        "actions": [
-          {
-            "type": "add_armor",
-            "value": 15
-          }
-        ],
-        "condition": {
-          "type": "is_not_full_health"
-        },
-        "trigger": "battleStart"
-      }
-    ],
+    "effect": "Battle Start: Gain 15 armor. If your health is full, gain an additional 15 armor",
     "name": "Rock Candy",
     "slug": "rock_candy",
     "stats": {

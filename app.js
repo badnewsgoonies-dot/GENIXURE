@@ -2395,7 +2395,7 @@ function randomizeSide(targetSide){
   resetSlots(targetSide);
   const gridEl = targetSide === 'P' ? $('#gridP') : $('#gridO');
   const weapons = DATA_ARR.filter(e => e.bucket === 'weapons');
-  const itemsList = DATA_ARR.filter(e => e.bucket === 'items');
+  const itemsList = DATA_ARR.filter(e => e.bucket === 'items' && !(Array.isArray(e.tags) && e.tags.includes('Illegal')));
   const edges = DATA_ARR.filter(e => e.bucket === 'upgrades' && /edge/i.test(e.slug) && !(/_used$/i.test(e.slug) || /_darkened$/i.test(e.slug)));
   
   if (weapons.length) {
