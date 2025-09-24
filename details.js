@@ -1,4 +1,4 @@
-/* Generated 2025-09-24T22:47:03.940Z • sha256:67a9bcd5ae092bf7 */
+/* Generated 2025-09-24T22:58:16.083Z • sha256:b11ce52c32e6c002 */
 window.HEIC_DETAILS = {
   "items/acid_mutation": {
     "bucket": "items",
@@ -3560,13 +3560,13 @@ window.HEIC_DETAILS = {
   },
   "items/mineral_water": {
     "bucket": "items",
-    "effect": "Battle Start or Exposed and at full health: Decrease 1 random status by 2 and gain 5 Armor",
+    "effect": "Battle Start & Exposed: If your health is full, decrease a random status effect by 2 and gain 5 armor",
     "name": "Mineral Water",
     "slug": "mineral_water",
     "stats": {
       "armor": 0,
-      "attack": 2,
-      "health": 5,
+      "attack": 0,
+      "health": 0,
       "speed": 0
     },
     "tags": [
@@ -4241,38 +4241,6 @@ window.HEIC_DETAILS = {
       "armor": 2,
       "attack": 0,
       "health": 3,
-      "speed": 0
-    },
-    "tags": [
-      "Food",
-      "Stone"
-    ]
-  },
-  "items/rocksalt_sword": {
-    "bucket": "weapons",
-    "effect": "Turn Start: if health is full, gain 1 extra Strike",
-    "effects": [
-      {
-        "actions": [
-          {
-            "type": "add_extra_strikes",
-            "value": 1
-          }
-        ],
-        "conditions": [
-          {
-            "type": "is_full_health"
-          }
-        ],
-        "trigger": "turnStart"
-      }
-    ],
-    "name": "Rocksalt Sword",
-    "slug": "rocksalt_sword",
-    "stats": {
-      "armor": 0,
-      "attack": 0,
-      "health": 0,
       "speed": 0
     },
     "tags": [
@@ -8093,6 +8061,22 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": []
+  },
+  "weapons/rocksalt_sword": {
+    "bucket": "weapons",
+    "effect": "Turn Start: If your health is full, gain 1 additional strike",
+    "name": "Rocksalt Sword",
+    "slug": "rocksalt_sword",
+    "stats": {
+      "armor": 6,
+      "attack": 2,
+      "health": 0,
+      "speed": 0
+    },
+    "tags": [
+      "Food",
+      "Stone"
+    ]
   },
   "weapons/royal_crownblade": {
     "bucket": "weapons",
