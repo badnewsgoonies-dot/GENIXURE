@@ -1,0 +1,850 @@
+He Is Coming  – Item Compendium
+Woodland Items
+Weapons (Woodland)
+Ironstone Greatsword
+Effect: None  (no special effect)
+Stats:  Attack +4, Speed –2
+Tags:  – 
+Razorthorn Spear
+Effect:  On Hit – Gain 2 stacks of Thorns  on yourself (each stack causes damage to attackers)
+Stats:  Attack +1
+Tags:  Thorns (Woodland) 
+Redwood Rod
+Effect: None  (no special effect)
+Stats:  Attack +2, Health +4
+Tags:  – 
+Spearshield Lance
+Effect: None  (no special effect)
+Stats:  Attack +1, Armor +6
+Tags:  – 
+Woodcutter's Axe
+Effect:  Gain +2 Attack for each empty equipment slot (encourages minimalist gear)
+Stats:  Attack +1
+Tags:  – 
+(...and other Woodland  Weapons  such as  Boom Stick  – Attack +2, grants On-Hit damage ;  Heart Drinker  –
+Attack +1, On Hit heals 1 health ;  Sword of the Hero  – Attack +3 ;  Hidden Dagger  – Attack +2, grows
+stronger with each new one found ; Brittlebark Bow  – Attack +4, loses 2 Attack after 3 strikes ; Elderwood
+Staff  – Attack/Armor/Speed +1 each ; Featherweight Blade  – Attack +2, Speed +2 ; Blackbriar Blade  – Attack
++2, whenever you would gain Thorns, gain +1 Attack instead ; Bejeweled Blade  – Attack +1, gain +2 Attack for1
+1
+2
+3
+4
+5
+6 7
+8 9
+10 11
+12
+1
+each equipped Jewelry item ;  Ironstone Bow  – Attack +6, Speed +1, but each hit reduces Speed (at 0 Speed,
+attack only every other turn) ; Lifeblood Spear  – Attack +1, whenever you heal 3+ health at once, gain +1 Attack
+; Explosive Sword  (Rare) – Attack +3, whenever a bomb deals ≥5 non-weapon damage, gain an extra strike;
+Icicle Spear  – Attack +3, on Exposed  hit give enemy +Freeze per each Water item; Bloodmoon Dagger  – Attack +2,
+on Wounded  hit gain +5 Attack but take 2 damage; Bloodmoon Sickle  – Attack +5, On Hit you take 1 damage;
+Frostbite Dagger  – Attack +2, on first turn each hit gives enemy Freeze equal to your Attack;  Swiftstrike Bow  –
+Attack +2, any time you gain extra strikes, gain twice as many;  Swiftstrike Rapier  – Attack +2, if your Speed >
+enemy’s at battle start, gain 3 extra strikes; Battle Axe  – Attack +2, while enemy has Armor your Attack is doubled;
+Gemstone Scepter  (Heroic) – Attack +2, inherits On-Hit effects of all Emerald/Ruby/Sapphire/Citrine items; Granite
+Hammer  – Attack +2, On Hit convert 1 Armor into +2 Attack; Granite Lance  – Attack +2, Armor +1, doubles your
+base Armor; Stoneslab Sword  – Attack +2, On Hit gain +2 Armor; Frozen Iceblade  – Attack +6, at battle start gain 3
+Freeze  on yourself; Royal Scepter  – Attack +0, Attack always equals your Gold (max 10 gold); Evergrowth Spear  –
+Attack +3, every other turn gain +1 Attack and heal 1; Grindstone Club  – Attack +1, the next weapon you equip
+gets +2 Attack; Twin Blade  – Attack +1, strikes twice per attack; Lifesteal Scythe  – Attack +1, On Hit if enemy has no
+Armor, heal amount equal to your Attack; Royal Crownblade  – Attack +4, On Hit gain 1 gold; Brittlebark Club  –
+Attack +7, on Exposed /Wounded  trigger lose 2 Attack; Bearclaw Blade  (Mythic) – Health +5, Attack always equals
+your missing HP; Mountain Cleaver  – Armor +2, Attack always equals your base Armor; Tempest Blade  – Speed +2,
+Attack always equals your Speed.)
+Items (Woodland) – Armor, Accessories, etc.
+Horned Helmet
+Effect:  Battle Start – Gain 1 stack of Thorns  (at higher upgrade tiers: 2 stacks at Gold, 4 at
+Diamond)
+Stats:  Armor +2 (Gold: +4, Diamond: +8)
+Tags:  Thorns, Armor 
+Ironstone Bracelet
+Effect:  Enemy strikes deal –1 damage while you have Armor (but +1 damage if you have
+none)
+Stats:  Speed –1
+Tags:  – 
+Iceblock Shield
+Effect:  Battle Start – Inflict Freeze  on yourself, gaining 2 stacks of Freeze (half attack while
+active)
+Stats:  Armor +8
+Tags:  Freeze, Armor 
+Redwood Cloak
+Effect:  Battle Start – If your health isn’t full, restore 2 health (Gold: 4; Diamond: 8)
+Stats:  Health +2 (Gold: +4; Diamond: +8)
+Tags:  Healing 13
+14
+15
+16
+17
+18
+19
+2
+Redwood Helmet
+Effect: Exposed  – Restore 3 health when you lose Armor (Gold: 6; Diamond: 12)
+Stats:  Health +1 (Gold: +2; Diamond: +4); Armor +1 (Gold: +2; Diamond: +4)
+Tags:  Healing, Armor 
+(...and other Woodland Items  like Lifeblood Helmet  – at first turn, heal an amount equal to damage you deal that
+turn ; Double-Plated Armor  – Armor +2 (scales to 12 at Diamond), Speed –2 (–8 at Diamond), on Exposed  gain
++3 Armor (6/12 at higher tiers) ; Swiftstrike Belt  – Battle Start: take 3 damage to gain +1 extra strike (taking
+6/12 damage for 2/4 strikes at Gold/Diamond) ; Frostbite Gauntlet  – Battle Start: give enemy 1 Freeze  (2/4 at
+Gold/Diamond) ; Frostbite Trap  – Wounded  trigger: give enemy 3 Freeze  (6/12 at Gold/Diamond) ; Saffron
+Feather  – Turn Start: convert 1 Speed to heal 2 (Gold: convert –2 Speed to heal 4; Diamond: –4 Speed to heal 8)
+; Leather Glove  – Health +3 (+12 at Diamond), Speed +1 (+4 at Diamond) ; Leather Vest  – Armor +2 (+8 at
+Diamond), Speed +1 (+4 at Diamond) ;  Loose Change  – Gain 3 gold at start of each day (6 at Gold, 12 at
+Diamond) ; Boots of the Hero  – Speed +2 (+8 at Diamond) ; Shield of the Hero  – Armor +3 (+12 at Diamond)
+;  Cracked Whetstone  – First Turn: temporarily gain +2 Attack (4/8 at Gold/Diamond) ;  Lifeblood Burst  –
+Whenever you heal 3+ health at once, deal 3 damage to the enemy ;  Energy Drain  – Before any other item
+triggers each turn, if your Speed < enemy’s, steal 5 Speed from them ;  Blackbriar Gauntlet  – Whenever the
+enemy’s first strike removes any of your Armor, gain 2  Thorns ;  Blackbriar Rose  – Whenever you heal any
+health, gain 2 Thorns  (limit 1 Rose-type item equipped) ; Bramble Belt  – Battle Start: gain 1 Thorns  but give
+enemy +1 extra strike ; Bramble Buckler  – Armor +2, Turn Start: convert 1 Armor into 2 Thorns ; Bramble
+Talisman  – Whenever you gain Thorns , also gain +1 Armor ; Bramble Vest  – Health +3, the first time you lose
+Thorns stacks, heal amount equal to stacks lost ;  Ice Spikes  – If you have any  Freeze  at turn start, gain +5
+Thorns ; Ice Tomb  – Turn Start: if you have 0 Armor, gain +3 Armor and +1 Freeze ; Leather Boots  – Battle
+Start: if your Speed > enemy’s, gain +2 Attack ; Cracked Bouldershield  – Exposed  trigger: gain +7 Armor ; 
+Fortified Gauntlet  – Turn Start: if you have any Armor, gain +1 additional Armor ; Frostbite Curse  – Battle Start:
+inflict 5 Freeze  on BOTH you and the enemy ; Ore Heart  – Battle Start: gain +3 Armor for each equipped Stone -
+tagged item ; Pinecone Breastplate  – Battle Start: if you’re at full health, then at each turn start gain +1 Thorn
+stack for the rest of battle ; Thorn Ring  – Battle Start: take 5 damage to gain 10 Thorns ; Bomb Bag  – Battle
+Start (Exposed & Wounded trigger): spend 3 Speed to re-trigger a random  Bomb  item’s effect ;  Blacksmith
+Bond  – Exposed  effects can trigger one extra time each ; Blastcap Armor  – Armor +8, on Exposed  you take 5
+damage ;  Firecracker Belt  –  Exposed  trigger: deal 1 damage 4 times to enemy ;  Granite Crown  – Battle
+Start: gain max Health equal to your base Armor value ; Iron Rose  – Whenever you heal, gain +1 Armor (limit 1
+Rose item) ; Kindling Bomb  – Battle Start: deal 1 damage to enemy; the next bomb item effect that triggers this
+battle deals +3 damage ; Powder Keg  – Battle Start: if you have only one Bomb-type item equipped, its effect
+triggers 3× instead of once ; Double-Plated Vest  – Every third instance of damage you take in a turn grants you
++2 Armor ; Explosive Powder  – All your Bomb item effects deal +1 additional damage ; Explosive Surprise  –
+Exposed  trigger: deal 6 damage to the enemy ; Heart-Shaped Acorn  – Battle Start: if your base Armor is 0, fully
+heal yourself ; Heart-Shaped Potion  – If you are reduced to exactly 1 HP (once per battle), immediately fully
+heal ; Iron Shrapnel  – Battle Start: deal 3 damage to enemy; if they have no Armor, double that damage ; 
+Oak Heart  – Gain +3 max Health for each equipped Wood -tagged item ; Blood Chain  – The first time the enemy
+becomes Wounded, trigger all your Wounded-effect items at once ; Ironstone Sandals  – Speed –1, while you
+have Armor, temporarily gain +2 Attack ; Royal Helmet  – Armor +1, Exposed : if you have >20 gold, gain +10
+Armor ; Sanguine Rose  – Healing you receive is increased by +1 (limit 1 Rose) ; Featherweight Wings  – Battle
+Start: if your Speed < enemy’s, gain Attack equal to your current Speed ; Vampire’s Tooth  – If you have exactly
+one Sanguine -tagged item equipped, double its healing effects ; Brittlebark Buckler  – Armor +10, but you lose
+all Armor after the enemy’s first strike each battle ; Featherweight Armor  – Whenever you gain Speed, also gain20
+21
+22
+23
+24 25
+26 27
+28
+29 30
+31 32
+33
+34
+35
+36
+37 38
+39
+40
+41 42
+43 44
+45
+46
+47
+48 49
+50
+51
+52 53
+54
+55
+56
+57
+58 59
+60
+61
+62 63
+64
+65
+66
+67 68
+69
+70
+71
+3
+that much Armor ; Featherweight Greaves  – Turn Start: if you have 0 Speed, gain +1 Speed ; Featherweight
+Helmet  – Battle Start: spend 2 Armor to gain +3 Speed and +1 Attack ; Frostbite Armor  – Armor +2, enemy’s
+first strike deals double damage, but after that they gain 4 Freeze stacks ; Plated Greaves  – Exposed : convert 3
+Speed into 9 Armor ; Double Explosion  – The second time each turn you deal non-weapon damage, deal +3
+damage extra ; Frostbite Greaves  – Whenever you lose Speed, give the enemy 1 Freeze ; Blackbriar Armor
+(Heroic) – Attack –1, whenever you take damage, gain +2 Thorns ; Cactus Cap  – If the enemy has no Armor,
+your Thorns deal double damage ; Ironstone Armor  – Speed –2, enemy strikes deal –2 damage while you have
+any Armor ; Shield Talisman  – Whenever you gain Armor, gain +1 additional Armor; Moonlight Shield  – Turn
+Start: if you are below 50% HP, gain +2 Armor; Razor Breastplate  – Armor +3, on Wounded  trigger you gain Thorns
+equal to enemy’s Attack ; Brittlebark Armor  – Health +12, you take +1 extra damage from all sources (fragile)
+; Druid’s Cloak  – Whenever you lose any health, you gain that much Armor instead (but you cannot heal at all)
+; Studded Gauntlet  – On Hit: deal +1 bonus damage on each of your strikes ; Sword Talisman  – Whenever
+you deal non-weapon (effect) damage, deal +1 additional damage ;  Time Bomb  –  Exposed : deal 1 damage;
+every Turn Start this item’s damage increases by +2 (stacking) ; Assault Greaves  – Whenever you take damage,
+deal 1 damage back to the enemy ; Ironskin Potion  – Battle Start: gain Armor equal to the amount of health
+you’ve lost (missing HP) ; Crimson Cloak  – Whenever you take damage, heal 1 health ; Iron Transfusion  –
+Turn Start: gain +2 Armor but lose 1 health ; Lifeblood Armor  – Battle Start: convert 50% of your current HP
+into the same amount of Armor ; Royal Shield  – Turn Start: convert 1 gold into +3 Armor ; Swiftstrike Cloak
+– Speed +1, Battle Start: if your Speed > enemy’s, gain +1 extra strike ; Swiftstrike Gauntlet  – Wounded  trigger:
+gain +2 extra strikes ;  Chainmail Armor  –  Wounded  trigger: regain your base Armor value instantly ; 
+Elderwood Necklace  – Attack/Armor/Speed +1 each (balanced stats) ; Bloodmoon Armor  (Mythic) – Armor +6,
+whenever one of your items would damage  you, the enemy takes that damage instead ;  Cold Resistance  –
+Reverses  Freeze effect: Freeze doubles  your Attack instead of halving it ; Granite Thorns  – You do not lose any
+Thorns for the first 3 times the enemy strikes you ; Razor Scales  – Whenever you lose Armor, deal that much
+damage to the enemy ; Chainlink Medallion  – All your On-Hit effects trigger twice each time ; Twinfuse Knot
+– All your Bomb item effects trigger twice each time .)
+Jewelry (Woodland)
+Citrine Earring
+Effect:  Every other turn, you gain +1 Speed  (at Gold tier: +2 Speed; Diamond: +4)
+Stats: None  (no direct stat bonuses)
+Tags:  Jewelry, Speed 
+Emerald Earring
+Effect:  Every other turn, restore 1 health  (Gold: 2; Diamond: 4)
+Stats: None
+Tags:  Jewelry, Healing 
+Ruby Earring
+Effect:  Every other turn, deal 1 damage  to the enemy (Gold: 2; Diamond: 4)
+Stats: None
+Tags:  Jewelry, Damage 72 73
+74
+75
+76
+77 78
+79
+80
+81
+82
+83
+84 85
+86
+87
+88
+89 90
+91
+92 93
+94
+95 96
+97
+98
+99
+100
+101 102
+103
+104 105
+106
+106
+4
+Sapphire Earring
+Effect:  Every other turn, gain +1 Armor  (Gold: +2; Diamond: +4)
+Stats: None
+Tags:  Jewelry, Armor 
+Emerald Crown
+Effect: None  (no special effect)
+Stats:  Attack –1/–2/–4 (decreases with upgrades); Health +8/+16/+32
+Tags:  Jewelry, Health 
+(...Woodland Jewelry  continued: Ruby Crown  – Attack +1/+2/+4, Speed –1/–2/–4; Sapphire Crown  – Health –2/–4/–8,
+Armor +5/+10/+20; Emerald Ring  – Battle Start: restore 3 health (6 at Gold, 12 at Diamond) ; Ruby Ring  – Battle
+Start: gain +2 Attack but take 3 damage (at Gold, take 6 for +4 Attack; Diamond: 12 for +8) ; Sapphire Ring  –
+Battle Start: steal 2 Armor from the enemy (4 at Gold, 8 at Diamond) ; Citrine Ring  (Rare) – Battle Start: spend 5
+Speed to permanently gain +1 extra strike ;  Gold Ring  – Battle Start: gain +1 gold ;  Citrine Gemstone
+(Heroic) – Inverts  your base Speed stat (high base Speed becomes low and vice versa) ; Emerald Gemstone  –
+Battle Start: if your max HP is lower than the enemy’s, set your max HP equal to theirs ; Ruby Gemstone  – If
+your Attack is exactly 1, then on hit you deal 4 bonus damage ;  Sapphire Gemstone  – Whenever you lose
+Armor, heal for the same amount lost .)
+Food (Woodland) – Consumables
+(Consumable food items can be combined via the Cauldron  for enhanced effects. Combining with a Honeycomb
+yields a much stronger “cooked” version .)
+Cherry Bomb
+Effect: Battle Start  – Deal 1 damage  twice  to the enemy.  (Cooked with Honeycomb: At turn
+start, deal 1 damage 3 times )
+Stats: None
+Tags:  Bomb, Damage 
+Redwood Roast
+Effect: Use/Consume  – Instantly heal +5 health.  (Cooked with Honeycomb: Double your max
+health)
+Stats: None
+Tags:  Healing, Buff 
+Spiny Chestnut
+Effect: Battle Start  – Gain 3 stacks of  Thorns  (deal reactive damage);  (Honeycomb cooked:
+start with 3 Thorns that deal double damage)107
+108
+109
+110
+111 112
+113
+114
+115
+116
+117
+118 119
+120
+121
+5
+Stats: None
+Tags:  Thorns, Defense 
+Vampiric Wine
+Effect: Wounded  (upon taking damage) – Restore 4 health;  (Honeycomb cooked: restore 30
+health when wounded)
+Stats: None
+Tags:  Healing, Sanguine 
+Stone Steak
+Effect: Battle Start  – If you are at full health, gain +5 Armor;  (Honeycomb cooked: gain 15
+Armor, and if at full health gain another +15 Armor)
+Stats: None
+Tags:  Armor , Buff 
+Combined Foods (Woodland) – Cauldron Recipes
+(Combining two foods in the Cauldron creates a new item carrying both effects; adding a Honeycomb yields an
+even stronger result .)
+Explosive Roast  (Cherry Bomb + Redwood Roast) 
+Effect: Battle Start  – Deal 1 damage 3 times  to the enemy
+Stats:  Health +5
+Tags:  Bomb, Damage 
+Trail Mix  (Spiny Chestnut + Cherry Bomb) 
+Effect: Battle Start  – Deal 1 damage and gain 1 Thorn , then repeat this effect 2 more times
+(total 3 iterations)
+Stats: None
+Tags:  Thorns, Damage 
+Cherry Cocktail  (Cherry Bomb + Vampiric Wine) 
+Effect: Battle Start  (and when Wounded ): Deal 3 damage to the enemy and restore 3 health
+to yourself
+Stats: None
+Tags:  Healing, Damage, Sanguine 
+Granite Cherry  (Stone Steak + Cherry Bomb) 
+Effect: Battle Start  – If at full health, gain +2 Armor and deal 2 damage, then repeat this
+effect once more (two iterations total)122
+123
+124
+125
+126 127
+128
+129 130
+6
+Stats: None
+Tags:  Armor , Damage 
+Sugar Bomb  (Honeycomb + Cherry Bomb) 
+Effect: Turn Start  – Deal 1 damage 3 times  to the enemy
+Stats: None
+Tags:  Bomb, Damage 
+(...Woodland Combined Foods  continued: Roasted Chestnut  (Redwood Roast + Spiny Chestnut) – Health +5, Battle
+Start: gain 4 Thorns ; Blood Sausage  (Redwood Roast + Vampiric Wine) – Health +5, Wounded : heal 1 health 5
+times (total 5 HP) ; Rock Roast  (Redwood Roast + Stone Steak) – Health +6, Armor +6, no active effect listed
+;  Honey Ham  (Honeycomb + Redwood Roast) –  Effect:  Double your max health ;  Spiked Wine  (Spiny
+Chestnut + Vampiric Wine) –  Effect:  Wounded – heal 5 HP and gain 5 Thorns ;  Petrified Chestnut  (Spiny
+Chestnut + Stone Steak) –  Effect:  Battle Start – if at full health, gain 6 Thorns and 6 Armor ;  Candied Nuts
+(Honeycomb + Spiny Chestnut) – Effect:  Battle Start – gain 3 Thorns, and your Thorns deal double damage ; 
+Bloody Steak  (Vampiric Wine + Stone Steak) – Effect:  Wounded – heal 10 HP and gain 5 Armor ; Sweet Wine
+(Honeycomb + Vampiric Wine) –  Effect:  Wounded – heal 30 HP ;  Rock Candy  (Honeycomb + Stone Steak) –
+Effect:  Battle Start – gain 15 Armor (and if at full health, +15 more) .)
+Swampland Items
+Weapons (Swampland)
+Champion’s Blade
+Effect: None  (no special effect)
+Stats:  Attack +6
+Tags:  – 
+Forge Hammer
+Effect:  On Hit – Give the enemy +2 Armor (each hit makes the enemy tougher)
+Stats:  Attack +4
+Tags:  – 
+Fungal Rapier
+Effect: Battle Start  – You gain 1 stack of Poison  (a drawback: poison will harm you each turn
+until you have Armor)
+Stats:  Attack +3
+Tags:  Poison 
+Gale Staff131
+132
+133
+134 135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+7
+Effect:  On Hit – You lose 1 Speed (each attack slows you down slightly)
+Stats:  Attack +2, Speed +6
+Tags:  – 
+Grilling Skewer
+Effect: Battle Start  – Gain +1 additional strike (you attack twice in the first turn)
+Stats:  Attack +1
+Tags:  – 
+(...and other Swampland Weapons  like Ironstone Spear  – Attack +2, while you have Armor you temporarily gain +2
+more Attack ;  Knight’s Blade  – Attack +4, upgrades to a stronger form after you beat the next boss ; 
+Liferoot Staff  – Attack +2, on Wounded  you gain 3 Regeneration  (healing over time) ; Marble Sword  – Attack +1,
+Armor +2, on Exposed  trigger gain +3 Attack ; Pacifist Staff  – Attack +0, On Hit you gain +1 Armor and heal 1
+HP (can’t easily kill, but sustains you) ; Silverscale Dagger  – Attack +2, Battle Start: give the enemy 1 Riptide
+stack (causes end-of-turn damage) ; Slime Sword  – Attack +2, Battle Start: you and the enemy both get 3 Acid
+(acid eats Armor each turn) ; Squire’s Blade  – Attack +2, upgrades after next boss (a weaker blade that will
+improve) ;  Stormcloud Spear  – Attack +2, every 5 strikes you  Stun  the enemy for 2 turns ;  Arcane Wand
+(Rare) – Attack +0, cannot attack normally ; instead at turn start it deals 2 damage (increases by +1 for each Tome
+you have) ; Basilisk Fang  – Attack +3, On Hit: transfer 2 stacks of your Poison to the enemy (reduces your
+poison, gives it to them) ; Bubblegloop Staff  – Attack +0, cannot strike ; Turn Start: spend 1 Speed to inflict 2
+Acid and 2 Poison  on the enemy ; Granite Axe  – Attack +4, On Hit: you lose 2 health but gain +4 Armor ; 
+Liferoot Hammer  – Attack +3, On Hit: if you are at full health, convert all your Regeneration into 3× that amount of
+Armor ; Lightning Rod  – Attack +2, Turn Start: if you are Stunned , gain +3 Attack ; Lightning Whip  – Attack
++3, Turn Start: if the enemy is Stunned, gain +1 extra strike ; Ring Blades  – Attack +1, Battle Start: steal 1 Attack
+from the enemy (reduces enemy attack, adds to yours) ; Rusty Sword  – Attack +2, First Turn: on hit, give the
+enemy Acid equal to your Attack value ; Sanguine Scepter  – Attack +1, all healing effects are doubled  for you
+; Wave Breaker  – Attack –2 (yes, negative), cannot strike  normally; Battle Start: for each point of negative base
+Attack you have, give the enemy 2 Riptide  stacks ; Bloodlord’s Axe  (Heroic) – Attack +4, Battle Start: enemy loses
+5 health and you heal 5 (life steal on start) ;  Chainmail Sword  – Attack +2, Armor +2,  Exposed : gain Armor
+equal to your base Armor (regain armor when exposed) ; King’s Blade  – Attack +2, any Exposed  or Wounded
+item effects you have trigger immediately at battle start (rather than on trigger condition) ; Leather Whip  –
+Attack +4, Health +5, Battle Start: gain +5 max health (permanently increases HP) ; Melting Iceblade  – Attack
++8, On Hit: you lose 1 Attack (weapon melts as used) ; Moonlight Cleaver  – Attack +3, while you are below 50%
+HP, you cannot gain any new status effects (immunity when hurt) ; Purelake Staff  – Attack +1, Battle Start: gain
+2 Purity ; On Hit: remove 1 Purity (uses Purity stacks for buff then clears them) ; Riverflow Rapier  – Attack +3,
+the first time you gain any new status effect each battle, you also gain +1 extra strike immediately ; Serpent
+Dagger  – Attack +2, every 3 strikes you inflict 4 Poison  on the enemy ; Silverscale Trident  – Attack +0, On Hit:
+give the enemy 1  Riptide  stack ;  Thunderbound Sabre  – Attack +6, Battle Start:  Stun  yourself for 2 turns
+(powerful but you skip first 2 turns) ; Ancient Warhammer  (Mythic) – Attack +5, On Hit: strip all Armor from the
+enemy ; Dashmaster’s Dagger  – Attack +2, Battle Start: gain extra strikes equal to your Speed (more speed =
+more hits) ; Lakebed Sword  – Attack +5, you get double benefit from Purity  (Purity gives twice the Attack & HP)
+; Cleaver of Wrath  (Cursed) – Attack +10, sets your max health permanently to 1 ; Scepter of Greed  – Attack
++6, you cannot gain gold at all (disables gold income) ; Sword of Pride  – Attack +3, Armor +3, Speed +3, but
+Battle Start : if any of the enemy’s Attack/Armor/Speed exceed yours, you take 3 damage (punishes lower stats)
+.)145
+146
+147 148
+149
+150
+151
+152
+153
+154 155
+156157
+158
+159 160
+161 162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181 182
+183
+184
+8
+Items (Swampland) – Armor, Trinkets, Cursed, etc.
+Arcane Bell
+Effect: Battle Start  – Reduce all active  Countdown  timers by 1, then trigger  Symphony
+(instrument effects)
+Stats: None
+Tags:  Instrument, Countdown 
+Champion’s Armor
+Effect: None  (no special effect)
+Stats:  Armor +6 (Gold: +12; Diamond: +24)
+Tags:  Armor 
+Clearspring Feather
+Effect: Battle Start  – Transfer one random status effect from yourself to the enemy (at Gold:
+transfer 2; Diamond: 4)
+Stats: None
+Tags:  Status Transfer , Water 
+Clearspring Watermelon
+Effect: Battle Start  (if Exposed  & Wounded ) – Decrease a random status effect by 1 (Gold: by
+2; Diamond: 4)
+Stats: None
+Tags:  Food, Water 
+Deviled Egg
+Effect: Hatches after the next boss fight  – Transforms into a Sanguine Imp  pet (on next boss
+defeat)
+Stats: None
+Tags:  Summon, Sanguine 
+(...and other Swampland Items  such as Granite Egg  – hatches into a Stoneborn Turtle  pet after next boss ; Holy
+Shield  – Attack –1/–2/–4, Armor +6/+12/+24, Speed –1/–2/–4 (a heavy shield), no special effect ; Knight’s Armor
+– Armor +4/+8/+16, upgrades after next boss (improves to Paladin’s Armor) ; Leather Belt  – Health +3/+6/+12,
+if you have 0 base Armor its max health bonus is doubled (x4 at Gold, x8 at Diamond) ; Liferoot Gauntlet  –
+Health +3/+6/+12, Battle Start: gain 1 Regeneration  (2 at Gold, 4 at Diamond) ; Lightspeed Potion  – Speed +1,
+Battle Start: heal HP equal to your Speed (rewarding high speed) ; Muscle Potion  – Passive:  every 3 strikes you
+gain +1 Attack (Gold: +2; Diamond: +4) ;  Petrifying Flask  – On  Wounded : gain +10 Armor and  Stun  both
+yourself and enemy for 2 turns (at Gold: 20 Armor & 4-turn Stun; Diamond: 40 Armor & 8-turn Stun) ; Purelake
+Helmet  – Armor +2/+4/+8, Battle Start: gain 1 Purity  (2 at Gold, 4 at Diamond) ; Royal Horn  – Wounded : gain 2
+gold and triggers Symphony  (instrument effect) ; Rusty Ring  – Battle Start: inflict 1 Acid on enemy (2 at Gold, 4185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+9
+at Diamond) ;  Serpent Lyre  –  Exposed : inflict 3  Poison  on enemy, then triggers Symphony (instrument) ; 
+Silverscale Fish  –  Exposed : inflict 1  Riptide  on enemy (2 at Gold, 4 at Diamond) ;  Slime Armor  – Armor
++5/+10/+20, Battle Start: gain 1 Acid (2 at Gold, 4 at Diamond) ; Sour Lemon  – Speed +3/+6/+12, Battle Start:
+gain 1 Acid (2 at Gold, 4 at Diamond) ; Squire’s Armor  – Armor +2/+4/+8, upgrades after next boss (improves to
+Knight’s Plate) ; Treebark Egg  – hatches into a Liferoot Beast  pet after next boss ; Venomous Fang  – First
+Turn: on hit, give enemy 2 Poison  (4 at Gold, 8 at Diamond) ; Weaver Shield  – Battle Start: if you have 0 base
+Armor, gain +4 Armor (8 at Gold, 16 at Diamond) ; Wet Egg  – hatches into a Clearspring Duck  pet after next
+boss ; Arcane Gauntlet  (Rare) – Battle Start: halve all Countdown  timers you have (speeds up Tome effects) ;
+Arcane Lens  – If you have exactly one Tome equipped, its effect triggers 3× instead of 1× ;  Arcane Shield  –
+Whenever a Countdown effect triggers, gain +3 Armor ;  Basilisk Scale  – Battle Start: gain +5 Armor and +5
+Poison  (you start shielded but poisoned) ; Chainmail Cloak  – Armor +2, Turn Start: if you have any Armor, heal
+2 HP ; Clearspring Opal  – Speed +2, Turn Start: if you have any status effects, spend 1 Speed to reduce one of
+them by 1 ; Clearspring Rose  – Whenever you heal, reduce a random enemy status by 1; limit 1 Rose equipped
+; Corroded Bone  – Battle Start: convert 50% of the enemy’s current HP into Armor for yourself ; Crimson
+Fang  – Battle Start: if you are at full health, lose 5 health but gain 2 extra strikes ; Forge Gauntlet  – Attack +1,
+Battle Start: give the enemy +5 Armor (they start tougher) ; Friendship Bracelet  – Attack –1, Battle Start: enemy
+loses 1 Attack (weakens enemy offense) ;  Granite Fungi  – Turn End: you and the enemy each gain 2 Armor
+(mushroom spreads armor) ; Hero’s Crossguard  – First Turn: your On-Hit effects trigger twice (double on-hit
+procs) ; Impressive Physique  – Speed +2, Exposed : Stun the enemy for 1 turn (uses your vulnerability to stun
+foe) ;  Leather  Waterskin  –  Exposed :  gain  2  Purity  for  each  equipped  Water -tagged  item  you  have ; 
+Lightning Bottle  – Attack +1, Speed +2, Battle Start: Stun yourself for 1 turn (bottled lightning slows you down)
+; Marshlight Lantern  – Exposed : lose 3 health but gain +8 Armor (trade life for armor) ; Moonlight Crest  –
+Turn Start: if below 50% HP, gain +1  Regeneration  (heal over time) ;  Muscle Growth  – While you have any
+Regeneration effect on you, you temporarily gain +3 Attack (buff from regen) ; Mushroom Buckler  – Armor +3,
+if you have any Poison on you, enemy’s strikes do –1 damage (poison toughens your defense) ; Nerve Poison  –
+The first time the enemy gains Poison, they get Stunned  for 1 turn (neurotoxin effect) ; Plated Shield  – Speed –
+1, the first time you gain Armor in battle, double that Armor amount ; Poisonous Mushroom  – Attack +2, Turn
+Start: gain 1 Poison (you slowly poison yourself) ; Purelake Armor  – Exposed : remove 1 Purity stack to gain +5
+Armor (uses Purity for defense) ;  Purelake Potion  – Battle Start: remove all your Armor and gain +3 Purity
+(trade armor for purity buff) ; Riverflow Talisman  – Whenever you gain any status effect, gain +1 additional
+stack of the same (amplifies status gains) ; Riverflow Violin  – Exposed : gain +4 Armor, then triggers Symphony
+(instrument) ;  Rusted Plate  – Whenever acid removes enemy’s Armor, you gain that Armor (rust feeds you
+armor) ; Saltcrusted Crown  – Health +8, Battle Start: gain 1 Riptide  stack (salt draws the tide on enemy) ; 
+Silver Anchor  – Speed –1, whenever you lose any Speed, give the enemy +1 Riptide (anchor drags them down too)
+; Silverscale Armor  – Whenever a Riptide effect triggers on enemy, you gain +2 Armor ; Silverscale Greaves
+– Speed +1, Battle Start: if your Speed > enemy’s, give them 2 Riptide stacks ; Sinful Mirror  – Wounded : remove
+all your Purity stacks (self-punishment mirror) ; Slime Booster  – Battle Start: convert 1 Acid stack you have into
++2 Attack (benefit from being acidic) ; Slime Heart  – Wounded : remove all your Acid stacks and heal 2 HP for
+each stack removed ; Slime Potion  – Wounded : gain Armor equal to the health you lost and gain +5 Acid ; 
+Soap Stone  – First Turn : spend 2 Speed to temporarily gain +4 Attack (polish boosts attack) ; Spiral Shell  – Turn
+Start: if you are Stunned, give the enemy 1 Riptide (snail shell retaliates when stunned) ; Spiritual Balance  –
+Battle Start: if your Speed equals your Attack stat, gain +3 Attack (harmony buff) ; Stillwater Pearl  – Riptide can
+trigger twice each turn instead of once (more tidal damage) ; Stormcloud Armor  – Armor +3, Battle Start: if
+your Speed > Armor, Stun the enemy for 2 turns (storm strikes if agile) ; Stormcloud Curse  – Battle Start: Stun
+both you and the enemy for 2 turns (cursed storm) ; Toxic Algae  – First Riptide trigger each battle also inflicts
+enemy with +5 Poison ;  Toxic Rose  – Whenever you heal, give enemy +1 Poison; limit 1 Rose equipped ; 
+Twisted Root  – Exposed : for each equipped Wood -tagged item, gain +1 Regeneration (synergy with wood items)
+;  Vampiric Stasis  – Whenever you skip your attack (e.g., from stun), heal 3 HP (vampire passive) ;  Viper200 201
+202
+203
+204
+205 206
+207
+208
+209 210
+211
+212
+213
+214
+215
+216 217
+218
+219
+220
+221
+222
+223 224
+225 226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237 238
+239 240
+241
+242
+243
+244 245
+246
+247
+248
+249
+250
+251
+252 253
+254 255
+10
+Extract  – The first time enemy gains Poison, give them +3 more Poison (amplifies first poison) ; Acid Mutation
+(Heroic) – Battle Start: gain +1 Acid; while you have any Acid, you temporarily gain Attack equal to your Acid (high
+risk, high power) ; Acidic Witherleaf  – Speed +1, Battle Start: inflict enemy with Acid equal to your Speed (uses
+speed offensively) ; Bloodstone Ring  – Battle Start: gain +5 max health and heal 5 HP (blood magic buff) ; 
+Clearspring Cloak  –  Exposed : remove all your status effects and gain Armor equal to the total stacks removed
+(reset yourself to armor) ; Clearspring Duck  (pet) – Turn Start: gain +1 Armor and reduce a random status by 1
+(helpful waterfowl) ;  Explosive Arrow  – Turn Start: if enemy has no Armor, deal 3 damage to them (bonus
+damage on unarmored) ; Life Zap  – Battle Start: reduce yourself to 1 HP and Stun  the enemy for 2 turns (life-
+for-stun trade) ;  Liferoot Beast  (pet) – Turn Start: if you have 0 Regeneration, gain +3 Regeneration (auto-
+healing pet) ;  Liferoot Lute  –  Wounded : gain +3 Regeneration, then triggers Symphony (healing music) ; 
+Marble Mirror  – Battle Start : gain Armor equal to the enemy’s Armor (copy their armor) ; Mist Armor  – Health
++10, Speed +2, but enemy attacks ignore your Armor entirely (mist-like armor) ; Noxious Gas  – Armor +6, Turn
+Start: both you  and the enemy gain +1 Poison (toxic aura) ;  Petrified Statue  – Speed –2, Battle Start: give
+enemy +1 Stun for each Stone -tagged item you have (uses stone items to stun) ; Purelake Chalice  – Every other
+turn, gain +1 Purity (periodic cleanse buff) ; Sanguine Imp  (pet) – Turn Start: deal 1 damage to enemy and heal
+1 HP (imp siphons life) ; Sanguine Morphosis  – Every 4th turn, Stun yourself 1 turn and gain +3 Regeneration
+(blood transformation) ;  Serpent Mask  – Battle Start: inflict enemy with Poison equal to your Attack (toxic
+mask) ;  Silverscale Gauntlet  – Every other turn, give enemy +1 Riptide (tidal curse gauntlet) ;  Stoneborn
+Turtle  (pet) – Turn Start: heal 1 HP; if you’re at full HP, gain +2 Armor instead (turtle shells you) ; Stormcloud
+Drum  – Wounded : Stun the enemy for 1 turn, then triggers Symphony (war drum retaliation) ; Sunlight Crest  –
+Turn Start: if above 50% HP, lose 3 HP but gain +1 Attack (sun’s wrath) ; Thunder Cloud  – Attack –1, Wounded :
+Stun enemy for 3 turns (thunder strikes when you’re hurt) ; Weaver Armor  – Attack –2, Battle Start: if you have
+0 base Armor, gain Armor equal to your current HP (weave life into armor) ; Blood Rune  – Wounded : re-trigger
+your last Wounded-effect item again (blood magic echo) ; Echo Rune  – Wounded : re-trigger a random Battle-
+Start effect item again (echoes a start effect) ; Iron Rune  – If you have exactly one Exposed -trigger item, its
+effect triggers 3× instead of once (focuses exposed effect) ; Arcane Cloak  (Mythic) – After any Countdown  effect
+triggers, it immediately resets that countdown to start again ;  Grand Crescendo  –  Symphony  (instrument
+ultimate): when played, it triggers all your other instrument effects at once ; Prime Form  – While your health is
+full, your Attack stat is doubled (perfect form power) ;  Primordial Soup  –  Acid also removes health (HP) in
+addition to Armor each turn (makes acid deadlier) ;  Serpent Scalemail  – Armor +4, whenever you lose any
+Armor, inflict enemy with +2 Poison (toxic scales) ; Stormtide Anchor  – whenever a Riptide effect triggers on
+enemy, Stun  them for 1 turn (anchor storms them) ; Belt of Gluttony  (Cursed) – Health +15, but your current HP
+value is hidden from you (can’t see HP) ; Boots of Sloth  – Speed +10, but each step on the map consumes more
+time (move slower in overworld) ; Chest of Lust  – Armor +8, but enemies will always actively hunt/target you
+(can’t avoid fights) ; Helmet of Envy  – Attack +3, Battle Start: double the enemy’s Attack stat (empowers
+enemy offense) .)
+Tomes (Swampland)
+Granite Tome
+Effect: Countdown (4)  – Gain +6 Armor when the timer hits 0 (Gold: 12; Diamond: 24 armor)
+Stats: None
+Tags:  Tome, Armor 
+Holy Tome256
+257
+258 259
+260
+261
+262
+263
+264 265
+266
+267
+268
+269
+270
+271
+272
+273 274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291292
+293294
+295
+11
+Effect: Countdown (6)  – Gain +3 Attack when it triggers (Gold: +6; Diamond: +12).  (Note:
+Lowers your base Attack by 1/2/4 while equipped.)
+Stats:  Attack –1 (–2/–4 at higher tiers)
+Tags:  Tome, Attack Buff 
+Liferoot Tome
+Effect: Countdown (4)  – Gain +3 Regeneration  (healing over time) when timer ends (Gold: 6;
+Diamond: 12)
+Stats: None
+Tags:  Tome, Healing 
+Silverscale Tome
+Effect: Countdown (3)  – Inflict the enemy with 2 Riptide  when it triggers (Gold: 4; Diamond:
+8 stacks)
+Stats: None
+Tags:  Tome, Riptide 
+Stormcloud Tome
+Effect: Countdown (4)  – Stun  the enemy for 1 turn when complete (Gold: 2 turns; Diamond:
+4 turns)
+Stats: None
+Tags:  Tome, Stun 
+(...Swampland Tomes  continued: Caustic Tome  (Rare) – Countdown 3: give enemy 3 Acid (if they have no Armor,
+give 5 Poison  instead) ; Cookbook  – Replaces itself with a random Cauldron (Food) item after you beat the next
+boss ; Flameburst Tome  – Countdown 4: deal 4 damage to enemy, then reset its own countdown to repeat later
+; Purelake Tome  – Countdown 3: if you have any Purity, remove 1 (if not, gain 1 Purity); then reset its own
+countdown (toggle purity) ;  Sanguine Tome  – Countdown 6: fully heal you when it triggers (big heal) ; 
+Grand Tome  (Heroic) – Countdown 10: re-trigger all your other Tome effects immediately (grand spell) ; Tome
+of the Hero  – Countdown 8: gain +4 Attack, +4 Armor, +4 Speed when done (all stats buff) ;  Sheet Music  –
+Countdown 6: triggers Symphony  effect 3 times (plays all instrument effects thrice) .)
+Elixirs (Swampland)
+Lightspeed Elixir
+Effect: Battle Start  – Increase your max health by an amount equal to your current Speed,
+then heal  that same amount immediately
+Stats:  Speed +1
+Tags:  Potion, Healing 
+Muscle Elixir296
+297
+298
+299
+300
+301
+302
+303 304
+305
+306
+307
+308
+12
+Effect:  Every 3 strikes you perform, gain +1 Attack, +1 Armor, +1 Speed  (at Gold: +2 each;
+Diamond: +4 each)
+Stats: None
+Tags:  Potion, Buff 
+Petrifying Elixir
+Effect: Wounded  – Gain +10 Armor and Stun  both yourself and the enemy for 2 turns (Gold:
+20 Armor & 4-turn stun; Diamond: 40 Armor & 8-turn stun)
+Stats: None
+Tags:  Potion, Armor , Stun 
+Lightning Elixir
+Effect: Battle Start  –  Stun  yourself for 2 turns (a powerful concoction with a heavy side
+effect)
+Stats:  Attack +3, Speed +4
+Tags:  Potion, Stun 
+Nerve Elixir
+Effect:  The  first  time  the  enemy  gains  any  Poison ,  they  become  Stunned  for  3  turns
+(neurotoxin effect)
+Stats: None
+Tags:  Potion, Poison, Stun 
+(...Swampland Elixirs  continued: Purelake Elixir  – Battle Start: lose 5 Armor, gain +5 Purity (a cleansing potion) ;
+Slime Elixir  – Wounded : gain Armor equal to your max HP, and gain +5 Acid (turn blood to armor and acid) ; 
+Viper Elixir  – first time enemy gains Poison, give them +9 more Poison immediately (potentiates poison) .)
+Food (Swampland) – Consumables
+(Swampland foods, like Woodland’s, can be combined via Cauldron or enhanced with Honeycomb .)
+Clearspring Watermelon
+Effect: Battle Start  (if Exposed  & Wounded ) – Decrease one random status effect on you by
+1 (Gold: by 2; Diamond: 4)
+Stats: None
+Tags:  Food, Water , Cleanse 
+Sour Lemon
+Effect: Battle Start  – Gain +1 Acid  (corrodes Armor) on yourself (Gold: 2 Acid; Diamond: 4)309
+310
+311
+312
+313
+314
+315
+316
+317318
+319
+320
+13
+Stats:  Speed +3 (Gold: +6; Diamond: +12)
+Tags:  Food, Acid 
+Silverscale Fish
+Effect: Exposed  – Inflict 1 Riptide  on the enemy (Gold: 2; Diamond: 4)
+Stats: None
+Tags:  Food, Water , Riptide 
+Poisonous Mushroom
+Effect: Turn Start  – You gain +1 Poison  (you slowly poison yourself each turn)
+Stats:  Attack +2
+Tags:  Food, Poison 
+Grilling Skewer (Food)
+Effect: Battle Start  – Gain +1 extra strike on the first turn (same effect as when used as a
+weapon)
+Stats:  Attack +1
+Tags:  Food, Weapon 
+Combined Foods (Swampland) – Cauldron Recipes
+(Swampland recipe items created by combining two foods, optionally with Honeycomb for special results .)
+Melonvine Whip  (Grilling Skewer + Watermelon) 
+Effect:  On Hit – Decrease one random status effect on the target by 1 (whip lashes status off
+enemy)
+Stats:  Attack +3
+Tags:  Weapon, Cleanse 
+Silverscale Swordfish  (Grilling Skewer + Silverscale Fish) 
+Effect: Battle Start  – Gain +1 extra strike; First Turn  – on hit, inflict 1 Riptide  on enemy
+Stats:  Attack +2
+Tags:  Weapon, Riptide 
+Lemontree Branch  (Grilling Skewer + Sour Lemon) 
+Effect:  On Hit – Spend 2 Speed to gain +1 extra strike on your next turn  (trade speed for next-
+turn attack)
+Stats:  Attack +2, Speed +4
+Tags:  Weapon, Haste 321
+322
+323
+324
+325
+326
+327
+328
+14
+Deathcap Bow  (Grilling Skewer + Poisonous Mushroom) 
+Effect: Battle Start  – Gain +3 Poison  on yourself; Turn Start  – if you are poisoned, gain +1
+extra strike (to hasten before poison kills)
+Stats:  Attack +3
+Tags:  Weapon, Poison 
+Bee Stinger  (Grilling Skewer + Honeycomb) 
+Effect: First Turn  – on hit, inflict the enemy with 4  Poison , 3  Acid , and 2  Stun  (a deadly
+combo effect)
+Stats:  Attack +3
+Tags:  Weapon, Poison, Acid, Stun 
+(...Swampland Combined Foods  continued: Underwater Watermelon  (Fish + Watermelon) – Battle Start: remove 1
+random status effect from yourself and give the enemy 1 Riptide ; Melon Lemonade  (Watermelon + Lemon) –
+Speed  +3,  Battle  Start:  if  Exposed  &  Wounded,  remove  all  your  Acid  stacks  (cures  acid) ;  Bitter  Melon
+(Watermelon + Mushroom) – Attack +3, Turn Start: convert 1 stack of another status effect into 1 Poison (turn buffs
+into poison) ; Honeydew Melon  (Watermelon + Honeycomb) – Battle Start: transfer all your status effects to the
+enemy (sweet sacrifice) ; Lemon Shark  (Fish + Lemon) – Speed +3, Battle Start: gain +1 Acid; Exposed : inflict
+enemy with Riptide equal to your Acid stacks ; Poisonous Pufferfish  (Fish + Mushroom) – Attack +2, Battle Start:
+gain +3 Poison and inflict enemy with Riptide equal to your Poison stacks ; Honey Caviar  (Fish + Honeycomb) –
+Exposed : inflict the enemy with 10 Riptide stacks (massive riptide) ; Poisonous Lemon  (Mushroom + Lemon) –
+Attack +3, Speed +4, Battle Start: gain +1 Acid and +5 Poison (toxin mix) ; Lemon Syrup  (Lemon + Honeycomb)
+–  Speed  +3,  Battle  Start:  double  your  current  Speed  (sugar  rush) ;  Honey-Glazed  Shroom  (Honeycomb  +
+Mushroom) – Attack +4, Turn Start: inflict enemy with +2 Poison (sweet poison) .)329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+15
+Woodland items - He is
+Coming Official Wiki
+https://wiki.hoodedhorse.com/He_is_Coming/index.php?title=Woodland_items&oldid=5139
+Woodland items - He is Coming Official Wiki
+https://wiki.hoodedhorse.com/He_is_Coming/Woodland_items
+Swampland items - He is Coming Official Wiki
+https://wiki.hoodedhorse.com/He_is_Coming/index.php?title=Swampland_items&oldid=4842
+Wood - He is Coming Official Wiki
+https://wiki.hoodedhorse.com/He_is_Coming/Wood
+Swampland items - He is Coming Official Wiki
+https://wiki.hoodedhorse.com/He_is_Coming/Swampland_items1 2 3 4 5 6 7 8 910 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
+31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60
+61 62104 105 106 107 108 109 110 111 112 113 114 115 116 118 120 121 122 123
+63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92
+93 94 95 96 97 98 99100 101 102 103 117 119 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138
+139 140 141
+142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 158 159 160 161 162 163 164 165 166 167 168 169
+170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196
+197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223
+224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250
+251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277
+278 279 280 281 282 283 284 285 286 287 288 289 290 292 294 295 296 297 298 299 300 301 302 303 304 305 306
+307 308 309 310 311 312 313 314 315 316 319 320 321 322 323 324 326 327 328 329 330 331 332 333 334 335 336
+337 338 339 340
+157
+291 293 317 318 325
+16

@@ -1,0 +1,651 @@
+Project Defaults & Notes — He Is Coming Theory
+Last updated: 2025‑08‑29 • Draft “magnum opus” v1
+This is the central brain for our project: rules, mechanics, drafting heuristics, POIs, foods/cauldrons, item
+compendium notes, and build archetypes (with slot order). It’s written for Kingmaker unless noted.
+0) Ground Rules
+Mode scope:  Kingmaker . 
+Final board size: 12 items  (+ 1 weapon  in its own slot). You cannot  equip two weapons. 
+No “Mythics” in Kingmaker.
+Clarifications:  I will ask clarifying questions whenever ambiguity could change the outcome
+(preferred for this project). Use @assistant: FYI/TODO/HOLD  notes as needed.
+Rounding:  All calculations round down  (floor). Example: under Freeze , Attack is halved and
+rounded down  (1 Attack → 0). Apply floor rounding consistently to splits, doubles, conversions, and
+similar modifiers.
+Edges & Oils:  1 Edge on weapon; Oils are +1 stat modifiers. Apply oils early once a +1 won’t disrupt
+your build: oil locations reset when you equip a new weapon (upgrading the same weapon doesn’t).
+Edges also reset on weapon swap; you can re‑edge at another anvil for 10 coins.
+Set logic: Some items form sets (e.g., Deadly Toxin, Marble Anvil). Set bonuses do not create a new
+timing tier or skip order; they trigger in the standard tiers (Battle Start, Turn Start, On‑Hit, CDn) and
+respect item order . If a set bonus is tied to a specific item, it follows that item’s position; otherwise it
+resolves with other effects of its stated tier .
+Golem (Swampland):  combines two identical Common/Golden  items. You cannot combine Heroic
+or Rare items.
+Early boss fight:  You can choose to fight the boss before night; if you win, the next two inventory
+slots unlock immediately (you gain the day‑end slot unlock early).
+Map tiles (POIs):
+Treasure Chest:  pick 1 of 3 Common; rare Golden/Diamond chance.
+Bargaining Tent:  2 Rares for 5g; haggle 75%→4g / 25%→7g.
+Blade Oils:  +1 Attack/Armor/Speed; reset on weapon change.
+Campfire:  night heal 10.
+Lookout Tower:  reveal radius 13.
+Woodcutter:  combine 2 items → random Heroic.
+Scrying Pool:  reveal a rare location.
+Waypoint:  fast travel.
+Horse Carriage:  choose a biome; reveal path.
+Beehive:  Honeycomb (guarded).
+Crone:  choose 1 of 2 cursed.
+Junksmith:  copy an item.
+Large Golem:  upgrade Common→Golden, Golden→Diamond.
+Rune Stone:  choose Blood/Echo/Iron Rune.
+Gem Stash:  Ruby/Sapphire/Citrine; needs Woodland Blue.• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+1
+Fairy Queen:  transform all items to higher rarity.
+Alchemist:  upgrade potion→elixir .
+Rich Merchant:  6 Heroic for 5g.
+Beekeeper:  2 honey items for 25g.
+Biome‑specific:
+Home:  full heal at night.
+Forge:  weapon mod/replace for 10g.
+Weapon Pile:  pick 1 of 3 weapons.
+Large Bonfire:  full heal.
+Cauldron:  food fusion.
+Hero’s Grave:  pick 1 of 3 Heroic.
+Ancient Tomes:  pick 1 of 3 tomes; needs Swampland Yellow.
+Farmer:  pick 1 of 3 foods.
+Fairy:  transform same rarity.
+Golem:  combine identical Common/Golden.
+Jewelry Box:  pick 1 of 3 Jewelry; needs Woodland Blue.
+Traveling Merchant:  5 Rares + 1 Heroic.
+Order matters:  put enablers/conditioners first, then the payoffs that depend on them (enablers
+higher in the list, payoffs below).
+1) Timing & Ordering — The Backbone
+Resolution rules
+Interrupt priority: 0 HP → “when this happens” → Wounded .
+Battle Start order:  compute Speed after all pre–Battle Start adjustments ; faster side resolves
+first; exact ties go to the active/attacking  side (on defense you lose this tiebreak).
+Turn flow:  after all Battle Start effects resolve, check current Speed to decide who acts first; that side
+takes Turn Start → Attack → End , then the other side’s Turn Start ; repeat.
+Simultaneous 0 HP:  if both hit 0 HP  in the same window, the attacking (active) side loses  in
+Kingmaker .
+Fatigue:  applies at the first player’s Turn Start  in long fights.
+Math model:  all combat math is integer ; whenever a modifier would produce a fraction (halves,
+percentages, conversions), round down  immediately before continuing resolution.
+Known pre–Battle Start adjustments (as of current patch)
+Energy Drain (Rare, Woodland): Before any other item triggers , if you have less Speed than the
+enemy, steal 5 Speed  from them. (This is the only item with an explicit “before any other item” clause
+we’ve found in the wiki so far.)
+Moved-to–Battle Start modifiers (still Battle Start tier, not pre‑start)
+King’s Blade:  Moves Exposed  and Wounded  triggers to Battle Start .
+Marble Anvil: Battle Start — Trigger Exposed.• 
+• 
+• 
+• 
+• 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+◦ 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+2
+Common Battle Start stat shifters (order-sensitive but not pre‑start)
+Lemon Syrup: Battle Start — Double your Speed.
+Featherweight Helmet: Battle Start — Spend 2 Armor → +3 Speed & +1 Attack.
+Granite Crown: Battle Start — Max HP += Base Armor.
+Emerald Gemstone: Battle Start — If your max HP < enemy’s, set it equal.
+Iceblock Shield: Battle Start — Gain 2 Freeze.
+Ham Bat / Silverscale Swordfish / Swiftstrike items: Battle Start — Gain additional strikes  (with
+conditions).
+Ore Heart / Horned Helmet / Bramble Belt / Thorn Ring: Battle Start — Armor/Thorns/HP shifts
+that matter for sequencing.
+Timing tiers
+Battle Start  — pre‑turn effects; faster side first.
+Turn Start  — resolve top→bottom on the current player .
+Action window  — On Hit / On Damage / First time X ; when multiple of the same tier occur , resolve
+in reading order (top→bottom).
+Countdown (CD n)  — fire when they tick to 0; re‑arm after .
+Symphony / trigger again  — re‑fire listeners; respects the same order and conditions.
+Placement rules (minimal)
+Put the condition/enabler  above the listener/payoff  it enables.
+Put sustain/mitigation  above conversion  (don’t destroy the buffer you need to live).
+Put one‑time doublers/first‑time modifiers  above the first source  they affect.
+1.a) Combat Resolution Flow (generalized)
+Step WindowWho
+resolvesOrdering inside step What happens
+0Pre–Battle
+Start
+adjustmentsGlobalExplicit “before any other
+item” effects resolve (e.g.,
+Energy Drain)Update Speed/HP/status
+before anything else.
+1 Battle StartFaster side
+(after step
+0)Faster side resolves Battle
+Start, then the other sideEffects can change Speed,
+Armor , statuses, strikes, etc.
+2 First Turn StartFaster side
+(after step
+1)Resolve top→bottomTurn‑Start effects (armor/
+heal/convert/etc.). Late‑fight
+fatigue applies at the first
+player’s Turn Start.
+3Action (active
+side)Active
+fighterWithin the action window:
+On‑Attack → On‑Hit →
+On‑Damage → “First time X”;
+reading order inside eachApply damage/heal/status;
+reduce CDs accordingly.• 
+• 
+• 
+• 
+• 
+• 
+• 
+1. 
+2. 
+3. 
+4. 
+5. 
+• 
+• 
+• 
+3
+Step WindowWho
+resolvesOrdering inside step What happens
+4 Countdown GlobalAny CD that reached 0 fires
+now; re‑arm afterFires before End of Turn.
+5 End of TurnActive
+fighterResolve end‑step effectsCleanups and end‑step
+triggers.
+6 Next Turn Start Other side Resolve top→bottomThen repeat steps 3→6,
+alternating sides, until
+combat ends.
+Global interrupts & priorities  -  Interrupt priority: 0 HP → “when this happens” → Wounded . A 0‑HP
+event stops further effects in that window. - Simultaneous 0 HP:  if both hit 0 HP  in the same window, the
+attacking (active) side loses  in Kingmaker . - Symphony / “trigger again”:  Re‑fires eligible listeners within
+the current tier in board order (top→bottom); does not skip conditions. - Reading order inside a tier:  When
+multiple same‑tier effects trigger together , resolve them top→bottom by slot.
+2) Status & Trigger Lexicon — Deep Dive
+This section explains what  each status/trigger does, when  it checks, how  it ends/clears, and
+what  interacts  with  it.  Values  and  examples  reflect  the  current  wiki;  treat  numbers  as
+patch‑sensitive.
+2.1 Status effects (persistent modifiers)
+Armor
+What:  A buffer that absorbs damage before HP. Many effects key on “gain Armor”, “if you have
+Armor”, or convert Armor  into other resources (e.g., Thorns).
+When it matters:  Checked at damage calculation; several Turn‑Start/Exposed/Wounded items also
+check whether you have  Armor or gained  Armor this window.
+Ends/clears:  Reduced by incoming damage and some statuses (e.g., Acid ). Some items set/scale
+Armor at Battle Start or Turn Start.
+Interactions:  Doublers like “first time you gain Armor , double it”; converters like Bramble Buckler
+(convert Armor→Thorns); heal→Armor lines (e.g., Iron Rose ). Conversions use floor  when a fraction
+would result (e.g., 50% HP→Armor from Lifeblood Armor).
+Thorns
+What:  Retaliatory damage when you are hit. Multiple hits in a single enemy action will trigger
+Thorns each time.
+When it matters:  During the On‑Hit/On‑Damage  window after you take a hit.
+Ends/clears:  Normally persists; some effects convert or increase it; cleanse effects can remove if
+classified as a removable status in that context.
+Interactions:  Armor→Thorns converters; Riptide/thorns hybrid lines; multi‑hit enemies multiply
+value.• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+4
+Poison
+What:  Damage‑over‑time that only applies if the afflicted has 0 Armor  at their Turn Start .
+When it matters: Start of the afflicted unit’s turn  → if Armor = 0, take damage equal to Poison
+stacks then remove 1 Poison .
+Ends/clears:  Removes 1 per afflicted Turn Start; cleanse/transfer can remove/move it.
+Interactions: Acid  and armor‑break tools ensure Armor = 0 so Poison can tick; “on heal” loops can
+add Poison if you’re running Rose ‑style payoffs. No rounding needed  (Poison is an integer stack
+count).
+Acid
+What:  Corrodes Armor  at the Start of your turn .
+When it matters:  At your Turn Start, lose Armor equal to Acid ; if your Armor is less than  Acid, it is
+set to 0.
+Ends/clears:  Persists until cleansed/removed; does not auto‑decay by itself.
+Interactions:  Enables Poison ticks by forcing Armor to 0; several items trigger additional effects “if
+enemy Armor = 0”. No rounding needed  (integer subtraction + min‑to‑zero rule).
+Freeze
+What:  While you have Freeze, your Attack is halved (round down) . At Turn End , remove 1 Freeze .
+When it matters:  Affects all damage calculations while stacks remain; many “If you have Freeze”
+payoffs check at Turn Start .
+Ends/clears:  Auto‑removes 1 at your Turn End; cleanse/transfer can remove more.
+Rounding example:  1 Attack under Freeze becomes 0; 5 becomes 2.
+Interactions: Ice Spikes  grants Thorns if you have Freeze ; self‑Freeze seeds (e.g., Curse/Tomb) are
+placed above  Spikes to satisfy the check.
+Riptide
+What:  A delayed burst that triggers once at the End of the afflicted unit’s turn  for fixed damage
+per stack  (then removes 1 stack).
+When it matters: Turn End  of the afflicted side (not yours vs theirs unless you are afflicted). Multiple
+stacks keep triggering on subsequent afflicted turns.
+Ends/clears:  Removes 1 per afflicted Turn End; cleanse/transfer can remove/move it.
+Interactions:  Items can change the number of triggers per turn  or convert Exposed /other events
+into Riptide application.
+Note:  Some pages classify Exposed  and Wounded  under Trigger tags  rather than statuses;
+they’re listed below in the trigger section.• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+5
+2.2 Trigger tags (event windows & conditions)
+Battle Start
+When:  After pre–Battle Start adjustments  resolve (e.g., effects explicitly marked “before any other
+item”).
+Order:  Faster side’s Battle Start first; ties go to the active/attacking  side; then the other side.
+Common uses:  Set/scale stats (Armor/HP/Speed), apply statuses, grant additional strikes , move
+other triggers into Battle Start.
+Turn Start
+When:  At the start of a side’s turn; resolve top→bottom.
+Common uses:  Sustain (+Armor , +HP), Acid /Poison checks, converters (Armor→Thorns), self‑freeze
+seeds, passive armor pads.
+First Turn
+When:  A one‑time window during your very first active turn. Typically modifies On‑Hit  effects or
+grants extra strikes.
+Exposed
+What: Triggers when Exposed is applied  (commonly the first time your Armor hits 0 in a fight,
+unless otherwise specified).
+Order shifters:  Some items move Exposed listeners to Battle Start  or make Exposed trigger
+additional times .
+Uses:  Armor spikes, Symphonies, stun/utility riders, conversions (e.g., Speed→Armor during
+Exposed).
+Wounded
+What: Triggers when Wounded is applied  (commonly the first time you lose half your max HP in a
+fight, unless otherwise specified).
+Uses:  Burst sustain, damage spikes, economy riders; some items fan‑out to “trigger all Wounded
+items”.
+On Hit / On Damage / First time X
+On Hit:  When your attack connects . Reduces CDs and fires “on hit” riders.
+On Damage:  When you take damage .
+First time X:  A per‑fight one‑time gate (e.g., first time you gain Armor , first time enemy is Wounded).
+Doublers need to be above  the first source they affect.
+Countdown (CD n)
+What:  A timer that decrements during action/turn flow. When it hits 0, the item fires, then usually 
+re‑arms .• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+6
+Rounding:  Countdown values are integers. When halved  by effects (e.g., Arcane Gauntlet), use floor
+(CD5 → 2; CD3 → 1).
+Nuances:  Some items trigger when any countdown fires ; others trigger after countdowns  and 
+reset  them.
+Symphony
+What: Trigger the effect of another random Instrument .
+How it resolves:  Re‑fires eligible instrument listeners within the current tier; respects order/
+conditions; multi‑trigger items can call Symphony multiple times.
+Turn End
+What:  End‑step window; many statuses resolve here ( Riptide , Freeze decay, some cleanses/decays).
+Next Boss / Every other turn / Additional strikes / Convert / Double / Each / Equal / If / While /
+Whenever
+Next Boss:  Triggers at the next boss encounter; often economy or spike effects.
+Every other turn:  Alternates per active turns; ensure parity is correct at pick time.
+Additional strikes:  Grants extra hits in your action; interacts strongly with “every N strikes”
+weapons.
+Convert:  Deterministically transforms one resource into another (e.g., Armor→Thorns , 
+Speed→Armor ). Place after  sustain but before  payoffs that need the result.
+Double / Each / Equal / If / While / Whenever:  Keyword modifiers. “Double” multiplies a specific
+outcome; apply rounding down  if the result is fractional. “Each” iterates across a counted set (e.g.,
+each Wood item). “Equal” sets a stat to a reference (no rounding needed). “If/While” gate effects;
+“Whenever” denotes repeating listeners. “Double” multiplies a specific outcome; “Each” iterates
+across a counted set (e.g., each Wood item); “Equal” sets a stat to a reference; “If/While” gate effects;
+“Whenever” denotes repeating listeners.
+3) Instruments, Tomes & Engines (core patterns)
+Instruments, Tomes & Engines (core patterns)
+Instruments (Exposed listeners):
+Marshlight Lantern  (Exposed: +Armor , lose HP), Riverflow Violin  (Exposed: +Armor), others.
+Pair with doublers  (e.g., “Exposed triggers twice”, “First Armor doubled”) and sustain  (Helmet/Cloak)
+so the HP chip doesn’t matter .
+Tomes (Countdown engines):
+Arcane Gauntlet  (Battle Start: halve countdowns), Tome of the Hero  (CD8: +4/+4/+4), Sheet Music  (CD6:
+Symphony ×3).
+Glasses of the Hero  (Crossguard + Tome): On Hit, reduce all countdowns by 1.• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+7
+Poison/Acid shells:
+Poison needs enemy Armor = 0. Acid + siphons create loops with healing → more poison.
+Freeze→Thorns converters:
+Ice Spikes  payoff; keep self‑Freeze reliable via Frostbite Curse  or Ice Tomb .
+4) Foods, Cauldrons & Honeycomb (combat routing)
+Two‑item rule:  Cauldron fuses exactly 2 foods into a fixed output; fusion is permanent. Honeycomb  is a
+separate upgrade applied to a single  target (not a third ingredient).
+High‑impact fusions  (concise table)
+Fusion What it does (short) Why it matters
+Spiny Chestnut + Silverscale Fish → 
+Spiny SnapperStart with Riptide; Thorns on
+Riptide triggerEarly thorns engine with
+reactive bursts
+Spiny Chestnut + Stone Steak → 
+Petrified ChestnutFull‑HP: Thorns + Armor spikeEnables “enter full HP”
+gates
+Spiny Chestnut + Vampiric Wine → 
+Spiked WineOn Wound: heal + Thorns Stabilizes offensive lines
+Sour Lemon + Silverscale Fish → 
+Lemon SharkStart with Acid; Exposed turns
+Riptide into AcidAcid/Riptide cross‑fuel
+Poisonous Mushroom + Grilling
+Skewer → Deathcap BowStart Poison; if poisoned →
++extra strike each turnTempo + damage over
+time
+Redwood Roast + Grilling Skewer → 
+Ham BatStart extra strikes + HP Snowballs strike engines
+Watermelon + Lemon → Melon
+LemonadeCleanse Acid; Gain Speed Purge to tempo
+Watermelon + Silverscale → 
+Underwater WatermelonReduce random status; apply
+RiptideStabilize against status
+spam
+Watermelon + Honeycomb → 
+Honeydew MelonStart: transfer your statuses to
+enemyMassive swing when
+you’re stacked
+Stone Steak + Honeycomb → Rock
+CandyBig starting Armor; bonus if full
+HPEasiest early Armor pad• 
+• 
+8
+Honeycomb priorities
+Stone Steak path (Rock Candy); 2) Spiny Chestnut path; 3) Vampiric Wine; 4) Redwood Roast.
+5) Drafting & Map — Practical Heuristics
+Bundles:  Choose 3 to unlock pools. Pick for engine pieces  first, then defenses.
+Day 1–2:  Get your engine online (one reliable trigger  + one payoff ). Avoid expensive refresh spam.
+POIs to favor:  Ancient Tomes (for Arcane/Tomes), Bargaining Tents (2 rares cheap), Large Golem (for
+Common/Golden  dupes), Forge (add Edge late).
+Blade Oils:  +1 Speed first for tempo engines; +1 Armor for sustain lines; +1 Attack sparingly (don’t
+undercut specific gem plans).
+Rest:  Camp the night before bosses. Treat Fireplaces as tempo resets if your engine uses chip (e.g.,
+Lantern).
+6) Build Library (Kingmaker‑legal) — Slot Orders
+A) Frosthedge Reactor — Freeze → Thorns (no Marble)
+Bundles:  Woodland Blue + Woodland Red + Swampland Yellow
+Weapon:  Any (e.g., Icicle Spear); Edge:  optional Blunt Edge
+12 slots (top→bottom):  1 Frostbite Curse → 2 Ice Tomb → 3 Ice Spikes → 4 Ice Spikes → 5 Iron Transfusion
+→ 6 Fortified Gauntlet → 7 Chainmail Cloak → 8 Iron Rose → 9 Bramble Buckler → 10 Bramble Buckler → 11
+Double‑plated Vest → 12 Frostbite Greaves.
+Notes:  Battle Start self‑Freeze ensures Spikes turn‑1 payout; Tomb re‑seeds Freeze on low‑Armor turns;
+Cloak→Rose turns sustain into more Armor; Bucklers convert surplus into Thorns. Move Vest up vs alpha.
+B) Strike Battery Poison — Speed/Strikes → Poison (no Marble)
+Bundles:  Swampland Yellow + Swampland Red + Woodland Blue
+Weapon: Serpent Dagger  (every 3 strikes → +4 Poison)
+Edge: Bleeding Edge  (On hit: heal 1)
+12 slots:  1 Nerve Poison → 2 Viper Extract → 3 Serpent Mask → 4 Acidic Witherleaf → 5 Caustic Tome → 6
+Rusted Plate → 7 Chainmail Cloak → 8 Toxic Rose → 9 Crimson Fang → 10 Tome of the Hero → 11
+Venomous Fang → 12 Iron Transfusion.
+Plan:  Mask triggers Nerve+Viper opener (stun + poison), Witherleaf/Tome drive Armor to 0, Rusted Plate
+siphons Armor , Cloak+Rose loop adds more Poison via heals, Dagger procs via strikes from Fang/Stats.
+C) Acid Siphon Wall — Zero‑Armor lock with sustain (no Marble)
+Bundles:  Swampland Yellow + Woodland Blue + Woodland Red
+Weapon:  Any reliable on‑hit; Edge:  Blunt Edge
+12 slots:  1 Acidic Witherleaf → 2 Caustic Tome → 3 Rusted Plate → 4 Shield Talisman → 5 Chainmail Cloak →
+6 Iron Rose → 7 Fortified Gauntlet → 8 Iron Transfusion → 9 Double‑plated Vest → 10 Mushroom Buckler →1. 
+• 
+• 
+• 
+• 
+• 
+9
+11 Tome of the Hero → 12 Arcane Gauntlet.
+Plan:  Witherleaf+Tome maintains enemy at 0 Armor; Plate+Rose+Cloak grow Armor; Buckler gives passive
+DR; stats ramp through Tome; Gauntlet halves CDs early.
+D) Tome Engine — Symphony Battery (minimal Exposed; no Marble)
+Bundles:  Swampland Yellow + Woodland Red + Woodland Blue
+Weapon:  Flexible
+12 slots:  1 Arcane Gauntlet → 2 Tome of the Hero → 3 Sheet Music → 4 Fortified Gauntlet → 5 Chainmail
+Cloak → 6 Iron Rose → 7 Double‑plated Vest → 8 Nerve Poison → 9 Viper Extract → 10 Caustic Tome → 11
+Mushroom Buckler → 12 Stormcloud Tome.
+Plan:  Arcane halves CDs; Glasses of the Hero is strong if found (Tome + Crossguard), but this list doesn’t
+assume  it.  Sheet  Music  triple‑fires  your  current  listeners  (even  without  Exposed  chains).  Stormcloud
+provides tempo control.
+E) Appendix — Aria Armor Spike (Exposed engine)
+Bundles:  Swampland Yellow + Swampland Red + Woodland Blue
+Weapon:  Marble Sword; Edge:  Blunt Edge
+12 slots:  1 Blacksmith Bond → 2 Plated Shield → 3 Shield Talisman → 4 Marshlight Lantern → 5 Riverflow
+Violin → 6 Redwood Helmet → 7 Serpent Lyre → 8 Arcane Gauntlet → 9 Tome of the Hero → 10 Hero’s
+Crossguard → 11 Sheet Music → 12 Fortified Gauntlet.
+Note:  Included for completeness; prefer non‑Marble plans by default.
+7) Counter‑Play Cookbook
+Vs bomb/alpha:  Move survivability earlier (Vest above Cloak). Consider Mushroom Buckler/extra
+Armor starts (Rock Candy) when available.
+Vs cleanse/riptide loops:  Lean on engines that don’t need status to stick (Bucklers convert Armor ,
+Tomes loop regardless). Add redundant Acid sources to keep Armor at 0.
+Vs stun:  Stormcloud Tome; prioritize Battle Start/Turn Start effects that still fire through stun.
+Vs speed rush:  Speed oils; early Tome of the Hero; Crimson Fang + Dagger lines.
+8) Common Pitfalls to Avoid
+Putting payoff below the condition (e.g., Lantern above Plated Shield wastes the doubling window).
+Forgetting the weapon has a separate  slot; you can’t place it in item slots.
+Trying to equip two weapons.
+Expecting Golem to combine non‑eligible items (only identical Common/Golden ).
+Over‑refreshing shops early; buy engine pieces first.
+Converting Armor to Thorns before  healing/rose; you’ll lose sustain.• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+10
+9) Test Plans (quick sanity scripts in your head)
+Freeze→Thorns:  If you start at 0 Armor , do you still freeze before Spikes? Yes → Tomb above Spikes.
+Poison shell:  Is enemy Armor hitting 0 each turn? If not, add/raise Acid source.
+Tome timing:  Are CDs reaching 0 before you act? If not, push Arcane up; seek Glasses of the Hero.
+Rock Candy path:  Are you entering boss fights at full HP to get the bonus? Add a rest/cleanse
+before.
+10) Patch Delta Log (scaffold)
+Keep numeric changes, renamed items, and bug‑fix behaviors per patch. Record exact dates and verify all
+combo values on patch day.
+0.8.19 — Initial baselines captured; verify Chestnut/Snapper/Lemon Shark values; confirm Iron
+Transfusion lethality and Cloak interaction.
+2024‑10‑02 (Steam discussion, player‑reported): fatigue‑style skull damage begins \~Turn 40 and
+increases by +1 per turn. Marked to‑verify for current patch.
+11) Backlog
+Expand full item atlas with sprites in a sortable table (cross‑link to PWA).
+Boss‑by‑boss micro‑plans.
+Gold routing heuristics (when to buy edges/oils; when to refresh merchants).
+Cauldron master table with exact numbers per patch.
+12) Session Header (paste in new chats)
+Project:  He is coming Theory
+Defaults:  “study up” = research quietly; “impression” = code/implementation only.
+Build policy:  Avoid Marble by default; always offer at least one non‑Marble meta alternative.
+Focus now:  Food/cauldron meta, engines without Exposed reliance, offline PWA upkeep.
+13) “ALL THE VAST” Addendum — Everything we’ve locked in
+A. Merchant, Coins & Fireplaces — Practical Use
+Traveling Merchant:  Use when you need a specific  piece to come online. Refresh only  with spare
+gold or when 1 piece from online. Favor engine > payoff > win‑more .
+Bargaining Tent:  Best gold efficiency  for early rares (2 items for \~4–7g). Prioritize engine parts and
+sustain.• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+11
+Fireplaces:  Treat as tempo resets. Enter bosses full HP  when a build requires a full‑HP gate  or Rock
+Candy bonus. Camp the night before  boss if possible.
+Shop order:  Buy enablement  (doublers/conditioners), then sources , then converters , then luxury
+(e.g., extra CD pieces).
+B. Weapon Oils & Edges — Decision Tree
+Oils
++1 Speed : First pick for strike/tome  engines (more turns, faster CDs, more dagger procs).
++1 Armor : For sustain/convert  lines (Bucklers, Talisman‑style, Vest lines).
++1 Attack : For strike pressure; skip only if a specific gem plan conflicts.
+Edges
+Blunt Edge : On‑hit +1 Armor ; best generic sustain/conversion enabler .
+Bleeding Edge : On‑hit restore 1 HP ; pairs with Rose  to add extra triggers.
+Apply late, once weapon is locked and board space/order are stable.
+C. Golem (Swampland) — Do / Don’t
+Do: Combine two identical Common/Golden  items to upgrade once. Snap upgrades for engine
+pieces  that scale linearly (e.g., repeatable turn‑start payoffs).
+Don’t:  Expect it to work on Heroic  or non‑eligible tiers. Don’t plan routes that require two potion
+upgrades.
+D. Challenge Routes (locked)
+100 Armor (Kingmaker)
+Bundles:  Swamp Yellow  + Swamp Red + Woodland Blue .
+Core:  Plated‑style doubling → Instruments → Sustain → Tomes. Use Battle Start  Exposed to open at
+\~30–40 Armor; Sheet Music  + CD support pushes over 100 mid‑fight.
+Order skeleton (12):  Doublers → Instruments → Sustain (Helmet/Cloak) → Set trigger → CD control
+(Arcane) → CD stats (Hero) → Multi‑trigger (Sheet Music) → Passive pad (Fortified).
+60 Thorns (Kingmaker)
+Bundles:  Woodland Blue/Red  + Swamp Yellow .
+Core:  Reliable self‑Freeze  → Ice Spikes ×2  (10/turn) → Armor→Thorns  converters ( Bramble
+Bucklers ) → Sustain loop ( Transfusion → Cloak → Rose ) to feed more conversion.
+Order skeleton (12):  Self‑Freeze at Battle/Turn Start → Spikes ×2 → Transfusion → Fortified → Cloak
+→ Rose → Buckler ×2 → Anti‑burst (Vest) → Utility (Greaves).
+E. Boss/Enemy Micro‑Plans — Pattern Play
+Single‑hit alpha:  Raise Vest  above Cloak; ensure Armor exists before  conversion. Consider Rock
+Candy on entry.
+Multi‑hit swarm:  Prioritize Thorns  engines; keep Vest  in mid‑stack to refuel Armor . Avoid
+converting down to 0 if hits are still incoming.
+Stun loops:  Favor Battle/Turn Start engines (they still fire); add Stormcloud‑type  control on a short
+CD.
+Cleanse/reset:  Redundant Acid  sources to keep Armor at 0; engines like Bucklers/Tomes  that don’t
+need sticky statuses.• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+12
+F. Bundle Selection Heuristics
+Pick for enablement  first (e.g., Ancient Tomes pool if you rely on CDs; Woodland Blue if you need
+Freeze/Thorns).
+Avoid three pools that chase the same payoff ; prefer two engine pools + one sustain/defense .
+If two bundles clash, pick the one that unlocks more replacements  for your missing piece.
+G. Pitfalls We’ve Corrected
+Weapon has its own slot ; do not count it toward 12.
+Do not place weapons in item slots; do not plan for two weapons .
+Shield Talisman is Heroic ; cannot be used on Golem .
+Don’t assume two potion upgrades in one run.
+H. Ready‑to‑Run Build Cards (recap)
+Frosthedge Reactor  (Freeze→Thorns) — 12‑slot order , sustain loop, converters.
+Strike Battery Poison  (Speed/Strikes→Poison) — 12‑slot order , dagger procs, acid lock.
+Acid Siphon Wall  (Zero‑Armor lock) — 12‑slot order , siphon + sustain.
+Tome Engine  (Symphony battery) — 12‑slot order , CD control.
+Aria Armor Spike  (Exposed engine; appendix only).
+14) What to add next (if desired)
+Full item atlas  table inline (sprites, tags, triggers) synced from the PWA.
+Boss‑by‑boss specifics once we lock guaranteed names/behaviors from patch notes.
+Numeric validation table for all foods/cauldrons per current patch.1. 
+2. 
+3. 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+13
