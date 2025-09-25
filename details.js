@@ -1,4 +1,4 @@
-/* Generated 2025-09-24T23:51:09.242Z • sha256:3f8a83006951dca6 */
+/* Generated 2025-09-25T00:15:08.130Z • sha256:3f8a83006951dca6 */
 window.HEIC_DETAILS = {
   "items/acid_mutation": {
     "bucket": "items",
