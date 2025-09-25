@@ -1,0 +1,335 @@
+He Is Coming — Battle Simulation Canvas (Dev)
+
+Purpose: a single, implementation-ready reference for running accurate battle sims.
+Scope: phase order, stat math, status timing, item-trigger semantics, and special-case rules we locked in.
+
+1) Core Stats & Baselines
+
+Fighter stats: HP, ATK, ARMOR, SPEED.
+Default base (unless game data overrides): HP=20, ATK=1, ARMOR=0, SPEED=1.
+
+Damage routing:
+
+Attack produces an ATK part (modified by statuses like Freeze).
+
+Armor absorbs first (down to min 0).
+
+Remainder hits HP.
+
+If defender has Thorns, reflect that amount back (Armor then HP on the attacker).
+
+Apply On-Hit effects from the attacker.
+
+Sanity guardrails (data hygiene):
+
+Treat any item stat > 20 (ATK/ARMOR/SPEED/HP) as an anomaly—reject or clamp to spec.
+
+Known fixes we already set:
+
+Assault Greaves: ATK = 0 (effect only: “when you take damage, deal 1 damage”).
+
+Rusty Ring: no stats; effect only: “Battle Start → give opponent 1 Acid”.
+
+2) Canonical Phase Order
+Pre-Battle (optional)
+
+Pre effects (rare): “Before any other item triggers”.
+
+Battle Start
+
+Resolve by slot order (weapon first, then items left→right).
+
+Apply stat grants, status adds, direct damage/heal, conversions, extra strikes, etc.
+
+Examples (locked semantics):
+
+Blood Sausage: Heal 5 total at Battle Start, 1 HP at a time (rapid-tick).
+
+Sour Cherry: Battle Start deal 1 damage twice (2 total).
+
+Iceblock Shield: Gain +8 Armor, +2 Freeze.
+
+Horned Helm: Gain +1 Thorns.
+
+Corroded Bone: Enemy loses 50% of their current HP and enemy gains that same amount as Armor (the target both loses HP and gains Armor).
+
+First Actor
+
+Higher SPEED goes first.
+
+Tie-break: choose a deterministic rule (e.g., Left goes first).
+
+Turn Loop (for each side, alternating)
+
+Turn Start (active fighter):
+
+Trigger all “Turn Start” effects (slot order).
+
+Examples:
+
+“If you have Armor → heal N”
+
+“Gain +X Armor”
+
+“Deal 1 and heal 1”
+
+“Temporary +ATK this turn if condition”
+
+Strike Phase (active fighter):
+
+Compute ATK part = (current ATK + temporary ATK).
+
+Freeze on defender? Halve ATK part, round down. (On-Hit is not affected.)
+
+Apply to defender’s Armor then HP.
+
+Apply attacker On-Hit effects in order:
+
+Extra HP damage (+X on-hit)
+
+Remove all enemy Armor
+
+Gain Armor / Gain Thorns / etc.
+
+Thorns (defender) reflect back (Armor then HP).
+
+Mark struck_this_turn = true for whoever took damage.
+
+Mid-Strike triggers:
+
+First time Armor hits 0 this battle → trigger Exposed effects.
+
+First time HP ≤ 50% max → trigger Wounded effects.
+
+Victory Check: If target HP ≤ 0, end battle.
+
+End of Turn (cleanup & ticking):
+
+Thorns: If a fighter was struck this turn, remove all their Thorns now.
+
+Freeze: Remove 1 Freeze from each frozen unit.
+
+Other tickers as specified (see Status table).
+
+Repeat loop with the other fighter.
+
+3) Status Effects (Developer Timing Sheet)
+Status	When it Applies	Exact Timing	Notes
+Freeze	Halves ATK part of incoming hit	Applied during Strike (defender side). Remove 1 stack at End of Turn from the frozen unit.	On-Hit is not halved. Rounds down.
+Thorns	Reflects damage back to attacker	After Strike damage + On-Hit has been applied	Status: persists only if owner was not struck that turn; otherwise removed at End of Turn. Can be targeted by “reduce/transfer status” effects at Start next turn if it persisted.
+Poison	Health damage if you have 0 Armor	Start of your turn: if Armor==0, take 1 per stack, then remove 1 stack	Order: check Armor, then Poison damage & decrement
+Acid	Armor shred	Start of your turn: lose Armor equal to Acid stacks	No direct HP damage
+Riptide	Health damage over time	End of your turn: take 5, then remove 1 stack	Stacks → multiple turns
+Stun	Skip strike	At your Strike step: skip attack, consume 1 Stun	Pre-/Start effects still run
+Exposed	One-time trigger when Armor first hits 0	Immediate when condition becomes true	One-time per battle
+Wounded	One-time trigger when HP ≤ 50%	Immediate when condition becomes true	One-time per battle
+Regen/“Wounded: gain N regen”	Heal	Typically Turn Start if Wounded condition is true	Implement as gated Turn-Start heals
+4) Item Trigger Semantics (DSL/Schema)
+
+Represent each item as:
+
+{
+  "id": "items/horned_helm",
+  "name": "Horned Helm",
+  "stats": { "attack": 0, "armor": 0, "speed": 0, "health": 0 },
+  "triggers": {
+    "pre": [],
+    "battle_start": [ ["gain_thorns", 1] ],
+    "turn_start": [],
+    "on_hit": []
+  },
+  "flags": []
+}
+
+
+Supported ops (common):
+
+gain_armor, gain_thorns, gain_freeze, gain_speed, gain_atk
+
+enemy_hp_minus N, self_hp_plus N
+
+enemy_hp_to_enemy_armor_pct 50 (Corroded Bone)
+
+onhit_extra_damage N
+
+onhit_remove_enemy_armor
+
+onhit_gain_armor N, onhit_gain_thorns N
+
+Conditionals: if_have_armor_heal N, if_wounded_heal N
+
+Flags: cant_attack, on_damaged_deal_damage N, on_damaged_gain_thorns N
+
+Known special-cases (locked):
+
+Blood Sausage: battle_start: self_hp_plus 1 five times (or equivalent 5-tick loop), capped by max HP.
+
+Sour Cherry: battle_start: enemy_hp_minus 1 twice (two distinct pings).
+
+Corroded Bone: battle_start: enemy_hp_to_enemy_armor_pct 50.
+
+Boomstick: Strike = ATK part + on-hit +1 (the +1 is HP damage and not halved by Freeze).
+
+Earrings of Respite (every-other turn): implement as End of Turn heal on even-numbered turns for owner.
+
+Assault Greaves: flags: ["on_damaged_deal_damage", 1] (retaliate 1 each time owner takes damage).
+
+Rusty Ring: battle_start: “give enemy 1 Acid”; no stats.
+
+Iceblock Shield: battle_start: gain_armor +8, gain_freeze +2.
+
+Horned Helm: battle_start: gain_thorns +1.
+
+5) Strike Resolution (precise order)
+
+Build ATK part = ATK + temp_ATK_this_turn
+
+Freeze check on defender → ATK part = floor(ATK part / 2); decrement defender’s Freeze stack later at End of Turn.
+
+Apply to defender Armor → toArmor then HP → toHP.
+
+On-Hit (attacker):
+
+onhit_remove_enemy_armor
+
+onhit_gain_* (Armor/Thorns/etc.)
+
+onhit_extra_damage → HP only (not halved by Freeze)
+
+Thorns (defender): reflect to attacker (Armor then HP).
+
+Mark struck_this_turn on any target that took damage.
+
+Trigger Exposed and/or Wounded if thresholds crossed (first time only).
+
+Death check; if alive, continue.
+
+End of Turn cleanup:
+
+If owner was struck, set Thorns = 0.
+
+Freeze -= 1 on any frozen units.
+
+Apply end-tickers (e.g., Riptide 5 damage → stacks -= 1).
+
+Apply cadence-based heals (e.g., Earrings every other turn).
+
+6) Turn Engine (reference pseudocode)
+def run_battle(left, right):
+    # 0) Apply flat stats from items
+    apply_stats(left); apply_stats(right)
+
+    # 1) PRE phase
+    pre_triggers(right, left); pre_triggers(left, right)
+
+    # 2) BATTLE START
+    battle_start(left, right); battle_start(right, left)
+
+    # 3) Determine actor
+    actor, target = order_by_speed(left, right)  # tie: Left first (configurable)
+
+    # 4) Turn loop
+    while left.hp > 0 and right.hp > 0:
+        # Turn Start
+        turn_start(actor, target)
+        # Strike (or skip if stunned)
+        strike(actor, target)  # includes Freeze, on-hit, thorns, exposed/wounded
+        if target.hp <= 0: break
+        # End of Turn cleanup (thorns removal if struck owner, freeze-1, riptide, cadence heals)
+        end_of_turn(actor, target)
+        # Swap roles
+        actor, target = target, actor
+
+    return "Left" if left.hp > 0 else "Right"
+
+7) Data Contracts (for agents)
+
+Item record (normalized):
+
+{
+  "id": "items/iceblock_shield",
+  "name": "Iceblock Shield",
+  "bucket": "items|weapons|food|upgrades",
+  "stats": { "attack": 0, "armor": 8, "speed": 0, "health": 0 },
+  "triggers": {
+    "pre": [],
+    "battle_start": [ ["gain_freeze", 2] ],
+    "turn_start": [],
+    "on_hit": []
+  },
+  "flags": []
+}
+
+
+Fighter state:
+
+{
+  "hp": 22,
+  "hp_max": 22,
+  "atk": 2,
+  "armor": 8,
+  "speed": 3,
+  "freeze": 0,
+  "thorns": 1,
+  "struck_this_turn": false,
+  "temp_atk": 0,
+  "exposed_triggered": false,
+  "wounded_triggered": false
+}
+
+
+Simulation options:
+
+{
+  "tie_breaker": "left_first",
+  "stat_caps": { "attack": 20, "armor": 20, "speed": 20, "health": 20 },
+  "allow_pre_phase": true
+}
+
+8) Test Vectors (quick correctness checks)
+
+Freeze halving & on-hit:
+
+Attacker ATK 3 vs defender Freeze 1 → hit HP for floor(3/2)=1; on-hit +1 still applies → total HP dmg 2.
+
+Blood Sausage front-load:
+
+Defender at 20/20 → Sausage heals 5 in 1-pt ticks → no net change (cap at max).
+
+Sour Cherry pings & Freeze:
+
+If defender has 2 Freeze and Cherry deals 1 damage twice (Battle Start), count each ping separately. (Your house rule: Freeze halves ATK part of a strike; Cherry pings are fixed damage—model as unaffected by Freeze.)
+
+Corroded Bone conversion:
+
+Enemy 20 HP → enemy loses 10 HP, enemy gains +10 Armor.
+
+Thorns removal:
+
+Owner has Thorns 3, gets struck this turn → reflect 3; End of Turn → Thorns = 0.
+
+Assault Greaves retaliation:
+
+Each time owner takes damage (Armor or HP), attacker takes 1 (Armor then HP).
+
+9) Common Pitfalls to Avoid
+
+Treating Freeze as “negate” → wrong; it halves ATK part (on-hit unaffected).
+
+Making Thorns permanent → it clears at End of Turn if owner was struck.
+
+Mis-targeting Corroded Bone → it converts enemy HP into enemy Armor.
+
+Modeling Blood Sausage as regen → it’s a one-shot 5 total at Battle Start (1-point ticks).
+
+Letting anomalous stats (>20) leak into sims → clamp or reject per spec.
+
+10) Forward Hooks (nice-to-have later)
+
+Full Poison/Acid tick stacks with item synergies.
+
+Multi-strike weapons (e.g., Twin Blade) and strike-count modifiers (e.g., speed-scaled extra strikes).
+
+“Every other turn” cadence helpers (e.g., Earrings) as built-in schedulers.
+
+Status transfer/reduction targeting (e.g., reductions can hit Thorns if it persisted into Turn Start).

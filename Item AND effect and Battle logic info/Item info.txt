@@ -1,0 +1,4446 @@
+{
+  "items": {
+    "acid_mutation": {
+      "name": "Acid Mutation",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 acid. While you have acid, temporarily gain attack equal to acid",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "acidic_witherleaf": {
+      "name": "Acidic Witherleaf",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "Battle Start: Give the enemy acid equal to your speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "arcane_bell": {
+      "name": "Arcane Bell",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Battle Start: Decrease all countdowns by 1. Symphony.",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "arcane_cloak": {
+      "name": "Arcane Cloak",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Reset countdowns after they trigger",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "arcane_gauntlet": {
+      "name": "Arcane Gauntlet",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Halve all countdowns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "arcane_lens": {
+      "name": "Arcane Lens",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "If you have exactly 1 tome equipped, it triggers thrice",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "arcane_shield": {
+      "name": "Arcane Shield",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever a countdown effect triggers, gain 3 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "assault_greaves": {
+      "name": "Assault Greaves",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you take damage, deal 1 damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "basilisk_scale": {
+      "name": "Basilisk Scale",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "Resist Swampland poison.",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 6,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "belt_of_gluttony": {
+      "name": "Belt of Gluttony",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Your health is hidden",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "blackbriar_armor": {
+      "name": "Blackbriar Armor",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you take damage, gain 2 thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "blackbriar_gauntlet": {
+      "name": "Blackbriar Gauntlet",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Gain 2 thorns for each armor removed by the enemy's first strike",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "blackbriar_rose": {
+      "name": "Blackbriar Rose",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you restore health, gain 2 thorns. You can only equip 1 rose",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "blacksmith_bond": {
+      "name": "Blacksmith Bond",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "Exposed can trigger 1 additional time",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "blastcap_armor": {
+      "name": "Blastcap Armor",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Take 5 damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 8,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "blood_chain": {
+      "name": "Blood Chain",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "The first time the enemy becomes Wounded, trigger all of your Wounded items",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "blood_rune": {
+      "name": "Blood Rune",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "Wounded: Re-trigger the last triggered Wounded item",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bloodmoon_armor": {
+      "name": "Bloodmoon Armor",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you would take damage from your own items, the enemy takes that damage instead",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bloodstone_ring": {
+      "name": "Bloodstone Ring",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 5 max health and restore 5 health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bomb_bag": {
+      "name": "Bomb Bag",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "Battle Start, Exposed & Wounded: Spend 3 speed to re-trigger a random bomb",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "boots_of_sloth": {
+      "name": "Boots of Sloth",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "You lose more time per step",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "boots_of_the_hero": {
+      "name": "Boots of the Hero",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "-",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 21
+      },
+      "tags": []
+    },
+    "bramble_belt": {
+      "name": "Bramble Belt",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "-",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bramble_buckler": {
+      "name": "Bramble Buckler",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Gain 6 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 2,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bramble_talisman": {
+      "name": "Bramble Talisman",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Deal 1 damage to attacker",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bramble_vest": {
+      "name": "Bramble Vest",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "-",
+      "stats": {
+        "attack": 0,
+        "health": 3,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "briar_greaves": {
+      "name": "Briar Greaves",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever armor is broken, gain 3 thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "brittlebark_armor": {
+      "name": "Brittlebark Armor",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Take 3 damage",
+      "stats": {
+        "attack": 0,
+        "health": 12,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "brittlebark_buckler": {
+      "name": "Brittlebark Buckler",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Gain 2 extra strikes",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 10,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "cactus_cap": {
+      "name": "Cactus Cap",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain thorns, restore 1 health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "caustic_tome": {
+      "name": "Caustic Tome",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Deal 5 damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "chainlink_medallion": {
+      "name": "Chainlink Medallion",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Gain 2 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "chainmail_armor": {
+      "name": "Chainmail Armor",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Gain 2 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "chainmail_cloak": {
+      "name": "Chainmail Cloak",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Gain 2 thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "champion_s_armor": {
+      "name": "Champion's Armor",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, gain 2 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "champion_s_greaves": {
+      "name": "Champion's Greaves",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, gain 2 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "chest_of_lust": {
+      "name": "Chest of Lust",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "At end of battle: Lose 5 max health and gain 3 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "citrine_crown": {
+      "name": "Citrine Crown",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Gain 2 armor",
+      "stats": {
+        "attack": 0,
+        "health": -2,
+        "armor": 5,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "citrine_earring": {
+      "name": "Citrine Earring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Gain 2 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "citrine_gemstone": {
+      "name": "Citrine Gemstone",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Every third turn: gain 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "citrine_ring": {
+      "name": "Citrine Ring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 purity",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "claw_trinket": {
+      "name": "Claw Trinket",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy gains a status, they take 1 damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "cliffjumpers_mask": {
+      "name": "Cliffjumper's Mask",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "You are immune to Stun",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "cliffjumpers_pendant": {
+      "name": "Cliffjumper's Pendant",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "You are immune to Stun",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "cliffjumpers_robe": {
+      "name": "Cliffjumper's Robe",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "You are immune to Stun",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "cloudberry": {
+      "name": "Cloudberry",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Restore 1 health per 3 missing health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "conch_shell": {
+      "name": "Conch Shell",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, gain 3 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "corrupted_heart": {
+      "name": "Corrupted Heart",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Your healing is reduced by 50%",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "crag_crystal": {
+      "name": "Crag Crystal",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 1 additional regeneration",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "crimson_cape": {
+      "name": "Crimson Cape",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Gain 3 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "cryptolith": {
+      "name": "Cryptolith",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Every other turn: Gain 1 purity",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "dark_soul": {
+      "name": "Dark Soul",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict poison, deal 1 damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "deadwood_gauntlet": {
+      "name": "Deadwood Gauntlet",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain a status you already have, gain 2 more of it",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "deceiver_s_veil": {
+      "name": "Deceiver's Veil",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "After each battle: Gain 1 random status",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "double_plated_armor": {
+      "name": "Double Plated Armor",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "-",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 2,
+        "speed": -2
+      },
+      "tags": []
+    },
+    "double_plated_vest": {
+      "name": "Double Plated Vest",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "-",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "druid_s_cloak": {
+      "name": "Druid's Cloak",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "druids_mask": {
+      "name": "Druid's Mask",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Spend 1 regeneration to deal 3 damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "elderwood_necklace": {
+      "name": "Elderwood Necklace",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Your armor grants +1 attack and +1 speed (instead of just defense)",
+      "stats": {
+        "attack": 1,
+        "health": 0,
+        "armor": 1,
+        "speed": 1
+      },
+      "tags": []
+    },
+    "energy_drain": {
+      "name": "Energy Drain",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain armor, inflict that much exposed on the enemy",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "explosive_powder": {
+      "name": "Explosive Powder",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, deal 2 damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "explosive_surprise": {
+      "name": "Explosive Surprise",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "After each battle: Gain 17 speed (one time)",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 17
+      },
+      "tags": []
+    },
+    "featherweight_armor": {
+      "name": "Featherweight Armor",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain armor, gain 2 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "featherweight_greaves": {
+      "name": "Featherweight Greaves",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain speed, gain 2 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "featherweight_helmet": {
+      "name": "Featherweight Helmet",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain speed, gain 2 health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "featherweight_wings": {
+      "name": "Featherweight Wings",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "While you have any speed, gain +1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "flaming_armor": {
+      "name": "Flaming Armor",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy is inflicted with poison, inflict 1 exposed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "flaming_vest": {
+      "name": "Flaming Vest",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy is inflicted with poison, inflict 1 exposed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "flesh_armlet": {
+      "name": "Flesh Armlet",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "When you kill an enemy: Restore 2 health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "flesh_belt": {
+      "name": "Flesh Belt",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "When you kill an enemy: Restore 2 health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "flora_armlet": {
+      "name": "Flora Armlet",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 1 extra strike",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "flora_crown": {
+      "name": "Flora Crown",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 2 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "fungal_belt": {
+      "name": "Fungal Belt",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain poison, gain 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "fungal_staff": {
+      "name": "Fungal Staff",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain poison, gain 1 extra strike",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "ghost_armor": {
+      "name": "Ghost Armor",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "While below 50% health, gain 2 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "ghost_cloak": {
+      "name": "Ghost Cloak",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "While below 50% health, gain 2 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "glacier_ring": {
+      "name": "Glacier Ring",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 thorns per 2 armor you have",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "gladiator_chain": {
+      "name": "Gladiator Chain",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain armor, gain 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "gladiator_gauntlet": {
+      "name": "Gladiator Gauntlet",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain armor, gain 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "gladiator_greaves": {
+      "name": "Gladiator Greaves",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain armor, gain 1 health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "gladiator_helmet": {
+      "name": "Gladiator Helmet",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain armor, gain 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "gluttons_rubber_ring": {
+      "name": "Glutton's Rubber Ring",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "At end of battle: Lose all status effects",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "grand_tome": {
+      "name": "Grand Tome",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Countdown 10: Re-trigger all other tomes",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Tome"
+      ]
+    },
+    "granite_cherry": {
+      "name": "Granite Cherry",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "If at full health at Battle Start: +2 Armor and deal 2 damage (repeat 3)",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Food"
+      ]
+    },
+    "granite_tome": {
+      "name": "Granite Tome",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Countdown 4: +6 Armor (Gold 12, Diamond 24)",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Tome"
+      ]
+    },
+    "guardian_armor": {
+      "name": "Guardian Armor",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain armor, gain 1 thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "guardian_vest": {
+      "name": "Guardian Vest",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain armor, gain 1 thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "ham_bat": {
+      "name": "Ham Bat",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 2 extra strikes",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Food"
+      ]
+    },
+    "haunted_mask": {
+      "name": "Haunted Mask",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, gain 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "haunted_pendant": {
+      "name": "Haunted Pendant",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, gain 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "haunted_robe": {
+      "name": "Haunted Robe",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, gain 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "hive_amulet": {
+      "name": "Hive Amulet",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain poison, the enemy gains 1 poison",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "hive_collar": {
+      "name": "Hive Collar",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain poison, the enemy gains 1 poison",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "honeyed_bloom": {
+      "name": "Honeyed Bloom",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 2 regeneration",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "honeyed_lens": {
+      "name": "Honeyed Lens",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 2 regeneration",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "honeyed_mask": {
+      "name": "Honeyed Mask",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 2 regeneration",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "honeyed_vest": {
+      "name": "Honeyed Vest",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 2 regeneration",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "honeydew_melon": {
+      "name": "Honeydew Melon",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Give all your status effects to the enemy",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Food"
+      ]
+    },
+    "horned_melon": {
+      "name": "Horned Melon",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start (if Exposed or Wounded): Decrease 2 random statuses by 1 and gain that much thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Food"
+      ]
+    },
+    "horned_skull": {
+      "name": "Horned Skull",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Gain 2 thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "iced_coffee": {
+      "name": "Iced Coffee",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Remove all your speed and gain twice that much armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "jade_necklace": {
+      "name": "Jade Necklace",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain acid, gain 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "jade_talisman": {
+      "name": "Jade Talisman",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain acid, gain 1 extra strike",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "jasper_tome": {
+      "name": "Jasper Tome",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Countdown 6: Deal 4 damage, then +4 more (repeat 1)",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Tome"
+      ]
+    },
+    "lava_lamp": {
+      "name": "Lava Lamp",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, the enemy gains 1 exposed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "lava_vest": {
+      "name": "Lava Vest",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, the enemy gains 1 exposed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "lemontree_branch": {
+      "name": "Lemontree Branch",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Spend 2 speed to gain 1 extra strike next turn",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "lemontree_club": {
+      "name": "Lemontree Club",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Spend 2 speed to gain 1 extra strike next turn",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "loadstone": {
+      "name": "Loadstone",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, the enemy loses 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "loadstone_ring": {
+      "name": "Loadstone Ring",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, the enemy loses 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "manaheart_vine": {
+      "name": "Manaheart Vine",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 1 armor and 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "marble_armlet": {
+      "name": "Marble Armlet",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, gain 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "marble_gemstone": {
+      "name": "Marble Gemstone",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, gain 1 extra strike",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "marble_ring": {
+      "name": "Marble Ring",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 purity",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "marsh_root": {
+      "name": "Marsh Root",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain poison, gain 1 regeneration",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "mireflower": {
+      "name": "Mireflower",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain acid, gain 1 regeneration",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "moonstone_earring": {
+      "name": "Moonstone Earring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, the enemy takes 1 damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "moonstone_ring": {
+      "name": "Moonstone Ring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 purity",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "moss_medallion": {
+      "name": "Moss Medallion",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "mossy_crown": {
+      "name": "Mossy Crown",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "mossy_token": {
+      "name": "Mossy Token",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "muck_boots": {
+      "name": "Muck Boots",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, the enemy loses 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "muck_bracelet": {
+      "name": "Muck Bracelet",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, the enemy loses 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "mudwood_boots": {
+      "name": "Mudwood Boots",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, the enemy loses 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "mushroom_cap": {
+      "name": "Mushroom Cap",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, the enemy loses 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "mushroom_token": {
+      "name": "Mushroom Token",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, the enemy loses 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "mushroom_vest": {
+      "name": "Mushroom Vest",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, the enemy loses 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "mushroom_wing": {
+      "name": "Mushroom Wing",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, the enemy loses 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "mysterious_necklace": {
+      "name": "Mysterious Necklace",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "If you finish a battle at full health: Gain 1 gold",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "nightcap": {
+      "name": "Nightcap",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Inflict 1 exposed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "opal_crown": {
+      "name": "Opal Crown",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Gain 1 gold",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "opal_earring": {
+      "name": "Opal Earring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Gain 1 gold",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "opal_ring": {
+      "name": "Opal Ring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Steal 1 gold",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "plague_doll": {
+      "name": "Plague Doll",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Inflict 2 poison",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "plague_talisman": {
+      "name": "Plague Talisman",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Inflict 2 poison",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "porcupine_quill": {
+      "name": "Porcupine Quill",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Gain 3 thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "porcupine_tail": {
+      "name": "Porcupine Tail",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Gain 3 thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "potion_belt": {
+      "name": "Potion Belt",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you use a potion, gain 3 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "potion_ring": {
+      "name": "Potion Ring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you use a potion, gain 3 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "pride_armor": {
+      "name": "Pride Armor",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 gold",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "pride_cloak": {
+      "name": "Pride Cloak",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 gold",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "pride_earring": {
+      "name": "Pride Earring",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 gold",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "pride_ring": {
+      "name": "Pride Ring",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 gold",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "primal_sword": {
+      "name": "Primal Sword",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 2 thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "purity_crown": {
+      "name": "Purity Crown",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 purity",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "quartz_gemstone": {
+      "name": "Quartz Gemstone",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 5 armor and inflict 2 exposed on yourself",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "quartz_ring": {
+      "name": "Quartz Ring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 5 armor and inflict 2 exposed on yourself",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "rooted_falconheart": {
+      "name": "Rooted Falconheart",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: If the enemy has *no* speed, inflict 2 exposed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "ruby_gemstone": {
+      "name": "Ruby Gemstone",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "If attack exactly 1, on hit: +4 damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "ruby_ring": {
+      "name": "Ruby Ring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: +2 attack and take 3 damage (scales up at higher tier)",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "sapphire_crown": {
+      "name": "Sapphire Crown",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "—",
+      "stats": {
+        "attack": 0,
+        "health": -2,
+        "armor": 5,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "sapphire_earring": {
+      "name": "Sapphire Earring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Every other turn: +1 Armor (Gold 2, Diamond 4)",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "sapphire_gemstone": {
+      "name": "Sapphire Gemstone",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you lose armor, restore that much health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "sapphire_ring": {
+      "name": "Sapphire Ring",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Steal 2 Armor (Gold 4, Diamond 8)",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": [
+        "Jewelry"
+      ]
+    },
+    "scorching_sigil": {
+      "name": "Scorching Sigil",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, gain 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "scorching_talisman": {
+      "name": "Scorching Talisman",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, gain 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "shimmering_veil": {
+      "name": "Shimmering Veil",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, the enemy loses 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "shimmering_vest": {
+      "name": "Shimmering Vest",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, the enemy loses 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "shivering_feather": {
+      "name": "Shivering Feather",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy is stunned, gain 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "shivering_wing": {
+      "name": "Shivering Wing",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy is stunned, gain 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "silverthorn_armlet": {
+      "name": "Silverthorn Armlet",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy gains thorns, gain 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "silverthorn_bracelet": {
+      "name": "Silverthorn Bracelet",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy gains thorns, gain 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "sludge_heart": {
+      "name": "Sludge Heart",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain acid, gain 1 thorns",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "sludge_ring": {
+      "name": "Sludge Ring",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain acid, gain 1 extra strike",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "snake_eye_charm": {
+      "name": "Snake Eye Charm",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Inflict 1 poison",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "snake_eye_ring": {
+      "name": "Snake Eye Ring",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Inflict 1 poison",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "soul_magnet": {
+      "name": "Soul Magnet",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you kill an enemy, gain 5 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "soul_shackles": {
+      "name": "Soul Shackles",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you kill an enemy, gain 5 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "spirit_shackles": {
+      "name": "Spirit Shackles",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you kill an enemy, restore 5 health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "spirit_shield": {
+      "name": "Spirit Shield",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you kill an enemy, restore 5 health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "stormy_helmet": {
+      "name": "Stormy Helmet",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Turn Start: If you’re stunned, gain 2 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "stormy_vest": {
+      "name": "Stormy Vest",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Turn Start: If you’re stunned, gain 2 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "swampwalker_cape": {
+      "name": "Swampwalker Cape",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Immune to poison damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "swampwalker_mask": {
+      "name": "Swampwalker Mask",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Immune to poison damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "swampwalker_pendant": {
+      "name": "Swampwalker Pendant",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Immune to poison damage",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "talisman_of_war": {
+      "name": "Talisman of War",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "At end of battle: Gain 1 gold per 8 damage dealt",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "thorned_cowl": {
+      "name": "Thorned Cowl",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain thorns, gain 1 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "thorned_vest": {
+      "name": "Thorned Vest",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain thorns, gain 1 speed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "thundercloud_totem": {
+      "name": "Thundercloud Totem",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "At end of battle: +5% chance to find higher tier loot",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "thundercloud_vest": {
+      "name": "Thundercloud Vest",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "At end of battle: +5% chance to find higher tier loot",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "titanium_claw": {
+      "name": "Titanium Claw",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain armor, the enemy loses 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "trickster_mask": {
+      "name": "Trickster Mask",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain a status you didn't have, inflict 1 exposed",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "unholy_relic": {
+      "name": "Unholy Relic",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "While at full health, +2 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "vampire_buckle": {
+      "name": "Vampire Buckle",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, restore 1 health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "vampire_cloak": {
+      "name": "Vampire Cloak",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, restore 1 health",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "venom_totem": {
+      "name": "Venom Totem",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 1 poison",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "vial_of_wrath": {
+      "name": "Vial of Wrath",
+      "type": "Item",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Inflict 2 exposed on yourself and gain 4 attack",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "watchful_amulet": {
+      "name": "Watchful Amulet",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy gains a status, gain 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "watchful_vest": {
+      "name": "Watchful Vest",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy gains a status, gain 1 armor",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "wet_egg": {
+      "name": "Wet Egg",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "Wounded: Gain 2 extra strikes",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "witherleaf": {
+      "name": "Witherleaf",
+      "type": "Item",
+      "region": "Swampland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "Battle Start: Inflict 1 acid on the enemy",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "woodcutter_s_axe": {
+      "name": "Woodcutter's Axe",
+      "type": "Item",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Gain 6 attack until the end of the turn.",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    }
+  },
+  "weapons": {
+    "ancient_warhammer": {
+      "name": "Ancient Warhammer",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Deal 3 damage",
+      "stats": {
+        "attack": 7,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "arcane_wand": {
+      "name": "Arcane Wand",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you use a tome, deal 3 damage",
+      "stats": {
+        "attack": 2,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "banish_hammer": {
+      "name": "Banish Hammer",
+      "type": "Weapon",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Battle Start: Banish the enemy (remove all their statuses)",
+      "stats": {
+        "attack": 3,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "basilisk_fang": {
+      "name": "Basilisk Fang",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "Battle Start: Inflict 5 poison on yourself",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "battle_axe": {
+      "name": "Battle Axe",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "While the enemy has armor, double your attack",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bearclaw_blade": {
+      "name": "Bearclaw Blade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Attack (equals missing health)",
+      "stats": {
+        "attack": 0,
+        "health": 5,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bejeweled_blade": {
+      "name": "Bejeweled Blade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Gain 2 attack for each equipped Jewelry item",
+      "stats": {
+        "attack": 1,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "blackbriar_blade": {
+      "name": "Blackbriar Blade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you would gain thorns, gain 1 attack instead",
+      "stats": {
+        "attack": 2,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "blackbriar_bow": {
+      "name": "Blackbriar Bow",
+      "type": "Weapon",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Can't strike. Turn Start: Gain thorns equal to your attack.",
+      "stats": {
+        "attack": 4,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bloodlord_s_axe": {
+      "name": "Bloodlord's Axe",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: The enemy loses 5 health and you restore 5 health",
+      "stats": {
+        "attack": 4,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bloodmoon_dagger": {
+      "name": "Bloodmoon Dagger",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Gain 5 attack and take 2 damage",
+      "stats": {
+        "attack": 3,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bloodmoon_sickle": {
+      "name": "Bloodmoon Sickle",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Take 1 damage",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "boom_stick": {
+      "name": "Boom Stick",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "On Hit: Deal 1 damage",
+      "stats": {
+        "attack": 2,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "brittlebark_bow": {
+      "name": "Brittlebark Bow",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "After 3 strikes: Lose 2 attack (Gold: after 4; Diamond: after 6).",
+      "stats": {
+        "attack": 4,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "brittlebark_club": {
+      "name": "Brittlebark Club",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed & Wounded: Lose 2 attack",
+      "stats": {
+        "attack": 7,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "bubblegloop_staff": {
+      "name": "Bubblegloop Staff",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Can't strike. Turn Start: Spend 1 speed to give the enemy 2 acid and 2 poison",
+      "stats": {
+        "attack": 1,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "chainmail_sword": {
+      "name": "Chainmail Sword",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Gain armor equal to base armor",
+      "stats": {
+        "attack": 3,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "champion_s_blade": {
+      "name": "Champion's Blade",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "-",
+      "stats": {
+        "attack": 8,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "cherry_blade": {
+      "name": "Cherry Blade",
+      "type": "Weapon",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Battle Start (if Exposed): Deal 4 damage",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "cleaver_of_wrath": {
+      "name": "Cleaver of Wrath",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": false,
+      "has_effect": false,
+      "effect": "Your max health is always 1",
+      "stats": {
+        "attack": 8,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "dashmaster_s_dagger": {
+      "name": "Dashmaster's Dagger",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain additional strikes equal to speed",
+      "stats": {
+        "attack": 2,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "elderwood_staff": {
+      "name": "Elderwood Staff",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "-",
+      "stats": {
+        "attack": 1,
+        "health": 0,
+        "armor": 1,
+        "speed": 114
+      },
+      "tags": []
+    },
+    "evergrowth_spear": {
+      "name": "Evergrowth Spear",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Every other turn, gain 1 attack and restore 1 health",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "explosive_sword": {
+      "name": "Explosive Sword",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever a bomb deals 5 or more non-weapon damage, gain 1 additional strike.",
+      "stats": {
+        "attack": 3,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "featherweight_blade": {
+      "name": "Featherweight Blade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain speed, gain +2 attack",
+      "stats": {
+        "attack": 2,
+        "health": 0,
+        "armor": 0,
+        "speed": 2
+      },
+      "tags": []
+    },
+    "forge_hammer": {
+      "name": "Forge Hammer",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Deal 2 damage to yourself",
+      "stats": {
+        "attack": 9,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "frostbite_dagger": {
+      "name": "Frostbite Dagger",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Inflict 1 exposed on yourself",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "frozen_iceblade": {
+      "name": "Frozen Iceblade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Inflict 3 exposed on the enemy",
+      "stats": {
+        "attack": 4,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "fungal_rapier": {
+      "name": "Fungal Rapier",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: If you have poison, inflict 2 poison on the enemy",
+      "stats": {
+        "attack": 3,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "gale_staff": {
+      "name": "Gale Staff",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: You gain 2 speed",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "gemstone_scepter": {
+      "name": "Gemstone Scepter",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: If you have any gem item equipped, gain 3 armor",
+      "stats": {
+        "attack": 2,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "granite_axe": {
+      "name": "Granite Axe",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: If enemy has armor, deal +2 damage",
+      "stats": {
+        "attack": 9,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "griffin_talon": {
+      "name": "Griffin Talon",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "If you have no armor, +2 attack",
+      "stats": {
+        "attack": 7,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "hallowed_blade": {
+      "name": "Hallowed Blade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 1 additional strike",
+      "stats": {
+        "attack": 3,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "hallowed_claymore": {
+      "name": "Hallowed Claymore",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 2 armor",
+      "stats": {
+        "attack": 8,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "hallowed_halberd": {
+      "name": "Hallowed Halberd",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain regeneration, gain 2 armor and 1 attack",
+      "stats": {
+        "attack": 10,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "haunted_blade": {
+      "name": "Haunted Blade",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, gain 1 armor",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "hive_whip": {
+      "name": "Hive Whip",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain poison, the enemy gains 1 poison",
+      "stats": {
+        "attack": 4,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "jagged_sickle": {
+      "name": "Jagged Sickle",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Inflict 1 exposed",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "jungle_blade": {
+      "name": "Jungle Blade",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain poison, gain 1 attack",
+      "stats": {
+        "attack": 4,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "jungle_saber": {
+      "name": "Jungle Saber",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain poison, gain 1 speed",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "jungle_spirit": {
+      "name": "Jungle Spirit",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain poison, gain 2 armor",
+      "stats": {
+        "attack": 7,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "lakebed_sword": {
+      "name": "Lakebed Sword",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Double benefit from Purity.",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "lava_axe": {
+      "name": "Lava Axe",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, gain 1 attack",
+      "stats": {
+        "attack": 8,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "lava_mace": {
+      "name": "Lava Mace",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, gain 1 speed",
+      "stats": {
+        "attack": 9,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "lava_whip": {
+      "name": "Lava Whip",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, gain 1 armor",
+      "stats": {
+        "attack": 7,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "lightning_rapier": {
+      "name": "Lightning Rapier",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Turn Start: If the enemy is stunned, gain 2 speed",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "lightning_rod": {
+      "name": "Lightning Rod",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Turn Start: If you're stunned, gain 3 attack",
+      "stats": {
+        "attack": 4,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "lightning_whip": {
+      "name": "Lightning Whip",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Turn Start: If the enemy is stunned, gain 1 additional strike",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "marble_sword": {
+      "name": "Marble Sword",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Gain 3 attack",
+      "stats": {
+        "attack": 9,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "melting_iceblade": {
+      "name": "Melting Iceblade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Lose 1 attack",
+      "stats": {
+        "attack": 10,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "moonlight_cleaver": {
+      "name": "Moonlight Cleaver",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "While you are below 50% health, you cannot gain status effects",
+      "stats": {
+        "attack": 12,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "mountain_cleaver": {
+      "name": "Mountain Cleaver",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Attack always is equal to base armor",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "pacifist_staff": {
+      "name": "Pacifist Staff",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Gain 1 armor and restore 1 health",
+      "stats": {
+        "attack": 4,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "purelake_staff": {
+      "name": "Purelake Staff",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain 2 purity. On Hit: Remove 1 purity",
+      "stats": {
+        "attack": 3,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "razorthorn_spear": {
+      "name": "Razorthorn Spear",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Gain 2 thorns.",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "redwood_rod": {
+      "name": "Redwood Rod",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "-",
+      "stats": {
+        "attack": 1,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "ring_blades": {
+      "name": "Ring Blades",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Steal 1 attack from the enemy",
+      "stats": {
+        "attack": 8,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "riverflow_rapier": {
+      "name": "Riverflow Rapier",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "The first time you gain a new status effect, gain 1 additional strike as well",
+      "stats": {
+        "attack": 2,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "royal_crownblade": {
+      "name": "Royal Crownblade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Gain 1 gold.",
+      "stats": {
+        "attack": 3,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "royal_scepter": {
+      "name": "Royal Scepter",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Attack is always equal to gold. You cannot have more than 10 gold",
+      "stats": {
+        "attack": 2,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "rusty_sword": {
+      "name": "Rusty Sword",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "-",
+      "stats": {
+        "attack": 1,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "shadow_sickle": {
+      "name": "Shadow Sickle",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Inflict 1 exposed on the enemy",
+      "stats": {
+        "attack": 7,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "sharpened_branches": {
+      "name": "Sharpened Branches",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Gain 4 thorns",
+      "stats": {
+        "attack": 2,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "shell_sword": {
+      "name": "Shell Sword",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Battle Start: Gain armor equal to 50% of your max armor",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "shivering_blade": {
+      "name": "Shivering Blade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy is stunned, gain 1 armor",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "shivering_spear": {
+      "name": "Shivering Spear",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever the enemy is stunned, gain 1 speed",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "skullbat": {
+      "name": "Skullbat",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain purity, gain 1 armor",
+      "stats": {
+        "attack": 8,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "sludge_blade": {
+      "name": "Sludge Blade",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain acid, gain 1 armor",
+      "stats": {
+        "attack": 8,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "smoldering_stick": {
+      "name": "Smoldering Stick",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Inflict 1 exposed on yourself",
+      "stats": {
+        "attack": 4,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "soul_bond": {
+      "name": "Soul Bond",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you kill an enemy, gain 5 armor",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "soul_dagger": {
+      "name": "Soul Dagger",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you kill an enemy, restore 5 health",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "stinger_dagger": {
+      "name": "Stinger Dagger",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: Inflict 1 poison",
+      "stats": {
+        "attack": 2,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "stormy_blade": {
+      "name": "Stormy Blade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Turn Start: If you’re stunned, gain 2 attack",
+      "stats": {
+        "attack": 7,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "stormy_halberd": {
+      "name": "Stormy Halberd",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Turn Start: If you’re stunned, gain 4 attack",
+      "stats": {
+        "attack": 11,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "stormy_staff": {
+      "name": "Stormy Staff",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Turn Start: If you’re stunned, gain 2 attack",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "thornwhip": {
+      "name": "Thornwhip",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Wounded: Gain 4 thorns",
+      "stats": {
+        "attack": 3,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "thunderbound_sabre": {
+      "name": "Thunderbound Sabre",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Attack (equals Speed)",
+      "stats": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "titan_blade": {
+      "name": "Titan Blade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: If enemy has exposed, deal +3 damage",
+      "stats": {
+        "attack": 7,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "totem_hammer": {
+      "name": "Totem Hammer",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "On Hit: If you have any totem item equipped, gain 3 attack",
+      "stats": {
+        "attack": 10,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "toxin_fang": {
+      "name": "Toxin Fang",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "While the enemy has poison, double your attack",
+      "stats": {
+        "attack": 5,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "toxin_rapier": {
+      "name": "Toxin Rapier",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "While the enemy has poison, double your attack",
+      "stats": {
+        "attack": 7,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "toxin_scepter": {
+      "name": "Toxin Scepter",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "While the enemy has poison, double your attack",
+      "stats": {
+        "attack": 8,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "treebranch_bow": {
+      "name": "Treebranch Bow",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Exposed: Gain 2 thorns",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "vampire_sword": {
+      "name": "Vampire Sword",
+      "type": "Weapon",
+      "region": "Swampland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you inflict exposed, restore 1 health",
+      "stats": {
+        "attack": 9,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "windblade": {
+      "name": "Windblade",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain speed, gain 1 attack",
+      "stats": {
+        "attack": 4,
+        "health": 0,
+        "armor": 0,
+        "speed": 4
+      },
+      "tags": []
+    },
+    "windchaser_bow": {
+      "name": "Windchaser Bow",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain speed, gain 1 attack",
+      "stats": {
+        "attack": 6,
+        "health": 0,
+        "armor": 0,
+        "speed": 4
+      },
+      "tags": []
+    },
+    "windchaser_club": {
+      "name": "Windchaser Club",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain speed, gain 1 armor",
+      "stats": {
+        "attack": 8,
+        "health": 0,
+        "armor": 0,
+        "speed": 4
+      },
+      "tags": []
+    },
+    "windchaser_halberd": {
+      "name": "Windchaser Halberd",
+      "type": "Weapon",
+      "region": "Woodland",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you gain speed, gain 1 armor",
+      "stats": {
+        "attack": 10,
+        "health": 0,
+        "armor": 0,
+        "speed": 4
+      },
+      "tags": []
+    },
+    "wraith_blade": {
+      "name": "Wraith Blade",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you kill an enemy, restore 5 health",
+      "stats": {
+        "attack": 11,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "wraith_dagger": {
+      "name": "Wraith Dagger",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you kill an enemy, restore 5 health",
+      "stats": {
+        "attack": 9,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    },
+    "wraith_scythe": {
+      "name": "Wraith Scythe",
+      "type": "Weapon",
+      "region": "Desert",
+      "has_icon": true,
+      "has_effect": false,
+      "effect": "Whenever you kill an enemy, gain 5 armor",
+      "stats": {
+        "attack": 10,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      },
+      "tags": []
+    }
+  },
+  "upgrades": {
+    "agile_edge": {
+      "name": "Agile Edge",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Gain +4 speed. (Reusable.)",
+      "stats": {},
+      "tags": []
+    },
+    "agile_edge_used": {
+      "name": "Agile Edge Used",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Gain +4 speed.",
+      "stats": {},
+      "tags": []
+    },
+    "armor_oil": {
+      "name": "Armor Oil",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Heal 10% max HP, permanently gain +1 armor. (Reusable.)",
+      "stats": {},
+      "tags": []
+    },
+    "armor_oil_darkened": {
+      "name": "Armor Oil Darkened",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Heal 10% max HP, permanently gain +1 armor.",
+      "stats": {},
+      "tags": []
+    },
+    "armor_oil_used": {
+      "name": "Armor Oil Used",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Heal 10% max HP, permanently gain +1 armor.",
+      "stats": {},
+      "tags": []
+    },
+    "attack_oil": {
+      "name": "Attack Oil",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Heal 10% max HP, permanently gain +1 attack. (Reusable.)",
+      "stats": {},
+      "tags": []
+    },
+    "attack_oil_darkened": {
+      "name": "Attack Oil Darkened",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Heal 10% max HP, permanently gain +1 attack.",
+      "stats": {},
+      "tags": []
+    },
+    "attack_oil_used": {
+      "name": "Attack Oil Used",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Heal 10% max HP, permanently gain +1 attack.",
+      "stats": {},
+      "tags": []
+    },
+    "bleeding_edge": {
+      "name": "Bleeding Edge",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Gain +5 attack. (One-time use.)",
+      "stats": {},
+      "tags": []
+    },
+    "blood_rune": {
+      "name": "Blood Rune",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Your equipped weapon deals +1 damage per 4 missing HP. (Reusable.)",
+      "stats": {},
+      "tags": []
+    },
+    "blunt_edge": {
+      "name": "Blunt Edge",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Gain +10 max HP. (Reusable.)",
+      "stats": {},
+      "tags": []
+    },
+    "blunt_edge_used": {
+      "name": "Blunt Edge Used",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Gain +10 max HP.",
+      "stats": {},
+      "tags": []
+    },
+    "cleansing_edge": {
+      "name": "Cleansing Edge",
+      "type": "Upgrade",
+      "region": null,
+      "has_icon": true,
+      "has_effect": true,
+      "effect": "Remove all statuses. (One-time use.)",
+      "stats": {},
+      "tags": []
+    }
+  }
+}

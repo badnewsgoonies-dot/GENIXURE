@@ -1,0 +1,341 @@
+He Is Coming – Battle Simulation Manual
+
+He Is Coming is a roguelite RPG auto-battler where combat is automatic and turn-based
+
+. This manual serves as a comprehensive guide to the game’s battle mechanics, including turn order, combat sequence, item effects, and status conditions. Use it as both a step-by-step logic reference for battle simulations and a glossary of key terms and effects.
+
+Overview of Combat System
+
+Auto-Battles: Encounters are resolved automatically. When a monster contacts the player on the map, an auto-battle begins
+ 
+. The player and enemy take alternating turns striking each other until one’s health drops to zero
+ 
+.
+
+Stats: Both player and monsters have four core stats
+gametrodon.com
+: Health (HP, how much damage you can take), Attack (damage dealt per strike), Armor (a shield that absorbs damage before health, refilling after each battle
+gametrodon.com
+), and Speed (determines turn order – the higher speed combatant strikes first; if speeds are equal, the player goes first
+ 
+).
+
+Enemies & Traits: Each enemy has a unique trait that grants them a special advantage or ability in battle
+ 
+. For example, some bosses ignore armor or steal your attack power. Be prepared to adapt your strategy to an enemy’s trait (e.g. the Razorclaw Grizzly ignores armor entirely, making health and damage boosts more important against it
+store.steampowered.com
+, whereas the Black Knight drains your attack to empower itself, making high armor and reflected damage vital
+store.steampowered.com
+). Defeating normal enemies yields gold, and defeating bosses can unlock additional item slots for the player
+ 
+ 
+.
+
+Inventory & Items: The player can equip multiple items and one weapon. Items provide stat bonuses and special effects that can trigger under certain conditions. Item slots are numbered, and when a trigger condition occurs (e.g. “Battle Start”, “Exposed”, etc.), items activate their effects in order of their slot number
+ 
+. You can rearrange items at any time to control this activation order. Many items have conditional or one-time triggers that we detail in this guide.
+
+Item Rarity Upgrades: Items can be upgraded by collecting duplicates. A common item can be improved to Gold and then Diamond rarity, increasing its stats and effect power. For example, the Horned Helmet (Common) grants +2 Armor and 1 Thorns at battle start; at Gold it grants 1**→2** Thorns, and at Diamond 1**→4** Thorns
+ 
+. Item descriptions use “at Gold” and “at Diamond” to indicate these enhanced values.
+
+Turn Order and Battle Sequence
+
+Combat in He Is Coming proceeds in a structured cycle of phases each turn. Below is a step-by-step breakdown of the battle order and logic sequences:
+
+1. Battle Start Phase
+
+When a battle begins, apply all immediate start-of-battle effects before any combatant acts:
+
+Battle Start Item Effects: All equipped items with a “Battle Start” trigger activate now, in ascending slot order
+ 
+. These effects occur for the player, and enemies may also have analogous start-of-battle abilities from their traits. For example, an item like Basilisk Scale grants the player +5 Armor and +5 Poison at battle start
+ 
+, whereas an enemy trait might start them with a buff or extra damage. Resolve each item’s Battle Start effect one by one.
+
+Initial Stats & Conditions: Calculate each side’s effective stats after Battle Start effects. Armor gained from items is added now; any negative effects applied to either side (e.g. starting Poison on one combatant, self-stuns, etc.) also take effect now. For instance, Lightning Bottle immediately stuns the player for 1 turn at battle start, and Serpent Mask might inflict poison on the enemy equal to the player’s attack at battle start
+ 
+. These conditions will influence the upcoming turns.
+
+Determine First Turn: Compare Speed stats to decide who strikes first. The combatant with higher Speed gets the first turn; if speeds are tied, the player goes first
+ 
+. After this, turns will alternate between player and enemy (unless extra actions intervene, as described later).
+
+2. Turn Start Phase
+
+At the beginning of each combatant’s turn, execute any effects that trigger on turn start and handle ongoing status effects:
+
+Status Effects at Turn Start:
+
+Acid: The character loses Armor equal to their Acid stacks at turn start
+ 
+. If they have less armor than the acid amount, their armor is reduced to 0
+ 
+. (Acid represents corrosive damage to armor only; by default it does not directly harm health unless modified by certain items.)
+
+Poison: Poison damages a character only if they have no armor at the start of their turn. If Armor is 0, they take damage equal to their current Poison stack count
+ 
+. Regardless of armor, they then remove 1 Poison stack at the start of each turn
+ 
+. (Poison thus inflicts damage over time once armor is depleted, decreasing in potency each turn.)
+
+Other Start-of-Turn Status: There is no innate damage or loss from Regeneration, Thorns, or Freeze at turn start; those operate at different phases (detailed below). Stun and Freeze affect the character’s action, but the condition itself is handled during the Action phase or end of turn.
+
+Turn Start Item Triggers: Apply any “Turn Start” effects from items for the active character now (slot-order for the player’s items). These may include conditional bonuses or effects. For example, Moonlight Crest gives the player +1 Regeneration at turn start if their health is below 50%. Liferoot Beast grants Regeneration if the player has none at turn start. Silverscale Gauntlet (enemy example) might give the enemy Riptide every other turn. Resolve all turn-start item effects before proceeding.
+
+First Turn Triggers: If this is a character’s very first turn of the battle, also apply any “First Turn” specific effects now. For instance, Lifeblood Helmet restores health equal to damage dealt on the first turn, and certain weapons like Frostbite Dagger inflict Freeze on the enemy on the attacker’s first hit
+ 
+. First Turn triggers happen once and do not repeat on subsequent turns.
+
+Check Stun Status: If the active character is Stunned, they will skip their action this turn
+ 
+. A stun causes the character to forfeit their strike. After skipping the strike due to stun, remove one Stun stack from them
+ 
+. (If they had multiple Stun stacks, they will remain stunned on successive turns, skipping one attack per turn until all Stun stacks are gone.) Important: Being stunned does not prevent passive item effects from triggering; only the strike is skipped
+ 
+. If the character was stunned, skip the Action phase and proceed to Turn End (they effectively lose their turn apart from passive triggers).
+
+3. Action Phase (Attack and Damage Resolution)
+
+If the active character is not stunned, they perform their action – typically a strike (basic attack) – against the opponent. The following sequence occurs when a strike is made:
+
+Attack Execution: The attacker deals damage equal to their Attack stat. This value can be modified by Freeze or other effects:
+
+If the attacker has one or more Freeze stacks, their total Attack stat is halved (rounded down) as long as freeze persists
+ 
+. (E.g. Attack 5 with any Freeze >0 becomes 2 damage while frozen.) One Freeze stack will be removed at the end of their turn (see Turn End).
+
+Other temporary buffs/debuffs (like “while you have X, gain +Y Attack”) also apply to adjust the Attack value at the moment of striking.
+
+Damage to Armor and Health: Damage from the strike is first applied to the defender’s Armor. Armor absorbs damage before Health
+ 
+:
+
+If the defender has Armor > 0, subtract the incoming damage from Armor.
+
+If Armor fully absorbs the hit (damage ≤ current Armor), the defender loses that much armor and Health remains intact.
+
+If the damage exceeds the defender’s Armor, the Armor is reduced to 0, and the excess damage carries over to reduce the defender’s Health.
+
+If the defender has 0 Armor at the time of the hit, the full damage applies to their Health.
+(Note: The defender’s Armor will be fully restored after the battle if they survive
+gametrodon.com
+, but during combat it must be managed as a finite buffer.)
+
+Exposed Trigger (Armor Break): If the defender’s Armor is reduced from a positive value to 0 by this attack, the defender is now Exposed. Exposed triggers occur the first time a character loses all their armor in a battle
+ 
+. When this happens, activate all of that character’s items with an “Exposed:” effect (again, player items fire in slot order). For example, the player’s Marshlight Lantern item will trigger upon Exposed to lose 3 health and gain 8 armor (essentially a last-ditch armor boost once your armor breaks). If the enemy is exposed (i.e. you broke all their armor), any of your items that trigger on enemy Exposed will fire (e.g. Serpent Lyre will poison the enemy when they lose all armor). Note: By default, Exposed can trigger only once per character per battle (first armor break); however, certain items can modify this (e.g. Blacksmith Bond allows the Exposed condition to trigger an additional time for the player if armor is replenished and broken again).
+
+Wounded Trigger (Half-Health): If the defender’s Health drops to 50% or below of its maximum for the first time in this battle, that character becomes Wounded. This usually coincides with a significant hit or accumulation of damage. Wounded triggers the first time a character’s health falls to half (or lower)
+ 
+. At that moment, activate all items with a “Wounded:” effect for that character. For example, the player’s Liferoot Lute will grant +3 Regeneration when wounded, and Blood Chain causes all your Wounded-trigger items to fire when the enemy becomes wounded. (Some items even react to the enemy being wounded: Blood Chain and Blood Rune can cause extra effects when the opponent’s health falls below half.) Like Exposed, Wounded triggers only once per character per fight by default.
+
+Resolve Damage Effects: If the defender’s Health reached 0 (or below) from this attack, the battle will conclude (the defeated side dies). Before concluding:
+
+Record any triggers that would logically occur upon dealing lethal damage. In practice, however, most item triggers occur before checking death. Usually the battle ends immediately when health hits 0, so subsequent triggers on the dead entity do not fire (aside from any specific “on death” effects, which standard items don’t usually have for enemies).
+
+If the player dies (Health ≤ 0), the run ends; if the enemy dies, the player wins the battle. Skip any remaining phases and proceed to post-battle rewards or the next encounter.
+
+Thorns Retaliation: If the defender had any Thorns stacks, the attacker now takes immediate retaliatory damage. Thorns causes an attacker to take damage equal to the defender’s Thorns when hitting them
+ 
+. This reflect damage is dealt after the strike’s damage is resolved. Thorns damage is applied to the attacker in the same way (first to Armor, then Health). The moment thorns damage is dealt:
+
+If this causes the attacker’s Armor to drop to 0 for the first time, the attacker’s Exposed items trigger (yes, an attacker can expose themselves by hitting a spiked target). If the attacker’s health falls below half from thorns for the first time, their Wounded triggers fire.
+
+Thorns Removal: Thorns stacks are not immediately expended on a single hit; they persist until the end of the turn in which they were used
+ 
+. This means if a defender with 5 Thorns is struck multiple times in the same turn, each strike will reflect damage. The Thorns are only removed at turn’s end (and only if they actually triggered during that turn)
+ 
+. If, for example, an enemy is stunned and never strikes you that turn, your thorns remain into the next turn
+ 
+.
+
+On-Hit Effects (Attacker): After landing a hit, apply any “On Hit” item effects for the attacker. Weapons often have on-hit abilities. For instance, the Basilisk Fang weapon transfers Poison: “On Hit: decrease your poison by 2 and give it to the enemy”
+ 
+ – after hitting, the player’s Poison stacks would be reduced and the enemy gains Poison stacks. All such on-hit effects occur now, after damage calculation. If multiple on-hit effects exist, resolve them one by one (in an arbitrary but consistent order, e.g. weapon first, then item slots). These effects can include adding status effects, stealing stats, healing, etc., depending on the item.
+
+When Hit / Damage Taken Effects (Defender): Likewise, if the defender has any items that trigger when they take damage (or specifically when struck), activate them now. For example, Blackbriar Armor gives the player +2 Thorns whenever they take damage, so the moment the player is hit and loses health/armor, they gain thorns in response. This could happen simultaneously with Wounded/Exposed triggers. Another example: Razor Scales (armor that reflects damage) would likely be calculated as a Thorns effect. All such reactive triggers on the defender’s side should be processed after the hit as well.
+
+Multiple Strikes & Extra Attacks: Normally, each turn a character makes one strike. However, some effects grant additional strikes. An “additional strike” means the attacker gets to attack one more time in the same turn. For example, the Lightning Whip weapon gives the player an extra strike at turn start if the enemy is stunned
+ 
+ (so the player would perform two strikes that turn). Enemies can also gain extra strikes (e.g. Bramble Belt gives the enemy +1 additional strike each turn at battle start
+ 
+, making them hit twice per turn). When a character has multiple strikes in a turn, resolve the first strike completely (damage and all ensuing triggers as above), then proceed to their next strike:
+
+The subsequent strike is treated like a new attack in the same turn. However, note that Exposed and Wounded triggers on a given target will not fire again if they were already triggered earlier in the battle. Thorns, on-hit, and “whenever” effects will apply again as applicable.
+
+Continue this process for all extra strikes. After all strikes for that turn are done, move to the turn end phase. (If an extra strike effect is conditional and no longer applicable after the first hit, it might not repeat; but generally additional strikes granted at turn start or by status last for that turn.)
+
+4. Turn End Phase
+
+After the active character has taken their action (or skipped due to stun), the turn concludes. In the Turn End phase, apply effects that trigger at end of turn and upkeep various statuses:
+
+Regeneration: Regeneration (regen) heals the character at the end of their turn. If the active character has any Regeneration stacks, they restore Health equal to their current Regen value, then lose 1 Regen stack
+ 
+. This healing happens now, before any status decay like poison or riptide on that character’s turn end. Importantly, if multiple sources of regen were gained during the turn, they stack additively for a single heal at end of turn
+ 
+. (Example: If the player had 3 Regeneration, they heal 3 HP now and Regeneration decreases to 2 stacks
+ 
+.)
+
+Riptide: Riptide is a damaging status that triggers on the afflicted character’s turn end. If the active character has any Riptide stacks, at end of their turn they suffer the Riptide effect: take 5 damage and remove 1 Riptide stack
+ 
+. Riptide does this at most once per turn by default – one stack triggers, even if multiple are present
+ 
+. If the character had, say, 3 Riptide, they will take 5 damage now and drop to 2 stacks remaining (which can trigger on subsequent turns). Some items can modify this (e.g. Stillwater Pearl allows Riptide to trigger twice per turn, causing two stacks to activate for 5 damage each
+ 
+). Riptide damage, like any damage, first hits Armor then Health. If this damage reduces a character’s health to or below half or zero, the usual Wounded or death outcomes occur (a player could technically die from Riptide ticks if not healed). Also, if an item triggers “whenever Riptide triggers” (like Silverscale Armor granting armor when Riptide triggers), apply that now.
+
+Freeze Decay: If the active character has any Freeze stacks, remove 1 Freeze at the end of their turn
+ 
+. (Freeze halves Attack while it’s active, as noted. Reducing freeze by one means the effect will eventually wear off over multiple turns. For example, if the player had 2 Freeze at turn start, their attack was halved; after their turn ends, one stack is removed leaving 1 Freeze, which will continue halving attack next turn until that last stack is removed on the following turn’s end.)
+
+Thorns Persistence: If the active character had Thorns and was not struck during this turn, their thorns remain intact into the next turn
+ 
+. If their thorns did trigger (they got hit), then the thorns stacks will have been flagged for removal now. At the end of the turn in which thorns triggered, those thorns stacks are removed
+ 
+ so they won’t carry over. (If multiple different sources of thorns were gained at different times, all thorns that dealt damage this turn are cleared.) For practical simulation: simply ensure the defender’s thorns are set to 0 here if they were used in reflecting damage this turn.
+
+End-of-Turn Item Effects: Apply any “Turn End” triggers from items or effects now. (The base game uses end-of-turn mainly for status effects as above. Pure end-of-turn item triggers are less common, but if an item explicitly says “Turn End: …” do it here.) For example, Sanguine Morphosis has “Every 4th turn: Stun yourself for 1 turn and gain 3 Regen” – this would effectively trigger at the end of the character’s 4th turn in battle. Such “every Nth turn” effects should be checked at turn end. Another example: an item might say “Turn End: do X”, which would be executed here.
+
+Cleanup: Conclude the turn. If any temporary effects were stated to last “until end of turn”, they expire now. (For instance, if an item gave a bonus just for this turn, remove it; however, most buffs/debuffs in He Is Coming are tied to the stack-based status system described above.)
+
+After turn end, the initiative passes to the other combatant, and the cycle repeats at Turn Start Phase for the other side. Continue this loop (Turn Start -> Action -> Turn End for each side alternately) until one side’s Health reaches zero and the battle ends.
+
+Status Effects Glossary
+
+During battle, various status effects can affect the player or enemies. These are usually gained via item effects or enemy abilities. Below is a summary of the major status effects and what they do:
+
+Armor: (Not a status, but a stat) Armor works as a buffer to protect health. It absorbs incoming damage first and is fully restored after each fight
+gametrodon.com
+. Some effects directly add or subtract Armor. Losing all armor triggers the Exposed condition (see Triggers below).
+
+Exposed (Trigger Condition): Trigger, not a persistent status. A character is “Exposed” at the moment they lose their last point of Armor for the first time in a battle
+ 
+. This condition immediately triggers any Exposed item effects. For example, an item might grant a bonus when you become exposed (armor breaks). Exposed does not have a duration – it’s an instantaneous trigger.
+
+Wounded (Trigger Condition): Trigger, not a stackable status. A character becomes “Wounded” when their Health falls to 50% or below of max for the first time in a battle
+ 
+. This immediately triggers any Wounded item effects (healing, buffs, etc.). Like Exposed, it’s a one-time trigger per battle (unless items allow multiple triggers).
+
+Poison: A damage-over-time status (red icon) that represents venom. Mechanics: At the start of the poisoned character’s turn, if they have no armor, they take damage equal to their Poison stack count
+ 
+. Then they remove exactly 1 Poison stack at turn start
+ 
+. If the character still has armor, the poison doesn’t harm them that turn (but they still lose one stack). Poison thus waits until its victim is vulnerable (armorless) to deal damage. Each stack typically causes 1 damage when it triggers. Poison naturally decreases over time due to the 1-stack reduction each turn. (Example: 5 Poison on an unarmored player causes 5 damage, then drops to 4 poison. Next turn, 4 damage, drop to 3, etc.) Many swamp items and enemy attacks apply Poison. Keep in mind, Poison can be transferred or amplified by items – e.g. Basilisk Fang can move Poison from player to enemy
+ 
+.
+
+Regeneration: A positive status (green icon) that heals the affected character over time. Mechanics: At the end of the character’s turn, they restore Health equal to the number of Regeneration stacks, then lose 1 stack
+ 
+. Regeneration stacks gained on the same turn will stack together (the healing occurs once per turn, using the total stacks)
+ 
+. It does not expire until it triggers at turn end, and it only decreases when it heals. Example: 3 Regen → end of turn heal 3 HP, then goes to 2; next turn end heal 2, then 1, etc. This makes Regeneration very valuable for sustaining through fights. Some items also give bonuses “while you have Regeneration” (e.g. increased attack
+ 
+).
+
+Thorns: A reflective damage status. Thorns (orange icon) causes the attacker to be hurt when they strike the unit with thorns. Mechanics: When a character with Thorns is struck by an enemy’s attack, the attacker immediately takes damage equal to the current number of Thorns stacks
+ 
+. Thorns essentially “reflect” damage; e.g., if you have 5 Thorns and an enemy hits you, the enemy takes 5 damage. After triggering, Thorns are not removed instantly – they remain for the duration of that turn and can apply to multiple hits that turn if applicable
+ 
+. The thorns stacks are removed at the end of the turn if they were used (triggered) that turn
+ 
+. If they never triggered (no one hit the thorns-bearing unit that turn), the stacks persist. Thorns do not inherently expire over time without being triggered. They are a powerful defensive mechanism, especially against multi-hit attacks. Items like Blackbriar Rose or Spiny Chestnut grant thorns, and others like Cactus Cap can modify thorn behavior (e.g. doubling thorn damage if the enemy has no armor
+ 
+).
+
+Freeze: A debuff that reduces attack power. Mechanics: While a character has any Freeze stacks (blue snowflake icon), their total Attack stat is halved (50% reduction, rounded down)
+ 
+. Freeze stacks typically are applied by cold-based attacks. At the end of each of that character’s turns, remove 1 Freeze stack
+ 
+. Stacks therefore represent how many turns the effect will last (one stack = will last through this turn and wear off at end; multiple stacks = takes multiple turn-ends to fully thaw out). Freeze does not prevent the character from acting; it only weakens their damage output. (This is distinct from Stun.) Example: an enemy with 2 Freeze will have half attack for its turn, then lose one stack (still half attack next turn with 1 stack, then lose it). There are items that invert this effect (e.g. Cold Resistance makes Freeze increase your attack instead of halving it
+ 
+).
+
+Stun: A status that causes the affected character to skip their turn(s). Mechanics: Each Stun stack represents one skipped action. If a character is Stunned when their turn comes, they do not perform a strike, effectively losing their attack for that turn
+ 
+. Immediately after skipping, one Stun stack is removed
+ 
+. If multiple stacks remain, the stun will persist into future rounds, causing them to miss multiple consecutive turns until all stacks have been removed (one per turn). Stun is a very strong control effect – while stunned, a character cannot attack, though they still benefit from passive item triggers and can still be hurt or healed normally
+ 
+. Once all stun stacks are cleared, they act as normal on their next turn. For example, “Stun 2” means the unit will skip two turns of attacking. Stun is often inflicted by lightning or shock items (e.g. Life Zap stuns an enemy for 2 turns at battle start at the cost of the player’s health
+ 
+).
+
+Riptide: A damage-over-time status associated with water-themed attacks. Mechanics: Riptide causes periodic damage at the end of the afflicted character’s turn. Specifically, at turn end they take 5 damage and then one Riptide stack is removed
+ 
+. Each stack will trigger on a successive turn (one stack per turn by default)
+ 
+. So unlike Poison (which depends on having no armor and deals variable damage equal to stacks), Riptide deals a flat 5 damage per stack over time. For example, if a player has 3 Riptide, at the end of their turn they take 5 damage and go down to 2 stacks; next turn end, another 5 damage, down to 1; etc. Riptide’s damage is applied to armor/health like a normal hit. If the character has armor, the 5 damage will first reduce armor. Armor does not prevent Riptide from triggering – it will still consume a stack and do damage (just that the damage might be absorbed by armor). Some items interact with Riptide; e.g. Silverscale Armor grants +2 Armor whenever any Riptide triggers on you, and Stormtide Anchor can even stun enemies when Riptide triggers
+ 
+. Riptide stacks can be applied to enemies (commonly in the Swampland biome). Note that by default only one stack triggers per turn – having more stacks simply prolongs the effect across multiple turns unless modified
+ 
+.
+
+Acid: A corrosive status that erodes Armor. Mechanics: At the start of the affected character’s turn, they lose Armor equal to their Acid stack count
+ 
+. Essentially, Acid melts armor. If the character has less Armor than the acid value, all their Armor is stripped (Armor goes to 0)
+ 
+. Acid does not directly deal damage to Health by itself – it only removes armor. (However, without armor, the victim becomes vulnerable to Poison and direct attacks.) Acid stacks remain until they trigger; one might assume acid could decrease over time, but the base mechanic is that acid simply continuously works each turn until no armor remains. Many Swampland items convert or use acid: e.g. Acid Mutation gives the player +1 Acid at battle start and also grants a temporary attack boost equal to your Acid while you have it
+
+. Primordial Soup (a mythic item) is a special case that makes Acid also remove health, but normally acid itself doesn’t damage HP
+
+. Removing acid: some items can clear Acid (for instance, a Purity build might cleanse statuses). Otherwise, if a character has no armor left, Acid has no effect until armor is regained (the acid will remain but do nothing unless armor is restored, at which point it would strip it again at turn start). Be cautious: acid can quickly drop your armor to zero, triggering Exposed and leaving you open to Poison.
+
+Purity: A special buff that provides a delayed benefit. Purity by itself does nothing until it is removed, at which point it heals and buffs you. Mechanics: Purity stacks do not decay on their own and do not confer an ongoing bonus
+
+. Instead, when Purity is removed, for each Purity stack removed you gain +1 Attack and restore 3 Health
+
+. In other words, Purity is like a stored buff that activates upon being consumed. Some items remove Purity deliberately to trigger this effect. For example, Purelake Staff gives Purity stacks and then removes them one by one on each hit to continuously heal you and raise your attack mid-battle
+
+. Because Purity doesn’t expire by itself, you can accumulate multiple stacks and then remove them in big chunks for a large heal/attack boost. Some weapons (like Lakebed Sword) double the benefit from Purity (meaning each stack gives +2 Attack and 6 healing on removal)
+
+. Important: You only gain the benefits when Purity is taken away (by an effect or by certain conditions). Also, Purity cannot be negative; it’s always beneficial. Enemies like the Swampland Hydra stack debuffs, so Purity is a counter-strategy – you gather Purity then use a tool to remove it for a burst of recovery
+
+ 
+. Purity is a powerful status to leverage in tough fights.
+
+Additional Combat Notes
+
+“On Hit” vs “On Struck”: Many weapon effects say “On Hit”, meaning when you hit an enemy with your attack. Conversely, triggers like Thorns or some item effects function when you are hit (effectively “on struck”). For clarity: we refer to “attacker” and “defender” above – on hit triggers apply to the attacker (hitting successfully), on being hit triggers apply to the defender. Another phrasing seen is “Whenever [condition]”, such as “whenever you take damage” or “whenever the enemy gains X”. These are continuous triggers that fire every time the condition occurs.
+
+Multi-Turn Buffs/Debuffs: Some item effects apply conditions like “every other turn” or “for the rest of battle”. For example, Silverscale Greaves give an enemy Riptide every other turn if your speed is higher. “Every other turn” typically toggles an effect on alternate turns of that character. “For the rest of battle” means a permanent effect once triggered (e.g. an item might say “if health is full at battle start, gain +1 Thorn at turn start for the rest of battle”
+ 
+, which then happens each turn). These ongoing effects should be incorporated into the turn sequence as needed.
+
+Boss Fights and Special Mechanics: Bosses appear every 3rd night and have unique mechanics or significantly higher stats
+gametrodon.com
+. For simulation, note that boss abilities might violate normal rules (for instance, a boss that gets multiple attacks inherently, or one that applies a unique status). Always account for any scripted boss behavior in addition to the generic system. In general though, the same combat framework applies to bosses and regular enemies.
+
+Quickbattle (Auto-resolve): In-game, the player can press CTRL to fast-forward battles
+
+. For manual simulation, this doesn’t change mechanics – it simply means all the above happens instantaneously. So, while simulating, follow the steps without skipping logic, even if the game does so quickly.
+
+Synergies and Planning: He Is Coming is designed around finding powerful item synergies. The manual above provides the rules underpinning those synergies. For example, combining a high Speed build (to always act first) with items that give extra strikes can allow you to kill enemies before they retaliate
+
+. Or leveraging Purity with a means to remove it (like a weapon that purges Purity each hit) can turn healing into a massive sustain plus damage buff mid-fight
+
+. Understanding how each effect triggers in sequence is crucial for planning these combos.
+
+Inventory Management: Remember that you unlock additional item slots by defeating bosses (two extra slots per boss killed, up to a limit)
+
+. More items mean more potential triggers to track each battle. Before a tough fight, organize your item order to optimize which effects trigger first. For instance, you may want an armor-granting Exposed effect to trigger before a damage-dealing Exposed effect – this can be achieved by placing the armor item in a lower-numbered slot.
+
+By following this manual, you can simulate battles in He Is Coming with high fidelity, anticipating the sequence of events from the moment a battle starts to the final blow. Use the turn-by-turn breakdown to trace outcomes, and refer to the glossary for what each status or trigger means. Mastery of these mechanics will allow you to strategize effectively – adapting to deadly bosses, exploiting item combos, and ultimately surviving the Demon King’s onslaught. Good hunting, and remember: He is coming...
+
+
+ and detailed status effect descriptions from the wiki’s tags pages
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+, as well as insights from game reviews and guides
+gametrodon.com
+store.steampowered.com
+store.steampowered.com
+gametrodon.com
+. This ensures a comprehensive and up-to-date reference for battle logic in He Is Coming.
