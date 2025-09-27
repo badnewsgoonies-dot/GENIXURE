@@ -52,13 +52,12 @@ buf = { 'attack': None, 'armor': None, 'health': None, 'speed': None }
 def flush():
     global current, buf
     if current:
-        stats = {
-            'attack': int(buf['attack']) if buf['attack'] is not None else 0,
-            'armor':  int(buf['armor'])  if buf['armor']  is not None else 0,
-            'health': int(buf['health']) if buf['health'] is not None else 0,
-            'speed':  int(buf['speed'])  if buf['speed']  is not None else 0,
-        }
-        items[current] = stats
+        stats = {}
+        for k in ('attack','armor','health','speed'):
+            if buf[k] is not None:
+                stats[k] = int(buf[k])
+        if stats:
+            items[current] = stats
     buf = { 'attack': None, 'armor': None, 'health': None, 'speed': None }
 
 for raw in text:
@@ -104,8 +103,8 @@ for nm, stats in items.items():
         continue
     ov = overrides.get(key, {})
     changed = False
-    for s in ('attack','armor','health','speed'):
-        val = int(stats.get(s,0) or 0)
+    for s, val in stats.items():
+        val = int(val)
         if ov.get(s) != val:
             ov[s] = val
             changed = True
