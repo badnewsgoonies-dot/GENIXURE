@@ -1610,50 +1610,80 @@ function createAdvancedCard(item) {
 
 // Generate plain English effect description
 function generatePlainEnglishEffect(item) {
-  if (!item.effects || item.effects.length === 0) {
-    return item.effect || 'No effect description available.';
+  // Prefer authored wiki text when present
+  if (item.effect && item.effect.trim() && item.effect.trim() !== '-') {
+    return item.effect.trim();
   }
-  
-  // Simple effect-to-English conversion (expandable)
+
+  if (!item.effects || !Array.isArray(item.effects) || item.effects.length === 0) {
+    return 'No effect description available.';
+  }
+
+  // Fallback: derive from structured effects
   const sentences = item.effects.map(effect => {
     const trigger = getTriggerName(effect.trigger);
-    const actions = effect.actions.map(action => getActionDescription(action)).join(', ');
-    
+    const actionsArr = Array.isArray(effect.actions) ? effect.actions : [];
+    const actions = actionsArr.length
+      ? actionsArr.map(action => getActionDescription(action)).join(', ')
+      : 'effect';
     return `<strong>${trigger}:</strong> ${actions}.`;
   });
-  
+
   return sentences.join(' ');
 }
 
 // Get trigger display name
 function getTriggerName(trigger) {
   const triggerNames = {
+    // canonical
     battleStart: 'Battle Start',
+    battle_start: 'Battle Start',
     turnStart: 'Turn Start',
+    turn_start: 'Turn Start',
+    turn_end: 'Turn End',
+    first_turn: 'First Turn',
+    first_time: 'First Time',
+    every_other_turn: 'Every Other Turn',
+    countdown: 'Countdown',
+    whenever: 'Whenever',
+    while: 'While',
+    if: 'If',
     hit: 'On Hit',
-    wounded: 'When Wounded',
-    exposed: 'When Exposed',
+    onHit: 'On Hit',
+    wounded: 'Wounded',
+    onWounded: 'Wounded',
+    exposed: 'Exposed',
+    onExposed: 'Exposed',
+    symphony: 'Symphony',
     passive: 'Passive'
   };
-  return triggerNames[trigger] || trigger;
+  return triggerNames[trigger] || (typeof trigger === 'string' ? trigger.replace(/_/g, ' ') : '');
 }
 
 // Get action description
 function getActionDescription(action) {
-  if (!action || !action.type) return 'unknown effect';
-  
-  // Simple action descriptions (expandable)
+  if (!action || !action.type) return 'effect';
+
+  const val = (n) => (n !== undefined && n !== null ? n : '');
+  const key = action.key || action.status || '';
+
   const descriptions = {
-    deal_damage: `deal ${action.value || 1} damage`,
-    heal: `heal ${action.value || 1} HP`,
-    gain_armor: `gain ${action.value || 1} armor`,
-    gain_attack: `gain ${action.value || 1} attack`,
-    gain_speed: `gain ${action.value || 1} speed`,
-    apply_poison: `apply poison (${action.value || 1})`,
-    apply_thorns: `apply thorns (${action.value || 1})`,
-    apply_regen: `apply regen (${action.value || 1})`
+    deal_damage: `deal ${val(action.value) || 1} damage`,
+    heal: `heal ${val(action.value) || 1} HP`,
+    gain_armor: `gain ${val(action.value) || 1} armor`,
+    gain_attack: `gain ${val(action.value) || 1} attack`,
+    gain_speed: `gain ${val(action.value) || 1} speed`,
+    add_speed: `gain ${val(action.value) || 1} speed`,
+    add_attack: `gain ${val(action.value) || 1} attack`,
+    add_armor: `gain ${val(action.value) || 1} armor`,
+    add_health: `gain ${val(action.value) || 1} health`,
+    apply_poison: `apply poison (${val(action.value) || 1})`,
+    apply_thorns: `apply thorns (${val(action.value) || 1})`,
+    apply_regen: `apply regeneration (${val(action.value) || 1})`,
+    add_status: key ? `gain ${key}${action.value ? ' (' + action.value + ')' : ''}` : 'gain status',
+    add_status_to_enemy: key ? `give enemy ${key}${action.value ? ' (' + action.value + ')' : ''}` : 'give enemy status'
   };
-  
+
   return descriptions[action.type] || action.type.replace(/_/g, ' ');
 }
 
