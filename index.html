@@ -1896,7 +1896,7 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             .delta-row.positive{color:#0f3}
             .delta-row.negative{color:#f44}
             /* Compact, always-on status icon bar */
-            .status-bar{display:flex; gap:14px; align-items:center; justify-content:space-between; margin:4px 0 10px; width:100%}
+            .status-bar{display:flex; gap:14px; align-items:center; justify-content:space-between; margin:4px 0 10px; width:100%; flex-wrap:nowrap}
             .status-bar .s{display:flex; align-items:center; gap:6px; color:#ddd; font-size:14px}
             .status-bar .s img{width:18px; height:18px; image-rendering:pixelated}
             /* Bigger action caption text */
@@ -1916,15 +1916,23 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
                   <img id="arenaPlayerEventIcon" src="assets/placeholder.png">
                   <span id="arenaPlayerEventText"></span>
                 </div>
-                <div style="display:flex; justify-content:center; align-items:center; gap:16px; height: calc(var(--arena-sprite-height) + 32px);">
-                  <img id="arenaPlayerSprite" src="sprites/1.png" alt="player" style="height:var(--arena-sprite-height); width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #0f3);">
+                <div class="statusPanelGrid" style="display:grid; grid-template-columns: 110px 1fr 120px; align-items:center; gap:16px; height: calc(var(--arena-sprite-height) + 32px);">
+                  <!-- Left: vertical stat pills -->
+                  <div class="pills-vertical" style="display:flex; flex-direction:column; gap:10px; align-items:stretch;">
+                    <div class="pill" style="justify-content:center;"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaPlayerHP">10</span></div>
+                    <div class="pill" style="justify-content:center;"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaPlayerArmor">0</span></div>
+                    <div class="pill" style="justify-content:center;"><img src="assets/attack.png" style="width:16px;height:16px;"><span id="arenaPlayerAttack">0</span></div>
+                    <div class="pill" style="justify-content:center;"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaPlayerSpeed">0</span></div>
+                  </div>
+
+                  <!-- Center: framed sprite -->
+                  <div class="sprite-frame" style="position:relative; display:grid; place-items:center; height:100%;">
+                    <div style="position:absolute; inset:0; border:1px solid rgba(255,255,255,0.15); border-radius:12px;"></div>
+                    <img id="arenaPlayerSprite" src="sprites/1.png" alt="player" style="height:var(--arena-sprite-height); width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #0f3);">
+                  </div>
+
+                  <!-- Right: delta panel -->
                   <div id="arenaPlayerDelta" class="delta-panel" aria-label="Player changes"></div>
-                </div>
-                <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
-                  <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaPlayerHP">10</span></div>
-                  <div class="pill"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaPlayerArmor">0</span></div>
-                  <div class="pill"><img src="assets/attack.png" style="width:16px;height:16px;"><span id="arenaPlayerAttack">0</span></div>
-                  <div class="pill"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaPlayerSpeed">0</span></div>
                 </div>
                 <div style="margin-top:12px; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; color:#ccc; font-size:13px;">
                   <div style="font-weight:700; color:#0f3; margin-bottom:4px;">Action</div>
@@ -1952,15 +1960,23 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
                   <img id="arenaOpponentEventIcon" src="assets/placeholder.png">
                   <span id="arenaOpponentEventText"></span>
                 </div>
-                <div style="display:flex; justify-content:center; align-items:center; gap:16px; height: calc(var(--arena-sprite-height) + 32px);">
+                <div class="statusPanelGrid" style="display:grid; grid-template-columns: 110px 1fr 120px; align-items:center; gap:16px; height: calc(var(--arena-sprite-height) + 32px);">
+                  <!-- Left: vertical stat pills -->
+                  <div class="pills-vertical" style="display:flex; flex-direction:column; gap:10px; align-items:stretch;">
+                    <div class="pill" style="justify-content:center;"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaOpponentHP">10</span></div>
+                    <div class="pill" style="justify-content:center;"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaOpponentArmor">0</span></div>
+                    <div class="pill" style="justify-content:center;"><img src="assets/attack.png" style="width:16px;height:16px;"><span id="arenaOpponentAttack">0</span></div>
+                    <div class="pill" style="justify-content:center;"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaOpponentSpeed">0</span></div>
+                  </div>
+
+                  <!-- Center: framed sprite -->
+                  <div class="sprite-frame" style="position:relative; display:grid; place-items:center; height:100%;">
+                    <div style="position:absolute; inset:0; border:1px solid rgba(255,255,255,0.15); border-radius:12px;"></div>
+                    <img id="arenaOpponentSprite" src="sprites/2.png" alt="opponent" style="height:var(--arena-sprite-height); width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #f33);">
+                  </div>
+
+                  <!-- Right: delta panel -->
                   <div id="arenaOpponentDelta" class="delta-panel" aria-label="Opponent changes"></div>
-                  <img id="arenaOpponentSprite" src="sprites/2.png" alt="opponent" style="height:var(--arena-sprite-height); width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #f33);">
-                </div>
-                <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
-                  <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaOpponentHP">10</span></div>
-                  <div class="pill"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaOpponentArmor">0</span></div>
-                  <div class="pill"><img src="assets/attack.png" style="width:16px;height:16px;"><span id="arenaOpponentAttack">0</span></div>
-                  <div class="pill"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaOpponentSpeed">0</span></div>
                 </div>
                 <div style="margin-top:12px; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; color:#ccc; font-size:13px; text-align:right;">
                   <div style="font-weight:700; color:#f66; margin-bottom:4px;">Action</div>
