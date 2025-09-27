@@ -1,0 +1,1302 @@
+{
+  "generatedAt": "2025-09-27T09:02:54.570Z",
+  "sources": [
+    "New folder\\complete_effects_code.js"
+  ],
+  "entries": {
+    "weapons/bloodlords_axe": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "life_drain",
+            "value": 5
+          }
+        ]
+      }
+    ],
+    "weapons/dashmaster_s_dagger": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_strikes_equal_to_speed"
+          }
+        ]
+      }
+    ],
+    "weapons/frozen_iceblade": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status",
+            "status": "freeze",
+            "value": {
+              "base": 3,
+              "gold": 6,
+              "diamond": 12
+            }
+          }
+        ]
+      }
+    ],
+    "weapons/fungal_rapier": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status",
+            "status": "poison",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "weapons/grilling_skewer": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_strikes",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "weapons/ring_blades": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "steal_stat",
+            "value": {
+              "stat": "attack",
+              "amount": 1
+            }
+          }
+        ]
+      }
+    ],
+    "weapons/slime_sword": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status",
+            "status": "acid",
+            "value": 3
+          },
+          {
+            "type": "add_status_to_enemy",
+            "status": "acid",
+            "value": 3
+          }
+        ]
+      }
+    ],
+    "weapons/wave_breaker": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status_to_enemy_per_negative_base_stat",
+            "value": {
+              "stat": "attack",
+              "status": "riptide",
+              "perValue": 2
+            }
+          }
+        ]
+      }
+    ],
+    "items/basilisk_scale": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": 5
+          },
+          {
+            "type": "add_status",
+            "status": "poison",
+            "value": 5
+          }
+        ]
+      }
+    ],
+    "items/bramble_belt": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status",
+            "status": "thorns",
+            "value": 1
+          },
+          {
+            "type": "add_strikes_to_enemy",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "items/clearspring_feather": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "transfer_random_status",
+            "value": {
+              "amount": {
+                "base": 1,
+                "gold": 2,
+                "diamond": 4
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "items/corroded_bone": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "convert_enemy_half_hp_to_armor"
+          }
+        ]
+      }
+    ],
+    "items/crimson_fang": [
+      {
+        "trigger": "battleStart",
+        "conditions": [
+          {
+            "type": "hp_equal_max"
+          }
+        ],
+        "actions": [
+          {
+            "type": "deal_damage",
+            "target": "self",
+            "value": 5
+          },
+          {
+            "type": "add_strikes",
+            "value": 2
+          }
+        ]
+      }
+    ],
+    "items/frostbite_gauntlet": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status_to_enemy",
+            "status": "freeze",
+            "value": {
+              "base": 1,
+              "gold": 2,
+              "diamond": 4
+            }
+          }
+        ]
+      }
+    ],
+    "items/lifeblood_armor": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "convert_health_to_armor",
+            "value": 0.5
+          }
+        ]
+      }
+    ],
+    "items/lightspeed_potion": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "restore_health_equal_to_stat",
+            "stat": "speed"
+          }
+        ]
+      }
+    ],
+    "items/slime_armor": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status",
+            "status": "acid",
+            "value": {
+              "base": 1,
+              "gold": 2,
+              "diamond": 4
+            }
+          }
+        ]
+      }
+    ],
+    "items/stormcloud_armor": [
+      {
+        "trigger": "battleStart",
+        "conditions": [
+          {
+            "type": "speed_greater_than_armor"
+          }
+        ],
+        "actions": [
+          {
+            "type": "stun_enemy_for_turns",
+            "value": {
+              "base": 2,
+              "gold": 3,
+              "diamond": 4
+            }
+          }
+        ]
+      }
+    ],
+    "items/weaver_armor": [
+      {
+        "trigger": "battleStart",
+        "conditions": [
+          {
+            "type": "base_stat_zero",
+            "stat": "armor"
+          }
+        ],
+        "actions": [
+          {
+            "type": "gain_armor_equal_to_current_hp"
+          }
+        ]
+      }
+    ],
+    "items/rusty_ring": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status_to_enemy",
+            "status": "acid",
+            "value": {
+              "base": 1,
+              "gold": 2,
+              "diamond": 4
+            }
+          }
+        ]
+      }
+    ],
+    "items/saltcrusted_crown": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status",
+            "status": "riptide",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "items/sapphire_ring": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "steal_stat",
+            "value": {
+              "stat": "attack",
+              "amount": {
+                "base": 2,
+                "gold": 4,
+                "diamond": 8
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "items/slime_booster": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "convert_status_to_attack",
+            "value": {
+              "from": "acid",
+              "stacksToUse": {
+                "base": 1,
+                "gold": 2,
+                "diamond": 3
+              },
+              "amountPerStack": {
+                "base": 2,
+                "gold": 4,
+                "diamond": 6
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "items/sour_lemon": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status",
+            "status": "acid",
+            "value": {
+              "base": 1,
+              "gold": 2,
+              "diamond": 4
+            }
+          }
+        ]
+      }
+    ],
+    "items/swiftstrike_belt": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "deal_damage",
+            "target": "self",
+            "value": {
+              "base": 3,
+              "gold": 4,
+              "diamond": 5
+            }
+          },
+          {
+            "type": "add_strikes",
+            "value": {
+              "base": 1,
+              "gold": 2,
+              "diamond": 3
+            }
+          }
+        ]
+      }
+    ],
+    "items/thorn_ring": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "deal_damage",
+            "target": "self",
+            "value": 5
+          },
+          {
+            "type": "add_status",
+            "status": "thorns",
+            "value": 10
+          }
+        ]
+      }
+    ],
+    "items/weaver_shield": [
+      {
+        "trigger": "battleStart",
+        "conditions": [
+          {
+            "type": "base_stat_zero",
+            "stat": "armor"
+          }
+        ],
+        "actions": [
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": {
+              "base": 4,
+              "gold": 8,
+              "diamond": 16
+            }
+          }
+        ]
+      }
+    ],
+    "items/kindling_bomb": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "deal_damage",
+            "value": 1
+          },
+          {
+            "type": "increase_next_bomb_damage",
+            "value": 3
+          }
+        ]
+      }
+    ],
+    "items/friendship_bracelet": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "steal_stat",
+            "value": {
+              "stat": "attack",
+              "amount": 1
+            }
+          }
+        ]
+      }
+    ],
+    "items/melon_bomb": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "decrease_random_status",
+            "value": 1
+          },
+          {
+            "type": "deal_damage",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "items/cherry_blade": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "deal_damage",
+            "value": 4
+          }
+        ]
+      }
+    ],
+    "items/explosive_roast": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "deal_damage",
+            "value": 1
+          },
+          {
+            "type": "deal_damage",
+            "value": 1
+          },
+          {
+            "type": "deal_damage",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "items/redwood_helmet": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "restore_health",
+            "value": {
+              "base": 3,
+              "gold": 6,
+              "diamond": 12
+            }
+          }
+        ]
+      }
+    ],
+    "items/cracked_bouldershield": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": {
+              "base": 7,
+              "gold": 14,
+              "diamond": 28
+            }
+          }
+        ]
+      }
+    ],
+    "items/royal_helmet": [
+      {
+        "trigger": "onExposed",
+        "conditions": [
+          {
+            "type": "min_gold",
+            "value": 21
+          }
+        ],
+        "actions": [
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": {
+              "base": 10,
+              "gold": 20,
+              "diamond": 30
+            }
+          }
+        ]
+      }
+    ],
+    "items/leather_waterskin": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "gain_status_per_tagged_item",
+            "value": {
+              "tag": "Water",
+              "status": "purity",
+              "base": 2,
+              "gold": 4,
+              "diamond": 6
+            }
+          }
+        ]
+      }
+    ],
+    "items/twisted_root": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "gain_status_per_tagged_item",
+            "value": {
+              "tag": "Wood",
+              "status": "regeneration",
+              "base": 1,
+              "gold": 2,
+              "diamond": 4
+            }
+          }
+        ]
+      }
+    ],
+    "items/purelake_armor": [
+      {
+        "trigger": "onExposed",
+        "conditions": [
+          {
+            "type": "player_has_status",
+            "status": "purity",
+            "min": 1
+          }
+        ],
+        "actions": [
+          {
+            "type": "remove_status",
+            "status": "purity",
+            "value": 1
+          },
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": {
+              "base": 5,
+              "gold": 10,
+              "diamond": 20
+            }
+          }
+        ]
+      }
+    ],
+    "items/riverflow_violin": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": {
+              "base": 4,
+              "gold": 8,
+              "diamond": 16
+            }
+          }
+        ]
+      }
+    ],
+    "items/silverscale_fish": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "add_status_to_enemy",
+            "status": "riptide",
+            "value": {
+              "base": 1,
+              "gold": 2,
+              "diamond": 4
+            }
+          }
+        ]
+      }
+    ],
+    "weapons/marble_sword": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "gain_stat",
+            "stat": "attack",
+            "value": 3
+          }
+        ]
+      }
+    ],
+    "weapons/chainmail_sword": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "gain_stat_equal_to_base_stat",
+            "stat": "armor"
+          }
+        ]
+      }
+    ],
+    "weapons/brittlebark_club": [
+      {
+        "trigger": "onExposed",
+        "conditions": [
+          {
+            "type": "player_has_status",
+            "status": "wounded",
+            "min": 1
+          }
+        ],
+        "actions": [
+          {
+            "type": "gain_stat",
+            "stat": "attack",
+            "value": -2
+          }
+        ]
+      }
+    ],
+    "items/marshlight_lantern": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "deal_damage",
+            "target": "self",
+            "value": 3
+          },
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": 8
+          }
+        ]
+      }
+    ],
+    "items/melon_bomb_exposed": [
+      {
+        "trigger": "onExposed",
+        "conditions": [
+          {
+            "type": "player_has_status",
+            "status": "wounded",
+            "min": 1
+          }
+        ],
+        "actions": [
+          {
+            "type": "decrease_random_status",
+            "value": 1
+          },
+          {
+            "type": "deal_damage",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "items/cherry_blade_exposed": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "deal_damage",
+            "value": 4
+          }
+        ]
+      }
+    ],
+    "items/underwater_watermelon": [
+      {
+        "trigger": "onExposed",
+        "conditions": [
+          {
+            "type": "player_has_status",
+            "status": "wounded",
+            "min": 1
+          }
+        ],
+        "actions": [
+          {
+            "type": "decrease_random_status",
+            "value": 1
+          },
+          {
+            "type": "add_status_to_enemy",
+            "status": "riptide",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "items/melon_lemonade": [
+      {
+        "trigger": "onExposed",
+        "conditions": [
+          {
+            "type": "player_has_status",
+            "status": "wounded",
+            "min": 1
+          }
+        ],
+        "actions": [
+          {
+            "type": "clear_status",
+            "status": "acid"
+          }
+        ]
+      }
+    ],
+    "items/horned_melon": [
+      {
+        "trigger": "onExposed",
+        "conditions": [
+          {
+            "type": "player_has_status",
+            "status": "wounded",
+            "min": 1
+          }
+        ],
+        "actions": [
+          {
+            "type": "decrease_random_status",
+            "value": 1
+          },
+          {
+            "type": "decrease_random_status",
+            "value": 1
+          },
+          {
+            "type": "gain_stat",
+            "stat": "thorns",
+            "value": 2
+          }
+        ]
+      }
+    ],
+    "items/mineral_water": [
+      {
+        "trigger": "onExposed",
+        "conditions": [
+          {
+            "type": "hp_equal_max"
+          }
+        ],
+        "actions": [
+          {
+            "type": "decrease_random_status",
+            "value": 2
+          },
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": 5
+          }
+        ]
+      }
+    ],
+    "items/shark_roast": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "add_status_to_enemy",
+            "status": "riptide",
+            "value": 2
+          }
+        ]
+      }
+    ],
+    "items/marbled_stonefish": [
+      {
+        "trigger": "onExposed",
+        "conditions": [
+          {
+            "type": "hp_equal_max"
+          }
+        ],
+        "actions": [
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": 5
+          },
+          {
+            "type": "add_status_to_enemy",
+            "status": "riptide",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "items/honey_caviar": [
+      {
+        "trigger": "onExposed",
+        "actions": [
+          {
+            "type": "add_status_to_enemy",
+            "status": "riptide",
+            "value": 10
+          }
+        ]
+      }
+    ],
+    "weapons/bloodmoon_dagger": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "gain_stat",
+            "stat": "attack",
+            "value": 5
+          },
+          {
+            "type": "deal_damage",
+            "target": "self",
+            "value": 2
+          }
+        ]
+      }
+    ],
+    "weapons/liferoot_staff": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "gain_status",
+            "status": "regeneration",
+            "base": 3,
+            "gold": 6,
+            "diamond": 12
+          }
+        ]
+      }
+    ],
+    "items/vampiric_wine": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "restore_health",
+            "value": {
+              "base": 4,
+              "gold": 8,
+              "diamond": 16
+            }
+          }
+        ]
+      }
+    ],
+    "items/blood_chain": [
+      {
+        "trigger": "onEnemyWounded",
+        "conditions": [
+          {
+            "type": "first_time_enemy_wounded"
+          }
+        ],
+        "actions": [
+          {
+            "type": "trigger_all_wounded_items"
+          }
+        ]
+      }
+    ],
+    "items/swiftstrike_gauntlet": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "add_strikes",
+            "value": 2
+          }
+        ]
+      }
+    ],
+    "items/chainmail_armor": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "gain_stat_equal_to_base_stat",
+            "stat": "armor"
+          }
+        ]
+      }
+    ],
+    "items/razor_breastplate": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "gain_thorns_equal_to_enemy_attack"
+          }
+        ]
+      }
+    ],
+    "items/slime_potion": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "gain_armor_equal_to_lost_health"
+          },
+          {
+            "type": "add_status",
+            "status": "acid",
+            "value": 5
+          }
+        ]
+      }
+    ],
+    "items/thunder_cloud": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "stun_enemy_for_turns",
+            "value": {
+              "base": 3,
+              "gold": 4,
+              "diamond": 5
+            }
+          }
+        ]
+      }
+    ],
+    "items/petrifying_flask": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": {
+              "base": 10,
+              "gold": 20,
+              "diamond": 40
+            }
+          },
+          {
+            "type": "stun_self_for_turns",
+            "value": {
+              "base": 2,
+              "gold": 4,
+              "diamond": 8
+            }
+          }
+        ]
+      }
+    ],
+    "items/royal_horn": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "gain_gold",
+            "value": {
+              "base": 2,
+              "gold": 3,
+              "diamond": 4
+            }
+          }
+        ]
+      }
+    ],
+    "items/liferoot_lute": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "gain_status",
+            "status": "regeneration",
+            "base": 3,
+            "gold": 6,
+            "diamond": 12
+          }
+        ]
+      }
+    ],
+    "items/stormcloud_drum": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "stun_enemy_for_turns",
+            "value": {
+              "base": 1,
+              "gold": 2,
+              "diamond": 3
+            }
+          }
+        ]
+      }
+    ],
+    "items/blood_rune": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "retrigger_last_wounded_item"
+          }
+        ]
+      }
+    ],
+    "items/echo_rune": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "retrigger_random_battle_start_item"
+          }
+        ]
+      }
+    ],
+    "items/cherry_cocktail": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "deal_damage",
+            "value": 3
+          },
+          {
+            "type": "restore_health",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "deal_damage",
+            "value": 3
+          },
+          {
+            "type": "restore_health",
+            "value": 3
+          }
+        ]
+      }
+    ],
+    "items/deepsea_wine": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "add_status_to_enemy",
+            "status": "riptide",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "trigger": "onRiptideTrigger",
+        "actions": [
+          {
+            "type": "restore_health",
+            "value": 3
+          }
+        ]
+      }
+    ],
+    "items/bloody_steak": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "restore_health",
+            "value": 10
+          },
+          {
+            "type": "gain_stat",
+            "stat": "armor",
+            "value": 5
+          }
+        ]
+      }
+    ],
+    "items/blood_sausage": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "restore_health",
+            "value": 1
+          },
+          {
+            "type": "restore_health",
+            "value": 1
+          },
+          {
+            "type": "restore_health",
+            "value": 1
+          },
+          {
+            "type": "restore_health",
+            "value": 1
+          },
+          {
+            "type": "restore_health",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "items/spiked_wine": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "restore_health",
+            "value": 5
+          },
+          {
+            "type": "add_status",
+            "status": "thorns",
+            "value": 5
+          }
+        ]
+      }
+    ],
+    "items/sweet_wine": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "restore_health",
+            "value": 30
+          }
+        ]
+      }
+    ],
+    "items/melon_wine": [
+      {
+        "trigger": "battleStart",
+        "conditions": [
+          {
+            "type": "player_has_status",
+            "status": "exposed",
+            "min": 1
+          },
+          {
+            "type": "player_has_status",
+            "status": "wounded",
+            "min": 1
+          }
+        ],
+        "actions": [
+          {
+            "type": "decrease_random_status",
+            "value": 1
+          },
+          {
+            "type": "restore_health",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "trigger": "onWounded",
+        "conditions": [
+          {
+            "type": "player_has_status",
+            "status": "exposed",
+            "min": 1
+          }
+        ],
+        "actions": [
+          {
+            "type": "decrease_random_status",
+            "value": 1
+          },
+          {
+            "type": "restore_health",
+            "value": 3
+          }
+        ]
+      }
+    ],
+    "items/blood_orange": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "add_status",
+            "status": "acid",
+            "value": 3
+          }
+        ]
+      },
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "convert_status",
+            "value": {
+              "from": "acid",
+              "to": "regeneration"
+            }
+          }
+        ]
+      }
+    ],
+    "items/kings_blade": [
+      {
+        "trigger": "battleStart",
+        "actions": [
+          {
+            "type": "trigger_exposed_and_wounded_at_battle_start"
+          }
+        ]
+      }
+    ],
+    "items/broken_winebottle": [
+      {
+        "trigger": "onWounded",
+        "actions": [
+          {
+            "type": "strike_until_enemy_wounded"
+          }
+        ]
+      }
+    ]
+  }
+}

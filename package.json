@@ -12,7 +12,8 @@
     "unmatched": "node scripts/unmatched.mjs",
     "fetch:missing": "node scripts/fetch_missing_from_wiki.mjs",
     "test": "node -e \"const sim=require('./heic_sim.js'); sim.simulate({hp:10,atk:0},{hp:10,atk:0});\"",
-    "audit:wiki": "node scripts/audit_wiki.mjs --apply"
+    "audit:wiki": "node scripts/audit_wiki.mjs --apply",
+    "build:effects": "node scripts/generate_effects_patch.js"
   },
   "devDependencies": {
     "cheerio": "^1.1.2",

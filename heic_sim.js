@@ -585,8 +585,9 @@
       self.hp += amount; // Also restore the health gained
       if (log) log(`${self.name} gains ${amount} max health`);
     },
-    convert_health_to_armor: ({ self, percentage, log }) => {
-      const healthToConvert = Math.floor(self.hp * percentage);
+    convert_health_to_armor: ({ self, percentage, value, log }) => {
+      const pct = (typeof percentage === 'number') ? percentage : (typeof value === 'number' ? value : 0);
+      const healthToConvert = Math.floor(self.hp * pct);
       if (healthToConvert > 0) {
         self.hp -= healthToConvert;
         self.armor += healthToConvert;
@@ -1627,6 +1628,161 @@
       }
     }
   }
+  // --- Merge additional/alias actions from external effect sets ---
+  try {
+    Object.assign(EFFECT_ACTIONS, {
+      life_drain: ({ self, other, log, value }) => {
+        const dmg = (value|0) || 1;
+        self.damageOther(dmg, other);
+        const healed = self.heal(dmg);
+        if (log) log(`${self.name} drains ${dmg} life and heals ${healed}`);
+      },
+      steal_stat: ({ self, other, log, value }) => {
+        const stat = (value && value.stat) || 'attack';
+        const amount = (value && (value.amount|0)) || 1;
+        const map = { attack: 'atk', armor: 'armor', speed: 'speed', health: 'hp' };
+        const k = map[stat] || stat;
+        let stolen = 0;
+        if (k === 'hp') {
+          stolen = Math.min(amount, other.hp);
+          other.hp -= stolen;
+          self.heal(stolen);
+        } else {
+          const cur = other[k] || 0;
+          stolen = Math.min(amount, cur);
+          other[k] = cur - stolen;
+          self[k] = (self[k] || 0) + stolen;
+        }
+        if (stolen > 0 && log) log(`${self.name} steals ${stolen} ${stat} from ${other.name}`);
+      },
+      gain_armor_equal_to_current_hp: ({ self, log }) => {
+        const amt = self.hp || 0;
+        if (amt > 0) {
+          self.addArmor(amt);
+          if (log) log(`${self.name} gains ${amt} armor (equal to current HP)`);
+        }
+      },
+      convert_enemy_half_hp_to_armor: ({ self, other, log }) => {
+        const stolen = Math.floor((other.hp || 0) / 2);
+        if (stolen > 0) {
+          other.hp = Math.max(0, (other.hp || 0) - stolen);
+          self.addArmor(stolen);
+          if (log) log(`${self.name} converts ${stolen} of ${other.name}'s HP into armor`);
+        }
+      },
+      restore_health_equal_to_stat: ({ self, log, stat }) => {
+        const val = self[stat] || 0;
+        if (val > 0) {
+          const healed = self.heal(val);
+          if (log) log(`${self.name} restores ${healed} health (equal to ${stat})`);
+        }
+      },
+      convert_status_to_attack: ({ self, log, value, tier }) => {
+        const from = (value && value.from) || 'acid';
+        const stacksSpec = value && value.stacksToUse;
+        const perSpec = value && value.amountPerStack;
+        const pick = (spec) => {
+          if (spec == null) return undefined;
+          if (typeof spec === 'number') return spec;
+          if (typeof spec === 'object') {
+            const t = String(tier || 'base').toLowerCase();
+            if (t === 'diamond' && typeof spec.diamond === 'number') return spec.diamond;
+            if (t === 'gold' && typeof spec.gold === 'number') return spec.gold;
+            if (typeof spec.base === 'number') return spec.base;
+          }
+          return undefined;
+        };
+        const stacks = pick(stacksSpec) ?? 1;
+        const per = pick(perSpec) ?? 2;
+        const have = self.statuses[from] || 0;
+        const use = Math.min(have, stacks);
+        if (use > 0) {
+          self.addStatus(from, -use);
+          const gain = use * per;
+          self.addAtk(gain);
+          if (log) log(`${self.name} converts ${use} ${from} into ${gain} attack`);
+        }
+      },
+      add_strikes_to_enemy: ({ other, log, value }) => {
+        const amt = (value|0) || 1;
+        other.extraStrikes = (other.extraStrikes || 0) + amt;
+        if (log) log(`${other.name} gains ${amt} additional strikes`);
+      },
+      transfer_random_status: ({ self, other, log, value }) => {
+        const keys = Object.keys(self.statuses || {}).filter(k => (self.statuses[k] || 0) > 0);
+        if (keys.length === 0) return;
+        const idx = Math.floor(Math.random() * keys.length);
+        const status = keys[idx];
+        let amount = 1;
+        const spec = value && value.amount;
+        if (typeof spec === 'number') amount = spec;
+        else if (typeof spec === 'object') {
+          amount = (spec.base|0) || 1;
+        }
+        const transfer = Math.min(amount, self.statuses[status] || 0);
+        if (transfer > 0) {
+          self.addStatus(status, -transfer);
+          other.addStatus(status, transfer);
+          if (log) log(`${self.name} transfers ${transfer} ${status} to ${other.name}`);
+        }
+      },
+      add_status_to_enemy_per_negative_base_stat: ({ self, other, log, value }) => {
+        const stat = (value && value.stat) || 'attack';
+        const status = (value && value.status) || 'riptide';
+        const per = (value && value.perValue) || 1;
+        const map = { attack: 'atk', armor: 'armor', speed: 'speed', health: 'hp' };
+        const k = map[stat] || stat;
+        const v = self[k] || 0;
+        const neg = Math.max(0, -v);
+        const amt = neg * per;
+        if (amt > 0) {
+          other.addStatus(status, amt);
+          if (log) log(`${other.name} gains ${amt} ${status} (per negative ${stat})`);
+        }
+      },
+      // --- Additional helpers used by patch entries ---
+      clear_status: ({ self, key, log }) => {
+        if (!key) return; const cur = self.statuses[key] || 0; if (cur > 0) { self.addStatus(key, -cur); if (log) log(`${self.name} clears ${key}`); }
+      },
+      gain_gold: ({ self, value, log }) => { const n = (value|0) || 1; self.addGold(n); if (log) log(`${self.name} gains ${n} gold`); },
+      gain_stat_equal_to_base_stat: ({ self, log, stat }) => {
+        if (!stat) return;
+        let amt = 0;
+        if (stat === 'armor') amt = self.baseArmor || 0;
+        // Other base stats not tracked distinctly; leave as 0 to avoid overcounting
+        if (amt > 0) {
+          if (stat === 'armor') self.addArmor(amt);
+          else if (stat === 'attack') self.addAtk(amt);
+          else if (stat === 'speed') self.speed += amt;
+          else if (stat === 'health') self.heal(amt);
+          if (log) log(`${self.name} gains ${amt} ${stat} (equal to base ${stat})`);
+        }
+      },
+      gain_status_per_tagged_item: ({ self, log, value }) => {
+        const tag = value?.tag || 'Stone';
+        const status = value?.status || 'thorns';
+        const per = (value?.amount_per_item|0) || (value?.per_item|0) || 1;
+        const count = typeof self.countItemsByTag === 'function' ? self.countItemsByTag(tag) : 0;
+        const amt = count * per;
+        if (amt > 0) { self.addStatus(status, amt); if (log) log(`${self.name} gains ${amt} ${status} (${per} per ${tag})`); }
+      },
+      gain_thorns_equal_to_enemy_attack: ({ self, other, log }) => {
+        const amt = other?.atk || 0; if (amt > 0) { self.addStatus('thorns', amt); if (log) log(`${self.name} gains ${amt} thorns (enemy attack)`); }
+      },
+      stun_enemy_for_turns: ({ other, value, log }) => { const n=(value|0)||1; other.addStatus('stun', n); if (log) log(`${other.name} is stunned for ${n} turns`); },
+      stun_self_for_turns: ({ self, value, log }) => { const n=(value|0)||1; self.addStatus('stun', n); if (log) log(`${self.name} is stunned for ${n} turns`); },
+      trigger_exposed_and_wounded_at_battle_start: ({ self, other, log }) => {
+        try { runEffects('onExposed', self, other, log); } catch(_){}
+        try { runEffects('onWounded', self, other, log); } catch(_){}
+        if (log) log(`${self.name} triggers Exposed and Wounded effects`);
+      },
+      // Soft stubs to avoid unknown-action logs (no-ops with a log)
+      retrigger_last_wounded_item: ({ self, log }) => { if (log) log(`${self.name} tries to retrigger last Wounded item (not implemented)`); },
+      retrigger_random_battle_start_item: ({ self, log }) => { if (log) log(`${self.name} tries to retrigger a random Battle Start item (not implemented)`); },
+      trigger_all_wounded_items: ({ self, log }) => { if (log) log(`${self.name} triggers all Wounded items (not implemented)`); },
+      strike_until_enemy_wounded: ({ self, log }) => { if (log) log(`${self.name} would strike until enemy is wounded (not implemented)`); }
+    });
+  } catch (_){ }
   // --- End of Effect Engine ---
 
   // --- Set Logic ---
@@ -1652,7 +1808,13 @@
 
   function normalizeSlug(x) {
     if (!x) return '';
-    if (typeof x === 'string') return x;
+    if (typeof x === 'string') {
+      const aliases = {
+        'weapons/bloodlords_axe': 'weapons/bloodlord_s_axe',
+        'weapons/dashmasters_dagger': 'weapons/dashmaster_s_dagger'
+      };
+      return aliases[x] || x;
+    }
     if (x.bucket && x.slug) return `${x.bucket}/${x.slug}`;
     if (x.slug) return String(x.slug);
     return String(x);
@@ -2126,10 +2288,13 @@ let CURRENT_SOURCE_SLUG = null;
     
     // Process Riptide at turn end (per wiki rules)
     if (a.statuses.riptide > 0) {
+      const rip = a.statuses.riptide;
       // Riptide deals damage directly (bypasses armor like poison)
-      a.hp -= a.statuses.riptide;
+      a.hp -= rip;
       if (a.hp < 0) a.hp = 0;
-      log(`${a.name} suffers ${a.statuses.riptide} riptide damage`);
+      log(`${a.name} suffers ${rip} riptide damage`);
+      // Allow items to react specifically to Riptide ticks
+      runEffects('onRiptideTrigger', a, other, log, { amount: rip });
       
       // Check if Riptide caused Wounded trigger (HP crossed 50% threshold)
       if (!a.woundedDone && a.hp <= Math.floor(a.hpMax/2)) {

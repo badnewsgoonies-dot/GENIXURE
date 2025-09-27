@@ -136,6 +136,45 @@ async function loadData() {
       }
     }
 
+    // Merge generated effects patch (from "New folder" sources) if present
+    try {
+      const resP = await fetch('effects_patch.generated.json', { cache: 'no-store' });
+      if (resP.ok) {
+        const patch = await resP.json();
+        const entries = patch && patch.entries ? patch.entries : {};
+        let mergedCount = 0;
+        const alias = (s) => {
+          const map = {
+            'weapons/bloodlords_axe': 'weapons/bloodlord_s_axe',
+            'weapons/dashmasters_dagger': 'weapons/dashmaster_s_dagger'
+          };
+          return map[s] || s;
+        };
+        for (const [slugRaw, effects] of Object.entries(entries)) {
+          const slug = alias(slugRaw);
+          if (!RAW_DATA[slug]) {
+            // Create a minimal shell if missing
+            RAW_DATA[slug] = {
+              bucket: slug.startsWith('weapons/') ? 'weapons' : slug.startsWith('items/') ? 'items' : undefined,
+              name: slug.split('/').slice(-1)[0].replace(/_/g, ' '),
+              slug: slug.split('/').slice(-1)[0],
+              stats: { armor: 0, attack: 0, health: 0, speed: 0 },
+              effects: []
+            };
+          }
+          const arr = Array.isArray(RAW_DATA[slug].effects) ? RAW_DATA[slug].effects : (RAW_DATA[slug].effects = []);
+          // Append, do not dedupe to preserve author ordering
+          arr.push(...effects);
+          mergedCount++;
+        }
+        console.log(`  Merged effects patch: ${mergedCount} slugs`);
+      } else {
+        console.log('  effects_patch.generated.json not found (skip)');
+      }
+    } catch (e) {
+      console.warn('Failed to merge effects patch:', e.message);
+    }
+
     try { window.HEIC_DETAILS = RAW_DATA; } catch(_) {}
 
     // Make data iterable
