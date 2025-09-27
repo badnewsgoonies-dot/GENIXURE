@@ -1,0 +1,82 @@
+{
+  "updated": 89,
+  "unresolved": 19,
+  "unresolvedSample": [
+    {
+      "key": "items/boots_of_the_hero",
+      "name": "Boots of the Hero"
+    },
+    {
+      "key": "items/champion_s_armor",
+      "name": "Champion's Armor"
+    },
+    {
+      "key": "items/champion_s_greaves",
+      "name": "Champion's Greaves"
+    },
+    {
+      "key": "items/elderwood_necklace",
+      "name": "Elderwood Necklace"
+    },
+    {
+      "key": "items/emerald_crown",
+      "name": "Emerald Crown"
+    },
+    {
+      "key": "items/leather_glove",
+      "name": "Leather Glove"
+    },
+    {
+      "key": "items/leather_vest",
+      "name": "Leather Vest"
+    },
+    {
+      "key": "items/ruby_crown",
+      "name": "Ruby Crown"
+    },
+    {
+      "key": "items/sapphire_crown",
+      "name": "Sapphire Crown"
+    },
+    {
+      "key": "items/shield_of_the_hero",
+      "name": "Shield of the Hero"
+    },
+    {
+      "key": "sets/glasses_of_the_hero",
+      "name": "Glasses of the Hero"
+    },
+    {
+      "key": "sets/highborn",
+      "name": "Highborn"
+    },
+    {
+      "key": "weapons/champion_s_blade",
+      "name": "Champion's Blade"
+    },
+    {
+      "key": "weapons/elderwood_staff",
+      "name": "Elderwood Staff"
+    },
+    {
+      "key": "weapons/featherweight_blade",
+      "name": "Featherweight Blade"
+    },
+    {
+      "key": "weapons/ironstone_greatsword",
+      "name": "Ironstone Greatsword"
+    },
+    {
+      "key": "weapons/redwood_rod",
+      "name": "Redwood Rod"
+    },
+    {
+      "key": "weapons/spearshield_lance",
+      "name": "Spearshield Lance"
+    },
+    {
+      "key": "weapons/sword_of_the_hero",
+      "name": "Sword of the Hero"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
-/* Generated 2025-09-27T04:09:45.370Z • sha256:d6063a9051bef9d3 */
+/* Generated 2025-09-27T05:15:22.742Z • sha256:582d801c4b91c9ff */
 window.HEIC_DETAILS = {
   "items/acid_mutation": {
     "bucket": "items",
-    "effect": "Battle Start: Gain 1 acid. While you have acid, temporarily gain attack equal to acid",
+    "effect": "Battle start: Gain 1 acid. While you have acid, temporarily gain attack equal to acid",
     "effects": [
       {
         "action": "add_status",
@@ -57,7 +57,7 @@ window.HEIC_DETAILS = {
   },
   "items/arcane_bell": {
     "bucket": "items",
-    "effect": "Battle Start: Decrease all countdowns by 1. Symphony.",
+    "effect": "Battle start: Decrease all countdowns by 1. Symphony",
     "effects": [
       {
         "actions": [
@@ -108,7 +108,7 @@ window.HEIC_DETAILS = {
   },
   "items/arcane_gauntlet": {
     "bucket": "items",
-    "effect": "Battle Start: Halve all countdowns",
+    "effect": "Battle start: Halve all countdowns",
     "effects": [
       {
         "action": "halve_all_countdowns",
@@ -188,7 +188,7 @@ window.HEIC_DETAILS = {
   },
   "items/basilisk_scale": {
     "bucket": "items",
-    "effect": "Battle Start: Gain 5 armor and 5 poison",
+    "effect": "Battle start: Gain 5 armor and 5 poison",
     "effects": [
       {
         "action": "gain_stat",
@@ -230,7 +230,7 @@ window.HEIC_DETAILS = {
   },
   "items/bitter_melon": {
     "bucket": "items",
-    "effect": "Turn start: Convert 1 stack of another status effect to 1 poison",
+    "effect": "3",
     "effects": [
       {
         "actions": [
@@ -427,7 +427,7 @@ window.HEIC_DETAILS = {
   },
   "items/blood_sausage": {
     "bucket": "items",
-    "effect": "Wounded: Restore 1 health 5 times",
+    "effect": "5",
     "effects": [
       {
         "action": "heal_loop",
@@ -466,7 +466,7 @@ window.HEIC_DETAILS = {
   },
   "items/bloodstone_ring": {
     "bucket": "items",
-    "effect": "Battle Start: Gain 5 max health and restore 5 health",
+    "effect": "Battle start: Gain 5 max health and restore 5 health",
     "effects": [
       {
         "action": "add_max_hp",
@@ -524,7 +524,7 @@ window.HEIC_DETAILS = {
   },
   "items/boiled_ham": {
     "bucket": "items",
-    "effect": "Battle Start (if Exposed or Wounded): Decrease all your status effects by 1",
+    "effect": "Battle Start (if Exposed or Wounded) : Decrease all your status effects by 1",
     "effects": [
       {
         "actions": [
@@ -555,7 +555,7 @@ window.HEIC_DETAILS = {
   },
   "items/bomb_bag": {
     "bucket": "items",
-    "effect": "Battle Start, Exposed & Wounded: Spend 3 speed to retrigger a random bomb",
+    "effect": "Battle start, Exposed & Wounded: Spend 3 speed to retrigger a random bomb",
     "effects": [
       {
         "actions": [
@@ -613,7 +613,7 @@ window.HEIC_DETAILS = {
   },
   "items/bramble_belt": {
     "bucket": "items",
-    "effect": "Battle Start: Gain 1 thorns and give the enemy 1 additional strike",
+    "effect": "Battle start: Gain 1 thorns and give the enemy 1 additional strike",
     "effects": [
       {
         "action": "add_status",
@@ -641,7 +641,7 @@ window.HEIC_DETAILS = {
   },
   "items/bramble_buckler": {
     "bucket": "items",
-    "effect": "Turn start: Convert 1 armor to 2 thorns",
+    "effect": "Turn Start: Convert 1 armor to 2 thorns",
     "effects": [
       {
         "action": "convert_stat_to_status",
@@ -834,7 +834,7 @@ window.HEIC_DETAILS = {
   },
   "items/caustic_tome": {
     "bucket": "items",
-    "effect": "Battle Start: Give the enemy acid equal to your speed.",
+    "effect": "Countdown 3: Give the enemy 3 acid. If they don't have any armor, give them 5 poison instead",
     "effects": [
       {
         "action": "give_enemy_acid_equal_to_speed",
@@ -855,7 +855,7 @@ window.HEIC_DETAILS = {
   },
   "items/chainlink_medallion": {
     "bucket": "items",
-    "effect": "Your On Hit effects trigger twice",
+    "effect": "Your On hit effects trigger twice",
     "name": "Chainlink Medallion",
     "slug": "chainlink_medallion",
     "stats": {
@@ -893,7 +893,7 @@ window.HEIC_DETAILS = {
   },
   "items/chainmail_cloak": {
     "bucket": "items",
-    "effect": "Turn start: If you have armor, restore 2 health",
+    "effect": "Turn Start: If you have armor, restore 2 health",
     "effects": [
       {
         "actions": [
@@ -1070,7 +1070,7 @@ window.HEIC_DETAILS = {
   },
   "items/citrine_earring": {
     "bucket": "items",
-    "effect": "Woodland",
+    "effect": "Gain 1 speed Every other turn — (Gold 2, Diamond 4)",
     "effects": [
       {
         "actions": [
@@ -1105,7 +1105,7 @@ window.HEIC_DETAILS = {
   },
   "items/citrine_gemstone": {
     "bucket": "items",
-    "effect": "Base Speed inverted",
+    "effect": "Your base speed stat is inverted",
     "effects": [
       {
         "actions": [
@@ -1131,7 +1131,7 @@ window.HEIC_DETAILS = {
   },
   "items/citrine_ring": {
     "bucket": "items",
-    "effect": "Battle Start: Gain 1 gold.",
+    "effect": "Battle start: Spend 5 speed to permanently gain 1 additional strike",
     "effects": [
       {
         "action": "add_gold",
@@ -1177,7 +1177,7 @@ window.HEIC_DETAILS = {
   },
   "items/clearspring_cloak": {
     "bucket": "items",
-    "effect": "Exposed: Remove all your status effects and gain 1 armor equal to stacks removed",
+    "effect": "Exposed: Remove all your poison and gain 2 armor equal to stacks removed",
     "effects": [
       {
         "actions": [
@@ -1231,7 +1231,7 @@ window.HEIC_DETAILS = {
   },
   "items/clearspring_feather": {
     "bucket": "items",
-    "effect": "Battle Start: Decrease a random status effect by 1 and give it to the enemy (Gold: 2; Diamond: 4).",
+    "effect": "Battle start: Decrease a random status effect by 1 and give it to the enemy — at Gold: transfer 2, at Diamond: transfer 4",
     "effects": [
       {
         "actions": [
@@ -1261,7 +1261,7 @@ window.HEIC_DETAILS = {
   },
   "items/clearspring_opal": {
     "bucket": "items",
-    "effect": "Turn start: If you have any status effects, spend 1 speed to decrease a random status effect by 1",
+    "effect": "Turn Start: If you have any status effects, spend 1 speed to decrease a random status effect by 1",
     "effects": [
       {
         "actions": [
@@ -1323,7 +1323,7 @@ window.HEIC_DETAILS = {
   },
   "items/clearspring_watermelon": {
     "bucket": "items",
-    "effect": "On hit: Decrease 1 random status effect",
+    "effect": "Battle start, Exposed & Wounded: Decrease a random status effect by 1 — at Gold: decrease 2, at Diamond: decrease 4",
     "effects": [
       {
         "action": "decrease_random_status",
@@ -1415,7 +1415,7 @@ window.HEIC_DETAILS = {
   },
   "items/cookbook": {
     "bucket": "items",
-    "effect": "After defeating the next boss, transform into a random Cauldron item",
+    "effect": "Replace this item with a random cauldron item after you defeat the next boss",
     "name": "Cookbook",
     "slug": "cookbook",
     "stats": {
@@ -1430,7 +1430,7 @@ window.HEIC_DETAILS = {
   },
   "items/corroded_bone": {
     "bucket": "items",
-    "effect": "Battle Start: Convert 50% of the enemy's health into armor",
+    "effect": "Battle start: Convert 50% of the enemy's health into armor",
     "effects": [
       {
         "actions": [
@@ -1469,7 +1469,7 @@ window.HEIC_DETAILS = {
   },
   "items/cracked_whetstone": {
     "bucket": "items",
-    "effect": "Woodland",
+    "effect": "First turn: Temporarily gain 2 attack (Gold 4, Diamond 8)",
     "name": "Cracked Whetstone",
     "slug": "cracked_whetstone",
     "stats": {
@@ -1511,7 +1511,7 @@ window.HEIC_DETAILS = {
   },
   "items/crimson_fang": {
     "bucket": "items",
-    "effect": "Battle Start: If your health is full, lose 5 health and gain 2 additional strikes",
+    "effect": "Battle start: If your health is full, lose 5 health and gain 2 additional strikes",
     "effects": [
       {
         "actions": [
@@ -1546,7 +1546,7 @@ window.HEIC_DETAILS = {
   },
   "items/deathcap_bow": {
     "bucket": "weapons",
-    "effect": "Battle start: Gain 3 poison. Turn start: If you have poison. Gain 1 additional strike",
+    "effect": "3",
     "effects": [
       {
         "actions": [
@@ -1619,7 +1619,7 @@ window.HEIC_DETAILS = {
   },
   "items/double_plated_armor": {
     "bucket": "items",
-    "effect": "Exposed: Gain 3 armor — at Gold: 6 , at Diamond: 12",
+    "effect": "Exposed: Gain 3 armor — (Gold 6, Diamond 12)",
     "effects": [
       {
         "action": "gain_stat",
@@ -1695,7 +1695,7 @@ window.HEIC_DETAILS = {
   },
   "items/echo_rune": {
     "bucket": "items",
-    "effect": "Wounded: Re-trigger a random battle start item",
+    "effect": "Wounded: Re-trigger a random Battle start item",
     "name": "Echo Rune",
     "slug": "echo_rune",
     "stats": {
@@ -1760,7 +1760,7 @@ window.HEIC_DETAILS = {
   },
   "items/emerald_earring": {
     "bucket": "items",
-    "effect": "Woodland",
+    "effect": "Restore 1 health Every other turn — (Gold 2, Diamond 4)",
     "effects": [
       {
         "actions": [
@@ -1795,7 +1795,7 @@ window.HEIC_DETAILS = {
   },
   "items/emerald_gemstone": {
     "bucket": "items",
-    "effect": "Battle Start: if your max Health < enemy's, set to enemy's",
+    "effect": "Battle start: If you have less max health than the enemy, set your max health equal to their max health",
     "effects": [
       {
         "action": "set_max_health_to_enemy",
@@ -1819,7 +1819,7 @@ window.HEIC_DETAILS = {
   },
   "items/emerald_ring": {
     "bucket": "items",
-    "effect": "Woodland",
+    "effect": "Battle start: Restore 3 health — (Gold 6, Diamond 12)",
     "effects": [
       {
         "action": "heal",
@@ -1933,7 +1933,7 @@ window.HEIC_DETAILS = {
   },
   "items/explosive_roast": {
     "bucket": "items",
-    "effect": "Battle start: Deal 1 damage 3 times",
+    "effect": "5",
     "effects": [
       {
         "action": "deal_damage_multiple_times",
@@ -2052,7 +2052,7 @@ window.HEIC_DETAILS = {
   },
   "items/featherweight_wings": {
     "bucket": "items",
-    "effect": "Battle Start: If you have less speed than the enemy, gain attack equal to your speed",
+    "effect": "Battle start: If you have less speed than the enemy, gain attack equal to your speed",
     "effects": [
       {
         "actions": [
@@ -2201,7 +2201,7 @@ window.HEIC_DETAILS = {
   },
   "items/frostbite_curse": {
     "bucket": "items",
-    "effect": "Battle Start: Give yourself and the enemy 5 freeze each",
+    "effect": "Battle start: Give yourself and the enemy 5 freeze each",
     "effects": [
       {
         "action": "give_self_and_enemy_status",
@@ -2224,7 +2224,7 @@ window.HEIC_DETAILS = {
   },
   "items/frostbite_gauntlet": {
     "bucket": "items",
-    "effect": "Battle Start: Give the enemy 1 freeze (Gold: 2; Diamond: 4).",
+    "effect": "Battle start: Give the enemy 1 freeze — (Gold 2, Diamond 4)",
     "effects": [
       {
         "action": "add_status_to_enemy",
@@ -2274,7 +2274,7 @@ window.HEIC_DETAILS = {
   },
   "items/frostbite_trap": {
     "bucket": "items",
-    "effect": "Wounded: Give the enemy 3 Freeze — at Gold: 6, at Diamond: 12",
+    "effect": "Wounded: Give the enemy 3 Freeze — (Gold 6, Diamond 12)",
     "effects": [
       {
         "action": "add_status_to_enemy",
@@ -2299,7 +2299,7 @@ window.HEIC_DETAILS = {
   },
   "items/gold_ring": {
     "bucket": "items",
-    "effect": "Battle Start: Gain +1 Gold",
+    "effect": "Battle start: Gain 1 gold",
     "effects": [
       {
         "action": "add_gold",
@@ -2349,7 +2349,7 @@ window.HEIC_DETAILS = {
   },
   "items/grand_tome": {
     "bucket": "items",
-    "effect": "Countdown 10: Retrigger all other tomes",
+    "effect": "Countdown 10: Retrigger all your other tomes",
     "name": "Grand Tome",
     "slug": "grand_tome",
     "stats": {
@@ -2402,7 +2402,7 @@ window.HEIC_DETAILS = {
   },
   "items/granite_crown": {
     "bucket": "items",
-    "effect": "Battle Start: Gain max health equal to your base armor",
+    "effect": "Battle start: Gain max health equal to your base armor",
     "effects": [
       {
         "action": "add_max_hp_from_base_armor",
@@ -2485,7 +2485,7 @@ window.HEIC_DETAILS = {
   },
   "items/granite_tome": {
     "bucket": "items",
-    "effect": "Swampland",
+    "effect": "Countdown 4: Gain 6 armor — (Gold 12, Diamond 24)",
     "name": "Granite Tome",
     "slug": "granite_tome",
     "stats": {
@@ -2523,7 +2523,7 @@ window.HEIC_DETAILS = {
   },
   "items/heart_shaped_acorn": {
     "bucket": "items",
-    "effect": "Battle Start: If you have 0 base armor, restore health to full",
+    "effect": "Battle start: If you have 0 base armor, restore health to full",
     "effects": [
       {
         "action": "heal_to_full",
@@ -2614,7 +2614,7 @@ window.HEIC_DETAILS = {
   },
   "items/hero_s_crossguard": {
     "bucket": "items",
-    "effect": "First Turn: Your On Hit effects trigger twice",
+    "effect": "First turn: Your On hit effects trigger twice",
     "effects": [
       {
         "actions": [
@@ -2639,7 +2639,7 @@ window.HEIC_DETAILS = {
   },
   "items/holy_shield": {
     "bucket": "items",
-    "effect": "-",
+    "effect": "Unlocked by winning a battle with 0 base attack",
     "name": "Holy Shield",
     "slug": "holy_shield",
     "stats": {
@@ -2652,7 +2652,7 @@ window.HEIC_DETAILS = {
   },
   "items/holy_tome": {
     "bucket": "items",
-    "effect": "Countdown 6: Gain 3 attack — at Gold: 6 , at Diamond: 12",
+    "effect": "Countdown 6: Gain 3 attack — (Gold 6, Diamond 12)",
     "effects": [
       {
         "action": "register_countdown",
@@ -2708,7 +2708,7 @@ window.HEIC_DETAILS = {
   },
   "items/horned_helmet": {
     "bucket": "items",
-    "effect": "Battle start: Gain 1 stack of thorns — at Gold: 2 , at Diamond: 4",
+    "effect": "Battle start: Gain 1 stack of thorns — (Gold 2, Diamond 4)",
     "effects": [
       {
         "action": "gain_status",
@@ -2959,7 +2959,7 @@ window.HEIC_DETAILS = {
   },
   "items/ironskin_potion": {
     "bucket": "items",
-    "effect": "Battle Start: Gain armor equal to lost health",
+    "effect": "Battle start: Gain armor equal to lost health",
     "effects": [
       {
         "action": "gain_armor_equal_to_lost_health",
@@ -2981,7 +2981,7 @@ window.HEIC_DETAILS = {
   },
   "items/ironstone_armor": {
     "bucket": "items",
-    "effect": "Enemy strikes deal 2 damage less While you have armor",
+    "effect": "Enemy strikes deal 2 damage less while you have armor",
     "name": "Ironstone Armor",
     "slug": "ironstone_armor",
     "stats": {
@@ -2997,7 +2997,7 @@ window.HEIC_DETAILS = {
   },
   "items/ironstone_bracelet": {
     "bucket": "items",
-    "effect": "Enemy strikes deal 1 damage less While you have armor but 1 damage more otherwise",
+    "effect": "Enemy strikes deal 1 damage less while you have armor but 1 damage more otherwise",
     "name": "Ironstone Bracelet",
     "slug": "ironstone_bracelet",
     "stats": {
@@ -3028,7 +3028,7 @@ window.HEIC_DETAILS = {
   },
   "items/kindling_bomb": {
     "bucket": "items",
-    "effect": "Battle Start: Deal 1 damage to the enemy. The damage of the next bomb that triggers is increased by 3",
+    "effect": "Battle start: Deal 1 damage to the enemy. The damage of the next bomb that triggers is increased by 3",
     "effects": [
       {
         "actions": [
@@ -3090,7 +3090,7 @@ window.HEIC_DETAILS = {
   },
   "items/leather_boots": {
     "bucket": "items",
-    "effect": "Battle Start: If you have more speed than the enemy, gain 2 attack",
+    "effect": "Battle start: If you have more speed than the enemy, gain 2 attack",
     "effects": [
       {
         "actions": [
@@ -3158,7 +3158,7 @@ window.HEIC_DETAILS = {
   },
   "items/lemontree_branch": {
     "bucket": "weapons",
-    "effect": "On hit: Spend 2 speed and gain 1 additional strike on your next turn",
+    "effect": "2 4",
     "effects": [
       {
         "actions": [
@@ -3196,7 +3196,7 @@ window.HEIC_DETAILS = {
   },
   "items/life_zap": {
     "bucket": "items",
-    "effect": "Battle Start: Lose all your health except 1 and stun the enemy for 2 turns",
+    "effect": "Battle start: Lose all your health except 1 and stun the enemy for 2 turns",
     "effects": [
       {
         "actions": [
@@ -3226,7 +3226,7 @@ window.HEIC_DETAILS = {
   },
   "items/lifeblood_armor": {
     "bucket": "items",
-    "effect": "Battle Start: Convert 50% of your current health to that amount of armor",
+    "effect": "Battle start: Convert 50% of your current health to that amount of armor",
     "effects": [
       {
         "actions": [
@@ -3268,7 +3268,7 @@ window.HEIC_DETAILS = {
   },
   "items/lifeblood_helmet": {
     "bucket": "items",
-    "effect": "First Turn: Restore health equal to damage dealt by strikes",
+    "effect": "First turn: Restore health equal to damage dealt by strikes",
     "effects": [
       {
         "actions": [
@@ -3311,7 +3311,7 @@ window.HEIC_DETAILS = {
   },
   "items/liferoot_gauntlet": {
     "bucket": "items",
-    "effect": "Battle start: Gain 1 regeneration — at Gold: 2 , at Diamond: 4",
+    "effect": "Battle start: Gain 1 regeneration — (Gold 2, Diamond 4)",
     "effects": [
       {
         "action": "add_status",
@@ -3374,7 +3374,7 @@ window.HEIC_DETAILS = {
   },
   "items/liferoot_tome": {
     "bucket": "items",
-    "effect": "Countdown 4: +3 Regeneration (Gold 6, Diamond 12)",
+    "effect": "Countdown 4: Gain 3 regeneration — (Gold 6, Diamond 12)",
     "name": "Liferoot Tome",
     "slug": "liferoot_tome",
     "stats": {
@@ -3481,7 +3481,7 @@ window.HEIC_DETAILS = {
   },
   "items/loose_change": {
     "bucket": "items",
-    "effect": "Gain 3 gold at the start of every day — at Gold: 6, at Diamond: 12",
+    "effect": "Gain 3 gold at the start of every day — (Gold 6, Diamond 12)",
     "name": "Loose Change",
     "slug": "loose_change",
     "stats": {
@@ -3494,7 +3494,7 @@ window.HEIC_DETAILS = {
   },
   "items/marble_mirror": {
     "bucket": "items",
-    "effect": "Battle Start: Gain armor equal to your opponent’s armor",
+    "effect": "Battle start: Gain armor equal to your opponent’s armor",
     "effects": [
       {
         "action": "add_armor_from_enemy_armor",
@@ -3581,7 +3581,7 @@ window.HEIC_DETAILS = {
   },
   "items/melon_bomb": {
     "bucket": "items",
-    "effect": "Battle Start (if Exposed or Wounded): Decrease a random status by 1; when a status is decreased, deal 1 damage",
+    "effect": "Battle Start (if Exposed or Wounded) : Decrease a random status by 1; when a status is decreased, deal 1 damage",
     "effects": [
       {
         "actions": [
@@ -3622,7 +3622,7 @@ window.HEIC_DETAILS = {
   },
   "items/melon_lemonade": {
     "bucket": "items",
-    "effect": "Battle start, Exposed & Wounded: Remove all Acid",
+    "effect": "3",
     "effects": [
       {
         "actions": [
@@ -3653,7 +3653,7 @@ window.HEIC_DETAILS = {
   },
   "items/melon_wine": {
     "bucket": "items",
-    "effect": "Battle Start (if Exposed or Wounded): Decrease 1 status by 1 and restore 3 health",
+    "effect": "Battle Start (if Exposed or Wounded) : Decrease 1 status by 1 and restore 3 health",
     "name": "Melon Wine",
     "slug": "melon_wine",
     "stats": {
@@ -3668,7 +3668,7 @@ window.HEIC_DETAILS = {
   },
   "items/melonvine_whip": {
     "bucket": "items",
-    "effect": "On hit: Decrease 1 random status effect",
+    "effect": "3",
     "effects": [
       {
         "actions": [
@@ -3802,7 +3802,7 @@ window.HEIC_DETAILS = {
   },
   "items/muscle_potion": {
     "bucket": "items",
-    "effect": "Swampland",
+    "effect": "Every 3 strikes: Gain 1 attack — (Gold 2, Diamond 4)",
     "effects": [
       {
         "action": "muscle_potion_strike_counter",
@@ -3854,7 +3854,7 @@ window.HEIC_DETAILS = {
   },
   "items/noxious_gas": {
     "bucket": "items",
-    "effect": "Turn start: Both you and the enemy gain 1 poison",
+    "effect": "Turn Start: Both you and the enemy gain 1 poison",
     "effects": [
       {
         "actions": [
@@ -3900,7 +3900,7 @@ window.HEIC_DETAILS = {
   },
   "items/ore_heart": {
     "bucket": "items",
-    "effect": "Battle Start: Gain 3 armor for each equipped stone item",
+    "effect": "Battle start: Gain 3 armor for each equipped stone item",
     "effects": [
       {
         "action": "gain_armor_per_tagged_item",
@@ -3926,7 +3926,7 @@ window.HEIC_DETAILS = {
   },
   "items/petrified_chestnut": {
     "bucket": "items",
-    "effect": "Battle Start (if full health): +6 Thorns and +6 Armor",
+    "effect": "Battle Start (if full health) : +6 Thorns and +6 Armor",
     "effects": [
       {
         "action": "gain_status",
@@ -3973,7 +3973,7 @@ window.HEIC_DETAILS = {
   },
   "items/petrifying_elixir": {
     "bucket": "items",
-    "effect": "Swampland",
+    "effect": "Wounded: Gain 10 armor and stun yourself and the enemy for 2 turns — (Gold 20, Diamond 40) 8",
     "name": "Petrifying Elixir",
     "slug": "petrifying_elixir",
     "stats": {
@@ -3989,7 +3989,7 @@ window.HEIC_DETAILS = {
   },
   "items/petrifying_flask": {
     "bucket": "items",
-    "effect": "Swampland",
+    "effect": "Wounded: Gain 10 armor and stun yourself for 2 turns — (Gold 20, Diamond 40) 8",
     "name": "Petrifying Flask",
     "slug": "petrifying_flask",
     "stats": {
@@ -4005,7 +4005,7 @@ window.HEIC_DETAILS = {
   },
   "items/pinecone_breastplate": {
     "bucket": "items",
-    "effect": "Battle Start: If your health is full, gain 1 thorn at turn start for the rest of battle",
+    "effect": "Battle start: If your health is full, gain 1 thorn at turn start for the rest of battle",
     "name": "Pinecone Breastplate",
     "slug": "pinecone_breastplate",
     "stats": {
@@ -4075,7 +4075,7 @@ window.HEIC_DETAILS = {
   },
   "items/poisonous_mushroom": {
     "bucket": "items",
-    "effect": "Turn start: Gain 1 poison",
+    "effect": "Turn Start: Gain 1 poison",
     "effects": [
       {
         "action": "add_status",
@@ -4098,7 +4098,7 @@ window.HEIC_DETAILS = {
   },
   "items/powder_keg": {
     "bucket": "items",
-    "effect": "Battle Start: If you only have 1 bomb item equipped, it triggers 3 times",
+    "effect": "Battle start: If you only have 1 bomb item equipped, it triggers 3 times",
     "effects": [
       {
         "action": "trigger_bomb_multiple_times",
@@ -4174,7 +4174,7 @@ window.HEIC_DETAILS = {
   },
   "items/purelake_chalice": {
     "bucket": "items",
-    "effect": "Gain 1 purity every other turn",
+    "effect": "Gain 1 purity Every other turn",
     "name": "Purelake Chalice",
     "slug": "purelake_chalice",
     "stats": {
@@ -4189,7 +4189,7 @@ window.HEIC_DETAILS = {
   },
   "items/purelake_helmet": {
     "bucket": "items",
-    "effect": "Battle start: Gain 1 Purity — at Gold: 2 , at Diamond: 4",
+    "effect": "Battle start: Gain 1 Purity — (Gold 2, Diamond 4)",
     "effects": [
       {
         "action": "add_status",
@@ -4249,7 +4249,7 @@ window.HEIC_DETAILS = {
   },
   "items/purelake_tome": {
     "bucket": "items",
-    "effect": "Countdown 3: If you have Purity, remove 1; else gain 1 Purity, then reset",
+    "effect": "Countdown 3: If you have purity, remove 1 purity. Otherwise, gain 1 purity. Reset countdown",
     "name": "Purelake Tome",
     "slug": "purelake_tome",
     "stats": {
@@ -4293,7 +4293,7 @@ window.HEIC_DETAILS = {
   },
   "items/redwood_cloak": {
     "bucket": "items",
-    "effect": "Battle start: If your health is not full, restore 2 health — at Gold: 4 , at Diamond: 8",
+    "effect": "Battle start: If your health is not full, restore 2 health — (Gold 4, Diamond 8)",
     "effects": [
       {
         "actions": [
@@ -4324,7 +4324,7 @@ window.HEIC_DETAILS = {
   },
   "items/redwood_helmet": {
     "bucket": "items",
-    "effect": "Exposed: Restore 3 health — at Gold: 6 , at Diamond: 12",
+    "effect": "Exposed: Restore 3 health — (Gold 6, Diamond 12)",
     "name": "Redwood Helmet",
     "slug": "redwood_helmet",
     "stats": {
@@ -4408,7 +4408,7 @@ window.HEIC_DETAILS = {
   },
   "items/rock_roast": {
     "bucket": "items",
-    "effect": "-",
+    "effect": "6 6",
     "name": "Rock Roast",
     "slug": "rock_roast",
     "stats": {
@@ -4520,7 +4520,7 @@ window.HEIC_DETAILS = {
   },
   "items/ruby_earring": {
     "bucket": "items",
-    "effect": "Every other turn: Deal 1 damage (Gold 2, Diamond 4)",
+    "effect": "Deal 1 damage Every other turn — at Gold: deal 2, at Diamond: deal 4",
     "name": "Ruby Earring",
     "slug": "ruby_earring",
     "stats": {
@@ -4535,7 +4535,7 @@ window.HEIC_DETAILS = {
   },
   "items/ruby_gemstone": {
     "bucket": "items",
-    "effect": "If Attack exactly 1, on hit: +4 damage",
+    "effect": "If your attack is exactly 1, deal 4 damage On hit",
     "name": "Ruby Gemstone",
     "slug": "ruby_gemstone",
     "stats": {
@@ -4551,7 +4551,7 @@ window.HEIC_DETAILS = {
   },
   "items/ruby_ring": {
     "bucket": "items",
-    "effect": "Woodland",
+    "effect": "Battle start: Gain 2 attack and take 3 damage — at Gold: take 6 for 4, at Diamond: take 12 for 8",
     "effects": [
       {
         "action": "gain_attack",
@@ -4592,7 +4592,7 @@ window.HEIC_DETAILS = {
   },
   "items/rusty_ring": {
     "bucket": "items",
-    "effect": "Battle Start: Give the enemy 1 acid — at Gold: 2, at Diamond: 4",
+    "effect": "Battle start: Give the enemy 1 acid — (Gold 2, Diamond 4)",
     "effects": [
       {
         "action": "add_status_to_enemy_tiered",
@@ -4617,7 +4617,7 @@ window.HEIC_DETAILS = {
   },
   "items/saffron_feather": {
     "bucket": "items",
-    "effect": "Turn start: Convert 1 speed to restore 2 health — at Gold: -2 for 4, at Diamond: -4 for 8",
+    "effect": "Turn Start: Convert 1 speed to restore 2 health — at Gold: -2 for 4, at Diamond: -4 for 8",
     "name": "Saffron Feather",
     "slug": "saffron_feather",
     "stats": {
@@ -4695,7 +4695,7 @@ window.HEIC_DETAILS = {
   },
   "items/sanguine_rose": {
     "bucket": "items",
-    "effect": "Whenever you restore health, restore 1 additional health. You can only equip 1 rose",
+    "effect": "Whenever you restore health, increase health restored by 1. You can only equip 1 rose",
     "effects": [
       {
         "actions": [
@@ -4755,7 +4755,7 @@ window.HEIC_DETAILS = {
   },
   "items/sapphire_earring": {
     "bucket": "items",
-    "effect": "Woodland",
+    "effect": "Gain 1 armor Every other turn — (Gold 2, Diamond 4)",
     "name": "Sapphire Earring",
     "slug": "sapphire_earring",
     "stats": {
@@ -4770,7 +4770,7 @@ window.HEIC_DETAILS = {
   },
   "items/sapphire_gemstone": {
     "bucket": "items",
-    "effect": "Whenever you lose Armor, restore that much Health",
+    "effect": "Whenever you lose armor, restore that much health",
     "name": "Sapphire Gemstone",
     "slug": "sapphire_gemstone",
     "stats": {
@@ -4786,7 +4786,7 @@ window.HEIC_DETAILS = {
   },
   "items/sapphire_ring": {
     "bucket": "items",
-    "effect": "Woodland",
+    "effect": "Battle start: Steal 2 from the enemy — (Gold 4, Diamond 8)",
     "effects": [
       {
         "action": "steal_armor",
@@ -4976,7 +4976,7 @@ window.HEIC_DETAILS = {
   },
   "items/silverscale_fish": {
     "bucket": "items",
-    "effect": "Battle start: Gain 1 additional strike. First turn: Give the enemy 1 riptide On hit",
+    "effect": "Exposed: Give the enemy 1 riptide — (Gold 2, Diamond 4)",
     "name": "Silverscale Fish",
     "slug": "silverscale_fish",
     "stats": {
@@ -4991,7 +4991,7 @@ window.HEIC_DETAILS = {
   },
   "items/silverscale_gauntlet": {
     "bucket": "items",
-    "effect": "Give the enemy 1 riptide every other turn",
+    "effect": "Give the enemy 1 riptide Every other turn",
     "name": "Silverscale Gauntlet",
     "slug": "silverscale_gauntlet",
     "stats": {
@@ -5036,7 +5036,7 @@ window.HEIC_DETAILS = {
   },
   "items/silverscale_swordfish": {
     "bucket": "weapons",
-    "effect": "Battle start: Gain 1 additional strike. First turn: Give the enemy 1 riptide On hit",
+    "effect": "2",
     "effects": [
       {
         "actions": [
@@ -5077,7 +5077,7 @@ window.HEIC_DETAILS = {
   },
   "items/silverscale_tome": {
     "bucket": "items",
-    "effect": "Countdown 3: Give enemy 2 Riptide (Gold 4, Diamond 8)",
+    "effect": "Countdown 3: Give the enemy 2 riptide — (Gold 4, Diamond 8)",
     "name": "Silverscale Tome",
     "slug": "silverscale_tome",
     "stats": {
@@ -5107,7 +5107,7 @@ window.HEIC_DETAILS = {
   },
   "items/slime_armor": {
     "bucket": "items",
-    "effect": "Battle start: Gain 1 acid — at Gold: 2 , at Diamond: 4",
+    "effect": "Battle start: Gain 1 acid — (Gold 2, Diamond 4)",
     "effects": [
       {
         "action": "add_status",
@@ -5128,7 +5128,7 @@ window.HEIC_DETAILS = {
   },
   "items/slime_booster": {
     "bucket": "items",
-    "effect": "Battle Start: Convert 1 acid into 2 attack",
+    "effect": "Battle start: Convert 1 acid into 2 attack",
     "effects": [
       {
         "action": "convert_status_to_stat",
@@ -5210,7 +5210,7 @@ window.HEIC_DETAILS = {
   },
   "items/sour_lemon": {
     "bucket": "items",
-    "effect": "Battle start: Gain 1 acid — at Gold: 2 , at Diamond: 4",
+    "effect": "Battle start: Gain 1 acid — (Gold 2, Diamond 4)",
     "effects": [
       {
         "action": "add_status_tiered",
@@ -5259,7 +5259,7 @@ window.HEIC_DETAILS = {
   },
   "items/spiritual_balance": {
     "bucket": "items",
-    "effect": "Battle Start: If your speed is equal to your attack, gain 3 attack",
+    "effect": "Battle start: If your speed is equal to your attack, gain 3 attack",
     "effects": [
       {
         "actions": [
@@ -5378,7 +5378,7 @@ window.HEIC_DETAILS = {
   },
   "items/stormcloud_curse": {
     "bucket": "items",
-    "effect": "Battle Start: Stun the enemy and yourself for 2 turns",
+    "effect": "Battle start: Stun the enemy and yourself for 2 turns",
     "effects": [
       {
         "actions": [
@@ -5446,7 +5446,7 @@ window.HEIC_DETAILS = {
   },
   "items/stormcloud_tome": {
     "bucket": "items",
-    "effect": "Countdown 4: Stun enemy 1 turn (Gold 2, Diamond 4)",
+    "effect": "Countdown 4: Stun the enemy for 1 turn — (Gold 2, Diamond 4) turns",
     "name": "Stormcloud Tome",
     "slug": "stormcloud_tome",
     "stats": {
@@ -5476,7 +5476,7 @@ window.HEIC_DETAILS = {
   },
   "items/studded_gauntlet": {
     "bucket": "items",
-    "effect": "On Hit: Deal 1 damage",
+    "effect": "On hit: Deal 1 damage",
     "effects": [
       {
         "action": "deal_damage",
@@ -5541,7 +5541,7 @@ window.HEIC_DETAILS = {
   },
   "items/swiftstrike_belt": {
     "bucket": "items",
-    "effect": "Turn Start: Take 3 damage and gain 1 additional strike",
+    "effect": "Battle start: Take 3 damage and gain 1 additional strike — at Gold: take 6 for 2, at Diamond: take 12 for 4",
     "effects": [
       {
         "actions": [
@@ -5626,7 +5626,7 @@ window.HEIC_DETAILS = {
   },
   "items/thorn_ring": {
     "bucket": "items",
-    "effect": "Battle Start: Take 5 damage and gain 10 thorns",
+    "effect": "Battle start: Take 5 damage and gain 10 thorns",
     "effects": [
       {
         "action": "deal_damage",
@@ -5863,7 +5863,7 @@ window.HEIC_DETAILS = {
   },
   "items/underwater_watermelon": {
     "bucket": "items",
-    "effect": "Battle Start (if Exposed or Wounded): Decrease 1 random status and give enemy 1 Riptide",
+    "effect": "Battle Start (if Exposed or Wounded) : Decrease 1 random status and give enemy 1 Riptide",
     "name": "Underwater Watermelon",
     "slug": "underwater_watermelon",
     "stats": {
@@ -5909,7 +5909,7 @@ window.HEIC_DETAILS = {
   },
   "items/venomous_fang": {
     "bucket": "items",
-    "effect": "First Turn: Give the enemy 2 poison on hit — at Gold: 4, at Diamond: 8",
+    "effect": "First turn: Give the enemy 2 poison On hit — (Gold 4, Diamond 8)",
     "effects": [
       {
         "actions": [
@@ -6012,7 +6012,7 @@ window.HEIC_DETAILS = {
   },
   "items/weaver_shield": {
     "bucket": "items",
-    "effect": "Swampland",
+    "effect": "Battle start: If you have 0 base armor, gain 4 armor — (Gold 8, Diamond 16)",
     "effects": [
       {
         "actions": [
@@ -6770,7 +6770,7 @@ window.HEIC_DETAILS = {
   },
   "sets/vampire_cloak": {
     "bucket": "sets",
-    "effect": "Currently removed Turn Start: If you are stunned , double healing this turn",
+    "effect": "Currently removed Turn Start: If you are stunned, double healing this turn",
     "effects": [],
     "name": "Vampire Cloak",
     "slug": "vampire_cloak",
@@ -6946,7 +6946,7 @@ window.HEIC_DETAILS = {
   },
   "upgrades/blood_rune": {
     "bucket": "upgrades",
-    "effect": "The first time the enemy becomes Wounded, trigger all of your Wounded items.",
+    "effect": "Wounded: Re-trigger the last triggered wounded item",
     "name": "Blood Rune",
     "slug": "blood_rune",
     "stats": {
@@ -7300,7 +7300,7 @@ window.HEIC_DETAILS = {
   },
   "weapons/arcane_wand": {
     "bucket": "weapons",
-    "effect": "Can't attack. Turn start: Deal 2 damage. Increase the damage by 1 for each tome equipped",
+    "effect": "Can't attack. Turn Start: Deal 2 damage. Increase the damage by 1 for each tome equipped",
     "effects": [
       {
         "action": "deal_damage_per_tome",
@@ -7388,7 +7388,7 @@ window.HEIC_DETAILS = {
   },
   "weapons/bee_stinger": {
     "bucket": "weapons",
-    "effect": "First turn: Give the enemy 4 poison, 3 Acid, and 2 stun On hit",
+    "effect": "3",
     "effects": [
       {
         "actions": [
@@ -7585,7 +7585,7 @@ window.HEIC_DETAILS = {
   },
   "weapons/bubblegloop_staff": {
     "bucket": "weapons",
-    "effect": "Can't strike. Turn start: Spend 1 speed to give the enemy 2 acid and 2 poison",
+    "effect": "Can't strike. Turn Start: Spend 1 speed to give the enemy 2 acid and 2 poison",
     "effects": [
       {
         "actions": [
@@ -8043,7 +8043,7 @@ window.HEIC_DETAILS = {
   },
   "weapons/ironstone_greatsword": {
     "bucket": "weapons",
-    "effect": "-",
+    "effect": "Ironstone Greatsword is a common weapon found in Treasure Chests in the Woodland region. It has high base attack and a negative base speed.",
     "name": "Ironstone Greatsword",
     "slug": "ironstone_greatsword",
     "stats": {
@@ -8219,7 +8219,7 @@ window.HEIC_DETAILS = {
   },
   "weapons/lightning_whip": {
     "bucket": "weapons",
-    "effect": "Turn start: If the enemy is stunned, gain 1 additional strike",
+    "effect": "Turn Start: If the enemy is stunned, gain 1 additional strike",
     "effects": [
       {
         "action": "gain_strikes",
