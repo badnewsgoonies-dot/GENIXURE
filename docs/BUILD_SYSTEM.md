@@ -10,7 +10,7 @@ The project now uses a clean separation between base item data and stat customiz
 
 - **`details.json`** - The canonical base item database (kept pure, never modified by build process)
 - **`stats_overrides.json`** - Stat customizations and overrides for specific items
-- **`Random Tests/merge_stats_overrides.js`** - Build script that merges base + overrides
+- **`scripts/merge_stats_overrides.js`** - Build script that merges base + overrides  
 
 ### Generated Files
 
