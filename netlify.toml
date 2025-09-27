@@ -1,5 +1,5 @@
 [build]
-command = "npm ci --prefix ui && npm run build --prefix ui"
+command = "npm install --prefix ui --no-audit --no-fund && npm run build --prefix ui"
 publish = "ui/dist"
 
 [build.environment]
@@ -10,4 +10,3 @@ NODE_VERSION = "20"
 from = "/*"
 to = "/index.html"
 status = 200
-
