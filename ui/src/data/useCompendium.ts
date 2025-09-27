@@ -8,6 +8,7 @@ export type CompendiumItem = {
   stats?: { ATK?: number; ARM?: number; HP?: number; SPD?: number };
   text?: string;
   trigger?: string;
+  rarity?: string;
 };
 
 export default function useCompendium() {
@@ -39,6 +40,7 @@ export default function useCompendium() {
           HP: statsIn.health || 0,
           SPD: statsIn.speed || 0,
         },
+        rarity: (v as any)?.rarity || '',
       });
     }
     return out;
@@ -46,4 +48,3 @@ export default function useCompendium() {
 
   return { items, error: err };
 }
-

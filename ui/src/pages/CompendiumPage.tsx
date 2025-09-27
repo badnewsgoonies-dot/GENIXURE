@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import AppShell from '../components/shell/AppShell';
 import ItemCard from '../components/cards/ItemCard';
 import { gridWrap, headerBar } from '../theme/legacyTheme';
+import { LoadoutProvider } from '../state/LoadoutContext';
 import useCompendium from '../data/useCompendium';
 
 export default function CompendiumPage() {
@@ -20,6 +21,7 @@ export default function CompendiumPage() {
   }, [items, q]);
 
   return (
+    <LoadoutProvider>
     <AppShell>
       <div className="flex h-full flex-col">
         <div className={headerBar}>
@@ -53,6 +55,7 @@ export default function CompendiumPage() {
         </div>
       </div>
     </AppShell>
+    </LoadoutProvider>
   );
 }
 

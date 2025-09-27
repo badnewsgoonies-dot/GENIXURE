@@ -1,5 +1,7 @@
 import React from 'react';
 import { panel, ringNeon, badge } from '../../theme/legacyTheme';
+import Sprite from '../media/Sprite';
+import { useLoadout } from '../../state/LoadoutContext';
 
 export type ItemCardProps = {
   name: string;
@@ -12,6 +14,14 @@ export type ItemCardProps = {
   onInfo?: () => void;
 };
 
+function ringByRarity(r?: string) {
+  const t = (r || '').toLowerCase();
+  if (t.includes('myth')) return ringNeon.green;
+  if (t.includes('hero') || t.includes('epic')) return ringNeon.violet;
+  if (t.includes('rare')) return ringNeon.amber;
+  return ringNeon.red;
+}
+
 export default function ItemCard({
   name,
   slug,
@@ -22,17 +32,18 @@ export default function ItemCard({
   onAdd,
   onInfo,
 }: ItemCardProps) {
+  const { add } = useLoadout();
   return (
-    <div className={`${panel} ${ringNeon.red} p-2`}>
+    <div className={`${panel} ${ringByRarity((stats as any)?.rarity)} p-2`}>
       {/* Title row */}
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="h-6 w-6 rounded bg-white/10" aria-label={slug} />
+          <Sprite slug={slug} size={24} />
           <div className="truncate text-sm font-semibold">{name}</div>
         </div>
         <div className="flex items-center gap-1">
           <button onClick={onInfo} className={`${badge}`}>i</button>
-          <button onClick={onAdd} className={`${badge}`}>+</button>
+          <button onClick={onAdd || (()=> add({ key: slug, slug, name }))} className={`${badge}`}>+</button>
         </div>
       </div>
 
