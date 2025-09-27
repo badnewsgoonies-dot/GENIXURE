@@ -1272,7 +1272,7 @@ function filterItems() {
   if (triggers.size > 0) {
     filtered = filtered.filter(item => {
       if (!item.effects || item.effects.length === 0) return false;
-      return item.effects.some(effect => Array.from(triggers).includes(effect.trigger));
+      return item.effects.some(effect => Array.from(triggers).includes(normalizeTrigger(effect.trigger)));
     });
   }
 
@@ -1326,6 +1326,16 @@ function updateCompendiumCounts() {
   // Update facet counts
   updateFacetCounts();
 }
+
+// Safe no-op when header indicators are absent
+function updateDataHealthIndicator(isHealthy) {
+  var dot = document.getElementById("healthDot");
+  var txt = document.getElementById("healthText");
+  if (!dot || !txt) return; // header removed; silently skip
+  if (isHealthy) { dot.style.background = "#0f3"; txt.textContent = "Data OK"; txt.style.color = "#0f3"; }
+  else { dot.style.background = "#f33"; txt.textContent = "No Data"; txt.style.color = "#f33"; }
+}
+
 
 
 
@@ -4774,6 +4784,8 @@ if (document.readyState === 'loading') {
 
 // Ensure boot function is available globally
 try { window.__compendiumBoot = __compendiumBoot; } catch(_) {}
+
+
 
 
 
