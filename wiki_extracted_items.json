@@ -3,7 +3,7 @@
     "name": "Champion's Blade",
     "stats": {
       "attack": 6,
-      "speed": 0,
+      "speed": 61,
       "health": 0,
       "armor": 0
     },
@@ -63,7 +63,7 @@
     "name": "Ironstone Spear",
     "stats": {
       "attack": 2,
-      "speed": 0,
+      "speed": 71,
       "health": 0,
       "armor": 0
     },
@@ -1011,7 +1011,7 @@
     "name": "Petrifying Elixir",
     "stats": {
       "attack": 0,
-      "speed": 0,
+      "speed": 83,
       "health": 0,
       "armor": 40
     },
@@ -1431,7 +1431,7 @@
     "name": "Swiftstrike Bow",
     "stats": {
       "attack": 2,
-      "speed": 0,
+      "speed": 52,
       "health": 0,
       "armor": 0
     },
@@ -1479,7 +1479,7 @@
     "name": "Granite Hammer",
     "stats": {
       "attack": 2,
-      "speed": 0,
+      "speed": 22,
       "health": 0,
       "armor": 0
     },
@@ -1563,7 +1563,7 @@
     "name": "Twin Blade",
     "stats": {
       "attack": 1,
-      "speed": 0,
+      "speed": 55,
       "health": 0,
       "armor": 0
     },
@@ -1709,7 +1709,7 @@
       "attack": 0,
       "speed": -1,
       "health": 0,
-      "armor": 0
+      "armor": 2
     },
     "effect": "Enemy strikes deal 1 damage less while you have armor but 1 damage more otherwise",
     "rarity": "Common",
@@ -1863,7 +1863,7 @@
     "name": "Frostbite Armor",
     "stats": {
       "attack": 0,
-      "speed": 0,
+      "speed": 20,
       "health": 0,
       "armor": 2
     },
@@ -2103,7 +2103,7 @@
     "name": "Rock Roast",
     "stats": {
       "attack": 0,
-      "speed": 0,
+      "speed": 43,
       "health": 6,
       "armor": 6
     },
@@ -2115,7 +2115,7 @@
     "name": "Cherry Bomb",
     "stats": {
       "attack": 3,
-      "speed": 0,
+      "speed": 8,
       "health": 0,
       "armor": 0
     },
@@ -2127,7 +2127,7 @@
     "name": "Clearspring Watermelon",
     "stats": {
       "attack": 3,
-      "speed": 0,
+      "speed": 65,
       "health": 0,
       "armor": 0
     },
@@ -2206,5 +2206,1345 @@
     "effect": "Wounded: On your next turn, keep striking the enemy until they're wounded",
     "rarity": "Grilling Skewer",
     "region": ""
+  },
+  "Acid": {
+    "name": "Acid",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Additional strikes": {
+    "name": "Additional strikes",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Battle start": {
+    "name": "Battle start",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Bomb": {
+    "name": "Bomb",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Cauldron": {
+    "name": "Cauldron",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Convert": {
+    "name": "Convert",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Countdown": {
+    "name": "Countdown",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 24
+    },
+    "effect": ""
+  },
+  "Crone": {
+    "name": "Crone",
+    "stats": {
+      "attack": 10,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Double": {
+    "name": "Double",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 1
+    },
+    "effect": ""
+  },
+  "Each": {
+    "name": "Each",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Every other turn": {
+    "name": "Every other turn",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Exposed": {
+    "name": "Exposed",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "First time": {
+    "name": "First time",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "First turn": {
+    "name": "First turn",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Food": {
+    "name": "Food",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Freeze": {
+    "name": "Freeze",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "If": {
+    "name": "If",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Jewelry": {
+    "name": "Jewelry",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Multi-trigger": {
+    "name": "Multi-trigger",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 5,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Multipliers": {
+    "name": "Multipliers",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 1
+    },
+    "effect": ""
+  },
+  "Mythic": {
+    "name": "Mythic",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 5,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Next boss": {
+    "name": "Next boss",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "On hit": {
+    "name": "On hit",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Poison": {
+    "name": "Poison",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Potion": {
+    "name": "Potion",
+    "stats": {
+      "attack": 0,
+      "speed": 1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Purity": {
+    "name": "Purity",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Regeneration": {
+    "name": "Regeneration",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Ring": {
+    "name": "Ring",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Riptide": {
+    "name": "Riptide",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Sanguine": {
+    "name": "Sanguine",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Status": {
+    "name": "Status",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Stone": {
+    "name": "Stone",
+    "stats": {
+      "attack": 4,
+      "speed": -2,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Stun": {
+    "name": "Stun",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Thorns": {
+    "name": "Thorns",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Tome": {
+    "name": "Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 24
+    },
+    "effect": ""
+  },
+  "Water": {
+    "name": "Water",
+    "stats": {
+      "attack": 6,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Whenever": {
+    "name": "Whenever",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "While": {
+    "name": "While",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Wood": {
+    "name": "Wood",
+    "stats": {
+      "attack": 1,
+      "speed": 1,
+      "health": 0,
+      "armor": 1
+    },
+    "effect": ""
+  },
+  "Wounded": {
+    "name": "Wounded",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Bloody Steak": {
+    "name": "Bloody Steak",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Brittlebark Rose": {
+    "name": "Brittlebark Rose",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Cherry Cocktail": {
+    "name": "Cherry Cocktail",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Citrine Ring": {
+    "name": "Citrine Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Double-plated Vest": {
+    "name": "Double-plated Vest",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Druid's Cloak": {
+    "name": "Druid's Cloak",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Energy Drain": {
+    "name": "Energy Drain",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Explosive Powder": {
+    "name": "Explosive Powder",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Explosive Surprise": {
+    "name": "Explosive Surprise",
+    "stats": {
+      "attack": 0,
+      "speed": 17,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Featherweight Armor": {
+    "name": "Featherweight Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Featherweight Greaves": {
+    "name": "Featherweight Greaves",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Featherweight Helmet": {
+    "name": "Featherweight Helmet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Featherweight Wings": {
+    "name": "Featherweight Wings",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Firecracker Belt": {
+    "name": "Firecracker Belt",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Fortified Gauntlet": {
+    "name": "Fortified Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Frostbite Curse": {
+    "name": "Frostbite Curse",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Frostbite Gauntlet": {
+    "name": "Frostbite Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Frostbite Greaves": {
+    "name": "Frostbite Greaves",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Frostbite Trap": {
+    "name": "Frostbite Trap",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Granite Crown": {
+    "name": "Granite Crown",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Heart-shaped Acorn": {
+    "name": "Heart-shaped Acorn",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Heart-shaped Potion": {
+    "name": "Heart-shaped Potion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Ice Spikes": {
+    "name": "Ice Spikes",
+    "stats": {
+      "attack": 0,
+      "speed": 25,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Ice Tomb": {
+    "name": "Ice Tomb",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Iron Rose": {
+    "name": "Iron Rose",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Iron Shrapnel": {
+    "name": "Iron Shrapnel",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Iron Transfusion": {
+    "name": "Iron Transfusion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Kindling Bomb": {
+    "name": "Kindling Bomb",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Leather Boots": {
+    "name": "Leather Boots",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Lifeblood Armor": {
+    "name": "Lifeblood Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Lifeblood Burst": {
+    "name": "Lifeblood Burst",
+    "stats": {
+      "attack": 0,
+      "speed": 35,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Lifeblood Helmet": {
+    "name": "Lifeblood Helmet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Loose Change": {
+    "name": "Loose Change",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Moonlight Shield": {
+    "name": "Moonlight Shield",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Oak Heart": {
+    "name": "Oak Heart",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Ore Heart": {
+    "name": "Ore Heart",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Pinecone Breastplate": {
+    "name": "Pinecone Breastplate",
+    "stats": {
+      "attack": 0,
+      "speed": 41,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Plated Greaves": {
+    "name": "Plated Greaves",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Rock Candy": {
+    "name": "Rock Candy",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Royal Shield": {
+    "name": "Royal Shield",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Ruby Earring": {
+    "name": "Ruby Earring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Sanguine Rose": {
+    "name": "Sanguine Rose",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Shield Talisman": {
+    "name": "Shield Talisman",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Sugar Bomb": {
+    "name": "Sugar Bomb",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Swiftstrike Belt": {
+    "name": "Swiftstrike Belt",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Swiftstrike Gauntlet": {
+    "name": "Swiftstrike Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Thorn Ring": {
+    "name": "Thorn Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Time Bomb": {
+    "name": "Time Bomb",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Trail Mix": {
+    "name": "Trail Mix",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Twinfuse Knot": {
+    "name": "Twinfuse Knot",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Arcane Bell": {
+    "name": "Arcane Bell",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Arcane Gauntlet": {
+    "name": "Arcane Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Assault Greaves": {
+    "name": "Assault Greaves",
+    "stats": {
+      "attack": 58,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Blood Chain": {
+    "name": "Blood Chain",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Caustic Tome": {
+    "name": "Caustic Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Chainlink Medallion": {
+    "name": "Chainlink Medallion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Chainmail Armor": {
+    "name": "Chainmail Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Cherry Bomb (Swampland)": {
+    "name": "Cherry Bomb (Swampland)",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Clearspring Feather": {
+    "name": "Clearspring Feather",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Cookbook": {
+    "name": "Cookbook",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Deviled Egg": {
+    "name": "Deviled Egg",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Envy's Grasp": {
+    "name": "Envy's Grasp",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Exposed Fragility": {
+    "name": "Exposed Fragility",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Gem Eater": {
+    "name": "Gem Eater",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Granite Egg": {
+    "name": "Granite Egg",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Honey Ham": {
+    "name": "Honey Ham",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Nerve Elixir": {
+    "name": "Nerve Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Purelake Elixir": {
+    "name": "Purelake Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Ring of Rage": {
+    "name": "Ring of Rage",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Royal Horn": {
+    "name": "Royal Horn",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Rusted Plate": {
+    "name": "Rusted Plate",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Rusty Ring": {
+    "name": "Rusty Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 88,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Serpent Lyre": {
+    "name": "Serpent Lyre",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Sheet Music": {
+    "name": "Sheet Music",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Silverscale Tome": {
+    "name": "Silverscale Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 91,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Slime Elixir": {
+    "name": "Slime Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Stormcloud Tome": {
+    "name": "Stormcloud Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Sweet Wine": {
+    "name": "Sweet Wine",
+    "stats": {
+      "attack": 0,
+      "speed": 95,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Tome of the Hero": {
+    "name": "Tome of the Hero",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Twinfuse Mask": {
+    "name": "Twinfuse Mask",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Viper Elixir": {
+    "name": "Viper Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Wooden Guard": {
+    "name": "Wooden Guard",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Xiphos of Fury": {
+    "name": "Xiphos of Fury",
+    "stats": {
+      "attack": 0,
+      "speed": 67,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "90 91 92 93 94 95 96 97 98 99100 101": {
+    "name": "90 91 92 93 94 95 96 97 98 99100 101",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Blackbriar Bow": {
+    "name": "Blackbriar Bow",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Boiled Ham": {
+    "name": "Boiled Ham",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 5,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Broken Winebottle": {
+    "name": "Broken Winebottle",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Cherry Blade": {
+    "name": "Cherry Blade",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Combustible Lemon": {
+    "name": "Combustible Lemon",
+    "stats": {
+      "attack": 0,
+      "speed": 3,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Ham Bat": {
+    "name": "Ham Bat",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 5,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Limestone Fruit": {
+    "name": "Limestone Fruit",
+    "stats": {
+      "attack": 0,
+      "speed": 3,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Marble Mushroom": {
+    "name": "Marble Mushroom",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 0,
+      "armor": 6
+    },
+    "effect": ""
+  },
+  "Toxic Cherry": {
+    "name": "Toxic Cherry",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": ""
+  },
+  "Rocksalt Sword": {
+    "name": "Rocksalt Sword",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 6
+    },
+    "effect": ""
   }
 }

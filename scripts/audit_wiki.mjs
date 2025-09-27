@@ -26,6 +26,7 @@ const PROJECT = path.resolve(__dirname, '..');
 
 const ARGS = new Set(process.argv.slice(2));
 const APPLY = ARGS.has('--apply');
+const OFFLINE = ARGS.has('--offline');
 
 const WIKI_DIR = path.join(PROJECT, 'wiki_dump');
 const DETAILS_PATH = path.join(PROJECT, 'details.json');
@@ -36,6 +37,7 @@ const REPORT_PATH = path.join(PROJECT, 'audit_wiki_report.json');
 const SETS_JS_OUT = path.join(PROJECT, 'heic_sets.generated.js');
 const SETS_JSON_OUT = path.join(PROJECT, 'heic_sets.generated.json');
 const SETS_AUDIT_OUT = path.join(PROJECT, 'set_audit_report.json');
+const EQUIPMENT_TXT = path.join(PROJECT, 'Item AND effect and Battle logic info', 'All Equipment stats.extracted.txt');
 
 // Expand to full set of item tags from Tags page
 const UI_ITEM_TAGS = new Set([
@@ -56,7 +58,7 @@ function listWikiFiles() {
   const regionItems = files.filter(f => / items - He is Coming Official Wiki\.htm$/i.test(f));
   const tagPages = files.filter(f => / - He is Coming Official Wiki\.htm$/i.test(f) && !/items?sets|Main Page|Tags/i.test(f));
   const cauldron = files.find(f => /^Cauldron - He is Coming Official Wiki\.htm$/i.test(f));
-  return { regionItems, tagPages, cauldron };
+  return { regionItems, tagPages, cauldron, allFiles: files };
 }
 
 function stripHtml(html) {
@@ -217,6 +219,51 @@ function parseRegionItemsSimple(fileName) {
   return items;
 }
 
+// Parse an individual item page (full page) to extract name + stats from the infobox
+function parseItemPage(fileName) {
+  const html = readText(path.join(WIKI_DIR, fileName));
+  const $ = cheerioLoad(html);
+
+  // Page title
+  let name = ($('#firstHeading').text() || '').trim();
+  if (!name) {
+    const title = ($('title').text() || '').trim();
+    // Strip trailing " - He is Coming Official Wiki"
+    name = title.replace(/\s*-\s*He is Coming Official Wiki\s*$/i, '').trim();
+  }
+  if (!name) return null;
+
+  // Find an infobox cell that contains any stat icon
+  const iconSel = 'img[src*="Icon_attack.png"], img[src*="Icon_speed.png"], img[src*="Icon_health.png"], img[src*="Icon_armor.png"]';
+  let stats = { attack: 0, speed: 0, health: 0, armor: 0 };
+  const cand = $(iconSel).first();
+  if (cand && cand.length) {
+    // Prefer the nearest table cell for parsing context
+    const td = cand.closest('td');
+    const htmlBlock = td && td.length ? $.html(td) : $.html(cand.parent());
+    if (htmlBlock) {
+      stats = parseStatsCell(htmlBlock);
+    }
+  } else {
+    // Fallback: scan whole HTML for icons sequentially
+    stats = parseStatsCell(html);
+  }
+
+  // Return only if we found at least one non-zero stat (avoid trigger/status pages)
+  const hasAny = Object.values(stats).some(v => (v || 0) !== 0);
+  if (!hasAny) return null;
+
+  // Very light effect extraction (optional)
+  let effect = '';
+  const effRow = $('table.wikitable, table.infobox').find('tr').filter((_, tr) => /effect/i.test($(tr).text())).first();
+  if (effRow && effRow.length) {
+    const tds = effRow.find('td');
+    if (tds && tds.length) effect = $(tds[tds.length - 1]).text().replace(/\s+/g, ' ').trim();
+  }
+
+  return { name, stats, effect };
+}
+
 function parseTagPage(fileName) {
   const html = readText(path.join(WIKI_DIR, fileName));
   const $ = cheerioLoad(html);
@@ -234,9 +281,43 @@ function parseTagPage(fileName) {
 
 function normalizeName(s) { return s.replace(/\s+/g, ' ').trim(); }
 
+// Parse the PDF-extracted equipment stats text file for broad coverage
+function parseEquipmentExtract() {
+  if (!fs.existsSync(EQUIPMENT_TXT)) return {};
+  const lines = fs.readFileSync(EQUIPMENT_TXT, 'utf8').split(/\r?\n/).map(l => l.trim());
+  const ignoreTitles = new Set([
+    'Woodland Items','Swampland Items','Jewelry','Weapons (Woodland)','Weapons (Swampland)',
+    'Standard items','Cauldron','Upgrades','Sets'
+  ]);
+  const isTitle = (line) => ignoreTitles.has(line) || /Items$/.test(line) || (/Weapons/.test(line) && /\(/.test(line));
+  const isName = (line) => line && !line.includes(':') && !/^\d+$/.test(line) && !isTitle(line);
+  const items = {};
+  let current = null;
+  let stats = { attack: null, health: null, armor: null, speed: null };
+  function flush(){
+    if (current) {
+      const fin = {
+        attack: +stats.attack || 0,
+        health: +stats.health || 0,
+        armor: +stats.armor || 0,
+        speed: +stats.speed || 0
+      };
+      items[current] = fin;
+    }
+    stats = { attack: null, health: null, armor: null, speed: null };
+  }
+  for (const l of lines) {
+    if (isName(l)) { if (current && Object.values(stats).some(v => v!==null)) flush(); current = l; continue; }
+    const m = l.match(/^(Attack|Armor|Health|Speed):\s*([+\-]?\d+)?/i);
+    if (m) { const k = m[1].toLowerCase(); const v = m[2]; stats[k] = v ? parseInt(v,10) : 0; }
+  }
+  flush();
+  return items; // name -> {attack,health,armor,speed}
+}
+
 function main() {
   console.log('Scanning wiki_dump for items and tags...');
-  const { regionItems, tagPages, cauldron } = listWikiFiles();
+  const { regionItems, tagPages, cauldron, allFiles } = listWikiFiles();
 
   // 1) Extract items from region pages
   const wikiItems = {};
@@ -268,6 +349,63 @@ function main() {
   }
 
   writeJSON(EXTRACTED_ITEMS_PATH, wikiItems);
+
+  // 1b) Parse individual item pages to fill/extend coverage
+  let singlePageCount = 0;
+  for (const f of allFiles) {
+    // Skip known non-item aggregations already handled above
+    if (!/\.htm$/i.test(f)) continue;
+    if (/ items - He is Coming Official Wiki\.htm$/i.test(f)) continue; // region items (done)
+    if (/ itemsets - He is Coming Official Wiki\.htm$/i.test(f)) continue; // itemsets (handled later)
+    if (/^Tags - He is Coming Official Wiki\.htm$/i.test(f)) continue;
+    if (/^Main Page - He is Coming Official Wiki\.htm$/i.test(f)) continue;
+
+    try {
+      const entry = parseItemPage(f);
+      if (!entry) continue;
+      const key = normalizeName(entry.name);
+      // Prefer single-item page data when present
+      wikiItems[key] = entry;
+      singlePageCount++;
+    } catch (e) {
+      // Non-fatal parsing errors
+    }
+  }
+  if (singlePageCount > 0) {
+    writeJSON(EXTRACTED_ITEMS_PATH, wikiItems);
+    console.log(`Parsed ${singlePageCount} items from individual item pages`);
+  }
+
+  // 1c) Merge stats extracted from the equipment text dump for broader coverage
+  const extracted = parseEquipmentExtract();
+  let mergedFromTxt = 0;
+  for (const [nm, st] of Object.entries(extracted)) {
+    const k = normalizeName(nm);
+    if (!wikiItems[k]) { wikiItems[k] = { name: nm, stats: { attack: st.attack||0, speed: st.speed||0, health: st.health||0, armor: st.armor||0 }, effect: '' }; mergedFromTxt++; }
+    else {
+      // Fill missing stats if wiki item had zeros
+      const w = wikiItems[k];
+      const ws = w.stats || { attack:0,speed:0,health:0,armor:0 };
+      const merged = {
+        attack: ws.attack || st.attack || 0,
+        speed: ws.speed || st.speed || 0,
+        health: ws.health || st.health || 0,
+        armor: ws.armor || st.armor || 0,
+      };
+      w.stats = merged; wikiItems[k] = w;
+    }
+  }
+  if (mergedFromTxt > 0) {
+    writeJSON(EXTRACTED_ITEMS_PATH, wikiItems);
+    console.log(`Merged ${mergedFromTxt} items from equipment extract`);
+  }
+
+  // Build a slug-index for wiki items to improve matching accuracy
+  const wikiBySlug = {};
+  for (const [nm, it] of Object.entries(wikiItems)) {
+    const slug = (it.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+    if (slug) wikiBySlug[slug] = it;
+  }
 
   // 2) Extract item-tag membership from tag pages
   const wikiTagsByItem = {}; // name -> Set of tags
@@ -429,7 +567,11 @@ function main() {
   for (const [key, val] of propList) {
     if (!val || !val.name) continue;
     const nm = normalizeName(val.name);
-    const wiki = wikiItems[nm];
+    let wiki = wikiItems[nm];
+    if (!wiki && val && typeof val.slug === 'string') {
+      const s = val.slug.toLowerCase();
+      wiki = wikiBySlug[s] || wikiBySlug[s.replace(/^items\//,'').replace(/^weapons\//,'')];
+    }
     if (!wiki) continue;
 
     // Compare stats, and authoritatively set overrides to the wiki values.
@@ -517,6 +659,10 @@ function main() {
   } else {
     console.log(`\nDry run only. Re-run with --apply or via npm run audit:wiki to save changes.`);
   }
+
+  mainEnd();
 }
+
+function mainEnd(){}
 
 main();

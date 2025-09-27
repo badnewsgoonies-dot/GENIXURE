@@ -99,8 +99,10 @@
     "armor": 1
   },
   "items/toxic_cherry": {
-    "attack": 2,
-    "speed": 4
+    "attack": 3,
+    "armor": 0,
+    "health": 0,
+    "speed": 0
   },
   "items/mushroom_buckler": {
     "attack": 0,
@@ -141,9 +143,10 @@
     "armor": 8
   },
   "items/marble_mushroom": {
-    "armor": 6,
     "attack": 4,
-    "speed": 3
+    "armor": 6,
+    "health": 0,
+    "speed": 0
   },
   "items/melon_lemonade": {
     "attack": 0,
@@ -176,7 +179,10 @@
     "speed": 0
   },
   "items/broken_winebottle": {
-    "attack": 2
+    "attack": 2,
+    "armor": 0,
+    "health": 0,
+    "speed": 0
   },
   "items/emerald_crown": {
     "attack": -1,
@@ -188,7 +194,10 @@
     "health": 5
   },
   "items/boiled_ham": {
-    "health": 5
+    "attack": 0,
+    "armor": 0,
+    "health": 5,
+    "speed": 0
   },
   "items/ruby_earring": {
     "attack": 0
@@ -291,10 +300,16 @@
     "armor": 0
   },
   "items/combustible_lemon": {
+    "attack": 0,
+    "armor": 0,
+    "health": 0,
     "speed": 3
   },
   "items/blackbriar_bow": {
-    "attack": 4
+    "attack": 4,
+    "armor": 0,
+    "health": 0,
+    "speed": 0
   },
   "items/double_plated_armor": {
     "attack": 0,
@@ -307,7 +322,10 @@
     "speed": 3
   },
   "items/cherry_blade": {
-    "attack": 3
+    "attack": 3,
+    "armor": 0,
+    "health": 0,
+    "speed": 0
   },
   "items/swiftstrike_cloak": {
     "attack": 0,
@@ -394,8 +412,10 @@
     "health": 6
   },
   "items/rock_roast": {
-    "armor": 6,
-    "health": 6
+    "attack": 0,
+    "speed": 43,
+    "health": 6,
+    "armor": 6
   },
   "items/mist_armor": {
     "attack": 0,
@@ -440,6 +460,9 @@
     "speed": 0
   },
   "items/limestone_fruit": {
+    "attack": 0,
+    "armor": 0,
+    "health": 0,
     "speed": 3
   },
   "items/iceblock_shield": {
@@ -481,7 +504,10 @@
     "armor": 1
   },
   "items/rusty_ring": {
-    "attack": 0
+    "attack": 0,
+    "speed": 88,
+    "health": 0,
+    "armor": 0
   },
   "items/toxic_algae": {
     "attack": 0,
@@ -516,7 +542,9 @@
   },
   "items/ham_bat": {
     "attack": 3,
-    "health": 5
+    "armor": 0,
+    "health": 5,
+    "speed": 0
   },
   "items/bloody_steak": {
     "attack": 0,
@@ -532,7 +560,7 @@
     "attack": 0,
     "speed": -1,
     "health": 0,
-    "armor": 0
+    "armor": 2
   },
   "items/ironstone_sandals": {
     "attack": 0,
@@ -560,6 +588,9 @@
     "attack": -1
   },
   "items/frostbite_armor": {
+    "attack": 0,
+    "speed": 20,
+    "health": 0,
     "armor": 2
   },
   "items/impressive_physique": {
@@ -634,7 +665,10 @@
     "armor": 2
   },
   "weapons/champion_s_blade": {
-    "attack": 6
+    "attack": 6,
+    "speed": 61,
+    "health": 0,
+    "armor": 0
   },
   "weapons/cleaver_of_wrath": {
     "attack": 10
@@ -680,7 +714,10 @@
     "attack": 4
   },
   "weapons/granite_hammer": {
-    "attack": 2
+    "attack": 2,
+    "speed": 22,
+    "health": 0,
+    "armor": 0
   },
   "weapons/granite_lance": {
     "attack": 2,
@@ -710,7 +747,10 @@
     "speed": -2
   },
   "weapons/ironstone_spear": {
-    "attack": 2
+    "attack": 2,
+    "speed": 71,
+    "health": 0,
+    "armor": 0
   },
   "weapons/king_s_blade": {
     "attack": 3
@@ -804,7 +844,10 @@
     "attack": 2
   },
   "weapons/swiftstrike_bow": {
-    "attack": 2
+    "attack": 2,
+    "speed": 52,
+    "health": 0,
+    "armor": 0
   },
   "weapons/swiftstrike_rapier": {
     "attack": 2
@@ -824,7 +867,10 @@
     "attack": 6
   },
   "weapons/twin_blade": {
-    "attack": 1
+    "attack": 1,
+    "speed": 55,
+    "health": 0,
+    "armor": 0
   },
   "weapons/wave_breaker": {
     "attack": -2
@@ -833,10 +879,16 @@
     "attack": 1
   },
   "items/cherry_bomb": {
-    "attack": 3
+    "attack": 3,
+    "speed": 8,
+    "health": 0,
+    "armor": 0
   },
   "items/clearspring_watermelon": {
-    "attack": 3
+    "attack": 3,
+    "speed": 65,
+    "health": 0,
+    "armor": 0
   },
   "items/cracked_whetstone": {
     "attack": 8
@@ -867,6 +919,9 @@
     "armor": 6
   },
   "items/petrifying_elixir": {
+    "attack": 0,
+    "speed": 83,
+    "health": 0,
     "armor": 40
   },
   "items/acidic_witherleaf": {
@@ -916,5 +971,341 @@
     "speed": 4,
     "health": 0,
     "armor": 0
+  },
+  "items/arcane_bell": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/arcane_gauntlet": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/assault_greaves": {
+    "attack": 58,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/blood_chain": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/caustic_tome": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/chainlink_medallion": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/chainmail_armor": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/cherry_cocktail": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/citrine_ring": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/clearspring_feather": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/cookbook": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/deviled_egg": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/double_plated_vest": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/druid_s_cloak": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/energy_drain": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/explosive_powder": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/explosive_surprise": {
+    "attack": 0,
+    "speed": 17,
+    "health": 0,
+    "armor": 0
+  },
+  "items/featherweight_armor": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/featherweight_greaves": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/featherweight_helmet": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/featherweight_wings": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/firecracker_belt": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/fortified_gauntlet": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/frostbite_curse": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/frostbite_gauntlet": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/frostbite_greaves": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/frostbite_trap": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/granite_crown": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/granite_egg": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/heart_shaped_acorn": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/heart_shaped_potion": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/ice_spikes": {
+    "attack": 0,
+    "speed": 25,
+    "health": 0,
+    "armor": 0
+  },
+  "items/ice_tomb": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/iron_rose": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/iron_shrapnel": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/iron_transfusion": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/kindling_bomb": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/leather_boots": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/lifeblood_armor": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/lifeblood_burst": {
+    "attack": 0,
+    "speed": 35,
+    "health": 0,
+    "armor": 0
+  },
+  "items/lifeblood_helmet": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/loose_change": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/moonlight_shield": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/oak_heart": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/ore_heart": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/pinecone_breastplate": {
+    "attack": 0,
+    "speed": 41,
+    "health": 0,
+    "armor": 0
+  },
+  "items/plated_greaves": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/rock_candy": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/royal_horn": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/royal_shield": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/serpent_lyre": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/silverscale_tome": {
+    "attack": 0,
+    "speed": 91,
+    "health": 0,
+    "armor": 0
+  },
+  "items/time_bomb": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "items/tome_of_the_hero": {
+    "attack": 0,
+    "speed": 0,
+    "health": 0,
+    "armor": 0
+  },
+  "weapons/cherry_blade": {
+    "attack": 3,
+    "armor": 0,
+    "health": 0,
+    "speed": 0
+  },
+  "weapons/rocksalt_sword": {
+    "attack": 2,
+    "armor": 6,
+    "health": 0,
+    "speed": 0
   }
 }
