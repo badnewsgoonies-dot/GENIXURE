@@ -1,4 +1,4 @@
-console.log('  window.HEIC_DETAILS available:', !!window.HEIC_DETAILS);
+﻿console.log('  window.HEIC_DETAILS available:', !!window.HEIC_DETAILS);
 console.log('   Items count:', window.HEIC_DETAILS ? Object.keys(window.HEIC_DETAILS).length : 0);
 
 /* Main builder logic using embedded details data */
@@ -1336,25 +1336,25 @@ function updateCompendiumCounts() {
   updateFacetCounts();
 }
 
-// Update data health indicator
-function updateDataHealthIndicator(isHealthy) {
-  const healthDot = document.getElementById('healthDot');
-  const healthText = document.getElementById('healthText');
-  
-  if (healthDot && healthText) {
-    if (isHealthy) {
-      healthDot.style.background = '#0f3';
-      healthText.textContent = 'Data OK';
-      healthText.style.color = '#0f3';
-    } else {
-      healthDot.style.background = '#f33';
-      healthText.textContent = 'No Data';
-      healthText.style.color = '#f33';
-    }
+
+
+// Normalize effect trigger names to match facet values
+function normalizeTrigger(t) {
+  switch (t) {
+    case 'battle_start':
+    case 'battleStart': return 'battleStart';
+    case 'turn_start':
+    case 'turnStart': return 'turnStart';
+    case 'onHit':
+    case 'hit': return 'hit';
+    case 'onWounded':
+    case 'wounded': return 'wounded';
+    case 'onExposed':
+    case 'exposed': return 'exposed';
+    case 'passive': return 'passive';
+    default: return t || '';
   }
 }
-
-// Update facet counts
 function updateFacetCounts() {
   const allItems = compendiumState.data.allItems;
   
@@ -1695,8 +1695,8 @@ function generatePlainEnglishEffect(item) {
 }
 
 // Parse wiki-style tier annotations like:
-//   "... — at Gold: 4 , at Diamond: 8"
-//   or longer fragments: "— at Gold: take 6 for 2 swords, at Diamond: take 12 for 4"
+//   "... â€” at Gold: 4 , at Diamond: 8"
+//   or longer fragments: "â€” at Gold: take 6 for 2 swords, at Diamond: take 12 for 4"
 function parseTieredEffect(text) {
   const s = String(text || '');
   const lower = s.toLowerCase();
@@ -1715,7 +1715,7 @@ function parseTieredEffect(text) {
   );
   if (firstIdx !== s.length) {
     // Trim any dash that precedes the tier section
-    base = s.slice(0, firstIdx).replace(/\s*[—–-]\s*$/,'').trim();
+    base = s.slice(0, firstIdx).replace(/\s*[â€”â€“-]\s*$/,'').trim();
   }
 
   const gold = goldM ? goldM[1].trim() : '';
@@ -1734,12 +1734,12 @@ function parseTieredEffect(text) {
     renderGold(){
       if (!gold) return base;
       if (isNumeric(gold)) return replaceLastNumber(base, gold);
-      return `${base} — ${gold}`;
+      return `${base} â€” ${gold}`;
     },
     renderDiamond(){
       if (!diamond) return base;
       if (isNumeric(diamond)) return replaceLastNumber(base, diamond);
-      return `${base} — ${diamond}`;
+      return `${base} â€” ${diamond}`;
     }
   };
 }
@@ -2908,7 +2908,7 @@ function updateLoadoutTray(sideName, side, containerId) {
         <div class="item-tooltip">
           <div class="name">${esc(item.name)}</div>
           ${eff ? `<div class="effect">${esc(eff)}</div>` : ''}
-          <div class="stats">ATK ${st.attack||0} • ARM ${st.armor||0} • HP ${st.health||0} • SPD ${st.speed||0}</div>
+          <div class="stats">ATK ${st.attack||0} â€¢ ARM ${st.armor||0} â€¢ HP ${st.health||0} â€¢ SPD ${st.speed||0}</div>
         </div>
       </div>
     `;
@@ -4783,4 +4783,7 @@ if (document.readyState === 'loading') {
 
 // Ensure boot function is available globally
 try { window.__compendiumBoot = __compendiumBoot; } catch(_) {}
+
+
+
 
