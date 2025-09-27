@@ -1036,6 +1036,22 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   box-shadow: 0 0 4px rgba(185,242,255,0.3);
 }
 
+/* Loadout tray hover tooltip */
+.loadout-item .item-tooltip{
+  position:absolute; top:50%; left:100%; transform: translate(8px,-50%);
+  min-width:220px; max-width:320px; background:#0a0a0a; border:1px solid #333;
+  border-radius:10px; padding:10px; color:#ddd; display:none; z-index:50;
+  box-shadow:0 6px 16px rgba(0,0,0,.4)
+}
+.loadout-item:hover .item-tooltip{ display:block }
+.item-tooltip .name{ font-weight:700; margin-bottom:4px; color:#fff }
+.item-tooltip .effect{ color:#ccc; font-size:12px; margin-bottom:6px }
+.item-tooltip .stats{ color:#aaa; font-size:11px }
+
+/* Two-column tray on wide screens */
+#playerLoadoutDisplay, #opponentLoadoutDisplay { display:grid; grid-template-columns: 1fr; gap:8px }
+@media (min-width: 1400px){ #playerLoadoutDisplay, #opponentLoadoutDisplay { grid-template-columns: 1fr 1fr } }
+
 /* Phase-based log styling */
 .log-phase-card {
   margin: 12px 0;
@@ -1891,11 +1907,20 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             .delta-row .icon{width:16px; height:16px; display:inline-block}
             .delta-row.positive{color:#0f3}
             .delta-row.negative{color:#f44}
+            /* Compact, always-on status icon bar */
+            .status-bar{display:flex; gap:10px; align-items:center; justify-content:flex-start; margin:4px 0 6px}
+            .status-bar .s{display:flex; align-items:center; gap:4px; color:#ccc; font-size:12px}
+            .status-bar .s img{width:16px; height:16px; image-rendering:pixelated}
+            /* Hide legacy left cards in simulation view */
+            #simulationTab .fighter-summary-pane .fighter-card, #simulationTab #pinnedMetrics{display:none !important}
+            /* Hide old chip rows in arena */
+            #arenaPlayerStatuses, #arenaOpponentStatuses{display:none}
           </style>
 
             <div id="arenaBoard" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
             <div id="simPlayerArena" style="background: rgba(0,255,51,0.05); border: 1px solid #0a5; border-radius: 12px; padding: 12px; position: relative; min-height: var(--arena-box-min-height);">
                 <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px;">Current Status</div>
+                <div id="arenaPlayerStatusBar" class="status-bar"></div>
                 <div id="arenaPlayerStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:6px 0 8px 0;"></div>
                 <div id="arenaPlayerEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(0,255,51,0.1); border:1px solid #0f3; color:#0f3;">
                   <img id="arenaPlayerEventIcon" src="assets/placeholder.png">
@@ -1908,11 +1933,17 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
                 <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
                   <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaPlayerHP">10</span></div>
                   <div class="pill"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaPlayerArmor">0</span></div>
+                  <div class="pill"><img src="assets/attack.png" style="width:16px;height:16px;"><span id="arenaPlayerAttack">0</span></div>
                   <div class="pill"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaPlayerSpeed">0</span></div>
+                </div>
+                <div style="margin-top:12px; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; color:#ccc; font-size:13px;">
+                  <div style="font-weight:700; color:#0f3; margin-bottom:4px;">Action</div>
+                  <div id="arenaPlayerAction" style="opacity:.9"></div>
                 </div>
               </div>
             <div id="simOpponentArena" style="background: rgba(255,51,51,0.05); border: 1px solid #a33; border-radius: 12px; padding: 12px; position: relative; min-height: var(--arena-box-min-height);">
                 <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px; text-align:right;">Current Status</div>
+                <div id="arenaOpponentStatusBar" class="status-bar" style="justify-content:flex-end;"></div>
                 <div id="arenaOpponentStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:6px 0 8px 0;"></div>
                 <div id="arenaOpponentEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(255,51,51,0.1); border:1px solid #f33; color:#f33;">
                   <img id="arenaOpponentEventIcon" src="assets/placeholder.png">
@@ -1925,7 +1956,12 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
                 <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
                   <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaOpponentHP">10</span></div>
                   <div class="pill"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaOpponentArmor">0</span></div>
+                  <div class="pill"><img src="assets/attack.png" style="width:16px;height:16px;"><span id="arenaOpponentAttack">0</span></div>
                   <div class="pill"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaOpponentSpeed">0</span></div>
+                </div>
+                <div style="margin-top:12px; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; color:#ccc; font-size:13px; text-align:right;">
+                  <div style="font-weight:700; color:#f66; margin-bottom:4px;">Action</div>
+                  <div id="arenaOpponentAction" style="opacity:.9"></div>
                 </div>
               </div>
           </div>
@@ -2266,6 +2302,31 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
       renderStatuses('arenaPlayerStatuses', state.player.statuses, '#0f3');
       renderStatuses('arenaOpponentStatuses', state.opponent.statuses, '#f33');
 
+      // Render compact status bar (fixed set, includes zeros)
+      const BAR = [
+        ['freeze','sprites/Icon_freeze.png'],
+        ['stun','sprites/Icon_stun.png'],
+        ['poison','sprites/Icon_poison.png'],
+        ['acid','sprites/Icon_acid.png'],
+        ['riptide','sprites/Icon_riptide.png'],
+        ['thorns','sprites/Icon_thorns.png'],
+        ['regen','sprites/Icon_regen.png'],
+        ['purity','sprites/Icon_purity.png']
+      ];
+      const renderStatusBar = (containerId, statuses, alignRight=false) => {
+        const box = document.getElementById(containerId);
+        if (!box) return;
+        box.innerHTML = '';
+        BAR.forEach(([key, icon])=>{
+          const s = document.createElement('div'); s.className='s';
+          const img = document.createElement('img'); img.src = icon; img.alt = key;
+          const val = document.createElement('span'); val.textContent = (statuses && (statuses[key]|0)) || 0;
+          s.appendChild(img); s.appendChild(val); box.appendChild(s);
+        });
+      };
+      renderStatusBar('arenaPlayerStatusBar', state.player.statuses);
+      renderStatusBar('arenaOpponentStatusBar', state.opponent.statuses, true);
+
       // Floating per-action overlay
       const showOverlayOne = (prefix, icon, text) => {
         const box = document.getElementById(prefix+'EventOverlay');
@@ -2341,6 +2402,30 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
       } else {
         this.renderDeltaList('arenaPlayerDelta', []);
         this.renderDeltaList('arenaOpponentDelta', []);
+      }
+
+      // Action captions
+      const entry = BattleStateManager.getLogEntry(index);
+      const compact = (str) => {
+        if (!str) return '';
+        return String(str)
+          .replace(/::icon:[^:]*::\s*/gi,'')
+          .replace(/\beffect\b\s*/gi,'')
+          .replace(/\s*\[PlayerHP:[^\]]*\]\s*$/i,'')
+          .trim();
+      };
+      const txt = compact(entry && entry.text);
+      const setText = (id, t) => { const el = document.getElementById(id); if (el) el.textContent = t || ''; };
+      // Heuristic: if line mentions Player deals/gains etc, show under opponent or player appropriately
+      if (/\bOpponent\b/i.test(txt) && !/\bPlayer\b/i.test(txt)) {
+        setText('arenaOpponentAction', txt);
+        setText('arenaPlayerAction', '');
+      } else if (/\bPlayer\b/i.test(txt) && !/\bOpponent\b/i.test(txt)) {
+        setText('arenaPlayerAction', txt);
+        setText('arenaOpponentAction', '');
+      } else {
+        setText('arenaPlayerAction', txt);
+        setText('arenaOpponentAction', txt);
       }
     }
   };
@@ -2450,7 +2535,7 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   </script>
 
 <script>
-/* Battle Replay System - Replay Controller Module */
+  /* Battle Replay System - Replay Controller Module */
   const BattleReplayController = {
   currentIndex: 0,
   isPlaying: false,
@@ -2538,6 +2623,16 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
     this.updateControls();
   },
   
+  // Compact a raw log line for UI (strip noisy prefixes)
+  compactLog(str){
+    if (!str) return '';
+    return String(str)
+      .replace(/::icon:[^:]*::\s*/gi,'')
+      .replace(/\beffect\b\s*/gi,'')
+      .replace(/\s*\[PlayerHP:[^\]]*\]\s*$/i,'')
+      .trim();
+  },
+
   // Render the complete battle log with replay features
   renderBattleLog() {
     if (!this.elements.log) return;
@@ -2552,7 +2647,7 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
       const div = document.createElement('div');
       div.className = `battle-log-line ${entry.type}`;
       div.dataset.index = i;
-      div.innerHTML = entry.text;
+      div.textContent = this.compactLog(entry.text);
       
       // Add turn marker
       const marker = document.createElement('div');
