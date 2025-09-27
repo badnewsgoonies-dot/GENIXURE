@@ -9,9 +9,10 @@ type Props = {
   triggers: Set<string>; onToggleTrigger: (t: string) => void;
   sets: Set<string>; onToggleSet: (s: string) => void;
   setDefs: { key: string; name: string; reqs?: any[] }[];
+  onRandomize?: () => void;
 };
 
-export default function FacetPanel({ items, buckets, onToggleBucket, tags, onToggleTag, triggers, onToggleTrigger, sets, onToggleSet, setDefs }: Props) {
+export default function FacetPanel({ items, buckets, onToggleBucket, tags, onToggleTag, triggers, onToggleTrigger, sets, onToggleSet, setDefs, onRandomize }: Props) {
   const bucketCounts = useMemo(() => inferBuckets(items), [items]);
   const tagCounts = useMemo(() => collectTags(items), [items]);
   const triggerCounts = useMemo(() => collectTriggers(items), [items]);
@@ -49,6 +50,14 @@ export default function FacetPanel({ items, buckets, onToggleBucket, tags, onTog
           </div>
         </Section>
       )}
+      <div className="mt-4 rounded-lg border border-border p-3">
+        <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-primary">Set Bonus</div>
+        <div className="text-xs text-muted">(placeholder — will show detected set synergies)</div>
+      </div>
+      <button onClick={onRandomize}
+        className="mt-3 w-full rounded-lg border border-primary bg-black px-3 py-2 text-sm font-semibold text-primary hover:bg-primary/10">
+        Randomize
+      </button>
     </aside>
   );
 }
@@ -83,4 +92,3 @@ function toHumanTrigger(t: string) {
   };
   return map[t] || t;
 }
-

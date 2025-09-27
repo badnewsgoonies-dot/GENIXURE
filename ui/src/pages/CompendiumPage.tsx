@@ -4,6 +4,8 @@ import SearchBar from '../components/compendium/SearchBar';
 import { loadItems, type HeicItem } from '../lib/data';
 import FacetPanel from '../components/compendium/FacetPanel';
 import { filterItems as applyFilters } from '../lib/filters';
+import { Dialog } from '../components/primitives/Dialog';
+import { randomBuild } from '../lib/random';
 
 export default function CompendiumPage() {
   const [items, setItems] = useState<HeicItem[]>([]);
@@ -21,6 +23,8 @@ export default function CompendiumPage() {
   const [tagSet, setTagSet] = useState<Set<string>>(new Set());
   const [triggerSet, setTriggerSet] = useState<Set<string>>(new Set());
   const [setKeys, setSetKeys] = useState<Set<string>>(new Set());
+  const [randomOpen, setRandomOpen] = useState(false);
+  const [randomOutput, setRandomOutput] = useState<any>(null);
 
   // Load set definitions from global if present
   const setDefs = ((): { key: string; name: string; reqs?: any[] }[] => {
@@ -57,6 +61,7 @@ export default function CompendiumPage() {
         sets={setKeys}
         onToggleSet={(s) => setSetKeys((prev) => { const n = new Set(prev); n.has(s) ? n.delete(s) : n.add(s); return n; })}
         setDefs={setDefs}
+        onRandomize={() => { const rb = randomBuild(items); setRandomOutput(rb); setRandomOpen(true); }}
       />
 
       <div className="space-y-3 p-3">
@@ -72,6 +77,9 @@ export default function CompendiumPage() {
           <ItemGrid items={filtered} />
         )}
       </div>
+      <Dialog open={randomOpen} title="Random Build" onClose={() => setRandomOpen(false)}>
+        <pre className="max-h-[60vh] overflow-auto text-xs text-muted">{JSON.stringify(randomOutput, null, 2)}</pre>
+      </Dialog>
     </div>
   );
 }
