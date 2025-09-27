@@ -939,7 +939,7 @@ function setupCompendiumEventListeners() {
     }
   
   // View Switch
-  const viewButtons = ['viewCards', 'viewTable', 'viewCompare'];
+  const viewButtons = ['viewCards', 'viewTable'];
   viewButtons.forEach(id => {
     const btn = document.getElementById(id);
     if (btn) {
@@ -949,16 +949,7 @@ function setupCompendiumEventListeners() {
     }
   });
   
-  // Tier Switch
-  const tierButtons = ['tierBase', 'tierGold', 'tierDiamond'];
-  tierButtons.forEach(id => {
-    const btn = document.getElementById(id);
-    if (btn) {
-      btn.addEventListener('click', () => {
-        switchTier(id.replace('tier', '').toLowerCase());
-      });
-    }
-  });
+  // Tier Switch removed
   
   // Review system removed
 
@@ -4783,6 +4774,8 @@ if (document.readyState === 'loading') {
 
 // Ensure boot function is available globally
 try { window.__compendiumBoot = __compendiumBoot; } catch(_) {}
+
+
 
 
 
