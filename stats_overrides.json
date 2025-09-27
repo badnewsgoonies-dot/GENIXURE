@@ -205,7 +205,7 @@
     "speed": 0
   },
   "items/emerald_crown": {
-    "attack": 0,
+    "attack": -1,
     "speed": 0,
     "health": 8,
     "armor": 0
@@ -272,7 +272,7 @@
     "armor": 0
   },
   "items/holy_tome": {
-    "attack": 0,
+    "attack": -1,
     "speed": 0,
     "health": 0,
     "armor": 0
@@ -348,7 +348,7 @@
   },
   "items/double_plated_armor": {
     "attack": 0,
-    "speed": 0,
+    "speed": -2,
     "health": 0,
     "armor": 2
   },
@@ -424,8 +424,8 @@
     "speed": 0
   },
   "items/holy_shield": {
-    "attack": 0,
-    "speed": 0,
+    "attack": -1,
+    "speed": -1,
     "health": 0,
     "armor": 6
   },
@@ -489,7 +489,7 @@
   },
   "items/ruby_crown": {
     "attack": 1,
-    "speed": 0,
+    "speed": -1,
     "health": 0,
     "armor": 0
   },
@@ -605,13 +605,13 @@
   },
   "items/ironstone_bracelet": {
     "attack": 0,
-    "speed": 0,
+    "speed": -1,
     "health": 0,
     "armor": 2
   },
   "items/ironstone_sandals": {
     "attack": 0,
-    "speed": 0,
+    "speed": -1,
     "health": 0,
     "armor": 0
   },
@@ -872,7 +872,7 @@
   },
   "weapons/ironstone_greatsword": {
     "attack": 4,
-    "speed": 0,
+    "speed": -2,
     "armor": 0,
     "health": 0
   },
@@ -1080,7 +1080,7 @@
     "armor": 0
   },
   "weapons/wave_breaker": {
-    "attack": 0,
+    "attack": -2,
     "armor": 0,
     "health": 0,
     "speed": 0

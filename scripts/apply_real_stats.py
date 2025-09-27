@@ -16,7 +16,34 @@ if not REAL.exists():
 text = REAL.read_text(encoding='utf-8', errors='ignore').splitlines()
 
 name_re = re.compile(r'^[A-Za-z0-9\'\-][A-Za-z0-9 _\'\-]+$')
-stat_line_re = re.compile(r'^(Attack|Armor|Health|Speed)\s*:\s*(-?\d+)\s*$')
+# Accept any trailing content after the colon; we'll sanitize separately
+stat_line_re = re.compile(r'^(Attack|Armor|Health|Speed)\s*:\s*(.*)$')
+
+# Characters that can represent a minus sign in various encodings
+MINUS_CHARS = '-\u2212\u2013\u2014\u2010\u2011'
+
+def parse_messy_int(s: str):
+    if s is None:
+        return None
+    t = str(s).strip().replace('\xa0',' ').replace('\u00A0',' ')
+    if t == '' or t == '-':
+        return None
+    # 1) Exact match for [minus-like]?digits
+    m = re.search(rf'([{MINUS_CHARS}]?)(\d+)\s*$', t)
+    if m:
+        sign, digits = m.group(1), m.group(2)
+        val = int(digits)
+        if sign and sign != '':
+            return -val
+        return val
+    # 2) Fallback: trailing digits with earlier weird replacement/question mark → treat as negative
+    m2 = re.search(r'(\d+)\s*$', t)
+    if m2:
+        digits = int(m2.group(1))
+        if any(ch in t for ch in ['\uFFFD','�','?','"']):
+            return -digits
+        return digits
+    return None
 
 items = {}
 current = None
@@ -44,8 +71,9 @@ for raw in text:
     m = stat_line_re.match(line)
     if m:
         k = m.group(1).lower()
-        v = int(m.group(2))
-        buf[k] = v
+        v = parse_messy_int(m.group(2))
+        if v is not None:
+            buf[k] = v
         continue
     # treat as a name line (strict ASCII-ish to avoid weird symbol rows)
     if name_re.match(line):
@@ -96,4 +124,3 @@ report = {
 REPORT.write_text(json.dumps(report, indent=2), encoding='utf-8')
 print('Applied overrides for', applied, 'entries')
 print('Unmatched:', len(unmatched))
-
