@@ -2152,6 +2152,7 @@ let CURRENT_SOURCE_SLUG = null;
     // Basic action parser for UI hooks
     const parseEvent = (text) => {
       const t = String(text || '');
+      const lower = t.toLowerCase();
       // Armor gains
       let m = t.match(/(Player|Opponent) gains\s+(\d+)\s+armor/i);
       if (m) return { side: m[1].toLowerCase()==='player'?'player':'opponent', type:'armor', amount:parseInt(m[2],10) };
@@ -2162,8 +2163,14 @@ let CURRENT_SOURCE_SLUG = null;
       m = t.match(/deals\s+(\d+)\s+damage/i);
       if (m) {
         const amt = parseInt(m[1],10);
-        const toOpp = /Player deals/i.test(t) || /Fighter deals/i.test(t);
-        return { side: toOpp ? 'opponent':'player', type:'hp', amount:-amt };
+        let target = null;
+        if (/player (deals|hits|strikes)/i.test(t)) target = 'opponent';
+        else if (/opponent (deals|hits|strikes)/i.test(t)) target = 'player';
+        else if (/opponent suffers/i.test(lower)) target = 'opponent';
+        else if (/player suffers/i.test(lower)) target = 'player';
+        else if (/fights opponent|attacks opponent/i.test(lower)) target = 'opponent';
+        else if (/attacks player|hits player/i.test(lower)) target = 'player';
+        return { side: target || 'opponent', type:'hp', amount:-amt };
       }
       // Status gains (acid, poison, regen, thorns)
       m = t.match(/(Player|Opponent) gains?\s+(\d+)\s+(acid|poison|regen|thorns)/i);
