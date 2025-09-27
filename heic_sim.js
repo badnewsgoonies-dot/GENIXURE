@@ -1477,6 +1477,10 @@
   function runEffects(event, self, other, baseLog, extra = {}) {
     const __prevEvent = CURRENT_EVENT; CURRENT_EVENT = event;
     try {
+    // Context gates: skip entire dispatch for context-dependent events
+    if (event === 'nextBoss' && !(global.BATTLE_CONTEXT && global.BATTLE_CONTEXT.isBossBattle)) { CURRENT_EVENT = __prevEvent; return; }
+    if (event === 'firstBattle' && !(global.BATTLE_CONTEXT && global.BATTLE_CONTEXT.isFirstBattleOfRun)) { CURRENT_EVENT = __prevEvent; return; }
+    if (global.BATTLE_CONTEXT && global.BATTLE_CONTEXT.enableFirstTimeEffects === false && (event === 'firstTurn' || event === 'firstTime')) { CURRENT_EVENT = __prevEvent; return; }
     attachHelpers(self, other, baseLog);
     attachHelpers(other, self, baseLog);
 
@@ -1514,7 +1518,7 @@
       const slug = (typeof itemOrSlug === 'string') ? itemOrSlug : (itemOrSlug.slug || itemOrSlug.key);
       if (!slug) continue;
 
-      const details = (global.HEIC_DETAILS || window.HEIC_DETAILS || {})[slug];
+      const details = (global.HEIC_DETAILS || (typeof window!=='undefined'?window.HEIC_DETAILS:undefined) || {})[slug];
       if (!details || !Array.isArray(details.effects)) continue;
 
       // For Symphony events, only process items that have Symphony effects or tags
@@ -2066,6 +2070,7 @@
       this.countdowns.push({
         name,
         turnsLeft: turns,
+        initialTurns: turns,
         tag,
         action,
         triggered: false
@@ -2091,6 +2096,13 @@
             runEffects('postCountdownTrigger', this, other, log, { countdown: cd });
             // Standardized countdown trigger (deferred)
             _enqueueTrigger('countdown', this, other, { countdown: cd });
+
+            // Arcane Cloak: reset countdown after it fires (re‑arm on next turn)
+            const hasArcaneCloak = (Array.isArray(this.items) && this.items.some(s => String(s).includes('arcane_cloak'))) || (this.flags && this.flags.arcaneCloak === true);
+            if (hasArcaneCloak) {
+              this._countdownsToRearmNextTurn = this._countdownsToRearmNextTurn || [];
+              this._countdownsToRearmNextTurn.push({ name: cd.name, turns: cd.initialTurns || 3, tag: cd.tag, action: cd.action });
+            }
           } catch (err) {
             if (log) log(`Error in countdown: ${err.message}`);
           }
@@ -2274,6 +2286,14 @@ let CURRENT_EVENT = null;
   }
 
   function turnStartTicks(a, other, log){
+    // Re‑arm any countdowns scheduled for this turn (e.g., Arcane Cloak)
+    if (Array.isArray(a._countdownsToRearmNextTurn) && a._countdownsToRearmNextTurn.length) {
+      a._countdownsToRearmNextTurn.forEach(ct => {
+        try { a.addCountdown(ct.name, ct.turns, ct.tag || 'Rearmed', ct.action); } catch(_) {}
+        if (log) log(`${a.name} resets ${ct.name} countdown`);
+      });
+      a._countdownsToRearmNextTurn.length = 0;
+    }
     a.resetTurn();
     
     // Process any active countdowns
@@ -2356,6 +2376,24 @@ let CURRENT_EVENT = null;
     const hooks = opts.hooks || {};
     const onAction = typeof hooks.onAction === 'function' ? hooks.onAction : null;
     const onState  = typeof hooks.onState  === 'function' ? hooks.onState  : null;
+
+    // Thread context flags for this battle (used by runEffects gates)
+    try {
+      const ctx = (opts && opts.context) || {};
+      if (typeof global !== 'undefined') {
+        global.BATTLE_CONTEXT = {
+          isBossBattle: !!ctx.isBossBattle,
+          isFirstBattleOfRun: !!ctx.isFirstBattleOfRun,
+          enableFirstTimeEffects: ctx.enableFirstTimeEffects !== false,
+        };
+      } else if (typeof window !== 'undefined') {
+        window.BATTLE_CONTEXT = {
+          isBossBattle: !!ctx.isBossBattle,
+          isFirstBattleOfRun: !!ctx.isFirstBattleOfRun,
+          enableFirstTimeEffects: ctx.enableFirstTimeEffects !== false,
+        };
+      }
+    } catch(_) {}
 
     const logArr = [];
     const L = new Fighter(Lraw);

@@ -3,9 +3,11 @@ import { Tabs, TabList, Tab, TabPanel } from './components/primitives/Tabs';
 import CompendiumPage from './pages/CompendiumPage';
 import AnalysisPage from './pages/AnalysisPage';
 import SimulationPage from './pages/SimulationPage';
+import { SimProvider } from './state/SimContext';
 
 export default function App() {
   return (
+    <SimProvider>
     <AppShell>
       <header className="flex items-center justify-between border-b border-border p-3">
         <h1 className="text-lg font-bold tracking-wide">
@@ -24,6 +26,6 @@ export default function App() {
         <TabPanel value="simulation"><SimulationPage /></TabPanel>
       </Tabs>
     </AppShell>
+    </SimProvider>
   );
 }
-
