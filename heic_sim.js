@@ -2425,6 +2425,12 @@ let CURRENT_SOURCE_SLUG = null;
       runEffects('turnStart', actor, target, logWithHP);
       try { _flushTriggers(runEffects, logWithHP); } catch(_) {}
 
+      // Every other turn (e.g., items that alternate turns)
+      if ((actor.turnCount % 2) === 0) {
+        runEffects('everyOtherTurn', actor, target, logWithHP);
+        try { _flushTriggers(runEffects, logWithHP); } catch(_) {}
+      }
+
       // Apply any pending additional strikes gathered from effects
       if (actor && actor.flags && (actor.flags.additionalStrikes|0) > 0) {
         actor.extraStrikes = (actor.extraStrikes || 0) + (actor.flags.additionalStrikes | 0);
