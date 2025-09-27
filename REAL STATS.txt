@@ -1,0 +1,1154 @@
+Woodland Items
+Bearclaw Blade
+Attack: (equals missing health)
+Health: 5
+Armor:
+Speed:
+Bejeweled Blade
+Attack: 1
+Health:
+Armor:
+Speed:
+Blackbriar Blade
+Attack: 2
+Health:
+Armor:
+Speed:
+Blastcap Armor
+Attack:
+Health:
+Armor: 8
+Speed:
+Blood Sausage
+Attack:
+Health: 5
+Armor:
+Speed:
+Bloody Steak
+Attack:
+Health:
+Armor:
+Speed:
+Boots of the Hero
+Attack:
+Health:
+Armor:
+Speed: 2
+1
+2
+2
+3
+4
+5
+6
+7
+1
+Bramble Buckler
+Attack:
+Health:
+Armor: 2
+Speed:
+Bramble Vest
+Attack:
+Health: 3
+Armor:
+Speed:
+Brittlebark Armor
+Attack:
+Health: 12
+Armor:
+Speed:
+Brittlebark Club
+Attack: 7
+Health:
+Armor:
+Speed:
+Brittlebark Bow
+Attack: 4
+Health:
+Armor:
+Speed:
+Brittlebark Buckler
+Attack:
+Health:
+Armor: 10
+Speed:
+Brittlebark Rose
+Attack:
+Health:
+Armor:
+Speed:
+Cherry Bomb
+Attack:
+Health:
+Armor:
+Speed:
+8
+9
+10
+11
+12
+13
+2
+Cherry Cocktail
+Attack:
+Health:
+Armor:
+Speed:
+Citrine Earring
+Attack:
+Health:
+Armor:
+Speed:
+Citrine Ring
+Attack:
+Health:
+Armor:
+Speed:
+Double-plated Armor
+Attack:
+Health:
+Armor: 2
+Speed: –2
+Double-plated Vest
+Attack:
+Health:
+Armor:
+Speed:
+Druid's Cloak
+Attack:
+Health:
+Armor:
+Speed:
+Elderwood Necklace
+Attack: 1
+Health:
+Armor: 1
+Speed: 1
+Elderwood Staff
+Attack: 1
+Health:
+Armor: 1
+Speed: 1
+14
+14
+15
+15
+15
+16
+16
+16
+3
+Emerald Crown
+Attack: –1
+Health: 8
+Armor:
+Speed:
+Emerald Earring
+Attack:
+Health:
+Armor:
+Speed:
+Emerald Ring
+Attack:
+Health:
+Armor:
+Speed:
+Energy Drain
+Attack:
+Health:
+Armor:
+Speed:
+Explosive Powder
+Attack:
+Health:
+Armor:
+Speed:
+Explosive Roast
+Attack:
+Health: 5
+Armor:
+Speed:
+Explosive Sword
+Attack: 3
+Health:
+Armor:
+Speed:
+Explosive Surprise
+Attack:
+Health:
+Armor:
+Speed:
+17
+17
+18
+19
+4
+Featherweight Armor
+Attack:
+Health:
+Armor:
+Speed:
+Featherweight Blade
+Attack: 2
+Health:
+Armor:
+Speed: 2
+Featherweight Greaves
+Attack:
+Health:
+Armor:
+Speed:
+Featherweight Helmet
+Attack:
+Health:
+Armor:
+Speed:
+Featherweight Wings
+Attack:
+Health:
+Armor:
+Speed:
+Firecracker Belt
+Attack:
+Health:
+Armor:
+Speed:
+Fortified Gauntlet
+Attack:
+Health:
+Armor:
+Speed:
+Frostbite Armor
+Attack:
+Health:
+Armor: 2
+Speed:
+20
+20
+21
+5
+Frostbite Curse
+Attack:
+Health:
+Armor:
+Speed:
+Frostbite Dagger
+Attack: 2
+Health:
+Armor:
+Speed:
+Frostbite Gauntlet
+Attack:
+Health:
+Armor:
+Speed:
+Frostbite Greaves
+Attack:
+Health:
+Armor:
+Speed:
+Frostbite Trap
+Attack:
+Health:
+Armor:
+Speed:
+Gemstone Scepter
+Attack: 2
+Health:
+Armor:
+Speed:
+Granite Crown
+Attack:
+Health:
+Armor:
+Speed:
+Granite Hammer
+Attack: 2
+Health:
+Armor:
+Speed:
+22
+23
+24
+6
+Granite Lance
+Attack: 2
+Health:
+Armor: 1
+Speed:
+Grindstone Club
+Attack: 1
+Health:
+Armor:
+Speed:
+Heart Drinker
+Attack: 1
+Health:
+Armor:
+Speed:
+Heart-shaped Acorn
+Attack:
+Health:
+Armor:
+Speed:
+Heart-shaped Potion
+Attack:
+Health:
+Armor:
+Speed:
+Hidden Dagger
+Attack: 2
+Health:
+Armor:
+Speed:
+Horned Helmet
+Attack:
+Health:
+Armor: 2
+Speed:
+Ice Spikes
+Attack:
+Health:
+Armor:
+Speed:
+25
+25
+26
+27
+28
+29
+7
+Ice Tomb
+Attack:
+Health:
+Armor:
+Speed:
+Iceblock Shield
+Attack:
+Health:
+Armor: 8
+Speed:
+Icicle Spear
+Attack: 3
+Health:
+Armor:
+Speed:
+Iron Rose
+Attack:
+Health:
+Armor:
+Speed:
+Iron Shrapnel
+Attack:
+Health:
+Armor:
+Speed:
+Iron Transfusion
+Attack:
+Health:
+Armor:
+Speed:
+Ironstone Bow
+Attack: 6
+Health:
+Armor:
+Speed: 1
+Ironstone Greatsword
+Attack: 4
+Health:
+Armor:
+Speed: –2
+30
+31
+32
+33
+34
+34
+8
+Ironstone Sandals
+Attack:
+Health:
+Armor:
+Speed: –1
+Ironstone Bracelet
+Attack:
+Health:
+Armor: 2
+Speed: –1
+Kindling Bomb
+Attack:
+Health:
+Armor:
+Speed:
+Leather Boots
+Attack:
+Health:
+Armor:
+Speed:
+Leather Glove
+Attack:
+Health: 3
+Armor:
+Speed: 1
+Leather Vest
+Attack:
+Health:
+Armor: 2
+Speed: 1
+Lifeblood Armor
+Attack:
+Health:
+Armor:
+Speed:
+Lifeblood Burst
+Attack:
+Health:
+Armor:
+Speed:
+35
+36
+37
+38
+39
+40
+40
+9
+Lifeblood Helmet
+Attack:
+Health:
+Armor:
+Speed:
+Lifeblood Spear
+Attack: 1
+Health:
+Armor:
+Speed:
+Lifesteal Scythe
+Attack: 1
+Health:
+Armor:
+Speed:
+Loose Change
+Attack:
+Health:
+Armor:
+Speed:
+Moonlight Shield
+Attack:
+Health:
+Armor:
+Speed:
+Oak Heart
+Attack:
+Health:
+Armor:
+Speed:
+Ore Heart
+Attack:
+Health:
+Armor:
+Speed:
+Pinecone Breastplate
+Attack:
+Health:
+Armor:
+Speed:
+41
+42
+10
+Plated Greaves
+Attack:
+Health:
+Armor:
+Speed:
+Redwood Cloak
+Attack:
+Health: 2
+Armor:
+Speed:
+Redwood Helmet
+Attack:
+Health: 1
+Armor: 1
+Speed:
+Redwood Roast
+Attack:
+Health:
+Armor:
+Speed:
+Ring Blades
+Attack:
+Health:
+Armor:
+Speed:
+Roasted Chestnut
+Attack:
+Health: 5
+Armor:
+Speed:
+Rock Candy
+Attack:
+Health:
+Armor:
+Speed:
+Rock Roast
+Attack:
+Health: 6
+Armor: 6
+Speed:
+43
+44
+44
+45
+46
+46
+11
+Royal Crownblade
+Attack: 4
+Health:
+Armor:
+Speed:
+Royal Helmet
+Attack:
+Health:
+Armor: 1
+Speed:
+Royal Scepter
+Attack: 0
+Health:
+Armor:
+Speed:
+Royal Shield
+Attack:
+Health:
+Armor:
+Speed:
+Ruby Crown
+Attack: 1
+Health:
+Armor:
+Speed: –1
+Ruby Earring
+Attack:
+Health:
+Armor:
+Speed:
+Ruby Ring
+Attack:
+Health:
+Armor:
+Speed:
+Saffron Feather
+Attack:
+Health:
+Armor:
+Speed: 1
+47
+48
+49
+50
+50
+51
+12
+Sanguine Rose
+Attack:
+Health:
+Armor:
+Speed:
+Shield of the Hero
+Attack:
+Health:
+Armor: 3
+Speed:
+Shield Talisman
+Attack:
+Health:
+Armor:
+Speed:
+Stone Steak
+Attack:
+Health:
+Armor:
+Speed:
+Stoneslab Sword
+Attack: 2
+Health:
+Armor:
+Speed:
+Sugar Bomb
+Attack:
+Health:
+Armor:
+Speed:
+Swiftstrike Belt
+Attack:
+Health:
+Armor:
+Speed:
+Swiftstrike Bow
+Attack: 2
+Health:
+Armor:
+Speed:
+52
+53
+54
+13
+Swiftstrike Cloak
+Attack:
+Health:
+Armor:
+Speed: 1
+Swiftstrike Gauntlet
+Attack:
+Health:
+Armor:
+Speed:
+Swiftstrike Rapier
+Attack: 2
+Health:
+Armor:
+Speed:
+Sword of the Hero
+Attack: 3
+Health:
+Armor:
+Speed:
+Thorn Ring
+Attack:
+Health:
+Armor:
+Speed:
+Time Bomb
+Attack:
+Health:
+Armor:
+Speed:
+Trail Mix
+Attack:
+Health:
+Armor:
+Speed:
+Twin Blade
+Attack: 1
+Health:
+Armor:
+Speed:
+55
+56
+57
+26
+14
+Twinfuse Knot
+Attack:
+Health:
+Armor:
+Speed:
+Vampiric Wine
+Attack:
+Health:
+Armor:
+Speed:
+Woodcutter's Axe
+Attack: 1
+Health:
+Armor:
+Speed:
+Swampland Items
+Ancient Warhammer
+Attack: 5
+Health:
+Armor:
+Speed:
+Arcane Wand
+Attack: 0
+Health:
+Armor:
+Speed:
+Arcane Bell
+Attack:
+Health:
+Armor:
+Speed:
+Arcane Gauntlet
+Attack:
+Health:
+Armor:
+Speed:
+Assault Greaves
+Attack:
+58
+59
+60
+15
+Health:
+Armor:
+Speed:
+Basilisk Fang
+Attack: 3
+Health:
+Armor:
+Speed:
+Blood Chain
+Attack:
+Health:
+Armor:
+Speed:
+Bloodlord's Axe
+Attack: 4
+Health:
+Armor:
+Speed:
+Bubblegloop Staff
+Attack: 0
+Health:
+Armor:
+Speed:
+Caustic Tome
+Attack:
+Health:
+Armor:
+Speed:
+Champion's Armor
+Attack:
+Health:
+Armor: 6
+Speed:
+Champion's Blade
+Attack: 6
+Health:
+Armor:
+Speed:
+61
+62
+63
+64
+59
+16
+Chainlink Medallion
+Attack:
+Health:
+Armor:
+Speed:
+Chainmail Armor
+Attack:
+Health:
+Armor:
+Speed:
+Chainmail Cloak
+Attack:
+Health:
+Armor:
+Speed:
+Chainmail Sword
+Attack: 2
+Health:
+Armor: 2
+Speed:
+Cherry Bomb (Swampland)
+Attack:
+Health:
+Armor:
+Speed:
+Cleaver of Wrath
+Attack: 10
+Health:
+Armor:
+Speed:
+Clearspring Feather
+Attack:
+Health:
+Armor:
+Speed:
+Clearspring Watermelon
+Attack:
+Health:
+Armor:
+Speed:
+65
+65
+66
+17
+Cookbook
+Attack:
+Health:
+Armor:
+Speed:
+Dashmaster's Dagger
+Attack: 2
+Health:
+Armor:
+Speed:
+Deviled Egg
+Attack:
+Health:
+Armor:
+Speed:
+Envy's Grasp
+Attack:
+Health:
+Armor:
+Speed:
+Exposed Fragility
+Attack:
+Health:
+Armor:
+Speed:
+Fungal Rapier
+Attack: 3
+Health:
+Armor:
+Speed:
+Forge Hammer
+Attack: 4
+Health:
+Armor:
+Speed:
+Gale Staff
+Attack: 2
+Health:
+Armor:
+Speed: 6
+67
+68
+69
+70
+70
+18
+Gem Eater
+Attack:
+Health:
+Armor:
+Speed:
+Granite Axe
+Attack: 4
+Health:
+Armor:
+Speed:
+Granite Egg
+Attack:
+Health:
+Armor:
+Speed:
+Grilling Skewer
+Attack: 1
+Health:
+Armor:
+Speed:
+Holy Shield
+Attack: –1
+Health:
+Armor: 6
+Speed: –1
+Holy Tome
+Attack: –1
+Health:
+Armor:
+Speed:
+Honey Ham
+Attack:
+Health:
+Armor:
+Speed:
+Ironstone Spear
+Attack: 2
+Health:
+Armor:
+Speed:
+71
+72
+73
+73
+73
+74
+75
+19
+King's Blade
+Attack: 2
+Health:
+Armor:
+Speed:
+Knight's Armor
+Attack:
+Health:
+Armor: 4
+Speed:
+Knight's Blade
+Attack: 4
+Health:
+Armor:
+Speed:
+Leather Whip
+Attack: 4【57†】
+Health: 5【57†】
+Armor:
+Speed:
+Liferoot Gauntlet
+Attack:
+Health: 3
+Armor:
+Speed:
+Liferoot Hammer
+Attack: 3
+Health:
+Armor:
+Speed:
+Liferoot Staff
+Attack: 2
+Health:
+Armor:
+Speed:
+Lightning Elixir
+Attack: 3
+Health:
+Armor:
+Speed: 4
+76
+77
+78
+79
+80
+81
+82
+82
+20
+Lightning Rod
+Attack: 2
+Health:
+Armor:
+Speed:
+Lightning Whip
+Attack: 3
+Health:
+Armor:
+Speed:
+Melting Iceblade
+Attack: 8
+Health:
+Armor:
+Speed:
+Moonlight Cleaver
+Attack: 3
+Health:
+Armor:
+Speed:
+Mushroom Buckler
+Attack:
+Health:
+Armor:
+Speed:
+Nerve Elixir
+Attack:
+Health:
+Armor:
+Speed:
+Pacifist Staff
+Attack: 0
+Health:
+Armor:
+Speed:
+Petrifying Elixir
+Attack:
+Health:
+Armor:
+Speed:
+83
+84
+85
+86
+87
+21
+Purelake Elixir
+Attack:
+Health:
+Armor:
+Speed:
+Purelake Helmet
+Attack:
+Health:
+Armor: 2
+Speed:
+Purelake Staff
+Attack: 1
+Health:
+Armor:
+Speed:
+Riverflow Rapier
+Attack: 3
+Health:
+Armor:
+Speed:
+Ring of Rage
+Attack:
+Health:
+Armor:
+Speed:
+Royal Horn
+Attack:
+Health:
+Armor:
+Speed:
+Rusted Plate
+Attack:
+Health:
+Armor:
+Speed:
+Rusty Ring
+Attack:
+Health:
+Armor:
+Speed:
+88
+89
+90
+22
+Rusty Sword
+Attack: 2
+Health:
+Armor:
+Speed:
+Sanguine Scepter
+Attack: 1
+Health:
+Armor:
+Speed:
+Serpent Dagger
+Attack: 2
+Health:
+Armor:
+Speed:
+Serpent Lyre
+Attack:
+Health:
+Armor:
+Speed:
+Sheet Music
+Attack:
+Health:
+Armor:
+Speed:
+Silverscale Dagger
+Attack: 2
+Health:
+Armor:
+Speed:
+Silverscale Fish
+Attack:
+Health:
+Armor:
+Speed:
+Silverscale Tome
+Attack:
+Health:
+Armor:
+Speed:
+91
+92
+93
+94
+23
+Silverscale Trident
+Attack: 0
+Health:
+Armor:
+Speed:
+Slime Sword
+Attack: 2
+Health:
+Armor:
+Speed:
+Slime Elixir
+Attack:
+Health:
+Armor:
+Speed:
+Sour Lemon
+Attack:
+Health:
+Armor:
+Speed: 3
+Squire's Blade
+Attack: 2
+Health:
+Armor:
+Speed:
+Stormcloud Spear
+Attack: 2
+Health:
+Armor:
+Speed:
+Stormcloud Tome
+Attack:
+Health:
+Armor:
+Speed:
+Sweet Wine
+Attack:
+Health:
+Armor:
+Speed:
+95
+96
+97
+98
+99
+24
+Tempest Blade
+Attack: (equals Speed)
+Health:
+Armor:
+Speed: 2
+Thunderbound Sabre
+Attack: 6
+Health:
+Armor:
+Speed:
+Tome of the Hero
+Attack:
+Health:
+Armor:
+Speed:
+Twinfuse Mask
+Attack:
+Health:
+Armor:
+Speed:
+Viper Elixir
+Attack:
+Health:
+Armor:
+Speed:
+Wave Breaker
+Attack: –2
+Health:
+Armor:
+Speed:
+Wooden Guard
+Attack:
+Health:
+Armor:
+Speed:
+Xiphos of Fury
+Attack:
+Health:
+Armor:
+Speed:
+67
+67
+100
+101
+25
+Woodland items - He
+is Coming Official Wiki
+https://wiki.hoodedhorse.com/He_is_Coming/Woodland_items
+__He Is Coming__ – Item Compendium.pdf
+file://file-UHq52qcJFyV9QFQ21qv5EA
+Swampland items - He is Coming Official Wiki
+https://wiki.hoodedhorse.com/He_is_Coming/Swampland_items
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 31
+32 33 34 35 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 54 55 56 57 58
+30 36 37 53 64
+59 60 61 62 63 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89
+90 91 92 93 94 95 96 97 98 99 100 101
+26
