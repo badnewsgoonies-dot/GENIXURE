@@ -67,7 +67,11 @@
         case 'speed': 
           const oldSpeed = self.speed || 0;
           self.speed = oldSpeed + value;
-          runEffects('onGainSpeed', self, null, log, { amount: value, delta: value });
+          if (CURRENT_EVENT === 'battleStart') {
+            _enqueueTrigger('onGainSpeed', self, null, { amount: value, delta: value });
+          } else {
+            runEffects('onGainSpeed', self, null, log, { amount: value, delta: value });
+          }
           if (log) log(`${self.name} gains ${value} ${stat}`);
           break;
         case 'health': 
@@ -375,8 +379,12 @@
     add_speed: ({ self, other, log, value }) => { 
       const oldSpeed = self.speed || 0;
       self.speed = oldSpeed + value; 
-      // Trigger onGainSpeed event for items that react to speed changes
-      runEffects('onGainSpeed', self, other, log, { amount: value, delta: value });
+      // Trigger onGainSpeed event (defer during battleStart)
+      if (CURRENT_EVENT === 'battleStart') {
+        _enqueueTrigger('onGainSpeed', self, other, { amount: value, delta: value });
+      } else {
+        runEffects('onGainSpeed', self, other, log, { amount: value, delta: value });
+      }
     },
     add_extra_strikes: ({ self, value }) => self.addExtraStrikes(value),
     deal_damage: ({ self, other, value, target }) => {
@@ -1467,6 +1475,8 @@
   }
 
   function runEffects(event, self, other, baseLog, extra = {}) {
+    const __prevEvent = CURRENT_EVENT; CURRENT_EVENT = event;
+    try {
     attachHelpers(self, other, baseLog);
     attachHelpers(other, self, baseLog);
 
@@ -1647,6 +1657,7 @@
         }
       }
     }
+    } finally { CURRENT_EVENT = __prevEvent; }
   }
   // --- Merge additional/alias actions from external effect sets ---
   try {
@@ -2134,7 +2145,11 @@
       }
       const isNew = prev === 0 && next > 0;
       if (n > 0) {
-        runEffects('onGainStatus', self, other, log, { key: k, isNew, amount: n, delta });
+        if (CURRENT_EVENT === 'battleStart') {
+          _enqueueTrigger('onGainStatus', self, other, { key: k, isNew, amount: n, delta });
+        } else {
+          runEffects('onGainStatus', self, other, log, { key: k, isNew, amount: n, delta });
+        }
       }
     };
 
@@ -2174,8 +2189,9 @@
     };
   }
 
-// Current actor for attribution during hooks
+// Current actor and event context for attribution during hooks
 let CURRENT_SOURCE_SLUG = null;
+let CURRENT_EVENT = null;
 
   function applyDamage(src, dst, amount, log){
     amount = Math.floor(Math.max(0, amount));
