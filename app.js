@@ -862,7 +862,6 @@ let compendiumState = {
     buckets: new Set(['all']),
     tags: new Set(),
     triggers: new Set(),
-    needsReview: false,
     sets: new Set()
   },
   data: {
@@ -922,14 +921,7 @@ function setupCompendiumEventListeners() {
     }
   });
   
-  // Needs Review Toggle
-  const needsReviewToggle = document.getElementById('needsReviewToggle');
-  if (needsReviewToggle) {
-    needsReviewToggle.addEventListener('change', () => {
-      compendiumState.filters.needsReview = needsReviewToggle.checked;
-      renderCompendium();
-    });
-  }
+  // Review system removed
 
   // Sets filter (built dynamically once HeICSets is present)
   try {
@@ -966,7 +958,7 @@ function setupCompendiumEventListeners() {
   const bulkSelectAll = document.getElementById('bulkSelectAll');
   const bulkSelectNone = document.getElementById('bulkSelectNone');
   const exportSelected = document.getElementById('exportSelected');
-  const qaValidate = document.getElementById('qaValidate');
+  // QA validation button removed
   
   if (bulkSelectAll) {
     bulkSelectAll.addEventListener('click', () => {
@@ -990,9 +982,7 @@ function setupCompendiumEventListeners() {
     exportSelected.addEventListener('click', exportSelectedItems);
   }
   
-  if (qaValidate) {
-    qaValidate.addEventListener('click', runQAValidation);
-  }
+  // no QA validation binding
   } catch (error) {
     console.error('Error setting up compendium event listeners:', error);
   }
@@ -1199,16 +1189,14 @@ function clearAllFilters() {
     search: '',
     buckets: new Set(['all']),
     tags: new Set(),
-    triggers: new Set(),
-    needsReview: false
+    triggers: new Set()
   };
   
   // Reset UI
   const globalSearch = document.getElementById('globalSearch');
   if (globalSearch) globalSearch.value = '';
   
-  const needsReviewToggle = document.getElementById('needsReviewToggle');
-  if (needsReviewToggle) needsReviewToggle.checked = false;
+  // Review toggle removed
   
   // Reset all checkboxes
   const allInputs = document.querySelectorAll('.facet-panel input[type="checkbox"]');
@@ -1222,7 +1210,7 @@ function clearAllFilters() {
 
 // Filter items based on current state
 function filterItems() {
-  const { search, buckets, tags, triggers, needsReview, sets } = compendiumState.filters;
+  const { search, buckets, tags, triggers, sets } = compendiumState.filters;
   
   let filtered = compendiumState.data.allItems;
   
@@ -1272,24 +1260,13 @@ function filterItems() {
     filtered = filtered.filter(it => allowed.has(it.key));
   }
   
-  // Needs review filter
-  if (needsReview) {
-    filtered = filtered.filter(item => {
-      return isItemNeedsReview(item);
-    });
-  }
+  // Review filter removed
   
   compendiumState.data.filteredItems = filtered;
   updateCompendiumCounts();
 }
 
-// Check if item needs review
-function isItemNeedsReview(item) {
-  if (!item.effect || item.effect === '' || item.effect === '-') return true;
-  if (!item.tags || item.tags.length === 0) return true;
-  if (item.name.toLowerCase().includes('todo') || item.name.toLowerCase().includes('placeholder')) return true;
-  return false;
-}
+// Review system removed
 
 // Update compendium counts
 function updateCompendiumCounts() {
@@ -1305,16 +1282,13 @@ function updateCompendiumCounts() {
   const shownCount = document.getElementById('shownCount');
   const totalCount = document.getElementById('totalCount');
   const selectedCount = document.getElementById('selectedCount');
-  const reviewCount = document.getElementById('reviewCount');
+  // Review count removed
   
   if (shownCount) shownCount.textContent = counts.shown;
   if (totalCount) totalCount.textContent = counts.total;
   if (selectedCount) selectedCount.textContent = counts.selected;
   
-  if (reviewCount) {
-    const needsReviewItems = compendiumState.data.allItems.filter(isItemNeedsReview);
-    reviewCount.textContent = needsReviewItems.length;
-  }
+  // no reviewCount updates
   
   // Update health indicator
   updateDataHealthIndicator(counts.total > 0);
@@ -1812,30 +1786,7 @@ function renderTieredEffectBlock(item){
 // Get trust badges for an item
 function getTrustBadges(item) {
   const badges = [];
-  
-  // Valid badge (has effect and stats)
-  if (item.effect && item.stats) {
-    badges.push({
-      type: 'valid',
-      icon: ' ',
-      text: 'Valid',
-      bg: '#26de81',
-      color: '#000'
-    });
-  }
-  
-  // Needs review
-  if (isItemNeedsReview(item)) {
-    badges.push({
-      type: 'review',
-      icon: ' ',
-      text: 'Review',
-      bg: '#fa0',
-      color: '#000'
-    });
-  }
-  
-  // Has tiers
+  // Only show tier support; review/valid removed
   if (window.TIERABLE && window.TIERABLE.has(item.key)) {
     badges.push({
       type: 'tiered',
@@ -2171,89 +2122,7 @@ function exportSelectedItems() {
   console.log(`Exported ${selectedData.length} items`);
 }
 
-// Run QA validation checks
-function runQAValidation() {
-  const issues = [];
-  const allItems = compendiumState.data.allItems;
-  
-  // Check for missing or invalid data
-  allItems.forEach(item => {
-    const itemIssues = [];
-    
-    // Check for missing name
-    if (!item.name || item.name === 'Unknown' || item.name.toLowerCase().includes('placeholder')) {
-      itemIssues.push('Missing or placeholder name');
-    }
-    
-    // Check for missing effect description
-    if (!item.effect || item.effect === '' || item.effect === '-') {
-      itemIssues.push('Missing effect description');
-    }
-    
-    // Check for missing tags
-    if (!item.tags || item.tags.length === 0) {
-      itemIssues.push('No tags assigned');
-    }
-    
-    // Check for missing effects array
-    if (!item.effects || item.effects.length === 0) {
-      itemIssues.push('No effects defined');
-    }
-    
-    // Check for invalid stats
-    if (!item.stats || typeof item.stats !== 'object') {
-      itemIssues.push('Missing stats object');
-    } else {
-      const statsSum = (item.stats.attack || 0) + (item.stats.armor || 0) + (item.stats.health || 0) + (item.stats.speed || 0);
-      if (statsSum === 0) {
-        itemIssues.push('All stats are zero');
-      }
-    }
-    
-    // Check for duplicate keys (this is more of a data integrity check)
-    const duplicates = allItems.filter(otherItem => otherItem.key === item.key && otherItem !== item);
-    if (duplicates.length > 0) {
-      itemIssues.push('Duplicate key detected');
-    }
-    
-    if (itemIssues.length > 0) {
-      issues.push({
-        key: item.key,
-        name: item.name,
-        issues: itemIssues
-      });
-    }
-  });
-  
-  // Display results
-  const issueCount = issues.length;
-  const totalItems = allItems.length;
-  
-  if (issueCount === 0) {
-    alert(`  QA Validation Complete\n\nNo issues found in ${totalItems} items. All items pass quality checks.`);
-  } else {
-    const issueDetails = issues.slice(0, 10).map(item => 
-      `  ${item.name} (${item.key}): ${item.issues.join(', ')}`
-    ).join('\n');
-    
-    const truncateMessage = issues.length > 10 ? `\n... and ${issues.length - 10} more items with issues` : '';
-    
-    alert(`   QA Validation Results\n\nFound ${issueCount} items with issues out of ${totalItems} total items (${Math.round((1 - issueCount/totalItems) * 100)}% pass rate).\n\nTop issues:\n${issueDetails}${truncateMessage}\n\nUse "Needs Review" filter to focus on problematic items.`);
-  }
-  
-  // Update needs review filter to show items with issues if there are any
-  if (issueCount > 0) {
-    const needsReviewToggle = document.getElementById('needsReviewToggle');
-    if (needsReviewToggle && !needsReviewToggle.checked) {
-      needsReviewToggle.checked = true;
-      compendiumState.filters.needsReview = true;
-      renderCompendium();
-    }
-  }
-  
-  console.log(`QA Validation: ${issueCount} issues found in ${totalItems} items`);
-  return { issueCount, totalItems, issues };
-}
+// QA/Review system removed
 
 // Diagnostic tool for debugging data loading issues (accessible from console)
 window.debugCompendium = async function() {
@@ -2415,7 +2284,7 @@ function showCompendiumError(message) {
   }
   
   // Also update the counts to show the error state
-  const elements = ['shownCount', 'totalCount', 'selectedCount', 'reviewCount'];
+  const elements = ['shownCount', 'totalCount', 'selectedCount'];
   elements.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.textContent = '!';
