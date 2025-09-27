@@ -1738,10 +1738,17 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
           </div>
 
           <!-- Player Fighter Card -->
-          <div class="fighter-card player-card" style="background: rgba(0,255,51,0.1); border: 2px solid #0f3; border-radius: 12px; padding: 14px;">
+          <div class="fighter-card player-card" style="background: rgba(0,255,51,0.1); border: 2px solid #0f3; border-radius: 12px; padding: 14px; position: relative;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
               <h3 style="color: #0f3; margin: 0; font-size: 16px; text-shadow: 0 0 8px rgba(0,255,51,0.5);">PLAYER</h3>
               <div id="playerResult" style="font-size: 12px; font-weight: 600; display: none;"></div>
+            </div>
+            <!-- Floating per-action overlay (updated as you scrub the log) -->
+            <div id="playerEventOverlay" style="position: absolute; top: 6px; right: 10px; display: flex; align-items: center; gap: 6px;
+                 background: rgba(0,255,51,0.12); border: 1px solid #0f3; border-radius: 8px; padding: 4px 8px; color:#0f3; font-weight:700; font-size:12px; visibility:hidden;
+                 box-shadow: 0 2px 10px rgba(0,255,51,0.25);">
+              <img id="playerEventIcon" src="assets/placeholder.png" style="width:16px;height:16px; image-rendering: pixelated;">
+              <span id="playerEventText"></span>
             </div>
             
             <!-- Core Stats -->
@@ -1771,10 +1778,17 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
           </div>
 
           <!-- Opponent Fighter Card -->
-          <div class="fighter-card opponent-card" style="background: rgba(255,51,51,0.1); border: 2px solid #f33; border-radius: 12px; padding: 14px;">
+          <div class="fighter-card opponent-card" style="background: rgba(255,51,51,0.1); border: 2px solid #f33; border-radius: 12px; padding: 14px; position: relative;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
               <h3 style="color: #f33; margin: 0; font-size: 16px; text-shadow: 0 0 8px rgba(255,51,51,0.5);">OPPONENT</h3>
               <div id="opponentResult" style="font-size: 12px; font-weight: 600; display: none;"></div>
+            </div>
+            <!-- Floating per-action overlay (updated as you scrub the log) -->
+            <div id="opponentEventOverlay" style="position: absolute; top: 6px; right: 10px; display: flex; align-items: center; gap: 6px;
+                 background: rgba(255,51,51,0.12); border: 1px solid #f33; border-radius: 8px; padding: 4px 8px; color:#f33; font-weight:700; font-size:12px; visibility:hidden;
+                 box-shadow: 0 2px 10px rgba(255,51,51,0.25);">
+              <img id="opponentEventIcon" src="assets/placeholder.png" style="width:16px;height:16px; image-rendering: pixelated;">
+              <span id="opponentEventText"></span>
             </div>
             
             <!-- Core Stats -->
@@ -2041,9 +2055,139 @@ const BattleIconRenderer = {
     entryEl.insertBefore(icon, entryEl.firstChild);
   }
 };
-</script>
+  </script>
 
-<script>
+  <script>
+  /* Battle Replay System - Visuals (per-action overlays + dynamic stats) */
+  const BattleVisuals = {
+    // Compute a light-weight state up to a given log index
+    computeState(index) {
+      const base = {
+        player: { hp: 10, armor: 0, attack: 0, speed: 0, statuses: {} },
+        opponent: { hp: 10, armor: 0, attack: 0, speed: 0, statuses: {} },
+        event: { side: null, icon: 'assets/placeholder.png', text: '' }
+      };
+      if (!BattleStateManager || !BattleStateManager.isLoaded()) return base;
+
+      // Initialize HP from first snapshot if available
+      const first = BattleStateManager.getStateSnapshot(0);
+      if (first && first.hp) { base.player.hp = first.hp.player; base.opponent.hp = first.hp.opponent; }
+
+      for (let i = 0; i <= index; i++) {
+        const entry = BattleStateManager.getLogEntry(i);
+        if (!entry) continue;
+        const t = (entry.text || '').toString();
+
+        // Update HP when present
+        if (entry.hp) { base.player.hp = entry.hp.player; base.opponent.hp = entry.hp.opponent; }
+
+        // Parse simple deltas
+        const gainArmor = t.match(/(Player|Opponent) gains\s+(\d+)\s+armor/i);
+        if (gainArmor) {
+          const who = gainArmor[1].toLowerCase() === 'player' ? 'player' : 'opponent';
+          const amt = parseInt(gainArmor[2], 10);
+          base[who].armor += amt;
+          if (i === index) base.event = { side: who, icon: 'assets/armor.png', text: `+${amt} armor` };
+        }
+
+        const loseArmor = t.match(/(Player|Opponent) loses\s+(\d+)\s+armor/i) || t.match(/destroys\s+(\d+)\s+armor\b/i);
+        if (loseArmor) {
+          const who = (loseArmor[1] || 'Opponent').toLowerCase() === 'player' ? 'player' : 'opponent';
+          const amt = parseInt(loseArmor[2] || loseArmor[1], 10) || 0;
+          base[who].armor = Math.max(0, base[who].armor - amt);
+          if (i === index) base.event = { side: who, icon: 'assets/armor.png', text: `-${amt} armor` };
+        }
+
+        const dmg = t.match(/deals\s+(\d+)\s+damage/i);
+        if (dmg) {
+          const amt = parseInt(dmg[1], 10);
+          // Heuristic: if line mentions Opponent deals, damage applies to Player, else to Opponent
+          const toOpponent = /Player deals/i.test(t) || /Fighter deals/i.test(t);
+          if (toOpponent) base.opponent.hp = Math.max(0, base.opponent.hp - amt); else base.player.hp = Math.max(0, base.player.hp - amt);
+          if (i === index) base.event = { side: toOpponent ? 'opponent' : 'player', icon: 'assets/attack.png', text: `-${amt} HP` };
+        }
+
+        const gainSpeed = t.match(/(Player|Opponent) gains\s+(\d+)\s+speed/i);
+        if (gainSpeed) {
+          const who = gainSpeed[1].toLowerCase() === 'player' ? 'player' : 'opponent';
+          const amt = parseInt(gainSpeed[2], 10);
+          base[who].speed += amt; if (i === index) base.event = { side: who, icon: 'assets/speed.png', text: `+${amt} speed` };
+        }
+
+        const gainStatus = t.match(/(Player|Opponent) gains?\s+(\d+)\s+(acid|poison|regen|thorns)/i);
+        if (gainStatus) {
+          const who = gainStatus[1].toLowerCase() === 'player' ? 'player' : 'opponent';
+          const amt = parseInt(gainStatus[2], 10);
+          const key = gainStatus[3].toLowerCase();
+          base[who].statuses[key] = (base[who].statuses[key] || 0) + amt;
+          if (i === index) base.event = { side: who, icon: BattleIconRenderer.ICON_MAP[key] || 'assets/placeholder.png', text: `+${amt} ${key}` };
+        }
+      }
+      return base;
+    },
+
+    renderState(state) {
+      // Update core stats
+      const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+      setText('playerHP', state.player.hp);
+      setText('opponentHP', state.opponent.hp);
+      setText('playerArmor', state.player.armor);
+      setText('opponentArmor', state.opponent.armor);
+      // Optional: attack/speed tracked here if parsed
+      setText('playerSpeed', state.player.speed);
+      setText('opponentSpeed', state.opponent.speed);
+
+      // Render status chips
+      const renderStatuses = (containerId, statuses, color) => {
+        const box = document.getElementById(containerId);
+        if (!box) return;
+        box.innerHTML = '';
+        const keys = Object.keys(statuses);
+        if (keys.length === 0) {
+          const ghost = document.createElement('div');
+          ghost.style.cssText = 'color:#666; font-size:11px; font-style:italic;';
+          ghost.textContent = 'No status effects';
+          box.appendChild(ghost);
+          return;
+        }
+        keys.forEach(k => {
+          const chip = document.createElement('div');
+          chip.className = 'status-chip';
+          chip.style.cssText = 'display:flex; align-items:center; gap:6px; background:#111; border:1px solid '+color+'; border-radius:6px; padding:4px 6px;';
+          const img = document.createElement('img');
+          img.src = BattleIconRenderer.ICON_MAP[k] || 'assets/placeholder.png';
+          img.style.cssText = 'width:14px; height:14px; image-rendering:pixelated;';
+          const span = document.createElement('span');
+          span.textContent = `${k} ${statuses[k]}`;
+          chip.appendChild(img); chip.appendChild(span); box.appendChild(chip);
+        });
+      };
+      renderStatuses('playerStatusEffects', state.player.statuses, '#0f3');
+      renderStatuses('opponentStatusEffects', state.opponent.statuses, '#f33');
+
+      // Floating per-action overlay
+      const showOverlay = (prefix, icon, text) => {
+        const box = document.getElementById(prefix+'EventOverlay');
+        const ic = document.getElementById(prefix+'EventIcon');
+        const tx = document.getElementById(prefix+'EventText');
+        if (!box || !ic || !tx) return;
+        if (!text) { box.style.visibility = 'hidden'; return; }
+        ic.src = icon; tx.textContent = text; box.style.visibility = 'visible';
+        // Fade out after a short delay
+        clearTimeout(box._t);
+        box._t = setTimeout(()=>{ box.style.visibility = 'hidden'; }, 1200);
+      };
+      if (state.event.side === 'player') showOverlay('player', state.event.icon, state.event.text);
+      else if (state.event.side === 'opponent') showOverlay('opponent', state.event.icon, state.event.text);
+      else { showOverlay('player'); showOverlay('opponent'); }
+    },
+
+    updateToIndex(index) {
+      const state = this.computeState(index);
+      this.renderState(state);
+    }
+  };
+  </script>
 /* Battle Replay System - State Manager Module */
 const BattleStateManager = {
   logEntries: [],
@@ -2140,7 +2284,7 @@ const BattleStateManager = {
 
 <script>
 /* Battle Replay System - Replay Controller Module */
-const BattleReplayController = {
+  const BattleReplayController = {
   currentIndex: 0,
   isPlaying: false,
   playbackSpeed: 1000, // ms between turns
@@ -2367,11 +2511,12 @@ const BattleReplayController = {
   },
   
   // UI updates
-  updateView() {
-    this.highlightCurrentEntry();
-    this.updateTurnCounter();
-    this.updateControls();
-  },
+    updateView() {
+      this.highlightCurrentEntry();
+      this.updateTurnCounter();
+      this.updateControls();
+      try { if (BattleVisuals) BattleVisuals.updateToIndex(this.currentIndex); } catch (_) {}
+    },
   
   updateTurnCounter() {
     const total = BattleStateManager.getTotalEntries();
