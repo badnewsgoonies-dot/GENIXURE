@@ -76,9 +76,14 @@
       }
       if (log) log(`${self.name} loses ${value} ${stat}`);
     },
-    gain_status: ({ self, status, value, log }) => {
-      self.addStatus(status, value);
-      if (log) log(`${self.name} gains ${value} ${status}`);
+    gain_status: ({ self, status, key, value, log }) => {
+      const k = (status || key);
+      if (!k) {
+        if (log) log(`${self.name} tries to gain ${value} of an unknown status`);
+        return;
+      }
+      self.addStatus(k, value);
+      if (log) log(`${self.name} gains ${value} ${k}`);
     },
 
     // ===== DIRECT STAT HELPERS =====
@@ -527,7 +532,7 @@
         self.addStatus(key, amount);
         log(`✨ ${self.name} gains ${amount} ${key}`);
       },
-    add_status_to_enemy: ({ other, key, value }) => other.addStatus(key, value),
+    add_status_to_enemy: ({ other, key, status, value }) => other.addStatus(status || key, value),
       add_status_to_enemy_tiered: ({ other, log, key, baseTier, goldTier, diamondTier, tier }) => {
         // Convert tier string to number: 'base'=1, 'gold'=2, 'diamond'=3
         const tierNum = tier === 'diamond' ? 3 : tier === 'gold' ? 2 : 1;
