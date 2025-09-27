@@ -321,6 +321,29 @@ function main() {
     }
   }
 
+  function normalizeEffectText(s) {
+    if (!s) return s;
+    let t = s
+      .replace(/[\uFFFD\uFEFF]/g, '')
+      .replace(/\s+—\s+|\s+–\s+|\s+-\s+/g, ' — ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    t = t
+      .replace(/on hit/gi, 'On hit')
+      .replace(/first turn/gi, 'First turn')
+      .replace(/battle start/gi, 'Battle start')
+      .replace(/turn start/gi, 'Turn start')
+      .replace(/turn end/gi, 'Turn end')
+      .replace(/wounded/gi, 'Wounded')
+      .replace(/exposed/gi, 'Exposed')
+      .replace(/whenever/gi, 'Whenever')
+      .replace(/countdown/gi, 'Countdown')
+      .replace(/every other turn/gi, 'Every other turn')
+      .replace(/while/gi, 'While')
+      .replace(/(^|\s)if(\s)/gi, '$1If$2');
+    return t;
+  }
+
   for (const [key, val] of propList) {
     if (!val || !val.name) continue;
     const nm = normalizeName(val.name);
@@ -353,22 +376,23 @@ function main() {
       tagChanges++;
     }
 
-    // Effect text: only fill when placeholder/missing
+    // Effect text: always sync to wiki when available (normalized) if different
     const effectText = typeof val.effect === 'string' ? val.effect.trim() : '';
-    const wikiEffect = (wiki.effect || '').trim();
-    if ((!effectText || effectText === '-' || effectText.toLowerCase() === 'tbd') && wikiEffect) {
+    const wikiEffectRaw = (wiki.effect || '').trim();
+    const wikiEffect = normalizeEffectText(wikiEffectRaw);
+    if (wikiEffect && effectText !== wikiEffect) {
       val.effect = wikiEffect;
       effectChanges++;
     }
 
     // Record in report if anything changed
-    if (Object.keys(statMismatch).length || added.length > 0 || (!effectText && wikiEffect)) {
+    if (Object.keys(statMismatch).length || added.length > 0 || (wikiEffect && effectText !== wikiEffect)) {
       report.mismatches.push({
         name: nm,
         key,
         stats: statMismatch,
         tags_added: added,
-        effect_filled: (!effectText && wikiEffect) ? wikiEffect : undefined
+        effect_updated: (wikiEffect && effectText !== wikiEffect) ? wikiEffect : undefined
       });
     }
   }
