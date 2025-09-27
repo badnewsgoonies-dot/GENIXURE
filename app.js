@@ -2895,12 +2895,21 @@ function updateLoadoutTray(sideName, side, containerId) {
     const iconPath = `${item.slug}/icon.png`;
     const tierClass = item.tier !== 'base' ? ` tier-${item.tier}` : '';
     const typeClass = item.type === 'weapon' ? ' weapon' : '';
+    const data = (typeof RAW_DATA !== 'undefined' && RAW_DATA[item.slug]) ? RAW_DATA[item.slug] : null;
+    const eff = data && data.effect ? String(data.effect) : '';
+    const st = (data && data.stats) ? data.stats : { attack:0, armor:0, health:0, speed:0 };
+    const esc = (s) => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     
     return `
       <div class="loadout-item${tierClass}${typeClass}" title="${item.name}${item.tier !== 'base' ? ` (${item.tier})` : ''}">
         <img src="${iconPath}" alt="${item.name}" onerror="this.src='assets/placeholder.png'">
         <span>${item.name}</span>
         ${item.tier !== 'base' ? `<span style="font-size: 9px; color: #fa0; margin-left: 4px;">${item.tier}</span>` : ''}
+        <div class="item-tooltip">
+          <div class="name">${esc(item.name)}</div>
+          ${eff ? `<div class="effect">${esc(eff)}</div>` : ''}
+          <div class="stats">ATK ${st.attack||0} • ARM ${st.armor||0} • HP ${st.health||0} • SPD ${st.speed||0}</div>
+        </div>
       </div>
     `;
   }).join('');
