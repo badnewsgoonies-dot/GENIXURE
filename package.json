@@ -7,7 +7,10 @@
     "gen:details:min": "MINIFY=1 node scripts/build-details.mjs --in details.json --out details.js",
     "predev": "npm run gen:details",
     "prebuild": "npm run gen:details:min",
-    "build": "node \"Random Tests/merge_stats_overrides.js\"",
+    "build": "node scripts/merge_stats_overrides.js",
+    "coverage": "node scripts/coverage.mjs",
+    "unmatched": "node scripts/unmatched.mjs",
+    "fetch:missing": "node scripts/fetch_missing_from_wiki.mjs",
     "test": "node -e \"const sim=require('./heic_sim.js'); sim.simulate({hp:10,atk:0},{hp:10,atk:0});\"",
     "audit:wiki": "node scripts/audit_wiki.mjs --apply"
   },
