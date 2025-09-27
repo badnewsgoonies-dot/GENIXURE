@@ -4222,5 +4222,17 @@
     "effect": "-",
     "rarity": "Honeycomb",
     "region": "Battle start: Gain 15 armor. If your health is full, gain an additional 15 armor"
+  },
+  "Honeycomb": {
+    "name": "Honeycomb",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: Deal 1 damage 3 times",
+    "rarity": "Cherry Bomb",
+    "region": "-"
   }
 }

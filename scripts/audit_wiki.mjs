@@ -34,8 +34,11 @@ const EXTRACTED_ITEMS_PATH = path.join(PROJECT, 'wiki_extracted_items.json');
 const EXTRACTED_TAGS_PATH = path.join(PROJECT, 'wiki_extracted_tags.json');
 const REPORT_PATH = path.join(PROJECT, 'audit_wiki_report.json');
 
+// Expand to full set of item tags from Tags page
 const UI_ITEM_TAGS = new Set([
-  'Tome', 'Bomb', 'Symphony', 'Food', 'Jewelry', 'Ring', 'Stone', 'Water'
+  'Tome', 'Bomb', 'Symphony', 'Food', 'Jewelry', 'Ring', 'Stone', 'Water',
+  'Wood', 'Rune', 'Potion', 'Crone', 'Rose', 'Mythic', 'Sanguine', 'Unique',
+  'Forge Upgrades', 'Edge' // allow either label
 ]);
 
 function readText(p) {
@@ -49,7 +52,8 @@ function listWikiFiles() {
   const files = fs.readdirSync(WIKI_DIR);
   const regionItems = files.filter(f => / items - He is Coming Official Wiki\.htm$/i.test(f));
   const tagPages = files.filter(f => / - He is Coming Official Wiki\.htm$/i.test(f) && !/items?sets|Main Page|Tags/i.test(f));
-  return { regionItems, tagPages };
+  const cauldron = files.find(f => /^Cauldron - He is Coming Official Wiki\.htm$/i.test(f));
+  return { regionItems, tagPages, cauldron };
 }
 
 function stripHtml(html) {
@@ -206,7 +210,7 @@ function normalizeName(s) { return s.replace(/\s+/g, ' ').trim(); }
 
 function main() {
   console.log('Scanning wiki_dump for items and tags...');
-  const { regionItems, tagPages } = listWikiFiles();
+  const { regionItems, tagPages, cauldron } = listWikiFiles();
 
   // 1) Extract items from region pages
   const wikiItems = {};
@@ -223,6 +227,20 @@ function main() {
       console.warn(`Failed parsing ${f}:`, e.message);
     }
   }
+  // 1a) Pull additional item stats/effects from Cauldron page (combined itemsets)
+  if (cauldron) {
+    try {
+      const extra = parseRegionItemsSimple(cauldron);
+      for (const it of extra) {
+        const key = normalizeName(it.name);
+        if (!wikiItems[key]) wikiItems[key] = it;
+      }
+      console.log(`Parsed ${extra.length} items from ${cauldron}`);
+    } catch (e) {
+      console.warn(`Failed parsing ${cauldron}:`, e.message);
+    }
+  }
+
   writeJSON(EXTRACTED_ITEMS_PATH, wikiItems);
 
   // 2) Extract item-tag membership from tag pages

@@ -28,7 +28,8 @@
     "Bomb"
   ],
   "Lifeblood Burst": [
-    "Bomb"
+    "Bomb",
+    "Sanguine"
   ],
   "Time Bomb": [
     "Bomb"
@@ -40,10 +41,12 @@
     "Bomb"
   ],
   "Explosive Powder": [
-    "Bomb"
+    "Bomb",
+    "Unique"
   ],
   "Powder Keg": [
-    "Bomb"
+    "Bomb",
+    "Unique"
   ],
   "Melon Bomb": [
     "Bomb",
@@ -75,19 +78,43 @@
     "Stone"
   ],
   "Cherry Cocktail": [
-    "Bomb"
+    "Bomb",
+    "Sanguine"
+  ],
+  "Cleaver of Wrath": [
+    "Crone"
+  ],
+  "Scepter of Greed": [
+    "Crone"
+  ],
+  "Sword of Pride": [
+    "Crone"
+  ],
+  "Belt of Gluttony": [
+    "Crone"
+  ],
+  "Boots of Sloth": [
+    "Crone"
+  ],
+  "Chest of Lust": [
+    "Crone"
+  ],
+  "Helmet of Envy": [
+    "Crone"
   ],
   "Grilling Skewer": [
     "Food"
   ],
   "Redwood Roast": [
-    "Food"
+    "Food",
+    "Wood"
   ],
   "Spiny Chestnut": [
     "Food"
   ],
   "Vampiric Wine": [
-    "Food"
+    "Food",
+    "Sanguine"
   ],
   "Stone Steak": [
     "Food",
@@ -108,6 +135,9 @@
   ],
   "Honeycomb": [
     "Food"
+  ],
+  "Forge Icon as shown in-game": [
+    "Forge Upgrades"
   ],
   "Bejeweled Blade": [
     "Jewelry"
@@ -153,35 +183,274 @@
   ],
   "Citrine Ring": [
     "Jewelry",
-    "Ring"
+    "Ring",
+    "Unique"
   ],
   "Gold Ring": [
     "Jewelry",
     "Ring"
   ],
   "Citrine Gemstone": [
-    "Jewelry"
+    "Jewelry",
+    "Unique"
   ],
   "Emerald Gemstone": [
-    "Jewelry"
+    "Jewelry",
+    "Unique"
   ],
   "Ruby Gemstone": [
-    "Jewelry"
+    "Jewelry",
+    "Unique"
   ],
   "Sapphire Gemstone": [
-    "Jewelry"
+    "Jewelry",
+    "Unique"
+  ],
+  "Bearclaw Blade": [
+    "Mythic"
+  ],
+  "Mountain Cleaver": [
+    "Mythic",
+    "Stone"
+  ],
+  "Tempest Blade": [
+    "Mythic"
+  ],
+  "Ancient Warhammer": [
+    "Mythic"
+  ],
+  "Dashmaster's Dagger": [
+    "Mythic"
+  ],
+  "Lakebed Sword": [
+    "Mythic",
+    "Water"
+  ],
+  "Bloodmoon Armor": [
+    "Mythic"
+  ],
+  "Cold Resistance": [
+    "Mythic"
+  ],
+  "Granite Thorns": [
+    "Mythic",
+    "Stone"
+  ],
+  "Razor Scales": [
+    "Mythic"
+  ],
+  "Chainlink Medallion": [
+    "Mythic"
+  ],
+  "Twinfuse Knot": [
+    "Mythic"
+  ],
+  "Arcane Cloak": [
+    "Mythic"
+  ],
+  "Grand Crescendo": [
+    "Mythic",
+    "Symphony"
+  ],
+  "Prime Form": [
+    "Mythic"
+  ],
+  "Primordial Soup": [
+    "Mythic"
+  ],
+  "Serpent Scalemail": [
+    "Mythic"
+  ],
+  "Stormtide Anchor": [
+    "Mythic"
+  ],
+  "Heart-shaped Potion": [
+    "Potion",
+    "Sanguine",
+    "Unique"
+  ],
+  "Ironskin Potion": [
+    "Potion",
+    "Unique"
+  ],
+  "Lightspeed Potion": [
+    "Potion",
+    "Unique"
+  ],
+  "Lightning Bottle": [
+    "Potion"
+  ],
+  "Muscle Potion": [
+    "Potion"
+  ],
+  "Nerve Poison": [
+    "Potion"
+  ],
+  "Petrifying Flask": [
+    "Potion",
+    "Stone"
+  ],
+  "Purelake Potion": [
+    "Potion",
+    "Unique",
+    "Water"
+  ],
+  "Slime Potion": [
+    "Potion",
+    "Unique"
+  ],
+  "Viper Extract": [
+    "Potion"
+  ],
+  "Heart-shaped Elixir": [
+    "Potion",
+    "Sanguine"
+  ],
+  "Ironskin Elixir": [
+    "Potion",
+    "Unique"
+  ],
+  "Lightning Elixir": [
+    "Potion"
+  ],
+  "Lightspeed Elixir": [
+    "Potion"
+  ],
+  "Muscle Elixir": [
+    "Potion"
+  ],
+  "Nerve Elixir": [
+    "Potion"
+  ],
+  "Petrifying Elixir": [
+    "Potion",
+    "Stone"
+  ],
+  "Purelake Elixir": [
+    "Potion",
+    "Unique",
+    "Water"
+  ],
+  "Slime Elixir": [
+    "Potion",
+    "Unique"
+  ],
+  "Viper Elixir": [
+    "Potion"
   ],
   "Ring Blades": [
     "Ring"
   ],
   "Bloodstone Ring": [
-    "Ring"
+    "Ring",
+    "Sanguine"
   ],
   "Rusty Ring": [
     "Ring"
   ],
   "Thorn Ring": [
-    "Ring"
+    "Ring",
+    "Unique"
+  ],
+  "Blackbriar Rose": [
+    "Rose",
+    "Unique"
+  ],
+  "Clearspring Rose": [
+    "Rose",
+    "Unique",
+    "Water"
+  ],
+  "Iron Rose": [
+    "Rose",
+    "Unique"
+  ],
+  "Sanguine Rose": [
+    "Rose",
+    "Sanguine",
+    "Unique"
+  ],
+  "Toxic Rose": [
+    "Rose",
+    "Unique"
+  ],
+  "Blood Rune": [
+    "Rune"
+  ],
+  "Echo Rune": [
+    "Rune"
+  ],
+  "Iron Rune": [
+    "Rune"
+  ],
+  "Heart Drinker": [
+    "Sanguine"
+  ],
+  "Bloodmoon Dagger": [
+    "Sanguine"
+  ],
+  "Bloodmoon Sickle": [
+    "Sanguine"
+  ],
+  "Lifeblood Spear": [
+    "Sanguine"
+  ],
+  "Sanguine Scepter": [
+    "Sanguine"
+  ],
+  "Bloodlord's Axe": [
+    "Sanguine"
+  ],
+  "Deviled Egg": [
+    "Sanguine",
+    "Unique"
+  ],
+  "Vampire's Tooth": [
+    "Sanguine",
+    "Unique"
+  ],
+  "Blood Chain": [
+    "Sanguine",
+    "Unique"
+  ],
+  "Crimson Fang": [
+    "Sanguine"
+  ],
+  "Crimson Cloak": [
+    "Sanguine",
+    "Unique"
+  ],
+  "Lifeblood Armor": [
+    "Sanguine"
+  ],
+  "Sanguine Imp": [
+    "Sanguine",
+    "Unique"
+  ],
+  "Sanguine Morphosis": [
+    "Sanguine",
+    "Unique"
+  ],
+  "Sanguine Tome": [
+    "Sanguine",
+    "Tome",
+    "Unique"
+  ],
+  "Vampiric Stasis": [
+    "Sanguine"
+  ],
+  "Broken Winebottle": [
+    "Sanguine"
+  ],
+  "Blood Sausage": [
+    "Sanguine"
+  ],
+  "Blood Orange": [
+    "Sanguine"
+  ],
+  "Bloody Steak": [
+    "Sanguine",
+    "Stone"
   ],
   "Ironstone Greatsword": [
     "Stone"
@@ -207,44 +476,46 @@
   "Marble Sword": [
     "Stone"
   ],
-  "Mountain Cleaver": [
-    "Stone"
-  ],
   "Grindstone Club": [
     "Stone"
   ],
   "Ironstone Bracelet": [
-    "Stone"
+    "Stone",
+    "Unique"
   ],
   "Ironstone Sandals": [
     "Stone"
   ],
   "Ironstone Armor": [
-    "Stone"
+    "Stone",
+    "Unique"
   ],
   "Granite Crown": [
-    "Stone"
+    "Stone",
+    "Unique"
   ],
   "Granite Egg": [
-    "Stone"
+    "Stone",
+    "Unique"
   ],
   "Granite Fungi": [
     "Stone"
   ],
   "Ore Heart": [
-    "Stone"
+    "Stone",
+    "Unique"
   ],
   "Petrified Statue": [
-    "Stone"
+    "Stone",
+    "Unique"
   ],
   "Stoneborn Turtle": [
-    "Stone"
-  ],
-  "Granite Thorns": [
-    "Stone"
+    "Stone",
+    "Unique"
   ],
   "Marble Mirror": [
-    "Stone"
+    "Stone",
+    "Unique"
   ],
   "Cracked Bouldershield": [
     "Stone"
@@ -255,15 +526,6 @@
   "Granite Tome": [
     "Stone",
     "Tome"
-  ],
-  "Petrifying Flask": [
-    "Stone"
-  ],
-  "Petrifying Elixir": [
-    "Stone"
-  ],
-  "Bloody Steak": [
-    "Stone"
   ],
   "Limestone Fruit": [
     "Stone"
@@ -291,36 +553,41 @@
     "Stone"
   ],
   "Royal Horn": [
-    "Symphony"
+    "Symphony",
+    "Unique"
   ],
   "Serpent Lyre": [
-    "Symphony"
+    "Symphony",
+    "Unique"
   ],
   "Riverflow Violin": [
     "Symphony",
+    "Unique",
     "Water"
   ],
   "Arcane Bell": [
-    "Symphony"
+    "Symphony",
+    "Unique"
   ],
   "Liferoot Lute": [
-    "Symphony"
+    "Symphony",
+    "Wood"
   ],
   "Stormcloud Drum": [
-    "Symphony"
+    "Symphony",
+    "Unique"
   ],
   "Sheet Music": [
     "Symphony",
-    "Tome"
-  ],
-  "Grand Crescendo": [
-    "Symphony"
+    "Tome",
+    "Unique"
   ],
   "Holy Tome": [
     "Tome"
   ],
   "Liferoot Tome": [
-    "Tome"
+    "Tome",
+    "Wood"
   ],
   "Silverscale Tome": [
     "Tome"
@@ -341,14 +608,127 @@
     "Tome",
     "Water"
   ],
-  "Sanguine Tome": [
-    "Tome"
-  ],
   "Grand Tome": [
-    "Tome"
+    "Tome",
+    "Unique"
   ],
   "Tome of the Hero": [
-    "Tome"
+    "Tome",
+    "Unique"
+  ],
+  "Acid Mutation": [
+    "Unique"
+  ],
+  "Acidic Witherleaf": [
+    "Unique"
+  ],
+  "Assault Greaves": [
+    "Unique"
+  ],
+  "Blackbriar Armor": [
+    "Unique"
+  ],
+  "Blacksmith Bond": [
+    "Unique"
+  ],
+  "Bramble Belt": [
+    "Unique"
+  ],
+  "Bramble Talisman": [
+    "Unique"
+  ],
+  "Brittlebark Armor": [
+    "Unique",
+    "Wood"
+  ],
+  "Cactus Cap": [
+    "Unique"
+  ],
+  "Clearspring Duck": [
+    "Unique",
+    "Water"
+  ],
+  "Double-plated Vest": [
+    "Unique"
+  ],
+  "Druid's Cloak": [
+    "Unique"
+  ],
+  "Energy Drain": [
+    "Unique"
+  ],
+  "Featherweight Greaves": [
+    "Unique"
+  ],
+  "Featherweight Wings": [
+    "Unique"
+  ],
+  "Heart-shaped Acorn": [
+    "Unique",
+    "Wood"
+  ],
+  "Iceblock Shield": [
+    "Unique",
+    "Water"
+  ],
+  "Life Zap": [
+    "Unique"
+  ],
+  "Liferoot Beast": [
+    "Unique",
+    "Wood"
+  ],
+  "Lifeblood Helmet": [
+    "Unique"
+  ],
+  "Moonlight Crest": [
+    "Unique"
+  ],
+  "Oak Heart": [
+    "Unique",
+    "Wood"
+  ],
+  "Plated Shield": [
+    "Unique"
+  ],
+  "Riverflow Talisman": [
+    "Unique",
+    "Water"
+  ],
+  "Shield Talisman": [
+    "Unique"
+  ],
+  "Silverscale Gauntlet": [
+    "Unique"
+  ],
+  "Sinful Mirror": [
+    "Unique"
+  ],
+  "Slime Heart": [
+    "Unique"
+  ],
+  "Stillwater Pearl": [
+    "Unique"
+  ],
+  "Sunlight Crest": [
+    "Unique"
+  ],
+  "Sword Talisman": [
+    "Unique"
+  ],
+  "Thunder Cloud": [
+    "Unique"
+  ],
+  "Treebark Egg": [
+    "Unique",
+    "Wood"
+  ],
+  "Twisted Root": [
+    "Unique",
+    "Wood"
+  ],
+  "Wet Egg": [
+    "Unique"
   ],
   "Frozen Iceblade": [
     "Water"
@@ -366,12 +746,6 @@
     "Water"
   ],
   "Riverflow Rapier": [
-    "Water"
-  ],
-  "Lakebed Sword": [
-    "Water"
-  ],
-  "Iceblock Shield": [
     "Water"
   ],
   "Frostbite Gauntlet": [
@@ -398,13 +772,7 @@
   "Clearspring Opal": [
     "Water"
   ],
-  "Clearspring Rose": [
-    "Water"
-  ],
   "Clearspring Cloak": [
-    "Water"
-  ],
-  "Clearspring Duck": [
     "Water"
   ],
   "Purelake Helmet": [
@@ -413,16 +781,7 @@
   "Purelake Armor": [
     "Water"
   ],
-  "Purelake Potion": [
-    "Water"
-  ],
-  "Purelake Elixir": [
-    "Water"
-  ],
   "Purelake Chalice": [
-    "Water"
-  ],
-  "Riverflow Talisman": [
     "Water"
   ],
   "Melonvine Whip": [
@@ -433,5 +792,65 @@
   ],
   "Melon Wine": [
     "Water"
+  ],
+  "Elderwood Staff": [
+    "Wood"
+  ],
+  "Redwood Rod": [
+    "Wood"
+  ],
+  "Brittlebark Bow": [
+    "Wood"
+  ],
+  "Brittlebark Club": [
+    "Wood"
+  ],
+  "Liferoot Staff": [
+    "Wood"
+  ],
+  "Liferoot Hammer": [
+    "Wood"
+  ],
+  "Evergrowth Spear": [
+    "Wood"
+  ],
+  "Pacifist Staff": [
+    "Wood"
+  ],
+  "Arcane Wand": [
+    "Wood"
+  ],
+  "Woodcutter's Axe": [
+    "Wood"
+  ],
+  "Redwood Cloak": [
+    "Wood"
+  ],
+  "Redwood Helmet": [
+    "Wood"
+  ],
+  "Liferoot Gauntlet": [
+    "Wood"
+  ],
+  "Pinecone Breastplate": [
+    "Wood"
+  ],
+  "Brittlebark Buckler": [
+    "Wood"
+  ],
+  "Elderwood Necklace": [
+    "Wood"
+  ],
+  "Muscle Growth": [
+    "Wood"
+  ],
+  "Ham Bat": [
+    "Wood"
+  ],
+  "Lemontree Branch": [
+    "Wood"
+  ],
+  "Mushroom Soup": [
+    "Wood"
   ]
 }
