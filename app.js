@@ -3273,7 +3273,18 @@ if (simBtn) {
     }
     
     try {
-      const res = HeICSim.simulate(left, right, { maxTurns: maxTurns, includeSummary: true });
+      const live = { lastEvent: null };
+      const hooks = {
+        onAction: (evt) => { live.lastEvent = evt; },
+        onState: (snap) => {
+          try {
+            snap.event = live.lastEvent || { side: null };
+            if (typeof BattleVisuals !== 'undefined') BattleVisuals.renderState(snap);
+          } catch (_) {}
+          live.lastEvent = null;
+        }
+      };
+      const res = HeICSim.simulate(left, right, { maxTurns: maxTurns, includeSummary: true, hooks });
       
       // Use new cardified log rendering
       if (res.log) {

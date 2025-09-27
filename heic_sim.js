@@ -2130,15 +2130,57 @@ let CURRENT_SOURCE_SLUG = null;
   function simulate(Lraw, Rraw, opts={}){
     const maxTurns = opts.maxTurns || opts.max_turns || 100;
     const includeSummary = opts.includeSummary !== false; // Default to true, can be disabled with opts.includeSummary = false
+    const hooks = opts.hooks || {};
+    const onAction = typeof hooks.onAction === 'function' ? hooks.onAction : null;
+    const onState  = typeof hooks.onState  === 'function' ? hooks.onState  : null;
 
     const logArr = [];
     const L = new Fighter(Lraw);
     const R = new Fighter(Rraw);
 
-    // Create enhanced logging function that includes HP information
+    // Helper to snapshot minimal fighter state for UI rendering
+    const snap = (F) => ({
+      hp: F.hp,
+      maxHp: F.hpMax || F.hp,
+      attack: (F.atk || 0) + (F.tempAtk || 0),
+      armor: F.armor || 0,
+      speed: F.speed || 0,
+      statuses: Object.assign({}, F.statuses || {})
+    });
+    const emitState = () => { if (onState) try { onState({ player: snap(L), opponent: snap(R) }); } catch(_){} };
+
+    // Basic action parser for UI hooks
+    const parseEvent = (text) => {
+      const t = String(text || '');
+      // Armor gains
+      let m = t.match(/(Player|Opponent) gains\s+(\d+)\s+armor/i);
+      if (m) return { side: m[1].toLowerCase()==='player'?'player':'opponent', type:'armor', amount:parseInt(m[2],10) };
+      // Armor losses/destroyed
+      m = t.match(/(Player|Opponent) loses\s+(\d+)\s+armor/i) || t.match(/destroys\s+(\d+)\s+armor/i);
+      if (m) return { side: (m[1]||'opponent').toLowerCase()==='player'?'player':'opponent', type:'armor', amount:-Math.abs(parseInt(m[2]||m[1],10)||0) };
+      // Damage
+      m = t.match(/deals\s+(\d+)\s+damage/i);
+      if (m) {
+        const amt = parseInt(m[1],10);
+        const toOpp = /Player deals/i.test(t) || /Fighter deals/i.test(t);
+        return { side: toOpp ? 'opponent':'player', type:'hp', amount:-amt };
+      }
+      // Status gains (acid, poison, regen, thorns)
+      m = t.match(/(Player|Opponent) gains?\s+(\d+)\s+(acid|poison|regen|thorns)/i);
+      if (m) return { side:m[1].toLowerCase()==='player'?'player':'opponent', type:m[3].toLowerCase(), amount:parseInt(m[2],10) };
+      return null;
+    };
+
+    // Create enhanced logging function that includes HP information and emits UI hooks
     const logWithHP = (message) => {
       const hpInfo = ` [PlayerHP: ${L.hp} | OpponentHP: ${R.hp}]`;
-      logArr.push(message + hpInfo);
+      const full = message + hpInfo;
+      logArr.push(full);
+      if (onAction) {
+        const evt = parseEvent(message);
+        if (evt) { try { onAction(evt); } catch(_){} }
+      }
+      emitState();
     };
 
     runEffects('preBattle', L, R, logWithHP);
@@ -2150,6 +2192,9 @@ let CURRENT_SOURCE_SLUG = null;
 
     let [actor, target] = pickOrder(L, R);
     let round = 0;
+    // Emit initial state snapshot for UI
+    emitState();
+
     while(round < maxTurns && L.hp>0 && R.hp>0){
       round++;
       actor.turnCount = (actor.turnCount || 0) + 1;
