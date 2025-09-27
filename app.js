@@ -593,8 +593,8 @@ async function initializeFromBundledData() {
   }
 }
 
-// Initialize Battle Replay System
-BattleReplayController.init();
+// Initialize Battle Replay System (guarded)
+try { if (typeof BattleReplayController !== 'undefined' && BattleReplayController && BattleReplayController.init) { BattleReplayController.init(); } } catch(_) {}
 
 // Icons for stats
 const ICONS = { attack:'attack.png', health:'health.png', armor:'armor.png', speed:'speed.png' };

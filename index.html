@@ -1961,7 +1961,7 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
 
 <script>
 /* Battle Replay System - Icon Renderer Module */
-const BattleIconRenderer = {
+  const BattleIconRenderer = {
   // Map action types and events to icon paths
   ICON_MAP: {
     // Combat actions
@@ -2054,7 +2054,8 @@ const BattleIconRenderer = {
     // Insert icon at the beginning of the entry
     entryEl.insertBefore(icon, entryEl.firstChild);
   }
-};
+  };
+  try { window.BattleIconRenderer = BattleIconRenderer; } catch(_) {}
   </script>
 
   <script>
@@ -2189,7 +2190,7 @@ const BattleIconRenderer = {
   };
   </script>
 /* Battle Replay System - State Manager Module */
-const BattleStateManager = {
+  const BattleStateManager = {
   logEntries: [],
   stateSnapshots: [],
   battleData: null,
@@ -2279,8 +2280,9 @@ const BattleStateManager = {
   isLoaded() {
     return this.battleData !== null && this.logEntries.length > 0;
   }
-};
-</script>
+  };
+  try { window.BattleStateManager = BattleStateManager; } catch(_) {}
+  </script>
 
 <script>
 /* Battle Replay System - Replay Controller Module */
@@ -2560,8 +2562,9 @@ const BattleStateManager = {
     this.stopPlayback();
     // Remove event listeners if needed
   }
-};
-</script>
+  };
+  try { window.BattleReplayController = BattleReplayController; } catch(_) {}
+  </script>
 
 <script src="app.js"></script>
 
