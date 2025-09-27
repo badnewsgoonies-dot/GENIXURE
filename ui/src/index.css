@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --ring: theme(colors.primary); }
+
+html, body, #root { height: 100%; }
+
+:focus-visible {
+  outline: 2px solid theme(colors.primary);
+  outline-offset: 2px;
+}
+
