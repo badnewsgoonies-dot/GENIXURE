@@ -1972,13 +1972,13 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
         </div>
 
         <!-- RIGHT PANE: Loadout Tray -->
-        <div class="loadout-tray-pane" style="display: flex; flex-direction: column; gap: 16px; background: #0a0a0a; border: 2px solid #333; border-radius: 12px; padding: 16px; overflow-y: auto;">
+        <div class="loadout-tray-pane" style="display: flex; flex-direction: column; gap: 16px; background: #0a0a0a; border: 2px solid #333; border-radius: 12px; padding: 16px; overflow-y: auto; grid-column: 3; position: relative; z-index: 1; max-width: 380px;">
           <h3 style="color: #fff; margin: 0 0 12px 0; font-size: 16px; text-align: center;">   LOADOUT TRAY</h3>
           
           <!-- Player Loadout -->
           <div class="loadout-section">
             <h4 style="color: #0f3; margin: 0 0 8px 0; font-size: 14px;">Player Items</h4>
-            <div id="playerLoadoutDisplay" style="display: flex; flex-direction: column; gap: 8px; min-height: 40px;">
+            <div id="playerLoadoutDisplay" style="display: grid; grid-template-columns: 1fr; gap: 8px; min-height: 40px;">
               <div style="color: #666; font-size: 11px; font-style: italic; text-align: center; padding: 12px;">No items equipped</div>
             </div>
           </div>
@@ -1986,7 +1986,7 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
           <!-- Opponent Loadout -->
           <div class="loadout-section">
             <h4 style="color: #f33; margin: 0 0 8px 0; font-size: 14px;">Opponent Items</h4>
-            <div id="opponentLoadoutDisplay" style="display: flex; flex-direction: column; gap: 8px; min-height: 40px;">
+            <div id="opponentLoadoutDisplay" style="display: grid; grid-template-columns: 1fr; gap: 8px; min-height: 40px;">
               <div style="color: #666; font-size: 11px; font-style: italic; text-align: center; padding: 12px;">No items equipped</div>
             </div>
           </div>
