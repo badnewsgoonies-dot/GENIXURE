@@ -1,3 +1,13 @@
 [build]
-  command = "python3 scripts/build_data.py"
-  publish = "."
+command = "npm ci --prefix ui && npm run build --prefix ui"
+publish = "ui/dist"
+
+[build.environment]
+VITE_BASE = "/"
+NODE_VERSION = "20"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
