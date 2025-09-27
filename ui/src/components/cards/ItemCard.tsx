@@ -32,7 +32,7 @@ export default function ItemCard({
         </div>
         <div className="flex items-center gap-1">
           <button onClick={onInfo} className={`${badge}`}>i</button>
-          <button onClick={onAdd} className={`${badge}`}>+</nbutton>
+          <button onClick={onAdd} className={`${badge}`}>+</button>
         </div>
       </div>
 
@@ -64,4 +64,3 @@ export default function ItemCard({
     </div>
   );
 }
-
