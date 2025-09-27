@@ -1,9 +1,9 @@
 {
-  "mismatch_count": 105,
+  "mismatch_count": 53,
   "mismatches": [
     {
-      "name": "Bearclaw Blade",
-      "key": "weapons/bearclaw_blade",
+      "name": "Blastcap Armor",
+      "key": "items/blastcap_armor",
       "eff": {
         "armor": 0,
         "attack": 0,
@@ -12,72 +12,8 @@
       },
       "doc": {
         "attack": 0,
-        "health": 5,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Bejeweled Blade",
-      "key": "weapons/bejeweled_blade",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
         "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 1,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Blackbriar Blade",
-      "key": "weapons/blackbriar_blade",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Blood Sausage",
-      "key": "items/blood_sausage",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 0,
-        "health": 5,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Bloody Steak",
-      "key": "items/bloody_steak",
-      "eff": {
-        "armor": 0,
-        "attack": 4,
-        "health": 5,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
+        "armor": 8,
         "speed": 0
       }
     },
@@ -88,7 +24,7 @@
         "armor": 0,
         "attack": 0,
         "health": 0,
-        "speed": 2
+        "speed": 0
       },
       "doc": {
         "attack": 0,
@@ -98,24 +34,40 @@
       }
     },
     {
-      "name": "Bramble Vest",
-      "key": "items/bramble_vest",
+      "name": "Bramble Buckler",
+      "key": "items/bramble_buckler",
       "eff": {
-        "armor": 3,
+        "armor": 0,
         "attack": 0,
         "health": 0,
         "speed": 0
       },
       "doc": {
         "attack": 0,
-        "health": 3,
+        "health": 0,
+        "armor": 2,
+        "speed": 0
+      }
+    },
+    {
+      "name": "Brittlebark Armor",
+      "key": "items/brittlebark_armor",
+      "eff": {
+        "armor": 0,
+        "attack": 0,
+        "health": 0,
+        "speed": 0
+      },
+      "doc": {
+        "attack": 0,
+        "health": 12,
         "armor": 0,
         "speed": 0
       }
     },
     {
-      "name": "Brittlebark Club",
-      "key": "weapons/brittlebark_club",
+      "name": "Brittlebark Buckler",
+      "key": "items/brittlebark_buckler",
       "eff": {
         "armor": 0,
         "attack": 0,
@@ -123,25 +75,9 @@
         "speed": 0
       },
       "doc": {
-        "attack": 7,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Brittlebark Bow",
-      "key": "weapons/brittlebark_bow",
-      "eff": {
-        "armor": 0,
         "attack": 0,
         "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 4,
-        "health": 0,
-        "armor": 0,
+        "armor": 10,
         "speed": 0
       }
     },
@@ -150,7 +86,7 @@
       "key": "items/cherry_bomb",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 3,
         "health": 0,
         "speed": 0
       },
@@ -166,9 +102,9 @@
       "key": "items/citrine_earring",
       "eff": {
         "armor": 0,
-        "attack": 3,
+        "attack": 0,
         "health": 0,
-        "speed": 0
+        "speed": 4
       },
       "doc": {
         "attack": 0,
@@ -181,10 +117,10 @@
       "name": "Double-plated Armor",
       "key": "items/double_plated_armor",
       "eff": {
-        "armor": 2,
+        "armor": 0,
         "attack": 0,
         "health": 0,
-        "speed": -2
+        "speed": 0
       },
       "doc": {
         "attack": 0,
@@ -194,13 +130,29 @@
       }
     },
     {
-      "name": "Elderwood Staff",
-      "key": "weapons/elderwood_staff",
+      "name": "Elderwood Necklace",
+      "key": "items/elderwood_necklace",
       "eff": {
         "armor": 0,
         "attack": 0,
         "health": 0,
         "speed": 0
+      },
+      "doc": {
+        "attack": 1,
+        "health": 0,
+        "armor": 1,
+        "speed": 1
+      }
+    },
+    {
+      "name": "Elderwood Staff",
+      "key": "weapons/elderwood_staff",
+      "eff": {
+        "armor": 1,
+        "attack": 1,
+        "health": 0,
+        "speed": 1
       },
       "doc": {
         "attack": 1,
@@ -214,8 +166,8 @@
       "key": "items/emerald_crown",
       "eff": {
         "armor": 0,
-        "attack": -1,
-        "health": 8,
+        "attack": 0,
+        "health": 0,
         "speed": 0
       },
       "doc": {
@@ -226,8 +178,40 @@
       }
     },
     {
-      "name": "Explosive Sword",
-      "key": "weapons/explosive_sword",
+      "name": "Emerald Earring",
+      "key": "items/emerald_earring",
+      "eff": {
+        "armor": 0,
+        "attack": 0,
+        "health": 4,
+        "speed": 0
+      },
+      "doc": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      }
+    },
+    {
+      "name": "Emerald Ring",
+      "key": "items/emerald_ring",
+      "eff": {
+        "armor": 0,
+        "attack": 0,
+        "health": 12,
+        "speed": 0
+      },
+      "doc": {
+        "attack": 0,
+        "health": 0,
+        "armor": 0,
+        "speed": 0
+      }
+    },
+    {
+      "name": "Explosive Roast",
+      "key": "items/explosive_roast",
       "eff": {
         "armor": 0,
         "attack": 0,
@@ -235,8 +219,8 @@
         "speed": 0
       },
       "doc": {
-        "attack": 3,
-        "health": 0,
+        "attack": 0,
+        "health": 5,
         "armor": 0,
         "speed": 0
       }
@@ -258,26 +242,10 @@
       }
     },
     {
-      "name": "Featherweight Blade",
-      "key": "weapons/featherweight_blade",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 2
-      }
-    },
-    {
       "name": "Frostbite Armor",
       "key": "items/frostbite_armor",
       "eff": {
-        "armor": 0,
+        "armor": 2,
         "attack": 0,
         "health": 0,
         "speed": 0
@@ -290,43 +258,11 @@
       }
     },
     {
-      "name": "Frostbite Dagger",
-      "key": "weapons/frostbite_dagger",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Gemstone Scepter",
-      "key": "weapons/gemstone_scepter",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
       "name": "Granite Hammer",
       "key": "weapons/granite_hammer",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 2,
         "health": 0,
         "speed": 0
       },
@@ -338,8 +274,8 @@
       }
     },
     {
-      "name": "Granite Lance",
-      "key": "weapons/granite_lance",
+      "name": "Horned Helmet",
+      "key": "items/horned_helmet",
       "eff": {
         "armor": 0,
         "attack": 0,
@@ -347,57 +283,9 @@
         "speed": 0
       },
       "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 1,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Grindstone Club",
-      "key": "weapons/grindstone_club",
-      "eff": {
-        "armor": 0,
         "attack": 0,
         "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 1,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Heart Drinker",
-      "key": "weapons/heart_drinker",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 1,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Hidden Dagger",
-      "key": "weapons/hidden_dagger",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
+        "armor": 2,
         "speed": 0
       }
     },
@@ -418,8 +306,8 @@
       }
     },
     {
-      "name": "Icicle Spear",
-      "key": "weapons/icicle_spear",
+      "name": "Iceblock Shield",
+      "key": "items/iceblock_shield",
       "eff": {
         "armor": 0,
         "attack": 0,
@@ -427,26 +315,10 @@
         "speed": 0
       },
       "doc": {
-        "attack": 3,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Ironstone Bow",
-      "key": "weapons/ironstone_bow",
-      "eff": {
-        "armor": 0,
         "attack": 0,
         "health": 0,
+        "armor": 8,
         "speed": 0
-      },
-      "doc": {
-        "attack": 6,
-        "health": 0,
-        "armor": 0,
-        "speed": 1
       }
     },
     {
@@ -454,28 +326,12 @@
       "key": "weapons/ironstone_greatsword",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 4,
         "health": 0,
-        "speed": 0
+        "speed": -2
       },
       "doc": {
         "attack": 4,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Ironstone Sandals",
-      "key": "items/ironstone_sandals",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": -1
-      },
-      "doc": {
-        "attack": 0,
         "health": 0,
         "armor": 0,
         "speed": 0
@@ -488,13 +344,45 @@
         "armor": 0,
         "attack": 0,
         "health": 0,
-        "speed": -1
+        "speed": 0
       },
       "doc": {
         "attack": 0,
         "health": 0,
         "armor": 2,
         "speed": 0
+      }
+    },
+    {
+      "name": "Leather Glove",
+      "key": "items/leather_glove",
+      "eff": {
+        "armor": 0,
+        "attack": 0,
+        "health": 0,
+        "speed": 0
+      },
+      "doc": {
+        "attack": 0,
+        "health": 3,
+        "armor": 0,
+        "speed": 1
+      }
+    },
+    {
+      "name": "Leather Vest",
+      "key": "items/leather_vest",
+      "eff": {
+        "armor": 0,
+        "attack": 0,
+        "health": 0,
+        "speed": 0
+      },
+      "doc": {
+        "attack": 0,
+        "health": 0,
+        "armor": 2,
+        "speed": 1
       }
     },
     {
@@ -514,38 +402,6 @@
       }
     },
     {
-      "name": "Lifeblood Spear",
-      "key": "weapons/lifeblood_spear",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 1,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Lifesteal Scythe",
-      "key": "weapons/lifesteal_scythe",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 1,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
       "name": "Pinecone Breastplate",
       "key": "items/pinecone_breastplate",
       "eff": {
@@ -562,34 +418,18 @@
       }
     },
     {
-      "name": "Redwood Cloak",
-      "key": "items/redwood_cloak",
+      "name": "Ring Blades",
+      "key": "weapons/ring_blades",
       "eff": {
         "armor": 0,
-        "attack": 0,
-        "health": 5,
-        "speed": 4
-      },
-      "doc": {
-        "attack": 0,
-        "health": 2,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Redwood Helmet",
-      "key": "items/redwood_helmet",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
+        "attack": 1,
         "health": 0,
         "speed": 0
       },
       "doc": {
         "attack": 0,
-        "health": 1,
-        "armor": 1,
+        "health": 0,
+        "armor": 0,
         "speed": 0
       }
     },
@@ -597,9 +437,9 @@
       "name": "Rock Roast",
       "key": "items/rock_roast",
       "eff": {
-        "armor": 2,
+        "armor": 6,
         "attack": 0,
-        "health": 3,
+        "health": 6,
         "speed": 0
       },
       "doc": {
@@ -610,8 +450,8 @@
       }
     },
     {
-      "name": "Royal Crownblade",
-      "key": "weapons/royal_crownblade",
+      "name": "Royal Helmet",
+      "key": "items/royal_helmet",
       "eff": {
         "armor": 0,
         "attack": 0,
@@ -619,9 +459,9 @@
         "speed": 0
       },
       "doc": {
-        "attack": 4,
+        "attack": 0,
         "health": 0,
-        "armor": 0,
+        "armor": 1,
         "speed": 0
       }
     },
@@ -630,28 +470,12 @@
       "key": "items/ruby_crown",
       "eff": {
         "armor": 0,
-        "attack": 1,
-        "health": 0,
-        "speed": -1
-      },
-      "doc": {
-        "attack": 1,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Ruby Earring",
-      "key": "items/ruby_earring",
-      "eff": {
-        "armor": 0,
-        "attack": 3,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
         "attack": 0,
+        "health": 0,
+        "speed": 0
+      },
+      "doc": {
+        "attack": 1,
         "health": 0,
         "armor": 0,
         "speed": 0
@@ -662,7 +486,7 @@
       "key": "items/ruby_ring",
       "eff": {
         "armor": 0,
-        "attack": 4,
+        "attack": 8,
         "health": 0,
         "speed": 0
       },
@@ -680,7 +504,7 @@
         "armor": 0,
         "attack": 0,
         "health": 0,
-        "speed": 1
+        "speed": 0
       },
       "doc": {
         "attack": 0,
@@ -690,93 +514,13 @@
       }
     },
     {
-      "name": "Sanguine Rose",
-      "key": "items/sanguine_rose",
+      "name": "Stone Steak",
+      "key": "items/stone_steak",
       "eff": {
-        "armor": 0,
-        "attack": 3,
-        "health": 4,
-        "speed": 3
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Shield of the Hero",
-      "key": "items/shield_of_the_hero",
-      "eff": {
-        "armor": -3,
-        "attack": 0,
-        "health": 0,
-        "speed": -3
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 3,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Shield Talisman",
-      "key": "items/shield_talisman",
-      "eff": {
-        "armor": -2,
-        "attack": 0,
-        "health": 0,
-        "speed": 5
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Stoneslab Sword",
-      "key": "weapons/stoneslab_sword",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
         "attack": 2,
+        "armor": 6,
         "health": 0,
-        "armor": 0,
         "speed": 0
-      }
-    },
-    {
-      "name": "Sugar Bomb",
-      "key": "items/sugar_bomb",
-      "eff": {
-        "armor": 0,
-        "attack": 4,
-        "health": 0,
-        "speed": 2
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Swiftstrike Belt",
-      "key": "items/swiftstrike_belt",
-      "eff": {
-        "armor": 0,
-        "attack": 2,
-        "health": 0,
-        "speed": 4
       },
       "doc": {
         "attack": 0,
@@ -790,7 +534,7 @@
       "key": "weapons/swiftstrike_bow",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 2,
         "health": 0,
         "speed": 0
       },
@@ -802,107 +546,11 @@
       }
     },
     {
-      "name": "Swiftstrike Cloak",
-      "key": "items/swiftstrike_cloak",
-      "eff": {
-        "armor": 0,
-        "attack": 2,
-        "health": 0,
-        "speed": 4
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 1
-      }
-    },
-    {
-      "name": "Swiftstrike Gauntlet",
-      "key": "items/swiftstrike_gauntlet",
-      "eff": {
-        "armor": 0,
-        "attack": 2,
-        "health": 0,
-        "speed": 4
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Swiftstrike Rapier",
-      "key": "weapons/swiftstrike_rapier",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Sword of the Hero",
-      "key": "weapons/sword_of_the_hero",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 3,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Thorn Ring",
-      "key": "items/thorn_ring",
-      "eff": {
-        "armor": 0,
-        "attack": 4,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Trail Mix",
-      "key": "items/trail_mix",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 5,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
       "name": "Twin Blade",
       "key": "weapons/twin_blade",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 1,
         "health": 0,
         "speed": 0
       },
@@ -911,54 +559,6 @@
         "health": 0,
         "armor": 0,
         "speed": 55
-      }
-    },
-    {
-      "name": "Twinfuse Knot",
-      "key": "items/twinfuse_knot",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 6,
-        "speed": 2
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Woodcutter's Axe",
-      "key": "weapons/woodcutter_s_axe",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 1,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Ancient Warhammer",
-      "key": "weapons/ancient_warhammer",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 5,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
       }
     },
     {
@@ -978,8 +578,8 @@
       }
     },
     {
-      "name": "Basilisk Fang",
-      "key": "weapons/basilisk_fang",
+      "name": "Champion's Armor",
+      "key": "items/champion_s_armor",
       "eff": {
         "armor": 0,
         "attack": 0,
@@ -987,25 +587,9 @@
         "speed": 0
       },
       "doc": {
-        "attack": 3,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Bloodlord's Axe",
-      "key": "weapons/bloodlord_s_axe",
-      "eff": {
-        "armor": 0,
         "attack": 0,
         "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 4,
-        "health": 0,
-        "armor": 0,
+        "armor": 6,
         "speed": 0
       }
     },
@@ -1014,7 +598,7 @@
       "key": "weapons/champion_s_blade",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 6,
         "health": 0,
         "speed": 0
       },
@@ -1029,45 +613,13 @@
       "name": "Chainmail Cloak",
       "key": "items/chainmail_cloak",
       "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 2,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Chainmail Sword",
-      "key": "weapons/chainmail_sword",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
         "armor": 2,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Cleaver of Wrath",
-      "key": "weapons/cleaver_of_wrath",
-      "eff": {
-        "armor": 0,
         "attack": 0,
         "health": 0,
         "speed": 0
       },
       "doc": {
-        "attack": 10,
+        "attack": 0,
         "health": 0,
         "armor": 0,
         "speed": 0
@@ -1078,7 +630,7 @@
       "key": "items/clearspring_watermelon",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 3,
         "health": 0,
         "speed": 0
       },
@@ -1090,61 +642,13 @@
       }
     },
     {
-      "name": "Dashmaster's Dagger",
-      "key": "weapons/dashmaster_s_dagger",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Fungal Rapier",
-      "key": "weapons/fungal_rapier",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 3,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Forge Hammer",
-      "key": "weapons/forge_hammer",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 4,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
       "name": "Gale Staff",
       "key": "weapons/gale_staff",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 2,
         "health": 0,
-        "speed": 0
+        "speed": 6
       },
       "doc": {
         "attack": 2,
@@ -1154,66 +658,18 @@
       }
     },
     {
-      "name": "Granite Axe",
-      "key": "weapons/granite_axe",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 4,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Grilling Skewer",
-      "key": "weapons/grilling_skewer",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 1,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
       "name": "Holy Shield",
       "key": "items/holy_shield",
       "eff": {
-        "armor": 6,
-        "attack": -1,
-        "health": 0,
-        "speed": -1
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 6,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Holy Tome",
-      "key": "items/holy_tome",
-      "eff": {
         "armor": 0,
-        "attack": -1,
+        "attack": 0,
         "health": 0,
         "speed": 0
       },
       "doc": {
         "attack": 0,
         "health": 0,
-        "armor": 0,
+        "armor": 6,
         "speed": 0
       }
     },
@@ -1222,7 +678,7 @@
       "key": "weapons/ironstone_spear",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 2,
         "health": 0,
         "speed": 0
       },
@@ -1238,7 +694,7 @@
       "key": "weapons/king_s_blade",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 3,
         "health": 0,
         "speed": 0
       },
@@ -1250,8 +706,8 @@
       }
     },
     {
-      "name": "Knight's Blade",
-      "key": "weapons/knight_s_blade",
+      "name": "Knight's Armor",
+      "key": "items/knight_s_armor",
       "eff": {
         "armor": 0,
         "attack": 0,
@@ -1259,15 +715,15 @@
         "speed": 0
       },
       "doc": {
-        "attack": 4,
+        "attack": 0,
         "health": 0,
-        "armor": 0,
+        "armor": 4,
         "speed": 0
       }
     },
     {
-      "name": "Leather Whip",
-      "key": "weapons/leather_whip",
+      "name": "Liferoot Gauntlet",
+      "key": "items/liferoot_gauntlet",
       "eff": {
         "armor": 0,
         "attack": 0,
@@ -1275,31 +731,31 @@
         "speed": 0
       },
       "doc": {
-        "attack": 4,
-        "health": 5,
+        "attack": 0,
+        "health": 3,
         "armor": 0,
         "speed": 0
       }
     },
     {
-      "name": "Liferoot Hammer",
-      "key": "weapons/liferoot_hammer",
+      "name": "Lightning Elixir",
+      "key": "items/lightning_elixir",
       "eff": {
         "armor": 0,
-        "attack": 0,
+        "attack": 3,
         "health": 0,
-        "speed": 0
+        "speed": 4
       },
       "doc": {
         "attack": 3,
         "health": 0,
         "armor": 0,
-        "speed": 0
+        "speed": 476
       }
     },
     {
-      "name": "Liferoot Staff",
-      "key": "weapons/liferoot_staff",
+      "name": "Lightning Rod",
+      "key": "weapons/lightning_rod",
       "eff": {
         "armor": 0,
         "attack": 0,
@@ -1308,70 +764,6 @@
       },
       "doc": {
         "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Lightning Whip",
-      "key": "weapons/lightning_whip",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 3,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Melting Iceblade",
-      "key": "weapons/melting_iceblade",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 8,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Moonlight Cleaver",
-      "key": "weapons/moonlight_cleaver",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 3,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Mushroom Buckler",
-      "key": "items/mushroom_buckler",
-      "eff": {
-        "armor": 3,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 0,
         "health": 0,
         "armor": 0,
         "speed": 0
@@ -1382,7 +774,7 @@
       "key": "items/petrifying_elixir",
       "eff": {
         "attack": 0,
-        "armor": 0,
+        "armor": 40,
         "health": 0,
         "speed": 0
       },
@@ -1394,75 +786,11 @@
       }
     },
     {
-      "name": "Purelake Helmet",
-      "key": "items/purelake_helmet",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 2,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Purelake Staff",
-      "key": "weapons/purelake_staff",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 1,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Riverflow Rapier",
-      "key": "weapons/riverflow_rapier",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 3,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Rusted Plate",
-      "key": "items/rusted_plate",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": -3,
-        "speed": 2
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
       "name": "Rusty Ring",
       "key": "items/rusty_ring",
       "eff": {
         "armor": 0,
-        "attack": 3,
+        "attack": 0,
         "health": 0,
         "speed": 0
       },
@@ -1474,80 +802,16 @@
       }
     },
     {
-      "name": "Rusty Sword",
-      "key": "weapons/rusty_sword",
+      "name": "Silverscale Fish",
+      "key": "items/silverscale_fish",
       "eff": {
         "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
         "attack": 2,
         "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Sanguine Scepter",
-      "key": "weapons/sanguine_scepter",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
         "speed": 0
       },
       "doc": {
-        "attack": 1,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Serpent Dagger",
-      "key": "weapons/serpent_dagger",
-      "eff": {
-        "armor": 0,
         "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Sheet Music",
-      "key": "items/sheet_music",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 3
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Silverscale Dagger",
-      "key": "weapons/silverscale_dagger",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
         "health": 0,
         "armor": 0,
         "speed": 0
@@ -1570,112 +834,16 @@
       }
     },
     {
-      "name": "Slime Sword",
-      "key": "weapons/slime_sword",
+      "name": "Wave Breaker",
+      "key": "weapons/wave_breaker",
       "eff": {
         "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Sour Lemon",
-      "key": "items/sour_lemon",
-      "eff": {
-        "armor": 0,
-        "attack": 4,
-        "health": 0,
-        "speed": 4
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 3
-      }
-    },
-    {
-      "name": "Squire's Blade",
-      "key": "weapons/squire_s_blade",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Stormcloud Spear",
-      "key": "weapons/stormcloud_spear",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 2,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Stormcloud Tome",
-      "key": "items/stormcloud_tome",
-      "eff": {
-        "armor": 0,
-        "attack": -1,
-        "health": 0,
-        "speed": 2
-      },
-      "doc": {
-        "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 0
-      }
-    },
-    {
-      "name": "Tempest Blade",
-      "key": "weapons/tempest_blade",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
+        "attack": -2,
         "health": 0,
         "speed": 0
       },
       "doc": {
         "attack": 0,
-        "health": 0,
-        "armor": 0,
-        "speed": 2
-      }
-    },
-    {
-      "name": "Thunderbound Sabre",
-      "key": "weapons/thunderbound_sabre",
-      "eff": {
-        "armor": 0,
-        "attack": 0,
-        "health": 0,
-        "speed": 0
-      },
-      "doc": {
-        "attack": 6,
         "health": 0,
         "armor": 0,
         "speed": 0
