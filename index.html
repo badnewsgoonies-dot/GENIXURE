@@ -2184,8 +2184,12 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
       const setTextAll = (ids, v) => ids.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = v; });
       setTextAll(['playerHP','arenaPlayerHP'], state.player.hp);
       setTextAll(['opponentHP','arenaOpponentHP'], state.opponent.hp);
+      const playerAtk = Math.max(0, state.player.attack || 0);
+      const opponentAtk = Math.max(0, state.opponent.attack || 0);
       setTextAll(['playerArmor','arenaPlayerArmor'], state.player.armor);
       setTextAll(['opponentArmor','arenaOpponentArmor'], state.opponent.armor);
+      setTextAll(['playerAttack','arenaPlayerAttack'], playerAtk);
+      setTextAll(['opponentAttack','arenaOpponentAttack'], opponentAtk);
       setTextAll(['playerSpeed','arenaPlayerSpeed'], state.player.speed);
       setTextAll(['opponentSpeed','arenaOpponentSpeed'], state.opponent.speed);
 
