@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import EventLogList, { SideFilter } from '../components/battle/EventLogList';
 import LogToolbar from '../components/battle/LogToolbar';
 import SideLogHeader from '../components/battle/SideLogHeader';
+import StatusPanel from '../components/battle/StatusPanel';
 import type { BattleEvent } from '../types/battle';
 
 // TEMP: sample events to visualize layout.
@@ -40,17 +41,27 @@ export default function SimulationPage() {
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         {/* LEFT = Player */}
         <div className="space-y-3">
-          <div className="rounded-lg border border-border bg-surface p-3">
-            <div className="mb-2 text-sm font-semibold">Current Status</div>
-            <div className="grid grid-cols-6 gap-2 text-xs text-muted">
-              <div className="rounded border border-border p-2">HP 25</div>
-              <div className="rounded border border-border p-2">ARM 0</div>
-              <div className="rounded border border-border p-2">ATK 0</div>
-              <div className="rounded border border-border p-2">SPD 0</div>
-              <div className="rounded border border-border p-2">…</div>
-              <div className="rounded border border-border p-2">…</div>
-            </div>
-          </div>
+          <StatusPanel
+            side="player"
+            accent="green"
+            topIcons={[
+              { key: 'freeze', className: 'h-4 w-4 rounded bg-sky-400' },
+              { key: 'shock', className: 'h-4 w-4 rounded bg-indigo-400' },
+              { key: 'sun', className: 'h-4 w-4 rounded bg-amber-300' },
+              { key: 'fire', className: 'h-4 w-4 rounded bg-orange-500' },
+              { key: 'water', className: 'h-4 w-4 rounded bg-cyan-400' },
+              { key: 'storm', className: 'h-4 w-4 rounded bg-violet-400' },
+              { key: 'lifeblood', className: 'h-4 w-4 rounded bg-rose-300' },
+              { key: 'wind', className: 'h-4 w-4 rounded bg-emerald-300' },
+            ]}
+            stats={[
+              { key: 'hp', value: 25, label: 'HP' },
+              { key: 'arm', value: 0, label: 'Armor' },
+              { key: 'atk', value: 0, label: 'Attack' },
+              { key: 'spd', value: 0, label: 'Speed' },
+            ]}
+            sprite={<div className="h-24 w-24 rounded bg-emerald-900/30" />}
+          />
 
           <div className="rounded-lg border border-border bg-black/60">
             <SideLogHeader side="player" sideFilter={playerScope} setSideFilter={setPlayerScope} />
@@ -67,17 +78,27 @@ export default function SimulationPage() {
 
         {/* RIGHT = Enemy */}
         <div className="space-y-3">
-          <div className="rounded-lg border border-border bg-surface p-3">
-            <div className="mb-2 text-sm font-semibold">Current Status</div>
-            <div className="grid grid-cols-6 gap-2 text-xs text-muted">
-              <div className="rounded border border-border p-2">HP 25</div>
-              <div className="rounded border border-border p-2">ARM 0</div>
-              <div className="rounded border border-border p-2">ATK 0</div>
-              <div className="rounded border border-border p-2">SPD 0</div>
-              <div className="rounded border border-border p-2">…</div>
-              <div className="rounded border border-border p-2">…</div>
-            </div>
-          </div>
+          <StatusPanel
+            side="enemy"
+            accent="red"
+            topIcons={[
+              { key: 'freeze', className: 'h-4 w-4 rounded bg-sky-400' },
+              { key: 'shock', className: 'h-4 w-4 rounded bg-indigo-400' },
+              { key: 'sun', className: 'h-4 w-4 rounded bg-amber-300' },
+              { key: 'fire', className: 'h-4 w-4 rounded bg-orange-500' },
+              { key: 'water', className: 'h-4 w-4 rounded bg-cyan-400' },
+              { key: 'storm', className: 'h-4 w-4 rounded bg-violet-400' },
+              { key: 'lifeblood', className: 'h-4 w-4 rounded bg-rose-300' },
+              { key: 'wind', className: 'h-4 w-4 rounded bg-emerald-300' },
+            ]}
+            stats={[
+              { key: 'hp', value: 25, label: 'HP' },
+              { key: 'arm', value: 0, label: 'Armor' },
+              { key: 'atk', value: 0, label: 'Attack' },
+              { key: 'spd', value: 0, label: 'Speed' },
+            ]}
+            sprite={<div className="h-24 w-24 rounded bg-rose-900/30" />}
+          />
 
           <div className="rounded-lg border border-border bg-black/60">
             <SideLogHeader side="enemy" sideFilter={enemyScope} setSideFilter={setEnemyScope} />
@@ -95,4 +116,3 @@ export default function SimulationPage() {
     </div>
   );
 }
-
