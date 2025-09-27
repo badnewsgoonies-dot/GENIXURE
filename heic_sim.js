@@ -7,14 +7,14 @@
   // current phase baseline effects finish. We enqueue them here and flush
   // at phase boundaries (battleStart, firstTurn, turnStart, turnEnd).
   const _effectQueue = [];
-  function _enqueueTrigger(trigger, who, other) {
-    _effectQueue.push({ trigger, who, other });
+  function _enqueueTrigger(trigger, who, other, extra) {
+    _effectQueue.push({ trigger, who, other, extra });
   }
-  function _flushTriggers(runEffects, max = 10000) {
+  function _flushTriggers(runEffects, logFn, max = 10000) {
     let n = 0;
     while (_effectQueue.length) {
-      const { trigger, who, other } = _effectQueue.shift();
-      runEffects(trigger, who, other, () => {}, {});
+      const { trigger, who, other, extra } = _effectQueue.shift();
+      runEffects(trigger, who, other, typeof logFn === 'function' ? logFn : () => {}, extra || {});
       if (++n > max) throw new Error('Effect queue overflow (cyclic triggers?)');
     }
   }
@@ -2079,7 +2079,7 @@
             // Run postCountdownTrigger effects to allow items like Arcane Lens to interact
             runEffects('postCountdownTrigger', this, other, log, { countdown: cd });
             // Standardized countdown trigger (deferred)
-            _enqueueTrigger('countdown', this, other);
+            _enqueueTrigger('countdown', this, other, { countdown: cd });
           } catch (err) {
             if (log) log(`Error in countdown: ${err.message}`);
           }
@@ -2102,8 +2102,8 @@
       self.armor = before + (n|0);
       const gained = Math.max(0, self.armor - before);
       if (gained > 0) {
-        // Defer onGainArmor to phase flush
-        _enqueueTrigger('onGainArmor', self, other);
+        // Defer onGainArmor to phase flush with metadata
+        _enqueueTrigger('onGainArmor', self, other, { amount: gained });
       }
     };
     self.addExtraStrikes = n => { self.extraStrikes = (self.extraStrikes || 0) + n; };
@@ -2144,8 +2144,8 @@
         self.hp += healed;
         self.healedThisTurn += healed;
         log(`${self.name} heals ${healed}`);
-        // Defer onHeal to phase flush
-        _enqueueTrigger('onHeal', self, other);
+        // Defer onHeal to phase flush with metadata
+        _enqueueTrigger('onHeal', self, other, { amount: healed });
       }
       return healed;
     };
@@ -2403,7 +2403,7 @@ let CURRENT_SOURCE_SLUG = null;
     // Battle Start Phase: Items activate in slot order (weapon first, then items 1→12)
     runEffects('battleStart', L, R, logWithHP);
     runEffects('battleStart', R, L, logWithHP);
-    try { _flushTriggers(runEffects); } catch(_) {}
+    try { _flushTriggers(runEffects, logWithHP); } catch(_) {}
 
     let [actor, target] = pickOrder(L, R);
     let round = 0;
@@ -2418,12 +2418,12 @@ let CURRENT_SOURCE_SLUG = null;
       // First turn (only once per side)
       if (actor && actor.flags && actor.flags.firstTurn) {
         runEffects('firstTurn', actor, target, logWithHP);
-        try { _flushTriggers(runEffects); } catch(_) {}
+        try { _flushTriggers(runEffects, logWithHP); } catch(_) {}
       }
 
       turnStartTicks(actor, target, logWithHP);
       runEffects('turnStart', actor, target, logWithHP);
-      try { _flushTriggers(runEffects); } catch(_) {}
+      try { _flushTriggers(runEffects, logWithHP); } catch(_) {}
 
       // Apply any pending additional strikes gathered from effects
       if (actor && actor.flags && (actor.flags.additionalStrikes|0) > 0) {
@@ -2445,7 +2445,7 @@ let CURRENT_SOURCE_SLUG = null;
       
       turnEndTicks(actor, target, logWithHP);
       runEffects('turnEnd', actor, target, logWithHP);
-      try { _flushTriggers(runEffects); } catch(_) {}
+      try { _flushTriggers(runEffects, logWithHP); } catch(_) {}
 
       actor.flags.firstTurn = false;
       [actor, target] = [target, actor];
