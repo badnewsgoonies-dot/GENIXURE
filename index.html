@@ -1253,29 +1253,17 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             <div id="searchChips" style="display: flex; gap: 4px; flex-wrap: wrap;"></div>
           </div>
 
-          <!-- Sets Filter -->
-          <div class="facet-group" style="margin-bottom: 20px;">
-            <h4 style="color: #f33; margin: 0 0 8px 0; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Sets</h4>
-            <div id="setsFilterContainer" class="sets-filter" style="display: flex; flex-direction: column; gap: 2px; max-height: 160px; overflow: auto;">
-              <!-- Populated by app.js from HeICSets.definitions -->
-            </div>
-          </div>
+          
 
           <!-- View Switch -->
           <div class="view-switch" style="display: flex; gap: 2px; background: #000; border: 2px solid #f33; border-radius: 8px; overflow: hidden;">
             <button id="viewCards" class="view-btn active" style="padding: 8px 16px; background: #f33; color: #000; border: none; cursor: pointer; font-size: 12px; font-weight: 600;">Cards</button>
             <button id="viewTable" class="view-btn" style="padding: 8px 16px; background: transparent; color: #f33; border: none; cursor: pointer; font-size: 12px; font-weight: 600;">Table</button>
-            <button id="viewCompare" class="view-btn" style="padding: 8px 16px; background: transparent; color: #f33; border: none; cursor: pointer; font-size: 12px; font-weight: 600;">Compare</button>
           </div>
           
           
           
-          <!-- Tier Switcher -->
-          <div class="tier-switcher" style="display: flex; gap: 2px; background: #000; border: 2px solid #ffd166; border-radius: 8px; overflow: hidden;">
-            <button id="tierBase" class="tier-btn active" style="padding: 6px 12px; background: #ffd166; color: #000; border: none; cursor: pointer; font-size: 11px; font-weight: 600;">Base</button>
-            <button id="tierGold" class="tier-btn" style="padding: 6px 12px; background: transparent; color: #ffd166; border: none; cursor: pointer; font-size: 11px; font-weight: 600;">Gold</button>
-            <button id="tierDiamond" class="tier-btn" style="padding: 6px 12px; background: transparent; color: #ffd166; border: none; cursor: pointer; font-size: 11px; font-weight: 600;">Diamond</button>
-          </div>
+          <!-- Tier Switcher removed -->
           
         </div>
         
@@ -1296,19 +1284,10 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             </div>
           </div>
           
-          <!-- Summary Stats -->
-          <div style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
-            <div id="dataHealthIndicator" style="display: flex; align-items: center; gap: 4px;">
-              <span style="width: 8px; height: 8px; border-radius: 50%; background: #666;" id="healthDot"></span>
-              <span style="color: #666; font-size: 10px;" id="healthText">Loading...</span>
-            </div>
-            <span style="color: #aaa;">Showing:</span>
-            <span id="shownCount" style="color: #fff; font-weight: 600;">0</span>
-            <span style="color: #666;">/</span>
-            <span id="totalCount" style="color: #aaa;">0</span>
-            <div style="width: 1px; height: 16px; background: #666;"></div>
-            <span style="color: #aaa;">Selected:</span>
-            <span id="selectedCount" style="color: #fa0; font-weight: 600;">0</span>
+          <!-- Summary Stats (simplified: total only) -->
+          <div style="display: flex; gap: 8px; align-items: center; font-size: 12px;">
+            <span style="color: #aaa;">Total:</span>
+            <span id="totalCount" style="color: #fff; font-weight: 700;">0</span>
           </div>
           
         </div>
@@ -1483,6 +1462,11 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             </div>
           </div>
           
+          <!-- Sets Filter (moved from header) -->
+          <div class="facet-group" style="margin-bottom: 20px;">
+            <h4 style="color: #f33; margin: 0 0 8px 0; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Sets</h4>
+            <div id="setsFilterContainer" class="sets-filter" style="display: flex; flex-direction: column; gap: 2px; max-height: 160px; overflow: auto;"></div>
+          </div>
           <!-- Clear Filters -->
           <button id="clearAllFilters" style="
             width: 100%; 
