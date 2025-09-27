@@ -3287,10 +3287,10 @@ function displayBattleResult(result, rounds, summary) {
 }
 
 const simBtn = document.getElementById('btnSimulate');
+const simBtnTop = document.getElementById('btnSimulateTop');
 const showSimBtn = document.getElementById('showSimBtn');
 
-if (simBtn) {
-  simBtn.addEventListener('click', () => {
+function startBattle() {
     // Automatically switch to the simulation tab
     showTab('simulation');
 
@@ -3409,8 +3409,10 @@ if (simBtn) {
       uiLog('  Error running simulation: ' + ex.message);
       if (battleStatus) battleStatus.textContent = 'Error: Simulation Failed';
     }
-  });
 }
+
+if (simBtn) simBtn.addEventListener('click', startBattle);
+if (simBtnTop) simBtnTop.addEventListener('click', startBattle);
 
 // Update final stats in fighter cards after simulation
 function updateFinalStats(summary) {
