@@ -1823,63 +1823,6 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             <button id="btnClearLog" type="button" title="Clear the simulation log" style="background: #333; color: #fff; border: none; border-radius: 8px; padding: 8px; cursor: pointer; font-size: 12px;">   Clear Log</button>
           </div>
 
-          <!-- Center Arena under the log: two fighters with overlays + stats -->
-          <div id="arenaBoard" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
-            <!-- Player side -->
-            <div id="simPlayerArena" style="background: rgba(0,255,51,0.05); border: 1px solid #0a5; border-radius: 12px; padding: 12px; position: relative; min-height: 180px;">
-              <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px;">Current Status</div>
-              <div id="arenaPlayerEventOverlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; display:flex; align-items:center; gap:6px; padding:4px 8px; background: rgba(0,255,51,0.1); border:1px solid #0f3; border-radius: 8px; color:#0f3; font-weight:700; visibility:hidden;">
-                <img id="arenaPlayerEventIcon" src="assets/placeholder.png" style="width:16px;height:16px; image-rendering:pixelated;">
-                <span id="arenaPlayerEventText"></span>
-              </div>
-              <div style="display:flex; justify-content:center; align-items:center; height:96px;">
-                <img src="assets/placeholder.png" alt="player" style="width:64px;height:64px; image-rendering:pixelated; filter: drop-shadow(0 0 6px #0f3);">
-              </div>
-              <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
-                <div class="pill" style="display:flex;align-items:center;gap:6px;padding:4px 8px;background:#111;border:1px solid #0f3;border-radius:8px;">
-                  <img src="assets/health.png" style="width:16px;height:16px; image-rendering:pixelated;">
-                  <span id="arenaPlayerHP">10</span>
-                </div>
-                <div class="pill" style="display:flex;align-items:center;gap:6px;padding:4px 8px;background:#111;border:1px solid #0f3;border-radius:8px;">
-                  <img src="assets/armor.png" style="width:16px;height:16px; image-rendering:pixelated;">
-                  <span id="arenaPlayerArmor">0</span>
-                </div>
-                <div class="pill" style="display:flex;align-items:center;gap:6px;padding:4px 8px;background:#111;border:1px solid #0f3;border-radius:8px;">
-                  <img src="assets/speed.png" style="width:16px;height:16px; image-rendering:pixelated;">
-                  <span id="arenaPlayerSpeed">0</span>
-                </div>
-              </div>
-              <div id="arenaPlayerStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:8px;"></div>
-            </div>
-
-            <!-- Opponent side -->
-            <div id="simOpponentArena" style="background: rgba(255,51,51,0.05); border: 1px solid #a33; border-radius: 12px; padding: 12px; position: relative; min-height: 180px;">
-              <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px; text-align:right;">Current Status</div>
-              <div id="arenaOpponentEventOverlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; display:flex; align-items:center; gap:6px; padding:4px 8px; background: rgba(255,51,51,0.1); border:1px solid #f33; border-radius: 8px; color:#f33; font-weight:700; visibility:hidden;">
-                <img id="arenaOpponentEventIcon" src="assets/placeholder.png" style="width:16px;height:16px; image-rendering:pixelated;">
-                <span id="arenaOpponentEventText"></span>
-              </div>
-              <div style="display:flex; justify-content:center; align-items:center; height:96px;">
-                <img src="assets/placeholder.png" alt="opponent" style="width:64px;height:64px; image-rendering:pixelated; filter: drop-shadow(0 0 6px #f33);">
-              </div>
-              <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
-                <div class="pill" style="display:flex;align-items:center;gap:6px;padding:4px 8px;background:#111;border:1px solid #f33;border-radius:8px;">
-                  <img src="assets/health.png" style="width:16px;height:16px; image-rendering:pixelated;">
-                  <span id="arenaOpponentHP">10</span>
-                </div>
-                <div class="pill" style="display:flex;align-items:center;gap:6px;padding:4px 8px;background:#111;border:1px solid #f33;border-radius:8px;">
-                  <img src="assets/armor.png" style="width:16px;height:16px; image-rendering:pixelated;">
-                  <span id="arenaOpponentArmor">0</span>
-                </div>
-                <div class="pill" style="display:flex;align-items:center;gap:6px;padding:4px 8px;background:#111;border:1px solid #f33;border-radius:8px;">
-                  <img src="assets/speed.png" style="width:16px;height:16px; image-rendering:pixelated;">
-                  <span id="arenaOpponentSpeed">0</span>
-                </div>
-              </div>
-              <div id="arenaOpponentStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:8px;"></div>
-            </div>
-          </div>
-
         </div>
 
         <!-- MIDDLE PANE: Event Log -->
@@ -1927,24 +1870,56 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             </div>
           </div>
           
-          <!-- Arena styles to match app typography/colors -->
-          <style id="arenaStyles">
-            #arenaBoard{background:rgba(255,255,255,0.02); border-top:2px solid rgba(255,255,255,0.06); margin-top:8px}
-            #arenaBoard .pill{display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:8px;background:#0b0b0b}
-            #arenaBoard .status-chip{background:#0b0b0b}
-            #arenaBoard img{image-rendering:pixelated}
-            .arena-title{color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px}
-            .arena-overlay{display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:8px;font-weight:700;visibility:hidden;box-shadow:0 2px 10px rgba(0,0,0,.35)}
-            .arena-overlay img{width:16px;height:16px}
-            /* Ensure the arena is visible by capping log height */
-            #simulationTab #simLog{ max-height: 320px; }
-          </style>
-
           <!-- Battle Log Content -->
           <div id="simLog" style="flex: 1; overflow-y: auto; padding: 16px; font-size: 14px; color: #ccc; line-height: 1.6; min-height: 0;" aria-live="polite">
             <div style="text-align: center; color: #666; font-style: italic; padding: 40px 20px;">
               <img src="assets/attack.png" style="width: 16px; height: 16px; vertical-align: middle; image-rendering: pixelated;"> Ready to witness epic battles!<br><br>
               Configure your loadouts and hit <strong style="color: #0f3;">"START BATTLE"</strong> to begin.
+            </div>
+          </div>
+
+          <!-- Arena below the log -->
+          <style id="arenaStyles">
+            #arenaBoard{background:rgba(255,255,255,0.02); border-top:2px solid rgba(255,255,255,0.06); margin-top:8px}
+            #arenaBoard .pill{display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:8px;background:#0b0b0b}
+            #arenaBoard .status-chip{background:#0b0b0b}
+            #arenaBoard img{image-rendering:pixelated}
+            .arena-overlay{display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:8px;font-weight:700;visibility:hidden;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+            .arena-overlay img{width:16px;height:16px}
+          </style>
+
+          <div id="arenaBoard" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
+            <div id="simPlayerArena" style="background: rgba(0,255,51,0.05); border: 1px solid #0a5; border-radius: 12px; padding: 12px; position: relative; min-height: 180px;">
+              <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px;">Current Status</div>
+              <div id="arenaPlayerEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(0,255,51,0.1); border:1px solid #0f3; color:#0f3;">
+                <img id="arenaPlayerEventIcon" src="assets/placeholder.png">
+                <span id="arenaPlayerEventText"></span>
+              </div>
+              <div style="display:flex; justify-content:center; align-items:center; height:96px;">
+                <img src="assets/placeholder.png" alt="player" style="width:64px;height:64px; filter: drop-shadow(0 0 6px #0f3);">
+              </div>
+              <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
+                <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaPlayerHP">10</span></div>
+                <div class="pill"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaPlayerArmor">0</span></div>
+                <div class="pill"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaPlayerSpeed">0</span></div>
+              </div>
+              <div id="arenaPlayerStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:8px;"></div>
+            </div>
+            <div id="simOpponentArena" style="background: rgba(255,51,51,0.05); border: 1px solid #a33; border-radius: 12px; padding: 12px; position: relative; min-height: 180px;">
+              <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px; text-align:right;">Current Status</div>
+              <div id="arenaOpponentEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(255,51,51,0.1); border:1px solid #f33; color:#f33;">
+                <img id="arenaOpponentEventIcon" src="assets/placeholder.png">
+                <span id="arenaOpponentEventText"></span>
+              </div>
+              <div style="display:flex; justify-content:center; align-items:center; height:96px;">
+                <img src="assets/placeholder.png" alt="opponent" style="width:64px;height:64px; filter: drop-shadow(0 0 6px #f33);">
+              </div>
+              <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
+                <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaOpponentHP">10</span></div>
+                <div class="pill"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaOpponentArmor">0</span></div>
+                <div class="pill"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaOpponentSpeed">0</span></div>
+              </div>
+              <div id="arenaOpponentStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:8px;"></div>
             </div>
           </div>
         </div>
