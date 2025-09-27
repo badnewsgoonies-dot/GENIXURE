@@ -3313,17 +3313,22 @@ if (simBtn) {
     
     try {
       const live = { lastEvent: null };
+      const collectedStates = [];
       const hooks = {
         onAction: (evt) => { live.lastEvent = evt; },
         onState: (snap) => {
           try {
             snap.event = live.lastEvent || { side: null };
+            // Keep a copy for replay deltas
+            try { collectedStates.push(JSON.parse(JSON.stringify(snap))); } catch(_) { collectedStates.push(snap); }
             if (typeof BattleVisuals !== 'undefined') BattleVisuals.renderState(snap);
           } catch (_) {}
           live.lastEvent = null;
         }
       };
       const res = HeICSim.simulate(left, right, { maxTurns: maxTurns, includeSummary: true, hooks });
+      // Attach state stream for replay (aligned 1:1 with log lines via onState calls)
+      try { res.states = collectedStates; } catch(_) {}
       
       // Use new cardified log rendering
       if (res.log) {

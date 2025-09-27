@@ -1886,6 +1886,11 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             #arenaBoard img{image-rendering:pixelated}
             .arena-overlay{display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:8px;font-weight:700;visibility:hidden;box-shadow:0 2px 10px rgba(0,0,0,.35)}
             .arena-overlay img{width:16px;height:16px}
+            .delta-panel{min-width:110px; min-height:60px; border:1px solid rgba(255,255,255,0.1); border-radius:10px; background:rgba(0,0,0,0.35); padding:8px; color:#ddd; display:flex; flex-direction:column; gap:4px}
+            .delta-row{display:flex; align-items:center; gap:6px; font-size:13px;}
+            .delta-row .icon{width:16px; height:16px; display:inline-block}
+            .delta-row.positive{color:#0f3}
+            .delta-row.negative{color:#f44}
           </style>
 
             <div id="arenaBoard" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
@@ -1896,7 +1901,8 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
                   <img id="arenaPlayerEventIcon" src="assets/placeholder.png">
                   <span id="arenaPlayerEventText"></span>
                 </div>
-                <div style="display:flex; justify-content:center; align-items:center; height: calc(var(--arena-sprite-height) + 32px);">
+                <div style="display:flex; justify-content:center; align-items:center; gap:16px; height: calc(var(--arena-sprite-height) + 32px);">
+                  <div id="arenaPlayerDelta" class="delta-panel" aria-label="Player changes"></div>
                   <img id="arenaPlayerSprite" src="sprites/1.png" alt="player" style="height:var(--arena-sprite-height); width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #0f3);">
                 </div>
                 <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
@@ -1912,8 +1918,9 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
                   <img id="arenaOpponentEventIcon" src="assets/placeholder.png">
                   <span id="arenaOpponentEventText"></span>
                 </div>
-                <div style="display:flex; justify-content:center; align-items:center; height: calc(var(--arena-sprite-height) + 32px);">
+                <div style="display:flex; justify-content:center; align-items:center; gap:16px; height: calc(var(--arena-sprite-height) + 32px);">
                   <img id="arenaOpponentSprite" src="sprites/2.png" alt="opponent" style="height:var(--arena-sprite-height); width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #f33);">
+                  <div id="arenaOpponentDelta" class="delta-panel" aria-label="Opponent changes"></div>
                 </div>
                 <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
                   <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaOpponentHP">10</span></div>
@@ -2113,8 +2120,42 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   <script>
   /* Battle Replay System - Visuals (per-action overlays + dynamic stats) */
   const BattleVisuals = {
+    // Icons for delta rendering
+    deltaIcon(key){
+      const map = {
+        hp: 'assets/health.png',
+        armor: 'assets/armor.png',
+        atk: 'assets/attack.png',
+        tempAtk: 'assets/attack.png',
+        speed: 'assets/speed.png',
+        strikes: 'sprites/strikes.PNG',
+        thorns: 'sprites/Icon_thorns.png',
+        poison: 'sprites/Icon_poison.png',
+        regen: 'sprites/Icon_regen.png',
+        stun: 'sprites/Icon_stun.png',
+        acid: 'sprites/Icon_acid.png',
+        freeze: 'sprites/Icon_freeze.png',
+        riptide: 'sprites/Icon_riptide.png',
+        purity: 'sprites/Icon_purity.png'
+      };
+      return map[key] || BattleIconRenderer.ICON_MAP[key] || 'assets/placeholder.png';
+    },
+
     // Compute a light-weight state up to a given log index
     computeState(index) {
+      // Prefer full states captured during simulation
+      try {
+        const prev = BattleStateManager.getFullState(Math.max(0, index-1));
+        const cur  = BattleStateManager.getFullState(index);
+        if (cur) {
+          const base = {
+            player: { hp: cur.player.hp, armor: cur.player.armor, attack: cur.player.attack, speed: cur.player.speed, statuses: cur.player.statuses||{} },
+            opponent: { hp: cur.opponent.hp, armor: cur.opponent.armor, attack: cur.opponent.attack, speed: cur.opponent.speed, statuses: cur.opponent.statuses||{} },
+            event: { side: null, icon: 'assets/placeholder.png', text: '' }
+          };
+          return base;
+        }
+      } catch(_) {}
       const base = {
         player: { hp: 10, armor: 0, attack: 0, speed: 0, statuses: {} },
         opponent: { hp: 10, armor: 0, attack: 0, speed: 0, statuses: {} },
@@ -2251,9 +2292,56 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
       showFor(state.event.side);
     },
 
+    // Compute per-side deltas between two snapshots (all metrics)
+    computeDeltas(prev, cur) {
+      const collect = (who) => {
+        const changes = [];
+        if (!cur || !who) return changes;
+        const P = prev && prev[who] ? prev[who] : null;
+        const C = cur[who];
+        const push = (key, from, to) => { const d = (to|0)-(from|0); if (d!==0) changes.push({ key, delta:d }); };
+        push('hp', P?P.hp:0, C.hp);
+        push('armor', P?P.armor:0, C.armor);
+        // Attack we expose as atk; tempAtk not available in snapshot, so use attack only
+        push('atk', P?P.attack:0, C.attack);
+        push('speed', P?P.speed:0, C.speed);
+        const keys = new Set([...(P&&P.statuses?Object.keys(P.statuses):[]), ...(C&&C.statuses?Object.keys(C.statuses):[])]);
+        keys.forEach(k => push(k, P&&P.statuses?P.statuses[k]||0:0, C&&C.statuses?C.statuses[k]||0:0));
+        return changes;
+      };
+      return { player: collect('player'), opponent: collect('opponent') };
+    },
+
+    renderDeltaList(containerId, list) {
+      const box = document.getElementById(containerId);
+      if (!box) return;
+      box.innerHTML = '';
+      if (!Array.isArray(list) || list.length===0) return;
+      list.forEach(({key, delta}) => {
+        const row = document.createElement('div');
+        row.className = 'delta-row ' + (delta>0?'positive':'negative');
+        const img = document.createElement('img'); img.className='icon'; img.src = this.deltaIcon(key);
+        const val = document.createElement('b'); val.textContent = (delta>0?'+':'')+delta;
+        const label = document.createElement('span'); label.className='label'; label.textContent = key==='atk'?'Attack': key==='hp'?'Health': key.charAt(0).toUpperCase()+key.slice(1);
+        row.appendChild(img); row.appendChild(val); row.appendChild(label);
+        box.appendChild(row);
+      });
+    },
+
     updateToIndex(index) {
+      // Use full states for accurate deltas if available
+      const prev = BattleStateManager.getFullState(Math.max(0, index-1));
+      const cur  = BattleStateManager.getFullState(index);
       const state = this.computeState(index);
       this.renderState(state);
+      if (cur) {
+        const deltas = this.computeDeltas(prev, cur);
+        this.renderDeltaList('arenaPlayerDelta', deltas.player);
+        this.renderDeltaList('arenaOpponentDelta', deltas.opponent);
+      } else {
+        this.renderDeltaList('arenaPlayerDelta', []);
+        this.renderDeltaList('arenaOpponentDelta', []);
+      }
     }
   };
   </script>
@@ -2262,6 +2350,7 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   const BattleStateManager = {
   logEntries: [],
   stateSnapshots: [],
+  fullStates: [],
   battleData: null,
   
   // Initialize with battle result data
@@ -2269,6 +2358,8 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
     this.logEntries = [];
     this.stateSnapshots = [];
     this.battleData = simulationResult;
+    // Attach full state snapshots if provided by the simulator hooks
+    this.fullStates = Array.isArray(simulationResult.states) ? simulationResult.states : [];
     
     if (simulationResult.log && Array.isArray(simulationResult.log)) {
       // Process log entries into structured format
@@ -2322,6 +2413,11 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
         timestamp: Date.now()
       });
     });
+  },
+
+  // Get full per-line state if available (from simulator onState)
+  getFullState(index) {
+    return this.fullStates[index] || null;
   },
   
   // Extract turn number from log text
