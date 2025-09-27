@@ -1888,39 +1888,39 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             .arena-overlay img{width:16px;height:16px}
           </style>
 
-          <div id="arenaBoard" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
-            <div id="simPlayerArena" style="background: rgba(0,255,51,0.05); border: 1px solid #0a5; border-radius: 12px; padding: 12px; position: relative; min-height: 180px;">
-              <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px;">Current Status</div>
-              <div id="arenaPlayerEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(0,255,51,0.1); border:1px solid #0f3; color:#0f3;">
-                <img id="arenaPlayerEventIcon" src="assets/placeholder.png">
-                <span id="arenaPlayerEventText"></span>
+            <div id="arenaBoard" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
+              <div id="simPlayerArena" style="background: rgba(0,255,51,0.05); border: 1px solid #0a5; border-radius: 12px; padding: 12px; position: relative; min-height: 180px;">
+                <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px;">Current Status</div>
+                <div id="arenaPlayerStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:6px 0 8px 0;"></div>
+                <div id="arenaPlayerEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(0,255,51,0.1); border:1px solid #0f3; color:#0f3;">
+                  <img id="arenaPlayerEventIcon" src="assets/placeholder.png">
+                  <span id="arenaPlayerEventText"></span>
+                </div>
+                <div style="display:flex; justify-content:center; align-items:center; height:96px;">
+                  <img id="arenaPlayerSprite" src="sprites/1.png" alt="player" style="height:96px; width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #0f3);">
+                </div>
+                <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
+                  <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaPlayerHP">10</span></div>
+                  <div class="pill"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaPlayerArmor">0</span></div>
+                  <div class="pill"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaPlayerSpeed">0</span></div>
+                </div>
               </div>
-              <div style="display:flex; justify-content:center; align-items:center; height:96px;">
-                <img id="arenaPlayerSprite" src="sprites/1.png" alt="player" style="height:96px; width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #0f3);">
+              <div id="simOpponentArena" style="background: rgba(255,51,51,0.05); border: 1px solid #a33; border-radius: 12px; padding: 12px; position: relative; min-height: 180px;">
+                <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px; text-align:right;">Current Status</div>
+                <div id="arenaOpponentStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:6px 0 8px 0;"></div>
+                <div id="arenaOpponentEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(255,51,51,0.1); border:1px solid #f33; color:#f33;">
+                  <img id="arenaOpponentEventIcon" src="assets/placeholder.png">
+                  <span id="arenaOpponentEventText"></span>
+                </div>
+                <div style="display:flex; justify-content:center; align-items:center; height:96px;">
+                  <img id="arenaOpponentSprite" src="sprites/2.png" alt="opponent" style="height:96px; width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #f33);">
+                </div>
+                <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
+                  <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaOpponentHP">10</span></div>
+                  <div class="pill"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaOpponentArmor">0</span></div>
+                  <div class="pill"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaOpponentSpeed">0</span></div>
+                </div>
               </div>
-              <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
-                <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaPlayerHP">10</span></div>
-                <div class="pill"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaPlayerArmor">0</span></div>
-                <div class="pill"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaPlayerSpeed">0</span></div>
-              </div>
-              <div id="arenaPlayerStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:8px;"></div>
-            </div>
-            <div id="simOpponentArena" style="background: rgba(255,51,51,0.05); border: 1px solid #a33; border-radius: 12px; padding: 12px; position: relative; min-height: 180px;">
-              <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px; text-align:right;">Current Status</div>
-              <div id="arenaOpponentEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(255,51,51,0.1); border:1px solid #f33; color:#f33;">
-                <img id="arenaOpponentEventIcon" src="assets/placeholder.png">
-                <span id="arenaOpponentEventText"></span>
-              </div>
-              <div style="display:flex; justify-content:center; align-items:center; height:96px;">
-                <img id="arenaOpponentSprite" src="sprites/2.png" alt="opponent" style="height:96px; width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #f33);">
-              </div>
-              <div style="display:flex; gap:10px; justify-content:center; margin-top:6px;">
-                <div class="pill"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaOpponentHP">10</span></div>
-                <div class="pill"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaOpponentArmor">0</span></div>
-                <div class="pill"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaOpponentSpeed">0</span></div>
-              </div>
-              <div id="arenaOpponentStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:8px;"></div>
-            </div>
           </div>
         </div>
 
@@ -2198,7 +2198,14 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
         const box = document.getElementById(containerId);
         if (!box) return;
         box.innerHTML = '';
-        const keys = Object.keys(statuses);
+        const priority = ['stun','freeze','poison','acid','riptide','thorns','regen','purity','exposed'];
+        const keys = Object.keys(statuses)
+          .filter(k => (statuses[k]||0) > 0)
+          .sort((a,b)=>{
+            const ia = priority.indexOf(a); const ib = priority.indexOf(b);
+            if (ia !== -1 || ib !== -1) return (ia===-1?99:ia) - (ib===-1?99:ib);
+            return a.localeCompare(b);
+          });
         if (keys.length === 0) return;
         keys.forEach(k => {
           const chip = document.createElement('div');
@@ -2208,7 +2215,8 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
           img.src = BattleIconRenderer.ICON_MAP[k] || 'assets/placeholder.png';
           img.style.cssText = 'width:14px; height:14px; image-rendering:pixelated;';
           const span = document.createElement('span');
-          span.textContent = `${k} ${statuses[k]}`;
+          const label = k.charAt(0).toUpperCase()+k.slice(1);
+          span.textContent = `${label} ${statuses[k]}`;
           chip.appendChild(img); chip.appendChild(span); box.appendChild(chip);
         });
       };
