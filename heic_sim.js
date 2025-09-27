@@ -2,6 +2,23 @@
   // Data loaded from the HTML page
   const ITEM_TAGS = {};
 
+  // --- Trigger queue (defer some reactions) -----------------------------
+  // Some reactions like onHeal/onGainArmor should be processed after the
+  // current phase baseline effects finish. We enqueue them here and flush
+  // at phase boundaries (battleStart, firstTurn, turnStart, turnEnd).
+  const _effectQueue = [];
+  function _enqueueTrigger(trigger, who, other) {
+    _effectQueue.push({ trigger, who, other });
+  }
+  function _flushTriggers(runEffects, max = 10000) {
+    let n = 0;
+    while (_effectQueue.length) {
+      const { trigger, who, other } = _effectQueue.shift();
+      runEffects(trigger, who, other, () => {}, {});
+      if (++n > max) throw new Error('Effect queue overflow (cyclic triggers?)');
+    }
+  }
+
   // --- Data-Driven Effect Engine ---
   // This object contains all action handlers that can be called from item effects
   const EFFECT_ACTIONS = {
@@ -926,7 +943,6 @@
     },
     add_max_hp: ({ self, log, value }) => {
       const amount = value || 1;
-      self.hp += amount;
       self.hpMax += amount;
       log(`${self.name} gains ${amount} max health`);
     },
@@ -935,7 +951,6 @@
       const baseArmor = 0; // Base armor is 0 according to the game rules
       const amount = baseArmor;
       if (amount > 0) {
-        self.hp += amount;
         self.hpMax += amount;
         log(`${self.name} gains ${amount} max health from base armor`);
       } else {
@@ -2063,6 +2078,8 @@
             cd.action(this, other, log);
             // Run postCountdownTrigger effects to allow items like Arcane Lens to interact
             runEffects('postCountdownTrigger', this, other, log, { countdown: cd });
+            // Standardized countdown trigger (deferred)
+            _enqueueTrigger('countdown', this, other);
           } catch (err) {
             if (log) log(`Error in countdown: ${err.message}`);
           }
@@ -2085,7 +2102,8 @@
       self.armor = before + (n|0);
       const gained = Math.max(0, self.armor - before);
       if (gained > 0) {
-        runEffects('onGainArmor', self, other, log, { amount: gained });
+        // Defer onGainArmor to phase flush
+        _enqueueTrigger('onGainArmor', self, other);
       }
     };
     self.addExtraStrikes = n => { self.extraStrikes = (self.extraStrikes || 0) + n; };
@@ -2126,7 +2144,8 @@
         self.hp += healed;
         self.healedThisTurn += healed;
         log(`${self.name} heals ${healed}`);
-        runEffects('onHeal', self, other, log, { amount: healed });
+        // Defer onHeal to phase flush
+        _enqueueTrigger('onHeal', self, other);
       }
       return healed;
     };
@@ -2384,6 +2403,7 @@ let CURRENT_SOURCE_SLUG = null;
     // Battle Start Phase: Items activate in slot order (weapon first, then items 1→12)
     runEffects('battleStart', L, R, logWithHP);
     runEffects('battleStart', R, L, logWithHP);
+    try { _flushTriggers(runEffects); } catch(_) {}
 
     let [actor, target] = pickOrder(L, R);
     let round = 0;
@@ -2395,9 +2415,15 @@ let CURRENT_SOURCE_SLUG = null;
       actor.turnCount = (actor.turnCount || 0) + 1;
       actor.flags.turnCount = actor.turnCount;
       logWithHP(`-- Turn ${round} -- ${actor.name}`);
-      
+      // First turn (only once per side)
+      if (actor && actor.flags && actor.flags.firstTurn) {
+        runEffects('firstTurn', actor, target, logWithHP);
+        try { _flushTriggers(runEffects); } catch(_) {}
+      }
+
       turnStartTicks(actor, target, logWithHP);
       runEffects('turnStart', actor, target, logWithHP);
+      try { _flushTriggers(runEffects); } catch(_) {}
 
       // Apply any pending additional strikes gathered from effects
       if (actor && actor.flags && (actor.flags.additionalStrikes|0) > 0) {
@@ -2419,6 +2445,7 @@ let CURRENT_SOURCE_SLUG = null;
       
       turnEndTicks(actor, target, logWithHP);
       runEffects('turnEnd', actor, target, logWithHP);
+      try { _flushTriggers(runEffects); } catch(_) {}
 
       actor.flags.firstTurn = false;
       [actor, target] = [target, actor];
@@ -2466,6 +2493,12 @@ let CURRENT_SOURCE_SLUG = null;
     }
     
     return baseResult;
+  }
+
+  // Optional utility: detect long no-progress streaks to force draw
+  function shouldDrawNoProgress(prevA, prevB, curA, curB, streak, limit){
+    const progressed = (prevA !== curA) || (prevB !== curB);
+    return progressed ? 0 : Math.min(streak + 1, limit|0);
   }
 
   // Load data when running in Node.js
