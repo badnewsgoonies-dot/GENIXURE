@@ -1,4 +1,4 @@
-/* Generated 2025-09-27T01:28:30.022Z • sha256:86991ba3fff42b2d */
+/* Generated 2025-09-27T01:36:40.358Z • sha256:d6063a9051bef9d3 */
 window.HEIC_DETAILS = {
   "items/acid_mutation": {
     "bucket": "items",
@@ -6056,6 +6056,7 @@ window.HEIC_DETAILS = {
   },
   "sets/basilisk_gaze": {
     "bucket": "sets",
+    "effect": "Battle Start: Your opponent is stunned for 2 turns",
     "effects": [
       {
         "actions": [
@@ -6080,6 +6081,7 @@ window.HEIC_DETAILS = {
   },
   "sets/bloodmoon_strike": {
     "bucket": "sets",
+    "effect": "Wounded: Restore health equal to damage dealt by strikes on your next turn",
     "effects": [
       {
         "actions": [
@@ -6102,6 +6104,7 @@ window.HEIC_DETAILS = {
   },
   "sets/bloodstone_pendant": {
     "bucket": "sets",
+    "effect": "Whenever you restore 5 or more health in a single instance, gain 2 attack",
     "effects": [
       {
         "actions": [
@@ -6125,6 +6128,7 @@ window.HEIC_DETAILS = {
   },
   "sets/briar_greaves": {
     "bucket": "sets",
+    "effect": "Whenever you take damage, gain 1 thorn",
     "effects": [
       {
         "actions": [
@@ -6149,6 +6153,7 @@ window.HEIC_DETAILS = {
   },
   "sets/brittlebark_blessing": {
     "bucket": "sets",
+    "effect": "Brittlebark items have no effect",
     "effects": [
       {
         "actions": [
@@ -6177,6 +6182,7 @@ window.HEIC_DETAILS = {
   },
   "sets/champion_s_greaves": {
     "bucket": "sets",
+    "effect": "Gain 6 speed",
     "effects": [
       {
         "actions": [
@@ -6200,6 +6206,7 @@ window.HEIC_DETAILS = {
   },
   "sets/crystal_mirror": {
     "bucket": "sets",
+    "effect": "Currently disabled Whenever you gain a status effect, give it to the enemy as well",
     "effects": [],
     "name": "Crystal Mirror",
     "slug": "crystal_mirror",
@@ -6213,6 +6220,7 @@ window.HEIC_DETAILS = {
   },
   "sets/deadly_toxin": {
     "bucket": "sets",
+    "effect": "The first time the enemy gains poison give the enemy 5 acid",
     "effects": [
       {
         "actions": [
@@ -6236,6 +6244,7 @@ window.HEIC_DETAILS = {
   },
   "sets/elderwood_mask": {
     "bucket": "sets",
+    "effect": "Battle Start: Double your base attack, armor and speed",
     "effects": [
       {
         "actions": [
@@ -6281,6 +6290,7 @@ window.HEIC_DETAILS = {
   },
   "sets/heros_return": {
     "bucket": "sets",
+    "effect": "Gain 2 attack, armor and speed",
     "effects": [
       {
         "actions": [
@@ -6334,6 +6344,7 @@ window.HEIC_DETAILS = {
   },
   "sets/holy_crucifix": {
     "bucket": "sets",
+    "effect": "Negates negative base stats",
     "effects": [
       {
         "actions": [
@@ -6356,6 +6367,7 @@ window.HEIC_DETAILS = {
   },
   "sets/iron_chain": {
     "bucket": "sets",
+    "effect": "Gain 5 armor",
     "effects": [
       {
         "actions": [
@@ -6379,6 +6391,7 @@ window.HEIC_DETAILS = {
   },
   "sets/ironbark_shield": {
     "bucket": "sets",
+    "effect": "Battle start: If your health is full, gain 1 armor each turn",
     "effects": [
       {
         "actions": [
@@ -6403,6 +6416,7 @@ window.HEIC_DETAILS = {
   },
   "sets/ironstone_arrowhead": {
     "bucket": "sets",
+    "effect": "On Hit: Gain 1 armor",
     "effects": [
       {
         "actions": [
@@ -6426,6 +6440,7 @@ window.HEIC_DETAILS = {
   },
   "sets/ironstone_crest": {
     "bucket": "sets",
+    "effect": "Turn Start: Steal 2 armor from the enemy",
     "effects": [
       {
         "actions": [
@@ -6449,6 +6464,7 @@ window.HEIC_DETAILS = {
   },
   "sets/ironstone_fang": {
     "bucket": "sets",
+    "effect": "First Turn: Gain 3 armor on hit",
     "effects": [
       {
         "actions": [
@@ -6475,6 +6491,7 @@ window.HEIC_DETAILS = {
   },
   "sets/ironstone_ore": {
     "bucket": "sets",
+    "effect": "Gain armor equal to minus speed",
     "effects": [
       {
         "actions": [
@@ -6499,6 +6516,7 @@ window.HEIC_DETAILS = {
   },
   "sets/lifeblood_transfusion": {
     "bucket": "sets",
+    "effect": "Restore 10 health after every battle",
     "effects": [],
     "name": "Lifeblood Transfusion",
     "slug": "lifeblood_transfusion",
@@ -6512,6 +6530,7 @@ window.HEIC_DETAILS = {
   },
   "sets/liquid_metal": {
     "bucket": "sets",
+    "effect": "Battle Start: Give the enemy 20 armor",
     "effects": [
       {
         "actions": [
@@ -6536,6 +6555,7 @@ window.HEIC_DETAILS = {
   },
   "sets/marble_anvil": {
     "bucket": "sets",
+    "effect": "Battle Start: Trigger Exposed",
     "effects": [
       {
         "actions": [
@@ -6558,6 +6578,7 @@ window.HEIC_DETAILS = {
   },
   "sets/marshlight_aria": {
     "bucket": "sets",
+    "effect": "Exposed: Trigger Symphony 3 times",
     "effects": [
       {
         "actions": [
@@ -6581,6 +6602,7 @@ window.HEIC_DETAILS = {
   },
   "sets/raw_hide": {
     "bucket": "sets",
+    "effect": "Gain 1 attack every other turn",
     "effects": [
       {
         "actions": [
@@ -6604,6 +6626,7 @@ window.HEIC_DETAILS = {
   },
   "sets/redwood_crown": {
     "bucket": "sets",
+    "effect": "Wounded: Restore health to full",
     "effects": [
       {
         "actions": [
@@ -6626,6 +6649,7 @@ window.HEIC_DETAILS = {
   },
   "sets/saffron_talon": {
     "bucket": "sets",
+    "effect": "On Hit: Gain 1 speed",
     "effects": [
       {
         "actions": [
@@ -6650,6 +6674,7 @@ window.HEIC_DETAILS = {
   },
   "sets/sanguine_gemstone": {
     "bucket": "sets",
+    "effect": "If your attack is exactly 1 restore 1 health on hit",
     "effects": [
       {
         "actions": [
@@ -6672,6 +6697,7 @@ window.HEIC_DETAILS = {
   },
   "sets/seafood_hotpot": {
     "bucket": "sets",
+    "effect": "Battle Start: Gain 2 armor for each speed you have",
     "effects": [
       {
         "actions": [
@@ -6695,6 +6721,7 @@ window.HEIC_DETAILS = {
   },
   "sets/steelplated_thorns": {
     "bucket": "sets",
+    "effect": "Turn Start: If you have less than 10 thorns, double your thorns",
     "effects": [
       {
         "actions": [
@@ -6717,6 +6744,7 @@ window.HEIC_DETAILS = {
   },
   "sets/twilight_crest": {
     "bucket": "sets",
+    "effect": "As long as you've below 50% health all healing is doubled",
     "effects": [
       {
         "actions": [
@@ -6742,6 +6770,7 @@ window.HEIC_DETAILS = {
   },
   "sets/vampire_cloak": {
     "bucket": "sets",
+    "effect": "Currently removed Turn Start: If you are stunned , double healing this turn",
     "effects": [],
     "name": "Vampire Cloak",
     "slug": "vampire_cloak",
@@ -6755,6 +6784,7 @@ window.HEIC_DETAILS = {
   },
   "sets/weaver_medallion": {
     "bucket": "sets",
+    "effect": "Gain 5 health",
     "effects": [
       {
         "actions": [

@@ -6013,7 +6013,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Battle Start: Your opponent is stunned for 2 turns"
   },
   "sets/bloodmoon_strike": {
     "bucket": "sets",
@@ -6035,7 +6036,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Wounded: Restore health equal to damage dealt by strikes on your next turn"
   },
   "sets/bloodstone_pendant": {
     "bucket": "sets",
@@ -6058,7 +6060,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Whenever you restore 5 or more health in a single instance, gain 2 attack"
   },
   "sets/briar_greaves": {
     "bucket": "sets",
@@ -6082,7 +6085,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Whenever you take damage, gain 1 thorn"
   },
   "sets/brittlebark_blessing": {
     "bucket": "sets",
@@ -6110,7 +6114,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Brittlebark items have no effect"
   },
   "sets/champion_s_greaves": {
     "bucket": "sets",
@@ -6133,7 +6138,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Gain 6 speed"
   },
   "sets/crystal_mirror": {
     "bucket": "sets",
@@ -6146,7 +6152,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Currently disabled Whenever you gain a status effect, give it to the enemy as well"
   },
   "sets/deadly_toxin": {
     "bucket": "sets",
@@ -6169,7 +6176,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "The first time the enemy gains poison give the enemy 5 acid"
   },
   "sets/elderwood_mask": {
     "bucket": "sets",
@@ -6191,7 +6199,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Battle Start: Double your base attack, armor and speed"
   },
   "sets/glasses_of_the_hero": {
     "bucket": "sets",
@@ -6245,7 +6254,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Gain 2 attack, armor and speed"
   },
   "sets/highborn": {
     "bucket": "sets",
@@ -6289,7 +6299,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Negates negative base stats"
   },
   "sets/iron_chain": {
     "bucket": "sets",
@@ -6312,7 +6323,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Gain 5 armor"
   },
   "sets/ironbark_shield": {
     "bucket": "sets",
@@ -6336,7 +6348,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Battle start: If your health is full, gain 1 armor each turn"
   },
   "sets/ironstone_arrowhead": {
     "bucket": "sets",
@@ -6359,7 +6372,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "On Hit: Gain 1 armor"
   },
   "sets/ironstone_crest": {
     "bucket": "sets",
@@ -6382,7 +6396,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Turn Start: Steal 2 armor from the enemy"
   },
   "sets/ironstone_fang": {
     "bucket": "sets",
@@ -6408,7 +6423,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "First Turn: Gain 3 armor on hit"
   },
   "sets/ironstone_ore": {
     "bucket": "sets",
@@ -6432,7 +6448,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Gain armor equal to minus speed"
   },
   "sets/lifeblood_transfusion": {
     "bucket": "sets",
@@ -6445,7 +6462,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Restore 10 health after every battle"
   },
   "sets/liquid_metal": {
     "bucket": "sets",
@@ -6469,7 +6487,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Battle Start: Give the enemy 20 armor"
   },
   "sets/marble_anvil": {
     "bucket": "sets",
@@ -6491,7 +6510,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Battle Start: Trigger Exposed"
   },
   "sets/marshlight_aria": {
     "bucket": "sets",
@@ -6514,7 +6534,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Exposed: Trigger Symphony 3 times"
   },
   "sets/raw_hide": {
     "bucket": "sets",
@@ -6537,7 +6558,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Gain 1 attack every other turn"
   },
   "sets/redwood_crown": {
     "bucket": "sets",
@@ -6559,7 +6581,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Wounded: Restore health to full"
   },
   "sets/saffron_talon": {
     "bucket": "sets",
@@ -6583,7 +6606,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "On Hit: Gain 1 speed"
   },
   "sets/sanguine_gemstone": {
     "bucket": "sets",
@@ -6605,7 +6629,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "If your attack is exactly 1 restore 1 health on hit"
   },
   "sets/seafood_hotpot": {
     "bucket": "sets",
@@ -6628,7 +6653,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Battle Start: Gain 2 armor for each speed you have"
   },
   "sets/steelplated_thorns": {
     "bucket": "sets",
@@ -6650,7 +6676,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Turn Start: If you have less than 10 thorns, double your thorns"
   },
   "sets/twilight_crest": {
     "bucket": "sets",
@@ -6675,7 +6702,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "As long as you've below 50% health all healing is doubled"
   },
   "sets/vampire_cloak": {
     "bucket": "sets",
@@ -6688,7 +6716,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Currently removed Turn Start: If you are stunned , double healing this turn"
   },
   "sets/weaver_medallion": {
     "bucket": "sets",
@@ -6711,7 +6740,8 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [],
+    "effect": "Gain 5 health"
   },
   "upgrades/agile_edge": {
     "bucket": "upgrades",

@@ -5,27 +5,6 @@
   },
   "mismatches": [
     {
-      "name": "Acidic Witherleaf",
-      "key": "items/acidic_witherleaf",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Give the enemy acid equal to your speed"
-    },
-    {
-      "name": "Bitter Melon",
-      "key": "items/bitter_melon",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Turn start: Convert 1 stack of another status effect to 1 poison"
-    },
-    {
-      "name": "Blackbriar Armor",
-      "key": "items/blackbriar_armor",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Whenever you take damage, gain 1 thorns"
-    },
-    {
       "name": "Blood Sausage",
       "key": "items/blood_sausage",
       "stats": {
@@ -34,15 +13,7 @@
           "wiki": 5
         }
       },
-      "tags_added": [],
-      "effect_updated": "Wounded: Restore 1 health 5 times"
-    },
-    {
-      "name": "Bramble Buckler",
-      "key": "items/bramble_buckler",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Turn start: Convert 1 armor to 2 thorns"
+      "tags_added": []
     },
     {
       "name": "Bramble Vest",
@@ -72,8 +43,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Turn start: If you have armor, restore 2 health"
+      "tags_added": []
     },
     {
       "name": "Cherry Bomb",
@@ -84,8 +54,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start & Exposed: Deal 4 damage"
+      "tags_added": []
     },
     {
       "name": "Citrine Earring",
@@ -100,15 +69,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "Woodland"
-    },
-    {
-      "name": "Clearspring Opal",
-      "key": "items/clearspring_opal",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Turn start: If you have any status effects, spend 1 speed to decrease a random status effect by 1"
+      "tags_added": []
     },
     {
       "name": "Clearspring Watermelon",
@@ -119,8 +80,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Decrease 1 random status effect"
+      "tags_added": []
     },
     {
       "name": "Cracked Whetstone",
@@ -131,36 +91,7 @@
           "wiki": 8
         }
       },
-      "tags_added": [],
-      "effect_updated": "Woodland"
-    },
-    {
-      "name": "Deathcap Bow",
-      "key": "items/deathcap_bow",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 3 poison. Turn start: If you have poison. Gain 1 additional strike"
-    },
-    {
-      "name": "Double-plated Armor",
-      "key": "items/double_plated_armor",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Exposed: Gain 3 armor — at Gold: 6 , at Diamond: 12"
-    },
-    {
-      "name": "Elderwood Necklace",
-      "key": "items/elderwood_necklace",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "-"
-    },
-    {
-      "name": "Emerald Crown",
-      "key": "items/emerald_crown",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "-"
+      "tags_added": []
     },
     {
       "name": "Emerald Earring",
@@ -171,8 +102,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "Woodland"
+      "tags_added": []
     },
     {
       "name": "Emerald Ring",
@@ -183,22 +113,7 @@
           "wiki": 12
         }
       },
-      "tags_added": [],
-      "effect_updated": "Woodland"
-    },
-    {
-      "name": "Explosive Roast",
-      "key": "items/explosive_roast",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Deal 1 damage 3 times"
-    },
-    {
-      "name": "Forge Gauntlet",
-      "key": "items/forge_gauntlet",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Give the enemy 5 armor"
+      "tags_added": []
     },
     {
       "name": "Friendship Bracelet",
@@ -209,8 +124,7 @@
           "wiki": -1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: The enemy loses 1 attack"
+      "tags_added": []
     },
     {
       "name": "Frostbite Armor",
@@ -232,43 +146,7 @@
           "wiki": 24
         }
       },
-      "tags_added": [],
-      "effect_updated": "Swampland"
-    },
-    {
-      "name": "Helmet of Envy",
-      "key": "items/helmet_of_envy",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Double the enemy's attack"
-    },
-    {
-      "name": "Holy Shield",
-      "key": "items/holy_shield",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "-"
-    },
-    {
-      "name": "Holy Tome",
-      "key": "items/holy_tome",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Countdown 6: Gain 3 attack — at Gold: 6 , at Diamond: 12"
-    },
-    {
-      "name": "Horned Helmet",
-      "key": "items/horned_helmet",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 1 stack of thorns — at Gold: 2 , at Diamond: 4"
-    },
-    {
-      "name": "Iceblock Shield",
-      "key": "items/iceblock_shield",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 2 freeze"
+      "tags_added": []
     },
     {
       "name": "Impressive Physique",
@@ -280,27 +158,6 @@
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Ironstone Armor",
-      "key": "items/ironstone_armor",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Enemy strikes deal 2 damage less While you have armor"
-    },
-    {
-      "name": "Ironstone Bracelet",
-      "key": "items/ironstone_bracelet",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Enemy strikes deal 1 damage less While you have armor but 1 damage more otherwise"
-    },
-    {
-      "name": "Leather Belt",
-      "key": "items/leather_belt",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "If you have 0 base armor, double this item's max health — at Gold: x 4 = 12, at Diamond: x 8 = 24"
     },
     {
       "name": "Lemontree Branch",
@@ -315,29 +172,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Spend 2 speed and gain 1 additional strike on your next turn"
-    },
-    {
-      "name": "Liferoot Gauntlet",
-      "key": "items/liferoot_gauntlet",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 1 regeneration — at Gold: 2 , at Diamond: 4"
-    },
-    {
-      "name": "Lightning Bottle",
-      "key": "items/lightning_bottle",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Stun yourself for 1 turn"
-    },
-    {
-      "name": "Lightspeed Potion",
-      "key": "items/lightspeed_potion",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Restore health equal to speed"
+      "tags_added": []
     },
     {
       "name": "Melon Lemonade",
@@ -352,8 +187,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start, Exposed & Wounded: Remove all Acid"
+      "tags_added": []
     },
     {
       "name": "Melonvine Whip",
@@ -364,8 +198,7 @@
           "wiki": 0
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Decrease 1 random status effect"
+      "tags_added": []
     },
     {
       "name": "Mist Armor",
@@ -387,15 +220,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "Swampland"
-    },
-    {
-      "name": "Noxious Gas",
-      "key": "items/noxious_gas",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Turn start: Both you and the enemy gain 1 poison"
+      "tags_added": []
     },
     {
       "name": "Petrified Statue",
@@ -406,8 +231,7 @@
           "wiki": -2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Give the enemy 1 stun for each equipped stone item"
+      "tags_added": []
     },
     {
       "name": "Petrifying Flask",
@@ -418,8 +242,7 @@
           "wiki": 40
         }
       },
-      "tags_added": [],
-      "effect_updated": "Swampland"
+      "tags_added": []
     },
     {
       "name": "Plated Shield",
@@ -433,13 +256,6 @@
       "tags_added": []
     },
     {
-      "name": "Poisonous Mushroom",
-      "key": "items/poisonous_mushroom",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Turn start: Gain 1 poison"
-    },
-    {
       "name": "Purelake Helmet",
       "key": "items/purelake_helmet",
       "stats": {
@@ -448,8 +264,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 1 Purity — at Gold: 2 , at Diamond: 4"
+      "tags_added": []
     },
     {
       "name": "Razor Breastplate",
@@ -483,8 +298,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: If your health is not full, restore 2 health — at Gold: 4 , at Diamond: 8"
+      "tags_added": []
     },
     {
       "name": "Redwood Helmet",
@@ -499,8 +313,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Exposed: Restore 3 health — at Gold: 6 , at Diamond: 12"
+      "tags_added": []
     },
     {
       "name": "Rock Roast",
@@ -515,15 +328,7 @@
           "wiki": 6
         }
       },
-      "tags_added": [],
-      "effect_updated": "-"
-    },
-    {
-      "name": "Ruby Crown",
-      "key": "items/ruby_crown",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "-"
+      "tags_added": []
     },
     {
       "name": "Ruby Ring",
@@ -534,22 +339,7 @@
           "wiki": 8
         }
       },
-      "tags_added": [],
-      "effect_updated": "Woodland"
-    },
-    {
-      "name": "Saffron Feather",
-      "key": "items/saffron_feather",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Turn start: Convert 1 speed to restore 2 health — at Gold: -2 for 4, at Diamond: -4 for 8"
-    },
-    {
-      "name": "Saltcrusted Crown",
-      "key": "items/saltcrusted_crown",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 1 riptide"
+      "tags_added": []
     },
     {
       "name": "Sapphire Crown",
@@ -560,8 +350,7 @@
           "wiki": 0
         }
       },
-      "tags_added": [],
-      "effect_updated": "-"
+      "tags_added": []
     },
     {
       "name": "Sapphire Earring",
@@ -576,8 +365,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "Woodland"
+      "tags_added": []
     },
     {
       "name": "Sapphire Ring",
@@ -592,8 +380,7 @@
           "wiki": 8
         }
       },
-      "tags_added": [],
-      "effect_updated": "Woodland"
+      "tags_added": []
     },
     {
       "name": "Serpent Mask",
@@ -604,8 +391,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Give the enemy poison equal to your attack"
+      "tags_added": []
     },
     {
       "name": "Serpent Scalemail",
@@ -653,8 +439,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 1 additional strike. First turn: Give the enemy 1 riptide On hit"
+      "tags_added": []
     },
     {
       "name": "Silverscale Greaves",
@@ -665,8 +450,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: If you have more speed than the enemy, give them 2 riptide"
+      "tags_added": []
     },
     {
       "name": "Silverscale Swordfish",
@@ -677,8 +461,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 1 additional strike. First turn: Give the enemy 1 riptide On hit"
+      "tags_added": []
     },
     {
       "name": "Slime Armor",
@@ -689,8 +472,7 @@
           "wiki": 5
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 1 acid — at Gold: 2 , at Diamond: 4"
+      "tags_added": []
     },
     {
       "name": "Sour Lemon",
@@ -705,8 +487,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 1 acid — at Gold: 2 , at Diamond: 4"
+      "tags_added": []
     },
     {
       "name": "Squire's Armor",
@@ -740,8 +521,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: If you have more speed than armor, stun the enemy for 2 turns"
+      "tags_added": []
     },
     {
       "name": "Swiftstrike Cloak",
@@ -756,8 +536,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: If you have more speed than the enemy, gain 1 additional strike"
+      "tags_added": []
     },
     {
       "name": "Thunder Cloud",
@@ -791,8 +570,7 @@
           "wiki": 0
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: If you have 0 base armor, gain armor equal to current health"
+      "tags_added": []
     },
     {
       "name": "Weaver Shield",
@@ -815,8 +593,7 @@
           "wiki": 16
         }
       },
-      "tags_added": [],
-      "effect_updated": "Swampland"
+      "tags_added": []
     },
     {
       "name": "Ancient Warhammer",
@@ -827,15 +604,7 @@
           "wiki": 5
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Remove all of the enemy's armor"
-    },
-    {
-      "name": "Arcane Wand",
-      "key": "weapons/arcane_wand",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Can't attack. Turn start: Deal 2 damage. Increase the damage by 1 for each tome equipped"
+      "tags_added": []
     },
     {
       "name": "Basilisk Fang",
@@ -846,8 +615,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Decrease your poison by 2 and give it to the enemy"
+      "tags_added": []
     },
     {
       "name": "Battle Axe",
@@ -870,13 +638,6 @@
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Bee Stinger",
-      "key": "weapons/bee_stinger",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "First turn: Give the enemy 4 poison, 3 Acid, and 2 stun On hit"
     },
     {
       "name": "Bejeweled Blade",
@@ -909,8 +670,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: The enemy loses 5 health and you restore 5 health"
+      "tags_added": []
     },
     {
       "name": "Bloodmoon Dagger",
@@ -932,8 +692,7 @@
           "wiki": 5
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Take 1 damage"
+      "tags_added": []
     },
     {
       "name": "Boom Stick",
@@ -944,8 +703,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Deal 1 damage"
+      "tags_added": []
     },
     {
       "name": "Brittlebark Bow",
@@ -956,8 +714,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "After 3 strikes: Lose 2 attack"
+      "tags_added": []
     },
     {
       "name": "Brittlebark Club",
@@ -969,13 +726,6 @@
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Bubblegloop Staff",
-      "key": "weapons/bubblegloop_staff",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Can't strike. Turn start: Spend 1 speed to give the enemy 2 acid and 2 poison"
     },
     {
       "name": "Chainmail Sword",
@@ -1023,8 +773,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain additional strikes equal to speed"
+      "tags_added": []
     },
     {
       "name": "Elderwood Staff",
@@ -1065,8 +814,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "Whenever a bomb deals 5 or more non-weapon damage, gain 1 additional strike"
+      "tags_added": []
     },
     {
       "name": "Featherweight Blade",
@@ -1092,8 +840,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Give the enemy 2 armor"
+      "tags_added": []
     },
     {
       "name": "Frostbite Dagger",
@@ -1104,8 +851,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "First turn: Give the enemy freeze equal to your attack On hit"
+      "tags_added": []
     },
     {
       "name": "Frozen Iceblade",
@@ -1116,8 +862,7 @@
           "wiki": 6
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 3 freeze"
+      "tags_added": []
     },
     {
       "name": "Fungal Rapier",
@@ -1128,8 +873,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 1 poison"
+      "tags_added": []
     },
     {
       "name": "Gale Staff",
@@ -1144,8 +888,7 @@
           "wiki": 6
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Lose 1 speed"
+      "tags_added": []
     },
     {
       "name": "Gemstone Scepter",
@@ -1156,8 +899,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Gains On hit effects from emerald, ruby, sapphire, and citrine items"
+      "tags_added": []
     },
     {
       "name": "Granite Axe",
@@ -1168,8 +910,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Lose 2 health and gain 4 armor"
+      "tags_added": []
     },
     {
       "name": "Granite Hammer",
@@ -1180,8 +921,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Convert 1 armor to 1 attack"
+      "tags_added": []
     },
     {
       "name": "Granite Lance",
@@ -1207,8 +947,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 1 additional strike"
+      "tags_added": []
     },
     {
       "name": "Grindstone Club",
@@ -1230,8 +969,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Restore 1 health"
+      "tags_added": []
     },
     {
       "name": "Hidden Dagger",
@@ -1268,8 +1006,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Lose 1 speed. If your speed is 0 or less, only strike Every other turn"
+      "tags_added": []
     },
     {
       "name": "Ironstone Greatsword",
@@ -1295,8 +1032,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "While you have armor, temporarily gain 2 attack"
+      "tags_added": []
     },
     {
       "name": "King's Blade",
@@ -1307,8 +1043,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "Exposed and Wounded items triggers at Battle start instead"
+      "tags_added": []
     },
     {
       "name": "Knight's Blade",
@@ -1319,8 +1054,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "Upgrades after you defeat the next boss"
+      "tags_added": []
     },
     {
       "name": "Lakebed Sword",
@@ -1346,8 +1080,7 @@
           "wiki": 5
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 5 max health"
+      "tags_added": []
     },
     {
       "name": "Lifeblood Spear",
@@ -1369,8 +1102,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: If your health is full, spend your regeneration to gain 3 times that amount of armor"
+      "tags_added": []
     },
     {
       "name": "Liferoot Staff",
@@ -1392,8 +1124,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: If the enemy doesn't have any armor, restore health equal to your attack"
+      "tags_added": []
     },
     {
       "name": "Lightning Whip",
@@ -1404,8 +1135,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "Turn start: If the enemy is stunned, gain 1 additional strike"
+      "tags_added": []
     },
     {
       "name": "Marble Sword",
@@ -1431,8 +1161,7 @@
           "wiki": 8
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Lose 1 attack"
+      "tags_added": []
     },
     {
       "name": "Moonlight Cleaver",
@@ -1457,13 +1186,6 @@
       "tags_added": []
     },
     {
-      "name": "Pacifist Staff",
-      "key": "weapons/pacifist_staff",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "On hit: Gain 1 armor and restore 1 health"
-    },
-    {
       "name": "Purelake Staff",
       "key": "weapons/purelake_staff",
       "stats": {
@@ -1472,8 +1194,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain 2 purity. On hit: Remove 1 purity"
+      "tags_added": []
     },
     {
       "name": "Razorthorn Spear",
@@ -1484,8 +1205,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Gain 2 thorns"
+      "tags_added": []
     },
     {
       "name": "Redwood Rod",
@@ -1511,8 +1231,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Steal 1 attack from the enemy"
+      "tags_added": []
     },
     {
       "name": "Riverflow Rapier",
@@ -1534,8 +1253,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Gain 1 gold"
+      "tags_added": []
     },
     {
       "name": "Rusty Sword",
@@ -1546,8 +1264,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "First turn: Give acid equal to your attack On hit"
+      "tags_added": []
     },
     {
       "name": "Sanguine Scepter",
@@ -1558,8 +1275,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Healing is doubled"
+      "tags_added": []
     },
     {
       "name": "Scepter of Greed",
@@ -1592,15 +1308,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Give the enemy 1 riptide"
-    },
-    {
-      "name": "Silverscale Trident",
-      "key": "weapons/silverscale_trident",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "On hit: Give the enemy 1 riptide"
+      "tags_added": []
     },
     {
       "name": "Slime Sword",
@@ -1611,8 +1319,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: Give yourself and the enemy 3 acid"
+      "tags_added": []
     },
     {
       "name": "Spearshield Lance",
@@ -1649,8 +1356,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "On hit: Gain 2 armor"
+      "tags_added": []
     },
     {
       "name": "Stormcloud Spear",
@@ -1683,8 +1389,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: If you have more speed than the enemy, gain 3 additional strikes"
+      "tags_added": []
     },
     {
       "name": "Sword of Pride",
@@ -1703,8 +1408,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [],
-      "effect_updated": "Battle start: If the enemy has more attack, armor or speed than you, take 3 damage"
+      "tags_added": []
     },
     {
       "name": "Sword of the Hero",
@@ -1748,8 +1452,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Strike twice"
+      "tags_added": []
     },
     {
       "name": "Wave Breaker",
@@ -1760,8 +1463,7 @@
           "wiki": -2
         }
       },
-      "tags_added": [],
-      "effect_updated": "Can't strike. Battle start: Give the enemy 2 riptide for each negative base attack you have"
+      "tags_added": []
     },
     {
       "name": "Woodcutter's Axe",
@@ -1772,8 +1474,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [],
-      "effect_updated": "Gain 2 attack for each empty equipment slot"
+      "tags_added": []
     },
     {
       "name": "Stone Steak",
@@ -1788,8 +1489,7 @@
           "wiki": 6
         }
       },
-      "tags_added": [],
-      "effect_updated": "Turn start: If your health is full, gain 1 additional strike"
+      "tags_added": []
     },
     {
       "name": "Petrifying Elixir",
@@ -1800,28 +1500,13 @@
           "wiki": 40
         }
       },
-      "tags_added": [],
-      "effect_updated": "Swampland"
-    },
-    {
-      "name": "Lightspeed Elixir",
-      "key": "items/lightspeed_elixir",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Gain max health equal to your speed and then restore health equal to your speed"
-    },
-    {
-      "name": "Lightning Elixir",
-      "key": "items/lightning_elixir",
-      "stats": {},
-      "tags_added": [],
-      "effect_updated": "Battle start: Stun yourself for 2 turns"
+      "tags_added": []
     }
   ],
   "changes": {
     "overrideChanges": 0,
     "tagChanges": 0,
-    "effectChanges": 111,
+    "effectChanges": 0,
     "removedOverrides": 0
   }
 }

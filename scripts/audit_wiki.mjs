@@ -33,6 +33,7 @@ const OVERRIDES_PATH = path.join(PROJECT, 'stats_overrides.json');
 const EXTRACTED_ITEMS_PATH = path.join(PROJECT, 'wiki_extracted_items.json');
 const EXTRACTED_TAGS_PATH = path.join(PROJECT, 'wiki_extracted_tags.json');
 const REPORT_PATH = path.join(PROJECT, 'audit_wiki_report.json');
+const SETS_JS_OUT = path.join(PROJECT, 'heic_sets.generated.js');
 
 // Expand to full set of item tags from Tags page
 const UI_ITEM_TAGS = new Set([
@@ -291,6 +292,33 @@ function main() {
   );
   writeJSON(EXTRACTED_TAGS_PATH, wikiTagsByItemJson);
 
+  // 2a) Extract set definitions from itemsets pages
+  const setPages = [
+    'Swampland itemsets - He is Coming Official Wiki.htm',
+    'Woodland itemsets - He is Coming Official Wiki.htm',
+    'Kingmaker itemsets - He is Coming Official Wiki.htm'
+  ].filter(f => fs.existsSync(path.join(WIKI_DIR, f)));
+  const setsFromWiki = [];
+  function parseItemsets(fileName) {
+    const html = readText(path.join(WIKI_DIR, fileName));
+    const $ = cheerioLoad(html);
+    $('table.wikitable tbody tr').each((_, tr) => {
+      const tds = $(tr).find('td');
+      if (tds.length < 3) return;
+      const setName = ($(tds[0]).find('a').first().text() || $(tds[0]).text()).trim();
+      const reqAnchors = $(tds[1]).find('a');
+      const reqNames = [];
+      reqAnchors.each((i, a) => {
+        const nm = $(a).text().trim();
+        if (nm) reqNames.push(nm);
+      });
+      const effect = $(tds[2]).text().replace(/\s+/g, ' ').trim();
+      if (!setName || reqNames.length < 2 || !effect) return;
+      setsFromWiki.push({ setName, reqNames, effect });
+    });
+  }
+  for (const p of setPages) parseItemsets(p);
+
   // 3) Compare with details.json
   const details = JSON.parse(readText(DETAILS_PATH));
   let overrides = fs.existsSync(OVERRIDES_PATH)
@@ -303,6 +331,41 @@ function main() {
     if (!val || !val.name) continue;
     nameToKey.set(normalizeName(val.name), key);
   }
+
+  // Build generated set definitions (merge with existing ones at runtime)
+  const nameToKeyMap = new Map();
+  for (const [k, v] of propList) {
+    if (v && v.name) nameToKeyMap.set(normalizeName(v.name), k);
+  }
+  const generatedSets = [];
+  for (const s of setsFromWiki) {
+    const setKey = nameToKeyMap.get(normalizeName(s.setName));
+    const setSlug = setKey && setKey.startsWith('sets/')
+      ? setKey.slice(5)
+      : s.setName.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+    const reqSlugs = [];
+    s.reqNames.forEach(nm => {
+      const k = nameToKeyMap.get(normalizeName(nm));
+      if (k) reqSlugs.push(k);
+    });
+    if (reqSlugs.length >= 2) {
+      generatedSets.push({
+        key: setSlug,
+        name: s.setName,
+        desc: s.effect,
+        reqs: [{ kind: 'slugs', all: reqSlugs }],
+        effectSlug: `sets/${setSlug}`
+      });
+      const dsKey = `sets/${setSlug}`;
+      if (details[dsKey]) {
+        details[dsKey].effect = s.effect;
+      }
+    }
+  }
+
+  // Emit a JS shim to merge generated set definitions at runtime
+  const setsJs = `// Auto-generated from wiki itemsets\n(function(){\n  if (typeof window==='undefined') return;\n  var base = window.HeICSets || {definitions:[], computeActive:null, computeActiveEffectSlugs:null};\n  var GEN = ${JSON.stringify(generatedSets, null, 2)};\n  var map = new Map((base.definitions||[]).map(function(d){return [d.key,d];}));\n  GEN.forEach(function(d){\n    if (map.has(d.key)) { var cur = map.get(d.key); cur.reqs = d.reqs; cur.desc = d.desc; cur.effectSlug = d.effectSlug || cur.effectSlug || ('sets/'+d.key); }\n    else { base.definitions.push(d); }\n  });\n  window.HeICSets = base;\n})();\n`;
+  fs.writeFileSync(SETS_JS_OUT, setsJs);
 
   const report = {
     summary: { itemsTotal: propList.length, wikiItems: Object.keys(wikiItems).length },
