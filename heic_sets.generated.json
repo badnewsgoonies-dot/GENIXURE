@@ -1,0 +1,472 @@
+[
+  {
+    "key": "crystal_mirror",
+    "name": "Crystal Mirror",
+    "desc": "Currently disabled Whenever you gain a status effect, give it to the enemy as well",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/marble_mirror",
+          "items/sinful_mirror"
+        ]
+      }
+    ],
+    "effectSlug": "sets/crystal_mirror"
+  },
+  {
+    "key": "basilisk_gaze",
+    "name": "Basilisk's Gaze",
+    "desc": "Battle Start: Your opponent is stunned for 2 turns",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/basilisk_fang",
+          "items/basilisk_scale"
+        ]
+      }
+    ],
+    "effectSlug": "sets/basilisk_gaze"
+  },
+  {
+    "key": "bloodstone_pendant",
+    "name": "Bloodstone Pendant",
+    "desc": "Whenever you restore 5 or more health in a single instance, gain 2 attack",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/bloodstone_ring",
+          "weapons/bloodlord_s_axe"
+        ]
+      }
+    ],
+    "effectSlug": "sets/bloodstone_pendant"
+  },
+  {
+    "key": "champion_s_greaves",
+    "name": "Champion's Greaves",
+    "desc": "Gain 6 speed",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/champion_s_armor",
+          "weapons/champion_s_blade"
+        ]
+      }
+    ],
+    "effectSlug": "sets/champion_s_greaves"
+  },
+  {
+    "key": "deadly_toxin",
+    "name": "Deadly Toxin",
+    "desc": "The first time the enemy gains poison give the enemy 5 acid",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/nerve_poison",
+          "items/viper_extract"
+        ]
+      }
+    ],
+    "effectSlug": "sets/deadly_toxin"
+  },
+  {
+    "key": "holy_crucifix",
+    "name": "Holy Crucifix",
+    "desc": "Negates negative base stats",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/holy_shield",
+          "items/holy_tome"
+        ]
+      }
+    ],
+    "effectSlug": "sets/holy_crucifix"
+  },
+  {
+    "key": "ironstone_crest",
+    "name": "Ironstone Crest",
+    "desc": "Turn Start: Steal 2 armor from the enemy",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/forge_hammer",
+          "items/forge_gauntlet"
+        ]
+      }
+    ],
+    "effectSlug": "sets/ironstone_crest"
+  },
+  {
+    "key": "ironstone_fang",
+    "name": "Ironstone Fang",
+    "desc": "First Turn: Gain 3 armor on hit",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/crimson_fang",
+          "items/venomous_fang"
+        ]
+      }
+    ],
+    "effectSlug": "sets/ironstone_fang"
+  },
+  {
+    "key": "liquid_metal",
+    "name": "Liquid Metal",
+    "desc": "Battle Start: Give the enemy 20 armor",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/rusty_sword",
+          "items/rusted_plate"
+        ]
+      }
+    ],
+    "effectSlug": "sets/liquid_metal"
+  },
+  {
+    "key": "marble_anvil",
+    "name": "Marble Anvil",
+    "desc": "Battle Start: Trigger Exposed",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/marble_sword",
+          "items/serpent_lyre"
+        ]
+      }
+    ],
+    "effectSlug": "sets/marble_anvil"
+  },
+  {
+    "key": "marshlight_aria",
+    "name": "Marshlight Aria",
+    "desc": "Exposed: Trigger Symphony 3 times",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/marshlight_lantern",
+          "items/riverflow_violin"
+        ]
+      }
+    ],
+    "effectSlug": "sets/marshlight_aria"
+  },
+  {
+    "key": "seafood_hotpot",
+    "name": "Seafood Hotpot",
+    "desc": "Battle Start: Gain 2 armor for each speed you have",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/clearspring_watermelon",
+          "items/silverscale_fish",
+          "items/sour_lemon"
+        ]
+      }
+    ],
+    "effectSlug": "sets/seafood_hotpot"
+  },
+  {
+    "key": "twilight_crest",
+    "name": "Twilight Crest",
+    "desc": "As long as you've below 50% health all healing is doubled",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/moonlight_crest",
+          "items/sunlight_crest"
+        ]
+      }
+    ],
+    "effectSlug": "sets/twilight_crest"
+  },
+  {
+    "key": "vampire_cloak",
+    "name": "Vampire Cloak",
+    "desc": "Currently removed Turn Start: If you are stunned , double healing this turn",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/sanguine_morphosis",
+          "items/vampiric_stasis"
+        ]
+      }
+    ],
+    "effectSlug": "sets/vampire_cloak"
+  },
+  {
+    "key": "weaver_medallion",
+    "name": "Weaver Medallion",
+    "desc": "Gain 5 health",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/weaver_armor",
+          "items/weaver_shield"
+        ]
+      }
+    ],
+    "effectSlug": "sets/weaver_medallion"
+  },
+  {
+    "key": "bloodmoon_strike",
+    "name": "Bloodmoon Strike",
+    "desc": "Wounded: Restore health equal to damage dealt by strikes on your next turn",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/bloodmoon_dagger",
+          "items/swiftstrike_gauntlet"
+        ]
+      }
+    ],
+    "effectSlug": "sets/bloodmoon_strike"
+  },
+  {
+    "key": "briar_greaves",
+    "name": "Briar Greaves",
+    "desc": "Whenever you take damage, gain 1 thorn",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/assault_greaves",
+          "upgrades/jagged_edge"
+        ]
+      }
+    ],
+    "effectSlug": "sets/briar_greaves"
+  },
+  {
+    "key": "brittlebark_blessing",
+    "name": "Brittlebark Blessing",
+    "desc": "Brittlebark items have no effect",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/brittlebark_bow",
+          "items/brittlebark_armor",
+          "items/brittlebark_buckler"
+        ]
+      }
+    ],
+    "effectSlug": "sets/brittlebark_blessing"
+  },
+  {
+    "key": "elderwood_mask",
+    "name": "Elderwood Mask",
+    "desc": "Battle Start: Double your base attack, armor and speed",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/elderwood_staff",
+          "items/elderwood_necklace"
+        ]
+      }
+    ],
+    "effectSlug": "sets/elderwood_mask"
+  },
+  {
+    "key": "heros_return",
+    "name": "Hero's Return",
+    "desc": "Gain 2 attack, armor and speed",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/sword_of_the_hero",
+          "items/boots_of_the_hero",
+          "items/shield_of_the_hero"
+        ]
+      }
+    ],
+    "effectSlug": "sets/heros_return"
+  },
+  {
+    "key": "ironbark_shield",
+    "name": "Ironbark Shield",
+    "desc": "Battle start: If your health is full, gain 1 armor each turn",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/pinecone_breastplate",
+          "items/stone_steak"
+        ]
+      }
+    ],
+    "effectSlug": "sets/ironbark_shield"
+  },
+  {
+    "key": "lifeblood_transfusion",
+    "name": "Lifeblood Transfusion",
+    "desc": "Restore 10 health after every battle",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/iron_transfusion",
+          "items/lifeblood_armor"
+        ]
+      }
+    ],
+    "effectSlug": "sets/lifeblood_transfusion"
+  },
+  {
+    "key": "raw_hide",
+    "name": "Raw Hide",
+    "desc": "Gain 1 attack every other turn",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/leather_boots",
+          "items/leather_glove",
+          "items/leather_vest"
+        ]
+      }
+    ],
+    "effectSlug": "sets/raw_hide"
+  },
+  {
+    "key": "redwood_crown",
+    "name": "Redwood Crown",
+    "desc": "Wounded: Restore health to full",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/redwood_rod",
+          "items/redwood_cloak",
+          "items/redwood_helmet"
+        ]
+      }
+    ],
+    "effectSlug": "sets/redwood_crown"
+  },
+  {
+    "key": "saffron_talon",
+    "name": "Saffron Talon",
+    "desc": "On Hit: Gain 1 speed",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/featherweight_blade",
+          "items/saffron_feather"
+        ]
+      }
+    ],
+    "effectSlug": "sets/saffron_talon"
+  },
+  {
+    "key": "steelplated_thorns",
+    "name": "Steelplated Thorns",
+    "desc": "Turn Start: If you have less than 10 thorns, double your thorns",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/spearshield_lance",
+          "items/bramble_buckler"
+        ]
+      }
+    ],
+    "effectSlug": "sets/steelplated_thorns"
+  },
+  {
+    "key": "crystal_mirror",
+    "name": "Crystal Mirror",
+    "desc": "Currently disabled Whenever you gain a status effect, give it to the enemy as well",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/marble_mirror",
+          "items/sinful_mirror"
+        ]
+      }
+    ],
+    "effectSlug": "sets/crystal_mirror"
+  },
+  {
+    "key": "iron_chain",
+    "name": "Iron Chain",
+    "desc": "Gain 5 armor",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/chainmail_sword",
+          "items/chainmail_armor"
+        ]
+      }
+    ],
+    "effectSlug": "sets/iron_chain"
+  },
+  {
+    "key": "ironstone_arrowhead",
+    "name": "Ironstone Arrowhead",
+    "desc": "On Hit: Gain 1 armor",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/ironstone_spear",
+          "items/ironstone_sandals"
+        ]
+      }
+    ],
+    "effectSlug": "sets/ironstone_arrowhead"
+  },
+  {
+    "key": "ironstone_ore",
+    "name": "Ironstone Ore",
+    "desc": "Gain armor equal to minus speed",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "items/ironstone_bracelet",
+          "items/petrified_statue"
+        ]
+      }
+    ],
+    "effectSlug": "sets/ironstone_ore"
+  },
+  {
+    "key": "sanguine_gemstone",
+    "name": "Sanguine Gemstone",
+    "desc": "If your attack is exactly 1 restore 1 health on hit",
+    "reqs": [
+      {
+        "kind": "slugs",
+        "all": [
+          "weapons/sanguine_scepter",
+          "items/ruby_gemstone"
+        ]
+      }
+    ],
+    "effectSlug": "sets/sanguine_gemstone"
+  }
+]

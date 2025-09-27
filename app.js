@@ -862,7 +862,8 @@ let compendiumState = {
     buckets: new Set(['all']),
     tags: new Set(),
     triggers: new Set(),
-    needsReview: false
+    needsReview: false,
+    sets: new Set()
   },
   data: {
     allItems: [],
@@ -929,6 +930,28 @@ function setupCompendiumEventListeners() {
       renderCompendium();
     });
   }
+
+  // Sets filter (built dynamically once HeICSets is present)
+  try {
+    const container = document.getElementById('setsFilterContainer');
+    if (container && window.HeICSets && Array.isArray(window.HeICSets.definitions)) {
+      container.innerHTML = '';
+      const defs = window.HeICSets.definitions.slice().sort((a,b)=>a.name.localeCompare(b.name));
+      defs.forEach(def => {
+        const id = `set_${def.key}`;
+        const label = document.createElement('label');
+        label.className = 'facet-option';
+        label.style.cssText = 'display:flex; align-items:center; gap:8px; padding:4px 8px; border-radius:4px; cursor:pointer; font-size:11px;';
+        label.innerHTML = `<input type="checkbox" id="${id}" value="${def.key}" style="accent-color:#f33;"> <span>${def.name}</span>`;
+        container.appendChild(label);
+        const cb = label.querySelector('input');
+        cb.addEventListener('change', () => {
+          if (cb.checked) compendiumState.filters.sets.add(def.key); else compendiumState.filters.sets.delete(def.key);
+          renderCompendium();
+        });
+      });
+    }
+  } catch(e) { console.warn('Sets filter init failed', e); }
   
   // Facet Filters
   setupFacetFilters();
@@ -1199,7 +1222,7 @@ function clearAllFilters() {
 
 // Filter items based on current state
 function filterItems() {
-  const { search, buckets, tags, triggers, needsReview } = compendiumState.filters;
+  const { search, buckets, tags, triggers, needsReview, sets } = compendiumState.filters;
   
   let filtered = compendiumState.data.allItems;
   
@@ -1231,10 +1254,22 @@ function filterItems() {
   if (triggers.size > 0) {
     filtered = filtered.filter(item => {
       if (!item.effects || item.effects.length === 0) return false;
-      return item.effects.some(effect => {
-        return Array.from(triggers).includes(effect.trigger);
-      });
+      return item.effects.some(effect => Array.from(triggers).includes(effect.trigger));
     });
+  }
+
+  // Sets filter
+  if (sets && sets.size > 0 && window.HeICSets && Array.isArray(window.HeICSets.definitions)) {
+    const defs = window.HeICSets.definitions;
+    const reqMap = new Map();
+    defs.forEach(d => {
+      const arr = [];
+      (d.reqs || []).forEach(r => { if (r.kind === 'slugs') arr.push(...(r.all || [])); });
+      reqMap.set(d.key, arr);
+    });
+    const allowed = new Set();
+    sets.forEach(k => { (reqMap.get(k) || []).forEach(s => allowed.add(s)); allowed.add(`sets/${k}`); });
+    filtered = filtered.filter(it => allowed.has(it.key));
   }
   
   // Needs review filter
@@ -1516,6 +1551,8 @@ function createAdvancedCard(item) {
   // Tier support indicator
   const supportsTier = window.TIERABLE && window.TIERABLE.has(item.key);
   const tierIndicator = supportsTier ? '<span style="color: #ffd166; font-size: 10px;"> </span>' : '';
+  const isSet = item.bucket === 'sets';
+  const setBadge = isSet ? '<span class="chip" style="background:#210; border:1px solid #f33; color:#faa; font-size:10px; padding:1px 6px; border-radius:8px;">SET</span>' : '';
   
   card.innerHTML = `
     <!-- Header -->
@@ -1532,6 +1569,7 @@ function createAdvancedCard(item) {
         <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
           <h4 style="margin: 0; color: ${borderColor}; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.name}</h4>
           ${tierIndicator}
+          ${setBadge}
           ${trustBadgeHtml}
         </div>
         <div style="color: #888; font-size: 10px; margin-bottom: 6px;">${item.key}</div>

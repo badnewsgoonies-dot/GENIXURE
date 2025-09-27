@@ -34,6 +34,8 @@ const EXTRACTED_ITEMS_PATH = path.join(PROJECT, 'wiki_extracted_items.json');
 const EXTRACTED_TAGS_PATH = path.join(PROJECT, 'wiki_extracted_tags.json');
 const REPORT_PATH = path.join(PROJECT, 'audit_wiki_report.json');
 const SETS_JS_OUT = path.join(PROJECT, 'heic_sets.generated.js');
+const SETS_JSON_OUT = path.join(PROJECT, 'heic_sets.generated.json');
+const SETS_AUDIT_OUT = path.join(PROJECT, 'set_audit_report.json');
 
 // Expand to full set of item tags from Tags page
 const UI_ITEM_TAGS = new Set([
@@ -366,6 +368,21 @@ function main() {
   // Emit a JS shim to merge generated set definitions at runtime
   const setsJs = `// Auto-generated from wiki itemsets\n(function(){\n  if (typeof window==='undefined') return;\n  var base = window.HeICSets || {definitions:[], computeActive:null, computeActiveEffectSlugs:null};\n  var GEN = ${JSON.stringify(generatedSets, null, 2)};\n  var map = new Map((base.definitions||[]).map(function(d){return [d.key,d];}));\n  GEN.forEach(function(d){\n    if (map.has(d.key)) { var cur = map.get(d.key); cur.reqs = d.reqs; cur.desc = d.desc; cur.effectSlug = d.effectSlug || cur.effectSlug || ('sets/'+d.key); }\n    else { base.definitions.push(d); }\n  });\n  window.HeICSets = base;\n})();\n`;
   fs.writeFileSync(SETS_JS_OUT, setsJs);
+  fs.writeFileSync(SETS_JSON_OUT, JSON.stringify(generatedSets, null, 2));
+
+  // Audit vs existing heic_sets.js (if present at runtime in browser, we can't read, so compare with built-in list in details.json names)
+  const baseSetKeys = new Set(Object.keys(details).filter(k => k.startsWith('sets/')).map(k => k.slice(5)));
+  const genKeys = new Set(generatedSets.map(s => s.key));
+  const onlyInBase = [...baseSetKeys].filter(k => !genKeys.has(k));
+  const onlyInGen = [...genKeys].filter(k => !baseSetKeys.has(k));
+  const inBoth = [...genKeys].filter(k => baseSetKeys.has(k));
+  const audit = {
+    totals: { base: baseSetKeys.size, generated: generatedSets.length, overlap: inBoth.length },
+    only_in_base: onlyInBase,
+    only_in_generated: onlyInGen,
+    examples: generatedSets.slice(0, 10)
+  };
+  fs.writeFileSync(SETS_AUDIT_OUT, JSON.stringify(audit, null, 2));
 
   const report = {
     summary: { itemsTotal: propList.length, wikiItems: Object.keys(wikiItems).length },

@@ -1,0 +1,164 @@
+{
+  "totals": {
+    "base": 32,
+    "generated": 31,
+    "overlap": 30
+  },
+  "only_in_base": [
+    "glasses_of_the_hero",
+    "highborn"
+  ],
+  "only_in_generated": [],
+  "examples": [
+    {
+      "key": "crystal_mirror",
+      "name": "Crystal Mirror",
+      "desc": "Currently disabled Whenever you gain a status effect, give it to the enemy as well",
+      "reqs": [
+        {
+          "kind": "slugs",
+          "all": [
+            "items/marble_mirror",
+            "items/sinful_mirror"
+          ]
+        }
+      ],
+      "effectSlug": "sets/crystal_mirror"
+    },
+    {
+      "key": "basilisk_gaze",
+      "name": "Basilisk's Gaze",
+      "desc": "Battle Start: Your opponent is stunned for 2 turns",
+      "reqs": [
+        {
+          "kind": "slugs",
+          "all": [
+            "weapons/basilisk_fang",
+            "items/basilisk_scale"
+          ]
+        }
+      ],
+      "effectSlug": "sets/basilisk_gaze"
+    },
+    {
+      "key": "bloodstone_pendant",
+      "name": "Bloodstone Pendant",
+      "desc": "Whenever you restore 5 or more health in a single instance, gain 2 attack",
+      "reqs": [
+        {
+          "kind": "slugs",
+          "all": [
+            "items/bloodstone_ring",
+            "weapons/bloodlord_s_axe"
+          ]
+        }
+      ],
+      "effectSlug": "sets/bloodstone_pendant"
+    },
+    {
+      "key": "champion_s_greaves",
+      "name": "Champion's Greaves",
+      "desc": "Gain 6 speed",
+      "reqs": [
+        {
+          "kind": "slugs",
+          "all": [
+            "items/champion_s_armor",
+            "weapons/champion_s_blade"
+          ]
+        }
+      ],
+      "effectSlug": "sets/champion_s_greaves"
+    },
+    {
+      "key": "deadly_toxin",
+      "name": "Deadly Toxin",
+      "desc": "The first time the enemy gains poison give the enemy 5 acid",
+      "reqs": [
+        {
+          "kind": "slugs",
+          "all": [
+            "items/nerve_poison",
+            "items/viper_extract"
+          ]
+        }
+      ],
+      "effectSlug": "sets/deadly_toxin"
+    },
+    {
+      "key": "holy_crucifix",
+      "name": "Holy Crucifix",
+      "desc": "Negates negative base stats",
+      "reqs": [
+        {
+          "kind": "slugs",
+          "all": [
+            "items/holy_shield",
+            "items/holy_tome"
+          ]
+        }
+      ],
+      "effectSlug": "sets/holy_crucifix"
+    },
+    {
+      "key": "ironstone_crest",
+      "name": "Ironstone Crest",
+      "desc": "Turn Start: Steal 2 armor from the enemy",
+      "reqs": [
+        {
+          "kind": "slugs",
+          "all": [
+            "weapons/forge_hammer",
+            "items/forge_gauntlet"
+          ]
+        }
+      ],
+      "effectSlug": "sets/ironstone_crest"
+    },
+    {
+      "key": "ironstone_fang",
+      "name": "Ironstone Fang",
+      "desc": "First Turn: Gain 3 armor on hit",
+      "reqs": [
+        {
+          "kind": "slugs",
+          "all": [
+            "items/crimson_fang",
+            "items/venomous_fang"
+          ]
+        }
+      ],
+      "effectSlug": "sets/ironstone_fang"
+    },
+    {
+      "key": "liquid_metal",
+      "name": "Liquid Metal",
+      "desc": "Battle Start: Give the enemy 20 armor",
+      "reqs": [
+        {
+          "kind": "slugs",
+          "all": [
+            "weapons/rusty_sword",
+            "items/rusted_plate"
+          ]
+        }
+      ],
+      "effectSlug": "sets/liquid_metal"
+    },
+    {
+      "key": "marble_anvil",
+      "name": "Marble Anvil",
+      "desc": "Battle Start: Trigger Exposed",
+      "reqs": [
+        {
+          "kind": "slugs",
+          "all": [
+            "weapons/marble_sword",
+            "items/serpent_lyre"
+          ]
+        }
+      ],
+      "effectSlug": "sets/marble_anvil"
+    }
+  ]
+}

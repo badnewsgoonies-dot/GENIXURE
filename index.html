@@ -1236,7 +1236,15 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             ">
             <div id="searchChips" style="display: flex; gap: 4px; flex-wrap: wrap;"></div>
           </div>
-          
+
+          <!-- Sets Filter -->
+          <div class="facet-group" style="margin-bottom: 20px;">
+            <h4 style="color: #f33; margin: 0 0 8px 0; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Sets</h4>
+            <div id="setsFilterContainer" class="sets-filter" style="display: flex; flex-direction: column; gap: 2px; max-height: 160px; overflow: auto;">
+              <!-- Populated by app.js from HeICSets.definitions -->
+            </div>
+          </div>
+
           <!-- View Switch -->
           <div class="view-switch" style="display: flex; gap: 2px; background: #000; border: 2px solid #f33; border-radius: 8px; overflow: hidden;">
             <button id="viewCards" class="view-btn active" style="padding: 8px 16px; background: #f33; color: #000; border: none; cursor: pointer; font-size: 12px; font-weight: 600;">Cards</button>
