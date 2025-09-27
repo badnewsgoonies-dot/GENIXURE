@@ -23,7 +23,8 @@
     "health": 0
   },
   "items/citrine_earring": {
-    "attack": 0
+    "attack": 0,
+    "speed": 4
   },
   "items/leather_belt": {
     "health": 0
@@ -66,9 +67,6 @@
   "items/brittlebark_armor": {
     "health": 0
   },
-  "items/lightspeed_elixir": {
-    "speed": 1
-  },
   "items/stillwater_pearl": {
     "health": 0
   },
@@ -91,15 +89,13 @@
     "attack": 0
   },
   "items/sapphire_earring": {
-    "speed": 0
+    "speed": 0,
+    "armor": 4
   },
   "items/stormcloud_armor": {
     "armor": 3,
     "attack": 0,
     "speed": 0
-  },
-  "items/bee_stinger": {
-    "attack": 3
   },
   "items/swiftstrike_gauntlet": {
     "attack": 0,
@@ -119,7 +115,8 @@
     "speed": 3
   },
   "items/melon_lemonade": {
-    "attack": 0
+    "attack": 0,
+    "speed": 3
   },
   "items/leather_glove": {
     "health": 0,
@@ -192,15 +189,11 @@
     "attack": 0,
     "health": 0
   },
-  "items/lightning_elixir": {
-    "attack": 3,
-    "speed": 4
-  },
   "items/deathcap_bow": {
     "attack": 0
   },
   "items/ruby_ring": {
-    "attack": 0
+    "attack": 8
   },
   "items/stormcloud_tome": {
     "attack": 0,
@@ -227,11 +220,6 @@
   },
   "items/boots_of_the_hero": {
     "speed": 0
-  },
-  "items/hexagon_platter": {
-    "attack": 3,
-    "health": 10,
-    "speed": -2
   },
   "items/poisonous_mushroom": {
     "attack": 0
@@ -318,15 +306,16 @@
   "items/weaver_shield": {
     "health": 0,
     "attack": 0,
-    "speed": 0
+    "speed": 0,
+    "armor": 16
   },
   "items/marbled_stonefish": {
     "attack": 4,
     "health": 6
   },
   "items/rock_roast": {
-    "armor": 0,
-    "health": 0
+    "armor": 6,
+    "health": 6
   },
   "items/mist_armor": {
     "health": 0,
@@ -354,10 +343,6 @@
   "items/bitter_melon": {
     "attack": 0
   },
-  "items/treefuel_armor": {
-    "health": 5,
-    "speed": 2
-  },
   "items/sunlight_crest": {
     "health": 0,
     "speed": 0
@@ -375,7 +360,8 @@
     "speed": 0
   },
   "items/sapphire_ring": {
-    "speed": 0
+    "speed": 0,
+    "armor": 8
   },
   "items/purelake_armor": {
     "health": 0,
@@ -417,10 +403,8 @@
     "speed": 3
   },
   "items/lemontree_branch": {
-    "speed": 0
-  },
-  "items/soul_ring": {
-    "health": 6
+    "speed": 4,
+    "attack": 2
   },
   "items/ham_bat": {
     "attack": 3,
@@ -724,5 +708,42 @@
   },
   "weapons/woodcutter_s_axe": {
     "attack": 1
+  },
+  "items/cherry_bomb": {
+    "attack": 3
+  },
+  "items/clearspring_watermelon": {
+    "attack": 3
+  },
+  "items/cracked_whetstone": {
+    "attack": 8
+  },
+  "items/emerald_earring": {
+    "health": 4
+  },
+  "items/emerald_ring": {
+    "health": 12
+  },
+  "items/granite_tome": {
+    "armor": 24
+  },
+  "items/muscle_potion": {
+    "attack": 4
+  },
+  "items/petrifying_flask": {
+    "armor": 40
+  },
+  "items/silverscale_fish": {
+    "attack": 2
+  },
+  "items/silverscale_swordfish": {
+    "attack": 2
+  },
+  "items/stone_steak": {
+    "attack": 2,
+    "armor": 6
+  },
+  "items/petrifying_elixir": {
+    "armor": 40
   }
 }

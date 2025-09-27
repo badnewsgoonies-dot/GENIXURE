@@ -1,4 +1,4 @@
-/* Generated 2025-09-27T00:14:28.456Z • sha256:dbbdfcf45db02fc5 */
+/* Generated 2025-09-27T01:05:32.095Z • sha256:c07eba23720e125c */
 window.HEIC_DETAILS = {
   "items/acid_mutation": {
     "bucket": "items",
@@ -28,7 +28,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/acidic_witherleaf": {
     "bucket": "items",
@@ -49,7 +51,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/arcane_bell": {
     "bucket": "items",
@@ -83,7 +87,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Symphony"
+      "Symphony",
+      "Unique"
     ]
   },
   "items/arcane_cloak": {
@@ -97,7 +102,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "items/arcane_gauntlet": {
     "bucket": "items",
@@ -175,7 +182,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/basilisk_scale": {
     "bucket": "items",
@@ -215,7 +224,9 @@ window.HEIC_DETAILS = {
       "health": 15,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Crone"
+    ]
   },
   "items/bitter_melon": {
     "bucket": "items",
@@ -262,7 +273,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/blackbriar_bow": {
     "bucket": "weapons",
@@ -331,7 +344,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Rose"
+      "Rose",
+      "Unique"
     ]
   },
   "items/blacksmith_bond": {
@@ -353,7 +367,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/blastcap_armor": {
     "bucket": "items",
@@ -389,7 +405,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine",
+      "Unique"
+    ]
   },
   "items/blood_rune": {
     "bucket": "items",
@@ -402,7 +421,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Rune"
+    ]
   },
   "items/blood_sausage": {
     "bucket": "items",
@@ -424,7 +445,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Food"
+      "Food",
+      "Sanguine"
     ]
   },
   "items/bloodmoon_armor": {
@@ -438,7 +460,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "items/bloodstone_ring": {
     "bucket": "items",
@@ -464,7 +488,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Ring"
+      "Ring",
+      "Sanguine"
     ]
   },
   "items/bloody_steak": {
@@ -493,6 +518,7 @@ window.HEIC_DETAILS = {
     },
     "tags": [
       "Food",
+      "Sanguine",
       "Stone"
     ]
   },
@@ -568,7 +594,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 10
     },
-    "tags": []
+    "tags": [
+      "Crone"
+    ]
   },
   "items/boots_of_the_hero": {
     "bucket": "items",
@@ -607,7 +635,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/bramble_buckler": {
     "bucket": "items",
@@ -658,7 +688,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/bramble_vest": {
     "bucket": "items",
@@ -717,7 +749,10 @@ window.HEIC_DETAILS = {
       "health": 12,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique",
+      "Wood"
+    ]
   },
   "items/brittlebark_buckler": {
     "bucket": "items",
@@ -739,7 +774,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "items/broken_winebottle": {
     "bucket": "items",
@@ -791,7 +828,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/caustic_tome": {
     "bucket": "items",
@@ -825,7 +864,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "items/chainmail_armor": {
     "bucket": "items",
@@ -988,7 +1029,8 @@ window.HEIC_DETAILS = {
     },
     "tags": [
       "Bomb",
-      "Food"
+      "Food",
+      "Sanguine"
     ]
   },
   "items/chest_of_lust": {
@@ -1002,7 +1044,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Crone"
+    ]
   },
   "items/citrine_crown": {
     "bucket": "items",
@@ -1081,7 +1125,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Jewelry"
+      "Jewelry",
+      "Unique"
     ]
   },
   "items/citrine_ring": {
@@ -1104,7 +1149,8 @@ window.HEIC_DETAILS = {
     },
     "tags": [
       "Jewelry",
-      "Ring"
+      "Ring",
+      "Unique"
     ]
   },
   "items/citrine_ring_gold": {
@@ -1179,6 +1225,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Unique",
       "Water"
     ]
   },
@@ -1270,6 +1317,7 @@ window.HEIC_DETAILS = {
     },
     "tags": [
       "Rose",
+      "Unique",
       "Water"
     ]
   },
@@ -1331,7 +1379,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "items/combustible_lemon": {
     "bucket": "items",
@@ -1454,7 +1504,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine",
+      "Unique"
+    ]
   },
   "items/crimson_fang": {
     "bucket": "items",
@@ -1487,7 +1540,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine"
+    ]
   },
   "items/deathcap_bow": {
     "bucket": "weapons",
@@ -1542,7 +1597,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine",
+      "Unique"
+    ]
   },
   "items/double_explosion": {
     "bucket": "items",
@@ -1593,7 +1651,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/druid_s_cloak": {
     "bucket": "items",
@@ -1606,7 +1666,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/earrings_of_respite": {
     "bucket": "items",
@@ -1642,7 +1704,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Rune"
+    ]
   },
   "items/elderwood_necklace": {
     "bucket": "items",
@@ -1675,7 +1739,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 1
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "items/emerald_crown": {
     "bucket": "items",
@@ -1747,7 +1813,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Jewelry"
+      "Jewelry",
+      "Unique"
     ]
   },
   "items/emerald_ring": {
@@ -1786,7 +1853,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/explosive_arrow": {
     "bucket": "items",
@@ -1858,7 +1927,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Bomb"
+      "Bomb",
+      "Unique"
     ]
   },
   "items/explosive_roast": {
@@ -1952,7 +2022,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/featherweight_helmet": {
     "bucket": "items",
@@ -2004,7 +2076,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/firecracker_belt": {
     "bucket": "items",
@@ -2269,6 +2343,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Mythic",
       "Symphony"
     ]
   },
@@ -2284,7 +2359,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Tome"
+      "Tome",
+      "Unique"
     ]
   },
   "items/granite_cherry": {
@@ -2342,7 +2418,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Stone"
+      "Stone",
+      "Unique"
     ]
   },
   "items/granite_egg": {
@@ -2357,7 +2434,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Stone"
+      "Stone",
+      "Unique"
     ]
   },
   "items/granite_fungi": {
@@ -2400,8 +2478,9 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Stone",
-      "Illegal"
+      "Illegal",
+      "Mythic",
+      "Stone"
     ]
   },
   "items/granite_tome": {
@@ -2462,7 +2541,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique",
+      "Wood"
+    ]
   },
   "items/heart_shaped_potion": {
     "bucket": "items",
@@ -2502,7 +2584,11 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Potion",
+      "Sanguine",
+      "Unique"
+    ]
   },
   "items/helmet_of_envy": {
     "bucket": "items",
@@ -2522,7 +2608,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Crone"
+    ]
   },
   "items/hero_s_crossguard": {
     "bucket": "items",
@@ -2751,6 +2839,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Unique",
       "Water"
     ]
   },
@@ -2797,7 +2886,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Rose"
+      "Rose",
+      "Unique"
     ]
   },
   "items/iron_rune": {
@@ -2811,7 +2901,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Rune"
+    ]
   },
   "items/iron_shrapnel": {
     "bucket": "items",
@@ -2882,7 +2974,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Potion",
+      "Unique"
+    ]
   },
   "items/ironstone_armor": {
     "bucket": "items",
@@ -2896,7 +2991,8 @@ window.HEIC_DETAILS = {
       "speed": -2
     },
     "tags": [
-      "Stone"
+      "Stone",
+      "Unique"
     ]
   },
   "items/ironstone_bracelet": {
@@ -2911,7 +3007,8 @@ window.HEIC_DETAILS = {
       "speed": -1
     },
     "tags": [
-      "Stone"
+      "Stone",
+      "Unique"
     ]
   },
   "items/ironstone_sandals": {
@@ -3093,7 +3190,8 @@ window.HEIC_DETAILS = {
       "speed": 3
     },
     "tags": [
-      "Food"
+      "Food",
+      "Wood"
     ]
   },
   "items/life_zap": {
@@ -3122,7 +3220,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/lifeblood_armor": {
     "bucket": "items",
@@ -3146,7 +3246,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine"
+    ]
   },
   "items/lifeblood_burst": {
     "bucket": "items",
@@ -3160,7 +3262,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Bomb"
+      "Bomb",
+      "Sanguine"
     ]
   },
   "items/lifeblood_helmet": {
@@ -3186,7 +3289,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/liferoot_beast": {
     "bucket": "items",
@@ -3199,7 +3304,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique",
+      "Wood"
+    ]
   },
   "items/liferoot_gauntlet": {
     "bucket": "items",
@@ -3222,7 +3330,9 @@ window.HEIC_DETAILS = {
       "health": 3,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "items/liferoot_lute": {
     "bucket": "items",
@@ -3258,7 +3368,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Symphony"
+      "Symphony",
+      "Wood"
     ]
   },
   "items/liferoot_tome": {
@@ -3273,7 +3384,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Tome"
+      "Tome",
+      "Wood"
     ]
   },
   "items/lightning_bottle": {
@@ -3295,7 +3407,39 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 2
     },
-    "tags": []
+    "tags": [
+      "Potion"
+    ]
+  },
+  "items/lightning_elixir": {
+    "bucket": "items",
+    "effect": "Battle Start: Stun yourself for 2 turns",
+    "name": "Lightning Elixir",
+    "slug": "lightning_elixir",
+    "stats": {
+      "armor": 0,
+      "attack": 3,
+      "health": 0,
+      "speed": 4
+    },
+    "tags": [
+      "Potion"
+    ]
+  },
+  "items/lightspeed_elixir": {
+    "bucket": "items",
+    "effect": "Battle Start: Gain max health equal to your speed and then restore health equal to your speed",
+    "name": "Lightspeed Elixir",
+    "slug": "lightspeed_elixir",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 1
+    },
+    "tags": [
+      "Potion"
+    ]
   },
   "items/lightspeed_potion": {
     "bucket": "items",
@@ -3314,7 +3458,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 1
     },
-    "tags": []
+    "tags": [
+      "Potion",
+      "Unique"
+    ]
   },
   "items/limestone_fruit": {
     "bucket": "items",
@@ -3363,7 +3510,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Stone"
+      "Stone",
+      "Unique"
     ]
   },
   "items/marble_mushroom": {
@@ -3603,7 +3751,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/moonlight_shield": {
     "bucket": "items",
@@ -3646,7 +3796,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "items/muscle_potion": {
     "bucket": "items",
@@ -3668,7 +3820,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Potion"
+    ]
   },
   "items/mushroom_buckler": {
     "bucket": "items",
@@ -3694,7 +3848,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Potion"
+    ]
   },
   "items/noxious_gas": {
     "bucket": "items",
@@ -3737,7 +3893,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique",
+      "Wood"
+    ]
   },
   "items/ore_heart": {
     "bucket": "items",
@@ -3761,7 +3920,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Stone"
+      "Stone",
+      "Unique"
     ]
   },
   "items/petrified_chestnut": {
@@ -3807,7 +3967,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Stone"
+      "Stone",
+      "Unique"
     ]
   },
   "items/petrifying_elixir": {
@@ -3822,6 +3983,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Potion",
       "Stone"
     ]
   },
@@ -3837,6 +3999,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Potion",
       "Stone"
     ]
   },
@@ -3851,7 +4014,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "items/plated_greaves": {
     "bucket": "items",
@@ -3904,7 +4069,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/poisonous_mushroom": {
     "bucket": "items",
@@ -3949,7 +4116,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Bomb"
+      "Bomb",
+      "Unique"
     ]
   },
   "items/prime_form": {
@@ -3970,7 +4138,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "items/primordial_soup": {
     "bucket": "items",
@@ -3983,7 +4153,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "items/purelake_armor": {
     "bucket": "items",
@@ -4070,6 +4242,8 @@ window.HEIC_DETAILS = {
       "speed": 1
     },
     "tags": [
+      "Potion",
+      "Unique",
       "Water"
     ]
   },
@@ -4113,7 +4287,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 1
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "items/redwood_cloak": {
     "bucket": "items",
@@ -4142,7 +4318,9 @@ window.HEIC_DETAILS = {
       "health": 5,
       "speed": 4
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "items/redwood_helmet": {
     "bucket": "items",
@@ -4155,7 +4333,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "items/riverflow_talisman": {
     "bucket": "items",
@@ -4169,6 +4349,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Unique",
       "Water"
     ]
   },
@@ -4205,6 +4386,7 @@ window.HEIC_DETAILS = {
     },
     "tags": [
       "Symphony",
+      "Unique",
       "Water"
     ]
   },
@@ -4285,7 +4467,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Symphony"
+      "Symphony",
+      "Unique"
     ]
   },
   "items/royal_shield": {
@@ -4362,7 +4545,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Jewelry"
+      "Jewelry",
+      "Unique"
     ]
   },
   "items/ruby_ring": {
@@ -4488,7 +4672,10 @@ window.HEIC_DETAILS = {
       "health": 6,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine",
+      "Unique"
+    ]
   },
   "items/sanguine_morphosis": {
     "bucket": "items",
@@ -4501,7 +4688,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine",
+      "Unique"
+    ]
   },
   "items/sanguine_rose": {
     "bucket": "items",
@@ -4526,7 +4716,9 @@ window.HEIC_DETAILS = {
       "speed": 3
     },
     "tags": [
-      "Rose"
+      "Rose",
+      "Sanguine",
+      "Unique"
     ]
   },
   "items/sanguine_tome": {
@@ -4541,7 +4733,9 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Tome"
+      "Sanguine",
+      "Tome",
+      "Unique"
     ]
   },
   "items/sapphire_crown": {
@@ -4586,7 +4780,8 @@ window.HEIC_DETAILS = {
       "speed": 3
     },
     "tags": [
-      "Jewelry"
+      "Jewelry",
+      "Unique"
     ]
   },
   "items/sapphire_ring": {
@@ -4646,7 +4841,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Symphony"
+      "Symphony",
+      "Unique"
     ]
   },
   "items/serpent_mask": {
@@ -4685,7 +4881,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "items/sheet_music": {
     "bucket": "items",
@@ -4717,8 +4915,9 @@ window.HEIC_DETAILS = {
       "speed": 3
     },
     "tags": [
+      "Symphony",
       "Tome",
-      "Symphony"
+      "Unique"
     ]
   },
   "items/shield_of_the_hero": {
@@ -4745,7 +4944,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 5
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/silver_anchor": {
     "bucket": "items",
@@ -4799,7 +5000,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/silverscale_greaves": {
     "bucket": "items",
@@ -4898,7 +5101,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/slime_armor": {
     "bucket": "items",
@@ -4955,7 +5160,9 @@ window.HEIC_DETAILS = {
       "health": 1,
       "speed": 1
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/slime_potion": {
     "bucket": "items",
@@ -4968,7 +5175,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 3
     },
-    "tags": []
+    "tags": [
+      "Potion",
+      "Unique"
+    ]
   },
   "items/soap_stone": {
     "bucket": "items",
@@ -5100,7 +5310,9 @@ window.HEIC_DETAILS = {
       "health": 6,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/stone_steak": {
     "bucket": "items",
@@ -5130,7 +5342,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Stone"
+      "Stone",
+      "Unique"
     ]
   },
   "items/stormcloud_armor": {
@@ -5227,7 +5440,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Symphony"
+      "Symphony",
+      "Unique"
     ]
   },
   "items/stormcloud_tome": {
@@ -5256,7 +5470,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "items/studded_gauntlet": {
     "bucket": "items",
@@ -5319,7 +5535,9 @@ window.HEIC_DETAILS = {
       "health": 4,
       "speed": 2
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/swiftstrike_belt": {
     "bucket": "items",
@@ -5402,7 +5620,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/thorn_ring": {
     "bucket": "items",
@@ -5430,7 +5650,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Ring"
+      "Ring",
+      "Unique"
     ]
   },
   "items/thunder_cloud": {
@@ -5444,7 +5665,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 4
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "items/time_bomb": {
     "bucket": "items",
@@ -5562,7 +5785,8 @@ window.HEIC_DETAILS = {
       "speed": 6
     },
     "tags": [
-      "Rose"
+      "Rose",
+      "Unique"
     ]
   },
   "items/trail_mix": {
@@ -5601,7 +5825,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Unique",
+      "Wood"
+    ]
   },
   "items/twinfuse_knot": {
     "bucket": "items",
@@ -5614,7 +5841,9 @@ window.HEIC_DETAILS = {
       "health": 6,
       "speed": 2
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "items/twisted_root": {
     "bucket": "items",
@@ -5627,7 +5856,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 3
     },
-    "tags": []
+    "tags": [
+      "Unique",
+      "Wood"
+    ]
   },
   "items/underwater_watermelon": {
     "bucket": "items",
@@ -5655,7 +5887,10 @@ window.HEIC_DETAILS = {
       "health": 2,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine",
+      "Unique"
+    ]
   },
   "items/vampiric_stasis": {
     "bucket": "items",
@@ -5668,7 +5903,9 @@ window.HEIC_DETAILS = {
       "health": 1,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine"
+    ]
   },
   "items/venomous_fang": {
     "bucket": "items",
@@ -5750,7 +5987,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Potion"
+    ]
   },
   "items/weaver_armor": {
     "bucket": "items",
@@ -5811,7 +6050,9 @@ window.HEIC_DETAILS = {
       "health": -2,
       "speed": 3
     },
-    "tags": []
+    "tags": [
+      "Unique"
+    ]
   },
   "sets/basilisk_gaze": {
     "bucket": "sets",
@@ -6684,7 +6925,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Rune"
+    ]
   },
   "upgrades/blunt_edge": {
     "bucket": "upgrades",
@@ -7021,7 +7264,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "weapons/arcane_wand": {
     "bucket": "weapons",
@@ -7043,6 +7288,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Wood",
       "no_attack"
     ]
   },
@@ -7106,7 +7352,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "weapons/bee_stinger": {
     "bucket": "weapons",
@@ -7204,7 +7452,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine"
+    ]
   },
   "weapons/bloodmoon_dagger": {
     "bucket": "weapons",
@@ -7217,7 +7467,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine"
+    ]
   },
   "weapons/bloodmoon_sickle": {
     "bucket": "weapons",
@@ -7241,7 +7493,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine"
+    ]
   },
   "weapons/boom_stick": {
     "bucket": "weapons",
@@ -7280,7 +7534,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "weapons/brittlebark_club": {
     "bucket": "weapons",
@@ -7293,7 +7549,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "weapons/bubblegloop_staff": {
     "bucket": "weapons",
@@ -7402,7 +7660,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Crone"
+    ]
   },
   "weapons/dashmaster_s_dagger": {
     "bucket": "weapons",
@@ -7425,7 +7685,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "weapons/elderwood_staff": {
     "bucket": "weapons",
@@ -7438,7 +7700,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "weapons/evergrowth_spear": {
     "bucket": "weapons",
@@ -7451,7 +7715,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "weapons/explosive_sword": {
     "bucket": "weapons",
@@ -7698,7 +7964,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine"
+    ]
   },
   "weapons/hidden_dagger": {
     "bucket": "weapons",
@@ -7811,6 +8079,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Mythic",
       "Water"
     ]
   },
@@ -7849,7 +8118,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine"
+    ]
   },
   "weapons/liferoot_hammer": {
     "bucket": "weapons",
@@ -7862,7 +8133,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "weapons/liferoot_staff": {
     "bucket": "weapons",
@@ -7875,7 +8148,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "weapons/lifesteal_scythe": {
     "bucket": "weapons",
@@ -7988,6 +8263,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Mythic",
       "Stone"
     ]
   },
@@ -8002,7 +8278,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "weapons/purelake_staff": {
     "bucket": "weapons",
@@ -8065,7 +8343,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   },
   "weapons/ring_blades": {
     "bucket": "weapons",
@@ -8183,7 +8463,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Sanguine"
+    ]
   },
   "weapons/scepter_of_greed": {
     "bucket": "weapons",
@@ -8196,7 +8478,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Crone"
+    ]
   },
   "weapons/serpent_dagger": {
     "bucket": "weapons",
@@ -8403,7 +8687,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Crone"
+    ]
   },
   "weapons/sword_of_the_hero": {
     "bucket": "weapons",
@@ -8429,7 +8715,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Mythic"
+    ]
   },
   "weapons/thunderbound_sabre": {
     "bucket": "weapons",
@@ -8504,6 +8792,8 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Wood"
+    ]
   }
 };

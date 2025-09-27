@@ -8765,4 +8765,21 @@
       "Stone"
     ]
   }
+,
+  "items/lightspeed_elixir": {
+    "bucket": "items",
+    "effect": "Battle Start: Gain max health equal to your speed and then restore health equal to your speed",
+    "name": "Lightspeed Elixir",
+    "slug": "lightspeed_elixir",
+    "stats": { "armor": 0, "attack": 0, "health": 0, "speed": 1 },
+    "tags": ["Potion"]
+  },
+  "items/lightning_elixir": {
+    "bucket": "items",
+    "effect": "Battle Start: Stun yourself for 2 turns",
+    "name": "Lightning Elixir",
+    "slug": "lightning_elixir",
+    "stats": { "armor": 0, "attack": 3, "health": 0, "speed": 4 },
+    "tags": ["Potion"]
+  }
 }

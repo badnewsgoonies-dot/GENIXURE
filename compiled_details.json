@@ -994,7 +994,7 @@
     "slug": "cherry_bomb",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 3,
       "health": 0,
       "speed": 0
     },
@@ -1096,7 +1096,7 @@
       "armor": 0,
       "attack": 0,
       "health": 0,
-      "speed": 0
+      "speed": 4
     },
     "tags": [
       "Jewelry"
@@ -1350,7 +1350,7 @@
     "slug": "clearspring_watermelon",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 3,
       "health": 0,
       "speed": 0
     },
@@ -1473,7 +1473,7 @@
     "slug": "cracked_whetstone",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 8,
       "health": 0,
       "speed": 0
     },
@@ -1785,7 +1785,7 @@
     "stats": {
       "armor": 0,
       "attack": 0,
-      "health": 0,
+      "health": 4,
       "speed": 0
     },
     "tags": [
@@ -1833,7 +1833,7 @@
     "stats": {
       "armor": 0,
       "attack": 0,
-      "health": 0,
+      "health": 12,
       "speed": 0
     },
     "tags": [
@@ -2488,7 +2488,7 @@
     "name": "Granite Tome",
     "slug": "granite_tome",
     "stats": {
-      "armor": 0,
+      "armor": 24,
       "attack": 0,
       "health": 0,
       "speed": 0
@@ -3184,9 +3184,9 @@
     "slug": "lemontree_branch",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 2,
       "health": 0,
-      "speed": 0
+      "speed": 4
     },
     "tags": [
       "Food",
@@ -3614,7 +3614,7 @@
       "armor": 0,
       "attack": 0,
       "health": 0,
-      "speed": 0
+      "speed": 3
     },
     "tags": [
       "Food"
@@ -3785,7 +3785,7 @@
     "slug": "muscle_potion",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 4,
       "health": 0,
       "speed": 0
     },
@@ -3946,7 +3946,7 @@
     "name": "Petrifying Flask",
     "slug": "petrifying_flask",
     "stats": {
-      "armor": 0,
+      "armor": 40,
       "attack": 0,
       "health": 0,
       "speed": 0
@@ -4365,9 +4365,9 @@
     "name": "Rock Roast",
     "slug": "rock_roast",
     "stats": {
-      "armor": 0,
+      "armor": 6,
       "attack": 0,
-      "health": 0,
+      "health": 6,
       "speed": 0
     },
     "tags": [
@@ -4521,7 +4521,7 @@
     "slug": "ruby_ring",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 8,
       "health": 0,
       "speed": 0
     },
@@ -4712,7 +4712,7 @@
     "name": "Sapphire Earring",
     "slug": "sapphire_earring",
     "stats": {
-      "armor": 0,
+      "armor": 4,
       "attack": 0,
       "health": 0,
       "speed": 0
@@ -4750,7 +4750,7 @@
     "name": "Sapphire Ring",
     "slug": "sapphire_ring",
     "stats": {
-      "armor": 0,
+      "armor": 8,
       "attack": 0,
       "health": 0,
       "speed": 0
@@ -4934,7 +4934,7 @@
     "slug": "silverscale_fish",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 2,
       "health": 0,
       "speed": 0
     },
@@ -5020,7 +5020,7 @@
     "slug": "silverscale_swordfish",
     "stats": {
       "armor": 0,
-      "attack": 0,
+      "attack": 2,
       "health": 0,
       "speed": 0
     },
@@ -5969,7 +5969,7 @@
     "name": "Weaver Shield",
     "slug": "weaver_shield",
     "stats": {
-      "armor": 0,
+      "armor": 16,
       "attack": 0,
       "health": 0,
       "speed": 0
@@ -8739,8 +8739,8 @@
     "slug": "stone_steak",
     "effect": "Battle Start: If your health is full, gain 5 armor",
     "stats": {
-      "attack": 0,
-      "armor": 0,
+      "attack": 2,
+      "armor": 6,
       "health": 0,
       "speed": 0
     },
@@ -8756,13 +8756,43 @@
     "effect": "Wounded: Gain 10 armor and stun yourself and the enemy for 2 turns — at Gold: 20 4, at Diamond: 40 8",
     "stats": {
       "attack": 0,
-      "armor": 0,
+      "armor": 40,
       "health": 0,
       "speed": 0
     },
     "tags": [
       "Potion",
       "Stone"
+    ]
+  },
+  "items/lightspeed_elixir": {
+    "bucket": "items",
+    "effect": "Battle Start: Gain max health equal to your speed and then restore health equal to your speed",
+    "name": "Lightspeed Elixir",
+    "slug": "lightspeed_elixir",
+    "stats": {
+      "armor": 0,
+      "attack": 0,
+      "health": 0,
+      "speed": 1
+    },
+    "tags": [
+      "Potion"
+    ]
+  },
+  "items/lightning_elixir": {
+    "bucket": "items",
+    "effect": "Battle Start: Stun yourself for 2 turns",
+    "name": "Lightning Elixir",
+    "slug": "lightning_elixir",
+    "stats": {
+      "armor": 0,
+      "attack": 3,
+      "health": 0,
+      "speed": 4
+    },
+    "tags": [
+      "Potion"
     ]
   }
 }

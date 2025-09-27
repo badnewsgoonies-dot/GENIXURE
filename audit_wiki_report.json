@@ -1,173 +1,19 @@
 {
   "summary": {
     "itemsTotal": 410,
-    "wikiItems": 353
+    "wikiItems": 184
   },
   "mismatches": [
     {
-      "name": "Acid Mutation",
-      "key": "items/acid_mutation",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Acidic Witherleaf",
-      "key": "items/acidic_witherleaf",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Arcane Bell",
-      "key": "items/arcane_bell",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Arcane Cloak",
-      "key": "items/arcane_cloak",
-      "stats": {},
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Assault Greaves",
-      "key": "items/assault_greaves",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Belt of Gluttony",
-      "key": "items/belt_of_gluttony",
-      "stats": {},
-      "tags_added": [
-        "Crone"
-      ]
-    },
-    {
-      "name": "Bitter Melon",
-      "key": "items/bitter_melon",
+      "name": "Blood Sausage",
+      "key": "items/blood_sausage",
       "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
+        "health": {
+          "current": 0,
+          "wiki": 5
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Blackbriar Armor",
-      "key": "items/blackbriar_armor",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Blackbriar Rose",
-      "key": "items/blackbriar_rose",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Blacksmith Bond",
-      "key": "items/blacksmith_bond",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Blood Chain",
-      "key": "items/blood_chain",
-      "stats": {},
-      "tags_added": [
-        "Sanguine",
-        "Unique"
-      ]
-    },
-    {
-      "name": "Blood Rune",
-      "key": "items/blood_rune",
-      "stats": {},
-      "tags_added": [
-        "Rune"
-      ]
-    },
-    {
-      "name": "Blood Sausage",
-      "key": "items/blood_sausage",
-      "stats": {},
-      "tags_added": [
-        "Sanguine"
-      ]
-    },
-    {
-      "name": "Bloodmoon Armor",
-      "key": "items/bloodmoon_armor",
-      "stats": {},
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Bloodstone Ring",
-      "key": "items/bloodstone_ring",
-      "stats": {},
-      "tags_added": [
-        "Sanguine"
-      ]
-    },
-    {
-      "name": "Bloody Steak",
-      "key": "items/bloody_steak",
-      "stats": {
-        "attack": {
-          "current": 4,
-          "wiki": 0
-        },
-        "health": {
-          "current": 5,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Sanguine"
-      ]
-    },
-    {
-      "name": "Boots of Sloth",
-      "key": "items/boots_of_sloth",
-      "stats": {},
-      "tags_added": [
-        "Crone"
-      ]
-    },
-    {
-      "name": "Bramble Belt",
-      "key": "items/bramble_belt",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Bramble Talisman",
-      "key": "items/bramble_talisman",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
     },
     {
       "name": "Bramble Vest",
@@ -185,39 +31,6 @@
       "tags_added": []
     },
     {
-      "name": "Brittlebark Armor",
-      "key": "items/brittlebark_armor",
-      "stats": {},
-      "tags_added": [
-        "Unique",
-        "Wood"
-      ]
-    },
-    {
-      "name": "Brittlebark Buckler",
-      "key": "items/brittlebark_buckler",
-      "stats": {},
-      "tags_added": [
-        "Wood"
-      ]
-    },
-    {
-      "name": "Cactus Cap",
-      "key": "items/cactus_cap",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Chainlink Medallion",
-      "key": "items/chainlink_medallion",
-      "stats": {},
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
       "name": "Chainmail Cloak",
       "key": "items/chainmail_cloak",
       "stats": {
@@ -233,20 +46,15 @@
       "tags_added": []
     },
     {
-      "name": "Cherry Cocktail",
-      "key": "items/cherry_cocktail",
-      "stats": {},
-      "tags_added": [
-        "Sanguine"
-      ]
-    },
-    {
-      "name": "Chest of Lust",
-      "key": "items/chest_of_lust",
-      "stats": {},
-      "tags_added": [
-        "Crone"
-      ]
+      "name": "Cherry Bomb",
+      "key": "items/cherry_bomb",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
     },
     {
       "name": "Citrine Earring",
@@ -255,169 +63,57 @@
         "attack": {
           "current": 3,
           "wiki": 0
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 4
         }
       },
       "tags_added": []
     },
     {
-      "name": "Citrine Gemstone",
-      "key": "items/citrine_gemstone",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Citrine Ring",
-      "key": "items/citrine_ring",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Clearspring Duck",
-      "key": "items/clearspring_duck",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Clearspring Rose",
-      "key": "items/clearspring_rose",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Cold Resistance",
-      "key": "items/cold_resistance",
-      "stats": {},
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Crimson Cloak",
-      "key": "items/crimson_cloak",
-      "stats": {},
-      "tags_added": [
-        "Sanguine",
-        "Unique"
-      ]
-    },
-    {
-      "name": "Crimson Fang",
-      "key": "items/crimson_fang",
-      "stats": {},
-      "tags_added": [
-        "Sanguine"
-      ]
-    },
-    {
-      "name": "Deathcap Bow",
-      "key": "items/deathcap_bow",
+      "name": "Clearspring Watermelon",
+      "key": "items/clearspring_watermelon",
       "stats": {
         "attack": {
-          "current": 3,
-          "wiki": 0
+          "current": 0,
+          "wiki": 3
         }
       },
       "tags_added": []
     },
     {
-      "name": "Deviled Egg",
-      "key": "items/deviled_egg",
-      "stats": {},
-      "tags_added": [
-        "Sanguine",
-        "Unique"
-      ]
+      "name": "Cracked Whetstone",
+      "key": "items/cracked_whetstone",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 8
+        }
+      },
+      "tags_added": []
     },
     {
-      "name": "Double-plated Vest",
-      "key": "items/double_plated_vest",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Druid's Cloak",
-      "key": "items/druid_s_cloak",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Echo Rune",
-      "key": "items/echo_rune",
-      "stats": {},
-      "tags_added": [
-        "Rune"
-      ]
-    },
-    {
-      "name": "Elderwood Necklace",
-      "key": "items/elderwood_necklace",
-      "stats": {},
-      "tags_added": [
-        "Wood"
-      ]
-    },
-    {
-      "name": "Emerald Gemstone",
-      "key": "items/emerald_gemstone",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Energy Drain",
-      "key": "items/energy_drain",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Explosive Powder",
-      "key": "items/explosive_powder",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Explosive Roast",
-      "key": "items/explosive_roast",
+      "name": "Emerald Earring",
+      "key": "items/emerald_earring",
       "stats": {
         "health": {
-          "current": 5,
-          "wiki": 0
+          "current": 0,
+          "wiki": 4
         }
       },
       "tags_added": []
     },
     {
-      "name": "Featherweight Greaves",
-      "key": "items/featherweight_greaves",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Featherweight Wings",
-      "key": "items/featherweight_wings",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
+      "name": "Emerald Ring",
+      "key": "items/emerald_ring",
+      "stats": {
+        "health": {
+          "current": 0,
+          "wiki": 12
+        }
+      },
+      "tags_added": []
     },
     {
       "name": "Friendship Bracelet",
@@ -442,98 +138,15 @@
       "tags_added": []
     },
     {
-      "name": "Grand Crescendo",
-      "key": "items/grand_crescendo",
-      "stats": {},
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Grand Tome",
-      "key": "items/grand_tome",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Granite Crown",
-      "key": "items/granite_crown",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Granite Egg",
-      "key": "items/granite_egg",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Granite Thorns",
-      "key": "items/granite_thorns",
-      "stats": {},
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Heart-shaped Acorn",
-      "key": "items/heart_shaped_acorn",
-      "stats": {},
-      "tags_added": [
-        "Unique",
-        "Wood"
-      ]
-    },
-    {
-      "name": "Heart-shaped Potion",
-      "key": "items/heart_shaped_potion",
-      "stats": {},
-      "tags_added": [
-        "Potion",
-        "Sanguine",
-        "Unique"
-      ]
-    },
-    {
-      "name": "Helmet of Envy",
-      "key": "items/helmet_of_envy",
-      "stats": {},
-      "tags_added": [
-        "Crone"
-      ]
-    },
-    {
-      "name": "Honeydew Melon",
-      "key": "items/honeydew_melon",
+      "name": "Granite Tome",
+      "key": "items/granite_tome",
       "stats": {
-        "attack": {
-          "current": 4,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 5,
-          "wiki": 0
-        },
-        "health": {
-          "current": 5,
-          "wiki": 0
+        "armor": {
+          "current": 0,
+          "wiki": 24
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Iceblock Shield",
-      "key": "items/iceblock_shield",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
     },
     {
       "name": "Impressive Physique",
@@ -547,148 +160,19 @@
       "tags_added": []
     },
     {
-      "name": "Iron Rose",
-      "key": "items/iron_rose",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Iron Rune",
-      "key": "items/iron_rune",
-      "stats": {},
-      "tags_added": [
-        "Rune"
-      ]
-    },
-    {
-      "name": "Ironskin Potion",
-      "key": "items/ironskin_potion",
-      "stats": {},
-      "tags_added": [
-        "Potion",
-        "Unique"
-      ]
-    },
-    {
-      "name": "Ironstone Armor",
-      "key": "items/ironstone_armor",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Ironstone Bracelet",
-      "key": "items/ironstone_bracelet",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
       "name": "Lemontree Branch",
       "key": "items/lemontree_branch",
       "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        },
         "speed": {
           "current": 3,
-          "wiki": 0
+          "wiki": 4
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
-    },
-    {
-      "name": "Life Zap",
-      "key": "items/life_zap",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Lifeblood Armor",
-      "key": "items/lifeblood_armor",
-      "stats": {},
-      "tags_added": [
-        "Sanguine"
-      ]
-    },
-    {
-      "name": "Lifeblood Burst",
-      "key": "items/lifeblood_burst",
-      "stats": {},
-      "tags_added": [
-        "Sanguine"
-      ]
-    },
-    {
-      "name": "Lifeblood Helmet",
-      "key": "items/lifeblood_helmet",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Liferoot Beast",
-      "key": "items/liferoot_beast",
-      "stats": {},
-      "tags_added": [
-        "Unique",
-        "Wood"
-      ]
-    },
-    {
-      "name": "Liferoot Gauntlet",
-      "key": "items/liferoot_gauntlet",
-      "stats": {},
-      "tags_added": [
-        "Wood"
-      ]
-    },
-    {
-      "name": "Liferoot Lute",
-      "key": "items/liferoot_lute",
-      "stats": {},
-      "tags_added": [
-        "Wood"
-      ]
-    },
-    {
-      "name": "Liferoot Tome",
-      "key": "items/liferoot_tome",
-      "stats": {},
-      "tags_added": [
-        "Wood"
-      ]
-    },
-    {
-      "name": "Lightning Bottle",
-      "key": "items/lightning_bottle",
-      "stats": {},
-      "tags_added": [
-        "Potion"
-      ]
-    },
-    {
-      "name": "Lightspeed Potion",
-      "key": "items/lightspeed_potion",
-      "stats": {},
-      "tags_added": [
-        "Potion",
-        "Unique"
-      ]
-    },
-    {
-      "name": "Marble Mirror",
-      "key": "items/marble_mirror",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
+      "tags_added": []
     },
     {
       "name": "Melon Lemonade",
@@ -697,6 +181,10 @@
         "attack": {
           "current": 2,
           "wiki": 0
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 3
         }
       },
       "tags_added": []
@@ -705,10 +193,6 @@
       "name": "Melonvine Whip",
       "key": "items/melonvine_whip",
       "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        },
         "speed": {
           "current": 4,
           "wiki": 0
@@ -728,53 +212,15 @@
       "tags_added": []
     },
     {
-      "name": "Moonlight Crest",
-      "key": "items/moonlight_crest",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Muscle Growth",
-      "key": "items/muscle_growth",
-      "stats": {},
-      "tags_added": [
-        "Wood"
-      ]
-    },
-    {
       "name": "Muscle Potion",
       "key": "items/muscle_potion",
-      "stats": {},
-      "tags_added": [
-        "Potion"
-      ]
-    },
-    {
-      "name": "Nerve Poison",
-      "key": "items/nerve_poison",
-      "stats": {},
-      "tags_added": [
-        "Potion"
-      ]
-    },
-    {
-      "name": "Oak Heart",
-      "key": "items/oak_heart",
-      "stats": {},
-      "tags_added": [
-        "Unique",
-        "Wood"
-      ]
-    },
-    {
-      "name": "Ore Heart",
-      "key": "items/ore_heart",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 4
+        }
+      },
+      "tags_added": []
     },
     {
       "name": "Petrified Statue",
@@ -785,25 +231,18 @@
           "wiki": -2
         }
       },
-      "tags_added": [
-        "Unique"
-      ]
+      "tags_added": []
     },
     {
       "name": "Petrifying Flask",
       "key": "items/petrifying_flask",
-      "stats": {},
-      "tags_added": [
-        "Potion"
-      ]
-    },
-    {
-      "name": "Pinecone Breastplate",
-      "key": "items/pinecone_breastplate",
-      "stats": {},
-      "tags_added": [
-        "Wood"
-      ]
+      "stats": {
+        "armor": {
+          "current": 0,
+          "wiki": 40
+        }
+      },
+      "tags_added": []
     },
     {
       "name": "Plated Shield",
@@ -812,66 +251,6 @@
         "speed": {
           "current": 0,
           "wiki": -1
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Powder Keg",
-      "key": "items/powder_keg",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Prime Form",
-      "key": "items/prime_form",
-      "stats": {},
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Primordial Soup",
-      "key": "items/primordial_soup",
-      "stats": {},
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Purelake Armor",
-      "key": "items/purelake_armor",
-      "stats": {
-        "attack": {
-          "current": -1,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 1,
-          "wiki": 0
-        },
-        "health": {
-          "current": 6,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Purelake Chalice",
-      "key": "items/purelake_chalice",
-      "stats": {
-        "speed": {
-          "current": -1,
-          "wiki": 0
-        },
-        "health": {
-          "current": 5,
-          "wiki": 0
         }
       },
       "tags_added": []
@@ -883,39 +262,6 @@
         "armor": {
           "current": 0,
           "wiki": 2
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Purelake Potion",
-      "key": "items/purelake_potion",
-      "stats": {
-        "speed": {
-          "current": 1,
-          "wiki": 0
-        },
-        "health": {
-          "current": 5,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Potion",
-        "Unique"
-      ]
-    },
-    {
-      "name": "Purelake Tome",
-      "key": "items/purelake_tome",
-      "stats": {
-        "speed": {
-          "current": 1,
-          "wiki": 0
-        },
-        "health": {
-          "current": 5,
-          "wiki": 0
         }
       },
       "tags_added": []
@@ -940,23 +286,6 @@
       "tags_added": []
     },
     {
-      "name": "Razor Scales",
-      "key": "items/razor_scales",
-      "stats": {
-        "attack": {
-          "current": 2,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 1,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
       "name": "Redwood Cloak",
       "key": "items/redwood_cloak",
       "stats": {
@@ -969,9 +298,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
     },
     {
       "name": "Redwood Helmet",
@@ -986,25 +313,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
-    },
-    {
-      "name": "Riverflow Talisman",
-      "key": "items/riverflow_talisman",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Riverflow Violin",
-      "key": "items/riverflow_violin",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
+      "tags_added": []
     },
     {
       "name": "Rock Roast",
@@ -1012,46 +321,14 @@
       "stats": {
         "health": {
           "current": 3,
-          "wiki": 0
+          "wiki": 6
         },
         "armor": {
           "current": 2,
-          "wiki": 0
+          "wiki": 6
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Royal Horn",
-      "key": "items/royal_horn",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Ruby Earring",
-      "key": "items/ruby_earring",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Ruby Gemstone",
-      "key": "items/ruby_gemstone",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
     },
     {
       "name": "Ruby Ring",
@@ -1059,94 +336,10 @@
       "stats": {
         "attack": {
           "current": 4,
-          "wiki": 0
+          "wiki": 8
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Rusted Plate",
-      "key": "items/rusted_plate",
-      "stats": {
-        "speed": {
-          "current": 2,
-          "wiki": 0
-        },
-        "health": {
-          "current": -3,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Rusty Ring",
-      "key": "items/rusty_ring",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Sanguine Imp",
-      "key": "items/sanguine_imp",
-      "stats": {
-        "attack": {
-          "current": 4,
-          "wiki": 0
-        },
-        "health": {
-          "current": 6,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Sanguine",
-        "Unique"
-      ]
-    },
-    {
-      "name": "Sanguine Morphosis",
-      "key": "items/sanguine_morphosis",
-      "stats": {},
-      "tags_added": [
-        "Sanguine",
-        "Unique"
-      ]
-    },
-    {
-      "name": "Sanguine Rose",
-      "key": "items/sanguine_rose",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 3,
-          "wiki": 0
-        },
-        "health": {
-          "current": 4,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Sanguine",
-        "Unique"
-      ]
-    },
-    {
-      "name": "Sanguine Tome",
-      "key": "items/sanguine_tome",
-      "stats": {},
-      "tags_added": [
-        "Sanguine",
-        "Unique"
-      ]
     },
     {
       "name": "Sapphire Crown",
@@ -1166,22 +359,13 @@
         "speed": {
           "current": 3,
           "wiki": 0
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 4
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Sapphire Gemstone",
-      "key": "items/sapphire_gemstone",
-      "stats": {
-        "speed": {
-          "current": 3,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
     },
     {
       "name": "Sapphire Ring",
@@ -1190,17 +374,13 @@
         "speed": {
           "current": 4,
           "wiki": 0
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 8
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Serpent Lyre",
-      "key": "items/serpent_lyre",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
     },
     {
       "name": "Serpent Mask",
@@ -1222,22 +402,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Sheet Music",
-      "key": "items/sheet_music",
-      "stats": {
-        "speed": {
-          "current": 3,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
+      "tags_added": []
     },
     {
       "name": "Shield of the Hero",
@@ -1255,23 +420,6 @@
       "tags_added": []
     },
     {
-      "name": "Shield Talisman",
-      "key": "items/shield_talisman",
-      "stats": {
-        "speed": {
-          "current": 5,
-          "wiki": 0
-        },
-        "armor": {
-          "current": -2,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
       "name": "Silver Anchor",
       "key": "items/silver_anchor",
       "stats": {
@@ -1283,12 +431,15 @@
       "tags_added": []
     },
     {
-      "name": "Silverscale Gauntlet",
-      "key": "items/silverscale_gauntlet",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
+      "name": "Silverscale Fish",
+      "key": "items/silverscale_fish",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
     },
     {
       "name": "Silverscale Greaves",
@@ -1302,12 +453,15 @@
       "tags_added": []
     },
     {
-      "name": "Sinful Mirror",
-      "key": "items/sinful_mirror",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
+      "name": "Silverscale Swordfish",
+      "key": "items/silverscale_swordfish",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
     },
     {
       "name": "Slime Armor",
@@ -1319,56 +473,6 @@
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Slime Booster",
-      "key": "items/slime_booster",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 2,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Slime Heart",
-      "key": "items/slime_heart",
-      "stats": {
-        "attack": {
-          "current": -1,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 1,
-          "wiki": 0
-        },
-        "health": {
-          "current": 1,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Slime Potion",
-      "key": "items/slime_potion",
-      "stats": {
-        "speed": {
-          "current": 3,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Potion",
-        "Unique"
-      ]
     },
     {
       "name": "Sour Lemon",
@@ -1401,27 +505,6 @@
       "tags_added": []
     },
     {
-      "name": "Stillwater Pearl",
-      "key": "items/stillwater_pearl",
-      "stats": {
-        "health": {
-          "current": 6,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Stoneborn Turtle",
-      "key": "items/stoneborn_turtle",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
       "name": "Stormcloud Armor",
       "key": "items/stormcloud_armor",
       "stats": {
@@ -1436,104 +519,6 @@
         "armor": {
           "current": 2,
           "wiki": 3
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Stormcloud Drum",
-      "key": "items/stormcloud_drum",
-      "stats": {},
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Stormcloud Tome",
-      "key": "items/stormcloud_tome",
-      "stats": {
-        "attack": {
-          "current": -1,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 2,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Stormtide Anchor",
-      "key": "items/stormtide_anchor",
-      "stats": {
-        "attack": {
-          "current": 1,
-          "wiki": 0
-        },
-        "armor": {
-          "current": 1,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Studded Gauntlet",
-      "key": "items/studded_gauntlet",
-      "stats": {
-        "armor": {
-          "current": 5,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Sugar Bomb",
-      "key": "items/sugar_bomb",
-      "stats": {
-        "attack": {
-          "current": 4,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 2,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Sunlight Crest",
-      "key": "items/sunlight_crest",
-      "stats": {
-        "speed": {
-          "current": 2,
-          "wiki": 0
-        },
-        "health": {
-          "current": 4,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Swiftstrike Belt",
-      "key": "items/swiftstrike_belt",
-      "stats": {
-        "attack": {
-          "current": 2,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 4,
-          "wiki": 0
         }
       },
       "tags_added": []
@@ -1554,47 +539,6 @@
       "tags_added": []
     },
     {
-      "name": "Swiftstrike Gauntlet",
-      "key": "items/swiftstrike_gauntlet",
-      "stats": {
-        "attack": {
-          "current": 2,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 4,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Sword Talisman",
-      "key": "items/sword_talisman",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Thorn Ring",
-      "key": "items/thorn_ring",
-      "stats": {
-        "attack": {
-          "current": 4,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
       "name": "Thunder Cloud",
       "key": "items/thunder_cloud",
       "stats": {
@@ -1607,174 +551,7 @@
           "wiki": 0
         }
       },
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Toxic Algae",
-      "key": "items/toxic_algae",
-      "stats": {
-        "attack": {
-          "current": 2,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 2,
-          "wiki": 0
-        }
-      },
       "tags_added": []
-    },
-    {
-      "name": "Toxic Rose",
-      "key": "items/toxic_rose",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 6,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Trail Mix",
-      "key": "items/trail_mix",
-      "stats": {
-        "health": {
-          "current": 5,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Treebark Egg",
-      "key": "items/treebark_egg",
-      "stats": {},
-      "tags_added": [
-        "Unique",
-        "Wood"
-      ]
-    },
-    {
-      "name": "Twinfuse Knot",
-      "key": "items/twinfuse_knot",
-      "stats": {
-        "speed": {
-          "current": 2,
-          "wiki": 0
-        },
-        "health": {
-          "current": 6,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Twisted Root",
-      "key": "items/twisted_root",
-      "stats": {
-        "attack": {
-          "current": -2,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 3,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique",
-        "Wood"
-      ]
-    },
-    {
-      "name": "Underwater Watermelon",
-      "key": "items/underwater_watermelon",
-      "stats": {
-        "attack": {
-          "current": 4,
-          "wiki": 0
-        },
-        "speed": {
-          "current": -2,
-          "wiki": 0
-        },
-        "health": {
-          "current": 10,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Vampire's Tooth",
-      "key": "items/vampire_s_tooth",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        },
-        "health": {
-          "current": 2,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Sanguine",
-        "Unique"
-      ]
-    },
-    {
-      "name": "Vampiric Stasis",
-      "key": "items/vampiric_stasis",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        },
-        "health": {
-          "current": 1,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Sanguine"
-      ]
-    },
-    {
-      "name": "Venomous Fang",
-      "key": "items/venomous_fang",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
-        }
-      },
-      "tags_added": []
-    },
-    {
-      "name": "Viper Extract",
-      "key": "items/viper_extract",
-      "stats": {
-        "attack": {
-          "current": 4,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Potion"
-      ]
     },
     {
       "name": "Weaver Armor",
@@ -1810,38 +587,13 @@
         "health": {
           "current": 4,
           "wiki": 0
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 16
         }
       },
       "tags_added": []
-    },
-    {
-      "name": "Wet Egg",
-      "key": "items/wet_egg",
-      "stats": {
-        "attack": {
-          "current": 4,
-          "wiki": 0
-        },
-        "speed": {
-          "current": 3,
-          "wiki": 0
-        },
-        "health": {
-          "current": -2,
-          "wiki": 0
-        }
-      },
-      "tags_added": [
-        "Unique"
-      ]
-    },
-    {
-      "name": "Blood Rune",
-      "key": "upgrades/blood_rune",
-      "stats": {},
-      "tags_added": [
-        "Rune"
-      ]
     },
     {
       "name": "Ancient Warhammer",
@@ -1852,17 +604,7 @@
           "wiki": 5
         }
       },
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Arcane Wand",
-      "key": "weapons/arcane_wand",
-      "stats": {},
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
     },
     {
       "name": "Basilisk Fang",
@@ -1893,19 +635,6 @@
         "health": {
           "current": 0,
           "wiki": 5
-        }
-      },
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Bee Stinger",
-      "key": "weapons/bee_stinger",
-      "stats": {
-        "attack": {
-          "current": 3,
-          "wiki": 0
         }
       },
       "tags_added": []
@@ -1941,9 +670,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [
-        "Sanguine"
-      ]
+      "tags_added": []
     },
     {
       "name": "Bloodmoon Dagger",
@@ -1954,9 +681,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [
-        "Sanguine"
-      ]
+      "tags_added": []
     },
     {
       "name": "Bloodmoon Sickle",
@@ -1967,9 +692,7 @@
           "wiki": 5
         }
       },
-      "tags_added": [
-        "Sanguine"
-      ]
+      "tags_added": []
     },
     {
       "name": "Boom Stick",
@@ -1991,9 +714,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
     },
     {
       "name": "Brittlebark Club",
@@ -2004,9 +725,7 @@
           "wiki": 7
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
     },
     {
       "name": "Chainmail Sword",
@@ -2043,9 +762,7 @@
           "wiki": 10
         }
       },
-      "tags_added": [
-        "Crone"
-      ]
+      "tags_added": []
     },
     {
       "name": "Dashmaster's Dagger",
@@ -2056,9 +773,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [
-        "Mythic"
-      ]
+      "tags_added": []
     },
     {
       "name": "Elderwood Staff",
@@ -2077,9 +792,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
     },
     {
       "name": "Evergrowth Spear",
@@ -2090,9 +803,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
     },
     {
       "name": "Explosive Sword",
@@ -2258,9 +969,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [
-        "Sanguine"
-      ]
+      "tags_added": []
     },
     {
       "name": "Hidden Dagger",
@@ -2356,9 +1065,7 @@
           "wiki": 5
         }
       },
-      "tags_added": [
-        "Mythic"
-      ]
+      "tags_added": []
     },
     {
       "name": "Leather Whip",
@@ -2384,9 +1091,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [
-        "Sanguine"
-      ]
+      "tags_added": []
     },
     {
       "name": "Liferoot Hammer",
@@ -2397,9 +1102,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
     },
     {
       "name": "Liferoot Staff",
@@ -2410,9 +1113,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
     },
     {
       "name": "Lifesteal Scythe",
@@ -2482,17 +1183,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [
-        "Mythic"
-      ]
-    },
-    {
-      "name": "Pacifist Staff",
-      "key": "weapons/pacifist_staff",
-      "stats": {},
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
     },
     {
       "name": "Purelake Staff",
@@ -2529,9 +1220,7 @@
           "wiki": 4
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
     },
     {
       "name": "Ring Blades",
@@ -2586,9 +1275,7 @@
           "wiki": 1
         }
       },
-      "tags_added": [
-        "Sanguine"
-      ]
+      "tags_added": []
     },
     {
       "name": "Scepter of Greed",
@@ -2599,9 +1286,7 @@
           "wiki": 6
         }
       },
-      "tags_added": [
-        "Crone"
-      ]
+      "tags_added": []
     },
     {
       "name": "Serpent Dagger",
@@ -2723,9 +1408,7 @@
           "wiki": 3
         }
       },
-      "tags_added": [
-        "Crone"
-      ]
+      "tags_added": []
     },
     {
       "name": "Sword of the Hero",
@@ -2747,9 +1430,7 @@
           "wiki": 2
         }
       },
-      "tags_added": [
-        "Mythic"
-      ]
+      "tags_added": []
     },
     {
       "name": "Thunderbound Sabre",
@@ -2793,22 +1474,39 @@
           "wiki": 1
         }
       },
-      "tags_added": [
-        "Wood"
-      ]
+      "tags_added": []
+    },
+    {
+      "name": "Stone Steak",
+      "key": "items/stone_steak",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 6
+        }
+      },
+      "tags_added": []
     },
     {
       "name": "Petrifying Elixir",
       "key": "items/petrifying_elixir",
-      "stats": {},
-      "tags_added": [
-        "Potion"
-      ]
+      "stats": {
+        "armor": {
+          "current": 0,
+          "wiki": 40
+        }
+      },
+      "tags_added": []
     }
   ],
   "changes": {
-    "overrideChanges": 0,
-    "tagChanges": 144,
-    "effectChanges": 12
+    "overrideChanges": 23,
+    "tagChanges": 0,
+    "effectChanges": 12,
+    "removedOverrides": 6
   }
 }

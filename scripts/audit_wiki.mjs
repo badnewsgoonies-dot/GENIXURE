@@ -169,22 +169,45 @@ function parseRegionItemsSimple(fileName) {
   const html = readText(path.join(WIKI_DIR, fileName));
   const $ = cheerioLoad(html);
   const items = [];
+  const hasStatIcon = (h) => /Icon_(attack|speed|health|armor)\.png/i.test(h);
   $('table.wikitable').each((_, table) => {
     $(table).find('tbody > tr').each((__, tr) => {
       const tds = $(tr).find('td');
-      if (tds.length < 4) return;
-      const nameCell = $(tds[0]);
-      const rarityCell = $(tds[1]);
-      const statsCell = $(tds[2]);
-      const effectCell = $(tds[3]);
-      const regionCell = tds[4] ? $(tds[4]) : null;
+      if (tds.length < 3) return;
+      const cells = tds.toArray().map(td => $.html(td));
+      const texts = tds.toArray().map(td => $(td).text().replace(/\s+/g, ' ').trim());
 
+      // Name
+      const nameCellIdx = 0;
+      const nameCell = $(tds[nameCellIdx]);
       const name = (nameCell.find('a').first().text() || nameCell.text()).trim();
       if (!name) return;
-      const stats = parseStatsCell($.html(statsCell));
-      const effect = effectCell.text().replace(/\s+/g, ' ').trim();
-      const rarity = rarityCell.text().replace(/\s+/g, ' ').trim();
-      const region = regionCell ? regionCell.text().replace(/\s+/g, ' ').trim() : '';
+
+      // Stats cell: first cell containing stat icon
+      const statsIdx = cells.findIndex(hasStatIcon);
+      if (statsIdx === -1) return; // row without stats
+      const stats = parseStatsCell(cells[statsIdx]);
+
+      // Effect cell: prefer a cell (not name or stats) that looks like an effect description
+      let effectIdx = -1;
+      for (let i = 0; i < cells.length; i++) {
+        if (i === nameCellIdx || i === statsIdx) continue;
+        if (hasStatIcon(cells[i])) continue;
+        const t = texts[i];
+        if (/(Battle|Turn|First|On hit|Exposed|Wounded|Whenever|Countdown|Every other turn|While|If)/i.test(t)) {
+          effectIdx = i; break;
+        }
+      }
+      if (effectIdx === -1) {
+        // fallback: the cell immediately after the stats cell
+        effectIdx = Math.min(statsIdx + 1, cells.length - 1);
+      }
+      const effect = texts[effectIdx] || '';
+
+      // Rarity/Region are optional depending on table type
+      const rarity = (texts[1] && !hasStatIcon(cells[1]) && effectIdx !== 1) ? texts[1] : '';
+      const region = '';
+
       items.push({ name, stats, effect, rarity, region });
     });
   });
@@ -270,7 +293,7 @@ function main() {
 
   // 3) Compare with details.json
   const details = JSON.parse(readText(DETAILS_PATH));
-  const overrides = fs.existsSync(OVERRIDES_PATH)
+  let overrides = fs.existsSync(OVERRIDES_PATH)
     ? JSON.parse(readText(OVERRIDES_PATH))
     : {};
 
@@ -350,10 +373,17 @@ function main() {
     }
   }
 
+  // Cleanup: remove overrides for keys that don't exist in details
+  const validKeys = new Set(Object.keys(details));
+  let removedOverrides = 0;
+  for (const k of Object.keys(overrides)) {
+    if (!validKeys.has(k)) { delete overrides[k]; removedOverrides++; }
+  }
+
   // Write outputs
   writeJSON(REPORT_PATH, {
     ...report,
-    changes: { overrideChanges, tagChanges, effectChanges },
+    changes: { overrideChanges, tagChanges, effectChanges, removedOverrides },
   });
 
   console.log(`\nAudit complete.`);
