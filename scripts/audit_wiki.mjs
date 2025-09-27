@@ -329,6 +329,8 @@ function main() {
 
   const propList = Object.entries(details);
   const nameToKey = new Map();
+  const WIKI_STAT_KEYS = ['attack', 'speed', 'health', 'armor'];
+
   for (const [key, val] of propList) {
     if (!val || !val.name) continue;
     nameToKey.set(normalizeName(val.name), key);
@@ -430,17 +432,26 @@ function main() {
     const wiki = wikiItems[nm];
     if (!wiki) continue;
 
-    // Compare stats
+    // Compare stats, and authoritatively set overrides to the wiki values.
+    // This ensures stale overrides can't force incorrect stats.
     const currentStats = val.stats || { attack: 0, speed: 0, health: 0, armor: 0 };
     const desiredStats = wiki.stats || {};
     const statMismatch = {};
-    for (const s of ['attack', 'speed', 'health', 'armor']) {
+    for (const s of WIKI_STAT_KEYS) {
       const cur = currentStats[s] ?? 0;
       const doc = desiredStats[s] ?? 0;
       if (cur !== doc) {
         statMismatch[s] = { current: cur, wiki: doc };
-        // Write to overrides so compiled_details.json will reflect wiki stats
-        if (doc !== undefined && doc !== null) ensureOverride(key, s, doc);
+      }
+    }
+
+    // Authoritative override: write the complete wiki stat block for this key
+    if (wiki && wiki.stats) {
+      const next = WIKI_STAT_KEYS.reduce((acc, k) => { acc[k] = desiredStats[k] ?? 0; return acc; }, {});
+      const prev = overrides[key];
+      if (!prev || WIKI_STAT_KEYS.some(k => (prev[k] ?? 0) !== (next[k] ?? 0))) {
+        overrides[key] = next;
+        overrideChanges++;
       }
     }
 
