@@ -1612,7 +1612,16 @@ function createAdvancedCard(item) {
 function generatePlainEnglishEffect(item) {
   // Prefer authored wiki text when present
   if (item.effect && item.effect.trim() && item.effect.trim() !== '-') {
-    return item.effect.trim();
+    // If the wiki text embeds Gold/Diamond variants, select the active tier text
+    const eff = item.effect.trim();
+    const tiered = parseTieredEffect(eff);
+    if (tiered.hasTier) {
+      const active = (window.compendiumState && window.compendiumState.currentTier) || 'base';
+      if (active === 'gold' && tiered.gold) return tiered.renderGold();
+      if (active === 'diamond' && tiered.diamond) return tiered.renderDiamond();
+      return tiered.base; // default to base
+    }
+    return eff;
   }
 
   if (!item.effects || !Array.isArray(item.effects) || item.effects.length === 0) {
@@ -1630,6 +1639,56 @@ function generatePlainEnglishEffect(item) {
   });
 
   return sentences.join(' ');
+}
+
+// Parse wiki-style tier annotations like:
+//   "... — at Gold: 4 , at Diamond: 8"
+//   or longer fragments: "— at Gold: take 6 for 2 swords, at Diamond: take 12 for 4"
+function parseTieredEffect(text) {
+  const s = String(text || '');
+  const lower = s.toLowerCase();
+  const hasGold = lower.includes('at gold:');
+  const hasDiamond = lower.includes('at diamond:');
+
+  // Extract gold segment (text between 'at Gold:' and either ',' before Diamond, or end)
+  const goldM = s.match(/at\s+Gold:\s*([^,]+?)(?:\s*,\s*at\s+Diamond:|$)/i);
+  const diamondM = s.match(/at\s+Diamond:\s*([^,]+?)\s*$/i);
+
+  // Base = text before the first tier marker
+  let base = s;
+  const firstIdx = Math.min(
+    hasGold ? lower.indexOf('at gold:') : s.length,
+    hasDiamond ? lower.indexOf('at diamond:') : s.length
+  );
+  if (firstIdx !== s.length) {
+    // Trim any dash that precedes the tier section
+    base = s.slice(0, firstIdx).replace(/\s*[—–-]\s*$/,'').trim();
+  }
+
+  const gold = goldM ? goldM[1].trim() : '';
+  const diamond = diamondM ? diamondM[1].trim() : '';
+
+  function isNumeric(x){ return /^-?\d+(?:\.\d+)?$/.test((x||'').trim()); }
+  function replaceLastNumber(str, num){
+    return String(str).replace(/(.*?)(-?\d+)(?!.*\d)/, (_m, a, _b) => a + String(num));
+  }
+
+  return {
+    hasTier: !!(gold || diamond),
+    base,
+    gold,
+    diamond,
+    renderGold(){
+      if (!gold) return base;
+      if (isNumeric(gold)) return replaceLastNumber(base, gold);
+      return `${base} — ${gold}`;
+    },
+    renderDiamond(){
+      if (!diamond) return base;
+      if (isNumeric(diamond)) return replaceLastNumber(base, diamond);
+      return `${base} — ${diamond}`;
+    }
+  };
 }
 
 // Get trigger display name
@@ -1685,6 +1744,29 @@ function getActionDescription(action) {
   };
 
   return descriptions[action.type] || action.type.replace(/_/g, ' ');
+}
+
+// Render effect with tier bullets if Gold/Diamond are present
+function renderTieredEffectBlock(item){
+  const effText = (item.effect || '').trim();
+  if (!effText) return generatePlainEnglishEffect(item);
+  const parsed = parseTieredEffect(effText);
+  if (!parsed.hasTier) return generatePlainEnglishEffect(item);
+
+  const active = (window.compendiumState && window.compendiumState.currentTier) || 'base';
+  const activeText = active === 'gold' && parsed.gold ? parsed.renderGold()
+                    : active === 'diamond' && parsed.diamond ? parsed.renderDiamond()
+                    : parsed.base;
+
+  const lines = [];
+  lines.push(`<div style=\"margin-bottom:6px;\">${activeText}</div>`);
+  lines.push('<div style=\"font-size:10px; color:#aaa;\">Tiers</div>');
+  lines.push('<ul style=\"margin:4px 0 0 16px; padding:0;\">');
+  lines.push(`<li>Base: ${parsed.base}</li>`);
+  if (parsed.gold) lines.push(`<li>Gold: ${/^-?\\d+(?:\\.\\d+)?$/.test(parsed.gold) ? parsed.renderGold() : parsed.gold}</li>`);
+  if (parsed.diamond) lines.push(`<li>Diamond: ${/^-?\\d+(?:\\.\\d+)?$/.test(parsed.diamond) ? parsed.renderDiamond() : parsed.diamond}</li>`);
+  lines.push('</ul>');
+  return lines.join('');
 }
 
 // Get trust badges for an item
@@ -1960,7 +2042,7 @@ function createCompareCard(item, allSelectedKeys) {
     <div style="margin-bottom: 16px;">
       <h4 style="color: #fa0; font-size: 12px; margin: 0 0 8px 0;">Effect</h4>
       <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 6px; font-size: 11px; line-height: 1.4; color: #ccc;">
-        ${generatePlainEnglishEffect(item)}
+        ${renderTieredEffectBlock(item)}
       </div>
     </div>
     
