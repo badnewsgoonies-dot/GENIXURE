@@ -622,9 +622,11 @@
       if (log) log(`${self.name} gains ${strikes} additional strikes`);
     },
     add_strikes_equal_to_speed: ({ self, log }) => {
-      const strikes = self.speed;
-      self.additionalStrikes = (self.additionalStrikes || 0) + strikes;
-      if (log) log(`${self.name} gains ${strikes} additional strikes (equal to speed)`);
+      const strikes = self.speed || 0;
+      if (strikes > 0) {
+        self.additionalStrikes = (self.additionalStrikes || 0) + strikes;
+        if (log) log(`${self.name} gains ${strikes} additional strikes (equal to speed)`);
+      }
     },
     transfer_all_statuses_to_enemy: ({ self, other, log }) => {
       const statuses = Object.keys(self.statuses || {});
@@ -852,7 +854,7 @@
       log(`${self.name} gives ${amount} ${status} to self and enemy`);
     },
     disable_striking: ({ self, log }) => {
-      self.flags.cannotStrike = true;
+      self.cannotStrike = true;
       log(`${self.name} cannot strike`);
     },
     gain_thorns_equal_to_attack: ({ self, log }) => {
@@ -860,6 +862,16 @@
       if (thornsGain > 0) {
         self.addStatus('thorns', thornsGain);
         log(`${self.name} gains ${thornsGain} thorns`);
+      }
+    },
+    // Give enemy riptide equal to multiplier per negative attack point (e.g., Wave Breaker)
+    riptide_per_negative_attack: ({ self, other, log, multiplier }) => {
+      const neg = Math.max(0, -(self.atk || 0));
+      const mult = typeof multiplier === 'number' ? multiplier : 1;
+      const amt = neg * mult;
+      if (amt > 0) {
+        other.addStatus('riptide', amt);
+        if (log) log(`${other.name} gains ${amt} riptide (${neg} negative attack x${mult})`);
       }
     },
     gain_thorns_per_armor_lost: ({ self, log, value, armorLost }) => {
@@ -1445,6 +1457,11 @@
     
     const log = (m) => baseLog(CURRENT_SOURCE_SLUG ? `::icon:${CURRENT_SOURCE_SLUG}:: ${m}` : m);
 
+    // Helper: allow snake_case aliases like battle_start in data
+    const toSnake = (s) => String(s || '')
+      .replace(/([a-z])([A-Z])/g, '$1_$2')
+      .toLowerCase();
+
     // Process items in battle order: weapon first, then weaponEdge, then items 1→12
     // Ensures Battle Start effects activate in correct slot order per battle logic
     let allItems = [];
@@ -1510,7 +1527,8 @@
         };
         
         const mappedTrigger = eventToTriggerMap[event] || event;
-        const triggerMatches = effect.trigger === mappedTrigger;
+        const altTrigger = toSnake(mappedTrigger);
+        const triggerMatches = effect.trigger === mappedTrigger || effect.trigger === altTrigger;
 
         if (!triggerMatches) continue;
 
@@ -2210,7 +2228,17 @@ let CURRENT_SOURCE_SLUG = null;
       
       turnStartTicks(actor, target, logWithHP);
       runEffects('turnStart', actor, target, logWithHP);
-      
+
+      // Apply any pending additional strikes gathered from effects
+      if (actor && actor.flags && (actor.flags.additionalStrikes|0) > 0) {
+        actor.extraStrikes = (actor.extraStrikes || 0) + (actor.flags.additionalStrikes | 0);
+        actor.flags.additionalStrikes = 0;
+      }
+      if (actor && (actor.additionalStrikes|0) > 0) {
+        actor.extraStrikes = (actor.extraStrikes || 0) + (actor.additionalStrikes | 0);
+        actor.additionalStrikes = 0;
+      }
+
       let strikes = 1 + (actor.extraStrikes || 0);
       if (actor.cannotStrike || actor.skipTurn) strikes = 0;
       strikes = Math.max(0, Math.floor(strikes * (actor.strikeFactor || 1)));
