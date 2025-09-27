@@ -1,0 +1,2 @@
+STATS HTML:
+ <td><span class="mw-default-size" typeof="mw:File"><a href="https://wiki.hoodedhorse.com/He_is_Coming/File:Icon_health.png" class="mw-file-description"><img src="Woodland%20items%20-%20He%20is%20Coming%20Official%20Wiki_files/Icon_health.png" decoding="async" width="13" height="13" class="mw-file-element"></a></span> 2 / 4 / 8</td>

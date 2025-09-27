@@ -1,4 +1,4 @@
-/* Generated 2025-09-25T00:15:08.130Z • sha256:3f8a83006951dca6 */
+/* Generated 2025-09-27T00:14:28.456Z • sha256:dbbdfcf45db02fc5 */
 window.HEIC_DETAILS = {
   "items/acid_mutation": {
     "bucket": "items",
@@ -374,7 +374,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/blood_chain": {
     "bucket": "items",
@@ -490,7 +492,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/boiled_ham": {
@@ -550,7 +553,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/boots_of_sloth": {
     "bucket": "items",
@@ -805,7 +810,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Tome"
+    ]
   },
   "items/chainlink_medallion": {
     "bucket": "items",
@@ -952,7 +959,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Bomb"
+      "Bomb",
+      "Food"
     ]
   },
   "items/cherry_cocktail": {
@@ -979,6 +987,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Bomb",
       "Food"
     ]
   },
@@ -1094,6 +1103,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Jewelry",
       "Ring"
     ]
   },
@@ -1140,7 +1150,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/clearspring_duck": {
     "bucket": "items",
@@ -1166,7 +1178,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/clearspring_feather": {
     "bucket": "items",
@@ -1194,7 +1208,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/clearspring_opal": {
     "bucket": "items",
@@ -1226,7 +1242,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 2
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/clearspring_rose": {
     "bucket": "items",
@@ -1251,7 +1269,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Rose"
+      "Rose",
+      "Water"
     ]
   },
   "items/clearspring_watermelon": {
@@ -1288,7 +1307,10 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Food",
+      "Water"
+    ]
   },
   "items/cold_resistance": {
     "bucket": "items",
@@ -1533,7 +1555,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/double_plated_armor": {
     "bucket": "items",
@@ -1785,7 +1809,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/explosive_fish": {
     "bucket": "items",
@@ -1831,7 +1857,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/explosive_roast": {
     "bucket": "items",
@@ -1855,6 +1883,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Bomb",
       "Food"
     ]
   },
@@ -1876,7 +1905,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/featherweight_armor": {
     "bucket": "items",
@@ -1996,7 +2027,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/flameburst_tome": {
     "bucket": "items",
@@ -2088,7 +2121,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/frostbite_curse": {
     "bucket": "items",
@@ -2134,7 +2169,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/frostbite_greaves": {
     "bucket": "items",
@@ -2157,7 +2194,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/frostbite_trap": {
     "bucket": "items",
@@ -2180,7 +2219,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/gold_ring": {
     "bucket": "items",
@@ -2278,6 +2319,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Bomb",
       "Food",
       "Stone"
     ]
@@ -2649,7 +2691,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/ice_tomb": {
     "bucket": "items",
@@ -2683,7 +2727,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/iceblock_shield": {
     "bucket": "items",
@@ -2704,7 +2750,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/impressive_physique": {
     "bucket": "items",
@@ -2788,7 +2836,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/iron_transfusion": {
     "bucket": "items",
@@ -2905,7 +2955,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/knight_s_armor": {
     "bucket": "items",
@@ -3107,7 +3159,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/lifeblood_helmet": {
     "bucket": "items",
@@ -3487,7 +3541,8 @@ window.HEIC_DETAILS = {
       "speed": 4
     },
     "tags": [
-      "Food"
+      "Food",
+      "Water"
     ]
   },
   "items/mineral_water": {
@@ -3870,7 +3925,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Food"
+    ]
   },
   "items/powder_keg": {
     "bucket": "items",
@@ -3891,7 +3948,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/prime_form": {
     "bucket": "items",
@@ -3937,7 +3996,9 @@ window.HEIC_DETAILS = {
       "health": 6,
       "speed": 1
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/purelake_chalice": {
     "bucket": "items",
@@ -3950,7 +4011,9 @@ window.HEIC_DETAILS = {
       "health": 5,
       "speed": -1
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/purelake_helmet": {
     "bucket": "items",
@@ -3975,7 +4038,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/purelake_potion": {
     "bucket": "items",
@@ -4004,7 +4069,9 @@ window.HEIC_DETAILS = {
       "health": 5,
       "speed": 1
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/purelake_tome": {
     "bucket": "items",
@@ -4018,7 +4085,8 @@ window.HEIC_DETAILS = {
       "speed": 1
     },
     "tags": [
-      "Tome"
+      "Tome",
+      "Water"
     ]
   },
   "items/razor_breastplate": {
@@ -4100,7 +4168,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/riverflow_violin": {
     "bucket": "items",
@@ -4134,7 +4204,8 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
-      "Symphony"
+      "Symphony",
+      "Water"
     ]
   },
   "items/rock_candy": {
@@ -4713,7 +4784,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Food"
+    ]
   },
   "items/silverscale_gauntlet": {
     "bucket": "items",
@@ -4946,7 +5019,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 4
     },
-    "tags": []
+    "tags": [
+      "Food"
+    ]
   },
   "items/spiral_shell": {
     "bucket": "items",
@@ -5229,6 +5304,7 @@ window.HEIC_DETAILS = {
       "speed": 2
     },
     "tags": [
+      "Bomb",
       "Food"
     ]
   },
@@ -5402,7 +5478,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/tome_of_the_hero": {
     "bucket": "items",
@@ -5508,6 +5586,7 @@ window.HEIC_DETAILS = {
       "speed": 0
     },
     "tags": [
+      "Bomb",
       "Food"
     ]
   },
@@ -7082,7 +7161,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Jewelry"
+    ]
   },
   "weapons/blackbriar_blade": {
     "bucket": "weapons",
@@ -7184,7 +7265,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "weapons/brittlebark_bow": {
     "bucket": "weapons",
@@ -7381,7 +7464,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "weapons/featherweight_blade": {
     "bucket": "weapons",
@@ -7431,7 +7516,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/frozen_iceblade": {
     "bucket": "weapons",
@@ -7456,7 +7543,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/fungal_rapier": {
     "bucket": "weapons",
@@ -7507,7 +7596,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Jewelry"
+    ]
   },
   "weapons/granite_axe": {
     "bucket": "weapons",
@@ -7577,7 +7668,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Food"
+    ]
   },
   "weapons/grindstone_club": {
     "bucket": "weapons",
@@ -7631,7 +7724,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/ironstone_bow": {
     "bucket": "weapons",
@@ -7715,7 +7810,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/leather_whip": {
     "bucket": "weapons",
@@ -7862,7 +7959,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/moonlight_cleaver": {
     "bucket": "weapons",
@@ -7938,7 +8037,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/razorthorn_spear": {
     "bucket": "weapons",
@@ -7984,7 +8085,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Ring"
+    ]
   },
   "weapons/riverflow_rapier": {
     "bucket": "weapons",
@@ -7997,7 +8100,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/rocksalt_sword": {
     "bucket": "weapons",
@@ -8050,7 +8155,9 @@ window.HEIC_DETAILS = {
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Jewelry"
+    ]
   },
   "weapons/rusty_sword": {
     "bucket": "weapons",

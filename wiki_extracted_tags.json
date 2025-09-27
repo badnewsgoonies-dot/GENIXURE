@@ -1,0 +1,437 @@
+{
+  "Boom Stick": [
+    "Bomb"
+  ],
+  "Explosive Sword": [
+    "Bomb"
+  ],
+  "Blastcap Armor": [
+    "Bomb"
+  ],
+  "Cherry Bomb": [
+    "Bomb",
+    "Food"
+  ],
+  "Explosive Arrow": [
+    "Bomb"
+  ],
+  "Explosive Surprise": [
+    "Bomb"
+  ],
+  "Firecracker Belt": [
+    "Bomb"
+  ],
+  "Iron Shrapnel": [
+    "Bomb"
+  ],
+  "Kindling Bomb": [
+    "Bomb"
+  ],
+  "Lifeblood Burst": [
+    "Bomb"
+  ],
+  "Time Bomb": [
+    "Bomb"
+  ],
+  "Bomb Bag": [
+    "Bomb"
+  ],
+  "Double Explosion": [
+    "Bomb"
+  ],
+  "Explosive Powder": [
+    "Bomb"
+  ],
+  "Powder Keg": [
+    "Bomb"
+  ],
+  "Melon Bomb": [
+    "Bomb",
+    "Water"
+  ],
+  "Cherry Blade": [
+    "Bomb"
+  ],
+  "Sugar Bomb": [
+    "Bomb"
+  ],
+  "Toxic Cherry": [
+    "Bomb"
+  ],
+  "Explosive Roast": [
+    "Bomb"
+  ],
+  "Explosive Fish": [
+    "Bomb"
+  ],
+  "Combustible Lemon": [
+    "Bomb"
+  ],
+  "Trail Mix": [
+    "Bomb"
+  ],
+  "Granite Cherry": [
+    "Bomb",
+    "Stone"
+  ],
+  "Cherry Cocktail": [
+    "Bomb"
+  ],
+  "Grilling Skewer": [
+    "Food"
+  ],
+  "Redwood Roast": [
+    "Food"
+  ],
+  "Spiny Chestnut": [
+    "Food"
+  ],
+  "Vampiric Wine": [
+    "Food"
+  ],
+  "Stone Steak": [
+    "Food",
+    "Stone"
+  ],
+  "Clearspring Watermelon": [
+    "Food",
+    "Water"
+  ],
+  "Sour Lemon": [
+    "Food"
+  ],
+  "Silverscale Fish": [
+    "Food"
+  ],
+  "Poisonous Mushroom": [
+    "Food"
+  ],
+  "Honeycomb": [
+    "Food"
+  ],
+  "Bejeweled Blade": [
+    "Jewelry"
+  ],
+  "Gemstone Scepter": [
+    "Jewelry"
+  ],
+  "Royal Scepter": [
+    "Jewelry"
+  ],
+  "Citrine Earring": [
+    "Jewelry"
+  ],
+  "Emerald Earring": [
+    "Jewelry"
+  ],
+  "Ruby Earring": [
+    "Jewelry"
+  ],
+  "Sapphire Earring": [
+    "Jewelry"
+  ],
+  "Emerald Crown": [
+    "Jewelry"
+  ],
+  "Ruby Crown": [
+    "Jewelry"
+  ],
+  "Sapphire Crown": [
+    "Jewelry"
+  ],
+  "Emerald Ring": [
+    "Jewelry",
+    "Ring"
+  ],
+  "Ruby Ring": [
+    "Jewelry",
+    "Ring"
+  ],
+  "Sapphire Ring": [
+    "Jewelry",
+    "Ring"
+  ],
+  "Citrine Ring": [
+    "Jewelry",
+    "Ring"
+  ],
+  "Gold Ring": [
+    "Jewelry",
+    "Ring"
+  ],
+  "Citrine Gemstone": [
+    "Jewelry"
+  ],
+  "Emerald Gemstone": [
+    "Jewelry"
+  ],
+  "Ruby Gemstone": [
+    "Jewelry"
+  ],
+  "Sapphire Gemstone": [
+    "Jewelry"
+  ],
+  "Ring Blades": [
+    "Ring"
+  ],
+  "Bloodstone Ring": [
+    "Ring"
+  ],
+  "Rusty Ring": [
+    "Ring"
+  ],
+  "Thorn Ring": [
+    "Ring"
+  ],
+  "Ironstone Greatsword": [
+    "Stone"
+  ],
+  "Ironstone Bow": [
+    "Stone"
+  ],
+  "Ironstone Spear": [
+    "Stone"
+  ],
+  "Granite Hammer": [
+    "Stone"
+  ],
+  "Granite Lance": [
+    "Stone"
+  ],
+  "Granite Axe": [
+    "Stone"
+  ],
+  "Stoneslab Sword": [
+    "Stone"
+  ],
+  "Marble Sword": [
+    "Stone"
+  ],
+  "Mountain Cleaver": [
+    "Stone"
+  ],
+  "Grindstone Club": [
+    "Stone"
+  ],
+  "Ironstone Bracelet": [
+    "Stone"
+  ],
+  "Ironstone Sandals": [
+    "Stone"
+  ],
+  "Ironstone Armor": [
+    "Stone"
+  ],
+  "Granite Crown": [
+    "Stone"
+  ],
+  "Granite Egg": [
+    "Stone"
+  ],
+  "Granite Fungi": [
+    "Stone"
+  ],
+  "Ore Heart": [
+    "Stone"
+  ],
+  "Petrified Statue": [
+    "Stone"
+  ],
+  "Stoneborn Turtle": [
+    "Stone"
+  ],
+  "Granite Thorns": [
+    "Stone"
+  ],
+  "Marble Mirror": [
+    "Stone"
+  ],
+  "Cracked Bouldershield": [
+    "Stone"
+  ],
+  "Cracked Whetstone": [
+    "Stone"
+  ],
+  "Granite Tome": [
+    "Stone",
+    "Tome"
+  ],
+  "Petrifying Flask": [
+    "Stone"
+  ],
+  "Petrifying Elixir": [
+    "Stone"
+  ],
+  "Bloody Steak": [
+    "Stone"
+  ],
+  "Limestone Fruit": [
+    "Stone"
+  ],
+  "Marble Mushroom": [
+    "Stone"
+  ],
+  "Marbled Stonefish": [
+    "Stone"
+  ],
+  "Mineral Water": [
+    "Stone",
+    "Water"
+  ],
+  "Petrified Chestnut": [
+    "Stone"
+  ],
+  "Rock Candy": [
+    "Stone"
+  ],
+  "Rock Roast": [
+    "Stone"
+  ],
+  "Rocksalt Sword": [
+    "Stone"
+  ],
+  "Royal Horn": [
+    "Symphony"
+  ],
+  "Serpent Lyre": [
+    "Symphony"
+  ],
+  "Riverflow Violin": [
+    "Symphony",
+    "Water"
+  ],
+  "Arcane Bell": [
+    "Symphony"
+  ],
+  "Liferoot Lute": [
+    "Symphony"
+  ],
+  "Stormcloud Drum": [
+    "Symphony"
+  ],
+  "Sheet Music": [
+    "Symphony",
+    "Tome"
+  ],
+  "Grand Crescendo": [
+    "Symphony"
+  ],
+  "Holy Tome": [
+    "Tome"
+  ],
+  "Liferoot Tome": [
+    "Tome"
+  ],
+  "Silverscale Tome": [
+    "Tome"
+  ],
+  "Stormcloud Tome": [
+    "Tome"
+  ],
+  "Caustic Tome": [
+    "Tome"
+  ],
+  "Cookbook": [
+    "Tome"
+  ],
+  "Flameburst Tome": [
+    "Tome"
+  ],
+  "Purelake Tome": [
+    "Tome",
+    "Water"
+  ],
+  "Sanguine Tome": [
+    "Tome"
+  ],
+  "Grand Tome": [
+    "Tome"
+  ],
+  "Tome of the Hero": [
+    "Tome"
+  ],
+  "Frozen Iceblade": [
+    "Water"
+  ],
+  "Melting Iceblade": [
+    "Water"
+  ],
+  "Frostbite Dagger": [
+    "Water"
+  ],
+  "Icicle Spear": [
+    "Water"
+  ],
+  "Purelake Staff": [
+    "Water"
+  ],
+  "Riverflow Rapier": [
+    "Water"
+  ],
+  "Lakebed Sword": [
+    "Water"
+  ],
+  "Iceblock Shield": [
+    "Water"
+  ],
+  "Frostbite Gauntlet": [
+    "Water"
+  ],
+  "Frostbite Trap": [
+    "Water"
+  ],
+  "Ice Spikes": [
+    "Water"
+  ],
+  "Ice Tomb": [
+    "Water"
+  ],
+  "Frostbite Armor": [
+    "Water"
+  ],
+  "Frostbite Greaves": [
+    "Water"
+  ],
+  "Clearspring Feather": [
+    "Water"
+  ],
+  "Clearspring Opal": [
+    "Water"
+  ],
+  "Clearspring Rose": [
+    "Water"
+  ],
+  "Clearspring Cloak": [
+    "Water"
+  ],
+  "Clearspring Duck": [
+    "Water"
+  ],
+  "Purelake Helmet": [
+    "Water"
+  ],
+  "Purelake Armor": [
+    "Water"
+  ],
+  "Purelake Potion": [
+    "Water"
+  ],
+  "Purelake Elixir": [
+    "Water"
+  ],
+  "Purelake Chalice": [
+    "Water"
+  ],
+  "Riverflow Talisman": [
+    "Water"
+  ],
+  "Melonvine Whip": [
+    "Water"
+  ],
+  "Boiled Ham": [
+    "Water"
+  ],
+  "Melon Wine": [
+    "Water"
+  ]
+}

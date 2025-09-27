@@ -1,0 +1,4226 @@
+{
+  "Champion's Blade": {
+    "name": "Champion's Blade",
+    "stats": {
+      "attack": 6,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Forge Hammer": {
+    "name": "Forge Hammer",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Give the enemy 2 armor",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Fungal Rapier": {
+    "name": "Fungal Rapier",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 1 poison",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Gale Staff": {
+    "name": "Gale Staff",
+    "stats": {
+      "attack": 2,
+      "speed": 6,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Lose 1 speed",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Grilling Skewer": {
+    "name": "Grilling Skewer",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 1 additional strike",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Ironstone Spear": {
+    "name": "Ironstone Spear",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "While you have armor, temporarily gain 2 attack",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Knight's Blade": {
+    "name": "Knight's Blade",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Upgrades after you defeat the next boss",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Liferoot Staff": {
+    "name": "Liferoot Staff",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Gain 3 regeneration",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Marble Sword": {
+    "name": "Marble Sword",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "Exposed: Gain 3 attack",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Pacifist Staff": {
+    "name": "Pacifist Staff",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Gain 1 armor and restore 1 health",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Silverscale Dagger": {
+    "name": "Silverscale Dagger",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Give the enemy 1 riptide",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Slime Sword": {
+    "name": "Slime Sword",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Give yourself and the enemy 3 acid",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Squire's Blade": {
+    "name": "Squire's Blade",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Upgrades after you defeat the next boss",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Stormcloud Spear": {
+    "name": "Stormcloud Spear",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Every 5 strikes, stun the enemy for 2 turns",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Arcane Wand": {
+    "name": "Arcane Wand",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Can't attack. Turn Start: Deal 2 damage. Increase the damage by 1 for each tome equipped",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Basilisk Fang": {
+    "name": "Basilisk Fang",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Decrease your poison by 2 and give it to the enemy",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Bubblegloop Staff": {
+    "name": "Bubblegloop Staff",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Can't strike. Turn Start: Spend 1 speed to give the enemy 2 acid and 2 poison",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Granite Axe": {
+    "name": "Granite Axe",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Lose 2 health and gain 4 armor",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Liferoot Hammer": {
+    "name": "Liferoot Hammer",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: If your health is full, spend your regeneration to gain 3 times that amount of armor",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Lightning Rod": {
+    "name": "Lightning Rod",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you skip your strike when stunned, gain 2 attack",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Lightning Whip": {
+    "name": "Lightning Whip",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If the enemy is stunned, gain 1 additional strike",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Ring Blades": {
+    "name": "Ring Blades",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Steal 1 attack from the enemy",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Rusty Sword": {
+    "name": "Rusty Sword",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "First Turn: Give acid equal to your attack on hit",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Sanguine Scepter": {
+    "name": "Sanguine Scepter",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Healing is doubled",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Wave Breaker": {
+    "name": "Wave Breaker",
+    "stats": {
+      "attack": -2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Can't strike. Battle Start: Give the enemy 2 riptide for each negative base attack you have",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Bloodlord's Axe": {
+    "name": "Bloodlord's Axe",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: The enemy loses 5 health and you restore 5 health",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Chainmail Sword": {
+    "name": "Chainmail Sword",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "Exposed: Gain armor equal to base armor",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "King's Blade": {
+    "name": "King's Blade",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed and Wounded items triggers at battle start instead",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Leather Whip": {
+    "name": "Leather Whip",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 5,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 5 max health",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Melting Iceblade": {
+    "name": "Melting Iceblade",
+    "stats": {
+      "attack": 8,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Lose 1 attack",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Moonlight Cleaver": {
+    "name": "Moonlight Cleaver",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "While you are below 50% health, you cannot gain status effects",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Purelake Staff": {
+    "name": "Purelake Staff",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 2 purity. On Hit: Remove 1 purity",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Riverflow Rapier": {
+    "name": "Riverflow Rapier",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The first time you gain a new status effect, gain 1 additional strike as well",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Serpent Dagger": {
+    "name": "Serpent Dagger",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Every 3 strikes, give the enemy 4 poison",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Silverscale Trident": {
+    "name": "Silverscale Trident",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Give the enemy 1 riptide",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Thunderbound Sabre": {
+    "name": "Thunderbound Sabre",
+    "stats": {
+      "attack": 6,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle start: Stun yourself for 2 turns",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Ancient Warhammer": {
+    "name": "Ancient Warhammer",
+    "stats": {
+      "attack": 5,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Remove all of the enemy's armor",
+    "rarity": "Mythic",
+    "region": "Swampland"
+  },
+  "Dashmaster's Dagger": {
+    "name": "Dashmaster's Dagger",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain additional strikes equal to speed",
+    "rarity": "Mythic",
+    "region": "Swampland"
+  },
+  "Lakebed Sword": {
+    "name": "Lakebed Sword",
+    "stats": {
+      "attack": 5,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gain double health and attack from purity",
+    "rarity": "Mythic",
+    "region": "Swampland"
+  },
+  "Cleaver of Wrath": {
+    "name": "Cleaver of Wrath",
+    "stats": {
+      "attack": 10,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Your max health is always 1",
+    "rarity": "Cursed",
+    "region": "Swampland"
+  },
+  "Scepter of Greed": {
+    "name": "Scepter of Greed",
+    "stats": {
+      "attack": 6,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "You cannot gain gold",
+    "rarity": "Cursed",
+    "region": "Swampland"
+  },
+  "Sword of Pride": {
+    "name": "Sword of Pride",
+    "stats": {
+      "attack": 3,
+      "speed": 3,
+      "health": 0,
+      "armor": 3
+    },
+    "effect": "Battle Start: If the enemy has more attack, armor or speed than you, take 3 damage",
+    "rarity": "Cursed",
+    "region": "Swampland"
+  },
+  "Arcane Bell": {
+    "name": "Arcane Bell",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Decrease all countdowns by 1. Symphony",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Champion's Armor": {
+    "name": "Champion's Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 6
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Clearspring Feather": {
+    "name": "Clearspring Feather",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Decrease a random status effect by 1 and give it to the enemy — at Gold: transfer 2 , at Diamond: transfer 4",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Clearspring Watermelon": {
+    "name": "Clearspring Watermelon",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start, Exposed & Wounded: Decrease a random status effect by 1 — at Gold: decrease 2 , at Diamond: decrease 4",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Deviled Egg": {
+    "name": "Deviled Egg",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Hatches after you defeat the next boss (Into Sanguine Imp)",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Granite Egg": {
+    "name": "Granite Egg",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Hatches after you defeat the next boss (Into Stoneborn Turtle)",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Holy Shield": {
+    "name": "Holy Shield",
+    "stats": {
+      "attack": -1,
+      "speed": -1,
+      "health": 0,
+      "armor": 6
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Knight's Armor": {
+    "name": "Knight's Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 4
+    },
+    "effect": "Upgrades after you defeat the next boss",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Leather Belt": {
+    "name": "Leather Belt",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 3,
+      "armor": 0
+    },
+    "effect": "If you have 0 base armor, double this item's max health — at Gold: x 4 = 12, at Diamond: x 8 = 24",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Liferoot Gauntlet": {
+    "name": "Liferoot Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 3,
+      "armor": 0
+    },
+    "effect": "Battle start: Gain 1 regeneration — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Lightspeed Potion": {
+    "name": "Lightspeed Potion",
+    "stats": {
+      "attack": 0,
+      "speed": 1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Restore health equal to speed",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Muscle Potion": {
+    "name": "Muscle Potion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Every 3 strikes: Gain 1 attack — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Petrifying Flask": {
+    "name": "Petrifying Flask",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Gain 10 armor and stun yourself for 2 turns — at Gold: 20 4, at Diamond: 40 8",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Purelake Helmet": {
+    "name": "Purelake Helmet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "Battle Start: Gain 1 Purity — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Royal Horn": {
+    "name": "Royal Horn",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Gain 2 gold. Symphony",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Rusty Ring": {
+    "name": "Rusty Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Give the enemy 1 acid — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Serpent Lyre": {
+    "name": "Serpent Lyre",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Give the enemy 3 poison. Symphony",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Silverscale Fish": {
+    "name": "Silverscale Fish",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Give the enemy 1 riptide — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Slime Armor": {
+    "name": "Slime Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 5
+    },
+    "effect": "Battle Start: Gain 1 acid — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Sour Lemon": {
+    "name": "Sour Lemon",
+    "stats": {
+      "attack": 0,
+      "speed": 3,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 1 acid — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Squire's Armor": {
+    "name": "Squire's Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "Upgrades after you defeat the next boss",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Treebark Egg": {
+    "name": "Treebark Egg",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Hatches after you defeat the next boss (Into Liferoot Beast)",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Venomous Fang": {
+    "name": "Venomous Fang",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "First Turn: Give the enemy 2 poison on hit — at Gold: 4 , at Diamond: 8",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Weaver Shield": {
+    "name": "Weaver Shield",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If you have 0 base armor, gain 4 armor — at Gold: 8 , at Diamond: 16",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Wet Egg": {
+    "name": "Wet Egg",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Hatches after you defeat the next boss (Into Clearspring Duck)",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Arcane Gauntlet": {
+    "name": "Arcane Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Halve all countdowns",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Arcane Lens": {
+    "name": "Arcane Lens",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "If you have exactly 1 tome equipped, it triggers thrice",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Arcane Shield": {
+    "name": "Arcane Shield",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever a countdown effect triggers, gain 3 armor",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Basilisk Scale": {
+    "name": "Basilisk Scale",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 5 armor and 5 poison",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Chainmail Cloak": {
+    "name": "Chainmail Cloak",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "Turn Start: If you have armor, restore 2 health",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Clearspring Opal": {
+    "name": "Clearspring Opal",
+    "stats": {
+      "attack": 0,
+      "speed": 2,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If you have any status effects, spend 1 speed to decrease a random status effect by 1",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Clearspring Rose": {
+    "name": "Clearspring Rose",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you restore health, decrease a random status effect by 1. You can only equip 1 rose",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Corroded Bone": {
+    "name": "Corroded Bone",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Convert 50% of the enemy's health into armor",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Crimson Fang": {
+    "name": "Crimson Fang",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If your health is full, lose 5 health and gain 2 additional strikes",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Forge Gauntlet": {
+    "name": "Forge Gauntlet",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Give the enemy 5 armor",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Friendship Bracelet": {
+    "name": "Friendship Bracelet",
+    "stats": {
+      "attack": -1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: The enemy loses 1 attack",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Granite Fungi": {
+    "name": "Granite Fungi",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn End: Gain 2 armor and give the enemy 2 armor",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Hero's Crossguard": {
+    "name": "Hero's Crossguard",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "First Turn: Your On Hit effects trigger twice",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Impressive Physique": {
+    "name": "Impressive Physique",
+    "stats": {
+      "attack": 0,
+      "speed": 2,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Stun the enemy for 1 turn",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Leather Waterskin": {
+    "name": "Leather Waterskin",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Gain 2 purity for each equipped water item",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Lightning Bottle": {
+    "name": "Lightning Bottle",
+    "stats": {
+      "attack": 1,
+      "speed": 2,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Stun yourself for 1 turn",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Marshlight Lantern": {
+    "name": "Marshlight Lantern",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Lose 3 health and gain 8 armor",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Moonlight Crest": {
+    "name": "Moonlight Crest",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If you're below 50% health, gain 1 regeneration",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Muscle Growth": {
+    "name": "Muscle Growth",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "While you have regeneration, temporarily gain 3 attack",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Mushroom Buckler": {
+    "name": "Mushroom Buckler",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 3
+    },
+    "effect": "If you have poison, enemy strikes deal 1 less damage",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Nerve Poison": {
+    "name": "Nerve Poison",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The first time the enemy gains poison, stun them for 1 turn",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Plated Shield": {
+    "name": "Plated Shield",
+    "stats": {
+      "attack": 0,
+      "speed": -1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The first time you gain armor, double it",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Poisonous Mushroom": {
+    "name": "Poisonous Mushroom",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: Gain 1 poison",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Purelake Armor": {
+    "name": "Purelake Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Remove 1 purity to gain 5 armor",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Purelake Potion": {
+    "name": "Purelake Potion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle start: Remove all your armor and gain 3 purity",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Riverflow Talisman": {
+    "name": "Riverflow Talisman",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you gain a status effect, gain 1 additional stack",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Riverflow Violin": {
+    "name": "Riverflow Violin",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Gain 4 armor. Symphony",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Rusted Plate": {
+    "name": "Rusted Plate",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever the enemy loses armor to acid, gain that armor",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Saltcrusted Crown": {
+    "name": "Saltcrusted Crown",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 8,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 1 riptide",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Silver Anchor": {
+    "name": "Silver Anchor",
+    "stats": {
+      "attack": 0,
+      "speed": -1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you lose speed, give the enemy 1 riptide",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Silverscale Armor": {
+    "name": "Silverscale Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever riptide triggers, gain 2 armor",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Silverscale Greaves": {
+    "name": "Silverscale Greaves",
+    "stats": {
+      "attack": 0,
+      "speed": 1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If you have more speed than the enemy, give them 2 riptide",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Sinful Mirror": {
+    "name": "Sinful Mirror",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Remove all your purity",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Slime Booster": {
+    "name": "Slime Booster",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Convert 1 acid into 2 attack",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Slime Heart": {
+    "name": "Slime Heart",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Remove all your acid and restore 2 health for each acid removed",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Slime Potion": {
+    "name": "Slime Potion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Gain armor equal to lost health and gain 5 acid",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Soap Stone": {
+    "name": "Soap Stone",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "First turn: Spend 2 speed to temporarily gain 4 attack",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Spiral Shell": {
+    "name": "Spiral Shell",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If you're stunned, give the enemy 1 riptide",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Spiritual Balance": {
+    "name": "Spiritual Balance",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If your speed is equal to your attack, gain 3 attack",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Stillwater Pearl": {
+    "name": "Stillwater Pearl",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Riptide can trigger twice per turn",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Stormcloud Armor": {
+    "name": "Stormcloud Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 3
+    },
+    "effect": "Battle Start: If you have more speed than armor, stun the enemy for 2 turns",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Stormcloud Curse": {
+    "name": "Stormcloud Curse",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Stun the enemy and yourself for 2 turns",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Toxic Algae": {
+    "name": "Toxic Algae",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The first time riptide triggers, give the enemy 5 poison",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Toxic Rose": {
+    "name": "Toxic Rose",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you restore health, give the enemy 1 poison. You can only equip 1 rose",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Twisted Root": {
+    "name": "Twisted Root",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Gain 1 regeneration for each equipped wood item",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Vampiric Stasis": {
+    "name": "Vampiric Stasis",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you skip your strike, restore 3 health",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Viper Extract": {
+    "name": "Viper Extract",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The first time the enemy gains poison, give them 3 additional poison",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Acid Mutation": {
+    "name": "Acid Mutation",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 1 acid. While you have acid, temporarily gain attack equal to acid",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Acidic Witherleaf": {
+    "name": "Acidic Witherleaf",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Give the enemy acid equal to your speed",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Bloodstone Ring": {
+    "name": "Bloodstone Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 5 max health and restore 5 health",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Clearspring Cloak": {
+    "name": "Clearspring Cloak",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Remove all your poison and gain 2 armor equal to stacks removed",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Clearspring Duck": {
+    "name": "Clearspring Duck",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: Gain 1 armor and decrease a random status effect by 1",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Explosive Arrow": {
+    "name": "Explosive Arrow",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If the enemy doesn't have any armor, deal 3 damage",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Life Zap": {
+    "name": "Life Zap",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Lose all your health except 1 and stun the enemy for 2 turns",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Liferoot Beast": {
+    "name": "Liferoot Beast",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If you don't have any regeneration, gain 3 regeneration",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Liferoot Lute": {
+    "name": "Liferoot Lute",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Gain 3 regeneration. Symphony",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Marble Mirror": {
+    "name": "Marble Mirror",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain armor equal to your opponent’s armor",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Mist Armor": {
+    "name": "Mist Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 2,
+      "health": 10,
+      "armor": 0
+    },
+    "effect": "Enemy strikes ignore armor",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Noxious Gas": {
+    "name": "Noxious Gas",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 6
+    },
+    "effect": "Turn Start: Both you and the enemy gain 1 poison",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Petrified Statue": {
+    "name": "Petrified Statue",
+    "stats": {
+      "attack": 0,
+      "speed": -2,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Give the enemy 1 stun for each equipped stone item",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Purelake Chalice": {
+    "name": "Purelake Chalice",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gain 1 purity every other turn",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Sanguine Imp": {
+    "name": "Sanguine Imp",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: Deal 1 damage and restore 1 health",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Sanguine Morphosis": {
+    "name": "Sanguine Morphosis",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Every 4th turn: Stun yourself for 1 turn and gain 3 regeneration",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Serpent Mask": {
+    "name": "Serpent Mask",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Give the enemy poison equal to your attack",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Silverscale Gauntlet": {
+    "name": "Silverscale Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Give the enemy 1 riptide every other turn",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Stoneborn Turtle": {
+    "name": "Stoneborn Turtle",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn start: Restore 1 health. If your health is full, gain 2 armor instead",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Stormcloud Drum": {
+    "name": "Stormcloud Drum",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Stun the enemy for 1 turn. Symphony",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Sunlight Crest": {
+    "name": "Sunlight Crest",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If you're above 50% health, lose 3 health and gain 1 attack",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Thunder Cloud": {
+    "name": "Thunder Cloud",
+    "stats": {
+      "attack": -1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Stun the enemy for 3 turns",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Weaver Armor": {
+    "name": "Weaver Armor",
+    "stats": {
+      "attack": -2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If you have 0 base armor, gain armor equal to current health",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Blood Rune": {
+    "name": "Blood Rune",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Re-trigger the last triggered wounded item",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Echo Rune": {
+    "name": "Echo Rune",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Re-trigger a random battle start item",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Iron Rune": {
+    "name": "Iron Rune",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "If you have exactly 1 item with exposed, it triggers thrice",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Arcane Cloak": {
+    "name": "Arcane Cloak",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Reset countdowns after they trigger",
+    "rarity": "Mythic",
+    "region": "Swampland"
+  },
+  "Grand Crescendo": {
+    "name": "Grand Crescendo",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Symphony triggers all your other instruments",
+    "rarity": "Mythic",
+    "region": "Swampland"
+  },
+  "Prime Form": {
+    "name": "Prime Form",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Double attack while your health is full",
+    "rarity": "Mythic",
+    "region": "Swampland"
+  },
+  "Primordial Soup": {
+    "name": "Primordial Soup",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Acid removes health as well",
+    "rarity": "Mythic",
+    "region": "Swampland"
+  },
+  "Serpent Scalemail": {
+    "name": "Serpent Scalemail",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 4
+    },
+    "effect": "Whenever you lose armor, give the enemy 2 poison",
+    "rarity": "Mythic",
+    "region": "Swampland"
+  },
+  "Stormtide Anchor": {
+    "name": "Stormtide Anchor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever riptide triggers, stun the enemy for 1 turn",
+    "rarity": "Mythic",
+    "region": "Swampland"
+  },
+  "Belt of Gluttony": {
+    "name": "Belt of Gluttony",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 15,
+      "armor": 0
+    },
+    "effect": "Your health is hidden",
+    "rarity": "Cursed",
+    "region": "Swampland"
+  },
+  "Boots of Sloth": {
+    "name": "Boots of Sloth",
+    "stats": {
+      "attack": 0,
+      "speed": 10,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "You lose more time per step",
+    "rarity": "Cursed",
+    "region": "Swampland"
+  },
+  "Chest of Lust": {
+    "name": "Chest of Lust",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 8
+    },
+    "effect": "Monsters always hunt you",
+    "rarity": "Cursed",
+    "region": "Swampland"
+  },
+  "Helmet of Envy": {
+    "name": "Helmet of Envy",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Double the enemy's attack",
+    "rarity": "Cursed",
+    "region": "Swampland"
+  },
+  "Granite Tome": {
+    "name": "Granite Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 4: Gain 6 armor — at Gold: 12 , at Diamond: 24",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Holy Tome": {
+    "name": "Holy Tome",
+    "stats": {
+      "attack": -1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 6: Gain 3 attack — at Gold: 6 , at Diamond: 12",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Liferoot Tome": {
+    "name": "Liferoot Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 4: Gain 3 regeneration — at Gold: 6 , at Diamond: 12",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Silverscale Tome": {
+    "name": "Silverscale Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 3: Give the enemy 2 riptide — at Gold: 4 , at Diamond: 8",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Stormcloud Tome": {
+    "name": "Stormcloud Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 4: Stun the enemy for 1 turn — at Gold: 2 turns, at Diamond: 4 turns",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Caustic Tome": {
+    "name": "Caustic Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 3: Give the enemy 3 acid. If they don't have any armor, give them 5 poison instead",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Cookbook": {
+    "name": "Cookbook",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Replace this item with a random cauldron item after you defeat the next boss",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Flameburst Tome": {
+    "name": "Flameburst Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 4: Deal 4 damage and reset countdown",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Purelake Tome": {
+    "name": "Purelake Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 3: If you have purity, remove 1 purity. Otherwise, gain 1 purity. Reset countdown",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Sanguine Tome": {
+    "name": "Sanguine Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 6: Restore health to full",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Grand Tome": {
+    "name": "Grand Tome",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 10: Retrigger all your other tomes",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Tome of the Hero": {
+    "name": "Tome of the Hero",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 8: Gain 4 attack, 4 armor and 4 speed",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Sheet Music": {
+    "name": "Sheet Music",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Countdown 6: Trigger Symphony 3 times",
+    "rarity": "Heroic",
+    "region": "Swampland"
+  },
+  "Lightspeed Elixir": {
+    "name": "Lightspeed Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain max health equal to your speed and then restore health equal to your speed",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Muscle Elixir": {
+    "name": "Muscle Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Every 3 strikes: Gain 1 attack, 1 armor and 1 speed — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Petrifying Elixir": {
+    "name": "Petrifying Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Gain 10 armor and stun yourself and the enemy for 2 turns — at Gold: 20 4, at Diamond: 40 8",
+    "rarity": "Common",
+    "region": "Swampland"
+  },
+  "Lightning Elixir": {
+    "name": "Lightning Elixir",
+    "stats": {
+      "attack": 3,
+      "speed": 4,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Stun yourself for 2 turns",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Nerve Elixir": {
+    "name": "Nerve Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The first time the enemy gains poison, stun them for 3 turns",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Purelake Elixir": {
+    "name": "Purelake Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle start: Lose 5 armor and gain 5 purity",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Slime Elixir": {
+    "name": "Slime Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Gain armor equal to max health and gain 5 acid",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Viper Elixir": {
+    "name": "Viper Elixir",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The first time the enemy gains poison, give them 9 additional poison",
+    "rarity": "Rare",
+    "region": "Swampland"
+  },
+  "Melonvine Whip": {
+    "name": "Melonvine Whip",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "3",
+    "rarity": "Grilling Skewer",
+    "region": "On Hit: Decrease 1 random status effect"
+  },
+  "Silverscale Swordfish": {
+    "name": "Silverscale Swordfish",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "2",
+    "rarity": "Grilling Skewer",
+    "region": "Battle Start: Gain 1 additional strike. First Turn: Give the enemy 1 riptide on hit"
+  },
+  "Lemontree Branch": {
+    "name": "Lemontree Branch",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "2 4",
+    "rarity": "Grilling Skewer",
+    "region": "On Hit: Spend 2 speed and gain 1 additional strike on your next turn"
+  },
+  "Deathcap Bow": {
+    "name": "Deathcap Bow",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "3",
+    "rarity": "Grilling Skewer",
+    "region": "Battle Start: Gain 3 poison. Turn Start: If you have poison. Gain 1 additional strike"
+  },
+  "Bee Stinger": {
+    "name": "Bee Stinger",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "3",
+    "rarity": "Grilling Skewer",
+    "region": "First Turn: Give the enemy 4 poison, 3 Acid, and 2 stun on hit"
+  },
+  "Underwater Watermelon": {
+    "name": "Underwater Watermelon",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Silverscale Fish",
+    "region": "Battle Start, Exposed & Wounded: Decrease 1 random status effect and give the enemy 1 riptide"
+  },
+  "Melon Lemonade": {
+    "name": "Melon Lemonade",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "3",
+    "rarity": "Clearspring Watermelon",
+    "region": "Battle Start, Exposed & Wounded: Remove all Acid"
+  },
+  "Bitter Melon": {
+    "name": "Bitter Melon",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "3",
+    "rarity": "Clearspring Watermelon",
+    "region": "Turn Start: Convert 1 stack of another status effect to 1 poison"
+  },
+  "Honeydew Melon": {
+    "name": "Honeydew Melon",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Clearspring Watermelon",
+    "region": "Battle Start: Give all your status effects to the enemy"
+  },
+  "Lemon Shark": {
+    "name": "Lemon Shark",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "3",
+    "rarity": "Silverscale Fish",
+    "region": "Battle Start: Gain 1 Acid Exposed: Give the enemy riptide equal to your acid"
+  },
+  "Poisonous Pufferfish": {
+    "name": "Poisonous Pufferfish",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "2",
+    "rarity": "Silverscale Fish",
+    "region": "Battle Start: Gain 3 poison and give the enemy riptide equal to your poison"
+  },
+  "Honey Caviar": {
+    "name": "Honey Caviar",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Silverscale Fish",
+    "region": "Exposed: Give the enemy 10 riptide"
+  },
+  "Poisonous Lemon": {
+    "name": "Poisonous Lemon",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "3 4",
+    "rarity": "Poisonous Mushroom",
+    "region": "Battle Start: Gain 1 acid and 5 poison"
+  },
+  "Lemon Syrup": {
+    "name": "Lemon Syrup",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "3",
+    "rarity": "Sour Lemon",
+    "region": "Battle Start: Double your speed"
+  },
+  "Honey-glazed Shroom": {
+    "name": "Honey-glazed Shroom",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "4",
+    "rarity": "Honeycomb",
+    "region": "Turn Start: Give the enemy 2 poison"
+  },
+  "Ironstone Greatsword": {
+    "name": "Ironstone Greatsword",
+    "stats": {
+      "attack": 4,
+      "speed": -2,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Razorthorn Spear": {
+    "name": "Razorthorn Spear",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Gain 2 thorns",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Redwood Rod": {
+    "name": "Redwood Rod",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 4,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Spearshield Lance": {
+    "name": "Spearshield Lance",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 6
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Woodcutter's Axe": {
+    "name": "Woodcutter's Axe",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gain 2 attack for each empty equipment slot",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Boom Stick": {
+    "name": "Boom Stick",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Deal 1 damage",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Heart Drinker": {
+    "name": "Heart Drinker",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Restore 1 health",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Sword of the Hero": {
+    "name": "Sword of the Hero",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Hidden Dagger": {
+    "name": "Hidden Dagger",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gets stronger for every new hidden dagger you find",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Brittlebark Bow": {
+    "name": "Brittlebark Bow",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "After 3 strikes: Lose 2 attack",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Elderwood Staff": {
+    "name": "Elderwood Staff",
+    "stats": {
+      "attack": 1,
+      "speed": 1,
+      "health": 0,
+      "armor": 1
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Featherweight Blade": {
+    "name": "Featherweight Blade",
+    "stats": {
+      "attack": 2,
+      "speed": 2,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Blackbriar Blade": {
+    "name": "Blackbriar Blade",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you would gain thorns, gain 1 attack instead",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Bejeweled Blade": {
+    "name": "Bejeweled Blade",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gain 2 attack for each equipped jewelry item",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Ironstone Bow": {
+    "name": "Ironstone Bow",
+    "stats": {
+      "attack": 6,
+      "speed": 1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Lose 1 speed. If your speed is 0 or less, only strike every other turn",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Lifeblood Spear": {
+    "name": "Lifeblood Spear",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you restore 3 or more health, gain 1 attack",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Explosive Sword": {
+    "name": "Explosive Sword",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever a bomb deals 5 or more non-weapon damage, gain 1 additional strike",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Icicle Spear": {
+    "name": "Icicle Spear",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Give the enemy 2 freeze for each equipped water item",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Bloodmoon Dagger": {
+    "name": "Bloodmoon Dagger",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Gain 5 attack and take 2 damage",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Bloodmoon Sickle": {
+    "name": "Bloodmoon Sickle",
+    "stats": {
+      "attack": 5,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Take 1 damage",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Frostbite Dagger": {
+    "name": "Frostbite Dagger",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "First turn: Give the enemy freeze equal to your attack on hit",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Swiftstrike Bow": {
+    "name": "Swiftstrike Bow",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you gain an additional strike, gain twice as many",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Swiftstrike Rapier": {
+    "name": "Swiftstrike Rapier",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If you have more speed than the enemy, gain 3 additional strikes",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Battle Axe": {
+    "name": "Battle Axe",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "While the enemy has armor double your attack",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Gemstone Scepter": {
+    "name": "Gemstone Scepter",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gains On Hit effects from emerald, ruby, sapphire, and citrine items",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Granite Hammer": {
+    "name": "Granite Hammer",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Convert 1 armor to 1 attack",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Granite Lance": {
+    "name": "Granite Lance",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 1
+    },
+    "effect": "Your base armor is doubled",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Stoneslab Sword": {
+    "name": "Stoneslab Sword",
+    "stats": {
+      "attack": 2,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Gain 2 armor",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Frozen Iceblade": {
+    "name": "Frozen Iceblade",
+    "stats": {
+      "attack": 6,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle start: Gain 3 freeze",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Royal Scepter": {
+    "name": "Royal Scepter",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Attack is always equal to gold. You cannot have more than 10 gold",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Evergrowth Spear": {
+    "name": "Evergrowth Spear",
+    "stats": {
+      "attack": 3,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Every other turn, gain 1 attack and restore 1 health",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Grindstone Club": {
+    "name": "Grindstone Club",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The next weapon you equip gains 2 attack",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Twin Blade": {
+    "name": "Twin Blade",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Strike twice",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Lifesteal Scythe": {
+    "name": "Lifesteal Scythe",
+    "stats": {
+      "attack": 1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: If the enemy doesn't have any armor, restore health equal to your attack",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Royal Crownblade": {
+    "name": "Royal Crownblade",
+    "stats": {
+      "attack": 4,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Gain 1 gold",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Brittlebark Club": {
+    "name": "Brittlebark Club",
+    "stats": {
+      "attack": 7,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed & Wounded: Lose 2 attack",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Bearclaw Blade": {
+    "name": "Bearclaw Blade",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 5,
+      "armor": 0
+    },
+    "effect": "Attack is always equal to missing health",
+    "rarity": "Mythic",
+    "region": "Woodland"
+  },
+  "Mountain Cleaver": {
+    "name": "Mountain Cleaver",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "Attack always is equal to base armor",
+    "rarity": "Mythic",
+    "region": "Woodland"
+  },
+  "Tempest Blade": {
+    "name": "Tempest Blade",
+    "stats": {
+      "attack": 0,
+      "speed": 2,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Attack always is equal to speed",
+    "rarity": "Mythic",
+    "region": "Woodland"
+  },
+  "Boots of the Hero": {
+    "name": "Boots of the Hero",
+    "stats": {
+      "attack": 0,
+      "speed": 2,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Cracked Whetstone": {
+    "name": "Cracked Whetstone",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "First Turn: Temporarily gain 2 attack — at Gold: 4 , at Diamond: 8",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Double-plated Armor": {
+    "name": "Double-plated Armor",
+    "stats": {
+      "attack": 0,
+      "speed": -2,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "Exposed: Gain 3 armor — at Gold: 6 , at Diamond: 12",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Frostbite Gauntlet": {
+    "name": "Frostbite Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Give the enemy 1 freeze — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Frostbite Trap": {
+    "name": "Frostbite Trap",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Give the enemy 3 Freeze — at Gold: 6 , at Diamond: 12",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Horned Helmet": {
+    "name": "Horned Helmet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "Battle Start: Gain 1 stack of thorns — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Iceblock Shield": {
+    "name": "Iceblock Shield",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 8
+    },
+    "effect": "Battle Start: Gain 2 freeze",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Ironstone Bracelet": {
+    "name": "Ironstone Bracelet",
+    "stats": {
+      "attack": 0,
+      "speed": -1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Enemy strikes deal 1 damage less while you have armor but 1 damage more otherwise",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Leather Glove": {
+    "name": "Leather Glove",
+    "stats": {
+      "attack": 0,
+      "speed": 1,
+      "health": 3,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Leather Vest": {
+    "name": "Leather Vest",
+    "stats": {
+      "attack": 0,
+      "speed": 1,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Lifeblood Helmet": {
+    "name": "Lifeblood Helmet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "First Turn: Restore health equal to damage dealt by strikes",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Loose Change": {
+    "name": "Loose Change",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gain 3 gold at the start of every day — at Gold: 6 , at Diamond: 12",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Redwood Cloak": {
+    "name": "Redwood Cloak",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 2,
+      "armor": 0
+    },
+    "effect": "Battle Start: If your health is not full, restore 2 health — at Gold: 4 , at Diamond: 8",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Redwood Helmet": {
+    "name": "Redwood Helmet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 1,
+      "armor": 1
+    },
+    "effect": "Exposed: Restore 3 health — at Gold: 6 , at Diamond: 12",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Saffron Feather": {
+    "name": "Saffron Feather",
+    "stats": {
+      "attack": 0,
+      "speed": 1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: Convert 1 speed to restore 2 health — at Gold: -2 for 4, at Diamond: -4 for 8",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Shield of the Hero": {
+    "name": "Shield of the Hero",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 3
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Swiftstrike Belt": {
+    "name": "Swiftstrike Belt",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Take 3 damage and gain 1 additional strike — at Gold: take 6 for 2, at Diamond: take 12 for 4",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Blackbriar Gauntlet": {
+    "name": "Blackbriar Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gain 2 thorns for each armor removed by the enemy's first strike",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Blackbriar Rose": {
+    "name": "Blackbriar Rose",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you restore health, gain 2 thorns. You can only equip 1 rose",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Blacksmith Bond": {
+    "name": "Blacksmith Bond",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed can trigger 1 additional time",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Blastcap Armor": {
+    "name": "Blastcap Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 8
+    },
+    "effect": "Exposed: Take 5 damage",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Blood Chain": {
+    "name": "Blood Chain",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The first time the enemy becomes wounded, trigger all of your wounded items",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Bomb Bag": {
+    "name": "Bomb Bag",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start, Exposed & Wounded: Spend 3 speed to retrigger a random bomb",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Bramble Belt": {
+    "name": "Bramble Belt",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 1 thorns and give the enemy 1 additional strike",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Bramble Buckler": {
+    "name": "Bramble Buckler",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "Turn Start: Convert 1 armor to 2 thorns",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Bramble Talisman": {
+    "name": "Bramble Talisman",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you gain thorns, gain 1 armor",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Bramble Vest": {
+    "name": "Bramble Vest",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 3,
+      "armor": 0
+    },
+    "effect": "The first time you lose thorns, restore health equal to thorns lost",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Brittlebark Buckler": {
+    "name": "Brittlebark Buckler",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 10
+    },
+    "effect": "Lose all your armor after your enemy's first strike",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Cracked Bouldershield": {
+    "name": "Cracked Bouldershield",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Gain 7 armor",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Double Explosion": {
+    "name": "Double Explosion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The second time you deal non-weapon damage each turn, deal 3 damage",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Double-plated Vest": {
+    "name": "Double-plated Vest",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Every third time you take damage each turn, gain 2 armor",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Energy Drain": {
+    "name": "Energy Drain",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Before any other item triggers, if you have less speed than the enemy, steal 5 speed from the enemy",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Explosive Powder": {
+    "name": "Explosive Powder",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "The damage of all bomb items increases by 1",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Explosive Surprise": {
+    "name": "Explosive Surprise",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Deal 6 damage",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Featherweight Armor": {
+    "name": "Featherweight Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you gain speed, also gain an equal amount of armor",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Featherweight Greaves": {
+    "name": "Featherweight Greaves",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If you have 0 speed, gain 1 speed",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Featherweight Wings": {
+    "name": "Featherweight Wings",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If you have less speed than the enemy, gain attack equal to your speed",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Firecracker Belt": {
+    "name": "Firecracker Belt",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Deal 1 damage 4 times",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Fortified Gauntlet": {
+    "name": "Fortified Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If you have armor, gain 1 additional armor",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Frostbite Claw": {
+    "name": "Frostbite Claw",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If the enemy has freeze, remove 1 freeze from the enemy to temporarily gain 3 attack this turn",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Frostbite Curse": {
+    "name": "Frostbite Curse",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Give yourself and the enemy 5 freeze each",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Granite Crown": {
+    "name": "Granite Crown",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain max health equal to your base armor",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Heart-shaped Acorn": {
+    "name": "Heart-shaped Acorn",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If you have 0 base armor, restore health to full",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Heart-shaped Potion": {
+    "name": "Heart-shaped Potion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "When you are reduced to exactly 1 health for the first time, restore health to full",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Ice Spikes": {
+    "name": "Ice Spikes",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If you have freeze, gain 5 thorns",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Ice Tomb": {
+    "name": "Ice Tomb",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If you have no armor, gain 3 armor and 1 freeze",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Iron Rose": {
+    "name": "Iron Rose",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you restore health, gain 1 armor. You can only equip 1 rose",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Iron Shrapnel": {
+    "name": "Iron Shrapnel",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle start: Deal 3 damage to the enemy, if they don't have armor, double the damage dealt",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Ironstone Sandals": {
+    "name": "Ironstone Sandals",
+    "stats": {
+      "attack": 0,
+      "speed": -1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "While you have armor, temporarily gain 2 attack",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Kindling Bomb": {
+    "name": "Kindling Bomb",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Deal 1 damage to the enemy. The damage of the next bomb that triggers is increased by 3",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Leather Boots": {
+    "name": "Leather Boots",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If you have more speed than the enemy, gain 2 attack",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Lifeblood Burst": {
+    "name": "Lifeblood Burst",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you restore 3 or more health, deal 3 damage",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Oak Heart": {
+    "name": "Oak Heart",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gain 3 max health for each equipped wood item",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Ore Heart": {
+    "name": "Ore Heart",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 3 armor for each equipped stone item",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Pinecone Breastplate": {
+    "name": "Pinecone Breastplate",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If your health is full, gain 1 thorn at turn start for the rest of battle",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Powder Keg": {
+    "name": "Powder Keg",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If you only have 1 bomb item equipped, it triggers 3 times",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Royal Helmet": {
+    "name": "Royal Helmet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 1
+    },
+    "effect": "Exposed: If you have more than 20 gold, gain 10 armor",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Sanguine Rose": {
+    "name": "Sanguine Rose",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you restore health, increase health restored by 1. You can only equip 1 rose",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Thorn Ring": {
+    "name": "Thorn Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Take 5 damage and gain 10 thorns",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Vampire's Tooth": {
+    "name": "Vampire's Tooth",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "If you have exactly 1 sanguine item, double its healing",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Featherweight Helmet": {
+    "name": "Featherweight Helmet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle start: Spend 2 armor to gain 3 speed and 1 attack",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Frostbite Armor": {
+    "name": "Frostbite Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 2
+    },
+    "effect": "The enemy's first strike deals double damage, afterwards they gain 4 freeze",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Plated Greaves": {
+    "name": "Plated Greaves",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Convert 3 speed to 9 armor",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Frostbite Greaves": {
+    "name": "Frostbite Greaves",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you lose speed, give the enemy 1 freeze",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Assault Greaves": {
+    "name": "Assault Greaves",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you take damage, deal 1 damage",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Blackbriar Armor": {
+    "name": "Blackbriar Armor",
+    "stats": {
+      "attack": -1,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you take damage, gain 1 thorns",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Brittlebark Armor": {
+    "name": "Brittlebark Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 12,
+      "armor": 0
+    },
+    "effect": "Whenever you take damage, take 1 additional damage",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Cactus Cap": {
+    "name": "Cactus Cap",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "If the enemy has no armor, thorns deal double damage",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Chainmail Armor": {
+    "name": "Chainmail Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Regain your base armor",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Crimson Cloak": {
+    "name": "Crimson Cloak",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you take damage, restore 1 health",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Druid's Cloak": {
+    "name": "Druid's Cloak",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you lose health, gain that much armor. You cannot restore health",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Elderwood Necklace": {
+    "name": "Elderwood Necklace",
+    "stats": {
+      "attack": 1,
+      "speed": 1,
+      "health": 0,
+      "armor": 1
+    },
+    "effect": "-",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Iron Transfusion": {
+    "name": "Iron Transfusion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: Gain 2 armor and lose 1 health",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Ironskin Potion": {
+    "name": "Ironskin Potion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain armor equal to lost health",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Ironstone Armor": {
+    "name": "Ironstone Armor",
+    "stats": {
+      "attack": 0,
+      "speed": -2,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Enemy strikes deal 2 damage less while you have armor",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Lifeblood Armor": {
+    "name": "Lifeblood Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Convert 50% of your current health to that amount of armor",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Moonlight Shield": {
+    "name": "Moonlight Shield",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: If you're below 50% health, gain 2 armor",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Razor Breastplate": {
+    "name": "Razor Breastplate",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 3
+    },
+    "effect": "Wounded: Gain thorns equal to enemy attack",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Royal Shield": {
+    "name": "Royal Shield",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: Convert 1 gold to 3 armor",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Shield Talisman": {
+    "name": "Shield Talisman",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you gain armor, gain 1 additional armor",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Studded Gauntlet": {
+    "name": "Studded Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "On Hit: Deal 1 damage",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Swiftstrike Cloak": {
+    "name": "Swiftstrike Cloak",
+    "stats": {
+      "attack": 0,
+      "speed": 1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If you have more speed than the enemy, gain 1 additional strike",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Swiftstrike Gauntlet": {
+    "name": "Swiftstrike Gauntlet",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Gain 2 additional strikes",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Sword Talisman": {
+    "name": "Sword Talisman",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you deal non-weapon damage to the enemy, deal 1 additional damage",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Time Bomb": {
+    "name": "Time Bomb",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Exposed: Deal 1 damage. Turn start: This item gains 2 damage",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Bloodmoon Armor": {
+    "name": "Bloodmoon Armor",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 6
+    },
+    "effect": "Whenever you would take damage from your own items, the enemy takes that damage instead",
+    "rarity": "Mythic",
+    "region": "Woodland"
+  },
+  "Cold Resistance": {
+    "name": "Cold Resistance",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Freeze doubles your attack instead of halving it",
+    "rarity": "Mythic",
+    "region": "Woodland"
+  },
+  "Granite Thorns": {
+    "name": "Granite Thorns",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "You don't lose any thorns on the enemy's first 3 strikes",
+    "rarity": "Mythic",
+    "region": "Woodland"
+  },
+  "Razor Scales": {
+    "name": "Razor Scales",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you lose armor, deal that much damage",
+    "rarity": "Mythic",
+    "region": "Woodland"
+  },
+  "Chainlink Medallion": {
+    "name": "Chainlink Medallion",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Your On Hit effects trigger twice",
+    "rarity": "Mythic",
+    "region": "Woodland"
+  },
+  "Twinfuse Knot": {
+    "name": "Twinfuse Knot",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Your bomb items trigger twice",
+    "rarity": "Mythic",
+    "region": "Woodland"
+  },
+  "Citrine Earring": {
+    "name": "Citrine Earring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gain 1 speed every other turn — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Emerald Earring": {
+    "name": "Emerald Earring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Restore 1 health every other turn — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Ruby Earring": {
+    "name": "Ruby Earring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Deal 1 damage every other turn — at Gold: deal 2 , at Diamond: deal 4",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Sapphire Earring": {
+    "name": "Sapphire Earring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Gain 1 armor every other turn — at Gold: 2 , at Diamond: 4",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Emerald Crown": {
+    "name": "Emerald Crown",
+    "stats": {
+      "attack": -1,
+      "speed": 0,
+      "health": 8,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Ruby Crown": {
+    "name": "Ruby Crown",
+    "stats": {
+      "attack": 1,
+      "speed": -1,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Sapphire Crown": {
+    "name": "Sapphire Crown",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": -2,
+      "armor": 5
+    },
+    "effect": "-",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Emerald Ring": {
+    "name": "Emerald Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Restore 3 health — at Gold: 6 , at Diamond: 12",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Ruby Ring": {
+    "name": "Ruby Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 2 attack and take 3 damage — at Gold: take 6 for 4, at Diamond: take 12 for 8",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Sapphire Ring": {
+    "name": "Sapphire Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Steal 2 from the enemy — at Gold: 4 , at Diamond: 8",
+    "rarity": "Common",
+    "region": "Woodland"
+  },
+  "Citrine Ring": {
+    "name": "Citrine Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Spend 5 speed to permanently gain 1 additional strike",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Gold Ring": {
+    "name": "Gold Ring",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 1 gold",
+    "rarity": "Rare",
+    "region": "Woodland"
+  },
+  "Citrine Gemstone": {
+    "name": "Citrine Gemstone",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Your base speed stat is inverted",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Emerald Gemstone": {
+    "name": "Emerald Gemstone",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: If you have less max health than the enemy, set your max health equal to their max health",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Ruby Gemstone": {
+    "name": "Ruby Gemstone",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "If your attack is exactly 1, deal 4 damage on hit",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Sapphire Gemstone": {
+    "name": "Sapphire Gemstone",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Whenever you lose armor, restore that much health",
+    "rarity": "Heroic",
+    "region": "Woodland"
+  },
+  "Cherry Bomb": {
+    "name": "Cherry Bomb",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Turn Start: Deal 1 damage 3 times",
+    "rarity": "Common",
+    "region": ""
+  },
+  "Redwood Roast": {
+    "name": "Redwood Roast",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Double your max health",
+    "rarity": "Common",
+    "region": ""
+  },
+  "Spiny Chestnut": {
+    "name": "Spiny Chestnut",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 3 thorns and thorns do double damage",
+    "rarity": "Common",
+    "region": ""
+  },
+  "Vampiric Wine": {
+    "name": "Vampiric Wine",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Wounded: Restore 30 health",
+    "rarity": "Common",
+    "region": ""
+  },
+  "Stone Steak": {
+    "name": "Stone Steak",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "Battle Start: Gain 15 armor, if health is full gain another 15 armor",
+    "rarity": "Rare",
+    "region": ""
+  },
+  "Explosive Roast": {
+    "name": "Explosive Roast",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "5",
+    "rarity": "Cherry Bomb",
+    "region": "Battle Start: Deal 1 damage 3 times"
+  },
+  "Trail Mix": {
+    "name": "Trail Mix",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Spiny Chestnut",
+    "region": "Battle Start: Deal 1 damage and gain 1 thorns. Repeat 2 times."
+  },
+  "Cherry Cocktail": {
+    "name": "Cherry Cocktail",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Cherry Bomb",
+    "region": "Battle Start & Wounded: Deal 3 damage and restore 3 health"
+  },
+  "Granite Cherry": {
+    "name": "Granite Cherry",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Stone Steak",
+    "region": "Battle Start: If your health is full, gain 2 armor and deal 2 damage. Repeat 2 times"
+  },
+  "Sugar Bomb": {
+    "name": "Sugar Bomb",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Honeycomb",
+    "region": "Turn Start: Deal 1 damage 3 times"
+  },
+  "Roasted Chestnut": {
+    "name": "Roasted Chestnut",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "5",
+    "rarity": "Redwood Roast",
+    "region": "Battle Start: Gain 4 thorns"
+  },
+  "Blood Sausage": {
+    "name": "Blood Sausage",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "5",
+    "rarity": "Redwood Roast",
+    "region": "Wounded: Restore 1 health 5 times"
+  },
+  "Rock Roast": {
+    "name": "Rock Roast",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "6 6",
+    "rarity": "Redwood Roast",
+    "region": "-"
+  },
+  "Honey Ham": {
+    "name": "Honey Ham",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Honeycomb",
+    "region": "Double your max health"
+  },
+  "Spiked Wine": {
+    "name": "Spiked Wine",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Spiny Chestnut",
+    "region": "Wounded: Restore 5 health and gain 5 thorns"
+  },
+  "Petrified Chestnut": {
+    "name": "Petrified Chestnut",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Spiny Chestnut",
+    "region": "Battle Start: If your health is full, gain 6 thorns and 6 armor"
+  },
+  "Candied Nuts": {
+    "name": "Candied Nuts",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Honeycomb",
+    "region": "Battle Start: Gain 3 thorns. Thorns deal double damage"
+  },
+  "Bloody Steak": {
+    "name": "Bloody Steak",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Vampiric Wine",
+    "region": "Wounded: Restore 10 health and gain 5 armor"
+  },
+  "Sweet Wine": {
+    "name": "Sweet Wine",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Honeycomb",
+    "region": "Wounded: Restore 30 health"
+  },
+  "Rock Candy": {
+    "name": "Rock Candy",
+    "stats": {
+      "attack": 0,
+      "speed": 0,
+      "health": 0,
+      "armor": 0
+    },
+    "effect": "-",
+    "rarity": "Honeycomb",
+    "region": "Battle start: Gain 15 armor. If your health is full, gain an additional 15 armor"
+  }
+}

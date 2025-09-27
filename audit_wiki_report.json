@@ -1,0 +1,1960 @@
+{
+  "summary": {
+    "itemsTotal": 410,
+    "wikiItems": 352
+  },
+  "mismatches": [
+    {
+      "name": "Bitter Melon",
+      "key": "items/bitter_melon",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Bloody Steak",
+      "key": "items/bloody_steak",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        },
+        "health": {
+          "current": 5,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Bramble Vest",
+      "key": "items/bramble_vest",
+      "stats": {
+        "health": {
+          "current": 0,
+          "wiki": 3
+        },
+        "armor": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Chainmail Cloak",
+      "key": "items/chainmail_cloak",
+      "stats": {
+        "health": {
+          "current": 2,
+          "wiki": 0
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Citrine Earring",
+      "key": "items/citrine_earring",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Deathcap Bow",
+      "key": "items/deathcap_bow",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Explosive Roast",
+      "key": "items/explosive_roast",
+      "stats": {
+        "health": {
+          "current": 5,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Friendship Bracelet",
+      "key": "items/friendship_bracelet",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": -1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Frostbite Armor",
+      "key": "items/frostbite_armor",
+      "stats": {
+        "armor": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Honeydew Melon",
+      "key": "items/honeydew_melon",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 5,
+          "wiki": 0
+        },
+        "health": {
+          "current": 5,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Impressive Physique",
+      "key": "items/impressive_physique",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Lemontree Branch",
+      "key": "items/lemontree_branch",
+      "stats": {
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Melon Lemonade",
+      "key": "items/melon_lemonade",
+      "stats": {
+        "attack": {
+          "current": 2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Melonvine Whip",
+      "key": "items/melonvine_whip",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Mist Armor",
+      "key": "items/mist_armor",
+      "stats": {
+        "armor": {
+          "current": 2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Petrified Statue",
+      "key": "items/petrified_statue",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": -2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Plated Shield",
+      "key": "items/plated_shield",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": -1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Purelake Armor",
+      "key": "items/purelake_armor",
+      "stats": {
+        "attack": {
+          "current": -1,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 1,
+          "wiki": 0
+        },
+        "health": {
+          "current": 6,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Purelake Chalice",
+      "key": "items/purelake_chalice",
+      "stats": {
+        "speed": {
+          "current": -1,
+          "wiki": 0
+        },
+        "health": {
+          "current": 5,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Purelake Helmet",
+      "key": "items/purelake_helmet",
+      "stats": {
+        "armor": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Purelake Potion",
+      "key": "items/purelake_potion",
+      "stats": {
+        "speed": {
+          "current": 1,
+          "wiki": 0
+        },
+        "health": {
+          "current": 5,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Purelake Tome",
+      "key": "items/purelake_tome",
+      "stats": {
+        "speed": {
+          "current": 1,
+          "wiki": 0
+        },
+        "health": {
+          "current": 5,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Razor Breastplate",
+      "key": "items/razor_breastplate",
+      "stats": {
+        "speed": {
+          "current": 1,
+          "wiki": 0
+        },
+        "health": {
+          "current": 10,
+          "wiki": 0
+        },
+        "armor": {
+          "current": 2,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Razor Scales",
+      "key": "items/razor_scales",
+      "stats": {
+        "attack": {
+          "current": 2,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 1,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Redwood Cloak",
+      "key": "items/redwood_cloak",
+      "stats": {
+        "speed": {
+          "current": 4,
+          "wiki": 0
+        },
+        "health": {
+          "current": 5,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Redwood Helmet",
+      "key": "items/redwood_helmet",
+      "stats": {
+        "health": {
+          "current": 0,
+          "wiki": 1
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Rock Roast",
+      "key": "items/rock_roast",
+      "stats": {
+        "health": {
+          "current": 3,
+          "wiki": 0
+        },
+        "armor": {
+          "current": 2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Ruby Earring",
+      "key": "items/ruby_earring",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Ruby Gemstone",
+      "key": "items/ruby_gemstone",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Ruby Ring",
+      "key": "items/ruby_ring",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Rusted Plate",
+      "key": "items/rusted_plate",
+      "stats": {
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        },
+        "health": {
+          "current": -3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Rusty Ring",
+      "key": "items/rusty_ring",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sanguine Imp",
+      "key": "items/sanguine_imp",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        },
+        "health": {
+          "current": 6,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sanguine Rose",
+      "key": "items/sanguine_rose",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        },
+        "health": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sapphire Crown",
+      "key": "items/sapphire_crown",
+      "stats": {
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sapphire Earring",
+      "key": "items/sapphire_earring",
+      "stats": {
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sapphire Gemstone",
+      "key": "items/sapphire_gemstone",
+      "stats": {
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sapphire Ring",
+      "key": "items/sapphire_ring",
+      "stats": {
+        "speed": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Serpent Mask",
+      "key": "items/serpent_mask",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Serpent Scalemail",
+      "key": "items/serpent_scalemail",
+      "stats": {
+        "armor": {
+          "current": 0,
+          "wiki": 4
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sheet Music",
+      "key": "items/sheet_music",
+      "stats": {
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Shield of the Hero",
+      "key": "items/shield_of_the_hero",
+      "stats": {
+        "speed": {
+          "current": -3,
+          "wiki": 0
+        },
+        "armor": {
+          "current": -3,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Shield Talisman",
+      "key": "items/shield_talisman",
+      "stats": {
+        "speed": {
+          "current": 5,
+          "wiki": 0
+        },
+        "armor": {
+          "current": -2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Silver Anchor",
+      "key": "items/silver_anchor",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": -1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Silverscale Greaves",
+      "key": "items/silverscale_greaves",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Slime Armor",
+      "key": "items/slime_armor",
+      "stats": {
+        "armor": {
+          "current": 0,
+          "wiki": 5
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Slime Booster",
+      "key": "items/slime_booster",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Slime Heart",
+      "key": "items/slime_heart",
+      "stats": {
+        "attack": {
+          "current": -1,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 1,
+          "wiki": 0
+        },
+        "health": {
+          "current": 1,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Slime Potion",
+      "key": "items/slime_potion",
+      "stats": {
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sour Lemon",
+      "key": "items/sour_lemon",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 4,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Squire's Armor",
+      "key": "items/squire_s_armor",
+      "stats": {
+        "attack": {
+          "current": 2,
+          "wiki": 0
+        },
+        "armor": {
+          "current": 3,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Stillwater Pearl",
+      "key": "items/stillwater_pearl",
+      "stats": {
+        "health": {
+          "current": 6,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Stormcloud Armor",
+      "key": "items/stormcloud_armor",
+      "stats": {
+        "attack": {
+          "current": -1,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        },
+        "armor": {
+          "current": 2,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Stormcloud Tome",
+      "key": "items/stormcloud_tome",
+      "stats": {
+        "attack": {
+          "current": -1,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Stormtide Anchor",
+      "key": "items/stormtide_anchor",
+      "stats": {
+        "attack": {
+          "current": 1,
+          "wiki": 0
+        },
+        "armor": {
+          "current": 1,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Studded Gauntlet",
+      "key": "items/studded_gauntlet",
+      "stats": {
+        "armor": {
+          "current": 5,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sugar Bomb",
+      "key": "items/sugar_bomb",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sunlight Crest",
+      "key": "items/sunlight_crest",
+      "stats": {
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        },
+        "health": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Swiftstrike Belt",
+      "key": "items/swiftstrike_belt",
+      "stats": {
+        "attack": {
+          "current": 2,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Swiftstrike Cloak",
+      "key": "items/swiftstrike_cloak",
+      "stats": {
+        "attack": {
+          "current": 2,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 4,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Swiftstrike Gauntlet",
+      "key": "items/swiftstrike_gauntlet",
+      "stats": {
+        "attack": {
+          "current": 2,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sword Talisman",
+      "key": "items/sword_talisman",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Thorn Ring",
+      "key": "items/thorn_ring",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Thunder Cloud",
+      "key": "items/thunder_cloud",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": -1
+        },
+        "speed": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Toxic Algae",
+      "key": "items/toxic_algae",
+      "stats": {
+        "attack": {
+          "current": 2,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Toxic Rose",
+      "key": "items/toxic_rose",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 6,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Trail Mix",
+      "key": "items/trail_mix",
+      "stats": {
+        "health": {
+          "current": 5,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Twinfuse Knot",
+      "key": "items/twinfuse_knot",
+      "stats": {
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        },
+        "health": {
+          "current": 6,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Twisted Root",
+      "key": "items/twisted_root",
+      "stats": {
+        "attack": {
+          "current": -2,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Underwater Watermelon",
+      "key": "items/underwater_watermelon",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        },
+        "speed": {
+          "current": -2,
+          "wiki": 0
+        },
+        "health": {
+          "current": 10,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Vampire's Tooth",
+      "key": "items/vampire_s_tooth",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        },
+        "health": {
+          "current": 2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Vampiric Stasis",
+      "key": "items/vampiric_stasis",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        },
+        "health": {
+          "current": 1,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Venomous Fang",
+      "key": "items/venomous_fang",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Viper Extract",
+      "key": "items/viper_extract",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Weaver Armor",
+      "key": "items/weaver_armor",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": -2
+        },
+        "speed": {
+          "current": 8,
+          "wiki": 0
+        },
+        "health": {
+          "current": -2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Weaver Shield",
+      "key": "items/weaver_shield",
+      "stats": {
+        "attack": {
+          "current": -2,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 1,
+          "wiki": 0
+        },
+        "health": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Wet Egg",
+      "key": "items/wet_egg",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        },
+        "health": {
+          "current": -2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Ancient Warhammer",
+      "key": "weapons/ancient_warhammer",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 5
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Basilisk Fang",
+      "key": "weapons/basilisk_fang",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Battle Axe",
+      "key": "weapons/battle_axe",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Bearclaw Blade",
+      "key": "weapons/bearclaw_blade",
+      "stats": {
+        "health": {
+          "current": 0,
+          "wiki": 5
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Bee Stinger",
+      "key": "weapons/bee_stinger",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Bejeweled Blade",
+      "key": "weapons/bejeweled_blade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Blackbriar Blade",
+      "key": "weapons/blackbriar_blade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Bloodlord's Axe",
+      "key": "weapons/bloodlord_s_axe",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 4
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Bloodmoon Dagger",
+      "key": "weapons/bloodmoon_dagger",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Bloodmoon Sickle",
+      "key": "weapons/bloodmoon_sickle",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 5
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Boom Stick",
+      "key": "weapons/boom_stick",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Brittlebark Bow",
+      "key": "weapons/brittlebark_bow",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 4
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Brittlebark Club",
+      "key": "weapons/brittlebark_club",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 7
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Chainmail Sword",
+      "key": "weapons/chainmail_sword",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Champion's Blade",
+      "key": "weapons/champion_s_blade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 6
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Cleaver of Wrath",
+      "key": "weapons/cleaver_of_wrath",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 10
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Dashmaster's Dagger",
+      "key": "weapons/dashmaster_s_dagger",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Elderwood Staff",
+      "key": "weapons/elderwood_staff",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 1
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Evergrowth Spear",
+      "key": "weapons/evergrowth_spear",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Explosive Sword",
+      "key": "weapons/explosive_sword",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Featherweight Blade",
+      "key": "weapons/featherweight_blade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Forge Hammer",
+      "key": "weapons/forge_hammer",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 4
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Frostbite Dagger",
+      "key": "weapons/frostbite_dagger",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Frozen Iceblade",
+      "key": "weapons/frozen_iceblade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 6
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Fungal Rapier",
+      "key": "weapons/fungal_rapier",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Gale Staff",
+      "key": "weapons/gale_staff",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 6
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Gemstone Scepter",
+      "key": "weapons/gemstone_scepter",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Granite Axe",
+      "key": "weapons/granite_axe",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 4
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Granite Hammer",
+      "key": "weapons/granite_hammer",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Granite Lance",
+      "key": "weapons/granite_lance",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Grilling Skewer",
+      "key": "weapons/grilling_skewer",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Grindstone Club",
+      "key": "weapons/grindstone_club",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Heart Drinker",
+      "key": "weapons/heart_drinker",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Hidden Dagger",
+      "key": "weapons/hidden_dagger",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Icicle Spear",
+      "key": "weapons/icicle_spear",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Ironstone Bow",
+      "key": "weapons/ironstone_bow",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 6
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Ironstone Greatsword",
+      "key": "weapons/ironstone_greatsword",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 4
+        },
+        "speed": {
+          "current": 0,
+          "wiki": -2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Ironstone Spear",
+      "key": "weapons/ironstone_spear",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "King's Blade",
+      "key": "weapons/king_s_blade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Knight's Blade",
+      "key": "weapons/knight_s_blade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 4
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Lakebed Sword",
+      "key": "weapons/lakebed_sword",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 5
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Leather Whip",
+      "key": "weapons/leather_whip",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 4
+        },
+        "health": {
+          "current": 0,
+          "wiki": 5
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Lifeblood Spear",
+      "key": "weapons/lifeblood_spear",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Liferoot Hammer",
+      "key": "weapons/liferoot_hammer",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Liferoot Staff",
+      "key": "weapons/liferoot_staff",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Lifesteal Scythe",
+      "key": "weapons/lifesteal_scythe",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Lightning Whip",
+      "key": "weapons/lightning_whip",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Marble Sword",
+      "key": "weapons/marble_sword",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Melting Iceblade",
+      "key": "weapons/melting_iceblade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 8
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Moonlight Cleaver",
+      "key": "weapons/moonlight_cleaver",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Mountain Cleaver",
+      "key": "weapons/mountain_cleaver",
+      "stats": {
+        "armor": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Purelake Staff",
+      "key": "weapons/purelake_staff",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Razorthorn Spear",
+      "key": "weapons/razorthorn_spear",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Redwood Rod",
+      "key": "weapons/redwood_rod",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        },
+        "health": {
+          "current": 0,
+          "wiki": 4
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Ring Blades",
+      "key": "weapons/ring_blades",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Riverflow Rapier",
+      "key": "weapons/riverflow_rapier",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Royal Crownblade",
+      "key": "weapons/royal_crownblade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 4
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Rusty Sword",
+      "key": "weapons/rusty_sword",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sanguine Scepter",
+      "key": "weapons/sanguine_scepter",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Scepter of Greed",
+      "key": "weapons/scepter_of_greed",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 6
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Serpent Dagger",
+      "key": "weapons/serpent_dagger",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Silverscale Dagger",
+      "key": "weapons/silverscale_dagger",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Slime Sword",
+      "key": "weapons/slime_sword",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Spearshield Lance",
+      "key": "weapons/spearshield_lance",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 6
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Squire's Blade",
+      "key": "weapons/squire_s_blade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Stoneslab Sword",
+      "key": "weapons/stoneslab_sword",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Stormcloud Spear",
+      "key": "weapons/stormcloud_spear",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Swiftstrike Bow",
+      "key": "weapons/swiftstrike_bow",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Swiftstrike Rapier",
+      "key": "weapons/swiftstrike_rapier",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sword of Pride",
+      "key": "weapons/sword_of_pride",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 3
+        },
+        "armor": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sword of the Hero",
+      "key": "weapons/sword_of_the_hero",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Tempest Blade",
+      "key": "weapons/tempest_blade",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Thunderbound Sabre",
+      "key": "weapons/thunderbound_sabre",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 6
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Twin Blade",
+      "key": "weapons/twin_blade",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Wave Breaker",
+      "key": "weapons/wave_breaker",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": -2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Woodcutter's Axe",
+      "key": "weapons/woodcutter_s_axe",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 1
+        }
+      },
+      "tags_added": []
+    }
+  ],
+  "changes": {
+    "overrideChanges": 113,
+    "tagChanges": 0,
+    "effectChanges": 12
+  }
+}

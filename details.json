@@ -373,7 +373,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/blood_chain": {
     "bucket": "items",
@@ -489,7 +491,8 @@
       "speed": 0
     },
     "tags": [
-      "Food"
+      "Food",
+      "Stone"
     ]
   },
   "items/boiled_ham": {
@@ -549,7 +552,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/boots_of_sloth": {
     "bucket": "items",
@@ -804,7 +809,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Tome"
+    ]
   },
   "items/chainlink_medallion": {
     "bucket": "items",
@@ -951,7 +958,8 @@
       "speed": 0
     },
     "tags": [
-      "Bomb"
+      "Bomb",
+      "Food"
     ]
   },
   "items/cherry_cocktail": {
@@ -978,6 +986,7 @@
       "speed": 0
     },
     "tags": [
+      "Bomb",
       "Food"
     ]
   },
@@ -1093,6 +1102,7 @@
       "speed": 0
     },
     "tags": [
+      "Jewelry",
       "Ring"
     ]
   },
@@ -1139,7 +1149,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/clearspring_duck": {
     "bucket": "items",
@@ -1165,7 +1177,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/clearspring_feather": {
     "bucket": "items",
@@ -1193,7 +1207,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/clearspring_opal": {
     "bucket": "items",
@@ -1225,7 +1241,9 @@
       "health": 0,
       "speed": 2
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/clearspring_rose": {
     "bucket": "items",
@@ -1250,7 +1268,8 @@
       "speed": 0
     },
     "tags": [
-      "Rose"
+      "Rose",
+      "Water"
     ]
   },
   "items/clearspring_watermelon": {
@@ -1287,7 +1306,10 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Food",
+      "Water"
+    ]
   },
   "items/cold_resistance": {
     "bucket": "items",
@@ -1532,7 +1554,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/double_plated_armor": {
     "bucket": "items",
@@ -1784,7 +1808,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/explosive_fish": {
     "bucket": "items",
@@ -1830,7 +1856,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/explosive_roast": {
     "bucket": "items",
@@ -1854,6 +1882,7 @@
       "speed": 0
     },
     "tags": [
+      "Bomb",
       "Food"
     ]
   },
@@ -1875,7 +1904,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/featherweight_armor": {
     "bucket": "items",
@@ -1995,7 +2026,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/flameburst_tome": {
     "bucket": "items",
@@ -2087,7 +2120,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/frostbite_curse": {
     "bucket": "items",
@@ -2133,7 +2168,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/frostbite_greaves": {
     "bucket": "items",
@@ -2156,7 +2193,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/frostbite_trap": {
     "bucket": "items",
@@ -2179,7 +2218,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/gold_ring": {
     "bucket": "items",
@@ -2277,6 +2318,7 @@
       "speed": 0
     },
     "tags": [
+      "Bomb",
       "Food",
       "Stone"
     ]
@@ -2648,7 +2690,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/ice_tomb": {
     "bucket": "items",
@@ -2682,7 +2726,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/iceblock_shield": {
     "bucket": "items",
@@ -2703,7 +2749,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/impressive_physique": {
     "bucket": "items",
@@ -2787,7 +2835,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/iron_transfusion": {
     "bucket": "items",
@@ -2904,7 +2954,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/knight_s_armor": {
     "bucket": "items",
@@ -3106,7 +3158,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/lifeblood_helmet": {
     "bucket": "items",
@@ -3486,7 +3540,8 @@
       "speed": 4
     },
     "tags": [
-      "Food"
+      "Food",
+      "Water"
     ]
   },
   "items/mineral_water": {
@@ -3854,7 +3909,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Food"
+    ]
   },
   "items/powder_keg": {
     "bucket": "items",
@@ -3875,7 +3932,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/prime_form": {
     "bucket": "items",
@@ -3921,7 +3980,9 @@
       "health": 6,
       "speed": 1
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/purelake_chalice": {
     "bucket": "items",
@@ -3934,7 +3995,9 @@
       "health": 5,
       "speed": -1
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/purelake_helmet": {
     "bucket": "items",
@@ -3959,7 +4022,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/purelake_potion": {
     "bucket": "items",
@@ -3988,7 +4053,9 @@
       "health": 5,
       "speed": 1
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/purelake_tome": {
     "bucket": "items",
@@ -4002,7 +4069,8 @@
       "speed": 1
     },
     "tags": [
-      "Tome"
+      "Tome",
+      "Water"
     ]
   },
   "items/razor_breastplate": {
@@ -4084,7 +4152,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "items/riverflow_violin": {
     "bucket": "items",
@@ -4118,7 +4188,8 @@
       "speed": 0
     },
     "tags": [
-      "Symphony"
+      "Symphony",
+      "Water"
     ]
   },
   "items/rock_candy": {
@@ -4697,7 +4768,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Food"
+    ]
   },
   "items/silverscale_gauntlet": {
     "bucket": "items",
@@ -4930,7 +5003,9 @@
       "health": 0,
       "speed": 4
     },
-    "tags": []
+    "tags": [
+      "Food"
+    ]
   },
   "items/spiral_shell": {
     "bucket": "items",
@@ -5197,6 +5272,7 @@
       "speed": 2
     },
     "tags": [
+      "Bomb",
       "Food"
     ]
   },
@@ -5370,7 +5446,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "items/tome_of_the_hero": {
     "bucket": "items",
@@ -5476,6 +5554,7 @@
       "speed": 0
     },
     "tags": [
+      "Bomb",
       "Food"
     ]
   },
@@ -7050,7 +7129,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Jewelry"
+    ]
   },
   "weapons/blackbriar_blade": {
     "bucket": "weapons",
@@ -7152,7 +7233,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "weapons/brittlebark_bow": {
     "bucket": "weapons",
@@ -7349,7 +7432,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Bomb"
+    ]
   },
   "weapons/featherweight_blade": {
     "bucket": "weapons",
@@ -7399,7 +7484,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/frozen_iceblade": {
     "bucket": "weapons",
@@ -7424,7 +7511,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/fungal_rapier": {
     "bucket": "weapons",
@@ -7475,7 +7564,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Jewelry"
+    ]
   },
   "weapons/granite_axe": {
     "bucket": "weapons",
@@ -7545,7 +7636,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Food"
+    ]
   },
   "weapons/grindstone_club": {
     "bucket": "weapons",
@@ -7599,7 +7692,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/ironstone_bow": {
     "bucket": "weapons",
@@ -7683,7 +7778,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/leather_whip": {
     "bucket": "weapons",
@@ -7830,7 +7927,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/moonlight_cleaver": {
     "bucket": "weapons",
@@ -7906,7 +8005,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/razorthorn_spear": {
     "bucket": "weapons",
@@ -7952,7 +8053,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Ring"
+    ]
   },
   "weapons/riverflow_rapier": {
     "bucket": "weapons",
@@ -7965,7 +8068,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Water"
+    ]
   },
   "weapons/rocksalt_sword": {
     "bucket": "weapons",
@@ -8018,7 +8123,9 @@
       "health": 0,
       "speed": 0
     },
-    "tags": []
+    "tags": [
+      "Jewelry"
+    ]
   },
   "weapons/rusty_sword": {
     "bucket": "weapons",

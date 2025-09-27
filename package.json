@@ -8,9 +8,11 @@
     "predev": "npm run gen:details",
     "prebuild": "npm run gen:details:min",
     "build": "node \"Random Tests/merge_stats_overrides.js\"",
-    "test": "node -e \"const sim=require('./heic_sim.js'); sim.simulate({hp:10,atk:0},{hp:10,atk:0});\""
+    "test": "node -e \"const sim=require('./heic_sim.js'); sim.simulate({hp:10,atk:0},{hp:10,atk:0});\"",
+    "audit:wiki": "node scripts/audit_wiki.mjs --apply"
   },
   "devDependencies": {
+    "cheerio": "^1.1.2",
     "eslint": "^9.35.0"
   }
 }
