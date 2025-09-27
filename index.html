@@ -1252,8 +1252,6 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             <div id="searchChips" style="display: flex; gap: 4px; flex-wrap: wrap;"></div>
       <!-- Compendium Tools (Randomizer) -->
       <div id="compendiumTools" style="display:flex; gap:8px; align-items:center; padding:8px 12px; border-bottom:1px solid #333; background:#0a0a0a;">
-        <button id="randBuildBtn" type="button" title="Randomize Player loadout" style="background:#f33;color:#000;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:600;">Random Build</button>
-        <button id="randEnemyBtn" type="button" title="Randomize Opponent loadout" style="background:#f33;color:#000;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:600;">Random Enemy</button>
       </div>
           </div>
 
@@ -1276,8 +1274,6 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
           
           <!-- Quick Actions -->
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <button id="randBuildBtn" type="button" title="Fill your slots with random items, a random weapon, and a random edge" style="background:#f33;color:#000;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:600;">   Random Build</button>
-            <button id="randEnemyBtn" type="button" title="Randomize the opponent's loadout" style="background:#f33;color:#000;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:600;">   Random Enemy</button>
             <button id="showSimBtn" type="button" style="background:#0f3;color:#000;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:600;">   Battle</button>
             
             <!-- QA & Authoring Tools -->
@@ -1483,6 +1479,11 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             font-size: 11px; 
             margin-top: 16px;
           ">Clear All Filters</button>
+          <div style="margin-top:12px; border:1px solid #333; border-radius:6px; padding:8px;">
+            <div style="color:#aaa; font-size:11px; margin-bottom:6px;">Set Bonus</div>
+            <div style="color:#555; font-size:10px;">(visual indicator placeholder)</div>
+          </div>
+          <button id="randBuildBtn" type="button" title="Randomize Player loadout" style="margin-top:12px; width:100%; background:#000; color:#f33; border:1px solid #f33; border-radius:6px; padding:8px; cursor:pointer; font-size:12px; font-weight:700;">Randomize</button>
           
         </div>
         
