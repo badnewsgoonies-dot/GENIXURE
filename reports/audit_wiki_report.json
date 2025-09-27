@@ -1,9 +1,20 @@
 {
   "summary": {
     "itemsTotal": 412,
-    "wikiItems": 184
+    "wikiItems": 308
   },
   "mismatches": [
+    {
+      "name": "Assault Greaves",
+      "key": "items/assault_greaves",
+      "stats": {
+        "attack": {
+          "current": 0,
+          "wiki": 58
+        }
+      },
+      "tags_added": []
+    },
     {
       "name": "Blood Sausage",
       "key": "items/blood_sausage",
@@ -11,6 +22,21 @@
         "health": {
           "current": 0,
           "wiki": 5
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Bloody Steak",
+      "key": "items/bloody_steak",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        },
+        "health": {
+          "current": 5,
+          "wiki": 0
         }
       },
       "tags_added": []
@@ -52,6 +78,10 @@
         "attack": {
           "current": 0,
           "wiki": 3
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 8
         }
       },
       "tags_added": []
@@ -78,6 +108,10 @@
         "attack": {
           "current": 0,
           "wiki": 3
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 65
         }
       },
       "tags_added": []
@@ -116,6 +150,17 @@
       "tags_added": []
     },
     {
+      "name": "Explosive Surprise",
+      "key": "items/explosive_surprise",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 17
+        }
+      },
+      "tags_added": []
+    },
+    {
       "name": "Friendship Bracelet",
       "key": "items/friendship_bracelet",
       "stats": {
@@ -130,6 +175,10 @@
       "name": "Frostbite Armor",
       "key": "items/frostbite_armor",
       "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 20
+        },
         "armor": {
           "current": 0,
           "wiki": 2
@@ -149,10 +198,32 @@
       "tags_added": []
     },
     {
+      "name": "Ice Spikes",
+      "key": "items/ice_spikes",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 25
+        }
+      },
+      "tags_added": []
+    },
+    {
       "name": "Impressive Physique",
       "key": "items/impressive_physique",
       "stats": {
         "speed": {
+          "current": 0,
+          "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Ironstone Bracelet",
+      "key": "items/ironstone_bracelet",
+      "stats": {
+        "armor": {
           "current": 0,
           "wiki": 2
         }
@@ -170,6 +241,17 @@
         "speed": {
           "current": 3,
           "wiki": 4
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Lifeblood Burst",
+      "key": "items/lifeblood_burst",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 35
         }
       },
       "tags_added": []
@@ -240,6 +322,17 @@
         "armor": {
           "current": 0,
           "wiki": 40
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Pinecone Breastplate",
+      "key": "items/pinecone_breastplate",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 41
         }
       },
       "tags_added": []
@@ -319,6 +412,10 @@
       "name": "Rock Roast",
       "key": "items/rock_roast",
       "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 43
+        },
         "health": {
           "current": 3,
           "wiki": 6
@@ -331,12 +428,72 @@
       "tags_added": []
     },
     {
+      "name": "Ruby Earring",
+      "key": "items/ruby_earring",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
       "name": "Ruby Ring",
       "key": "items/ruby_ring",
       "stats": {
         "attack": {
           "current": 4,
           "wiki": 8
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Rusted Plate",
+      "key": "items/rusted_plate",
+      "stats": {
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        },
+        "health": {
+          "current": -3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Rusty Ring",
+      "key": "items/rusty_ring",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 88
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sanguine Rose",
+      "key": "items/sanguine_rose",
+      "stats": {
+        "attack": {
+          "current": 3,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        },
+        "health": {
+          "current": 4,
+          "wiki": 0
         }
       },
       "tags_added": []
@@ -405,6 +562,17 @@
       "tags_added": []
     },
     {
+      "name": "Sheet Music",
+      "key": "items/sheet_music",
+      "stats": {
+        "speed": {
+          "current": 3,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
       "name": "Shield of the Hero",
       "key": "items/shield_of_the_hero",
       "stats": {
@@ -415,6 +583,21 @@
         "armor": {
           "current": -3,
           "wiki": 3
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Shield Talisman",
+      "key": "items/shield_talisman",
+      "stats": {
+        "speed": {
+          "current": 5,
+          "wiki": 0
+        },
+        "armor": {
+          "current": -2,
+          "wiki": 0
         }
       },
       "tags_added": []
@@ -459,6 +642,17 @@
         "attack": {
           "current": 0,
           "wiki": 2
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Silverscale Tome",
+      "key": "items/silverscale_tome",
+      "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 91
         }
       },
       "tags_added": []
@@ -524,6 +718,51 @@
       "tags_added": []
     },
     {
+      "name": "Stormcloud Tome",
+      "key": "items/stormcloud_tome",
+      "stats": {
+        "attack": {
+          "current": -1,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Sugar Bomb",
+      "key": "items/sugar_bomb",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Swiftstrike Belt",
+      "key": "items/swiftstrike_belt",
+      "stats": {
+        "attack": {
+          "current": 2,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
       "name": "Swiftstrike Cloak",
       "key": "items/swiftstrike_cloak",
       "stats": {
@@ -539,6 +778,32 @@
       "tags_added": []
     },
     {
+      "name": "Swiftstrike Gauntlet",
+      "key": "items/swiftstrike_gauntlet",
+      "stats": {
+        "attack": {
+          "current": 2,
+          "wiki": 0
+        },
+        "speed": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Thorn Ring",
+      "key": "items/thorn_ring",
+      "stats": {
+        "attack": {
+          "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
       "name": "Thunder Cloud",
       "key": "items/thunder_cloud",
       "stats": {
@@ -548,6 +813,32 @@
         },
         "speed": {
           "current": 4,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Trail Mix",
+      "key": "items/trail_mix",
+      "stats": {
+        "health": {
+          "current": 5,
+          "wiki": 0
+        }
+      },
+      "tags_added": []
+    },
+    {
+      "name": "Twinfuse Knot",
+      "key": "items/twinfuse_knot",
+      "stats": {
+        "speed": {
+          "current": 2,
+          "wiki": 0
+        },
+        "health": {
+          "current": 6,
           "wiki": 0
         }
       },
@@ -749,6 +1040,10 @@
         "attack": {
           "current": 0,
           "wiki": 6
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 61
         }
       },
       "tags_added": []
@@ -919,6 +1214,10 @@
         "attack": {
           "current": 0,
           "wiki": 2
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 22
         }
       },
       "tags_added": []
@@ -1030,6 +1329,10 @@
         "attack": {
           "current": 0,
           "wiki": 2
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 71
         }
       },
       "tags_added": []
@@ -1376,6 +1679,10 @@
         "attack": {
           "current": 0,
           "wiki": 2
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 52
         }
       },
       "tags_added": []
@@ -1450,6 +1757,10 @@
         "attack": {
           "current": 0,
           "wiki": 1
+        },
+        "speed": {
+          "current": 0,
+          "wiki": 55
         }
       },
       "tags_added": []
@@ -1495,6 +1806,10 @@
       "name": "Petrifying Elixir",
       "key": "items/petrifying_elixir",
       "stats": {
+        "speed": {
+          "current": 0,
+          "wiki": 83
+        },
         "armor": {
           "current": 0,
           "wiki": 40
@@ -1504,7 +1819,7 @@
     }
   ],
   "changes": {
-    "overrideChanges": 54,
+    "overrideChanges": 0,
     "tagChanges": 0,
     "effectChanges": 0,
     "removedOverrides": 0

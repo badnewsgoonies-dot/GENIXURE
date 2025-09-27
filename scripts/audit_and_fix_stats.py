@@ -74,5 +74,7 @@ for m in mismatches[:50]:
     print(f"- {m['name']} ({m['key']}): eff={m['eff']} vs doc={m['doc']}")
 
 report={'mismatch_count':len(mismatches),'mismatches':mismatches}
-Path('audit_stats_report.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
-print('Wrote audit_stats_report.json')
+out_path = Path('reports')/ 'audit_stats_report.json'
+out_path.parent.mkdir(parents=True, exist_ok=True)
+out_path.write_text(json.dumps(report, indent=2), encoding='utf-8')
+print('Wrote', out_path)

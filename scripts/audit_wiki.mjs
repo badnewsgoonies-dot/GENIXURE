@@ -33,10 +33,10 @@ const DETAILS_PATH = path.join(PROJECT, 'details.json');
 const OVERRIDES_PATH = path.join(PROJECT, 'stats_overrides.json');
 const EXTRACTED_ITEMS_PATH = path.join(PROJECT, 'wiki_extracted_items.json');
 const EXTRACTED_TAGS_PATH = path.join(PROJECT, 'wiki_extracted_tags.json');
-const REPORT_PATH = path.join(PROJECT, 'audit_wiki_report.json');
+const REPORT_PATH = path.join(PROJECT, 'reports', 'audit_wiki_report.json');
 const SETS_JS_OUT = path.join(PROJECT, 'heic_sets.generated.js');
-const SETS_JSON_OUT = path.join(PROJECT, 'heic_sets.generated.json');
-const SETS_AUDIT_OUT = path.join(PROJECT, 'set_audit_report.json');
+const SETS_JSON_OUT = path.join(PROJECT, 'build', 'heic_sets.generated.json');
+const SETS_AUDIT_OUT = path.join(PROJECT, 'reports', 'set_audit_report.json');
 const EQUIPMENT_TXT = path.join(PROJECT, 'Item AND effect and Battle logic info', 'All Equipment stats.extracted.txt');
 
 // Expand to full set of item tags from Tags page
