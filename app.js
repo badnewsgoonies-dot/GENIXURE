@@ -1370,13 +1370,15 @@ function updateFacetCounts() {
       });
     }
   });
-  
-  ['Tome', 'Bomb', 'Symphony', 'Food', 'Jewelry', 'Ring', 'Stone', 'Water'].forEach(tag => {
-    const option = document.querySelector(`input[name="tag"][value="${tag}"]`);
-    if (option) {
-      const countEl = option.parentElement.querySelector('.count');
-      if (countEl) countEl.textContent = tagCounts[tag] || 0;
-    }
+
+  // Drive counts from whatever tag checkboxes exist in the DOM,
+  // rather than a hard-coded subset. This keeps the UI in sync
+  // when tags are added/renamed (e.g., Mythic, Sanguine, Edge).
+  const tagInputs = document.querySelectorAll('input[name="tag"]');
+  tagInputs.forEach(input => {
+    const tag = input.value;
+    const countEl = input.parentElement && input.parentElement.querySelector('.count');
+    if (countEl) countEl.textContent = tagCounts[tag] || 0;
   });
   
   // Update trigger counts
@@ -2355,15 +2357,27 @@ function initializeCompendiumData() {
     }
     
     // Convert DATA_ARR to the new format
-    compendiumState.data.allItems = DATA_ARR.map(item => ({
-      ...item,
-      // Ensure all items have the required properties
-      name: item.name || item.slug || 'Unknown',
-      bucket: item.bucket || 'items',
-      tags: item.tags || [],
-      effects: item.effects || [],
-      stats: item.stats || { attack: 0, armor: 0, health: 0, speed: 0 }
-    }));
+    compendiumState.data.allItems = DATA_ARR.map(item => {
+      // Start with normalized tags
+      const baseTags = Array.isArray(item.tags) ? item.tags.slice() : [];
+
+      // Policy: mark all Mythic items as Illegal for the battle simulator
+      // so they are excluded from the randomizer. Keep it data-local so
+      // other parts of the app can still see Mythic as usual.
+      if (baseTags.includes('Mythic') && !baseTags.includes('Illegal')) {
+        baseTags.push('Illegal');
+      }
+
+      return {
+        ...item,
+        // Ensure all items have the required properties
+        name: item.name || item.slug || 'Unknown',
+        bucket: item.bucket || 'items',
+        tags: baseTags,
+        effects: item.effects || [],
+        stats: item.stats || { attack: 0, armor: 0, health: 0, speed: 0 }
+      };
+    });
     
     compendiumState.data.filteredItems = [...compendiumState.data.allItems];
     
@@ -4774,17 +4788,23 @@ function __compendiumBoot() {
 
   // 2) Normalize RAW_DATA and build DATA_ARR
   RAW_DATA = window.HEIC_DETAILS;
-  DATA_ARR = Object.entries(RAW_DATA).map(([id, item]) => ({
-    id,
-    key: id,
-    slug: item.slug || id.split('/').pop(),
-    bucket: item.bucket || id.split('/')[0],   // items / weapons / sets / upgrades
-    tags: Array.isArray(item.tags) ? item.tags : [],
-    stats: item.stats || { armor:0, attack:0, health:0, speed:0 },
-    effect: item.effect || '',
-    effects: Array.isArray(item.effects) ? item.effects : [],
-    name: item.name || id
-  }));
+  DATA_ARR = Object.entries(RAW_DATA).map(([id, item]) => {
+    const tagsBase = Array.isArray(item.tags) ? item.tags.slice() : [];
+    if (tagsBase.includes('Mythic') && !tagsBase.includes('Illegal')) {
+      tagsBase.push('Illegal');
+    }
+    return {
+      id,
+      key: id,
+      slug: item.slug || id.split('/').pop(),
+      bucket: item.bucket || id.split('/')[0],   // items / weapons / sets / upgrades
+      tags: tagsBase,
+      stats: item.stats || { armor:0, attack:0, health:0, speed:0 },
+      effect: item.effect || '',
+      effects: Array.isArray(item.effects) ? item.effects : [],
+      name: item.name || id
+    };
+  });
 
   console.log('  DATA_ARR built:', DATA_ARR.length, 'items');
 
