@@ -3294,7 +3294,15 @@ if (simBtn) {
       // Show timeline controls after simulation
       if (timelineControls) {
         timelineControls.style.display = 'block';
-        BattleReplayController.loadBattle(res);
+        try {
+          if (typeof BattleReplayController !== 'undefined' && BattleReplayController && typeof BattleReplayController.loadBattle === 'function') {
+            BattleReplayController.loadBattle(res);
+          } else {
+            console.warn('Replay controller not available; skipping loadBattle');
+          }
+        } catch (e) {
+          console.warn('Replay controller error:', e?.message || e);
+        }
       }
       
       // Update battle status
