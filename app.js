@@ -3343,6 +3343,7 @@ function startBattle() {
       // Use new cardified log rendering
       if (res.log) {
         renderCardifiedLog(res.log);
+        try { if (window.SideLogs) window.SideLogs.loadFromLog(res.log); } catch (_) {}
       }
       
       // Show timeline controls after simulation
@@ -3396,11 +3397,7 @@ function startBattle() {
         updatePinnedMetrics(res.summary);
       }
       
-      // Re-apply noise filter if active
-      const noiseFilterToggle = document.getElementById('noiseFilterToggle');
-      if (noiseFilterToggle && noiseFilterToggle.checked) {
-        filterBattleLog(true);
-      }
+      // Noise filter removed per request
       
       // Run battle analysis with the simulation results
       runBattleAnalysis(res);
@@ -3432,57 +3429,7 @@ function updateFinalStats(summary) {
   if (opponentArmor) opponentArmor.textContent = summary.right.armorRemaining || 0;
 }
 
-// Noise filter functionality
-function setupNoiseFilter() {
-  const noiseFilterToggle = document.getElementById('noiseFilterToggle');
-  if (noiseFilterToggle) {
-    noiseFilterToggle.addEventListener('change', () => {
-      filterBattleLog(noiseFilterToggle.checked);
-    });
-  }
-}
-
-function filterBattleLog(hideNoise) {
-  const logCards = document.querySelectorAll('.log-phase-card');
-  
-  if (!hideNoise) {
-    // Show all cards
-    logCards.forEach(card => {
-      card.style.display = 'block';
-    });
-    return;
-  }
-  
-  // Hide noise entries
-  logCards.forEach(card => {
-    const content = card.querySelector('.log-phase-content');
-    if (!content) return;
-    
-    const entries = content.children;
-    let hasSignificantContent = false;
-    
-    for (let i = 0; i < entries.length; i++) {
-      const entry = entries[i];
-      const text = entry.textContent || '';
-      
-      // Check if this is a "no-op" or redundant event
-      const isNoise = text.includes('Tried to') ||
-                      text.includes('had none to remove') ||
-                      text.includes('already at') ||
-                      text.includes('no effect') ||
-                      text.includes('0 damage') ||
-                      text.includes('misses') ||
-                      (text.includes('gains 0') && !text.includes('loses'));
-      
-      if (!isNoise) {
-        hasSignificantContent = true;
-        break;
-      }
-    }
-    
-    card.style.display = hasSignificantContent ? 'block' : 'none';
-  });
-}
+// Noise filter removed per request
 
 const clearBtn = document.getElementById('btnClearLog');
 if (clearBtn) {
@@ -3502,13 +3449,20 @@ if (clearBtn) {
     // Reset fighter stats to initial values
     updateFighterCards();
     
-    // Reset battle analysis
-    showEmptyAnalysis();
+  // Reset battle analysis
+  showEmptyAnalysis();
+
+    // Clear side logs
+    try {
+      if (window.SideLogs) {
+        window.SideLogs.events = [];
+        window.SideLogs.renderAll();
+      }
+    } catch (_) {}
   });
 }
 
-// Initialize noise filter
-setupNoiseFilter();
+// Noise filter removed per request
 
 // Timeline controls functionality
 function setupTimelineControls() {

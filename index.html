@@ -1838,11 +1838,6 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <h3 style="color: #fff; font-size: 16px; font-weight: 700; margin: 0;">   EVENT LOG</h3>
               <div style="display: flex; align-items: center; gap: 12px;">
-                <!-- Noise Filter Toggle -->
-                <label style="display: flex; align-items: center; gap: 6px; color: #ccc; font-size: 12px;">
-                  <input type="checkbox" id="noiseFilterToggle" style="accent-color: #0f3;">
-                  Hide noise
-                </label>
                 <div id="battleStatus" style="color: #ccc; font-size: 12px; font-weight: 600;">Ready</div>
                 <button id="btnSimulateTop" type="button" title="Run a battle" style="background:#0f3;color:#000;border:none;border-radius:6px;padding:8px 12px;cursor:pointer;font-size:12px;font-weight:700;">START BATTLE</button>
               </div>
@@ -1934,6 +1929,19 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
                   <div style="font-weight:700; color:#0f3; margin-bottom:4px;">Action</div>
                   <div id="arenaPlayerAction" style="opacity:.9"></div>
                 </div>
+
+                <!-- Player scoped event log -->
+                <div id="playerSideLog" style="margin-top:12px; background: rgba(0,255,51,0.05); border:1px solid #0a5; border-radius:10px; overflow:hidden;">
+                  <div style="display:flex; align-items:center; justify-content:space-between; padding:6px 8px; border-bottom:1px solid #0a5;">
+                    <div style="font-size:12px; font-weight:700; color:#0f3;">EVENT LOG — Player</div>
+                    <div style="display:flex; gap:6px;">
+                      <button id="playerFilterAll" style="font-size:11px; padding:4px 8px; border:1px solid #0a5; border-radius:6px; background:#002100; color:#0f3; cursor:pointer;">All</button>
+                      <button id="playerFilterOutgoing" style="font-size:11px; padding:4px 8px; border:1px solid #0a5; border-radius:6px; background:#000; color:#0f3; cursor:pointer;">Outgoing</button>
+                      <button id="playerFilterIncoming" style="font-size:11px; padding:4px 8px; border:1px solid #0a5; border-radius:6px; background:#000; color:#0f3; cursor:pointer;">Incoming</button>
+                    </div>
+                  </div>
+                  <div id="playerSideLogList" style="max-height:220px; overflow:auto; padding:8px; font-size:12px; color:#ccc;"></div>
+                </div>
               </div>
             <div id="simOpponentArena" style="background: rgba(255,51,51,0.05); border: 1px solid #a33; border-radius: 12px; padding: 12px; position: relative; min-height: var(--arena-box-min-height);">
                 <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px; text-align:right;">Current Status</div>
@@ -1956,6 +1964,19 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
                 <div style="margin-top:12px; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; color:#ccc; font-size:13px; text-align:right;">
                   <div style="font-weight:700; color:#f66; margin-bottom:4px;">Action</div>
                   <div id="arenaOpponentAction" style="opacity:.9"></div>
+                </div>
+
+                <!-- Opponent scoped event log -->
+                <div id="opponentSideLog" style="margin-top:12px; background: rgba(255,51,51,0.05); border:1px solid #a33; border-radius:10px; overflow:hidden;">
+                  <div style="display:flex; align-items:center; justify-content:space-between; padding:6px 8px; border-bottom:1px solid #a33;">
+                    <div style="font-size:12px; font-weight:700; color:#f66;">EVENT LOG — Opponent</div>
+                    <div style="display:flex; gap:6px;">
+                      <button id="opponentFilterAll" style="font-size:11px; padding:4px 8px; border:1px solid #a33; border-radius:6px; background:#210000; color:#f66; cursor:pointer;">All</button>
+                      <button id="opponentFilterOutgoing" style="font-size:11px; padding:4px 8px; border:1px solid #a33; border-radius:6px; background:#000; color:#f66; cursor:pointer;">Outgoing</button>
+                      <button id="opponentFilterIncoming" style="font-size:11px; padding:4px 8px; border:1px solid #a33; border-radius:6px; background:#000; color:#f66; cursor:pointer;">Incoming</button>
+                    </div>
+                  </div>
+                  <div id="opponentSideLogList" style="max-height:220px; overflow:auto; padding:8px; font-size:12px; color:#ccc;"></div>
                 </div>
               </div>
           </div>
@@ -2818,6 +2839,141 @@ header { padding:10px 16px; border-bottom:2px solid #f33; }
   }
   };
   try { window.BattleReplayController = BattleReplayController; } catch(_) {}
+  </script>
+
+  <!-- Scoped Side Logs Module -->
+  <script>
+    // Lightweight event structure and renderer fed by the master log
+    window.SideLogs = {
+      events: [],
+      hideNoise: false,
+      playerFilter: 'all',
+      opponentFilter: 'all',
+      // Public API
+      loadFromLog(logArray) {
+        try {
+          this.events = this.parseEvents(Array.isArray(logArray) ? logArray : []);
+          this.renderAll();
+        } catch (e) { console.warn('SideLogs parse error:', e); }
+      },
+      setHideNoise(v) { this.hideNoise = !!v; this.renderAll(); },
+      // Parse raw lines into structured events
+      parseEvents(lines) {
+        const out = [];
+        const clean = (s) => String(s || '')
+          .replace(/^::icon:[^:]*::\s*/i, '')
+          .replace(/\s*\[.*?\]\s*$/,'')
+          .trim();
+        let tCounter = 0; // simple tick counter
+        let currentTurn = 0;
+        lines.forEach((raw, i) => {
+          const text = clean(raw);
+          if (!text) return;
+          // Turn header
+          const turnMatch = text.match(/--\s*Turn\s+(\d+)\s*--\s*(Player|Opponent)/i);
+          if (turnMatch) {
+            currentTurn = parseInt(turnMatch[1], 10) || currentTurn;
+            out.push({ id: `t${i}`, turn: currentTurn, t: ++tCounter, kind: 'turn', actor: /Player/i.test(turnMatch[2]) ? 'player' : 'enemy', text });
+            return;
+          }
+          // Attack variants
+          let m;
+          if ((m = text.match(/^(Player|Opponent).*?(?:hits|deals).*?(Player|Opponent).*?(\d+)/i))) {
+            const actor = /Player/i.test(m[1]) ? 'player' : 'enemy';
+            const target = /Player/i.test(m[2]) ? 'player' : 'enemy';
+            const dmg = parseInt(m[3], 10) || undefined;
+            out.push({ id: `a${i}` , turn: currentTurn, t: ++tCounter, kind: 'attack', actor, target, text, dmg: dmg ? -Math.abs(dmg) : undefined });
+            return;
+          }
+          if ((m = text.match(/^(Player|Opponent).*?deals\s+(\d+)\s+damage/i))) {
+            const actor = /Player/i.test(m[1]) ? 'player' : 'enemy';
+            const dmg = parseInt(m[2], 10) || undefined;
+            // Guess target as opposite of actor
+            const target = actor === 'player' ? 'enemy' : 'player';
+            out.push({ id: `d${i}`, turn: currentTurn, t: ++tCounter, kind: 'attack', actor, target, text, dmg: dmg ? -Math.abs(dmg) : undefined });
+            return;
+          }
+          // Heal
+          if ((m = text.match(/^(Player|Opponent).*?(?:restores|heals)\s+(\d+)\s+health/i))) {
+            const actor = /Player/i.test(m[1]) ? 'player' : 'enemy';
+            const amt = parseInt(m[2], 10) || 0;
+            out.push({ id: `h${i}`, turn: currentTurn, t: ++tCounter, kind: 'heal', actor, target: actor, text, dmg: amt ? Math.abs(amt) : 0 });
+            return;
+          }
+          // Armor +/-
+          if ((m = text.match(/^(Player|Opponent).*?gains\s+(\d+)\s+armor/i))) {
+            const actor = /Player/i.test(m[1]) ? 'player' : 'enemy';
+            const amt = parseInt(m[2], 10) || 0;
+            out.push({ id: `b${i}`, turn: currentTurn, t: ++tCounter, kind: 'buff', actor, target: actor, text, armor: Math.abs(amt) });
+            return;
+          }
+          if ((m = text.match(/^(Player|Opponent).*?loses\s+(\d+)\s+armor/i))) {
+            const actor = /Player/i.test(m[1]) ? 'player' : 'enemy';
+            const amt = parseInt(m[2], 10) || 0;
+            out.push({ id: `db${i}`, turn: currentTurn, t: ++tCounter, kind: 'debuff', actor, target: actor, text, armor: -Math.abs(amt) });
+            return;
+          }
+          // Fallback info
+          out.push({ id: `i${i}`, turn: currentTurn, t: ++tCounter, kind: 'info', actor: /Opponent/i.test(text) ? 'enemy' : 'player', text });
+        });
+        return out;
+      },
+      isNoiseText(text) {
+        const t = (text||'').toLowerCase();
+        return t.includes('tried to') || t.includes('had none to remove') || t.includes('already at') ||
+               t.includes('no effect') || t.includes('misses') || /gains\s+0\b/.test(t) || /deals\s+0\s+damage/.test(t);
+      },
+      renderAll() { this.renderSide('player'); this.renderSide('enemy'); this.setupButtons(); },
+      setupButtons() {
+        const setActive = (btn, active) => { if (!btn) return; btn.style.background = active ? (btn.id.startsWith('player') ? '#002100' : '#210000') : '#000'; };
+        const pAll = document.getElementById('playerFilterAll');
+        const pOut = document.getElementById('playerFilterOutgoing');
+        const pIn  = document.getElementById('playerFilterIncoming');
+        if (pAll && !pAll._wired) { pAll._wired = true; pAll.addEventListener('click', ()=>{ this.playerFilter='all'; this.renderSide('player'); this.setupButtons(); }); }
+        if (pOut && !pOut._wired) { pOut._wired = true; pOut.addEventListener('click', ()=>{ this.playerFilter='outgoing'; this.renderSide('player'); this.setupButtons(); }); }
+        if (pIn  && !pIn._wired) { pIn._wired  = true; pIn.addEventListener('click', ()=>{ this.playerFilter='incoming'; this.renderSide('player'); this.setupButtons(); }); }
+        const eAll = document.getElementById('opponentFilterAll');
+        const eOut = document.getElementById('opponentFilterOutgoing');
+        const eIn  = document.getElementById('opponentFilterIncoming');
+        if (eAll && !eAll._wired) { eAll._wired = true; eAll.addEventListener('click', ()=>{ this.opponentFilter='all'; this.renderSide('enemy'); this.setupButtons(); }); }
+        if (eOut && !eOut._wired) { eOut._wired = true; eOut.addEventListener('click', ()=>{ this.opponentFilter='outgoing'; this.renderSide('enemy'); this.setupButtons(); }); }
+        if (eIn  && !eIn._wired) { eIn._wired  = true; eIn.addEventListener('click', ()=>{ this.opponentFilter='incoming'; this.renderSide('enemy'); this.setupButtons(); }); }
+        setActive(pAll, this.playerFilter==='all'); setActive(pOut, this.playerFilter==='outgoing'); setActive(pIn, this.playerFilter==='incoming');
+        setActive(eAll, this.opponentFilter==='all'); setActive(eOut, this.opponentFilter==='outgoing'); setActive(eIn, this.opponentFilter==='incoming');
+      },
+      renderSide(side) {
+        const container = document.getElementById(side==='player' ? 'playerSideLogList' : 'opponentSideLogList');
+        if (!container) return;
+        const scope = side;
+        const mode = side==='player' ? this.playerFilter : this.opponentFilter;
+        const filtered = this.events.filter(e => {
+          if (this.hideNoise && this.isNoiseText(e.text)) return false;
+          if (!(e.actor === scope || e.target === scope)) return false; // relevant
+          if (mode === 'outgoing') return e.actor === scope;
+          if (mode === 'incoming') return e.target === scope;
+          return true;
+        });
+        // Render
+        container.innerHTML = '';
+        if (filtered.length === 0) {
+          container.innerHTML = '<div style="color:#888; text-align:center; padding:8px; font-style:italic;">No events</div>';
+          return;
+        }
+        const ul = document.createElement('ul');
+        ul.style.listStyle = 'none'; ul.style.margin = '0'; ul.style.padding = '0';
+        filtered.forEach(e => {
+          const li = document.createElement('li');
+          li.style.padding = '4px 6px'; li.style.borderRadius = '6px'; li.style.display = 'flex'; li.style.alignItems = 'center'; li.style.gap = '6px';
+          li.style.border = '1px solid rgba(255,255,255,0.06)'; li.style.marginBottom = '4px';
+          const dot = document.createElement('span'); dot.style.display='inline-block'; dot.style.width='6px'; dot.style.height='6px'; dot.style.borderRadius='50%';
+          const color = e.kind==='attack' ? (e.actor==='player'?'#0f3':'#f44') : e.kind==='turn' ? '#f0a' : e.kind==='heal' ? '#3fa' : e.kind==='buff' ? '#4af' : e.kind==='debuff' ? '#fa0' : '#999';
+          dot.style.background = color; li.appendChild(dot);
+          const meta = document.createElement('span'); meta.style.color='#777'; meta.style.fontSize='11px'; meta.textContent = `T${e.turn}.${e.t}`; li.appendChild(meta);
+          const text = document.createElement('span'); text.style.flex='1'; text.textContent = e.text; li.appendChild(text);
+          container.appendChild(li);
+        });
+      }
+    };
   </script>
 
 <script src="app.js"></script>
