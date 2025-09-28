@@ -403,8 +403,10 @@ async function loadData() {
   if (totalItems === 0) {
     console.warn(`   No data loaded from any source - continuing with empty state`);
     
-    // Show non-blocking error banner with pointer-events: none
-    showNonBlockingError('No compendium data could be loaded. The app will continue with limited functionality.');
+    // Show non-blocking error banner with pointer-events: none - only in dev
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
+      showNonBlockingError('No compendium data could be loaded. The app will continue with limited functionality.');
+    }
     
     // Set up empty arrays so the rest of the app doesn't crash
     DATA_ARR = [];
