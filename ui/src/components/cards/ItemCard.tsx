@@ -11,6 +11,7 @@ export type ItemCardProps = {
   trigger?: string;
   text?: string;
   stats?: { ATK?: number; ARM?: number; HP?: number; SPD?: number };
+  rarity?: string;
   onAdd?: () => void;
   onInfo?: () => void;
 };
@@ -31,12 +32,13 @@ export default function ItemCard({
   trigger,
   text,
   stats = {},
+  rarity,
   onAdd,
   onInfo,
 }: ItemCardProps) {
   const { add } = useLoadout();
   return (
-    <div className={`${panel} ${ringByRarity((stats as any)?.rarity)} p-2`}>
+    <div className={`${panel} ${ringByRarity(rarity)} p-2`}>
       {/* Title row */}
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-2">

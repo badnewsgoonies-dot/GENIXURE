@@ -4,6 +4,7 @@ import ItemCard from '../components/cards/ItemCard';
 import { gridWrap, headerBar } from '../theme/legacyTheme';
 import { LoadoutProvider } from '../state/LoadoutContext';
 import LeftSidebar, { type Facet } from '../components/shell/LeftSidebar';
+import RightTray from '../components/shell/RightTray';
 import useCompendium from '../data/useCompendium';
 
 export default function CompendiumPage() {
@@ -111,7 +112,7 @@ export default function CompendiumPage() {
   return (
     <LoadoutProvider>
     <AppShell>
-      <div className="grid h-full grid-cols-[280px_minmax(0,1fr)] gap-3">
+      <div className="grid h-full grid-cols-[280px_minmax(0,1fr)_320px] gap-3">
         <div className="overflow-hidden">
           <LeftSidebar
             buckets={buckets}
@@ -124,37 +125,39 @@ export default function CompendiumPage() {
           />
         </div>
         <div className="flex min-w-0 flex-col">
-        <div className={headerBar}>
-          <input
-            className="w-full rounded-md border border-border bg-black/50 px-3 py-1 text-sm outline-none"
-            placeholder="Search items, effects, tags..."
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-          />
-        </div>
+          <div className={headerBar}>
+            <input
+              className="w-full rounded-md border border-border bg-black/50 px-3 py-1 text-sm outline-none"
+              placeholder="Search items, effects, tags..."
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+            />
+          </div>
 
-        <div className="h-[calc(100%-42px)] overflow-auto">
-          {error && (
-            <div className="m-2 rounded border border-primary bg-black p-3 text-sm text-primary">{error}</div>
-          )}
-          <div className={gridWrap}>
-            {filtered.map((it: any) => (
-              <ItemCard
-                key={it.key || it.slug}
-                name={it.name}
+          <div className="h-[calc(100%-42px)] overflow-auto">
+            {error && (
+              <div className="m-2 rounded border border-primary bg-black p-3 text-sm text-primary">{error}</div>
+            )}
+            <div className={gridWrap}>
+              {filtered.map((it: any) => (
+                <ItemCard
+                  key={it.key || it.slug}
+                  name={it.name}
                 slug={it.slug}
                 keyPath={it.key}
                 tags={it.tags || []}
                 text={it.text}
                 trigger={it.trigger}
                 stats={it.stats}
+                rarity={(it as any).rarity}
                 onAdd={() => {}}
                 onInfo={() => {}}
               />
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-        </div>
+        <div className="overflow-hidden"><RightTray /></div>
       </div>
     </AppShell>
     </LoadoutProvider>
