@@ -1728,124 +1728,11 @@ function renderCompendiumGrid() {
     <section class="center" id="simulationTab" style="flex:1; display:none; flex-direction:column; min-height:0; background: #000;">
       <!-- Three-Pane Layout: Fighter Cards | Event Log | Loadout Tray -->
       <div class="sim-three-pane" style="display: grid; grid-template-columns: 0 1fr 380px; gap: 12px; height: 100%; min-height: 0; padding: 12px;">
-        
-        <!-- LEFT PANE: Sticky Summary (Fighter Cards) -->
-        <div class="fighter-summary-pane" style="display: none; flex-direction: column; gap: 16px; background: #0a0a0a; border: 2px solid #333; border-radius: 12px; padding: 16px; overflow-y: auto; position: sticky; top: 0; height: fit-content; max-height: 100vh;">
-          
-          <!-- Pinned Key Numbers -->
-          <div id="pinnedMetrics" style="background: rgba(0,50,20,0.8); border: 2px solid #0a5; border-radius: 8px; padding: 12px; margin-bottom: 8px;">
-            <div style="color: #0a5; font-size: 12px; font-weight: 600; text-align: center; margin-bottom: 8px;">LIVE METRICS</div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px;">
-              <div style="text-align: center;">
-                <div style="color: #888;">Damage Dealt</div>
-                <div id="totalDamageDealt" style="color: #f33; font-weight: 700;">0</div>
-              </div>
-              <div style="text-align: center;">
-                <div style="color: #888;">Damage Taken</div>
-                <div id="totalDamageTaken" style="color: #f33; font-weight: 700;">0</div>
-              </div>
-              <div style="text-align: center;">
-                <div style="color: #888;">Strikes Queued</div>
-                <div id="strikesQueued" style="color: #fa0; font-weight: 700;">0</div>
-              </div>
-              <div style="text-align: center;">
-                <div style="color: #888;">Lethal ETA</div>
-                <div id="lethalETA" style="color: #f0a; font-weight: 700;"> </div>
-              </div>
-            </div>
-          </div>
+        <!-- LEFT PANE: (hidden, reserved for future) -->
+        <div class="fighter-summary-pane" style="display: none;"></div>
 
-          <!-- Player Fighter Card -->
-          <div class="fighter-card player-card" style="background: rgba(0,255,51,0.1); border: 2px solid #0f3; border-radius: 12px; padding: 14px; position: relative;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-              <h3 style="color: #0f3; margin: 0; font-size: 16px; text-shadow: 0 0 8px rgba(0,255,51,0.5);">PLAYER</h3>
-              <div id="playerResult" style="font-size: 12px; font-weight: 600; display: none;"></div>
-            </div>
-            <!-- Floating per-action overlay (updated as you scrub the log) -->
-            <div id="playerEventOverlay" style="position: absolute; top: 6px; right: 10px; display: flex; align-items: center; gap: 6px;
-                 background: rgba(0,255,51,0.12); border: 1px solid #0f3; border-radius: 8px; padding: 4px 8px; color:#0f3; font-weight:700; font-size:12px; visibility:hidden;
-                 box-shadow: 0 2px 10px rgba(0,255,51,0.25);">
-              <img id="playerEventIcon" src="assets/placeholder.png" style="width:16px;height:16px; image-rendering: pixelated;">
-              <span id="playerEventText"></span>
-            </div>
-            
-            <!-- Core Stats -->
-            <div class="core-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px;">
-              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #0f3; border-radius: 6px; padding: 6px 8px;">
-                <img src="assets/health.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
-                <span style="color: #0f3; font-size: 14px; font-weight: 600;"><span id="playerHP">10</span>/<span id="playerMaxHP">10</span></span>
-              </div>
-              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #0f3; border-radius: 6px; padding: 6px 8px;">
-                <img src="assets/armor.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
-                <span style="color: #0f3; font-size: 14px; font-weight: 600;" id="playerArmor">0</span>
-              </div>
-              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #0f3; border-radius: 6px; padding: 6px 8px;">
-                <img src="assets/attack.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
-                <span style="color: #0f3; font-size: 14px; font-weight: 600;" id="playerAttack">0</span>
-              </div>
-              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #0f3; border-radius: 6px; padding: 6px 8px;">
-                <img src="assets/speed.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
-                <span style="color: #0f3; font-size: 14px; font-weight: 600;" id="playerSpeed">0</span>
-              </div>
-            </div>
-
-            <!-- Status Effects -->
-            <div id="playerStatusEffects" class="status-effects" style="display: flex; flex-wrap: wrap; gap: 6px; min-height: 28px;">
-              <div style="color: #666; font-size: 11px; font-style: italic;">No status effects</div>
-            </div>
-          </div>
-
-          <!-- Opponent Fighter Card -->
-          <div class="fighter-card opponent-card" style="background: rgba(255,51,51,0.1); border: 2px solid #f33; border-radius: 12px; padding: 14px; position: relative;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-              <h3 style="color: #f33; margin: 0; font-size: 16px; text-shadow: 0 0 8px rgba(255,51,51,0.5);">OPPONENT</h3>
-              <div id="opponentResult" style="font-size: 12px; font-weight: 600; display: none;"></div>
-            </div>
-            <!-- Floating per-action overlay (updated as you scrub the log) -->
-            <div id="opponentEventOverlay" style="position: absolute; top: 6px; right: 10px; display: flex; align-items: center; gap: 6px;
-                 background: rgba(255,51,51,0.12); border: 1px solid #f33; border-radius: 8px; padding: 4px 8px; color:#f33; font-weight:700; font-size:12px; visibility:hidden;
-                 box-shadow: 0 2px 10px rgba(255,51,51,0.25);">
-              <img id="opponentEventIcon" src="assets/placeholder.png" style="width:16px;height:16px; image-rendering: pixelated;">
-              <span id="opponentEventText"></span>
-            </div>
-            
-            <!-- Core Stats -->
-            <div class="core-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px;">
-              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #f33; border-radius: 6px; padding: 6px 8px;">
-                <img src="assets/health.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
-                <span style="color: #f33; font-size: 14px; font-weight: 600;"><span id="opponentHP">10</span>/<span id="opponentMaxHP">10</span></span>
-              </div>
-              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #f33; border-radius: 6px; padding: 6px 8px;">
-                <img src="assets/armor.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
-                <span style="color: #f33; font-size: 14px; font-weight: 600;" id="opponentArmor">0</span>
-              </div>
-              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #f33; border-radius: 6px; padding: 6px 8px;">
-                <img src="assets/attack.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
-                <span style="color: #f33; font-size: 14px; font-weight: 600;" id="opponentAttack">0</span>
-              </div>
-              <div class="stat-chip" style="display: flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #f33; border-radius: 6px; padding: 6px 8px;">
-                <img src="assets/speed.png" style="width: 16px; height: 16px; image-rendering: pixelated;">
-                <span style="color: #f33; font-size: 14px; font-weight: 600;" id="opponentSpeed">0</span>
-              </div>
-            </div>
-
-            <!-- Status Effects -->
-            <div id="opponentStatusEffects" class="status-effects" style="display: flex; flex-wrap: wrap; gap: 6px; min-height: 28px;">
-              <div style="color: #666; font-size: 11px; font-style: italic;">No status effects</div>
-            </div>
-          </div>
-
-          <!-- Battle Controls -->
-          <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
-            <button id="btnSimulate" type="button" title="Run a simulation between the two loadouts" class="battle-button" style="background: linear-gradient(135deg, #0f3 0%, #0a8 100%); color: #000; border: none; border-radius: 8px; padding: 12px; cursor: pointer; font-size: 14px; font-weight: 700; box-shadow: 0 2px 8px rgba(0,255,51,0.3);">   START BATTLE</button>
-            <button id="btnClearLog" type="button" title="Clear the simulation log" style="background: #333; color: #fff; border: none; border-radius: 8px; padding: 8px; cursor: pointer; font-size: 12px;">   Clear Log</button>
-          </div>
-
-        </div>
-
-        <!-- MIDDLE PANE: Event Log -->
+        <!-- MIDDLE PANE: Event Log, Arena, and Battle Controls -->
         <div class="event-log-pane" style="display: flex; flex-direction: column; background: #0a0a0a; border: 2px solid #333; border-radius: 12px; overflow: hidden; min-height: 0; grid-column: 2; position: relative; z-index: 2;">
-          
           <!-- Log Header -->
           <div style="background: linear-gradient(90deg, #333 0%, #555 100%); padding: 12px 16px; border-bottom: 2px solid #333; flex-shrink: 0;">
             <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -1853,19 +1740,21 @@ function renderCompendiumGrid() {
               <div style="display: flex; align-items: center; gap: 12px;">
                 <div id="battleStatus" style="color: #ccc; font-size: 12px; font-weight: 600;">Ready</div>
                 <button id="btnSimulateTop" type="button" title="Run a battle" style="background:#0f3;color:#000;border:none;border-radius:6px;padding:8px 12px;cursor:pointer;font-size:12px;font-weight:700;">START BATTLE</button>
+                <button id="randBuildBtn" type="button" title="Randomize player loadout" style="background:#0af;color:#fff;border:none;border-radius:6px;padding:8px 12px;cursor:pointer;font-size:12px;font-weight:700;">🎲 Randomize Player</button>
+                <button id="randEnemyBtn" type="button" title="Randomize opponent loadout" style="background:#f33;color:#fff;border:none;border-radius:6px;padding:8px 12px;cursor:pointer;font-size:12px;font-weight:700;">🎲 Randomize Opponent</button>
               </div>
             </div>
           </div>
-          
+
           <!-- Timeline Controls -->
           <div id="timelineControls" style="display: none; background: rgba(0,20,0,0.8); border-bottom: 2px solid #0a5; padding: 12px 16px; flex-shrink: 0;">
             <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
               <div style="display: flex; align-items: center; gap: 6px;">
-                <button id="replayFirst" class="replay-btn" style="background: #0a5; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">  </button>
+                <button id="replayFirst" class="replay-btn" style="background: #0a5; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">⏮️</button>
                 <button id="replayBack" class="replay-btn" style="background: #0a5; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">&lt;&lt;</button>
-                <button id="replayPlay" class="replay-btn" style="background: #0f3; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">  </button>
+                <button id="replayPlay" class="replay-btn" style="background: #0f3; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">▶️</button>
                 <button id="replayForward" class="replay-btn" style="background: #0a5; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">&gt;&gt;</button>
-                <button id="replayLast" class="replay-btn" style="background: #0a5; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">  </button>
+                <button id="replayLast" class="replay-btn" style="background: #0a5; color: #000; border: none; border-radius: 4px; padding: 6px 8px; cursor: pointer; font-size: 11px; font-weight: 700;">⏭️</button>
               </div>
               <div style="display: flex; align-items: center; gap: 6px; color: #0f3; font-size: 11px;">
                 <label>Turn:</label>
@@ -1875,15 +1764,15 @@ function renderCompendiumGrid() {
               <div style="display: flex; align-items: center; gap: 6px; color: #0f3; font-size: 11px;">
                 <label>Speed:</label>
                 <select id="replaySpeed" style="background: #000; color: #0f3; border: 1px solid #0a5; border-radius: 4px; padding: 2px 4px; font-size: 11px;">
-                  <option value="2000">0.5 </option>
-                  <option value="1000" selected>1 </option>
-                  <option value="500">2 </option>
-                  <option value="250">4 </option>
+                  <option value="2000">0.5×</option>
+                  <option value="1000" selected>1×</option>
+                  <option value="500">2×</option>
+                  <option value="250">4×</option>
                 </select>
               </div>
             </div>
           </div>
-          
+
           <!-- Battle Log Content -->
           <div id="simLog" style="flex: 1; overflow-y: auto; padding: 16px; font-size: 14px; color: #ccc; line-height: 1.6; min-height: 0;" aria-live="polite">
             <div style="text-align: center; color: #666; font-style: italic; padding: 40px 20px;">
@@ -1900,121 +1789,111 @@ function renderCompendiumGrid() {
             #arenaBoard img{image-rendering:pixelated}
             .arena-overlay{display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:8px;font-weight:700;visibility:hidden;box-shadow:0 2px 10px rgba(0,0,0,.35)}
             .arena-overlay img{width:16px;height:16px}
-            /* Hide floating event overlays (redundant with action captions) */
             .arena-overlay{display:none !important}
             .delta-panel{min-width:110px; min-height:60px; border:1px solid rgba(255,255,255,0.1); border-radius:10px; background:rgba(0,0,0,0.35); padding:8px; color:#ddd; display:flex; flex-direction:column; gap:4px}
             .delta-row{display:flex; align-items:center; gap:6px; font-size:13px;}
             .delta-row .icon{width:16px; height:16px; display:inline-block}
             .delta-row.positive{color:#0f3}
             .delta-row.negative{color:#f44}
-            /* Compact, always-on status icon bar */
             .status-bar{display:flex; gap:14px; align-items:center; justify-content:space-between; margin:4px 0 10px; width:100%; flex-wrap:nowrap}
             .status-bar .s{display:flex; align-items:center; gap:6px; color:#ddd; font-size:14px}
             .status-bar .s img{width:18px; height:18px; image-rendering:pixelated}
-            /* Bigger action caption text */
             #arenaPlayerAction, #arenaOpponentAction{ font-size: 15px; }
-            /* Hide legacy left cards in simulation view */
             #simulationTab .fighter-summary-pane .fighter-card, #simulationTab #pinnedMetrics{display:none !important}
-            /* Hide old chip rows in arena */
             #arenaPlayerStatuses, #arenaOpponentStatuses{display:none}
           </style>
 
-            <div id="arenaBoard" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
+          <div id="arenaBoard" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
+            <!-- Player Arena -->
             <div id="simPlayerArena" style="background: rgba(0,255,51,0.05); border: 1px solid #0a5; border-radius: 12px; padding: 12px; position: relative; min-height: var(--arena-box-min-height);">
-                <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px;">Current Status</div>
-                <div id="arenaPlayerStatusBar" class="status-bar"></div>
-                <div id="arenaPlayerStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:6px 0 8px 0;"></div>
-                <div id="arenaPlayerEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(0,255,51,0.1); border:1px solid #0f3; color:#0f3;">
-                  <img id="arenaPlayerEventIcon" src="assets/placeholder.png">
-                  <span id="arenaPlayerEventText"></span>
-                </div>
-                <div class="statusPanelGrid" style="display:grid; grid-template-columns: 110px 1fr 120px; align-items:center; gap:16px; height: calc(var(--arena-sprite-height) + 32px);">
-                  <!-- Left: vertical stat pills -->
-                  <div class="pills-vertical" style="display:flex; flex-direction:column; gap:10px; align-items:stretch;">
-                    <div class="pill" style="justify-content:center;"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaPlayerHP">10</span></div>
-                    <div class="pill" style="justify-content:center;"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaPlayerArmor">0</span></div>
-                    <div class="pill" style="justify-content:center;"><img src="assets/attack.png" style="width:16px;height:16px;"><span id="arenaPlayerAttack">0</span></div>
-                    <div class="pill" style="justify-content:center;"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaPlayerSpeed">0</span></div>
-                  </div>
-
-                  <!-- Center: framed sprite -->
-                  <div class="sprite-frame" style="position:relative; display:grid; place-items:center; height:100%;">
-                    <div style="position:absolute; inset:0; border:1px solid rgba(255,255,255,0.15); border-radius:12px;"></div>
-                    <img id="arenaPlayerSprite" src="sprites/1.png" alt="player" style="height:var(--arena-sprite-height); width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #0f3);">
-                  </div>
-
-                  <!-- Right: delta panel -->
-                  <div id="arenaPlayerDelta" class="delta-panel" aria-label="Player changes"></div>
-                </div>
-                <div style="margin-top:12px; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; color:#ccc; font-size:13px;">
-                  <div style="font-weight:700; color:#0f3; margin-bottom:4px;">Action</div>
-                  <div id="arenaPlayerAction" style="opacity:.9"></div>
-                </div>
-
-                <!-- Player scoped event log -->
-                <div id="playerSideLog" style="margin-top:12px; background: rgba(0,255,51,0.05); border:1px solid #0a5; border-radius:10px; overflow:hidden;">
-                  <div style="display:flex; align-items:center; justify-content:space-between; padding:6px 8px; border-bottom:1px solid #0a5;">
-                    <div style="font-size:12px; font-weight:700; color:#0f3;">EVENT LOG — Player</div>
-                    <div style="display:flex; gap:6px;">
-                      <button id="playerFilterAll" style="font-size:11px; padding:4px 8px; border:1px solid #0a5; border-radius:6px; background:#002100; color:#0f3; cursor:pointer;">All</button>
-                      <button id="playerFilterOutgoing" style="font-size:11px; padding:4px 8px; border:1px solid #0a5; border-radius:6px; background:#000; color:#0f3; cursor:pointer;">Outgoing</button>
-                      <button id="playerFilterIncoming" style="font-size:11px; padding:4px 8px; border:1px solid #0a5; border-radius:6px; background:#000; color:#0f3; cursor:pointer;">Incoming</button>
-                    </div>
-                  </div>
-                  <div id="playerSideLogList" style="max-height:220px; overflow:auto; padding:8px; font-size:12px; color:#ccc;"></div>
-                </div>
+              <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px;">Current Status</div>
+              <div id="arenaPlayerStatusBar" class="status-bar"></div>
+              <div id="arenaPlayerStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:6px 0 8px 0;"></div>
+              <div id="arenaPlayerEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(0,255,51,0.1); border:1px solid #0f3; color:#0f3;">
+                <img id="arenaPlayerEventIcon" src="assets/placeholder.png">
+                <span id="arenaPlayerEventText"></span>
               </div>
+              <div class="statusPanelGrid" style="display:grid; grid-template-columns: 110px 1fr 120px; align-items:center; gap:16px; height: calc(var(--arena-sprite-height) + 32px);">
+                <!-- Left: vertical stat pills -->
+                <div class="pills-vertical" style="display:flex; flex-direction:column; gap:10px; align-items:stretch;">
+                  <div class="pill" style="justify-content:center;"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaPlayerHP">10</span></div>
+                  <div class="pill" style="justify-content:center;"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaPlayerArmor">0</span></div>
+                  <div class="pill" style="justify-content:center;"><img src="assets/attack.png" style="width:16px;height:16px;"><span id="arenaPlayerAttack">0</span></div>
+                  <div class="pill" style="justify-content:center;"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaPlayerSpeed">0</span></div>
+                </div>
+                <!-- Center: framed sprite -->
+                <div class="sprite-frame" style="position:relative; display:grid; place-items:center; height:100%;">
+                  <div style="position:absolute; inset:0; border:1px solid rgba(255,255,255,0.15); border-radius:12px;"></div>
+                  <img id="arenaPlayerSprite" src="sprites/1.png" alt="player" style="height:var(--arena-sprite-height); width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #0f3);">
+                </div>
+                <!-- Right: delta panel -->
+                <div id="arenaPlayerDelta" class="delta-panel" aria-label="Player changes"></div>
+              </div>
+              <div style="margin-top:12px; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; color:#ccc; font-size:13px;">
+                <div style="font-weight:700; color:#0f3; margin-bottom:4px;">Action</div>
+                <div id="arenaPlayerAction" style="opacity:.9"></div>
+              </div>
+              <!-- Player scoped event log -->
+              <div id="playerSideLog" style="margin-top:12px; background: rgba(0,255,51,0.05); border:1px solid #0a5; border-radius:10px; overflow:hidden;">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:6px 8px; border-bottom:1px solid #0a5;">
+                  <div style="font-size:12px; font-weight:700; color:#0f3;">EVENT LOG — Player</div>
+                  <div style="display:flex; gap:6px;">
+                    <button id="playerFilterAll" style="font-size:11px; padding:4px 8px; border:1px solid #0a5; border-radius:6px; background:#002100; color:#0f3; cursor:pointer;">All</button>
+                    <button id="playerFilterOutgoing" style="font-size:11px; padding:4px 8px; border:1px solid #0a5; border-radius:6px; background:#000; color:#0f3; cursor:pointer;">Outgoing</button>
+                    <button id="playerFilterIncoming" style="font-size:11px; padding:4px 8px; border:1px solid #0a5; border-radius:6px; background:#000; color:#0f3; cursor:pointer;">Incoming</button>
+                  </div>
+                </div>
+                <div id="playerSideLogList" style="max-height:220px; overflow:auto; padding:8px; font-size:12px; color:#ccc;"></div>
+              </div>
+            </div>
+            <!-- Opponent Arena -->
             <div id="simOpponentArena" style="background: rgba(255,51,51,0.05); border: 1px solid #a33; border-radius: 12px; padding: 12px; position: relative; min-height: var(--arena-box-min-height);">
-                <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px; text-align:right;">Current Status</div>
-                <div id="arenaOpponentStatusBar" class="status-bar" style="justify-content:flex-end;"></div>
-                <div id="arenaOpponentStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:6px 0 8px 0;"></div>
-                <div id="arenaOpponentEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(255,51,51,0.1); border:1px solid #f33; color:#f33;">
-                  <img id="arenaOpponentEventIcon" src="assets/placeholder.png">
-                  <span id="arenaOpponentEventText"></span>
-                </div>
-                <div class="statusPanelGrid" style="display:grid; grid-template-columns: 110px 1fr 120px; align-items:center; gap:16px; height: calc(var(--arena-sprite-height) + 32px);">
-                  <!-- Left: vertical stat pills -->
-                  <div class="pills-vertical" style="display:flex; flex-direction:column; gap:10px; align-items:stretch;">
-                    <div class="pill" style="justify-content:center;"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaOpponentHP">10</span></div>
-                    <div class="pill" style="justify-content:center;"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaOpponentArmor">0</span></div>
-                    <div class="pill" style="justify-content:center;"><img src="assets/attack.png" style="width:16px;height:16px;"><span id="arenaOpponentAttack">0</span></div>
-                    <div class="pill" style="justify-content:center;"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaOpponentSpeed">0</span></div>
-                  </div>
-
-                  <!-- Center: framed sprite -->
-                  <div class="sprite-frame" style="position:relative; display:grid; place-items:center; height:100%;">
-                    <div style="position:absolute; inset:0; border:1px solid rgba(255,255,255,0.15); border-radius:12px;"></div>
-                    <img id="arenaOpponentSprite" src="sprites/2.png" alt="opponent" style="height:var(--arena-sprite-height); width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #f33);">
-                  </div>
-
-                  <!-- Right: delta panel -->
-                  <div id="arenaOpponentDelta" class="delta-panel" aria-label="Opponent changes"></div>
-                </div>
-                <div style="margin-top:12px; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; color:#ccc; font-size:13px; text-align:right;">
-                  <div style="font-weight:700; color:#f66; margin-bottom:4px;">Action</div>
-                  <div id="arenaOpponentAction" style="opacity:.9"></div>
-                </div>
-
-                <!-- Opponent scoped event log -->
-                <div id="opponentSideLog" style="margin-top:12px; background: rgba(255,51,51,0.05); border:1px solid #a33; border-radius:10px; overflow:hidden;">
-                  <div style="display:flex; align-items:center; justify-content:space-between; padding:6px 8px; border-bottom:1px solid #a33;">
-                    <div style="font-size:12px; font-weight:700; color:#f66;">EVENT LOG — Opponent</div>
-                    <div style="display:flex; gap:6px;">
-                      <button id="opponentFilterAll" style="font-size:11px; padding:4px 8px; border:1px solid #a33; border-radius:6px; background:#210000; color:#f66; cursor:pointer;">All</button>
-                      <button id="opponentFilterOutgoing" style="font-size:11px; padding:4px 8px; border:1px solid #a33; border-radius:6px; background:#000; color:#f66; cursor:pointer;">Outgoing</button>
-                      <button id="opponentFilterIncoming" style="font-size:11px; padding:4px 8px; border:1px solid #a33; border-radius:6px; background:#000; color:#f66; cursor:pointer;">Incoming</button>
-                    </div>
-                  </div>
-                  <div id="opponentSideLogList" style="max-height:220px; overflow:auto; padding:8px; font-size:12px; color:#ccc;"></div>
-                </div>
+              <div style="color:#ffd; font-weight:700; font-size:14px; margin-bottom:6px; text-align:right;">Current Status</div>
+              <div id="arenaOpponentStatusBar" class="status-bar" style="justify-content:flex-end;"></div>
+              <div id="arenaOpponentStatuses" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:6px 0 8px 0;"></div>
+              <div id="arenaOpponentEventOverlay" class="arena-overlay" style="position:absolute; left: 50%; transform: translateX(-50%); top: 8px; background: rgba(255,51,51,0.1); border:1px solid #f33; color:#f33;">
+                <img id="arenaOpponentEventIcon" src="assets/placeholder.png">
+                <span id="arenaOpponentEventText"></span>
               </div>
+              <div class="statusPanelGrid" style="display:grid; grid-template-columns: 110px 1fr 120px; align-items:center; gap:16px; height: calc(var(--arena-sprite-height) + 32px);">
+                <!-- Left: vertical stat pills -->
+                <div class="pills-vertical" style="display:flex; flex-direction:column; gap:10px; align-items:stretch;">
+                  <div class="pill" style="justify-content:center;"><img src="assets/health.png" style="width:16px;height:16px;"><span id="arenaOpponentHP">10</span></div>
+                  <div class="pill" style="justify-content:center;"><img src="assets/armor.png" style="width:16px;height:16px;"><span id="arenaOpponentArmor">0</span></div>
+                  <div class="pill" style="justify-content:center;"><img src="assets/attack.png" style="width:16px;height:16px;"><span id="arenaOpponentAttack">0</span></div>
+                  <div class="pill" style="justify-content:center;"><img src="assets/speed.png" style="width:16px;height:16px;"><span id="arenaOpponentSpeed">0</span></div>
+                </div>
+                <!-- Center: framed sprite -->
+                <div class="sprite-frame" style="position:relative; display:grid; place-items:center; height:100%;">
+                  <div style="position:absolute; inset:0; border:1px solid rgba(255,255,255,0.15); border-radius:12px;"></div>
+                  <img id="arenaOpponentSprite" src="sprites/2.png" alt="opponent" style="height:var(--arena-sprite-height); width:auto; image-rendering:pixelated; filter: drop-shadow(0 0 6px #f33);">
+                </div>
+                <!-- Right: delta panel -->
+                <div id="arenaOpponentDelta" class="delta-panel" aria-label="Opponent changes"></div>
+              </div>
+              <div style="margin-top:12px; border-top:1px solid rgba(255,255,255,0.08); padding-top:8px; color:#ccc; font-size:13px; text-align:right;">
+                <div style="font-weight:700; color:#f66; margin-bottom:4px;">Action</div>
+                <div id="arenaOpponentAction" style="opacity:.9"></div>
+              </div>
+              <!-- Opponent scoped event log -->
+              <div id="opponentSideLog" style="margin-top:12px; background: rgba(255,51,51,0.05); border:1px solid #a33; border-radius:10px; overflow:hidden;">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:6px 8px; border-bottom:1px solid #a33;">
+                  <div style="font-size:12px; font-weight:700; color:#f66;">EVENT LOG — Opponent</div>
+                  <div style="display:flex; gap:6px;">
+                    <button id="opponentFilterAll" style="font-size:11px; padding:4px 8px; border:1px solid #a33; border-radius:6px; background:#210000; color:#f66; cursor:pointer;">All</button>
+                    <button id="opponentFilterOutgoing" style="font-size:11px; padding:4px 8px; border:1px solid #a33; border-radius:6px; background:#000; color:#f66; cursor:pointer;">Outgoing</button>
+                    <button id="opponentFilterIncoming" style="font-size:11px; padding:4px 8px; border:1px solid #a33; border-radius:6px; background:#000; color:#f66; cursor:pointer;">Incoming</button>
+                  </div>
+                </div>
+                <div id="opponentSideLogList" style="max-height:220px; overflow:auto; padding:8px; font-size:12px; color:#ccc;"></div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- RIGHT PANE: Loadout Tray -->
         <div class="loadout-tray-pane" style="display: flex; flex-direction: column; gap: 16px; background: #0a0a0a; border: 2px solid #333; border-radius: 12px; padding: 16px; overflow-y: auto; grid-column: 3; position: relative; z-index: 1; max-width: 380px;">
           <h3 style="color: #fff; margin: 0 0 12px 0; font-size: 16px; text-align: center;">   LOADOUT TRAY</h3>
-          
           <!-- Player Loadout -->
           <div class="loadout-section">
             <h4 style="color: #0f3; margin: 0 0 8px 0; font-size: 14px;">Player Items</h4>
@@ -2022,7 +1901,6 @@ function renderCompendiumGrid() {
               <div style="color: #666; font-size: 11px; font-style: italic; text-align: center; padding: 12px;">No items equipped</div>
             </div>
           </div>
-
           <!-- Opponent Loadout -->
           <div class="loadout-section">
             <h4 style="color: #f33; margin: 0 0 8px 0; font-size: 14px;">Opponent Items</h4>
@@ -2030,7 +1908,6 @@ function renderCompendiumGrid() {
               <div style="color: #666; font-size: 11px; font-style: italic; text-align: center; padding: 12px;">No items equipped</div>
             </div>
           </div>
-
           <!-- Tag Groups (Future Implementation) -->
           <div class="tag-groups" style="display: none;">
             <h4 style="color: #fa0; margin: 12px 0 8px 0; font-size: 14px;">By Category</h4>
@@ -2041,7 +1918,6 @@ function renderCompendiumGrid() {
             <!-- More tag groups will be added -->
           </div>
         </div>
-
       </div>
     </section>
   </div>
