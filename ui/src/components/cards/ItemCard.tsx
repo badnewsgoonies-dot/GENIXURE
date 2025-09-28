@@ -6,6 +6,7 @@ import { useLoadout } from '../../state/LoadoutContext';
 export type ItemCardProps = {
   name: string;
   slug: string;
+  keyPath?: string;
   tags: string[];
   trigger?: string;
   text?: string;
@@ -25,6 +26,7 @@ function ringByRarity(r?: string) {
 export default function ItemCard({
   name,
   slug,
+  keyPath,
   tags,
   trigger,
   text,
@@ -38,7 +40,7 @@ export default function ItemCard({
       {/* Title row */}
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Sprite slug={slug} size={24} />
+          <Sprite slug={slug} keyPath={keyPath} size={24} />
           <div className="truncate text-sm font-semibold">{name}</div>
         </div>
         <div className="flex items-center gap-1">

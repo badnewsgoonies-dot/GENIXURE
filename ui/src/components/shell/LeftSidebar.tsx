@@ -1,39 +1,47 @@
 import React from 'react';
 import { panel, headerBar, outline, badge } from '../../theme/legacyTheme';
 
-export default function LeftSidebar() {
+export type Facet = { key: string; label: string; count: number; active?: boolean };
+
+export default function LeftSidebar({
+  buckets,
+  tags,
+  triggers,
+  onToggleBucket,
+  onToggleTag,
+  onToggleTrigger,
+  onClear,
+}: {
+  buckets: Facet[];
+  tags: Facet[];
+  triggers: Facet[];
+  onToggleBucket: (k: string) => void;
+  onToggleTag: (k: string) => void;
+  onToggleTrigger: (k: string) => void;
+  onClear: () => void;
+}) {
   return (
     <div className={`${panel} h-full p-2`}>
       <div className={headerBar}>
         <span className="text-xs uppercase tracking-wide text-muted">Compendium</span>
-        <button className={`${badge}`}>Clear All</button>
+        <button className={`${badge}`} onClick={onClear}>Clear All</button>
       </div>
 
-      {/* Buckets */}
       <Section title="Bucket">
-        {['All Items', 'Items', 'Weapons', 'Upgrades'].map((x, i) => (
-          <Row key={i} name={x} count={i === 0 ? 400 : 100 - i * 12} />
+        {buckets.map((f) => (
+          <Row key={f.key} name={f.label} count={f.count} active={!!f.active} onClick={() => onToggleBucket(f.key)} />
         ))}
       </Section>
 
-      {/* Tag Families */}
       <Section title="Tag Families">
-        {['Bomb', 'Symphony', 'Poison', 'Armor', 'Regen', 'Wound', 'Blood', 'Order', 'Wind'].map((x, i) => (
-          <Row key={i} name={x} count={i * 3 + 2} />
+        {tags.map((f) => (
+          <Row key={f.key} name={f.label} count={f.count} active={!!f.active} onClick={() => onToggleTag(f.key)} />
         ))}
       </Section>
 
-      {/* Triggers */}
       <Section title="Triggers">
-        {['Battle Start', 'First Turn', 'On Hit', 'On Wounded', 'On Exposed', 'Turn End'].map((x, i) => (
-          <Row key={i} name={x} count={i * 5 + 1} />
-        ))}
-      </Section>
-
-      {/* Sets */}
-      <Section title="Sets">
-        {['Glasses of the Hero', 'Highborn', 'Bloodmoon'].map((x, i) => (
-          <Row key={i} name={x} count={i + 1} />
+        {triggers.map((f) => (
+          <Row key={f.key} name={f.label} count={f.count} active={!!f.active} onClick={() => onToggleTrigger(f.key)} />
         ))}
       </Section>
     </div>
@@ -49,12 +57,16 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
-function Row({ name, count }: { name: string; count: number }) {
+function Row({ name, count, onClick, active }: { name: string; count: number; onClick: () => void; active?: boolean }) {
   return (
-    <button className="flex w-full items-center justify-between rounded-md px-2 py-1 text-left text-xs hover:bg-white/5">
+    <button
+      onClick={onClick}
+      className={`flex w-full items-center justify-between rounded-md px-2 py-1 text-left text-xs hover:bg-white/5 ${
+        active ? 'bg-white/10' : ''
+      }`}
+    >
       <span className="truncate">{name}</span>
       <span className="ml-2 rounded bg-black/60 px-1 text-[10px]">{count}</span>
     </button>
   );
 }
-

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const roots = ['images','img','assets','data','json','fonts','icons'];
+const roots = ['images','img','assets','data','json','fonts','icons','items','weapons','upgrades','sets','Sprites','sprites'];
 const repoRoot = process.cwd();
 const uiPublic = path.join(repoRoot, 'ui', 'public');
 fs.mkdirSync(uiPublic, { recursive: true });
@@ -26,4 +26,3 @@ for (const r of roots) {
   }
 }
 console.log('Done. Now update code to reference /<folder>/<file> (served from ui/public).');
-
