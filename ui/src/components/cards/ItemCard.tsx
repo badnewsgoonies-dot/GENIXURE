@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { panel, ringNeon, badge } from '../../theme/legacyTheme';
+import { panel, ringNeon, badge, iconBtn } from '../../theme/legacyTheme';
 import Sprite from '../media/Sprite';
 import { useLoadout } from '../../state/LoadoutContext';
 
@@ -62,8 +62,10 @@ export default function ItemCard({
           <div className="truncate text-[13px] font-semibold leading-4">{name}</div>
         </div>
         <div className="flex items-center gap-1">
-          <button onClick={onInfo} className={`${badge}`}>i</button>
-          <button onClick={onAdd || (()=> add({ key: keyPath || slug, slug, name }))} className={`${badge}`}>+</button>
+          <button title="Edit" className={iconBtn}>✎</button>
+          <button title="More" className={iconBtn}>⋯</button>
+          <button title="Info" onClick={onInfo} className={iconBtn}>i</button>
+          <button title="Add" onClick={onAdd || (()=> add({ key: keyPath || slug, slug, name }))} className={iconBtn}>+</button>
         </div>
       </div>
       <div className="-mt-0.5 truncate px-2 text-[10px] leading-4 text-muted">{keyPath || slug}</div>
@@ -89,11 +91,10 @@ export default function ItemCard({
       {/* Footer: stats + tags */}
       <div className="flex items-center justify-between border-t border-border/60 px-2 py-1">
         <div className="flex flex-wrap items-center gap-1">
-          {Object.entries(stats).map(([k, v]) => (
-            <span key={k} className={`${badge} leading-4`}>
-              {k}:{v}
-            </span>
-          ))}
+          <StatPill icon="/assets/attack.png" label="ATK" value={stats.ATK ?? 0} />
+          <StatPill icon="/assets/armor.png" label="ARM" value={stats.ARM ?? 0} />
+          <StatPill icon="/assets/health.png" label="HP" value={stats.HP ?? 0} />
+          <StatPill icon="/assets/speed.png" label="SPD" value={stats.SPD ?? 0} />
         </div>
         <div className="flex items-center gap-1">
           {tags.slice(0, 2).map((t) => (
@@ -104,5 +105,21 @@ export default function ItemCard({
         </div>
       </div>
     </div>
+  );
+}
+
+function StatPill({ icon, label, value }: { icon: string; label: string; value: number }) {
+  const dim = value === 0;
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded-md border border-border/60 px-1.5 py-[1px] text-[10px] leading-4 ${
+        dim ? 'opacity-60' : ''
+      }`}
+    >
+      <img src={icon} alt={label} className="h-3 w-3" style={{ imageRendering: 'pixelated' }} />
+      <span>
+        {label}:{value}
+      </span>
+    </span>
   );
 }
