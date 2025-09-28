@@ -70,39 +70,22 @@ function renderCompendiumGrid() {
     </div>
   <section class="center flex-1 flex flex-col min-h-0 bg-gray-950 rounded-xl border-2 border-gray-800" id="compendiumTab">
       <!-- Advanced Compendium Header -->
+
       <div class="compendium-header bg-gradient-to-br from-slate-800 to-slate-900 p-4 border-b-2 border-red-400 flex-shrink-0 hidden">
         <!-- Top Row: Search + View Controls -->
-        <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px; flex-wrap: wrap;">
-          
+        <div class="flex gap-3 items-center mb-3 flex-wrap">
           <!-- Global Search with Chips -->
-          <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 300px;">
-            <input id="globalSearch" type="search" placeholder="Search items, effects, tags..." style="
-              flex: 1; 
-              background: #000; 
-              color: #f33; 
-              border: 2px solid #f33; 
-              border-radius: 8px; 
-              padding: 8px 12px; 
-              font-size: 14px;
-            ">
-            <div id="searchChips" style="display: flex; gap: 4px; flex-wrap: wrap;"></div>
-      <!-- Compendium Tools (Randomizer) -->
-      <div id="compendiumTools" style="display:flex; gap:8px; align-items:center; padding:8px 12px; border-bottom:1px solid #333; background:#0a0a0a;">
-      </div>
+          <div class="flex items-center gap-2 flex-1 min-w-[300px]">
+            <input id="globalSearch" type="search" placeholder="Search items, effects, tags..." class="flex-1 bg-black text-red-500 border-2 border-red-500 rounded-lg px-3 py-2 text-sm" />
+            <div id="searchChips" class="flex gap-1 flex-wrap"></div>
+            <!-- Compendium Tools (Randomizer) -->
+            <div id="compendiumTools" class="flex gap-2 items-center px-3 py-2 border-b border-gray-800 bg-black"></div>
           </div>
-
-          
-
           <!-- View Switch -->
-          <div class="view-switch" style="display: flex; gap: 2px; background: #000; border: 2px solid #f33; border-radius: 8px; overflow: hidden;">
-            <button id="viewCards" class="view-btn active" style="padding: 8px 16px; background: #f33; color: #000; border: none; cursor: pointer; font-size: 12px; font-weight: 600;">Cards</button>
-            <button id="viewTable" class="view-btn" style="padding: 8px 16px; background: transparent; color: #f33; border: none; cursor: pointer; font-size: 12px; font-weight: 600;">Table</button>
+          <div class="view-switch flex gap-0.5 bg-black border-2 border-red-500 rounded-lg overflow-hidden">
+            <button id="viewCards" class="view-btn active px-4 py-2 bg-red-500 text-black border-none cursor-pointer text-xs font-semibold">Cards</button>
+            <button id="viewTable" class="view-btn px-4 py-2 bg-transparent text-red-500 border-none cursor-pointer text-xs font-semibold">Table</button>
           </div>
-          
-          
-          
-          <!-- Tier Switcher removed -->
-          
         </div>
         
         <!-- Bottom Row: Quick Actions + Stats -->
@@ -130,17 +113,10 @@ function renderCompendiumGrid() {
       </div>
       
       <!-- Main Content Layout -->
-      <div class="compendium-main" style="flex: 1; display: flex; min-height: 0; overflow: hidden;">
+  <div class="compendium-main flex flex-1 min-h-0 overflow-hidden">
         
         <!-- Left Facet Panel -->
-        <div class="facet-panel" style="
-          width: 280px; 
-          background: #0a0a0a; 
-          border-right: 2px solid #333; 
-          overflow-y: auto; 
-          padding: 16px; 
-          flex-shrink: 0;
-        ">
+        <div class="facet-panel w-[280px] bg-black border-r-2 border-gray-800 overflow-y-auto p-4 flex-shrink-0">
           
           <!-- Bucket Filter -->
           <div class="facet-group" style="margin-bottom: 20px;">
@@ -325,17 +301,11 @@ function renderCompendiumGrid() {
         </div>
         
         <!-- Main Content Area -->
-        <div class="main-content" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+  <div class="main-content flex flex-1 flex-col min-h-0">
           
           <!-- Cards View (Default) -->
-          <div id="cardsView" class="content-view" style="flex: 1; overflow-y: auto; padding: 16px;">
-            <div id="itemGrid" class="grid" style="
-              display: grid; 
-              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-              gap: 12px; 
-              justify-items: stretch; 
-              align-content: start;
-            "></div>
+          <div id="cardsView" class="content-view flex-1 overflow-y-auto p-4">
+            <div id="itemGrid" class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-3 justify-stretch content-start"></div>
           </div>
           
           <!-- Table View (Hidden by default) -->
