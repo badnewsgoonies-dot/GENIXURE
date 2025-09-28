@@ -1,9 +1,8 @@
 [build]
-command = "npm install --prefix ui --no-audit --no-fund && npm run build --prefix ui"
-publish = "ui/dist"
+command = "echo 'No build step needed'"
+publish = "."
 
 [build.environment]
-VITE_BASE = "/"
 NODE_VERSION = "20"
 
 [[redirects]]
