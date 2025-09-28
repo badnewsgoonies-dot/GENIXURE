@@ -81,33 +81,7 @@ function renderCompendiumGrid() {
 }
 </script>
   .center {
-    background: #111;
-    border: 2px solid #f33;
-    border-radius: 12px;
-    min-height: 0; /* allow children to shrink for scrolling */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    max-width: none; /* fill available width to avoid narrow center */
-    margin: 0;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden; /* inner grid scrolls */
-  }
-  .toolbar { display:flex; gap:8px; align-items:center; padding:8px; border-bottom:2px solid #f33; flex-wrap:wrap; }
-  input[type='search'], select, button { background:#1b1216; color:#f33; border:1px solid #f33; border-radius:8px; padding:6px 10px; }
-  .grid {
-    flex: 1 1 auto;
-    min-height: 0; /* required for child scroll in flex */
-    overflow: auto; /* make the compendium the scrollable area */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 10px;
-    padding: 14px;
-    justify-items: stretch;
-    align-content: start;
-    width: 100%;
-    box-sizing: border-box;
+    @apply bg-gray-900 border-2 border-red-400 rounded-xl min-h-0 h-full flex flex-col max-w-none m-0 w-full box-border overflow-hidden;
   }
 
   /* Mini card styling for filled slots and weapon */
