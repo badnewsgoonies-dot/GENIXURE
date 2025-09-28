@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "cheerio": "^1.1.2",
-    "eslint": "^9.35.0"
+    "eslint": "^9.35.0",
+    "tailwindcss": "^4.1.13"
   }
 }
